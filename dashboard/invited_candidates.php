@@ -11,7 +11,7 @@
 
 
 			</div>
-			
+
 
 				<div class="col-md-12">
 				<div class="panel with-nav-tabs panel-default invite_candidate">
@@ -19,7 +19,7 @@
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#tab1default" data-toggle="tab">Invited Candidates</a></li>
 						</ul>
-						
+
 					</div>
 					<div class="panel-body">
 						<div class="tab-content">
@@ -42,8 +42,8 @@
 
 								</div>
 
-								
-  <div class="col-md-12">         
+
+  <div class="col-md-12">
   <table class="table invited">
     <thead>
       <tr>

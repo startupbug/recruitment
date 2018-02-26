@@ -4,7 +4,7 @@
       <div class="row">
          <div class="col-md-12">
             <div class="button_view"><span class="glyphicon glyphicon-plus"></span>
-               
+
                <button type="button" class="btn" data-toggle="modal" data-target="#create-test-template-Modal">Create a Test Template</button></div>
          </div>
       </div>
@@ -74,7 +74,7 @@
                         <tbody>
                            <tr>
                               <td>
-                                 <span>Candidates attempted</span> 
+                                 <span>Candidates attempted</span>
                                  <span class="pull-right margin_25">
                                  <span class="margin_25">:</span>
                                  1
@@ -120,7 +120,7 @@
                               </td>
                            </tr>
                            <tr>
-                              <td><span>Ends at  </span>  
+                              <td><span>Ends at  </span>
                                  <span class="pull-right margin_25">
                                  <span class="margin_25">:</span>
                                  Tue, Feb 20, 8:39 AM, CAST</span>
