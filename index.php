@@ -1,4 +1,4 @@
-<?php $base_url = 'http://localhost/recruitment/'; ?>
+<?php $base_url = 'http://site.startupbug.net:6888/recruitment/v1/'; ?>
 <!DOCTYPE html>
 <html>
 <head>

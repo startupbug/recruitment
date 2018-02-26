@@ -1,4 +1,4 @@
-<?php $base_url = 'http://localhost/recruitment_r/'; ?>
+<?php $base_url = 'http://site.startupbug.net:6888/recruitment/v1/'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,14 +34,14 @@
 								<li>
 									<div class="list-parent">
 										<div class="list-child">
-											<a href="view.php"><img src="<?php echo $base_url;?>/assets/img/icon-edit.png">Manage Tests
+											<a href="<?php echo $base_url;?>dashboard/view.php"><img src="<?php echo $base_url;?>/assets/img/icon-edit.png">Manage Tests
 										</a></div>
 									</div>
 								</li>
 								<li>
 									<div class="list-parent">
 										<div class="list-child">
-											<a href="LibraryPublicQuestions.php"><img src="<?php echo $base_url;?>/assets/img/icon-library.png">Library
+											<a href="<?php echo $base_url;?>dashboard/LibraryPublicQuestions.php"><img src="<?php echo $base_url;?>/assets/img/icon-library.png">Library
 										</a></div>
 									</div>
 								</li>
@@ -56,8 +56,8 @@
 									<div>
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $base_url;?>/assets/img/icon-more.png">MoreMenu <span class="caret"></span></a>
 										<ul class="dropdown-menu" role="menu">
-											<li><a href="history.php">Assessment History</a></li>
-											<li><a href="customersupport.php">Customer Support</a></li>
+											<li><a href="<?php echo $base_url;?>dashboard/history.php">Assessment History</a></li>
+											<li><a href="<?php echo $base_url;?>dashboard/customersupport.php">Customer Support</a></li>
 										</ul>
 									</div>
 								</li>
@@ -85,8 +85,8 @@
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-											<li><a href="setting/general_setting.php">Settings</a></li>
-											<li><a href="setting/change_password.php">Change Password</a></li>
+											<li><a href="<?php echo $base_url;?>dashboard//setting/general_setting.php">Settings</a></li>
+											<li><a href="<?php echo $base_url;?>dashboard/setting/change_password.php">Change Password</a></li>
 											<li><a href="#">Logout</a></li>
 										</ul>
 									</div>
