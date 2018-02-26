@@ -1,0 +1,193 @@
+
+@media only screen and (min-device-width: 992px){
+  .modal-lg {
+      width: 1170px;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
+    /* sh */
+   .container_radio {
+      display: block;
+      border-radius: 7px 7px 7px 7px;
+      margin: 5px;
+    }
+    .border_radio_left {
+        border-radius: 7px 7px 7px 7px;
+    }
+    .border_radio_right {
+        border-radius: 7px 7px 7px 7px;
+    }
+    .display-table-cell{
+         float: left;
+         display: table-cell;
+    }
+
+    .no-more-tables table,
+    .no-more-tables thead,
+    .no-more-tables tbody,
+    .no-more-tables th,
+    .no-more-tables td,
+    .no-more-tables tr:not(.collapse) {
+       display: block;
+    }
+
+    .no-more-tables thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        background-color:#000 !important;
+    }
+    .no-more-tables tr {
+        border: 1px solid #ccc;
+    }
+    .no-more-tables td {
+        border: none;
+        height: 100%;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        white-space: normal;
+        text-align:center;
+        font-size: 10px;
+    }
+    .no-more-tables td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 100%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align:left;
+        font-weight: bold;
+    }
+    .no-more-tables td:before {
+        content: attr(data-title);
+    }
+    .s_table tr th:first-child, .s_table tr td:first-child {
+        height: 100%;
+    }
+    .s_table tr th, table.s_table tr td {
+        height: 100%;
+    }
+    .s_weight{
+        width: auto;
+    }
+
+    /* sh */
+
+    .top_left li {
+         float: none;
+         border-right: none;
+    }
+    .top_left ul {
+         display: inline;
+    }
+    .top_right {
+         height: 100%;
+         float: left;
+    }
+    .border {
+         margin-bottom: 10px;
+    }
+    .header-search_history label {
+         top: 10px;
+    }
+    h3.customer_right {
+         text-align: center;
+         margin-top: 10px;
+    }
+    .nav-tabs>li {
+         float: none;
+    }
+     .button_view button.btn {
+         margin-bottom: 10px;
+    }
+     .right_tab > ul {
+         display: inline-block;
+         float: none;
+    }
+     .left_tab li:first-child {
+         margin-bottom: 15px;
+    }
+     .right_tab > ul > li {
+         padding-bottom: 8px;
+    }
+     .right_tab button#dropdownMenu2 {
+         margin-left: -5px;
+    }
+     .button_view .glyphicon {
+         top: -1px;
+    }
+}
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px){
+     .header-search {
+         display: none;
+    }
+     .border {
+         margin-bottom: 12px;
+    }
+     .header-search_history label {
+         top: 20px;
+    }
+     h3.customer_right {
+         text-align: center;
+         margin-top: 10px;
+    }
+     .right_tab > ul > li:first-child a {
+         font-size: 11px;
+    }
+}
+ @media only screen and (min-device-width : 320px) and (max-device-width : 768px) and (orientation:landscape){
+     .header-search {
+         display: none;
+    }
+     .top_left ul {
+         display: flex;
+    }
+     .top_right {
+         float: right;
+    }
+     .right_tab > ul > li:first-child a {
+         padding-left: 2px;
+         padding-right: 0px;
+    }
+     .right_tab li {
+         font-size: 14px;
+    }
+}
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation:landscape){
+     .right_tab > ul > li {
+         padding-right: 35px;
+    }
+}
+/*@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation:landscape){
+     .top_left li {
+         float: left;
+    }
+     .top_right {
+         margin-top: 14px;
+        /* float: left;
+         */
+    }
+    /*.top_left li {
+         padding-right: 2px;
+    }
+     .form-control {
+         padding: 0px;
+    }
+     input#text {
+         font-size: 13px;
+    }
+     .top_right li {
+         padding-right: 0px;
+    }
+     input#text {
+         font-size: 12px;
+         padding-left: 13px;
+    }
+     .glyphicon {
+         top: -24px;
+         left: 1px;
+         font-size: 11px;
+    }
+}
+*/
