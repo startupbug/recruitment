@@ -61,17 +61,12 @@
 											</td>
 							        <td>READY</td>
 							        <td>Intermediate</td>
-<<<<<<< HEAD
 							        <td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
 												</span>
 											</td>
 											<td> <a data-toggle="modal" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
-=======
-							        <td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
 							      </tr>
 										<tr id="collapse1" class="panel-collapse collapse">
 											<td colspan="5">
@@ -103,17 +98,13 @@
 											</td>
 							        <td>READY</td>
 							        <td>Intermediate</td>
-<<<<<<< HEAD
 							        <td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
 												</span>
 							        </td>
 											<td><a data-toggle="modal" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
-=======
-							        <td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
+
 							      </tr>
 										<tr id="collapse2" class="panel-collapse collapse">
 											<td colspan="5">
@@ -130,17 +121,12 @@
 											</td>
 							        <td>READY</td>
 							        <td>Intermediate</td>
-<<<<<<< HEAD
 							        <td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
 												</span>
 							        </td>
 											<td><a data-toggle="modal" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
-=======
-							        <td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
 							      </tr>
 										<tr id="collapse3" class="panel-collapse collapse">
 											<td colspan="5">
@@ -167,11 +153,8 @@
 									</div>
 									<div class="button_apply" >
 										<button type="button" class="btn">Apply</button>
-<<<<<<< HEAD
+
 										<a data-toggle="modal" data-target="#filter-programming-Modal">Advanced Filter</a>
-=======
-										<a href="#">Advanced Filter</a>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
 									</div>
 								</form>
 							</div>
@@ -196,17 +179,13 @@
 											</td>
 											<td>READY</td>
 											<td>Intermediate</td>
-<<<<<<< HEAD
 											<td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
 												</span>
 											</td>
 											<td><a data-toggle="modal" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
-=======
-											<td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
+
 										</tr>
 										<tr id="collapse4" class="panel-collapse collapse">
 											<td colspan="5">
@@ -238,17 +217,12 @@
 											</td>
 											<td>READY</td>
 											<td>Intermediate</td>
-<<<<<<< HEAD
 											<td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
 												</span>
 											</td>
 											<td><a data-toggle="modal" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
-=======
-											<td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
 										</tr>
 										<tr id="collapse5" class="panel-collapse collapse">
 											<td colspan="5">
@@ -265,17 +239,12 @@
 											</td>
 											<td>READY</td>
 											<td>Intermediate</td>
-<<<<<<< HEAD
 											<td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
 												</span>
 											</td>
 											<td><a data-toggle="modal" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
-=======
-											<td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
 										</tr>
 										<tr id="collapse6" class="panel-collapse collapse">
 											<td colspan="5">
@@ -292,25 +261,14 @@
 
 				 <!-- Start Private Question -->
 				 <div id="private" class="tab-pane fade">
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
 					<ul class="nav nav-tabs">
  			 			<li class="active"><a data-toggle="pill" href="#private-mcqs">MCQs (50)</a></li>
  			 			<li><a data-toggle="pill" href="#private-programming-question">Programming Questions (2)</a></li>
  			 			<li><a data-toggle="pill" href="#private-submission-question">Submission Questions (2)</a></li>
 						<li class="pull-right"></li>
  		 			</ul>
-<<<<<<< HEAD
 					<div class="tab-content">
-
 						<div id="private-mcqs" class="tab-pane fade in active">
-=======
-
-					<div class="tab-content">
- 			 			<div id="private-mcqs" class="tab-pane fade in active">
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
 							<div class="button_add_question pull-right">
 								<button type="button" class="btn" data-toggle="modal" data-target="#private-mcqs-Modal"><i class="fa fa-plus"></i> Add a Question</button>
 							</div>
@@ -328,11 +286,8 @@
  							    </div>
  									<div class="button_apply" >
  										<button type="button" class="btn">Apply</button>
-<<<<<<< HEAD
 										<a data-toggle="modal" data-target="#mcqs-filter-Modal">Advanced Filter</a>
-=======
- 										<a href="#">Advanced Filter</a>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
+
  									</div>
  							  </form>
  							</div>
@@ -344,11 +299,7 @@
  							        <th>State</th>
  							        <th>Level</th>
  							        <th>Tags</th>
-<<<<<<< HEAD
  											<th></th>
-=======
- 									<th></th>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  							      </tr>
  							    </thead>
  							    <tbody>
@@ -361,7 +312,6 @@
  											</td>
  							        <td>READY</td>
  							        <td>Intermediate</td>
-<<<<<<< HEAD
  							        <td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
@@ -372,10 +322,6 @@
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
-=======
- 							        <td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  							      </tr>
  										<tr id="collapse11" class="panel-collapse collapse">
  											<td colspan="5">
@@ -407,7 +353,6 @@
  											</td>
  							        <td>READY</td>
  							        <td>Intermediate</td>
-<<<<<<< HEAD
  							        <td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
@@ -418,10 +363,6 @@
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
-=======
- 							        <td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  							      </tr>
  										<tr id="collapse12" class="panel-collapse collapse">
  											<td colspan="5">
@@ -438,7 +379,6 @@
  											</td>
  							        <td>READY</td>
  							        <td>Intermediate</td>
-<<<<<<< HEAD
  							        <td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
@@ -449,10 +389,6 @@
 													<i class="fa fa-pencil"></i>
 												</a>
  											</td>
-=======
- 							        <td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  							      </tr>
  										<tr id="collapse13" class="panel-collapse collapse">
  											<td colspan="5">
@@ -466,7 +402,6 @@
 
  			 			<div id="private-programming-question" class="tab-pane fade">
 							<div class="button_add_question pull-right">
-<<<<<<< HEAD
 								<div class="open">
 									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
 									<button class="btn s_dropdown_left_button" data-toggle="modal" data-target="#private-programming-question-Modal" style="right: 39px;">
@@ -483,9 +418,6 @@
 									</ul>
 								</div>
 								<!-- <button type="button" class="btn" data-toggle="modal" data-target="#private-programming-question-Modal"><i class="fa fa-plus"></i> Add Coding a Question</button> -->
-=======
-								<button type="button" class="btn" data-toggle="modal" data-target="#private-programming-Modal"><i class="fa fa-plus"></i> Add Coding a Question</button>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
 							</div>
  							<div class="padding-col">
  								<form>
@@ -501,11 +433,7 @@
  									</div>
  									<div class="button_apply" >
  										<button type="button" class="btn">Apply</button>
-<<<<<<< HEAD
 										<a data-toggle="modal" data-target="#filter-programming-Modal">Advanced Filter</a>
-=======
- 										<a href="#">Advanced Filter</a>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  									</div>
  								</form>
  							</div>
@@ -530,7 +458,6 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
-<<<<<<< HEAD
  											<td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
@@ -541,10 +468,6 @@
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
-=======
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  										</tr>
  										<tr id="collapse14" class="panel-collapse collapse">
  											<td colspan="5">
@@ -576,7 +499,6 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
-<<<<<<< HEAD
  											<td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
@@ -587,10 +509,6 @@
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
-=======
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  										</tr>
  										<tr id="collapse15" class="panel-collapse collapse">
  											<td colspan="5">
@@ -607,7 +525,6 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
-<<<<<<< HEAD
  											<td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
@@ -618,10 +535,6 @@
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
-=======
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  										</tr>
  										<tr id="collapse16" class="panel-collapse collapse">
  											<td colspan="5">
@@ -635,11 +548,7 @@
 
 						<div id="private-submission-question" class="tab-pane fade">
 							<div class="button_add_question pull-right">
-<<<<<<< HEAD
 								<button type="button" class="btn" data-toggle="modal" data-target="#private-submission-question-Modal"><i class="fa fa-plus"></i> Add a Question</button>
-=======
-								<button type="button" class="btn" data-toggle="modal" data-target="#private-submission-Modal"><i class="fa fa-plus"></i> Add a Question</button>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
 							</div>
  							<div class="padding-col">
  								<form>
@@ -655,11 +564,7 @@
  									</div>
  									<div class="button_apply" >
  										<button type="button" class="btn">Apply</button>
-<<<<<<< HEAD
 										<a data-toggle="modal" data-target="#mcqs-filter-Modal">Advanced Filter</a>
-=======
- 										<a href="#">Advanced Filter</a>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  									</div>
  								</form>
  							</div>
@@ -684,7 +589,6 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
-<<<<<<< HEAD
  											<td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
@@ -695,10 +599,6 @@
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
-=======
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  										</tr>
  										<tr id="collapse17" class="panel-collapse collapse">
  											<td colspan="5">
@@ -730,7 +630,6 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
-<<<<<<< HEAD
  											<td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
@@ -741,10 +640,6 @@
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
-=======
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  										</tr>
  										<tr id="collapse18" class="panel-collapse collapse">
  											<td colspan="5">
@@ -761,7 +656,6 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
-<<<<<<< HEAD
  											<td>
 												<span class="badge">
 													<span>Dynamic Programing </span>
@@ -772,10 +666,6 @@
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
-=======
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
->>>>>>> 0a317c4ca7e7ab43623626df50ab8d0be029b8ee
  										</tr>
  										<tr id="collapse19" class="panel-collapse collapse">
  											<td colspan="5">
