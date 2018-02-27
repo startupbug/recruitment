@@ -12,7 +12,7 @@
 					
 					<li><a data-toggle="pill" href="#completion"><i class="fa fa-envelope" aria-hidden="true"></i>Test Completion Mail<i class=""></i></a></li>
 
-					<li><a data-toggle="pill" href="#trial"><i class="fa fa-list"></i>Trial Run<i class=""></i></a></li>
+					<!-- <li><a data-toggle="pill" href="#trial"><i class="fa fa-list"></i>Trial Run<i class=""></i></a></li> -->
 					<li><a data-toggle="pill" href="#user"><i class="fa fa-users" aria-hidden="true"></i>User Management<i class=""></i></a></li>
 					<li><a data-toggle="pill" href="#tags"><i class="fa fa-question-circle" aria-hidden="true"></i>Question Tags<i class=""></i></a></li>
 				</ul>
@@ -85,7 +85,7 @@
 							</div>
 						</div>
 					</div>
-					 <div class="panel panel-default">
+					 <!-- <div class="panel panel-default">
 						<div class="panel-heading">Trial Run</div>
 						<div class="panel-body">
 							<p class="contact_content">Enter email ids for a trial run below (your account will not be charged for these candidates)</p>
@@ -98,7 +98,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="panel panel-default">
 						<div class="panel-heading">User Management</div>
 						<div class="panel-body">
@@ -233,7 +233,7 @@
 							</div>
 						</div>
 					</div>
-					 <div class="panel panel-default">
+					 <!-- <div class="panel panel-default">
 						<div class="panel-heading">Trial Run</div>
 						<div class="panel-body">
 							<p class="contact_content">Enter email ids for a trial run below (your account will not be charged for these candidates)</p>
@@ -246,7 +246,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="panel panel-default">
 						<div class="panel-heading">User Management</div>
 						<div class="panel-body">
@@ -359,7 +359,7 @@
 							</div>
 						</div>
 
-					<div class="panel panel-default">
+					<!-- <div class="panel panel-default">
 						<div class="panel-heading">Trial Run</div>
 						<div class="panel-body">
 							<p class="contact_content">Enter email ids for a trial run below (your account will not be charged for these candidates)</p>
@@ -372,7 +372,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="panel panel-default">
 						<div class="panel-heading">User Management</div>
 						<div class="panel-body">
@@ -463,7 +463,7 @@
 
 					
 
-					<div id="trial" class="tab-pane fade">
+					<!-- <div id="trial" class="tab-pane fade">
 
 						<div class="panel panel-default">
 						<div class="panel-heading">Trial Run</div>
@@ -478,7 +478,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="panel panel-default">
 						<div class="panel-heading">User Management</div>
 						<div class="panel-body">

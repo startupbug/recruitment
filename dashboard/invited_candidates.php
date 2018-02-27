@@ -4,14 +4,14 @@
 		<div class="row">
 			<div class="col-md-12">
 
-			<div class="button_back"><button type="button" class="btn">Back</button>
+			<div class="button_back"><a href="view.php"> <button type="button" class="btn" >Back</button></a>
 				<h3 class="java">Java Coding - Manage Invitations</h3>
 			</div>
 
 
 
 			</div>
-			
+
 
 				<div class="col-md-12">
 				<div class="panel with-nav-tabs panel-default invite_candidate">
@@ -19,7 +19,7 @@
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#tab1default" data-toggle="tab">Invited Candidates</a></li>
 						</ul>
-						
+
 					</div>
 					<div class="panel-body">
 						<div class="tab-content">
@@ -42,8 +42,8 @@
 
 								</div>
 
-								
-  <div class="col-md-12">         
+
+  <div class="col-md-12">
   <table class="table invited">
     <thead>
       <tr>

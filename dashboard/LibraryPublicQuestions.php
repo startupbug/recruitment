@@ -36,7 +36,7 @@
 							    </div>
 									<div class="button_apply" >
 										<button type="button" class="btn">Apply</button>
-										<a href="#">Advanced Filter</a>
+										<a data-toggle="modal" data-target="#mcqs-filter-Modal">Advanced Filter</a>
 									</div>
 							  </form>
 							</div>
@@ -61,8 +61,13 @@
 											</td>
 							        <td>READY</td>
 							        <td>Intermediate</td>
-							        <td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
+							        <td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+											</td>
+											<td> <a data-toggle="modal" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
+
 							      </tr>
 										<tr id="collapse1" class="panel-collapse collapse">
 											<td colspan="5">
@@ -94,8 +99,14 @@
 											</td>
 							        <td>READY</td>
 							        <td>Intermediate</td>
-							        <td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
+
+							        <td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+							        </td>
+											<td><a data-toggle="modal" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
+
 							      </tr>
 										<tr id="collapse2" class="panel-collapse collapse">
 											<td colspan="5">
@@ -112,8 +123,14 @@
 											</td>
 							        <td>READY</td>
 							        <td>Intermediate</td>
-							        <td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
+
+							        <td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+							        </td>
+											<td><a data-toggle="modal" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
+
 							      </tr>
 										<tr id="collapse3" class="panel-collapse collapse">
 											<td colspan="5">
@@ -140,7 +157,9 @@
 									</div>
 									<div class="button_apply" >
 										<button type="button" class="btn">Apply</button>
-										<a href="#">Advanced Filter</a>
+
+										<a data-toggle="modal" data-target="#filter-programming-Modal">Advanced Filter</a>
+
 									</div>
 								</form>
 							</div>
@@ -165,8 +184,14 @@
 											</td>
 											<td>READY</td>
 											<td>Intermediate</td>
-											<td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
+
+											<td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+											</td>
+											<td><a data-toggle="modal" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
+
 										</tr>
 										<tr id="collapse4" class="panel-collapse collapse">
 											<td colspan="5">
@@ -198,8 +223,14 @@
 											</td>
 											<td>READY</td>
 											<td>Intermediate</td>
-											<td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
+
+											<td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+											</td>
+											<td><a data-toggle="modal" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
+
 										</tr>
 										<tr id="collapse5" class="panel-collapse collapse">
 											<td colspan="5">
@@ -216,8 +247,14 @@
 											</td>
 											<td>READY</td>
 											<td>Intermediate</td>
-											<td><button type="button" class="btn">Apply</button></td>
-											<td><i class="fa fa-eye"></i></td>
+
+											<td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+											</td>
+											<td><a data-toggle="modal" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
+
 										</tr>
 										<tr id="collapse6" class="panel-collapse collapse">
 											<td colspan="5">
@@ -243,7 +280,9 @@
  		 			</ul>
 
 					<div class="tab-content">
- 			 			<div id="private-mcqs" class="tab-pane fade in active">
+
+						<div id="private-mcqs" class="tab-pane fade in active">
+
 							<div class="button_add_question pull-right">
 								<button type="button" class="btn" data-toggle="modal" data-target="#private-mcqs-Modal"><i class="fa fa-plus"></i> Add a Question</button>
 							</div>
@@ -261,7 +300,9 @@
  							    </div>
  									<div class="button_apply" >
  										<button type="button" class="btn">Apply</button>
- 										<a href="#">Advanced Filter</a>
+
+										<a data-toggle="modal" data-target="#mcqs-filter-Modal">Advanced Filter</a>
+
  									</div>
  							  </form>
  							</div>
@@ -273,7 +314,9 @@
  							        <th>State</th>
  							        <th>Level</th>
  							        <th>Tags</th>
- 									<th></th>
+
+ 											<th></th>
+
  							      </tr>
  							    </thead>
  							    <tbody>
@@ -286,8 +329,18 @@
  											</td>
  							        <td>READY</td>
  							        <td>Intermediate</td>
- 							        <td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
+
+ 							        <td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+ 							        </td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-mcqs-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+
  							      </tr>
  										<tr id="collapse11" class="panel-collapse collapse">
  											<td colspan="5">
@@ -319,8 +372,18 @@
  											</td>
  							        <td>READY</td>
  							        <td>Intermediate</td>
- 							        <td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
+
+ 							        <td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+ 							        </td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-mcqs-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+
  							      </tr>
  										<tr id="collapse12" class="panel-collapse collapse">
  											<td colspan="5">
@@ -337,8 +400,18 @@
  											</td>
  							        <td>READY</td>
  							        <td>Intermediate</td>
- 							        <td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
+
+ 							        <td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+ 							        </td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-mcqs-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+ 											</td>
+
  							      </tr>
  										<tr id="collapse13" class="panel-collapse collapse">
  											<td colspan="5">
@@ -352,7 +425,24 @@
 
  			 			<div id="private-programming-question" class="tab-pane fade">
 							<div class="button_add_question pull-right">
-								<button type="button" class="btn" data-toggle="modal" data-target="#private-programming-Modal"><i class="fa fa-plus"></i> Add Coding a Question</button>
+
+								<div class="open">
+									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+									<button class="btn s_dropdown_left_button" data-toggle="modal" data-target="#private-programming-question-Modal" style="right: 39px;">
+										<span class="fa fa-plus"></span>
+										Add Coding Question
+									</button>
+									<button class="btn s_dropdown_right_button">
+										<span class="caret"></span>
+									</button>
+									</div>
+									<ul class="dropdown-menu s_addquestion_dropdown_menu">
+									<li><a data-toggle="modal" data-target="#private-programming-question-Modal">Add Compilable Question</a></li>
+									<li><a data-toggle="modal" data-target="#private-programming-debug-Modal">Add Debug Question</a></li>
+									</ul>
+								</div>
+								<!-- <button type="button" class="btn" data-toggle="modal" data-target="#private-programming-question-Modal"><i class="fa fa-plus"></i> Add Coding a Question</button> -->
+
 							</div>
  							<div class="padding-col">
  								<form>
@@ -368,7 +458,9 @@
  									</div>
  									<div class="button_apply" >
  										<button type="button" class="btn">Apply</button>
- 										<a href="#">Advanced Filter</a>
+
+										<a data-toggle="modal" data-target="#filter-programming-Modal">Advanced Filter</a>
+
  									</div>
  								</form>
  							</div>
@@ -393,8 +485,18 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
+
+ 											<td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+ 											</td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-programming-question-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+
  										</tr>
  										<tr id="collapse14" class="panel-collapse collapse">
  											<td colspan="5">
@@ -426,8 +528,18 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
+
+ 											<td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+ 											</td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-programming-question-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+
  										</tr>
  										<tr id="collapse15" class="panel-collapse collapse">
  											<td colspan="5">
@@ -444,8 +556,18 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
+
+ 											<td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+ 											</td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-programming-question-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+
  										</tr>
  										<tr id="collapse16" class="panel-collapse collapse">
  											<td colspan="5">
@@ -459,7 +581,9 @@
 
 						<div id="private-submission-question" class="tab-pane fade">
 							<div class="button_add_question pull-right">
-								<button type="button" class="btn" data-toggle="modal" data-target="#private-submission-Modal"><i class="fa fa-plus"></i> Add a Question</button>
+
+								<button type="button" class="btn" data-toggle="modal" data-target="#private-submission-question-Modal"><i class="fa fa-plus"></i> Add a Question</button>
+
 							</div>
  							<div class="padding-col">
  								<form>
@@ -475,7 +599,9 @@
  									</div>
  									<div class="button_apply" >
  										<button type="button" class="btn">Apply</button>
- 										<a href="#">Advanced Filter</a>
+
+										<a data-toggle="modal" data-target="#mcqs-filter-Modal">Advanced Filter</a>
+
  									</div>
  								</form>
  							</div>
@@ -500,8 +626,18 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
+
+ 											<td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+ 											</td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-submission-question-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+
  										</tr>
  										<tr id="collapse17" class="panel-collapse collapse">
  											<td colspan="5">
@@ -533,8 +669,18 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
+
+ 											<td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+ 											</td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-submission-question-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+
  										</tr>
  										<tr id="collapse18" class="panel-collapse collapse">
  											<td colspan="5">
@@ -551,8 +697,18 @@
  											</td>
  											<td>READY</td>
  											<td>Intermediate</td>
- 											<td><button type="button" class="btn">Apply</button></td>
- 											<td><i class="fa fa-eye"></i></td>
+
+ 											<td>
+												<span class="badge">
+													<span>Dynamic Programing </span>
+												</span>
+ 											</td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-submission-question-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+
  										</tr>
  										<tr id="collapse19" class="panel-collapse collapse">
  											<td colspan="5">
