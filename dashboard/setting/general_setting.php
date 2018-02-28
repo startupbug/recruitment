@@ -1,7 +1,7 @@
 <?php require_once '../../master/header.php';?>
 
 <section class="general">
-	<div class="container">
+	<div class="container-fluid padding-15-fluit">
 		<h3 class="general_main">Settings</h3>
 		<div class="row border-row display-table">
 			
