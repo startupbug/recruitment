@@ -8,9 +8,26 @@ $(document).ready(function() {
   $("#s_txtEditor_programming").Editor();
   $("#s_txtEditor_programming_debug").Editor();
   $("#s_txtEditor_submission").Editor();
+
+  $("#s_txt_BD_InstructionsEditor").Editor();
+  $("#s_txt_BD_DescriptionEditor").Editor();
 });
 
 $(function () {
+
+
+    $('.language_multi').multiselect({
+        includeSelectAllOption: true
+    });
+    $('#btnSelected').click(function () {
+        var selected = $(".language_multi option:selected");
+        var message = "";
+        selected.each(function () {
+            message += $(this).text() + " " + $(this).val() + "\n";
+        });
+        alert(message);
+    });
+
     $('#tag_multi').multiselect({
         includeSelectAllOption: true
     });

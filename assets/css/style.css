@@ -1,10 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
 /* =Reset default browser CSS. -------------------------------------------------------------- */
- html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+
+ html, body, div, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
      border: 0;
-     font-family: inherit;
-     font-size: 15px;
+       font-family: inherit;
+       font-size:14px;
      font-family: 'SourceSansPro-Regular';
      font-style: inherit;
      font-weight: inherit;
@@ -541,13 +542,13 @@
      margin-top: 20px;
      margin-bottom: 8px;
 }
- .panel-heading {
+ /* .panel-heading {
      color: #333333;
      font-size: 19px;
      font-family: 'SourceSansPro-Regular';
      text-align: center;
      font-weight: 600;
-}
+} */
  label.col-md-3.control-label {
      font-size: 13px;
      font-family: 'SourceSansPro-Regular';
@@ -1102,9 +1103,9 @@ td button.btn.focus, td button.btn:focus, td button.btn:hover {
   text-decoration: none;
 }
 
-.s_table tbody tr td i {
+/* .s_table tbody tr td i {
     color: #262063;
-}
+} */
 .s_table thead {
     background: #ddd;
 }

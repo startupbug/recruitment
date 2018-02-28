@@ -21,6 +21,7 @@
 		<link rel="stylesheet" href="<?php echo $base_url;?>assets/css/editor.css"/>
 		<link rel="stylesheet" href="<?php echo $base_url;?>assets/css/style.css">
 		<link rel="stylesheet" href="<?php echo $base_url;?>assets/css/responsive.css">
+		<link rel="stylesheet" href="<?php echo $base_url;?>assets/css/S_style.css">
 </head>
 <body>
 	<div id="wrapper">
