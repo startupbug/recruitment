@@ -471,7 +471,7 @@
 }
  .left_tab li {
      font-size: 18px;
-     color: #261f63;
+     color: #384385;
      font-family: 'SourceSansPro-Semibold';
      padding-left: 14px;
 }
@@ -522,7 +522,7 @@
      color: #261f63;
 } */
  .margin_22 {
-     margin-right: 76px;
+     margin-right: 26px;
 }
  .margin_23 {
      margin-right: 28px;
@@ -541,7 +541,7 @@
      margin-top: 20px;
      margin-bottom: 8px;
 }
- .panel-heading {
+.setting_gen {
      color: #333333;
      font-size: 19px;
      font-family: 'SourceSansPro-Regular';
@@ -1704,4 +1704,88 @@ h3.evaluator:hover {
     border: 1px solid #d4d4d4;
     padding-bottom: 15px;
     padding-top: 15px;
+}
+.host a {
+    color: white;
+    border: 1px solid #323754;
+    background-color: #323754!important;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 16px;
+    font-family: 'SourceSansPro-Regular';
+    padding-left: 26px;
+    padding-right: 26px;
+    border-radius: 6px;
+}
+
+span.test-muted {
+    color: #999999;
+}
+.size span.pull-right {
+    font-size: 14px;
+}
+
+.size td {
+    font-size: 14px;
+}
+.modal_user {
+    padding-top: 18px;
+}
+
+.checkbox_user input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+p.user_content {
+    margin-left: 20px;
+    color: #737373;
+}
+
+.fa_user {
+    min-height: 50px;
+}
+
+
+.panel-footer {
+    text-align: right;
+}
+.button_notify button.btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: white;
+    background: #323754!important;
+}
+
+button.btn.cancel_footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    background: #cccccc!important;
+}
+
+.button_notify button.btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    background: #323754!important;
+    margin-left: 5px;
+}
+.button_notify button.btn.cancel_footer {
+    background: #cccccc!important;
+}
+
+.button_notify button.btn.cancel_footer {
+    /* background: #cccccc!important; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    background: #cccccc!important;
 }

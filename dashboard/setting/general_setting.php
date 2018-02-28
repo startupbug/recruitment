@@ -22,7 +22,7 @@
 				<div class="tab-content sidebar-content">
 					<div id="public" class="tab-pane fade in active">
 						<div class="panel panel-default">
-							<div class="panel-heading">General Setting</div>
+							<div class="panel-heading setting_gen">General Setting</div>
 							<div class="panel-body">
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="name">Full Name <i class="fa fa-info-circle"></i></label>
@@ -41,7 +41,7 @@
 							</div>
 						</div>
 						<div class="panel panel-default">
-							<div class="panel-heading">Contact Details</div>
+							<div class="panel-heading setting_gen">Contact Details</div>
 							<div class="panel-body">
 								<p class="contact_content">These are the contact details for the candidate's reference incase of any query. <i class="fa fa-info-circle"></i></p>
 								<div class="form-group">
@@ -67,7 +67,7 @@
 							</div>
 						</div>
 						<div class="panel panel-default" id="test">
-						<div class="panel-heading">Test Completion Mail</div>
+						<div class="panel-heading setting_gen">Test Completion Mail</div>
 						<div class="panel-body">
 							<p class="contact_content">An email will be sent to the candidates after completing the test.</p>
 							<div class="form-group">
@@ -100,7 +100,7 @@
 						</div>
 					</div> -->
 					<div class="panel panel-default">
-						<div class="panel-heading">User Management</div>
+						<div class="panel-heading setting_gen">User Management</div>
 						<div class="panel-body">
 							<p class="contact_content">You can add users and assign roles, which allow them to perform specific operations on your account</p>
 							<div class="form-group">
@@ -113,7 +113,8 @@
 										</ul>
 									</div>
 									<p class="yet">No Roles added yet</p>
-									<br><div class="button_general"><button type="button" class="btn"><span class="glyphicon glyphicon-plus"></span>Add Role</button></div>
+									<br><div class="button_general"><button type="button" class="btn"  data-toggle="modal" data-target="#usermanagement"><span class="glyphicon glyphicon-plus">
+									Add Role</button></div>
 								</div>
 							</div>
 						</div>
@@ -121,7 +122,7 @@
 
 
 					<div class="panel panel-default">
-						<div class="panel-heading">Question Tags</div>
+						<div class="panel-heading setting_gen">Question Tags</div>
 						<div class="panel-body">
 							<p class="contact_content">Repository of tags that are used to tag questions in the library <i class="fa fa-info-circle"></i></p>
 							<div class="form-group">
@@ -189,7 +190,7 @@
 					<!--Contact-->
 					<div id="private" class="tab-pane fade">
 						<div class="panel panel-default">
-							<div class="panel-heading">Contact Details</div>
+							<div class="panel-heading setting_gen">Contact Details</div>
 							<div class="panel-body">
 								<p class="contact_content">These are the contact details for the candidate's reference incase of any query. <i class="fa fa-info-circle"></i></p>
 								<div class="form-group">
@@ -215,7 +216,7 @@
 							</div>
 						</div>
 						<div class="panel panel-default">
-						<div class="panel-heading">Test Completion Mail</div>
+						<div class="panel-heading setting_gen">Test Completion Mail</div>
 						<div class="panel-body">
 							<p class="contact_content">An email will be sent to the candidates after completing the test.</p>
 							<div class="form-group">
@@ -248,7 +249,7 @@
 						</div>
 					</div> -->
 					<div class="panel panel-default">
-						<div class="panel-heading">User Management</div>
+						<div class="panel-heading setting_gen">User Management</div>
 						<div class="panel-body">
 							<p class="contact_content">You can add users and assign roles, which allow them to perform specific operations on your account</p>
 							<div class="form-group">
@@ -261,13 +262,13 @@
 										</ul>
 									</div>
 									<p class="yet">No Roles added yet</p>
-									<br><div class="button_general"><button type="button" class="btn"><span class="glyphicon glyphicon-plus"></span>Add Role</button></div>
+									<br><div class="button_general"><button type="button" class="btn"  data-toggle="modal" data-target="#usermanagement"><span class="glyphicon glyphicon-plus"></span>Add Role</button></div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading">Question Tags</div>
+						<div class="panel-heading setting_gen">Question Tags</div>
 						<div class="panel-body">
 							<p class="contact_content">Repository of tags that are used to tag questions in the library <i class="fa fa-info-circle"></i></p>
 							<div class="form-group">
@@ -340,7 +341,7 @@
                      <!--Test Completion mail-->
 					<div id="completion" class="tab-pane fade">
 						<div class="panel panel-default">
-							<div class="panel-heading">Test Completion Mail</div>
+							<div class="panel-heading setting_gen">Test Completion Mail</div>
 							<div class="panel-body">
 								<p class="contact_content">An email will be sent to the candidates after completing the test.</p>
 								<div class="form-group">
@@ -374,7 +375,7 @@
 						</div>
 					</div> -->
 					<div class="panel panel-default">
-						<div class="panel-heading">User Management</div>
+						<div class="panel-heading setting_gen">User Management</div>
 						<div class="panel-body">
 							<p class="contact_content">You can add users and assign roles, which allow them to perform specific operations on your account</p>
 							<div class="form-group">
@@ -387,13 +388,13 @@
 										</ul>
 									</div>
 									<p class="yet">No Roles added yet</p>
-									<br><div class="button_general"><button type="button" class="btn"><span class="glyphicon glyphicon-plus"></span>Add Role</button></div>
+									<br><div class="button_general"><button type="button" class="btn"  data-toggle="modal" data-target="#usermanagement"><span class="glyphicon glyphicon-plus"></span>Add Role</button></div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading">Question Tags</div>
+						<div class="panel-heading setting_gen">Question Tags</div>
 						<div class="panel-body">
 							<p class="contact_content">Repository of tags that are used to tag questions in the library <i class="fa fa-info-circle"></i></p>
 							<div class="form-group">
@@ -479,8 +480,8 @@
 							</div>
 						</div>
 					</div> -->
-					<div class="panel panel-default">
-						<div class="panel-heading">User Management</div>
+					<!--<div class="panel panel-default">
+						<div class="panel-heading setting_gen">User Management</div>
 						<div class="panel-body">
 							<p class="contact_content">You can add users and assign roles, which allow them to perform specific operations on your account</p>
 							<div class="form-group">
@@ -499,7 +500,7 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading">Question Tags</div>
+						<div class="panel-heading setting_gen">Question Tags</div>
 						<div class="panel-body">
 							<p class="contact_content">Repository of tags that are used to tag questions in the library <i class="fa fa-info-circle"></i></p>
 							<div class="form-group">
@@ -562,12 +563,12 @@
 							</div>
 						</div>
 					</div>
-					</div>
+					</div>-->
 
 					<div id="user" class="tab-pane fade">
 
 						<div class="panel panel-default">
-						<div class="panel-heading">User Management</div>
+						<div class="panel-heading setting_gen">User Management</div>
 						<div class="panel-body">
 							<p class="contact_content">You can add users and assign roles, which allow them to perform specific operations on your account</p>
 							<div class="form-group">
@@ -580,13 +581,13 @@
 										</ul>
 									</div>
 									<p class="yet">No Roles added yet</p>
-									<br><div class="button_general"><button type="button" class="btn"><span class="glyphicon glyphicon-plus"></span>Add Role</button></div>
+									<br><div class="button_general"><button type="button" class="btn" data-toggle="modal" data-target="#usermanagement"><span class="glyphicon glyphicon-plus"></span>Add Role</button></div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-heading">Question Tags</div>
+						<div class="panel-heading setting_gen">Question Tags</div>
 						<div class="panel-body">
 							<p class="contact_content">Repository of tags that are used to tag questions in the library <i class="fa fa-info-circle"></i></p>
 							<div class="form-group">
@@ -652,7 +653,7 @@
 					</div>
 					<div id="tags" class="tab-pane fade">
 							<div class="panel panel-default">
-						<div class="panel-heading">Question Tags</div>
+						<div class="panel-heading setting_gen">Question Tags</div>
 						<div class="panel-body">
 							<p class="contact_content">Repository of tags that are used to tag questions in the library <i class="fa fa-info-circle"></i></p>
 							<div class="form-group">
