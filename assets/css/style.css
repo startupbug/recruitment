@@ -1685,10 +1685,11 @@ h3.evaluator:hover {
     text-align: center;
     margin: 0 auto;
 }
+.view_filter_right{
+     text-align: right;
+    padding: 5px 5px;
+}
 .view_filter_right i.fa.fa-filter {
-   float: right;
-   margin-top: -42px;
-   margin-right: 10px;
    border: 1px solid;
    padding-top: 8px;
    padding-bottom: 6px;
@@ -1704,7 +1705,7 @@ h3.evaluator:hover {
 
     border: 1px solid #d4d4d4;
     padding-bottom: 15px;
-    padding-top: 15px;
+    padding-top: 5px;
 }
 .host a {
     color: white;

@@ -1,7 +1,7 @@
 <?php require_once '../master/header.php';?>
 
 <section class="view">
-   <div class="container">
+   <div class="container-fluid padding-15-fluit">
       <div class="row">
          <div class="col-md-12">
             <div class="button_view"><span class="glyphicon glyphicon-plus"></span>
@@ -11,14 +11,16 @@
       </div>
    </div>
 </section>
-<div class="container">
+<div class="container-fluid padding-15-fluit">
    <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="pill" href="#home">Test Hosted (1)<i class="fa fa-info-circle"></i></a></li>
       <li><a data-toggle="pill" href="#testemplate">Test Templates (6)<i class="fa fa-info-circle"></i></a></li>
    </ul>
    <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
-         <div class="view_filter_right"><i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i></div>
+         <div class="view_filter_right">
+            <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
+         </div>
          <section class="tab_nav">
             <div class="row main_tab">
                <div class="col-md-6">
@@ -183,7 +185,9 @@
       </div>
       <div id="testemplate" class="tab-pane fade">
         <div class="col-md-12 s_testtemplate_border">
-          <div class="view_filter_right"><i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i></div>
+          <div class="view_filter_right">
+            <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
+          </div>
 
           <section class="tab_nav">
              <div class="row main_tab">
@@ -618,8 +622,7 @@
                    </div>
                 </div>
              </div>
-          </sectio
-          n>
+          </section>
 
           <section class="tab_nav">
              <div class="row main_tab">

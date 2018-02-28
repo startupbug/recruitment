@@ -2,8 +2,8 @@
 
 <section class="view">
 	<br>
-	<div class="container">
-		<div class="row border-row display-table">
+	<div class="container-fluid padding-15-fluit">
+		<div class="row border-row display-table s_magin-10">
 
 			<div class="col-md-3 col-sm-12 col-xs-12 display-table-cell padding-0 nav-background">
 				<ul class="nav nav-tabs nav-sidebar">
