@@ -1,4 +1,5 @@
 <?php require_once '../master/header.php';?>
+
 <section class="view">
    <div class="container">
       <div class="row">
@@ -182,6 +183,7 @@
       </div>
       <div id="testemplate" class="tab-pane fade">
         <div class="col-md-12 s_testtemplate_border">
+          <div class="view_filter_right"><i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i></div>
 
           <section class="tab_nav">
              <div class="row main_tab">
@@ -193,17 +195,19 @@
                                <span class="fa fa-caret-right"></span>
                             </a>
                          </li>
-                         <li>Live</li>
-                         <li>Java Coding(Try)</li>
+                         <li> Customer Service Test - CodeGround  <span class="test-muted">(Try)</span></li>
+
                       </ul>
                    </div>
                 </div>
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li><a href="#">Invite Candidates</a></li>
+                         <li>Public Preview</li>
+
                          <li>Edit</li>
-                         <li>Report</li>
+                          <li><div class="host"><a href="#">Host this test</a></div></li>
+
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -211,12 +215,11 @@
                                <span class="caret"></span>
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <li><a href="invited_candidates.php">View Invited Candidates</a></li>
-                                  <li><a href="#">Preview Test</a></li>
-                                  <li><a href="#">Delete Test</a></li>
-                                  <li role="separator" class="divider"></li>
-                                  <li><a href="#" data-toggle="modal" data-target="#setup_manual
-                                     ">Setup Manual Evaluation</a></li>
+                                  <li><a href="invited_candidates.php">Preview Template</a></li>
+                                  <li><a href="#">Create Duplicate Template</a></li>
+                                  <li><a href="#">Delete</a></li>
+
+
                                </ul>
                             </div>
                          </li>
@@ -229,44 +232,7 @@
                    <div class="col-md-12">
                       <p class="view_content">Webcam : required</p>
                    </div>
-                   <div class="col-md-3">
-                      <table class="table table-bordered">
-                         <thead>
-                            <tr>
-                               <th>Candidate attempts <i class="fa fa-sync"></i></th>
-                            </tr>
-                         </thead>
-                         <tbody>
-                            <tr>
-                               <td>
-                                  <span>Candidates attempted</span>
-                                  <span class="pull-right margin_25">
-                                  <span class="margin_25">:</span>
-                                  1
-                                  </span>
-                               </td>
-                            </tr>
-                            <tr>
-                               <td>
-                                  <span>Candidates attempting</span>
-                                  <span class="pull-right margin_25">
-                                  <span class="margin_25">:</span>
-                                  0
-                                  </span>
-                               </td>
-                            </tr>
-                            <tr>
-                               <td>
-                                  <span>Candidates passed</span>
-                                  <span class="pull-right margin_25">
-                                  <span class="margin_25">:</span>
-                                  0
-                                  </span>
-                               </td>
-                            </tr>
-                         </tbody>
-                      </table>
-                   </div>
+
                    <div class="col-md-4">
                       <table class="table table-bordered">
                          <thead>
@@ -275,58 +241,19 @@
                             </tr>
                          </thead>
                          <tbody>
-                            <tr>
-                               <td>
-                                  <span>Starts at</span>
-                                  <span class="pull-right margin_23">
-                                  <span class="margin_25">:</span>
-                                  Tue, Feb 6, 8:42 AM, CAST
-                                  </span>
-                               </td>
-                            </tr>
-                            <tr>
-                               <td><span>Ends at  </span>
-                                  <span class="pull-right margin_25">
-                                  <span class="margin_25">:</span>
-                                  Tue, Feb 20, 8:39 AM, CAST</span>
-                               </td>
-                            </tr>
+
+
                             <tr>
                                <td><span>Duration</span>
                                   <span class="pull-right margin_22">
                                   <span class="margin_25">:</span>
-                                  1 hour 30 minutes</span>
+                                  45 minutes</span>
                                </td>
                             </tr>
                          </tbody>
                       </table>
                    </div>
-                   <div class="col-md-2">
-                      <table class="table table-bordered">
-                         <thead>
-                            <tr>
-                               <th>Scoring</th>
-                            </tr>
-                         </thead>
-                         <tbody>
-                            <tr>
-                               <td><span>Total Score</span>
-                                  <span class="pull-right margin_20">
-                                  <span class="margin_25">:</span>
-                                  132</span>
-                               </td>
-                            </tr>
-                            <tr>
-                               <td><span>Cut-off Score</span>
-                                  <span class="pull-right margin_20">
-                                  <span class="margin_25">:</span>
-                                  106</span>
-                               </td>
-                               </td>
-                            </tr>
-                         </tbody>
-                      </table>
-                   </div>
+
                    <div class="col-md-3">
                       <table class="table table-bordered">
                          <thead>
@@ -336,8 +263,12 @@
                          </thead>
                          <tbody>
                             <tr>
-                               <td>Section1   2 Coding / 8 MCQ (90min)</td>
+                               <td>Section1   <span class="pull-right">10MCQ (15min)</span></td>
+
                             </tr>
+                            <tr> <td>Section2   <span class="pull-right">5MCQ (10min)</span></td></tr>
+                             <tr> <td>Section3   <span class="pull-right">5MCQ (10min)</span></td></tr>
+                              <tr> <td>Section4   <span class="pull-right">5MCQ (10min)</span></td></tr>
                          </tbody>
                       </table>
                    </div>
@@ -354,17 +285,18 @@
                                <span class="fa fa-caret-right"></span>
                             </a>
                          </li>
-                         <li>Live</li>
-                         <li>Java Coding(Try)</li>
+                         <li>BPO Test - CodeGround <span class="test-muted">(Try)</span></li>
+
                       </ul>
                    </div>
                 </div>
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li><a href="#">Invite Candidates</a></li>
+                         <li>Public Preview</li>
+
                          <li>Edit</li>
-                         <li>Report</li>
+                          <li><div class="host"><a href="#">Host this test</a></div></li>
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -372,12 +304,9 @@
                                <span class="caret"></span>
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <li><a href="invited_candidates.php">View Invited Candidates</a></li>
-                                  <li><a href="#">Preview Test</a></li>
-                                  <li><a href="#">Delete Test</a></li>
-                                  <li role="separator" class="divider"></li>
-                                  <li><a href="#" data-toggle="modal" data-target="#setup_manual
-                                     ">Setup Manual Evaluation</a></li>
+                               <li><a href="invited_candidates.php">Preview Template</a></li>
+                                  <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
+                                  <li><a href="#">Delete</a></li>
                                </ul>
                             </div>
                          </li>
@@ -390,45 +319,8 @@
                    <div class="col-md-12">
                       <p class="view_content">Webcam : required</p>
                    </div>
+
                    <div class="col-md-3">
-                      <table class="table table-bordered">
-                         <thead>
-                            <tr>
-                               <th>Candidate attempts <i class="fa fa-sync"></i></th>
-                            </tr>
-                         </thead>
-                         <tbody>
-                            <tr>
-                               <td>
-                                  <span>Candidates attempted</span>
-                                  <span class="pull-right margin_25">
-                                  <span class="margin_25">:</span>
-                                  1
-                                  </span>
-                               </td>
-                            </tr>
-                            <tr>
-                               <td>
-                                  <span>Candidates attempting</span>
-                                  <span class="pull-right margin_25">
-                                  <span class="margin_25">:</span>
-                                  0
-                                  </span>
-                               </td>
-                            </tr>
-                            <tr>
-                               <td>
-                                  <span>Candidates passed</span>
-                                  <span class="pull-right margin_25">
-                                  <span class="margin_25">:</span>
-                                  0
-                                  </span>
-                               </td>
-                            </tr>
-                         </tbody>
-                      </table>
-                   </div>
-                   <div class="col-md-4">
                       <table class="table table-bordered">
                          <thead>
                             <tr>
@@ -436,59 +328,20 @@
                             </tr>
                          </thead>
                          <tbody>
-                            <tr>
-                               <td>
-                                  <span>Starts at</span>
-                                  <span class="pull-right margin_23">
-                                  <span class="margin_25">:</span>
-                                  Tue, Feb 6, 8:42 AM, CAST
-                                  </span>
-                               </td>
-                            </tr>
-                            <tr>
-                               <td><span>Ends at  </span>
-                                  <span class="pull-right margin_25">
-                                  <span class="margin_25">:</span>
-                                  Tue, Feb 20, 8:39 AM, CAST</span>
-                               </td>
-                            </tr>
+
+
                             <tr>
                                <td><span>Duration</span>
                                   <span class="pull-right margin_22">
                                   <span class="margin_25">:</span>
-                                  1 hour 30 minutes</span>
+                                   45 minutes</span>
                                </td>
                             </tr>
                          </tbody>
                       </table>
                    </div>
-                   <div class="col-md-2">
-                      <table class="table table-bordered">
-                         <thead>
-                            <tr>
-                               <th>Scoring</th>
-                            </tr>
-                         </thead>
-                         <tbody>
-                            <tr>
-                               <td><span>Total Score</span>
-                                  <span class="pull-right margin_20">
-                                  <span class="margin_25">:</span>
-                                  132</span>
-                               </td>
-                            </tr>
-                            <tr>
-                               <td><span>Cut-off Score</span>
-                                  <span class="pull-right margin_20">
-                                  <span class="margin_25">:</span>
-                                  106</span>
-                               </td>
-                               </td>
-                            </tr>
-                         </tbody>
-                      </table>
-                   </div>
-                   <div class="col-md-3">
+
+                   <div class="col-md-4">
                       <table class="table table-bordered">
                          <thead>
                             <tr>
@@ -496,9 +349,13 @@
                             </tr>
                          </thead>
                          <tbody>
-                            <tr>
-                               <td>Section1   2 Coding / 8 MCQ (90min)</td>
+                             <tr>
+                               <td>Section1 <i class="fa fa-window-maximize" aria-hidden="true"></i>  <span class="pull-right">10MCQ (15min)</span></td>
+
                             </tr>
+                            <tr> <td>Section2 <i class="fa fa-window-maximize" aria-hidden="true"></i>  <span class="pull-right">10MCQ (15min)</span></td></tr>
+                             <tr> <td>Section3 <i class="fa fa-window-maximize" aria-hidden="true"></i>  <span class="pull-right">10MCQ (15min)</span></td></tr>
+
                          </tbody>
                       </table>
                    </div>
@@ -515,17 +372,18 @@
                                <span class="fa fa-caret-right"></span>
                             </a>
                          </li>
-                         <li>Live</li>
-                         <li>Java Coding(Try)</li>
+                         <li>English <span class="test-muted">(try)</span></li>
+
                       </ul>
                    </div>
                 </div>
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li><a href="#">Invite Candidates</a></li>
+                         <li>Public Preview</li>
+
                          <li>Edit</li>
-                         <li>Report</li>
+                          <li><div class="host"><a href="#">Host this test</a></div></li>
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -533,12 +391,9 @@
                                <span class="caret"></span>
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <li><a href="invited_candidates.php">View Invited Candidates</a></li>
-                                  <li><a href="#">Preview Test</a></li>
-                                  <li><a href="#">Delete Test</a></li>
-                                  <li role="separator" class="divider"></li>
-                                  <li><a href="#" data-toggle="modal" data-target="#setup_manual
-                                     ">Setup Manual Evaluation</a></li>
+                                   <li><a href="invited_candidates.php">Preview Template</a></li>
+                                  <li><a href="#">Create Duplicate Template</a></li>
+                                  <li><a href="#">Delete</a></li>
                                </ul>
                             </div>
                          </li>
@@ -548,6 +403,265 @@
              </div>
              <div class="row border_view">
                 <div id="template3" class="panel-collapse collapse">
+                   <div class="col-md-12">
+                      <p class="view_content">Webcam : required</p>
+                   </div>
+                   <div class="col-md-3">
+                      <table class="table table-bordered size">
+                         <thead>
+                            <tr>
+                               <th>Timings</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+
+
+                            <tr>
+                               <td><span>Duration</span>
+                                  <span class="pull-right margin_22">
+                                  <span class="margin_25">:</span>
+                                   33 minutes</span>
+                               </td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+
+                   <div class="col-md-4">
+                      <table class="table table-bordered size">
+                         <thead>
+                            <tr>
+                               <th>Sections</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            <tr>
+                               <td>Section1 <i class="fa fa-window-maximize" aria-hidden="true"></i>  <span class="pull-right">17MCQ (15min)</span></td>
+
+                            </tr>
+                            <tr> <td>Section2   <span class="pull-right">2 Coding / 2 MCQ / 1 Submission (3min)</span></td></tr>
+                             <tr> <td>Section3   <span class="pull-right">2MCQ (15min)</span></td></tr>
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+             </div>
+          </section>
+          <section class="tab_nav">
+             <div class="row main_tab">
+                <div class="col-md-6">
+                   <div class="left_tab">
+                      <ul>
+                         <li>
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#template4" aria-expanded="false">
+                               <span class="fa fa-caret-right"></span>
+                            </a>
+                         </li>
+                         <li>Html</li>
+
+                      </ul>
+                   </div>
+                </div>
+                <div class="col-md-6">
+                   <div class="right_tab">
+                      <ul>
+                         <li>Public Preview</li>
+
+                         <li>Edit</li>
+                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li>
+                            <div class="dropdown">
+                               <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              More
+                               <span class="caret"></span>
+                               </button>
+                               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                  <li><a href="invited_candidates.php">Preview Template</a></li>
+                                  <li><a href="#">Create Duplicate Template</a></li>
+                                  <li><a href="#">Delete</a></li>
+                               </ul>
+                            </div>
+                         </li>
+                      </ul>
+                   </div>
+                </div>
+             </div>
+             <div class="row border_view">
+                <div id="template4" class="panel-collapse collapse">
+                   <div class="col-md-12">
+                      <p class="view_content">Webcam : required</p>
+                   </div>
+
+                   <div class="col-md-3">
+                      <table class="table table-bordered size">
+                         <thead>
+                            <tr>
+                               <th>Timings</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+
+
+                            <tr>
+                               <td><span>Duration</span>
+                                  <span class="pull-right margin_22">
+                                  <span class="margin_25">:</span>
+                                 15 minutes</span>
+                               </td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+
+                   <div class="col-md-4">
+                      <table class="table table-bordered size">
+                         <thead>
+                            <tr>
+                               <th>Sections</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            <tr>
+                               <td>Section1   <span class="pull-right">1 Coding / 2 MCQ / 1 Submission (15min)</td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+             </div>
+          </section>
+          <section class="tab_nav">
+             <div class="row main_tab">
+                <div class="col-md-6">
+                   <div class="left_tab">
+                      <ul>
+                         <li>
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#template5" aria-expanded="false">
+                               <span class="fa fa-caret-right"></span>
+                            </a>
+                         </li>
+                         <li>Test template <span class="test-muted">(Try)</span></li>
+
+                      </ul>
+                   </div>
+                </div>
+                <div class="col-md-6">
+                   <div class="right_tab">
+                      <ul>
+                         <li>Public Preview</li>
+
+                         <li>Edit</li>
+                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li>
+                            <div class="dropdown">
+                               <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              More
+                               <span class="caret"></span>
+                               </button>
+                               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="invited_candidates.php">Preview Template</a></li>
+                                  <li><a href="#">Create Duplicate Template</a></li>
+                                  <li><a href="#">Delete</a></li>
+                               </ul>
+                            </div>
+                         </li>
+                      </ul>
+                   </div>
+                </div>
+             </div>
+             <div class="row border_view">
+                <div id="template5" class="panel-collapse collapse">
+                   <div class="col-md-12">
+                      <p class="view_content">Webcam : required</p>
+                   </div>
+
+                   <div class="col-md-3">
+                      <table class="table table-bordered">
+                         <thead>
+                            <tr>
+                               <th>Timings</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+
+
+                            <tr>
+                               <td><span>Duration</span>
+                                  <span class="pull-right margin_22">
+                                  <span class="margin_25">:</span>
+                                  30 minutes</span>
+                               </td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+
+                   <div class="col-md-4">
+                      <table class="table table-bordered">
+                         <thead>
+                            <tr>
+                               <th>Sections</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+
+
+                         <tbody>
+                            <tr>
+                               <td>Section1   <span class="pull-right">3 MCQ (15min)</td>
+                            </tr>
+                            <tr>
+                               <td>Section2   <span class="pull-right">1 Submission (15min)</td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+             </div>
+          </sectio
+          n>
+
+          <section class="tab_nav">
+             <div class="row main_tab">
+                <div class="col-md-6">
+                   <div class="left_tab">
+                      <ul>
+                         <li>
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#template6" aria-expanded="false">
+                               <span class="fa fa-caret-right"></span>
+                            </a>
+                         </li>
+                         <li>Java Coding <span class="test-muted">(Try)</span></li>
+
+                      </ul>
+                   </div>
+                </div>
+                <div class="col-md-6">
+                   <div class="right_tab">
+                      <ul>
+                         <li>Public Preview</li>
+
+                         <li>Edit</li>
+                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li>
+                            <div class="dropdown">
+                               <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              More
+                               <span class="caret"></span>
+                               </button>
+                               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                 <li><a href="invited_candidates.php">Preview Template</a></li>
+                                  <li><a href="#">Create Duplicate Template</a></li>
+                                  <li><a href="#">Delete</a></li>
+                               </ul>
+                            </div>
+                         </li>
+                      </ul>
+                   </div>
+                </div>
+             </div>
+             <div class="row border_view">
+                <div id="template6" class="panel-collapse collapse">
                    <div class="col-md-12">
                       <p class="view_content">Webcam : required</p>
                    </div>
@@ -672,21 +786,23 @@
                    <div class="left_tab">
                       <ul>
                          <li>
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#template4" aria-expanded="false">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#template7" aria-expanded="false">
                                <span class="fa fa-caret-right"></span>
                             </a>
                          </li>
-                         <li>Live</li>
-                         <li>Java Coding(Try)</li>
+
+                         <li>Sample Template 2<span class="test-muted">(Try)</span></li>
+
                       </ul>
                    </div>
                 </div>
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li><a href="#">Invite Candidates</a></li>
+                         <li>Public Preview</li>
+
                          <li>Edit</li>
-                         <li>Report</li>
+                          <li><div class="host"><a href="#">Host this test</a></div></li>
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -694,12 +810,9 @@
                                <span class="caret"></span>
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <li><a href="invited_candidates.php">View Invited Candidates</a></li>
-                                  <li><a href="#">Preview Test</a></li>
-                                  <li><a href="#">Delete Test</a></li>
-                                  <li role="separator" class="divider"></li>
-                                  <li><a href="#" data-toggle="modal" data-target="#setup_manual
-                                     ">Setup Manual Evaluation</a></li>
+                                   <li><a href="invited_candidates.php">Preview Template</a></li>
+                                  <li><a href="#">Create Duplicate Template</a></li>
+                                  <li><a href="#">Delete</a></li>
                                </ul>
                             </div>
                          </li>
@@ -708,7 +821,7 @@
                 </div>
              </div>
              <div class="row border_view">
-                <div id="template4" class="panel-collapse collapse">
+                <div id="template7" class="panel-collapse collapse">
                    <div class="col-md-12">
                       <p class="view_content">Webcam : required</p>
                    </div>
@@ -828,6 +941,166 @@
              </div>
           </section>
 
+          <section class="tab_nav">
+             <div class="row main_tab">
+                <div class="col-md-6">
+                   <div class="left_tab">
+                      <ul>
+                         <li>
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#template8" aria-expanded="false">
+                               <span class="fa fa-caret-right"></span>
+                            </a>
+                         </li>
+
+                         <li>Sample Template 1<span class="test-muted">(Try)</span></li>
+
+                      </ul>
+                   </div>
+                </div>
+                <div class="col-md-6">
+                   <div class="right_tab">
+                      <ul>
+                         <li>Public Preview</li>
+
+                         <li>Edit</li>
+                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li>
+                            <div class="dropdown">
+                               <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              More
+                               <span class="caret"></span>
+                               </button>
+                               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                   <li><a href="invited_candidates.php">Preview Template</a></li>
+                                  <li><a href="#">Create Duplicate Template</a></li>
+                                  <li><a href="#">Delete</a></li>
+                               </ul>
+                            </div>
+                         </li>
+                      </ul>
+                   </div>
+                </div>
+             </div>
+             <div class="row border_view">
+                <div id="template8" class="panel-collapse collapse">
+                   <div class="col-md-12">
+                      <p class="view_content">Webcam : required</p>
+                   </div>
+                   <div class="col-md-3">
+                      <table class="table table-bordered">
+                         <thead>
+                            <tr>
+                               <th>Candidate attempts <i class="fa fa-sync"></i></th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            <tr>
+                               <td>
+                                  <span>Candidates attempted</span>
+                                  <span class="pull-right margin_25">
+                                  <span class="margin_25">:</span>
+                                  1
+                                  </span>
+                               </td>
+                            </tr>
+                            <tr>
+                               <td>
+                                  <span>Candidates attempting</span>
+                                  <span class="pull-right margin_25">
+                                  <span class="margin_25">:</span>
+                                  0
+                                  </span>
+                               </td>
+                            </tr>
+                            <tr>
+                               <td>
+                                  <span>Candidates passed</span>
+                                  <span class="pull-right margin_25">
+                                  <span class="margin_25">:</span>
+                                  0
+                                  </span>
+                               </td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                   <div class="col-md-4">
+                      <table class="table table-bordered">
+                         <thead>
+                            <tr>
+                               <th>Timings</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            <tr>
+                               <td>
+                                  <span>Starts at</span>
+                                  <span class="pull-right margin_23">
+                                  <span class="margin_25">:</span>
+                                  Tue, Feb 6, 8:42 AM, CAST
+                                  </span>
+                               </td>
+                            </tr>
+                            <tr>
+                               <td><span>Ends at  </span>
+                                  <span class="pull-right margin_25">
+                                  <span class="margin_25">:</span>
+                                  Tue, Feb 20, 8:39 AM, CAST</span>
+                               </td>
+                            </tr>
+                            <tr>
+                               <td><span>Duration</span>
+                                  <span class="pull-right margin_22">
+                                  <span class="margin_25">:</span>
+                                  1 hour 30 minutes</span>
+                               </td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                   <div class="col-md-2">
+                      <table class="table table-bordered">
+                         <thead>
+                            <tr>
+                               <th>Scoring</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            <tr>
+                               <td><span>Total Score</span>
+                                  <span class="pull-right margin_20">
+                                  <span class="margin_25">:</span>
+                                  132</span>
+                               </td>
+                            </tr>
+                            <tr>
+                               <td><span>Cut-off Score</span>
+                                  <span class="pull-right margin_20">
+                                  <span class="margin_25">:</span>
+                                  106</span>
+                               </td>
+                               </td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                   <div class="col-md-3">
+                      <table class="table table-bordered">
+                         <thead>
+                            <tr>
+                               <th>Sections</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            <tr>
+                               <td>Section1   2 Coding / 8 MCQ (90min)</td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+             </div>
+          </section>
         </div>
       </div>
    </div>
