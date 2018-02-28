@@ -1,4 +1,4 @@
-$(".accordion-toggle").click(function(){
+ $(".accordion-toggle").click(function(){
   // $(this).children('span').toggleClass("glyphicon-minus");
     $(this).children('span').toggleClass("fa-sort-desc");
 });
