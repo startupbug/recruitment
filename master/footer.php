@@ -1,4 +1,7 @@
 </div>
+
+
+
 <!-- Filter-Modal -->
 <div class="modal fade" id="mcqs-filter-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
@@ -964,7 +967,7 @@
    </div>
 </div>
 
-<!-- private-programming-question-Modal -->
+<!-- private-programming-debug-Modal -->
 <div class="modal fade" id="private-programming-debug-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
@@ -1756,13 +1759,13 @@
       <!-- Modal content-->
       <div class="modal-content filter fa_evaluate fa_user">
          <div class="modal-header s_modal_form_header">
-           
+
             <h3 class="modal-title s_font f_font">Add New User</h3>
          </div>
          <div class="modal-body s_modal_form_body modal_top modal_user">
 
             <div class="row">
-               
+
                <div class="col-md-12">
                 <div class="form-group title">
                      <label class="col-md-3 control-label" for="name">Email Address</label>
@@ -1777,7 +1780,7 @@
                      <div class="col-md-9">
                          <div class="checkbox_user"><input type="checkbox" name="admin" value="admin">Admin<br></div>
                          <p class="user_content">Complete control except access to setting page.</p>
-                      
+
 
                          <br>
                           <div class="checkbox_user"><input type="checkbox" name="admin" value="admin">Test Manager</div>
@@ -1794,13 +1797,13 @@
                      </div>
                   </div>
 
-                  
-                   
-                   
-                      
-                    
-                
-                 
+
+
+
+
+
+
+
 
 
                </div>
@@ -1817,6 +1820,7 @@
    </div>
 </div>
 <!--end user management-->
+
 
 <script src="<?php echo $base_url;?>/assets/bower_components/jquery/dist/jQuery.min.js"></script>
 <script src="<?php echo $base_url;?>/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

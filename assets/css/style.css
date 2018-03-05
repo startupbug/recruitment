@@ -104,7 +104,6 @@
      font-family: 'SourceSansPro-Regular';
      padding: 15px;
      border-right: 3px solid #302e64;
-     z-index: 9999;
 }
  .header-search .input-search {
      padding: 6px;
@@ -799,7 +798,7 @@
      color: #333 !important;
 }
  .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
-     width: 192px;
+     /* width: 192px; */
 }
  section.info {
      margin-top: 17px;
@@ -1152,7 +1151,7 @@ td button.btn.focus, td button.btn:focus, td button.btn:hover {
 .s_modal_form_header .btn-default:focus, .s_modal_form_header .btn-default:hover {
   background-color: #ffffff;
   background-position: 100%;
-  color: #999;
+  color: #333;
 }
 
 .s_save_button {

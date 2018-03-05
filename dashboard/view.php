@@ -44,7 +44,7 @@
                         <li>Report</li>
                         <li>
                            <div class="dropdown">
-                              <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              <button type="button" id="dropdownMenu2" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                              More
                               <span class="caret"></span>
                               </button>

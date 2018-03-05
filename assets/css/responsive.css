@@ -3,7 +3,11 @@
   .modal-lg {
       width: 1170px;
   }
+  .s-modal-lg {
+      width: 850px;
+  }
 }
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
     /* sh */
    .container_radio {

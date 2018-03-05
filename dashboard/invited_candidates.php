@@ -8,18 +8,13 @@
 				<h3 class="java">Java Coding - Manage Invitations</h3>
 			</div>
 
-
-
 			</div>
-
-
 				<div class="col-md-12">
 				<div class="panel with-nav-tabs panel-default invite_candidate">
 					<div class="panel-heading">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#tab1default" data-toggle="tab">Invited Candidates</a></li>
 						</ul>
-
 					</div>
 					<div class="panel-body">
 						<div class="tab-content">
@@ -50,7 +45,6 @@
         <th> <input type="checkbox" name="email" value="email"><span>#</span>Email<br></th>
         <th>Opens At</th>
         <th>Close At</th>
-
       </tr>
     </thead>
     <tbody>
@@ -74,7 +68,6 @@
         <td>Feb 20, 7:39 PM</td>
         <td><a href="#">View</a><br><a href="#">Resume</a></td>
          <td><div class="invite_button"><button type="button" class="btn">cancel Invite</button></div></td>
-
       </tr>
     </tbody>
   </table>
