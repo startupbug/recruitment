@@ -113,7 +113,7 @@
 										</ul>
 									</div>
 									<p class="yet">No Roles added yet</p>
-									<br><div class="button_general"><button type="button" class="btn"  data-toggle="modal" data-target="#usermanagement"><span class="glyphicon glyphicon-plus">
+									<br><div class="button_general"><button type="button" class="btn"  data-toggle="modal" data-target="#usermanagement"><span class="glyphicon glyphicon-plus"></span>
 									Add Role</button></div>
 								</div>
 							</div>
@@ -181,8 +181,23 @@
 
 
 									<br><div class="button_general_tag"><button type="button" class="btn"><span class="glyphicon glyphicon-plus"></span>Add New Tag</button></div>
+
+
+
+                                      <div class="col-md-8">
+										<input id="name" name="name" type="text" placeholder="Add a tag" class="form-control general">
+										<div class="col-md-4">
+											
+										</div>
 								</div>
+
+								</div>
+
+
+
 							</div>
+
+
 						</div>
 					</div>
 					</div>

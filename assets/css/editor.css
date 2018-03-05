@@ -11,14 +11,14 @@ You should have received a copy of the GNU General Public License along with thi
 @charset "utf-8";
 /* base styles */
 .jumbotron {
-   background-color: #67A754;
-  background-image: url(images/radial_bg.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background: -webkit-gradient(radial, center center, 0, center center, 460, from(#B3ECFF), to(#7EDEFF)); /* Safari 4-5, Chrome 1-9 */ /* Can't specify a percentage size? Laaaaaame. */
-  background: -webkit-radial-gradient(circle, #B3ECFF, #7EDEFF); /* Safari 5.1+, Chrome 10+ */
-  background: -moz-radial-gradient(circle, #B3ECFF, #7EDEFF); /* Firefox 3.6+ */
-  background: -ms-radial-gradient(circle, #B3ECFF, #7EDEFF); /* IE 10 */
+    background-color: #261f63;
+    background-image: url(images/radial_bg.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background: -webkit-gradient(radial, center center, 0, center center, 460, from(#3e3681), to(#261f63));
+    background: -webkit-radial-gradient(circle, #40397a, #261f63);/* Safari 5.1+, Chrome 10+ */
+    background: -moz-radial-gradient(circle, #B3ECFF, #7EDEFF); /* Firefox 3.6+ */
+    background: -ms-radial-gradient(circle, #B3ECFF, #7EDEFF); /* IE 10 */
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;
     color: #FFFFFF;
     padding: 40px 0;

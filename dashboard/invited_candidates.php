@@ -4,16 +4,16 @@
 		<div class="row">
 			<div class="col-md-12">
 
-			<div class="button_back"><a href="view.php"> <button type="button" class="btn" >Back</button></a>
-				<h3 class="java">Java Coding - Manage Invitations</h3>
-			</div>
+				<div class="button_back"><a href="view.php"> <button type="button" class="btn" >Back</button></a>
+					<h3 class="java">Java Coding - Manage Invitations</h3>
+				</div>
 
 
 
 			</div>
 
 
-				<div class="col-md-12">
+			<div class="col-md-12">
 				<div class="panel with-nav-tabs panel-default invite_candidate">
 					<div class="panel-heading">
 						<ul class="nav nav-tabs">
@@ -36,49 +36,49 @@
 								</div>
 								<div class="col-md-8">
 									<div class="message"><button type="button" class="btn">Send Message</button>
-										<button type="button" class="btn">Send Reminder</button>
+										<button type="button" class="btn" data-toggle="modal" data-target="#duplicatesend-2">Send Reminder</button>
 										<button type="button" class="btn">Change Time</button>
 									</div>
 
 								</div>
 
 
-  <div class="col-md-12">
-  <table class="table invited">
-    <thead>
-      <tr>
-        <th> <input type="checkbox" name="email" value="email"><span>#</span>Email<br></th>
-        <th>Opens At</th>
-        <th>Close At</th>
+								<div class="col-md-12">
+									<table class="table invited">
+										<thead>
+											<tr>
+												<th> <input type="checkbox" name="email" value="email"><span>#</span>Email<br></th>
+												<th>Opens At</th>
+												<th>Close At</th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="border">
-        <td><input type="checkbox" name="email" value="email"><span>1 </span> jagjeet.kmr89@gmail.com</td>
-        <td>Feb 6, 7:42 PM</td>
-        <td>Feb 20, 7:39 PM</td>
-        <td></td>
-        <td><div class="invite_button"><button type="button" class="btn">cancel Invite</button></div></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="email" value="email"><span>2 </span>  manjeet.kmr18@gmail.com</td>
-        <td>Feb 6, 7:42 PM</td>
-        <td>Feb 20, 7:39 PM</td>
-        <td></td>
-         <td><div class="invite_button"><button type="button" class="btn">cancel Invite</button></div></td>
-      </tr>
-      <tr class="border">
-        <td><input type="checkbox" name="email" value="email"><span>3</span>   pacognovellino@gmail.com</td>
-        <td>Feb 6, 7:42 PM</td>
-        <td>Feb 20, 7:39 PM</td>
-        <td><a href="#">View</a><br><a href="#">Resume</a></td>
-         <td><div class="invite_button"><button type="button" class="btn">cancel Invite</button></div></td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="border">
+												<td><input type="checkbox" name="email" value="email"><span>1 </span> jagjeet.kmr89@gmail.com</td>
+												<td>Feb 6, 7:42 PM</td>
+												<td>Feb 20, 7:39 PM</td>
+												<td></td>
+												<td><div class="invite_button"><button type="button" class="btn">cancel Invite</button></div></td>
+											</tr>
+											<tr>
+												<td><input type="checkbox" name="email" value="email"><span>2 </span>  manjeet.kmr18@gmail.com</td>
+												<td>Feb 6, 7:42 PM</td>
+												<td>Feb 20, 7:39 PM</td>
+												<td></td>
+												<td><div class="invite_button"><button type="button" class="btn">cancel Invite</button></div></td>
+											</tr>
+											<tr class="border">
+												<td><input type="checkbox" name="email" value="email"><span>3</span>   pacognovellino@gmail.com</td>
+												<td>Feb 6, 7:42 PM</td>
+												<td>Feb 20, 7:39 PM</td>
+												<td><a href="#">View</a><br><a href="#">Resume</a></td>
+												<td><div class="invite_button"><button type="button" class="btn">cancel Invite</button></div></td>
 
-      </tr>
-    </tbody>
-  </table>
-</div>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 
 
 

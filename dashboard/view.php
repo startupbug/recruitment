@@ -1,5 +1,6 @@
 <?php require_once '../master/header.php';?>
 
+
 <section class="view">
    <div class="container-fluid padding-15-fluit">
       <div class="row">
@@ -50,7 +51,7 @@
                               </button>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                  <li><a href="invited_candidates.php">View Invited Candidates</a></li>
-                                 <li><a href="#">Preview Test</a></li>
+                                 <li><a href="previewtest.php" target="blank">Preview Test</a></li>
                                  <li><a href="#">Delete Test</a></li>
                                  <li role="separator" class="divider"></li>
                                  <li><a href="#" data-toggle="modal" data-target="#setup_manual
@@ -207,10 +208,14 @@
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li>Public Preview</li>
+                        <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
-                         <li>Edit</li>
-                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                        <li>Edit</li>
+                        <li>
+                          <div class="host">
+                            <a href="#">Host this test</a>
+                          </div>
+                        </li>
 
                          <li>
                             <div class="dropdown">
@@ -219,9 +224,9 @@
                                <span class="caret"></span>
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <li><a href="invited_candidates.php">Preview Template</a></li>
-                                  <li><a href="#">Create Duplicate Template</a></li>
-                                  <li><a href="#">Delete</a></li>
+                                  <li><a href="previewtest.php" target="blank">Preview Templatessss</a></li>
+                                  <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
+                                  <li><a href="#" class="deleteConfirm" onclick='confirmAlert()'>Delete</a></li>
 
 
                                </ul>
@@ -297,7 +302,7 @@
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li>Public Preview</li>
+                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
                          <li>Edit</li>
                           <li><div class="host"><a href="#">Host this test</a></div></li>
@@ -310,7 +315,7 @@
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                <li><a href="invited_candidates.php">Preview Template</a></li>
                                   <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
-                                  <li><a href="#">Delete</a></li>
+                                  <li><a href="#" class="deleteConfirm" onclick='confirmAlert()'>Delete</a></li>
                                </ul>
                             </div>
                          </li>
@@ -384,7 +389,7 @@
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li>Public Preview</li>
+                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
                          <li>Edit</li>
                           <li><div class="host"><a href="#">Host this test</a></div></li>
@@ -396,8 +401,8 @@
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                    <li><a href="invited_candidates.php">Preview Template</a></li>
-                                  <li><a href="#">Create Duplicate Template</a></li>
-                                  <li><a href="#">Delete</a></li>
+                                  <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
+                                  <li><a href="#" class="deleteConfirm" onclick='confirmAlert()'>Delete</a></li>
                                </ul>
                             </div>
                          </li>
@@ -469,7 +474,7 @@
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li>Public Preview</li>
+                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
                          <li>Edit</li>
                           <li><div class="host"><a href="#">Host this test</a></div></li>
@@ -481,8 +486,8 @@
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                   <li><a href="invited_candidates.php">Preview Template</a></li>
-                                  <li><a href="#">Create Duplicate Template</a></li>
-                                  <li><a href="#">Delete</a></li>
+                                  <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
+                                  <li><a href="#" class="deleteConfirm" onclick='confirmAlert()'>Delete</a></li>
                                </ul>
                             </div>
                          </li>
@@ -552,7 +557,7 @@
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li>Public Preview</li>
+                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
                          <li>Edit</li>
                           <li><div class="host"><a href="#">Host this test</a></div></li>
@@ -564,8 +569,8 @@
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <li><a href="invited_candidates.php">Preview Template</a></li>
-                                  <li><a href="#">Create Duplicate Template</a></li>
-                                  <li><a href="#">Delete</a></li>
+                                  <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
+                                  <li><a href="#" class="deleteConfirm" onclick='confirmAlert()'>Delete</a></li>
                                </ul>
                             </div>
                          </li>
@@ -642,7 +647,7 @@
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li>Public Preview</li>
+                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
                          <li>Edit</li>
                           <li><div class="host"><a href="#">Host this test</a></div></li>
@@ -654,8 +659,8 @@
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                  <li><a href="invited_candidates.php">Preview Template</a></li>
-                                  <li><a href="#">Create Duplicate Template</a></li>
-                                  <li><a href="#">Delete</a></li>
+                                  <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
+                                  <li><a href="#" class="deleteConfirm" onclick='confirmAlert()'>Delete</a></li>
                                </ul>
                             </div>
                          </li>
@@ -802,7 +807,7 @@
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li>Public Preview</li>
+                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
                          <li>Edit</li>
                           <li><div class="host"><a href="#">Host this test</a></div></li>
@@ -814,8 +819,8 @@
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                    <li><a href="invited_candidates.php">Preview Template</a></li>
-                                  <li><a href="#">Create Duplicate Template</a></li>
-                                  <li><a href="#">Delete</a></li>
+                                  <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
+                                  <li><a href="#" class="deleteConfirm" onclick='confirmAlert()'>Delete</a></li>
                                </ul>
                             </div>
                          </li>
@@ -963,7 +968,7 @@
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li>Public Preview</li>
+                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
                          <li>Edit</li>
                           <li><div class="host"><a href="#">Host this test</a></div></li>
@@ -975,8 +980,8 @@
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                    <li><a href="invited_candidates.php">Preview Template</a></li>
-                                  <li><a href="#">Create Duplicate Template</a></li>
-                                  <li><a href="#">Delete</a></li>
+                                  <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
+                                  <li><a href="#" class="deleteConfirm" onclick='confirmAlert()'>Delete</a></li>
                                </ul>
                             </div>
                          </li>
