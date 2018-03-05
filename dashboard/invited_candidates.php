@@ -46,8 +46,7 @@
 											<tr>
 												<th> <input type="checkbox" name="email" value="email"><span>#</span>Email<br></th>
 												<th>Opens At</th>
-												<th>Close At</th>
-
+												<th colspan="3">Close At</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -71,7 +70,6 @@
 												<td>Feb 20, 7:39 PM</td>
 												<td><a href="#">View</a><br><a href="#">Resume</a></td>
 												<td><div class="invite_button"><button type="button" class="btn">cancel Invite</button></div></td>
-
 											</tr>
 										</tbody>
 									</table>

@@ -213,7 +213,7 @@
                         <li>Edit</li>
                         <li>
                           <div class="host">
-                            <a href="#">Host this test</a>
+                            <a href="host_text.php">Host this test</a>
                           </div>
                         </li>
 

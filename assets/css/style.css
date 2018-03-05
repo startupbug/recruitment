@@ -2,7 +2,7 @@
 /* CSS Document */
 /* =Reset default browser CSS. -------------------------------------------------------------- */
 
- html, body, div, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+ /* html, body, div, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
      border: 0;
      font-family: inherit;
      font-size:14px;
@@ -13,7 +13,7 @@
      outline: 0;
      padding: 0;
      vertical-align: baseline;
-}
+} */
  .fa-sync:before{
      content:"\f021"
 }
@@ -46,11 +46,11 @@
      font-weight: normal;
      text-align: left;
 }
- body {
+ /* body {
      color: #1e1e1e;
      font-size: 16px;
      position: relative;
-}
+} */
  html, body {
      height: 100%;
      max-width: 1920px;
@@ -441,7 +441,7 @@
      font-family: 'SourceSansPro-Regular';
 }
  .table td {
-     font-size: 16px;
+     font-size: 15px;
      color: #261f63;
      font-family: 'SourceSansPro-Regular';
 }
@@ -471,7 +471,7 @@
      /*background-color: white;*/
 }
  .left_tab li {
-     font-size: 18px;
+     font-size: 16px;
      color: #384385;
      font-family: 'SourceSansPro-Semibold';
      padding-left: 14px;
@@ -501,7 +501,7 @@
 }
  .right_tab li {
      color: #333333;
-     font-size: 18px;
+     font-size: 16px;
      font-family: 'SourceSansPro-Regular';
 }
  .right_tab button#dropdownMenu2 {
@@ -897,7 +897,7 @@
 }
  h3.java {
      position: absolute;
-     top: 14px;
+     top: -7px;
      left: 88px;
      font-weight: bold;
      font-family: 'SourceSansPro-Regular';
@@ -2084,7 +2084,7 @@ p.not_found {
 
 .right_tab li a {
     color: #333333;
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'SourceSansPro-Regular';
 }
 

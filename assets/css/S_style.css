@@ -105,6 +105,10 @@ width: 600px;
   background-color: #f0f0f0;
   padding: 5px 5px;
 }
+.s_setting_nav {
+    margin: 0;
+    padding: 0;
+}
 .setting_nav_border {
     border: 1px solid #fff;
     padding: 5px 5px;
@@ -249,7 +253,7 @@ width: 600px;
 }
 .s_margin_bottom strong{
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 600;
   color: #261f63;
 }
 .form-group.s_form_control_group {
@@ -284,7 +288,8 @@ width: 600px;
     border-radius: 7px 7px 0px 0px;
     border-bottom: 0 none;
 }
-.modal-title {
+
+.h3-old {
     margin: 0;
     font-size: 26px;
     line-height: 1.42857143;
@@ -292,4 +297,7 @@ width: 600px;
 }
 .s_content_radius{
   border-radius: 10px 10px 10px 10px;
+}
+.small_font_size{
+    font-size: 11px;
 }

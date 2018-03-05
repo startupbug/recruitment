@@ -29,10 +29,12 @@
                   <h3 class="question_mark">Question No. 1 of 10 <span>|4 Marks</span></h3>
                </div>
                <div class="col-md-4">
-                 <div class="button_mark"><button type="button" class="btn"><span class="glyphicon glyphicon-pushpin"></span><h3>Flag For Review</h3></button></div>
+                 <div class="button_mark">
+                   <button type="button" class="btn" style="margin-top: 10px; margin-bottom: 10px;">
+                   <i class="glyphicon glyphicon-pushpin"></i><h5 style="margin: 0; margin-left:  19px;"> Flag For Review</h5></button></div>
                </div>
-            </div>   
-         </div>  
+            </div>
+         </div>
 
          <div class="col-md-5">
             <p class="discription_test"><em>You are provided with two definitions and options,choose the correct option which fits the discription best.</em></p>
@@ -66,15 +68,15 @@
     <button type="button" class="btn">Clear Answer</button>
   </div>
 
-         </div> 
+         </div>
       </div>
    </div>
 
-  
-      
-         
-   
-      
-  
+
+
+
+
+
+
 </section>
 <?php require_once '../master/footer.php';?>

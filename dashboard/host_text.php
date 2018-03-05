@@ -93,21 +93,17 @@
 						 <div class="panel panel-default">
 						   <div class="panel-heading">Preview</div>
 						   <div class="panel-body">
-								 <h1>Customer Service Test - CodeGround</h1>
+								 <h3>Customer Service Test - CodeGround</h3>
 
-								 <br>
-								 <h3>Description</h3>
+								 <h4>Description</h4>
 								 <p>This test is hosted via Codeground. Please read the instructions carefully before proceeding.</p>
 
-								 <br>
-								 <h3>Instructions</h3>
+								 <h4>Instructions</h4>
 								 <p>(1) Make sure you have a proper internet connection.</p>
 
-								 <br>
 								 <p>(2) If your computer is taking unexpected time to load, it is recommended to reboot the system before you start the test.</p>
 
-								 <br>
-								 <p>(3) Once you start the test, it is recommended to pursue it in one go for the complete duration.</p>
+							 	 <p>(3) Once you start the test, it is recommended to pursue it in one go for the complete duration.</p>
 
 						   </div>
 						 </div>
@@ -977,11 +973,11 @@
 																	<input class="form-control">
 																</div>
 																<div class="">
-																	<button class="btn btn-primary btn-sm">
+																	<button class="btn btn-primary btn-sm small_font_size">
 																		<i class="fa fa-floppy-o" aria-hidden="true"></i> Save
 																	</button>
-																	&nbsp;or&nbsp;
-																	<button type="button" href="" class="btn btn-primary btn-sm">Upload Image</button>
+																	 or
+																	<button type="button" href="" class="btn btn-primary btn-sm small_font_size">Upload Image</button>
 																</div>
 															</form>
 														</div>
@@ -1008,7 +1004,7 @@
 														 <i class="fa fa-pencil" aria-hidden="true"></i> Edit Page
 													 </a>
 													 <span class="separator"></span>
-													 <a href="" class="text-danger">
+													 <a class="text-danger" data-toggle="modal"  data-target="#_first_model">
 														 <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Page
 													 </a>
 												 </div>
@@ -4143,7 +4139,7 @@
          <div class="modal-body s_modal_form_body">
             <div class="row">
 							<div class="col-md-6 col-sm-12 col-xs-12">
-								<h1>Edit Page</h1>
+								<h3>Edit Page</h3>
 								<form>
 									<div class="form-group">
 										<label>Page Title <i class="fa fa-info-circle"></i></label>
@@ -4169,7 +4165,7 @@
 			 			<button class="btn btn-primary btn-sm" type="button">
 			 				<i class="fa fa-floppy-o" aria-hidden="true"></i> Save
 			 			</button>
-			 			<button class="btn btn-warning btn-sm" type="button">Cancel</button>
+			 			<button class="btn btn-warning btn-sm" type="button" data-dismiss="modal">Cancel</button>
 			 		</div>
 			 	</div>
 			</div>
@@ -4184,7 +4180,7 @@
      <div class="modal-body s_modal_form_body">
         <div class="row">
 					<div class="col-md-6 col-sm-12 col-xs-12">
-						<h1>Edit Page</h1>
+						<h3>Edit Page</h3>
 						<form>
 							<div class="form-group">
 								<label>Page Title <i class="fa fa-info-circle"></i></label>
@@ -4213,7 +4209,7 @@
 		 	 <button class="btn btn-danger btn-sm" type="button">
 		 			 <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Page
 		 	 </button>
-		 	 <button class="btn btn-warning btn-sm" type="button">Cancel</button>
+		 	 <button class="btn btn-warning btn-sm" type="button"  data-dismiss="modal">Cancel</button>
 		  </div>
 		 </div>
 		</div>

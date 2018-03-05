@@ -1,7 +1,5 @@
 </div>
 
-
-
 <!-- Filter-Modal -->
 <div class="modal fade" id="mcqs-filter-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -1802,10 +1800,10 @@
                         <div class="chrome_fa"><i class="fa fa-chrome"></i></div>
                         <p class="num">Required</p>
                         <audio controls>
-  <source src="horse.ogg" type="audio/ogg">
-  <source src="horse.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
+                          <source src="horse.ogg" type="audio/ogg">
+                          <source src="horse.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                        </audio>
                         <p class="num">Play to test</p>
 
                    </div>
