@@ -8,8 +8,6 @@
 					<h3 class="java">Java Coding - Manage Invitations</h3>
 				</div>
 
-
-
 			</div>
 
 
@@ -19,7 +17,6 @@
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#tab1default" data-toggle="tab">Invited Candidates</a></li>
 						</ul>
-
 					</div>
 					<div class="panel-body">
 						<div class="tab-content">

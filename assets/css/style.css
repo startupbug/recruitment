@@ -104,7 +104,7 @@
      font-family: 'SourceSansPro-Regular';
      padding: 15px;
      border-right: 3px solid #302e64;
-    
+
 }
  .header-search .input-search {
      padding: 6px;
@@ -1892,7 +1892,7 @@ p.caution {
 .caution span {
     font-size: 14px;
     color: #a94442;
-   
+
     font-weight: bold;
 }
 
@@ -1938,7 +1938,7 @@ h3.side_caution {
 
 .border_content {
     background: #ddd;
-  
+
     padding-top: 3px;
     padding-bottom: 3px;
 }
@@ -1954,7 +1954,7 @@ h3.question_mark {
     color: #ffffff;
     background-color: #9954bb;
     border-color: #9954bb;
-     padding-top: 0px; 
+     padding-top: 0px;
     /* padding-bottom: 10px; */
     padding-bottom: 10px;
     line-height: 10px;
@@ -2089,7 +2089,7 @@ p.not_found {
 }
 
 .banner_public{
-    margin-top: 12px;  
+    margin-top: 12px;
     height: 380px;
     background-image: -webkit-gradient(linear,left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)),color-stop(40%, rgba(0, 0, 0, 0.2)),color-stop(60%, rgba(0, 0, 0, 0.4)), color-stop(80%, rgba(0, 0, 0, 0.6)), color-stop(100%, rgba(0, 0, 0, 0.8))), url('../img/banner_public.jpg');
     background-repeat: no-repeat;

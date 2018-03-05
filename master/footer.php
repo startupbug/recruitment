@@ -1,4 +1,7 @@
 </div>
+
+
+
 <!-- Filter-Modal -->
 <div class="modal fade" id="mcqs-filter-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -1730,10 +1733,10 @@
                             <label class="col-md-3 control-label" for="name">Recipients:</label>
                             <div class="col-md-9">
                                 <h3 class="candidate_view">All Candidates</h3>
-                               
+
                             </div>
                         </div>
-                        
+
                     </div>
                     <br>
                     <br>
@@ -1747,7 +1750,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                      <div class="col-md-10 subject">
 
@@ -1760,7 +1763,7 @@
                                     </textarea>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -1812,11 +1815,11 @@ Your browser does not support the audio element.
                         <p class="browser">Camera</p>
                         <div class="chrome_fa"><i class="fa fa-chrome"></i></div>
                         <p class="num">Required</p>
-                        
+
                         <p class="not_found"><i class="fa fa-window-close"></i>Not Found <span><a href="#">(Retry)</a></span></p>
 
                    </div>
-                       
+
                    </div>
             </div>
         </div>
@@ -1829,7 +1832,7 @@ Your browser does not support the audio element.
 
                     <!--<button type="button" class="btn btn-default s_font proceed" data-dismiss="modal">Proceed Anyway</button>-->
                 </div>
-             
+
          </div>
     </div>
 </div>
