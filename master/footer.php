@@ -1,5 +1,8 @@
 </div>
 
+
+
+
 <!-- Filter-Modal -->
 <div class="modal fade" id="mcqs-filter-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -1800,10 +1803,10 @@
                         <div class="chrome_fa"><i class="fa fa-chrome"></i></div>
                         <p class="num">Required</p>
                         <audio controls>
-                          <source src="horse.ogg" type="audio/ogg">
-                          <source src="horse.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                        </audio>
+  <source src="horse.ogg" type="audio/ogg">
+  <source src="horse.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
                         <p class="num">Play to test</p>
 
                    </div>
@@ -1844,23 +1847,25 @@
 <script src="<?php echo $base_url;?>/assets/plugins/menu/js/jquery.mmenu.all.js"></script>
 <script src="<?php echo $base_url;?>/assets/plugins/menu/js/jquery.mhead.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/select2.full.min.js"></script>
+<script src="<?php echo $base_url;?>/assets/js/jquery.blink.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/editor.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/custom.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/script.js"></script>
 <script type="text/javascript">
     $('body').scrollspy({target: "#myScrollspy"})
     $(document).ready(function(){
-      $(".dropdown").hover(
-        function() {
-          $('.dropdown-menu', this).not('.in .dropdown-menu').stop( true, true ).slideDown("fast");
-          $(this).toggleClass('open');
-        },
-        function() {
-          $('.dropdown-menu', this).not('.in .dropdown-menu').stop( true, true ).slideUp("fast");
-          $(this).toggleClass('open');
-        }
+        $(".dropdown").click(function() {
+            $('.dropdown-menu', this).toggleClass('open');
+        });
+              /*$('.dropdown-menu', this).not('.in .dropdown-menu').stop( true, true ).slideDown("fast");
+              $(this).toggleClass('open');
+            },
+            function() {
+              $('.dropdown-menu', this).not('.in .dropdown-menu').stop( true, true ).slideUp("fast");
+              $(this).toggleClass('open');
+            }
         );
-    });
+    });*/
 </script>
 </body>
 </html>

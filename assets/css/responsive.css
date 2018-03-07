@@ -121,6 +121,60 @@
      .button_view .glyphicon {
          top: -1px;
     }
+    .modal_duplicate .template {
+    width: auto;
+}
+.tabs_public {
+   
+    padding-right: 22px;
+}
+.question li a {
+    width: 37px;
+    height: 37px;
+    padding-top: 8px;
+  
+}
+.question {
+    padding-left: 0px;
+}
+h3.question_mark {
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 41px;
+}
+.button_mark button.btn {
+    margin-top: -50px;
+}
+.display-table {
+    display: block;
+}
+.test_completion textarea {
+    width: 100%;
+}
+.preview_test_fa {
+  
+    margin-top: -201px;
+}
+.host a {
+  
+    padding-left: 0px;
+    padding-right: 0px;
+  
+}
+h3.test_live {
+  
+    font-size: 32px;
+    
+}
+.button_mark button.btn {
+   
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.pagination>li>a, .pagination>li>span {
+    
+    margin: 0 2px;
+}
 }
  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px){
      .header-search {
@@ -139,14 +193,22 @@
      .right_tab > ul > li:first-child a {
          font-size: 11px;
     }
+    .modal_duplicate .template {
+    width: auto;
+}
+.button_mark button.btn {
+    margin-top: -50px;
+}
+.preview_test_fa {
+  
+    margin-top: -198px;
+}
 }
  @media only screen and (min-device-width : 320px) and (max-device-width : 768px) and (orientation:landscape){
      .header-search {
          display: none;
     }
-     .top_left ul {
-         display: flex;
-    }
+     
      .top_right {
          float: right;
     }
@@ -157,11 +219,33 @@
      .right_tab li {
          font-size: 14px;
     }
+    .question {
+    padding-left: 132px;
+}
+.button_mark button.btn {
+    margin-top: -50px;
+}
 }
  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation:landscape){
      .right_tab > ul > li {
          padding-right: 35px;
     }
+    .button_mark button.btn {
+    margin-top: 15px;
+}
+.preview_test_fa {
+  
+    margin-top: -23px;
+}
+.fa_previewtest {
+    width: 88%;
+}
+.host a {
+    
+    padding-left: 6px;
+    padding-right: 5px;
+    
+}
 }
 /*@media only screen and (min-device-width : 320px) and (max-device-width : 767px) and (orientation:landscape){
      .top_left li {

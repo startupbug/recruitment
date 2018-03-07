@@ -209,10 +209,9 @@
                    <div class="right_tab">
                       <ul>
                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
-
                         <li>Edit</li>
                         <li>
-                          <div class="host">
+                          <div class="host">  
                             <a href="host_text.php">Host this test</a>
                           </div>
                         </li>

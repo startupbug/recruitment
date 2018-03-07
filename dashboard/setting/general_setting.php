@@ -72,7 +72,7 @@
 							<p class="contact_content">An email will be sent to the candidates after completing the test.</p>
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Message </label>
-								<div class="col-md-9">
+								<div class="col-md-9 test_completion">
 									<textarea rows="6" cols="60" placeholder="Your Message">Hi candidateName,
 										Your test - < testTitle > has been submitted successfully.
 										Thanks,
@@ -186,10 +186,13 @@
 
                                       <div class="col-md-8">
 										<input id="name" name="name" type="text" placeholder="Add a tag" class="form-control general">
+									</div>
 										<div class="col-md-4">
+											<button type="button" class="disabled_click" disabled>add</button>
+											<button type="button" class="btn cancel_btn_fa">cancel</button>
 											
 										</div>
-								</div>
+								
 
 								</div>
 

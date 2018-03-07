@@ -92,14 +92,14 @@
 						<div class="top_right">
 							<ul>
 								<li><i class="fa fa-bell"></i></li>
-								<li><a href="info.php"><i class="fa fa-info-circle"></i></a></li>
-								<li>
-									<div class="dropdown">
+								<li><a href="<?php echo $base_url;?>/dashboard/setting/info.php"><i class="fa fa-info-circle"></i></a></li>
+								<li class="dropdown">
+									<div>
 										<button class="btn btn-default dropdown-toggle profileDropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 											fnovellino
 											<span class="caret"></span>
 										</button>
-										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										<ul class="dropdown-menu right_menu" aria-labelledby="dropdownMenu1">
 											<li><a href="<?php echo $base_url;?>dashboard//setting/general_setting.php">Settings</a></li>
 											<li><a href="<?php echo $base_url;?>dashboard/setting/change_password.php">Change Password</a></li>
 											<li><a href="#">Logout</a></li>

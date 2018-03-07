@@ -30,7 +30,7 @@
                </div>
                <div class="col-md-4">
                  <div class="button_mark">
-                   <button type="button" class="btn" style="margin-top: 10px; margin-bottom: 10px;">
+                   <button type="button" class="btn">
                    <i class="glyphicon glyphicon-pushpin"></i><h5 style="margin: 0; margin-left:  19px;"> Flag For Review</h5></button></div>
                </div>
             </div>

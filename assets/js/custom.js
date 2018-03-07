@@ -12,6 +12,10 @@ $(".click_time").click(function(){
    $(this).toggleClass("hidden");
 });
 
+// $('.test_live').blink();
+$('.test_live').blink({
+    delay: 300
+});
 $(document).ready(function() {
   $("#s_txtEditor").Editor();
   $("#s_txtEditor_programming").Editor();
