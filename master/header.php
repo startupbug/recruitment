@@ -91,11 +91,23 @@
 					<div class="col-md-3">
 						<div class="top_right">
 							<ul>
-								<li><i class="fa fa-bell"></i></li>
+								<!--<li><i class="fa fa-bell"></i></li>-->
+								<li class="dropdown">
+									<div>
+										<button class="dropdown-toggle profileDropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+											<i class="fa fa-bell"></i>
+											<span class="caret icon_bell"></span>
+										</button>
+										<ul class="dropdown-menu right_menu bg_icon" aria-labelledby="dropdownMenu1">
+											<li><a href="#"><img src="../assets/img/credits_db.png" class="img-responsive db_img"></i><p class="free_credit">Get 5 free credits, help us <br>improve COdeGround, click here</p></a></li>
+											
+											
+									</div>
+								</li>
 								<li><a href="<?php echo $base_url;?>/dashboard/setting/info.php"><i class="fa fa-info-circle"></i></a></li>
 								<li class="dropdown">
 									<div>
-										<button class="btn btn-default dropdown-toggle profileDropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										<button class="dropdown-toggle profileDropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 											fnovellino
 											<span class="caret"></span>
 										</button>

@@ -175,6 +175,10 @@ h3.test_live {
     
     margin: 0 2px;
 }
+.bg_icon {
+   
+    margin-left: 63px;
+}
 }
  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px){
      .header-search {

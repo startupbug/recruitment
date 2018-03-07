@@ -198,7 +198,7 @@
  .top_right > ul > li{
     display: table-cell;
     vertical-align: middle;
-    padding: 21px 10px;
+    padding: 27px 10px;
 }
 .top_right li:hover {
     background-color: #444969;
@@ -2280,4 +2280,29 @@ h3.test_live {
 }
 .dropdown-menu>li>a:hover {
     color: #fff !important;
+}
+
+.icon_bell {
+    display: none;
+}
+
+/*.right_menu {
+    width: 285px;
+    font-size: 10px !important;
+    margin-left: -184px;
+}*/
+
+.bg_icon {
+    background: #cd92d7;
+     width: 285px;
+    font-size: 10px !important;
+    margin-left: -184px;
+}
+.db_img {
+    width: 15%;
+}
+p.free_credit {
+    padding-left: 38px;
+    margin-top: -40px;
+    color: white;
 }
