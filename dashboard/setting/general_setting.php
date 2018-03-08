@@ -4,12 +4,12 @@
 	<div class="container-fluid padding-15-fluit">
 		<h3 class="general_main">Settings</h3>
 		<div class="row border-row display-table">
-			
+
 			<div class="col-md-3 col-sm-12 col-xs-12 display-table-cell padding-0 nav-background">
 				<ul class="nav nav-tabs nav-sidebar">
 					<li class="active"><a data-toggle="pill" href="#public"><i class="fa fa-cog"></i>General Settings<i class=""></i></a></li>
 					<li><a data-toggle="pill" href="#private"><i class="fa fa-hand-pointer-o"></i>Contact Details <i class=""></i></a></li>
-					
+
 					<li><a data-toggle="pill" href="#completion"><i class="fa fa-envelope" aria-hidden="true"></i>Test Completion Mail<i class=""></i></a></li>
 
 					<!-- <li><a data-toggle="pill" href="#trial"><i class="fa fa-list"></i>Trial Run<i class=""></i></a></li> -->
@@ -51,7 +51,7 @@
 										<div class="checkbox"><input type="checkbox" name="vehicle" value="Bike">Make visible to candidate<br></div>
 									</div>
 								</div>
-								
+
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="contact">Contact Number</label>
 									<div class="col-md-9">
@@ -130,69 +130,79 @@
 								<div class="col-md-9">
 									<div class="row form-group">
 										<div class="input-group addon">
-											<input type="text" class="form-control">
-											<span class="input-group-addon success"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-											<span class="input-group-addon success"><i class="fa fa-close"></i></span>
+											<input type="text" class="form-control" disabled>
+											<span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+											<span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span>
+											<span class="input-group-addon success delete_tag"><i class="fa fa-times-circle-o"></i></span>
 										</div>
 									</div>
 
 									<div class="row form-group">
 										<div class="input-group addon">
-											<input type="text" class="form-control">
-											<span class="input-group-addon success"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-											<span class="input-group-addon success"><i class="fa fa-close"></i></span>
+											<input type="text" class="form-control" disabled>
+											<span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+											<span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span>
+											<span class="input-group-addon success delete_tag"><i class="fa fa-times-circle-o"></i></span>
 										</div>
 									</div>
 									<div class="row form-group">
 										<div class="input-group addon">
-											<input type="text" class="form-control">
-											<span class="input-group-addon success"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-											<span class="input-group-addon success"><i class="fa fa-close"></i></span>
+											<input type="text" class="form-control" disabled>
+											<span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+											<span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span>
+											<span class="input-group-addon success delete_tag"><i class="fa fa-times-circle-o"></i></span>
 										</div>
 									</div>
 									<div class="row form-group">
 										<div class="input-group addon">
-											<input type="text" class="form-control">
-											<span class="input-group-addon success"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-											<span class="input-group-addon success"><i class="fa fa-close"></i></span>
+											<input type="text" class="form-control" disabled>
+											<span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+											<span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span>
+											<span class="input-group-addon success delete_tag"><i class="fa fa-times-circle-o"></i></span>
 										</div>
 									</div>
 									<div class="row form-group">
 										<div class="input-group addon">
-											<input type="text" class="form-control">
-											<span class="input-group-addon success"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-											<span class="input-group-addon success"><i class="fa fa-close"></i></span>
+											<input type="text" class="form-control" disabled>
+											<span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+											<span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span>
+											<span class="input-group-addon success delete_tag"><i class="fa fa-times-circle-o"></i></span>
 										</div>
 									</div>
 									<div class="row form-group">
 										<div class="input-group addon">
-											<input type="text" class="form-control">
-											<span class="input-group-addon success"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-											<span class="input-group-addon success"><i class="fa fa-close"></i></span>
+											<input type="text" class="form-control" disabled>
+											<span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+											<span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span>
+											<span class="input-group-addon success delete_tag"><i class="fa fa-times-circle-o"></i></span>
 										</div>
 									</div>
 									<div class="row form-group">
 										<div class="input-group addon">
-											<input type="text" class="form-control">
-											<span class="input-group-addon success"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-											<span class="input-group-addon success"><i class="fa fa-close"></i></span>
+											<input type="text" class="form-control" disabled>
+											<span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+											<span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span>
+											<span class="input-group-addon success delete_tag"><i class="fa fa-times-circle-o"></i></span>
 										</div>
 									</div>
 
 
-									<br><div class="button_general_tag"><button type="button" class="btn"><span class="glyphicon glyphicon-plus"></span>Add New Tag</button></div>
-
-
-
-                                      <div class="col-md-8">
-										<input id="name" name="name" type="text" placeholder="Add a tag" class="form-control general">
+									<br>
+									<div class="button_general_tag" id="s_button_general_tag">
+										<button type="button" class="btn " onclick="functionAddTag()">
+											<span class="glyphicon glyphicon-plus"></span>Add New Tag
+										</button>
 									</div>
+
+									<div class="hidden" id="s_add_tag_button">
+	                  <div class="col-md-8">
+											<input id="name" name="name" type="text" placeholder="Add a tag" class="form-control general">
+										</div>
 										<div class="col-md-4">
 											<button type="button" class="disabled_click" disabled>add</button>
-											<button type="button" class="btn cancel_btn_fa">cancel</button>
-											
+											<button type="button" class="btn cancel_btn_fa" onclick="functionCancelTag()">cancel</button>
 										</div>
-								
+									</div>
 
 								</div>
 
@@ -218,7 +228,7 @@
 										<div class="checkbox"><input type="checkbox" name="vehicle" value="Bike">Make visible to candidate<br></div>
 									</div>
 								</div>
-								
+
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="contact">Contact Number</label>
 									<div class="col-md-9">
@@ -348,14 +358,14 @@
 								</div>
 							</div>
 						</div>
-					</div>	
+					</div>
 
 					</div>
-					
-					
-				
-					
-					
+
+
+
+
+
                      <!--Test Completion mail-->
 					<div id="completion" class="tab-pane fade">
 						<div class="panel panel-default">
@@ -478,9 +488,9 @@
 					</div>
 
 
-					
 
-					
+
+
 
 					<!-- <div id="trial" class="tab-pane fade">
 
@@ -741,7 +751,7 @@
 
 		</div>
 
-	</div>	
+	</div>
 </section>
 
 

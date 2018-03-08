@@ -682,8 +682,14 @@
      font-size: 9px;
 }
  .addon input.form-control {
-     background-color: #e6e6e6;
+     background-color: #ffffff;
      height: 40px;
+    border-radius: 0;
+}
+.addon input.form-control:disabled {
+    background-color: #e6e6e6;
+    height: 40px;
+    border-radius: 0;
 }
  .addon {
      border: 1px solid #cccccc;
@@ -719,7 +725,7 @@
 }
  .button_general_tag button.btn {
      color: #ffffff;
-     
+
      padding-left: 18px;
      padding-right: 18px;
      padding-top: 10px;

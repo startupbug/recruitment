@@ -460,7 +460,7 @@
                     <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
-                <h3 class="modal-title s_font">Multiple Choice Question</h3>
+                <h3 class="modal-title s_font">Multiple Choice Question <small> (Question Id : 5968649)</small> </h3>
             </div>
             <div class="modal-body s_modal_form_body">
                 <div class="row">
@@ -468,7 +468,7 @@
                         <!-- Question Statement -->
                         <div class="modal-content s_modal s_blue_color_modal">
                             <div class="modal-header s_modal_header s_blue_color_header">
-                                <h4 class="modal-title s_font">Question Statement</h4>
+                                <h5 class="modal-title s_font">Question Statement</h5>
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
@@ -494,7 +494,7 @@
                                     <span>Please add atleast 3 characters in the statement</span>
                                 </div>
                                 <textarea id="s_txtEditor"></textarea>
-                                <h1>Media(Audio/Video)</h1>
+                                <h4>Media(Audio/Video)</h4>
                                 <button type="button" class="btn">Upload Media</button>
                             </div>
                         </div>
@@ -506,61 +506,66 @@
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Question State <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Choices <i class="fa fa-info-circle"></i></strong>
                                     <strong class="pull-right">
-                                    <input type="checkbox" name="" value="">
+                                    <input type="checkbox" name="" value="1" id="partial_marks">
                                     Partial marks
                                     </strong>
                                     <div class="no-more-tables ">
-                                        <table class="table s_table">
+                                        <table class="table s_table" id="choices_table">
                                             <tbody>
                                                 <tr>
                                                     <td valign="center">1.</td>
+                                                    <td>
+                                                      <input type="checkbox" name="" value="" class="choices_table_checkbox">
+                                                    </td>
                                                     <td class="s_weight" valign="center">
                                                         <textarea class="form-control" name="option" required=""></textarea>
                                                     </td>
-                                                    <td valign="center">
+                                                    <td valign="center" class="hidden">
                                                         <div class="input-group input-group-sm">
                                                             <input type="number" class="form-control" width="30px" max="100" min="0" >
                                                             <span class="input-group-addon" id="basic-addon1">%</span>
                                                         </div>
                                                     </td>
                                                     <td valign="center">
-                                                        <a href="">
+                                                        <a class="delete_row">
+                                                          <i class="fa fa-times-circle-o"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="center">2.</td>
+                                                    <td> <input type="checkbox" name="" value=""  class="choices_table_checkbox"> </td>
+                                                    <td class="s_weight" valign="center">
+                                                        <textarea class="form-control" name="option" required=""></textarea>
+                                                    </td>
+                                                    <td valign="center" class="hidden">
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="number" class="form-control" width="30px" max="100" min="0" >
+                                                            <span class="input-group-addon" id="basic-addon1">%</span>
+                                                        </div>
+                                                    </td>
+                                                    <td valign="center">
+                                                        <a class="delete_row">
                                                         <i class="fa fa-times-circle-o"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td valign="center">1.</td>
+                                                    <td valign="center">3.</td>
+                                                    <td> <input type="checkbox" name="" value="" class="choices_table_checkbox"> </td>
                                                     <td class="s_weight" valign="center">
                                                         <textarea class="form-control" name="option" required=""></textarea>
                                                     </td>
-                                                    <td valign="center">
+                                                    <td valign="center" class="hidden">
                                                         <div class="input-group input-group-sm">
                                                             <input type="number" class="form-control" width="30px" max="100" min="0" >
                                                             <span class="input-group-addon" id="basic-addon1">%</span>
                                                         </div>
                                                     </td>
                                                     <td valign="center">
-                                                        <a href="">
-                                                        <i class="fa fa-times-circle-o"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="center">1.</td>
-                                                    <td class="s_weight" valign="center">
-                                                        <textarea class="form-control" name="option" required=""></textarea>
-                                                    </td>
-                                                    <td valign="center">
-                                                        <div class="input-group input-group-sm">
-                                                            <input type="number" class="form-control" width="30px" max="100" min="0" >
-                                                            <span class="input-group-addon" id="basic-addon1">%</span>
-                                                        </div>
-                                                    </td>
-                                                    <td valign="center">
-                                                        <a href="">
+                                                        <a class="delete_row">
                                                         <i class="fa fa-times-circle-o"></i>
                                                         </a>
                                                     </td>
@@ -569,7 +574,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="5" class="text-align-center">
-                                                        <button class="btn btn-add-new btn-block"> + Add New Option</button>
+                                                        <button class="btn btn-add-new btn-block" onclick="addrow_choice()"> + Add New Option</button>
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -755,7 +760,7 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Sample Input & Output <i class="fa fa-info-circle"></i></strong>
                                     <div class="no-more-tables ">
-                                        <table class="table s_table">
+                                        <table class="table s_table" id="coding_qustion_table">
                                             <thead>
                                                 <th></th>
                                                 <th>Input</th>
@@ -772,7 +777,7 @@
                                                         <textarea class="form-control" name="option" required=""></textarea>
                                                     </td>
                                                     <td valign="center">
-                                                        <a href="">
+                                                        <a class="delete_row">
                                                         <i class="fa fa-times-circle-o"></i>
                                                         </a>
                                                     </td>
@@ -781,7 +786,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="4" class="text-align-center">
-                                                        <button class="btn">+ Add Sample Test Case</button>
+                                                        <button class="btn" onclick="addrow_codingquestion()">+ Add Sample Test Case</button>
                                                     </td>
                                                 </tr>
                                             </tfoot>

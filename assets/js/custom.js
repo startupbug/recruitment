@@ -1,5 +1,158 @@
+function functionAddTag() {
+  $('#s_button_general_tag').addClass("hidden");
+  $('#s_add_tag_button').removeClass("hidden");
+}
+function functionCancelTag() {
+  $('#s_button_general_tag').removeClass("hidden");
+  $('#s_add_tag_button').addClass("hidden");
+}
+
+$('.edit_tag').click(function(){
+    $(this).siblings('input').prop("disabled", false);
+    $(this).addClass('hidden');
+    $(this).siblings('span.edit_delete').removeClass('hidden');
+    $(this).siblings('span.delete_tag').addClass('hidden');
+})
+
+$('.edit_delete').click(function(){
+    $(this).siblings('input').prop("disabled", true);
+    $(this).addClass('hidden');
+    $(this).siblings('span.edit_tag').removeClass('hidden');
+    $(this).siblings('span.delete_tag').removeClass('hidden');
+})
+
+$( "#partial_marks" ).on( "click", function() {
+  if ($("#partial_marks:checked").length == 1) {
+    $('#choices_table > tbody tr > td:nth-child(2)').addClass("hidden");
+    $('#choices_table > tbody tr > td:nth-child(4)').removeClass("hidden");
+  }
+  else {
+    $('#choices_table > tbody tr > td:nth-child(2)').removeClass("hidden");
+    $('#choices_table > tbody tr > td:nth-child(4)').addClass("hidden");
+  }
+});
+
+function addrow_choice() {
+   var colCount = 1;
+   $('#choices_table tbody tr').each(function () {
+       colCount++;
+   });
+   if ($('#partial_marks:checked').length == 0) {
+
+     $('#choices_table tbody tr:last').after('<tr>'+
+       '<td valign="center">'+colCount+'.</td>'+
+       '<td> <input type="checkbox" name="" value=""> </td>'+
+       '<td class="s_weight" valign="center">'+
+           '<textarea class="form-control" name="option" required=""></textarea>'+
+       '</td>'+
+       '<td valign="center" class="hidden">'+
+           '<div class="input-group input-group-sm">'+
+               '<input type="number" class="form-control" width="30px" max="100" min="0" >'+
+               '<span class="input-group-addon" id="basic-addon1">%</span>'+
+           '</div>'+
+       '</td>'+
+       '<td valign="center">'+
+             '<a class="delete_row">'+
+             '<i class="fa fa-times-circle-o"></i>'+
+             '</a>'+
+       '</td>'+
+     '</tr>');
+   }
+   else {
+
+      $('#choices_table tbody tr:last').after('<tr>'+
+        '<td valign="center">'+colCount+'.</td>'+
+        '<td class="hidden"> <input type="checkbox" name="" value=""> </td>'+
+        '<td class="s_weight" valign="center">'+
+            '<textarea class="form-control" name="option" required=""></textarea>'+
+        '</td>'+
+        '<td valign="center">'+
+            '<div class="input-group input-group-sm">'+
+                '<input type="number" class="form-control" width="30px" max="100" min="0" >'+
+                '<span class="input-group-addon" id="basic-addon1">%</span>'+
+            '</div>'+
+        '</td>'+
+        '<td valign="center">'+
+              '<a class="delete_row">'+
+              '<i class="fa fa-times-circle-o"></i>'+
+              '</a>'+
+        '</td>'+
+      '</tr>');
+   }
+}
+
+$("#choices_table").on('click', '.delete_row', function () {
+
+    var colCount_alert = 0;
+    $('#choices_table tbody tr').each(function () {
+        colCount_alert++;
+    });
+
+    if (colCount_alert == 2) {
+      alert("Atleast two options are mandatory..");
+    }else {
+      $(this).closest('tr').remove();
+    }
+
+    var colCount = 0;
+    $('#choices_table tbody tr').each(function () {
+        colCount++;
+        $('#choices_table tbody tr:nth-child('+colCount+') td:nth-child(1)').html(colCount+'.');
+    });
+
+});
+
+
+$("#choices_table tbody tr td :checkbox").bind("click", function() {
+    var $this = $(this);
+    if($this.is(':checked')) {
+        $this.closest('tr').css('background-color', '#3fb618');
+        // $this.closest('td:nth-child(4)').css('display', 'none');
+        // $this.find('tr td:nth-child(5)').toggle();
+    }
+    else {
+        $this.closest('tr').css('background-color', '#fff');
+    }
+});
+
+
+function addrow_codingquestion() {
+   var colCount = 1;
+   $('#coding_qustion_table tbody tr').each(function () {
+       colCount++;
+   });
+
+   $('#coding_qustion_table tbody tr:last').after('<tr>'+
+     '<td valign="center">'+colCount+'.</td>'+
+     '<td valign="center">'+
+         '<textarea class="form-control" name="option" required=""></textarea>'+
+     '</td>'+
+     '<td valign="center">'+
+         '<textarea class="form-control" name="option" required=""></textarea>'+
+     '</td>'+
+     '<td valign="center">'+
+         '<a class="delete_row">'+
+          '<i class="fa fa-times-circle-o"></i>'+
+         '</a>'+
+     '</td>'+
+   '</tr>');
+
+}
+$("#coding_qustion_table").on('click', '.delete_row', function () {
+
+    $(this).closest('tr').remove();
+
+    var colCount = 0;
+    $('#choices_table tbody tr').each(function () {
+        colCount++;
+        $('#coding_qustion_table tbody tr:nth-child('+colCount+') td:nth-child(1)').html(colCount+'.');
+    });
+
+});
+
+
+
  $(".accordion-toggle").click(function(){
-  // $(this).children('span').toggleClass("glyphicon-minus");
     $(this).children('span').toggleClass("fa-sort-desc");
 });
 
