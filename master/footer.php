@@ -1707,7 +1707,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-footer">
+            <div class="panel-footer user_save">
                 <div class="button_notify">
                     <button type="button" class="btn">Save and Notify User</button>
                     <!--<button type="button" class="btn cancel_footer">Cancel</button>-->

@@ -1767,6 +1767,7 @@ span.test-muted {
 p.user_content {
     margin-left: 20px;
     color: #737373;
+    margin-bottom: 5px;
 }
 
 .fa_user {
@@ -2311,4 +2312,20 @@ p.free_credit {
     padding-left: 38px;
     margin-top: -40px;
     color: white;
+}
+.edit_tag i.fa.fa-pencil {
+    color: #2780e3;
+}
+
+.delete_tag i.fa.fa-times-circle-o {
+    color: #a94442;
+}
+
+.user_save {
+    margin-top: -15px;
+}
+
+.cancel_add {
+    margin-left: -28px;
+    width: 446px;
 }
