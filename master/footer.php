@@ -1779,9 +1779,6 @@
 <!--end-->
 
 <!--preview test on ques page-->
-
-
-
 <div class="modal fade" id="preview_test" role="dialog">
     <div class="modal-dialog  modal-lg">
         <!-- Modal content-->
@@ -1808,12 +1805,11 @@
                         <div class="chrome_fa"><i class="fa fa-chrome"></i></div>
                         <p class="num">Required</p>
                         <audio controls>
-  <source src="horse.ogg" type="audio/ogg">
-  <source src="horse.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
+                          <source src="horse.ogg" type="audio/ogg">
+                          <source src="horse.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                        </audio>
                         <p class="num">Play to test</p>
-
                    </div>
                    </div>
                    <div class="col-md-6">
@@ -1842,6 +1838,7 @@ Your browser does not support the audio element.
          </div>
     </div>
 </div>
+
 <!--end-->
 <script src="<?php echo $base_url;?>/assets/bower_components/jquery/dist/jQuery.min.js"></script>
 <script src="<?php echo $base_url;?>/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -1853,6 +1850,8 @@ Your browser does not support the audio element.
 <script src="<?php echo $base_url;?>/assets/plugins/menu/js/jquery.mhead.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/select2.full.min.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/jquery.blink.js"></script>
+<script src="<?php echo $base_url;?>/assets/js/jquery.localscroll.js"></script>
+<script src="<?php echo $base_url;?>/assets/js/jquery.scrollTo.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/editor.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/custom.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/script.js"></script>
