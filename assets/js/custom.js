@@ -1,3 +1,8 @@
+$(".s_popup").hover(function(){
+  $(this).children().toggleClass("show");
+       
+});
+
 function functionAddTag() {
   $('#s_button_general_tag').addClass("hidden");
   $('#s_add_tag_button').removeClass("hidden");

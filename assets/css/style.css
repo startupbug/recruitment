@@ -2329,3 +2329,88 @@ p.free_credit {
     margin-left: -28px;
     width: 446px;
 }
+p.candididate_user {
+    color: #333333;
+    font-family: 'SourceSansPro-Regular';
+}
+
+.cancel_add input#name {
+    height: 45px;
+}
+
+.add {
+    background: #323754 !important;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.add:hover {
+    color: white;
+}
+
+.add:focus {
+    color: white;
+}
+/* Popup container - can be anything you want */
+.s_popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.s_popup .s_popuptext {
+    visibility: hidden;
+    width: 325px;
+    background-color: #261f63c4;
+    color: #fff;
+    text-align: left;
+    border-radius: 2px;
+    padding: 8px 10px;
+    position: absolute;
+    z-index: 1;
+    top: 140%;
+    right: -155px;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.s_popup .s_popuptext::after {
+    bottom: 100%;
+    content: "";
+    position: absolute;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent transparent #261f63c4 transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.s_popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+.test_template {
+    padding-bottom: 200px;
+}

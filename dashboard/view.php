@@ -209,7 +209,7 @@
                    <div class="right_tab">
                       <ul>
                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
-                        <li>Edit</li>
+                        <li><a href="host_text.php">Edit</a></li>
                         <li>
                           <div class="host">  
                             <a href="host_text.php">Host this test</a>
@@ -303,8 +303,8 @@
                       <ul>
                          <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
-                         <li>Edit</li>
-                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li><a href="host_text.php">Edit</a></li>
+                          <li><div class="host">  <a href="host_text.php">Host this test</a></div></li>
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -390,8 +390,8 @@
                       <ul>
                          <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
-                         <li>Edit</li>
-                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li><a href="host_text.php">Edit</a></li>
+                          <li><div class="host">  <a href="host_text.php">Host this test</a></div></li>
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -475,8 +475,8 @@
                       <ul>
                          <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
-                         <li>Edit</li>
-                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li><a href="host_text.php">Edit</a></li>
+                          <li><div class="host">  <a href="host_text.php">Host this test</a></div></li>
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -558,8 +558,8 @@
                       <ul>
                          <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
-                         <li>Edit</li>
-                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li><a href="host_text.php">Edit</a></li>
+                          <li><div class="host">  <a href="host_text.php">Host this test</a></div></li>
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -648,8 +648,8 @@
                       <ul>
                          <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
-                         <li>Edit</li>
-                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li><a href="host_text.php">Edit</a></li>
+                          <li><div class="host">  <a href="host_text.php">Host this test</a></div></li>
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -808,8 +808,8 @@
                       <ul>
                          <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
-                         <li>Edit</li>
-                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li><a href="host_text.php">Edit</a></li>
+                          <li><div class="host">  <a href="host_text.php">Host this test</a></div></li>
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -969,8 +969,8 @@
                       <ul>
                          <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
 
-                         <li>Edit</li>
-                          <li><div class="host"><a href="#">Host this test</a></div></li>
+                         <li><a href="host_text.php">Edit</a></li>
+                          <li><div class="host">  <a href="host_text.php">Host this test</a></div></li>
                          <li>
                             <div class="dropdown">
                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

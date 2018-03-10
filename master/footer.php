@@ -3,6 +3,7 @@
 
 
 
+
 <!-- Filter-Modal -->
 <div class="modal fade" id="mcqs-filter-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -472,7 +473,23 @@
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Question State <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Question State 
+
+                                        <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                               There are three possible states for a question. <br>
+                                                (1)Stage (2) Ready (3) Abandoned <br>
+                                                <br>
+                                                <br>
+                                                Why is it needed:The purpose of the states is to manage the question development cycle.
+                                                <br>
+                                                <br>
+                                                Question is the Stage state the represents the question which is
+                                                added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the Abondoned state represents a question which is rejected.
+                                            </span>
+                                        </div>
+                                    </strong>
                                 </div>
                                 <div>
                                     <label class="container_radio border_radio_left">STAGE
@@ -506,7 +523,19 @@
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Choices <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Choices 
+                                        <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                                Under this section, one can add the <br>
+                                                Good to Know: <br>
+                                                (1) Multiple choice multiple answer type questions are supported.
+                                                <br>
+                                                <br>
+                                                (2) Choice field's value cannot be empty or a duplicate.
+                                            </span>
+                                        </div>
+                                    </strong>
                                     <strong class="pull-right">
                                     <input type="checkbox" name="" value="1" id="partial_marks">
                                     Partial marks
@@ -596,7 +625,19 @@
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Question State <i class="fa fa-info-circle"></i> No tags added</strong>
+                                    <strong>Tags <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                               Each question can be associated with multiple tags. <br>
+                                                <br>
+                                                Why it matters:
+                                                <br>
+                                                <br>
+                                                (1) Tags are used in filters while searching through the library.
+                                                (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classifiaction.
+                                            </span>
+                                        </div>
+                                     No tags added</strong>
                                 </div>
                                 <div class="form-group-sm">
                                     <div class="row">
@@ -615,7 +656,15 @@
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Question Level <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Question Level 
+                                        <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                               Question level determines the standard of the question. Supported classification are easy, intermediate and hard. <br>
+                                               
+                                            </span>
+                                        </div>
+                                    </strong>
                                 </div>
                                 <div class="heading_padding_bottom">
                                     <label class="container_radio border_radio_left">Easy
@@ -635,7 +684,15 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Provider <i class="fa fa-info-circle"></i></strong>
+                                                <strong>Provider 
+                                                    <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                                This optional field is meant to contain the organization name that serves as the provider of the question. <br>
+                                                
+                                            </span>
+                                        </div>
+                                                </strong>
                                             </div>
                                             <input type="text" class="form-control">
                                         </div>
@@ -645,7 +702,15 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Author <i class="fa fa-info-circle"></i></strong>
+                                                <strong>Author 
+                                                    <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                                This field is meant to contain the name of the author of this question. <br>
+                                                
+                                            </span>
+                                        </div>
+                                                </strong>
                                             </div>
                                             <input type="text" class="form-control">
                                         </div>
@@ -664,7 +729,16 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Text <i class="fa fa-info-circle"></i></strong>
+                                                <strong>Text 
+                                                    <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                                Provide the solution to the question in text if the question is required to use.
+                                               
+                                              
+                                            </span>
+                                        </div>
+                                                </strong>
                                             </div>
                                             <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
                                         </div>
@@ -674,7 +748,14 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Code <i class="fa fa-info-circle"></i></strong>
+                                                <strong>Code 
+                                                    <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                               Provide the solution to the question in Code if the question is required to use.
+                                            </span>
+                                        </div>
+                                                </strong>
                                             </div>
                                             <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
                                         </div>
@@ -684,14 +765,28 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>URL <i class="fa fa-info-circle"></i></strong>
+                                                <strong>URL 
+                                                    <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                               Provide the solution to the question in URL if the question is required to use.
+                                            </span>
+                                        </div>
+                                                </strong>
                                             </div>
                                             <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Files <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Files 
+                                        <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                               Provide the solution to the question in files if the question is required to use.
+                                            </span>
+                                        </div>
+                                    </strong>
                                 </div>
                                 <button type="file" class="btn">Upload Files</button>
                             </div>
@@ -1481,18 +1576,42 @@
                 </div>
                 <h3 class="modal-title s_font">Create New Test Template</h3>
             </div>
-            <div class="modal-body s_modal_form_body">
+            <div class="modal-body s_modal_form_body test_template">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                         <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Template Title <i class="fa fa-info-circle"></i></label>
+                            <label class="col-md-3 control-label" for="name">Template Title 
+                                <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                              This field represents the title of the test template.<br>
+                                              <br>
+                                                Why it matters:  The title of the template is used for identification and searching of historical templates via filters.
+                                                
+                                            </span>
+                                        </div>
+                            </label>
                             <div class="col-md-9">
                                 <div class="template"><input id="name" name="name" type="text" placeholder="Name of the test template" class="form-control general">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Type <i class="fa fa-info-circle"></i></label>
+                            <label class="col-md-3 control-label" for="name">Type 
+                                <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                             Based the mode of inviting candidates,test can be of two types: (1)Public (2)Invite-Only<br>
+                                              <br>
+                                              Public Test: This type of test supports unrestricted invitation to the test takers by generating a public link and distributing the same among the test takers.
+                                              <br>
+                                              <br>
+                                              Invite-Only Test: This type of test supports selective invitation to the test takers by sending an auto generated email invitation.
+                                                
+                                            </span>
+                                        </div>
+
+                            </label>
                             <div class="col-md-9">
                                 <div class="radio">
                                     <label><input type="radio" name="optradio">Public</label>
@@ -1779,9 +1898,6 @@
 <!--end-->
 
 <!--preview test on ques page-->
-
-
-
 <div class="modal fade" id="preview_test" role="dialog">
     <div class="modal-dialog  modal-lg">
         <!-- Modal content-->
@@ -1808,12 +1924,11 @@
                         <div class="chrome_fa"><i class="fa fa-chrome"></i></div>
                         <p class="num">Required</p>
                         <audio controls>
-  <source src="horse.ogg" type="audio/ogg">
-  <source src="horse.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
+                          <source src="horse.ogg" type="audio/ogg">
+                          <source src="horse.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                        </audio>
                         <p class="num">Play to test</p>
-
                    </div>
                    </div>
                    <div class="col-md-6">
@@ -1842,6 +1957,7 @@ Your browser does not support the audio element.
          </div>
     </div>
 </div>
+
 <!--end-->
 <script src="<?php echo $base_url;?>/assets/bower_components/jquery/dist/jQuery.min.js"></script>
 <script src="<?php echo $base_url;?>/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -1853,6 +1969,8 @@ Your browser does not support the audio element.
 <script src="<?php echo $base_url;?>/assets/plugins/menu/js/jquery.mhead.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/select2.full.min.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/jquery.blink.js"></script>
+<script src="<?php echo $base_url;?>/assets/js/jquery.localscroll.js"></script>
+<script src="<?php echo $base_url;?>/assets/js/jquery.scrollTo.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/editor.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/custom.js"></script>
 <script src="<?php echo $base_url;?>/assets/js/script.js"></script>
