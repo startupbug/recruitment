@@ -14,6 +14,7 @@
      padding: 0;
      vertical-align: baseline;
 } */
+
  .fa-sync:before{
      content:"\f021"
 }
@@ -2414,3 +2415,16 @@ p.candididate_user {
 .test_template {
     padding-bottom: 200px;
 }
+
+span.host_popup {
+    visibility: hidden;
+    background-color: #261f63c4;
+    color: #fff;
+    text-align: left;
+    border-radius: 2px;
+    padding: 8px 10px;
+    position: absolute;
+    z-index: 1;
+    top: 140%;
+    right: -311px !important;
+  }

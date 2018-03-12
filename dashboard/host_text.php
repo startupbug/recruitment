@@ -1,6 +1,7 @@
 <?php require_once '../master/header.php';?>
 
 <section class="view">
+
 	<br>
 	<div class="container-fluit padding-15-fluit">
 
@@ -69,19 +70,53 @@
 					 <div class="col-md-6 col-sm-12 col-xs-12 padding-0">
 						 <form class="form-vertical" action="#">
 					 		<div class="form-group">
-					 			<label class="control-label" for="title">Title <i class="fa fa-info-circle"></i></label>
+					 			<label class="control-label" for="title">Title 
+                                 
+                                 <div class="s_popup">
+											<i class="fa fa-info-circle"> </i>
+										  	<span class="s_popuptext host_popup">
+										  		instructions page before the test. <br>
+										  		This is a markdown editor <br>
+										  		Learning refrence:<br>
+										  		"http://www.markdowntutorial.com/
+										  	</span>
+										</div>
+					 			</label>
 					 			<div>
 					 				<input type="text" class="form-control" id="title" placeholder="Enter Title" name="title">
 					 			</div>
 					 		</div>
 					 		<div class="form-group">
-					 			<label class="control-label" for="description">Description <i class="fa fa-info-circle"></i></label>
+					 			<label class="control-label" for="description">Description 
+					 				<div class="s_popup">
+											<i class="fa fa-info-circle"> </i>
+										  	<span class="s_popuptext host_popup">
+										  		This is the description of the test.<br>
+										  		instructions page before the test. <br>
+										  		This is a markdown editor <br>
+										  		Learning refrence:<br>
+										  		"http://www.markdowntutorial.com/
+										  	</span>
+										</div>
+					 			</label>
 					 			<div>
 									<textarea id="s_txt_BD_DescriptionEditor" style="display: none;"></textarea>
 					 			</div>
 					 		</div>
 					 		<div class="form-group">
-					 			<label class="control-label" for="instructions">Instructions <i class="fa fa-info-circle"></i></label>
+					 			<label class="control-label" for="instructions">Instructions 
+					 				<div class="s_popup">
+											<i class="fa fa-info-circle"> </i>
+										  	<span class="s_popuptext host_popup">
+										  		type below the instructions for the test.<br>
+										  		Good to know: the candidate can view this in the
+										  		instructions page before the test. <br>
+										  		This is a markdown editor <br>
+										  		Learning refrence:<br>
+										  		"http://www.markdowntutorial.com/
+										  	</span>
+										</div>
+					 			</label>
 					 			<div>
 									<textarea id="s_txt_BD_InstructionsEditor" rows="5" style="display: none;"></textarea>
 					 			</div>
@@ -615,7 +650,19 @@
 								<form class="form-horizontal text-left">
 									<div class="form-group form-group-sm">
 										<label class="control-label col-md-8 col-sm-8 col-xs-8">
-											Window Proctoring <i class="fa fa-info-circle"></i>
+											Window Proctoring 
+											<div class="s_popup">
+											<i class="fa fa-info-circle"> </i>
+										  	<span class="s_popuptext">
+										  		This is a cheating prevention mechanism which<br> 
+										  		 mandates the candidate to stay<br>
+										  		Good to know: the candidate can view this in the
+										  		instructions page before the test. <br>
+										  		This is a markdown editor <br>
+										  		Learning refrence:<br>
+										  		"http://www.markdowntutorial.com/
+										  	</span>
+										</div>
 										</label>
 										<div class="checkbox no-margin col-md-2 col-sm-2 col-xs-2">
 											<input type="checkbox">
@@ -695,7 +742,15 @@
 										<form class="form-horizontal" name="tSettings">
 	    								<div class="form-group form-group-sm">
 	        							<label class="col-sm-3 control-label">
-													Type of the test &nbsp;<i class="fa fa-info-circle"></i>
+													Type of the test &nbsp;
+
+													<div class="s_popup">
+											<i class="fa fa-info-circle"> </i>
+										  	<span class="s_popuptext">
+										  		htmltooltip.editTesttemplateType
+										  		
+										  	</span>
+										</div>
 												</label>
 	        							<div class="col-sm-9">
 							            <div class="row">
@@ -711,7 +766,18 @@
 	  									</div>
 											<div class="form-group form-group-sm">
 								        <label class="col-sm-3 control-label">
-													Webcam &nbsp;<i class="fa fa-info-circle"></i>
+													Webcam &nbsp;
+													<div class="s_popup">
+											<i class="fa fa-info-circle"> </i>
+										  	<span class="s_popuptext">
+										  		This is a cheating prevention mechanism to
+										  		 <br>
+										  		 remotely monitor the candidates.How it works: This
+										  		<br>
+										  		capture a series of screenshots at regular intervals.
+										  		
+										  	</span>
+										</div>
 												</label>
 								        <div class="col-sm-9">
 							            <div class="row">
@@ -727,7 +793,19 @@
 	  									</div>
 	    								<div class="form-group form-group-sm">
 	        							<label class="col-sm-3 control-label">
-													Candidate Resume &nbsp;<i class="fa fa-info-circle"></i>
+													Candidate Resume &nbsp;
+
+													<div class="s_popup">
+											<i class="fa fa-info-circle"> </i>
+										  	<span class="s_popuptext">
+										  		This allows you to ask for a candidate's resume.<br>
+										  		during the registration
+										  		Good to know: you can <br>
+										  		choose to make the resume submission mandatory
+										  		
+										  		
+										  	</span>
+										</div>
 												</label>
 	        							<div class="col-sm-9">
 		            					<div class="checkbox">
@@ -745,7 +823,18 @@
 	    								<div>
 	        							<div class="form-group form-group-sm">
 	            						<label class="col-sm-3 control-label">
-														Disable Finish Test Button &nbsp;<i class="fa fa-info-circle"></i>
+														Disable Finish Test Button &nbsp;
+														<div class="s_popup">
+											<i class="fa fa-info-circle"> </i>
+										  	<span class="s_popuptext">
+										  		This allows you to ask for a candidate's resume.<br>
+										  		during the registration
+										  		Good to know: you can <br>
+										  		choose to make the resume submission mandatory
+										  		
+										  		
+										  	</span>
+										</div>
 													</label>
 	            						<div class="col-sm-9">
 	                					<div class="checkbox no-padding">
@@ -758,7 +847,19 @@
 	    								</div>
 											<div class="form-group form-group-sm">
 												<label class="col-sm-3 control-label">
-													Enable Email Verification &nbsp;<i class="fa fa-info-circle"></i>
+													Enable Email Verification &nbsp;
+
+													<div class="s_popup">
+											<i class="fa fa-info-circle"> </i>
+										  	<span class="s_popuptext">
+										  		This allows you to ask for a candidate's resume.<br>
+										  		during the registration
+										  		Good to know: you can <br>
+										  		choose to make the resume submission mandatory
+										  		
+										  		
+										  	</span>
+										</div>
 												</label>
 												<div class="col-sm-9">
 													<div class="checkbox">
