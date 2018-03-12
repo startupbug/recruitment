@@ -305,3 +305,28 @@ width: 600px;
 .s_link{
   margin: 10px 0 0 0;
 }
+.s_margin_bottom .btn-success:focus, .s_margin_bottom .btn-success:hover {
+    background-color: #419641;
+    background-position: 0 -15px;
+}
+
+li.searchbar{
+  padding: 0px 15px 0px 15px;
+}
+li.searchbar:hover {
+    background-color: #261f63;
+}
+
+li.searchbar input.form-control.input-search:hover, li.searchbar input.form-control.input-search:active, li.searchbar input.form-control.input-search:focus {
+    background: #ffffff;
+    color: gray;
+}
+li.searchbar input:hover::-webkit-input-placeholder, li.searchbar input:active::-webkit-input-placeholder, li.searchbar input:focus::-webkit-input-placeholder{
+    color: #908b8b;
+}
+li.searchbar input.form-control.input-search:focus + label.glyphicon.glyphicon-search {
+    color: #908b8b;
+}
+li.searchbar input.form-control.input-search:hover + label.glyphicon.glyphicon-search {
+    color: #908b8b;
+}

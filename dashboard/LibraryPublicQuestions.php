@@ -52,7 +52,7 @@
 							      </tr>
 							    </thead>
 							    <tbody>
-							      <tr>
+							      <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">
 							        <td>
 												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">
 													<span class="fa fa-caret-right"></span>
@@ -89,7 +89,7 @@
 					            </td>
 										</tr>
 
-										<tr>
+										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
 							        <td>
 												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
 													<span class="fa fa-caret-right"></span>
@@ -112,7 +112,7 @@
 					            </td>
 										</tr>
 
-										<tr>
+										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
 							        <td>
 												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
 													<span class="fa fa-caret-right"></span>
@@ -170,7 +170,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
+										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false">
 											<td>
 												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false">
 													<span class="fa fa-caret-right"></span>
@@ -208,7 +208,7 @@
 											</td>
 										</tr>
 
-										<tr>
+										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
 											<td>
 												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
 													<span class="fa fa-caret-right"></span>
@@ -230,7 +230,7 @@
 											</td>
 										</tr>
 
-										<tr>
+										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
 											<td>
 												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
 													<span class="fa fa-caret-right"></span>
@@ -303,10 +303,10 @@
  							      </tr>
  							    </thead>
  							    <tbody>
- 							      <tr>
+ 							      <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false">
  							        <td>
- 										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false">
- 										<span class="fa fa-caret-right"></span>
+		 										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false">
+		 											<span class="fa fa-caret-right"></span>
  								          Collapsible Group Item #1
  								        </a>
  											</td>
@@ -344,7 +344,7 @@
  					            </td>
  										</tr>
 
- 										<tr>
+ 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse12">
  							        <td>
  												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse12">
  													<span class="fa fa-caret-right"></span>
@@ -370,7 +370,7 @@
  					            </td>
  										</tr>
 
- 										<tr>
+ 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse13">
  							        <td>
  												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse13">
  													<span class="fa fa-caret-right"></span>
@@ -449,7 +449,7 @@
  										</tr>
  									</thead>
  									<tbody>
- 										<tr>
+ 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="false">
  											<td>
  												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="false">
  													<span class="fa fa-caret-right"></span>
@@ -490,7 +490,7 @@
  											</td>
  										</tr>
 
- 										<tr>
+ 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse15">
  											<td>
  												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse15">
  													<span class="fa fa-caret-right"></span>
@@ -516,7 +516,7 @@
  											</td>
  										</tr>
 
- 										<tr>
+ 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse16">
  											<td>
  												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse16">
  													<span class="fa fa-caret-right"></span>
@@ -580,7 +580,7 @@
  										</tr>
  									</thead>
  									<tbody>
- 										<tr>
+ 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse17" aria-expanded="false">
  											<td>
  												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse17" aria-expanded="false">
  													<span class="fa fa-caret-right"></span>
@@ -621,7 +621,7 @@
  											</td>
  										</tr>
 
- 										<tr>
+ 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse18">
  											<td>
  												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse18">
  													<span class="fa fa-caret-right"></span>
@@ -647,7 +647,7 @@
  											</td>
  										</tr>
 
- 										<tr>
+ 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse19">
  											<td>
  												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse19">
  													<span class="fa fa-caret-right"></span>

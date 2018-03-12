@@ -468,7 +468,7 @@
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Question State 
+                                    <strong>Question State
 
                                         <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
@@ -518,7 +518,7 @@
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Choices 
+                                    <strong>Choices
                                         <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
@@ -651,12 +651,12 @@
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Question Level 
+                                    <strong>Question Level
                                         <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                Question level determines the standard of the question. Supported classification are easy, intermediate and hard. <br>
-                                               
+
                                             </span>
                                         </div>
                                     </strong>
@@ -679,12 +679,12 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Provider 
+                                                <strong>Provider
                                                     <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 This optional field is meant to contain the organization name that serves as the provider of the question. <br>
-                                                
+
                                             </span>
                                         </div>
                                                 </strong>
@@ -697,12 +697,12 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Author 
+                                                <strong>Author
                                                     <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 This field is meant to contain the name of the author of this question. <br>
-                                                
+
                                             </span>
                                         </div>
                                                 </strong>
@@ -716,21 +716,21 @@
                         <br>
                         <!--  Solution Details (Optional) -->
                         <div class="modal-content s_modal s_gray_color_modal">
-                            <div class="modal-header s_modal_header s_gray_color_header">
-                                <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                            <div class="modal-header s_modal_header s_gray_color_header accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#solution1" aria-expanded="false">
+                              <h4 class="modal-title s_font"><i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
                             </div>
-                            <div class="modal-body s_modal_body">
+                            <div class="modal-body s_modal_body panel-collapse collapse" id="solution1">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Text 
+                                                <strong>Text
                                                     <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 Provide the solution to the question in text if the question is required to use.
-                                               
-                                              
+
+
                                             </span>
                                         </div>
                                                 </strong>
@@ -743,7 +743,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Code 
+                                                <strong>Code
                                                     <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
@@ -760,7 +760,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>URL 
+                                                <strong>URL
                                                     <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
@@ -774,7 +774,7 @@
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Files 
+                                    <strong>Files
                                         <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
@@ -1000,10 +1000,10 @@
                         <br>
                         <!--  Solution Details (Optional) -->
                         <div class="modal-content s_modal s_orange_color_modal">
-                            <div class="modal-header s_modal_header s_orange_color_header">
-                                <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                            <div class="modal-header s_modal_header s_orange_color_header accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#solution2" aria-expanded="false">
+                                <h4 class="modal-title s_font"><i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
                             </div>
-                            <div class="modal-body s_modal_body">
+                            <div class="modal-body s_modal_body panel-collapse collapse" id="solution2">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
@@ -1242,10 +1242,10 @@
                         <br>
                         <!--  Solution Details (Optional) -->
                         <div class="modal-content s_modal s_orange_color_modal">
-                            <div class="modal-header s_modal_header s_orange_color_header">
-                                <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                            <div class="modal-header s_modal_header s_orange_color_header  accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#solution3" aria-expanded="false">
+                                <h4 class="modal-title s_font"> <i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
                             </div>
-                            <div class="modal-body s_modal_body">
+                            <div class="modal-body s_modal_body panel-collapse collapse" id="solution3">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
@@ -1477,10 +1477,10 @@
                         <br>
                         <!--   Evaluation Parameters (Optional) -->
                         <div class="modal-content s_modal s_orange_color_modal">
-                            <div class="modal-header s_modal_header s_orange_color_header">
-                                <h4 class="modal-title s_font">  Evaluation Parameters (Optional)</h4>
+                            <div class="modal-header s_modal_header s_orange_color_header accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#solution_4" aria-expanded="false">
+                                <h4 class="modal-title s_font"><i class="fa fa-caret-right"></i> Evaluation Parameters (Optional)</h4>
                             </div>
-                            <div class="modal-body s_modal_body">
+                            <div class="modal-body s_modal_body panel-collapse collapse" id="solution_4">
                                 <div class="no-more-tables ">
                                     <table class="table s_table">
                                         <thead>
@@ -1513,10 +1513,10 @@
                         <br>
                         <!--   Evaluation Parameters (Optional) -->
                         <div class="modal-content s_modal s_light_green_color_modal">
-                            <div class="modal-header s_modal_header s_light_green_color_header">
-                                <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                            <div class="modal-header s_modal_header s_light_green_color_header accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#solution_5" aria-expanded="false">
+                                <h4 class="modal-title s_font"> <i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
                             </div>
-                            <div class="modal-body s_modal_body">
+                            <div class="modal-body s_modal_body panel-collapse collapse" id="solution_5">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
@@ -1575,14 +1575,14 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                         <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Template Title 
+                            <label class="col-md-3 control-label" for="name">Template Title
                                 <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               This field represents the title of the test template.<br>
                                               <br>
                                                 Why it matters:  The title of the template is used for identification and searching of historical templates via filters.
-                                                
+
                                             </span>
                                         </div>
                             </label>
@@ -1592,7 +1592,7 @@
                             </div>
                         </div>
                         <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Type 
+                            <label class="col-md-3 control-label" for="name">Type
                                 <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
@@ -1602,7 +1602,7 @@
                                               <br>
                                               <br>
                                               Invite-Only Test: This type of test supports selective invitation to the test takers by sending an auto generated email invitation.
-                                                
+
                                             </span>
                                         </div>
 

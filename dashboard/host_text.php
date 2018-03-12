@@ -14,7 +14,7 @@
 			</div>
 			<div class="col-xs-2 col-xs-offset-2">
 				<h4>
-					<button class="btn btn-sm btn-block btn-success">
+					<button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#_first_model">
 						<i class="fa fa-check" aria-hidden="true"></i> Host this Test
 					</button>
 				</h4>
@@ -70,8 +70,8 @@
 					 <div class="col-md-6 col-sm-12 col-xs-12 padding-0">
 						 <form class="form-vertical" action="#">
 					 		<div class="form-group">
-					 			<label class="control-label" for="title">Title 
-                                 
+					 			<label class="control-label" for="title">Title
+
                                  <div class="s_popup">
 											<i class="fa fa-info-circle"> </i>
 										  	<span class="s_popuptext host_popup">
@@ -87,7 +87,7 @@
 					 			</div>
 					 		</div>
 					 		<div class="form-group">
-					 			<label class="control-label" for="description">Description 
+					 			<label class="control-label" for="description">Description
 					 				<div class="s_popup">
 											<i class="fa fa-info-circle"> </i>
 										  	<span class="s_popuptext host_popup">
@@ -104,7 +104,7 @@
 					 			</div>
 					 		</div>
 					 		<div class="form-group">
-					 			<label class="control-label" for="instructions">Instructions 
+					 			<label class="control-label" for="instructions">Instructions
 					 				<div class="s_popup">
 											<i class="fa fa-info-circle"> </i>
 										  	<span class="s_popuptext host_popup">
@@ -650,11 +650,11 @@
 								<form class="form-horizontal text-left">
 									<div class="form-group form-group-sm">
 										<label class="control-label col-md-8 col-sm-8 col-xs-8">
-											Window Proctoring 
+											Window Proctoring
 											<div class="s_popup">
 											<i class="fa fa-info-circle"> </i>
 										  	<span class="s_popuptext">
-										  		This is a cheating prevention mechanism which<br> 
+										  		This is a cheating prevention mechanism which<br>
 										  		 mandates the candidate to stay<br>
 										  		Good to know: the candidate can view this in the
 										  		instructions page before the test. <br>
@@ -748,7 +748,7 @@
 											<i class="fa fa-info-circle"> </i>
 										  	<span class="s_popuptext">
 										  		htmltooltip.editTesttemplateType
-										  		
+
 										  	</span>
 										</div>
 												</label>
@@ -775,7 +775,7 @@
 										  		 remotely monitor the candidates.How it works: This
 										  		<br>
 										  		capture a series of screenshots at regular intervals.
-										  		
+
 										  	</span>
 										</div>
 												</label>
@@ -802,8 +802,8 @@
 										  		during the registration
 										  		Good to know: you can <br>
 										  		choose to make the resume submission mandatory
-										  		
-										  		
+
+
 										  	</span>
 										</div>
 												</label>
@@ -831,8 +831,8 @@
 										  		during the registration
 										  		Good to know: you can <br>
 										  		choose to make the resume submission mandatory
-										  		
-										  		
+
+
 										  	</span>
 										</div>
 													</label>
@@ -856,8 +856,8 @@
 										  		during the registration
 										  		Good to know: you can <br>
 										  		choose to make the resume submission mandatory
-										  		
-										  		
+
+
 										  	</span>
 										</div>
 												</label>
