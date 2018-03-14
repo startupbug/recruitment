@@ -330,3 +330,65 @@ li.searchbar input.form-control.input-search:focus + label.glyphicon.glyphicon-s
 li.searchbar input.form-control.input-search:hover + label.glyphicon.glyphicon-search {
     color: #908b8b;
 }
+
+
+
+.popUpCont {
+    width: 390px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0px 13px 10px 0px #ccc;
+    padding: 2% 15px 5% 20px;
+    
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.rightArrow {
+    background-image: url(../img/rightArrow.png);
+    background-repeat: no-repeat;
+    background-size: auto 40px;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.rightArrow:hover {
+    background-color: #f0f0f0;
+}
+.transition300 {
+    transition: 300ms ease-in-out;
+    -moz-transition: 300ms ease-in-out;
+    -ms-transition: 300ms ease-in-out;
+    -webkit-transition: 300ms ease-in-out;
+    -o-transition: 300ms ease-in-out;
+}
+.popUpCont h2 {
+    font-size: 32px;
+}
+.sendButton {
+    background-image: url(../img/send.png);
+    background-repeat: no-repeat;
+    background-color: #323754;
+    color: #fff;
+    background-position: 90px 12px;
+    background-size: auto 20px;
+    padding: 10px 25px 10px 25px;
+}
+.sendButton:hover {
+    background-position: 66px 11px;
+    color: #fff;
+}
+section.customer_support {
+    margin-top: 2% !important;
+}
+p.customer_inner_content {
+    font-size: 14px !important;
+}
+.customer_image img.img-responsive {
+    height: 270px !important;
+}

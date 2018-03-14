@@ -1,3 +1,10 @@
+$('#send_your_query').click( function(e) {
+    $('#send_your_query_popup').removeClass('hidden');
+});
+$('#send_your_query_popup_remove').click( function(e) {
+    $('#send_your_query_popup').addClass('hidden');
+});
+
 $(".s_popup").hover(function(){
   $(this).children().toggleClass("show");
 });
@@ -285,5 +292,3 @@ console.log('add click event');
 // });
 
 })
-
-
