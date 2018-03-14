@@ -1,7 +1,16 @@
 $(".s_popup").hover(function(){
   $(this).children().toggleClass("show");
-
 });
+
+$(document.body).click( function(e) {
+    $('.s_click_popup').children().removeClass('show');
+});
+
+$(".s_click_popup").click( function(e) {
+    $(this).children().toggleClass("show");
+    e.stopPropagation();
+});
+
 
 function functionAddTag() {
   $('#s_button_general_tag').addClass("hidden");
