@@ -627,7 +627,7 @@
      font-family: 'SourceSansPro-Regular';
      font-weight: bold;
      color: #333333;
-     
+
 }
  .form-group textarea {
      color: black;
@@ -2368,7 +2368,7 @@ p.candididate_user {
 
 /* The actual popup */
 .s_popup .s_popuptext {
-    visibility: hidden; 
+    visibility: hidden;
     width: 325px !important;
     background-color: #261f63c4;
     color: #fff;
@@ -2381,8 +2381,6 @@ p.candididate_user {
     right: -155px !important;
     margin-left: -80px !important;
 }
-
-
 
 /* Popup arrow */
 .s_popup .s_popuptext::after {
@@ -2403,9 +2401,55 @@ p.candididate_user {
     animation: fadeIn 1s;
 }
 
+
+.s_click_popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.s_click_popup .s_click_popuptext {
+    visibility: hidden;
+    width: 325px !important;
+    background-color: #261f63c4;
+    color: #fff;
+    text-align: left;
+    border-radius: 2px;
+    padding: 8px 10px !important;
+    position: absolute;
+    z-index: 1;
+    top: 140%;
+    right: -155px !important;
+    margin-left: -80px !important;
+}
+
+/* Popup arrow */
+.s_click_popup .s_click_popuptext::after {
+    bottom: 100%;
+    content: "";
+    position: absolute;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent transparent #261f63c4 transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.s_click_popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-    from {opacity: 0;} 
+    from {opacity: 0;}
     to {opacity: 1;}
 }
 
@@ -2473,7 +2517,7 @@ span.s_popuptext.f_popup {
 }
 
 .dropdown-menu {
-  
+
     padding: 0px 0px;
-  
+
 }

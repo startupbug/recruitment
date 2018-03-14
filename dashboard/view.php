@@ -16,24 +16,28 @@
 </section>
 <div class="container-fluid padding-15-fluid">
    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="pill" href="#home">Test Hosted (1)
-        <div class="s_popup">
-                      <i class="fa fa-info-circle"> </i>
-                        <span class="s_popuptext f_popup">
-                       Click Me
-                        
-                        </span>
-                    </div>
-      </a></li>
-      <li><a data-toggle="pill" href="#testemplate">Test Templates (6)
-        <div class="s_popup">
-                      <i class="fa fa-info-circle"> </i>
-                        <span class="s_popuptext f_popup">
-                       Click Me
-                        
-                        </span>
-                    </div>
-      </a></li>
+      <li class="active">
+        <a data-toggle="pill" href="#home">Test Hosted (1)
+        <div class="s_click_popup">
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
+            <span class="s_click_popuptext f_popup">
+               <b>This tab-view lists the created tests.</b> <br><br>
+               <b>Good to know: </b>
+               All tests are accompanied with test opening and closing time and hence, they can be pre-scheduled.
+            </span>
+        </div>
+        </a>
+      </li>
+      <li>
+        <a data-toggle="pill" href="#testemplate">Test Templates (6)
+        <div class="s_click_popup">
+          <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
+            <span class="s_click_popuptext f_popup">
+              Click Me
+            </span>
+        </div>
+      </a>
+    </li>
    </ul>
    <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
@@ -229,7 +233,7 @@
                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
                         <li><a href="host_text.php">Edit</a></li>
                         <li class="host_content">
-                          <div class="host">  
+                          <div class="host">
                             <a href="host_text.php">Host this test</a>
                           </div>
                         </li>
