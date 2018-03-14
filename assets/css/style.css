@@ -990,16 +990,22 @@
     color: #221c5a;
     font-family: 'SourceSansPro-Regular';
     border: 1px solid #dfdede;
-    background: #eee;
+    background: transparent;
     font-weight: normal;
     padding-left: 20px;
     padding-right: 20px;
 }
-
+.nav-tabs>li:hover {
+    background: #c1c6db;
+}
+.nav-tabs>li>a:hover {
+    border-color: #c1c6db;
+    background: #c1c6db;
+}
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     color: #555;
     cursor: default;
-    background-color: #fff;
+    background-color: transparent;
     border: 1px solid #dfdede;
     border-bottom-color: #dfdede;
     font-family: 'SourceSansPro-Regular';

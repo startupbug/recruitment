@@ -13,7 +13,7 @@
 </section>
 <div class="container-fluid padding-15-fluid">
    <ul class="nav nav-tabs">
-<<<<<<< HEAD
+
       <li class="active"><a data-toggle="pill" href="#home">Test Hosted (1)
         <div class="s_popup">
                       <i class="fa fa-info-circle"> </i>
@@ -33,8 +33,8 @@
                         </span>
                     </div>
       </a></li>
-=======
-      <li class="active">
+
+      <!--<li class="active">
         <a data-toggle="pill" href="#home">Test Hosted (1)
         <div class="s_click_popup">
           <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
@@ -45,8 +45,8 @@
             </span>
         </div>
         </a>
-      </li>
-      <li>
+      </li>-->
+      <!--<li>
         <a data-toggle="pill" href="#testemplate">Test Templates (6)
         <div class="s_click_popup">
           <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
@@ -55,8 +55,7 @@
             </span>
         </div>
       </a>
-    </li>
->>>>>>> ca94f8d381d2fa969a5aadefc8b7381dc648e290
+    </li>-->
    </ul>
    <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
