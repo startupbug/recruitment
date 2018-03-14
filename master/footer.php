@@ -509,7 +509,13 @@
                                 </div>
                                 <textarea id="s_txtEditor"></textarea>
                                 <h5><b>Media(Audio/Video)</b></h5>
-                                <button type="button" class="btn">Upload Media</button>
+                                
+                                <!-- <button type="button" class="btn">Upload Media</button> -->
+
+                                <div class="f_upload_btn">
+                                    Upload Media
+                                    <input type="file" name="">
+                                </div>
                             </div>
                         </div>
                         <br>
@@ -2238,7 +2244,7 @@
                             <div class="col-md-9">
                                 <div class="checkbox both">
                                     <label><input type="checkbox" value="">Live</label>
-                                    <label><input type="checkbox" value="">Upcoming</label>
+                                    <label class="upcoming"><input type="checkbox" value="">Upcoming</label>
                                     <label><input type="checkbox" value="">Expired</label>
                                     <label><input type="checkbox" value="">All</label>
                                 </div>

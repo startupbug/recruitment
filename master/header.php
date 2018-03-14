@@ -1,5 +1,6 @@
 <?php $base_url = 'http://localhost/recruitment_r/'; ?>
 <!DOCTYPE html>
+
 <html>
 <head>
 	<title>Online Recruitment</title>
@@ -98,6 +99,7 @@
 										</button>
 										<ul class="dropdown-menu right_menu bg_icon" aria-labelledby="dropdownMenu1">
 											<li><a href="#"><img src="../assets/img/credits_db.png" class="img-responsive db_img"></i><p class="free_credit">Get 5 free credits, help us <br>improve COdeGround, click here</p></a></li>
+										</ul>
 									</div>
 								</li>
 								<li><a href="<?php echo $base_url;?>/dashboard/setting/info.php"><i class="fa fa-info-circle"></i></a></li>

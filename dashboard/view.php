@@ -1,8 +1,5 @@
 <?php require_once '../master/header.php';?>
 
-
-
-
 <section class="view">
    <div class="container-fluid padding-15-fluit">
       <div class="row">
@@ -25,6 +22,7 @@
                         </span>
                     </div>
       </a></li>
+      
       <li><a data-toggle="pill" href="#testemplate">Test Templates (6)
         <div class="s_popup">
                       <i class="fa fa-info-circle"> </i>
@@ -272,7 +270,7 @@
                             <tr>
                                <td><span>Duration</span>
                                   <span class="pull-right margin_22">
-                                  <span class="margin_25">:</span>
+                                  <span class="margin_30">:</span>
                                   45 minutes</span>
                                </td>
                             </tr>
@@ -634,7 +632,7 @@
 
                          <tbody>
                             <tr>
-                               <td>Section1   <span class="pull-right">3 MCQ (15min)</td>
+                               <td>Section1 <i class="fa fa-window-maximize" aria-hidden="true"></i>  <span class="pull-right">3 MCQ (15min)</td>
                             </tr>
                             <tr>
                                <td>Section2   <span class="pull-right">1 Submission (15min)</td>
@@ -797,7 +795,7 @@
                          </thead>
                          <tbody>
                             <tr>
-                               <td>Section1   2 Coding / 8 MCQ (90min)</td>
+                               <td>Section1  <i class="fa fa-window-maximize" aria-hidden="true"></i> 2 Coding / 8 MCQ (90min)</td>
                             </tr>
                          </tbody>
                       </table>

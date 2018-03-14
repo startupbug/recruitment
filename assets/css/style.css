@@ -1,4 +1,4 @@
-@charset "utf-8";
+ @charset "utf-8";
 /* CSS Document */
 /* =Reset default browser CSS. -------------------------------------------------------------- */
 
@@ -285,6 +285,7 @@
      border: 1px solid #262063;
      height: 31px;
 }
+
  .header-search_history label {
      position: absolute;
      top: 20px;
@@ -298,6 +299,7 @@
      font-family: 'SourceSansPro-Regular';
      border-radius: 7px;
      letter-spacing: 0.5px;
+     cursor: pointer;
 }
  .header-search_history .input-search::placeholder{
      color: #fff;
@@ -411,6 +413,7 @@
      background-color: #eeeeee;
      margin-left: 0;
      margin-right: 0;
+     cursor: pointer;
 }
  p.view_content {
      font-size: 18px;
@@ -1058,6 +1061,7 @@
   color: #262063;
   font-size: 14px;
   font-family: 'SourceSansPro-Regular';
+      cursor: pointer;
 }
 .button_apply button.btn {
     background-color: #262063;
@@ -1516,7 +1520,7 @@ td button.btn.focus, td button.btn:focus, td button.btn:hover {
 }
 .button_filter {
     text-align: center;
-    margin-right: 38%;
+    margin-right: 59%;
 }
 
 .button_filter button.btn {
@@ -1585,6 +1589,7 @@ h3.evaluater {
     margin-top: 10px;
     margin-bottom: 15px;
     text-decoration: underline;
+    cursor: pointer;
 }
 .manual {
     margin-top: 5px;
@@ -1715,6 +1720,7 @@ h3.evaluator:hover {
 .view_filter_right{
      text-align: right;
     padding: 5px 5px;
+    cursor: pointer;
 }
 .view_filter_right i.fa.fa-filter {
    border: 1px solid;
@@ -2476,4 +2482,39 @@ span.s_popuptext.f_popup {
   
     padding: 0px 0px;
   
+}
+label.upcoming {
+    margin-left: 37px;
+    margin-right: 47px;
+}
+span.margin_30 {
+    margin-right: 76px;
+}
+
+.accordion-toggle td:last-child {
+    cursor: pointer;
+}
+.f_upload_btn {
+    position: relative;
+    display: inline-block;
+    background-color: #9954bb;
+    border: 1px solid #9954bb;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 11px;
+    font-family: 'SourceSansPro-Regular';
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 6px;
+    height: 29px;
+    text-align: center;
+    cursor: pointer !important;
+}
+.f_upload_btn input[type="file"] {
+    opacity: 0;
+    width: 76px;
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    cursor: pointer !important;
 }
