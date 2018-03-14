@@ -1,6 +1,8 @@
 <?php require_once '../master/header.php';?>
 
 
+
+
 <section class="view">
    <div class="container-fluid padding-15-fluit">
       <div class="row">
@@ -12,23 +14,39 @@
       </div>
    </div>
 </section>
-<div class="container-fluid padding-15-fluit">
+<div class="container-fluid padding-15-fluid">
    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="pill" href="#home">Test Hosted (1)<i class="fa fa-info-circle"></i></a></li>
-      <li><a data-toggle="pill" href="#testemplate">Test Templates (6)<i class="fa fa-info-circle"></i></a></li>
+      <li class="active"><a data-toggle="pill" href="#home">Test Hosted (1)
+        <div class="s_popup">
+                      <i class="fa fa-info-circle"> </i>
+                        <span class="s_popuptext f_popup">
+                       Click Me
+                        
+                        </span>
+                    </div>
+      </a></li>
+      <li><a data-toggle="pill" href="#testemplate">Test Templates (6)
+        <div class="s_popup">
+                      <i class="fa fa-info-circle"> </i>
+                        <span class="s_popuptext f_popup">
+                       Click Me
+                        
+                        </span>
+                    </div>
+      </a></li>
    </ul>
    <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
          <div class="view_filter_right">
             <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
          </div>
-         <section class="tab_nav">
+         <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_livecode" aria-expanded="false">
             <div class="row main_tab">
                <div class="col-md-6">
                   <div class="left_tab">
                      <ul>
                         <li>
-                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse_livecode" aria-expanded="false">
+                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_livecode" aria-expanded="false">
                               <span class="fa fa-caret-right"></span>
                            </a>
                         </li>
@@ -133,7 +151,7 @@
                            <tr>
                               <td><span>Duration</span>
                                  <span class="pull-right margin_22">
-                                 <span class="margin_25">:</span>
+                                 <span class="margin_29">:</span>
                                  1 hour 30 minutes</span>
                               </td>
                            </tr>
@@ -190,7 +208,7 @@
             <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
           </div>
 
-          <section class="tab_nav">
+          <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template1" aria-expanded="false">
              <div class="row main_tab">
                 <div class="col-md-6">
                    <div class="left_tab">
@@ -210,7 +228,7 @@
                       <ul>
                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
                         <li><a href="host_text.php">Edit</a></li>
-                        <li>
+                        <li class="host_content">
                           <div class="host">  
                             <a href="host_text.php">Host this test</a>
                           </div>
@@ -223,7 +241,7 @@
                                <span class="caret"></span>
                                </button>
                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <li><a href="previewtest.php" target="blank">Preview Templatessss</a></li>
+                                  <li><a href="previewtest.php" target="blank">Preview Templates</a></li>
                                   <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
                                   <li><a href="#" class="deleteConfirm" onclick='confirmAlert()'>Delete</a></li>
 
@@ -283,7 +301,7 @@
                 </div>
              </div>
           </section>
-          <section class="tab_nav">
+          <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template2" aria-expanded="false"">
              <div class="row main_tab">
                 <div class="col-md-6">
                    <div class="left_tab">
@@ -370,7 +388,7 @@
                 </div>
              </div>
           </section>
-          <section class="tab_nav">
+          <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template3" aria-expanded="false">
              <div class="row main_tab">
                 <div class="col-md-6">
                    <div class="left_tab">
@@ -455,7 +473,7 @@
                 </div>
              </div>
           </section>
-          <section class="tab_nav">
+          <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template4" aria-expanded="false"">
              <div class="row main_tab">
                 <div class="col-md-6">
                    <div class="left_tab">
@@ -538,7 +556,7 @@
                 </div>
              </div>
           </section>
-          <section class="tab_nav">
+          <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template5" aria-expanded="false"">
              <div class="row main_tab">
                 <div class="col-md-6">
                    <div class="left_tab">
@@ -628,7 +646,7 @@
              </div>
           </section>
 
-          <section class="tab_nav">
+          <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template6" aria-expanded="false"">
              <div class="row main_tab">
                 <div class="col-md-6">
                    <div class="left_tab">
@@ -646,7 +664,7 @@
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
+                         <!--<li><a href="publicpreview.php" target="_blank">Public Preview</a></li>-->
 
                          <li><a href="host_text.php">Edit</a></li>
                           <li><div class="host">  <a href="host_text.php">Host this test</a></div></li>
@@ -737,7 +755,7 @@
                             <tr>
                                <td><span>Duration</span>
                                   <span class="pull-right margin_22">
-                                  <span class="margin_25">:</span>
+                                  <span class="margin_29">:</span>
                                   1 hour 30 minutes</span>
                                </td>
                             </tr>
@@ -787,7 +805,7 @@
                 </div>
              </div>
           </section>
-          <section class="tab_nav">
+          <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template7" aria-expanded="false"">
              <div class="row main_tab">
                 <div class="col-md-6">
                    <div class="left_tab">
@@ -897,7 +915,7 @@
                             <tr>
                                <td><span>Duration</span>
                                   <span class="pull-right margin_22">
-                                  <span class="margin_25">:</span>
+                                  <span class="margin_29">:</span>
                                   1 hour 30 minutes</span>
                                </td>
                             </tr>
@@ -948,7 +966,7 @@
              </div>
           </section>
 
-          <section class="tab_nav">
+          <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template8" aria-expanded="false"">
              <div class="row main_tab">
                 <div class="col-md-6">
                    <div class="left_tab">
@@ -967,7 +985,7 @@
                 <div class="col-md-6">
                    <div class="right_tab">
                       <ul>
-                         <li><a href="publicpreview.php" target="_blank">Public Preview</a></li>
+                         <!--<li><a href="publicpreview.php" target="_blank">Public Preview</a></li>-->
 
                          <li><a href="host_text.php">Edit</a></li>
                           <li><div class="host">  <a href="host_text.php">Host this test</a></div></li>
@@ -1058,7 +1076,7 @@
                             <tr>
                                <td><span>Duration</span>
                                   <span class="pull-right margin_22">
-                                  <span class="margin_25">:</span>
+                                  <span class="margin_29">:</span>
                                   1 hour 30 minutes</span>
                                </td>
                             </tr>

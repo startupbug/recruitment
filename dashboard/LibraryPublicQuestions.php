@@ -404,13 +404,13 @@
 							<div class="button_add_question pull-right">
 								<div class="open">
 									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-									<button class="btn s_dropdown_left_button" data-toggle="modal" data-target="#private-programming-question-Modal" style="right: 39px;">
-										<span class="fa fa-plus"></span>
-										Add Coding Question
-									</button>
-									<button class="btn s_dropdown_right_button">
-										<span class="caret"></span>
-									</button>
+										<button class="btn s_dropdown_left_button" data-toggle="modal" data-target="#private-programming-question-Modal" style="right: 39px;">
+											<span class="fa fa-plus"></span>
+											Add Coding Question
+										</button>
+										<button class="btn s_dropdown_right_button">
+											<span class="caret"></span>
+										</button>
 									</div>
 									<ul class="dropdown-menu s_addquestion_dropdown_menu">
 									<li><a data-toggle="modal" data-target="#private-programming-question-Modal">Add Compilable Question</a></li>
@@ -548,7 +548,21 @@
 
 						<div id="private-submission-question" class="tab-pane fade">
 							<div class="button_add_question pull-right">
-								<button type="button" class="btn" data-toggle="modal" data-target="#private-submission-question-Modal"><i class="fa fa-plus"></i> Add a Question</button>
+								<div class="open">
+									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+										<button class="btn s_dropdown_left_button" data-toggle="modal" data-target="#private-submission-question-Modal" style="right: 39px;">
+											<span class="fa fa-plus"></span>
+											Add Submission Question
+										</button>
+										<button class="btn s_dropdown_right_button">
+											<span class="caret"></span>
+										</button>
+									</div>
+									<ul class="dropdown-menu s_addquestion_dropdown_menu">
+									<li><a data-toggle="modal" data-target="#private-submission-question-Modal">Add Submission Question</a></li>
+									<li><a data-toggle="modal" data-target="#private-submission-fill-blanks-question-Modal">Add Fill In The Blanks Question</a></li>
+									</ul>
+								</div>
 							</div>
  							<div class="padding-col">
  								<form>

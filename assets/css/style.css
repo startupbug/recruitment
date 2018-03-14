@@ -185,7 +185,7 @@
      vertical-align: middle;
 }
  .top_left > ul > li.dropdown{
-     padding-top: 24px;
+     padding-top: 28px;
 }
  .top_right{
      height: 100%;
@@ -491,7 +491,7 @@
      padding: 23px;
 }
  .nav i.fa.fa-info-circle {
-     color: #fca600;
+     color: #555555;
      margin-left: 10px;
 }
  /* i.fa.fa-filter {
@@ -627,7 +627,7 @@
      font-family: 'SourceSansPro-Regular';
      font-weight: bold;
      color: #333333;
-     margin-left: 21px;
+     
 }
  .form-group textarea {
      color: black;
@@ -1499,7 +1499,7 @@ td button.btn.focus, td button.btn:focus, td button.btn:hover {
     text-align: right;
     font-weight: bold;
     color: #333333;
-    margin-left: -6px;
+    margin-left: -86px;
     margin-top: 10px;
 }
 
@@ -2311,7 +2311,7 @@ h3.test_live {
 }
 p.free_credit {
     padding-left: 38px;
-    margin-top: -40px;
+   margin-top: -39px;
     color: white;
 }
 .edit_tag i.fa.fa-pencil {
@@ -2368,19 +2368,21 @@ p.candididate_user {
 
 /* The actual popup */
 .s_popup .s_popuptext {
-    visibility: hidden;
-    width: 325px;
+    visibility: hidden; 
+    width: 325px !important;
     background-color: #261f63c4;
     color: #fff;
     text-align: left;
     border-radius: 2px;
-    padding: 8px 10px;
+    padding: 8px 10px !important;
     position: absolute;
     z-index: 1;
     top: 140%;
-    right: -155px;
-    margin-left: -80px;
+    right: -155px !important;
+    margin-left: -80px !important;
 }
+
+
 
 /* Popup arrow */
 .s_popup .s_popuptext::after {
@@ -2428,3 +2430,50 @@ span.host_popup {
     top: 140%;
     right: -311px !important;
   }
+.s_popup .s_popuptext {
+    width: 65px;
+    background-color: #261f63c4;
+    color: #fff;
+    text-align: left;
+    border-radius: 2px;
+    /* padding: 8px 10px; */
+    position: absolute;
+    z-index: 1;
+    top: 140%;
+    right: -22px;
+    /* margin-left: -67px; */
+    font-size: 12px;
+}
+.right_tab >ul > li.host_content:hover {
+    background: transparent;
+}
+span.margin_29 {
+    margin-right: 68px;
+}
+
+span.s_popup.f_popup {
+    /* visibility: hidden; */
+    width: 70px !important;
+    background-color: #261f63c4;
+    color: #fff;
+    text-align: left;
+    border-radius: 2px;
+    padding: 8px 10px !important;
+    position: absolute;
+    z-index: 1;
+    top: 140%;
+    right: -26px !important;
+    /* margin-left: 18px !important; */
+}
+
+span.s_popuptext.f_popup {
+    width: 62px !important;
+    left: 63px;
+    right: 0;
+}
+
+.dropdown-menu {
+  
+    padding: 0px 0px;
+  
+}

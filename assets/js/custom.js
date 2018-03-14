@@ -1,6 +1,6 @@
 $(".s_popup").hover(function(){
   $(this).children().toggleClass("show");
-       
+
 });
 
 function functionAddTag() {
@@ -179,6 +179,7 @@ $(document).ready(function() {
   $("#s_txtEditor_programming").Editor();
   $("#s_txtEditor_programming_debug").Editor();
   $("#s_txtEditor_submission").Editor();
+  $("#s_txtEditor_submission_Add_section_fill_blanks").Editor();
 
   $("#s_txt_BD_InstructionsEditor").Editor();
   $("#s_txt_BD_DescriptionEditor").Editor();

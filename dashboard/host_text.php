@@ -1699,7 +1699,7 @@
                            <span>Please add atleast 3 characters in the statement</span>
                         </div>
                         <textarea id="s_select_mcqs_txtEditor"></textarea>
-                        <h1>Media(Audio/Video)</h1>
+                        <h5><b>Media(Audio/Video)</b></h5>
                         <button type="button" class="btn">Upload Media</button>
                      </div>
                   </div>
@@ -3654,7 +3654,7 @@
                      <div class="modal-body s_modal_body">
                         <div class="heading_modal_statement heading_padding_bottom">
                           <div class="">
-                            <h1><b>Media(Audio/Video)</b></h1>
+                            <h5><b>Media(Audio/Video)</b></h5>
                             <button type="button" class="btn">Upload Media</button>
                           </div>
                           <br>
@@ -3912,7 +3912,7 @@
                      <div class="modal-body s_modal_body">
                         <div class="heading_modal_statement heading_padding_bottom">
                           <div class="">
-                            <h1><b>Media(Audio/Video)</b></h1>
+                            <h5><b>Media(Audio/Video)</b></h5>
                             <button type="button" class="btn">Upload Media</button>
                           </div>
                         </div>
