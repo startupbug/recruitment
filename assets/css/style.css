@@ -2561,3 +2561,15 @@ span.margin_30 {
     left: 5px;
     cursor: pointer !important;
 }
+
+.open i.fa.fa-headphones {
+    margin-left: -16px;
+    margin-right: 10px;
+    font-size: 19px;
+}
+
+.open i.fa.fa-clock-o {
+    margin-left: -17px;
+    margin-right: 10px;
+    font-size: 19px;
+}

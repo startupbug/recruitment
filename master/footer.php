@@ -1,6 +1,7 @@
 </div>
 
 
+
 <!-- Filter-Modal -->
 <div class="modal fade" id="mcqs-filter-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -791,7 +792,11 @@
                                         </div>
                                     </strong>
                                 </div>
-                                <button type="file" class="btn">Upload Files</button>
+                                <!--<button type="file" class="btn">Upload Files</button>-->
+                                <div class="f_upload_btn">
+                                    Upload Files
+                                    <input type="file" name="">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1158,7 +1163,11 @@
                                         </div>
                                     </strong>
                                 </div>
-                                <button type="file" class="btn">Upload Files</button>
+                               <!-- <button type="file" class="btn">Upload Files</button>-->
+                               <div class="f_upload_btn">
+                                    Upload Media
+                                    <input type="file" name="">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1400,7 +1409,11 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Files <i class="fa fa-info-circle"></i></strong>
                                 </div>
-                                <button type="file" class="btn">Upload Files</button>
+                                <!--<button type="file" class="btn">Upload Files</button>-->
+                                <div class="f_upload_btn">
+                                    Upload Files
+                                    <input type="file" name="">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1512,7 +1525,11 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <div class="">
                                         <h5><b>Media(Audio/Video)</b></h5>
-                                        <button type="button" class="btn">Upload Media</button>
+                                        <!--<button type="button" class="btn">Upload Media</button>-->
+                                        <div class="f_upload_btn">
+                                    Upload Media
+                                    <input type="file" name="">
+                                </div>
                                     </div>
                                     <br>
                                     <strong>
@@ -1532,7 +1549,11 @@
                                     (These resources will be available for the candidate to download during the test)
                                     </label>
                                     <div class="s_pur_body">
-                                        <button type="button" class="btn"> + Add resources</button>
+                                        <!--<button type="button" class="btn"> + Add resources</button>-->
+                                        <div class="f_upload_btn">
+                                   + Add resources
+                                    <input type="file" name="">
+                                </div>
                                     </div>
                                     <hr>
                                     <strong>
@@ -1806,7 +1827,11 @@
                                         </div>
                                     </strong>
                                 </div>
-                                <button type="file" class="btn">Upload Files</button>
+                                <!--<button type="file" class="btn">Upload Files</button>-->
+                                <div class="f_upload_btn">
+                                    Upload Media
+                                    <input type="file" name="">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1898,7 +1923,11 @@
                         <div class="heading_modal_statement heading_padding_bottom">
                           <div class="">
                             <h5><b>Media(Audio/Video)</b></h5>
-                            <button type="button" class="btn">Upload Media</button>
+                            <!--<button type="button" class="btn">Upload Media</button>-->
+                            <div class="f_upload_btn">
+                                    Upload Media
+                                    <input type="file" name="">
+                                </div>
                           </div>
                         </div>
                     </div>
@@ -2134,7 +2163,11 @@
                                         </div>
                         </strong>
                        </div>
-                       <button type="file" class="btn">Upload Files</button>
+                       <!--<button type="file" class="btn">Upload Files</button>-->
+                       <div class="f_upload_btn">
+                                    Upload Media
+                                    <input type="file" name="">
+                                </div>
                      </div>
                   </div>
                </div>

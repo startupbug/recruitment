@@ -69,8 +69,8 @@
 											<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu" role="menu">
-											<li><a href="<?php echo $base_url;?>dashboard/history.php">Assessment History</a></li>
-											<li><a href="<?php echo $base_url;?>dashboard/customersupport.php">Customer Support</a></li>
+											<li><a href="<?php echo $base_url;?>dashboard/history.php"><i class="fa fa-clock-o" aria-hidden="true"></i>Assessment History</a></li>
+											<li><a href="<?php echo $base_url;?>dashboard/customersupport.php"><i class="fa fa-headphones"></i>Customer Support</a></li>
 
 										</ul>
 									</div>
