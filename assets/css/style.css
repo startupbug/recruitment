@@ -2579,3 +2579,7 @@ span.margin_30 {
     margin-right: 10px;
     font-size: 19px;
 }
+
+li.active {
+    background: #ccc;
+}

@@ -14,7 +14,7 @@
 <div class="container-fluid padding-15-fluid">
    <ul class="nav nav-tabs">
 
-      <li class="active"><a data-toggle="pill" href="#home">Test Hosted (1)
+      <!--<li class="active"><a data-toggle="pill" href="#home">Test Hosted (1)
         <div class="s_popup">
                       <i class="fa fa-info-circle"> </i>
                         <span class="s_popuptext f_popup">
@@ -22,9 +22,9 @@
                         
                         </span>
                     </div>
-      </a></li>
+      </a></li>-->
       
-      <li><a data-toggle="pill" href="#testemplate">Test Templates (6)
+      <!--<li><a data-toggle="pill" href="#testemplate">Test Templates (6)
         <div class="s_popup">
                       <i class="fa fa-info-circle"> </i>
                         <span class="s_popuptext f_popup">
@@ -32,9 +32,9 @@
                         
                         </span>
                     </div>
-      </a></li>
+      </a></li>-->
 
-      <!--<li class="active">
+      <li class="active">
         <a data-toggle="pill" href="#home">Test Hosted (1)
         <div class="s_click_popup">
           <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
@@ -45,8 +45,8 @@
             </span>
         </div>
         </a>
-      </li>-->
-      <!--<li>
+      </li>
+      <li>
         <a data-toggle="pill" href="#testemplate">Test Templates (6)
         <div class="s_click_popup">
           <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
@@ -55,7 +55,7 @@
             </span>
         </div>
       </a>
-    </li>-->
+    </li>
    </ul>
    <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
