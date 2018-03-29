@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('employee_dashboard.layouts.app')
 @section('content')
 <section class="test_question">
 	<div class="container">

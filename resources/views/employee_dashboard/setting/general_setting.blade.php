@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('employee_dashboard.layouts.app')
 @section('content')
 <section class="general">
+@include('general_partials.error_section')
 	<div class="container-fluid padding-15-fluit">
 		<h3 class="general_main">Settings</h3>
 		<div class="row border-row display-table">
-
 			<div class="col-md-3 col-sm-12 col-xs-12 display-table-cell padding-0 nav-background">
 				<ul class="nav nav-tabs nav-sidebar">
 					<li><a href="#general1"><i class="fa fa-cog"></i>General Settings<i class=""></i></a></li>
@@ -17,82 +17,87 @@
 			</div>
 
 			<div class="col-md-12 col-sm-12 col-xs-12 s-over-flow">
-					<a class="s_link" name="general1">
+					<a name="general1"></a>
+					<div class="s_link">
 						<div class="panel panel-default">
 							<div class="panel-heading setting_gen">
 								General Setting
 							</div>
-							<div class="panel-body">
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="name">Full Name 
-										<div class="s_popup">
-											<i class="fa fa-info-circle"> </i>
-										  	<span class="s_popuptext">
-										  		This is the Account holders name. <br>
-										  		Good to Know: <br>
-										  		This will be the showcased on the top right corner of the titlebar.
-										  	</span>
+							<div class="panel-body">	
+								<form action="{{route('post_general_setting')}}" method="post" enctype="multipart/form-data">
+									{{csrf_field()}}
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="name">Full Name 
+											<div class="s_popup">
+												<i class="fa fa-info-circle"> </i>
+											  	<span class="s_popuptext">
+											  		This is the Account holders name. <br>
+											  		Good to Know: <br>
+											  		This will be the showcased on the top right corner of the titlebar.
+											  	</span>
+											</div>
+										</label>
+										<div class="col-md-9">
+											<input id="name" name="company_name" type="text" placeholder="Full Name" class="form-control general">
 										</div>
-										
-									</label>
-									<div class="col-md-9">
-										<input id="name" name="name" type="text" placeholder="Full Name" class="form-control general">
 									</div>
-								</div>
-								<!-- Email input-->
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="email">Company Logo Image Url 
-										
-										<div class="s_popup">
-											<i class="fa fa-info-circle"> </i>
-										  	<span class="s_popuptext">
-										  		Insert the link to the company's logo. <br>
-										  		Good to Know: <br>
-										  		This logo will be the shown on the upper left corner of the titlebar. and the candidate registration page. <br>
-										  		Logo size will be fit to 75px x 50px.
-										  	</span>
+									<!-- Email input-->
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="email">Company Logo Url 
+											
+											<div class="s_popup">
+												<i class="fa fa-info-circle"> </i>
+											  	<span class="s_popuptext">
+											  		Insert the link to the company's logo. <br>
+											  		Good to Know: <br>
+											  		This logo will be the shown on the upper left corner of the titlebar. and the candidate registration page. <br>
+											  		Logo size will be fit to 75px x 50px.
+											  	</span>
+											</div>
+										</label>
+										<div class="col-md-9">
+											<input id="email" name="company_logo" type="text" placeholder="image (url http://www.url)" class="form-control general">
 										</div>
-
-
-									</label>
-									<div class="col-md-9">
-										<input id="email" name="email" type="text" placeholder="image (url http://www.url)" class="form-control general">
-										<div class="button_general"><button type="button" class="btn">Update</button></div>
 									</div>
-								</div>
+									<div class="button_general">
+										<button type="submit" class="btn">Update</button>
+									</div>
+								</form>
 							</div>
 						</div>
-					</a>
-					<a class="s_link" name="contact2">
+					</div>
+					<a name="contact2"></a>
+					<div class="s_link">
 						<div class="panel panel-default">
 							<div class="panel-heading setting_gen">
 								Contact Details
 							</div>
 							<div class="panel-body">
-								<p class="contact_content">These are the contact details for the candidate's reference incase of any query. <i class="fa fa-info-circle"></i></p>
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="email">Email ID </label>
-									<div class="col-md-9">
-										<input id="email" name="email" type="text" placeholder="support@codeground.in" class="form-control general color">
-										<div class="checkbox"><input type="checkbox" name="vehicle" value="Bike">Make visible to candidate<br></div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="contact">Contact Number</label>
-									<div class="col-md-9">
-										<input id="contact" name="contact" type="text" placeholder="080-65555814" class="form-control general color">
-										<div class="checkbox">
-											<input type="checkbox" name="vehicle" value="Bike">Make visible to candidate<br>
-										</div>
-										<div class="button_general">
-											<button type="button" class="btn">Save</button>
+								<p class="contact_content">These are the contact details for the candidate's reference incase of any query. <i class="fa fa-info-circle"></i></p>								
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="email">Email ID </label>
+										<div class="col-md-9">
+											<input id="email" name="email" type="text" placeholder="support@codeground.in" class="form-control general color">
+											<div class="checkbox"><input type="checkbox" name="vehicle" value="Bike">Make visible to candidate<br></div>
 										</div>
 									</div>
-								</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="contact">Contact Number</label>
+										<div class="col-md-9">
+											<input id="contact" name="contact" type="text" placeholder="080-65555814" class="form-control general color">
+											<div class="checkbox">
+												<input type="checkbox" name="vehicle" value="Bike">Make visible to candidate<br>
+											</div>
+										</div>
+									</div>
+									<div class="button_general">
+										<button type="submit" class="btn">Save</button>
+									</div>							
 							</div>
 						</div>
-					</a>
-					<a class="s_link" name="completion3">
+					</div>
+					<a name="completion3"></a>
+					<div class="s_link">
 						<div class="panel panel-default" id="test">
 							<div class="panel-heading setting_gen">
 								Test Completion Mail
@@ -102,11 +107,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="name">Message </label>
 									<div class="col-md-9 test_completion">
-										<textarea rows="6" cols="60" placeholder="Your Message">Hi <candidateName>,
-Your test - <testTitle> has been submitted successfully.
-Thanks,
-Codeground.
-											
+										<textarea rows="6" cols="60" placeholder="Your Message">Hi <candidateName>,Your test - <testTitle> has been submitted successfully.Thanks,Codeground.
 										</textarea>
 										<br>
 										<!--<div class="link"><a href="#">Show Advanced</a></div>-->
@@ -117,22 +118,9 @@ Codeground.
 								</div>
 							</div>
 						</div>
-					</a>
-					 <!-- <div class="panel panel-default">
-						<div class="panel-heading">Trial Run</div>
-						<div class="panel-body">
-							<p class="contact_content">Enter email ids for a trial run below (your account will not be charged for these candidates)</p>
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="name">Trial Email Id</label>
-								<div class="col-md-9">
-									<br>
-									<button class="general_buuton_last"><span class="glyphicon glyphicon-plus"></span>Add Candidate Email</button>
-									<div class="button_general"><button type="button" class="btn">Update</button></div>
-								</div>
-							</div>
-						</div>
-					</div> -->
-					<a class="s_link" name="management4">
+					</div>
+					<a name="management4"></a>					
+					<div class="s_link">
 						<div class="panel panel-default">
 							<div class="panel-heading setting_gen">
 								User Management
@@ -155,8 +143,9 @@ Codeground.
 								</div>
 							</div>
 						</div>
-					</a>
-					<a class="s_link" name="question5">
+					</div>
+					<a name="question5"></a>	
+					<div class="s_link">
 						<div class="panel panel-default">
 							<div class="panel-heading setting_gen">
 								Question Tags
@@ -269,7 +258,7 @@ Codeground.
 
 							</div>
 						</div>
-					</a>
+					</div>
 			</div>
 
 		</div>

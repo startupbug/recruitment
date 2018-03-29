@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('employee_dashboard.layouts.app')
 @section('content')
 <section class="view">
     <div class="container-fluid padding-15-fluit">

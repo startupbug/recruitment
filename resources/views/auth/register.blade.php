@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('employee_dashboard.layouts.app')
 @section('content')
 
 <!-- Signup Page -->
@@ -21,7 +21,7 @@
                         </ul>
                     </div>
                 @endif
-                @include('partials.error_section')
+                @include('general_partials.error_section')
             
                 <form id="signin_form" action="{{ route('register_post') }}" method="post">
                     <div class="form-group_form">
@@ -61,8 +61,8 @@
                     <div class="form-group_form">
                         <label for="UserRole">User Type</label>
                         <select class="form-control required" name="role_id"  id="UserRole" required>
-                            <option value="1">Admin</option>
-                            <option value="2">Student</option>
+                            <option value="2">Candidate</option>
+                            <option value="3">Employee</option>
                         </select>
                     </div>
 

@@ -3,7 +3,6 @@
 <head>
     <title>Blank template</title>
     <meta charset="utf-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="{{ asset('public/assets/img/logo.png') }}" type="image/png" sizes="25x25">
  <link rel="stylesheet" href="{{ asset('public/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -25,7 +24,7 @@
         </header>
         <section class="form_right">
             <div class="container-fluid">
-    @include('partials.error_section')
+    @include('general_partials.error_section')
                 <div class="row">
                     <div class="col-md-8">
                         <div class="login_image"><img src="{{ asset('public/assets/img/login_image.png') }}" class="img-responsive"></div>

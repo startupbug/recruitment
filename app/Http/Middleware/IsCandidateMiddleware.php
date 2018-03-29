@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 use Auth;
 use Closure;
 
-class IsAdminMiddleware
+class IsCandidateMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class IsAdminMiddleware
      */
     public function handle($request, Closure $next)
     {        
-        if(!Auth::check() || Auth::user()->role_id != '1'){
+        if(!Auth::check() || Auth::user()->role_id != '2'){
             return redirect()->route('login_index');
         }
         return $next($request);

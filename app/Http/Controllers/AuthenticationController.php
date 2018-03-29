@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\UserProfile;
+use App\Events\UserCompanyProfile;
+use App\Profile;
 use App\User;
 use Auth;
 class AuthenticationController extends Controller
@@ -34,7 +37,9 @@ class AuthenticationController extends Controller
             }         
 
             if($user->save()){
-
+                event(new  UserProfile($user));
+                event(new  UserCompanyProfile($user));
+            
                 /*Attaching User Role to the New User */ 
 	            // - 1- Admin
 	            // - 2- Student 
@@ -84,8 +89,10 @@ class AuthenticationController extends Controller
             
                 if (Auth::user()->role_id == '1') {
                     return redirect()->route('admin_index');
+                }elseif (Auth::user()->role_id == '3') {                    
+                    return redirect()->route('dashboard');  
                 }else{
-                return redirect()->route('dashboard');  
+                    return 'dashboard not ready';
                 }
             
             }else{
