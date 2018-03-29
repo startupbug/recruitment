@@ -9,7 +9,7 @@ class CompanyProfile extends Model
    protected $table = 'company_profiles';
 
     protected $fillable = [
-        'employee_id'
+        'user_id'
     ];
     //User Model Relationship function
 	public function user()

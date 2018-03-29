@@ -1,3 +1,24 @@
+var $radios = $('input[name=role_id]').change(function () {
+    var value = $radios.filter(':checked').val();
+    if (value == 2) {
+      $("#phone_no").prop('disabled', true);
+      $("#userrepeatpassword").prop('disabled', false);
+      $('input[name=social]').prop('disabled', true);
+      $("#phone_no_div").css("display", "none");
+      $("#socialmedia_div").css("display", "none");
+      $("#userrepeatpassword_div").css("display", "block");
+    }
+    else if(value == 3) {
+      $("#phone_no").prop('disabled', false);
+      $("#userrepeatpassword").prop('disabled', true);
+      $('input[name=social]').prop('disabled', false);
+      $("#phone_no_div").css("display", "block");
+      $("#socialmedia_div").css("display", "block");
+      $("#userrepeatpassword_div").css("display", "none");
+    }
+});
+
+
 $('#send_your_query').click( function(e) {
     $('#send_your_query_popup').removeClass('hidden');
 });

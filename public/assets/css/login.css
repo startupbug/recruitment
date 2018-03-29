@@ -15,7 +15,7 @@
 }
 
  * {
-     outline: none 
+     outline: none
 }
  :focus {
     /* remember to define focus styles! */
@@ -84,6 +84,15 @@
      padding-top: 10px;
      padding-bottom: 10px;
 }
+h1.signup {
+    text-align: center;
+    font-size: 26px;
+    color: #333333;
+    margin-bottom: 20px;
+    font-family: 'SourceSansPro-Semibold';
+    z-index: 9999;
+    position: relative;
+}
  h1.signin {
      text-align: center;
      font-size: 26px;
@@ -96,11 +105,34 @@
  section.form_right {
      padding-top: 100px;
 }
+input#username {
+    border-radius: 0px;
+    font-size: 15px;
+    color: #afafaf;
+    font-family: 'SourceSansPro-Regular';
+}
+input#phone_no{
+    border-radius: 0px;
+    font-size: 15px;
+    color: #afafaf;
+    font-family: 'SourceSansPro-Regular';
+    
+}
+input#userrepeatpassword {
+    border-radius: 0px;
+    font-size: 15px;
+    color: #afafaf;
+    font-family: 'SourceSansPro-Regular';
+}
+
  input#useremail {
      border-radius: 0px;
      font-size: 15px;
      color: #afafaf;
      font-family: 'SourceSansPro-Regular';
+}
+span#usericons {
+    border-radius: 0px;
 }
  span#usericonemail {
      border-radius: 0px;
@@ -181,7 +213,7 @@
      color: #ffffff;
      font-family: 'SourceSansPro-Regular';
 }
- a:focus, a:hover {     
+ a:focus, a:hover {
      text-decoration: none;
 }
  @media only screen and (min-device-width : 320px) and (max-device-width : 767px) {

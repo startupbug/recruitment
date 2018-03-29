@@ -4,8 +4,8 @@
   <section class="sidebar">
     <!-- Sidebar user panel -->
     <div class="user-panel">
-      <div class="pull-left image">       
-        @if(!empty(Auth::user()->profile->profile_pic)) 
+      <div class="pull-left image">
+        @if(!empty(Auth::user()->profile->profile_pic))
         <img src="{{asset('public/storage/profile-pictures/'.Auth::user()->profile->profile_pic)}}" class="img-responsive img-circle" height="10px;" width="10px;" alt="User Image"
         >
         @else
@@ -13,14 +13,14 @@
         @endif
       </div>
       <div class="pull-left info">
-        <p>{{Auth::user()->fullname}}</p>        
+        <p>{{Auth::user()->fullname}}</p>
         <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
       </div>
-    </div>     
+    </div>
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <br>
-    <ul class="sidebar-menu" data-widget="tree">             
-      <li class="header">PAGES</li>        
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="header">PAGES</li>
       <li><a href="{{route('users')}}"><i class="fa fa-user text-aqua"></i> <span>Users</span></a></li>
       <li class="treeview">
          <a href="#">

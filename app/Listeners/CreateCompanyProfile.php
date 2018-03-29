@@ -27,7 +27,7 @@ class CreateCompanyProfile
     {
     	
         $profile = CompanyProfile::create([
-            'employee_id' => $event->user->id,           
+            'user_id' => $event->user->id,           
         ]); 
     }
 }

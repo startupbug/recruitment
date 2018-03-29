@@ -21,6 +21,7 @@ class CreateProfilesTable extends Migration
             $table->string('d_o_b')->nullable();
             $table->string('profile_pic')->default('default.jpg');
             $table->string('address')->nullable();
+            $table->string('social')->nullable();       
             $table->timestamps();
             /* Assigning Foreign key */
             $table->foreign('user_id')->references('id')->on('users');            

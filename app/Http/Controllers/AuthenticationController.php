@@ -15,40 +15,56 @@ class AuthenticationController extends Controller
     }
 
     public function register_post(Request $request){
-    	//dd($request->input());
+    	$values['request'] = $request->input();
+        // dd($request->input());
+
 
         /* Validating User */
-        $this->validate($request, [
-            'name' => 'required|alpha',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:3|max:18',
-            'role_id' => 'required',       
-        ]);
-
+        if ($request->role_id == '2') {
+                $this->validate($request, [ 
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|confirmed|min:3|max:18',
+                'role_id' => 'required',       
+            ]);
+        }elseif($request->role_id == '3'){
+            $this->validate($request, [ 
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:3|max:18',
+                'role_id' => 'required',       
+            ]);
+        }
+            //dd($request->role_id);
         try{
             $user = new User();
             $user->password = bcrypt($request->password);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role_id = $request->role_id;
             //$user->email_token = base64_encode($user->email);
-
-            foreach($request->input() as $key => $value) {
-                if($key != '_token' && $key != 'password_confirmation' && $key != 'password'){
-                    $user->$key = $value;
-                }
-            }         
+                
+                //     foreach($request->input() as $key => $value) {
+                //     if($key != '_token' && $key != 'password_confirmation' && $key != 'password'){
+                //         $user->$key = $value;
+                //     }
+                // } 
 
             if($user->save()){
-                event(new  UserProfile($user));
-                event(new  UserCompanyProfile($user));
-            
+                $values['user'] = $user;                
+                if ($request->role_id == '2') {
+                    event(new  UserProfile($values));                    
+                }else{                    
+                    event(new  UserCompanyProfile($user));
+                    event(new  UserProfile($values));
+                }
+                
+
                 /*Attaching User Role to the New User */ 
 	            // - 1- Admin
 	            // - 2- Student 
                 $user->attachRole($request->input('role_id'));   
 
-	             //Creating Profile for this new User.
-                //event(new UserEvent($user));
-               
-                //dispatch(new SendVerificationEmail($user));
+	            //Creating Profile for this new User.
+                
                 $this->set_session('User Successfully Registered.', true);
             }
             else{

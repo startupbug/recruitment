@@ -24,9 +24,15 @@ class CreateProfile
     */
     public function handle(UserProfile $event)
     {
+        if (!isset($event->user['request']['phone_no']) && !isset($event->user['request']['social'])) {
+            $event->user['request']['phone_no'] = NULL;
+            $event->user['request']['social'] = NULL;
+        }
         $profile = Profile::create([
-            'user_id' => $event->user->id,
-            'username' => $event->user->email,
+            'user_id' => $event->user['user']->id,
+            'username' => $event->user['user']->email,            
+            'phone' => $event->user['request']['phone_no'],
+            'social' => $event->user['request']['social'],
         ]); 
     }
 }
