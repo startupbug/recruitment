@@ -15,7 +15,7 @@ class CreateCompanyProfilesTable extends Migration
     {
         Schema::create('company_profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('employee_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('company_name')->nullable();
             $table->string('company_phone')->nullable();
             $table->string('company_email')->nullable();
@@ -23,7 +23,7 @@ class CreateCompanyProfilesTable extends Migration
             $table->longText('company_logo')->nullable();
             $table->timestamps();
             /* Assigning Foreign key */
-            $table->foreign('employee_id')->references('id')->on('users');  
+            $table->foreign('user_id')->references('id')->on('users');  
         });
     }
 

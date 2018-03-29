@@ -80,6 +80,8 @@ Route::get('/setting_info', 'Employee\EmployeeController@setting_info')->name('s
 
 //Employee Company Routes Started
 Route::post('/post_general_setting','Employee\CompanyController@post_general_setting')->name('post_general_setting');
+Route::post('/post_contact_details','Employee\CompanyController@post_contact_details')->name('post_contact_details');
+Route::post('/test_completion_mail','Employee\CompanyController@test_completion_mail')->name('test_completion_mail');
 //Employee Company Routes Ended
 });
 /*Employee Routes Ended*/

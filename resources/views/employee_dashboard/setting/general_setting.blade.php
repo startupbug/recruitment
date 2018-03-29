@@ -38,7 +38,7 @@
 											</div>
 										</label>
 										<div class="col-md-9">
-											<input id="name" name="company_name" type="text" placeholder="Full Name" class="form-control general">
+											<input id="name" name="company_name" value="{{Auth::user()->company_profile->company_name}}" type="text" placeholder="Full Name" class="form-control general">
 										</div>
 									</div>
 									<!-- Email input-->
@@ -56,7 +56,7 @@
 											</div>
 										</label>
 										<div class="col-md-9">
-											<input id="email" name="company_logo" type="text" placeholder="image (url http://www.url)" class="form-control general">
+											<input id="email" name="company_logo" value="{{Auth::user()->company_profile->company_logo}}" type="text" placeholder="image (url http://www.url)" class="form-control general">
 										</div>
 									</div>
 									<div class="button_general">
@@ -73,26 +73,33 @@
 								Contact Details
 							</div>
 							<div class="panel-body">
-								<p class="contact_content">These are the contact details for the candidate's reference incase of any query. <i class="fa fa-info-circle"></i></p>								
+								<p class="contact_content">These are the contact details for the candidate's reference incase of any query. <i class="fa fa-info-circle"></i></p>
+								<form action="{{route('post_contact_details')}}" method="post" enctype="multipart/form-data">
+									{{csrf_field()}}								
 									<div class="form-group">
 										<label class="col-md-3 control-label" for="email">Email ID </label>
 										<div class="col-md-9">
-											<input id="email" name="email" type="text" placeholder="support@codeground.in" class="form-control general color">
-											<div class="checkbox"><input type="checkbox" name="vehicle" value="Bike">Make visible to candidate<br></div>
+											 @php $contact_email = json_decode( Auth::user()->company_profile->company_email) @endphp
+											<input id="email" name="company_email[]" value="{{$contact_email[0]}}"  type="text" placeholder="support@codeground.in" class="form-control general color">
+											<div class="checkbox">
+											<input type="checkbox" name="email_status" value="1" @if(!empty($contact_email[1])) checked="checked" @endif>Make visible to candidate<br>
+											</div>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-md-3 control-label" for="contact">Contact Number</label>
 										<div class="col-md-9">
-											<input id="contact" name="contact" type="text" placeholder="080-65555814" class="form-control general color">
+											 @php $contact_phone = json_decode( Auth::user()->company_profile->company_phone) @endphp
+											<input id="contact" name="company_phone[]" value="{{$contact_phone[0]}}" type="text" placeholder="080-65555814" class="form-control general color">
 											<div class="checkbox">
-												<input type="checkbox" name="vehicle" value="Bike">Make visible to candidate<br>
+												<input type="checkbox" name="contact_status" value="1" @if(!empty($contact_email[1])) checked="checked" @endif>Make visible to candidate<br>
 											</div>
 										</div>
 									</div>
 									<div class="button_general">
 										<button type="submit" class="btn">Save</button>
-									</div>							
+									</div>
+								</form>						
 							</div>
 						</div>
 					</div>
@@ -104,18 +111,21 @@
 							</div>
 							<div class="panel-body">
 								<p class="contact_content">An email will be sent to the candidates after completing the test.</p>
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="name">Message </label>
-									<div class="col-md-9 test_completion">
-										<textarea rows="6" cols="60" placeholder="Your Message">Hi <candidateName>,Your test - <testTitle> has been submitted successfully.Thanks,Codeground.
-										</textarea>
-										<br>
-										<!--<div class="link"><a href="#">Show Advanced</a></div>-->
-										<p class="candididate_user">You can use tags such as candidateName and testTitle to represent candidate name and test title respectively.</p>
-										<p class="candididate_user">For example:Hi candidateName,Your test - testTitle has been submitted successfully.</testTitle>
-										<div class="button_general"><button type="button" class="btn">Save</button></div>
+								<form action="{{route('test_completion_mail')}}" method="post" enctype="multipart/form-data">
+									{{csrf_field()}}
+									<div class="form-group">
+										<label class="col-md-3 control-label" for="name">Message </label>
+										<div class="col-md-9 test_completion">
+											<textarea name="company_message" rows="6" cols="60" placeholder="Your Message">@if(!empty(Auth::user()->company_profile->company_message)) {{Auth::user()->company_profile->company_message}} @endif</textarea> 
+											<br>
+											<p class="candididate_user">You can use tags such as candidateName and testTitle to represent candidate name and test title respectively.</p>
+											<p class="candididate_user">For example:Hi candidateName,Your test - testTitle has been submitted successfully.</p>
+										</div>
 									</div>
-								</div>
+									<div class="button_general">
+										<button type="submit" class="btn">Save</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
