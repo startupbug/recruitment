@@ -1,4 +1,4 @@
-@extends('employee_dashboard.layouts.app')
+@extends('recruiter_dashboard.layouts.app')
 @section('content')
 <section class="change_password">
 <div class="container">

@@ -61,33 +61,34 @@ Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {
 
 
 /*Employee Routes Started*/
-Route::group(['prefix' => 'employee' ,  'middleware' => 'is-employee'], function () {	
+Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], function () {	
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'Employee\EmployeeController@dashboard')->name('dashboard');
-Route::get('/customer_support', 'Employee\EmployeeController@customer_support')->name('customer_support');
-Route::get('/history', 'Employee\EmployeeController@history')->name('history');
+Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard');
+Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
+Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
 
-Route::get('/invited_candidates', 'Employee\EmployeeController@invited_candidates')->name('invited_candidates');
-Route::get('/library_public_questions', 'Employee\EmployeeController@library_public_questions')->name('library_public_questions');
-Route::get('/preview_test', 'Employee\EmployeeController@preview_test')->name('preview_test');
-Route::get('/preview_test_questions', 'Employee\EmployeeController@preview_test_questions')->name('preview_test_questions');
-Route::get('/public_preview', 'Employee\EmployeeController@public_preview')->name('public_preview');
-Route::get('/view', 'Employee\EmployeeController@manage_test_view')->name('manage_test_view');
-Route::get('/change_password', 'Employee\EmployeeController@change_password')->name('change_password');
-Route::get('/general_setting', 'Employee\EmployeeController@general_setting')->name('general_setting');
-Route::get('/setting_info', 'Employee\EmployeeController@setting_info')->name('setting_info');
+Route::get('/invited_candidates', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
+Route::get('/library_public_questions', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
+Route::get('/preview_test', 'Recruiter\RecruiterController@preview_test')->name('preview_test');
+Route::get('/preview_test_questions', 'Recruiter\RecruiterController@preview_test_questions')->name('preview_test_questions');
+Route::get('/change_password', 'Recruiter\RecruiterController@change_password')->name('change_password');
+Route::get('/general_setting', 'Recruiter\RecruiterController@general_setting')->name('general_setting');
+Route::get('/setting_info', 'Recruiter\RecruiterController@setting_info')->name('setting_info');
 
 //Employee Company Routes Started
-Route::post('/post_general_setting','Employee\CompanyController@post_general_setting')->name('post_general_setting');
-Route::post('/post_contact_details','Employee\CompanyController@post_contact_details')->name('post_contact_details');
-Route::post('/test_completion_mail','Employee\CompanyController@test_completion_mail')->name('test_completion_mail');
-Route::post('/test_completion_mail','Employee\CompanyController@test_completion_mail')->name('test_completion_mail');
+Route::post('/post_general_setting','Recruiter\CompanyController@post_general_setting')->name('post_general_setting');
+Route::post('/post_contact_details','Recruiter\CompanyController@post_contact_details')->name('post_contact_details');
+Route::post('/test_completion_mail','Recruiter\CompanyController@test_completion_mail')->name('test_completion_mail');
+Route::post('/test_completion_mail','Recruiter\CompanyController@test_completion_mail')->name('test_completion_mail');
 //Employee Company Routes Ended
 
 //Employee Test Template Routes Started
-Route::post('/create_test_template','Employee\TemplatesController@create_test_template')->name('create_test_template');
-Route::get('/host_text/{id}', 'Employee\TemplatesController@host_text')->name('host_text');
+Route::get('/view', 'Recruiter\TemplatesController@manage_test_view')->name('manage_test_view');
+Route::post('/create_test_template','Recruiter\TemplatesController@create_test_template')->name('create_test_template');
+Route::get('/host_text/{id}', 'Recruiter\TemplatesController@host_text')->name('host_text');
+Route::get('/delete_test_template/{id}', 'Recruiter\TemplatesController@delete_test_template')->name('delete_test_template');
+Route::get('/template_public_preview/{id}', 'Recruiter\TemplatesController@template_public_preview')->name('template_public_preview');
 //Employee Test Template Routes Ended
 
 });

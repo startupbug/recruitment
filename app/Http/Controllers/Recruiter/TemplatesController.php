@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Employee;
+namespace App\Http\Controllers\Recruiter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Test_template_types;
@@ -8,6 +8,13 @@ use Auth;
 use DB;
 class TemplatesController extends Controller
 {
+	public function manage_test_view()
+    {
+    	$args['count'] = Test_template::count();    	
+    	$args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
+        return view('recruiter_dashboard.view')->with($args);
+    }
+
 	// Creating Test Templates
 	public function create_test_template(Request $request){	
 		if (Auth::check()) {
@@ -44,6 +51,19 @@ class TemplatesController extends Controller
 	 public function host_text($id)
     {
       	$args['edit'] = Test_template::find($id);      	
-        return view('employee_dashboard.host_text')->with($args);
+        return view('recruiter_dashboard.host_text')->with($args);
+    }
+
+    public function delete_test_template($id){        
+        $delete = Test_template::find($id);                
+        $delete->delete();
+        $this->set_session('Test Template Is Deleted', true); 
+        return redirect()->back();    
+    }
+
+    
+    public function template_public_preview()
+    {
+        return view('recruiter_dashboard.public_preview');
     }
 }

@@ -35,7 +35,7 @@
 </head>
 <body>
     <div id="wrapper">
-        @include('employee_dashboard.partials.header')                  
+        @include('recruiter_dashboard.partials.header')                  
         @yield('content')
     </div>
 <!-- Filter-Modal -->
