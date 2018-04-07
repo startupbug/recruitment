@@ -2213,69 +2213,8 @@
    </div>
 </div>
 
+@yield('create_template_modal')
 
-<!--View page on create a test template -->
-<div class="modal fade" id="create-test-template-Modal" role="dialog">
-    <div class="modal-dialog  modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header s_modal_form_header">
-                <div class="pull-right">
-                    <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Create</button>
-                    <button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>
-                </div>
-                <h3 class="modal-title s_font">Create New Test Template</h3>
-            </div>
-            <div class="modal-body s_modal_form_body test_template">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Template Title
-                                <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                              This field represents the title of the test template.<br>
-                                              <br>
-                                                Why it matters:  The title of the template is used for identification and searching of historical templates via filters.
-
-                                            </span>
-                                        </div>
-                            </label>
-                            <div class="col-md-9">
-                                <div class="template"><input id="name" name="name" type="text" placeholder="Name of the test template" class="form-control general">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Type
-                                <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                             Based the mode of inviting candidates,test can be of two types: (1)Public (2)Invite-Only<br>
-                                              <br>
-                                              Public Test: This type of test supports unrestricted invitation to the test takers by generating a public link and distributing the same among the test takers.
-                                              <br>
-                                              <br>
-                                              Invite-Only Test: This type of test supports selective invitation to the test takers by sending an auto generated email invitation.
-
-                                            </span>
-                                        </div>
-
-                            </label>
-                            <div class="col-md-9">
-                                <div class="radio">
-                                    <label><input type="radio" name="optradio">Public</label>
-                                    <label><input type="radio" name="optradio">Invite-Only</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--Close-->
 <!--view page on Filter -->
 <div class="modal fade" id="filter_view" role="dialog">
     <div class="modal-dialog  modal-lg">

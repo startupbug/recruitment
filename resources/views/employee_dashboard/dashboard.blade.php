@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row flex">
 			<div class="col-md-4">
-				<a href="view.php">
+				<a href="{{route('manage_test_view')}}">
 					<div class="border">
 
 						<div class="image_left"><img src="{{ asset('public/assets/img/edit.png') }}" class="img-responsive">
@@ -15,7 +15,7 @@
 				</a>
 			</div>
 			<div class="col-md-4">
-				<a href="LibraryPublicQuestions.php">
+				<a href="{{route('library_public_questions')}}">
 					<div class="border">
 						<div class="image_left"><img src="{{ asset('public/assets/img/book.png') }}" class="img-responsive">
 							<p class="content_bottom">Create and manage questions for the tests</p>
@@ -25,7 +25,7 @@
 				</a>
 			</div>
 			<div class="col-md-4">
-				<a href="setting/general_setting.php">
+				<a href="{{route('general_setting')}}">
 
 					<div class="border">
 						<div class="image_left"><img src="{{ asset('public/assets/img/option.png') }}" class="img-responsive">

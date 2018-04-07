@@ -84,7 +84,7 @@
 										</div>
 									</label>
 									<div>
-										<input type="text" class="form-control" id="title" placeholder="Enter Title" name="title">
+										<input type="text" class="form-control" id="title" placeholder="Enter Title" name="title" value="{{$edit->title}}">
 									</div>
 								</div>
 								<div class="form-group">
@@ -101,7 +101,9 @@
 										</div>
 									</label>
 									<div>
-										<textarea id="s_txt_BD_DescriptionEditor" style="display: none;"></textarea>
+										<textarea id="s_txt_BD_DescriptionEditor" rows="8" cols="80" name="description">
+											@if(isset($edit->description)) {{$edit->description}} @endif
+										</textarea>
 									</div>
 								</div>
 								<div class="form-group">
@@ -119,7 +121,9 @@
 										</div>
 									</label>
 									<div>
-										<textarea id="s_txt_BD_InstructionsEditor" rows="5" style="display: none;"></textarea>
+										<textarea id="s_txt_BD_InstructionsEditor" rows="8" cols="80" name="instruction">
+											@if(isset($edit->instruction)) {{$edit->instruction}}@endif
+										</textarea>
 									</div>
 								</div>
 

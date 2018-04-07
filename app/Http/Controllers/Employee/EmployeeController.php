@@ -36,11 +36,6 @@ class EmployeeController extends Controller
         return view('employee_dashboard.history');
     }
 
-    public function host_text()
-    {
-        return view('employee_dashboard.host_text');
-    }
-
     public function invited_candidates()
     {
         return view('employee_dashboard.invited_candidates');
@@ -66,7 +61,7 @@ class EmployeeController extends Controller
         return view('employee_dashboard.public_preview');
     }
 
-    public function view()
+    public function manage_test_view()
     {
         return view('employee_dashboard.view');
     }
