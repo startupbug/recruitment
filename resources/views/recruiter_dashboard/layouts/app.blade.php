@@ -12,7 +12,7 @@
 
     <!-- favicon -->
     <link rel="icon" href="{{ asset('public/assets/img/logo.png') }}" type="image/png" sizes="25x25">
-    
+
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('public/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -27,15 +27,16 @@
     <link rel="stylesheet" href="{{ asset('public/assets/plugins/menu/css/jquery.mmenu.all.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/plugins/menu/css/jquery.mhead.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/select2.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('public/assets/css/editor.css') }}"/>
+    <!-- <link rel="stylesheet" href="{{ asset('public/assets/css/editor.css') }}"/> -->
+    <link rel="stylesheet" href="{{ asset('public/assets/css/froala_editor.css') }}"/>
     <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/css/S_style.css') }}">
     <link rel="stylesheet" href="{{ asset('public/bower_components/alertify/themes/alertify.default.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/S_style.css') }}">
 </head>
 <body>
     <div id="wrapper">
-        @include('recruiter_dashboard.partials.header')                  
+        @include('recruiter_dashboard.partials.header')
         @yield('content')
     </div>
 <!-- Filter-Modal -->
@@ -546,7 +547,7 @@
                                 </div>
                                 <textarea id="s_txtEditor"></textarea>
                                 <h5><b>Media(Audio/Video)</b></h5>
-                                
+
                                 <!-- <button type="button" class="btn">Upload Media</button> -->
 
                                 <div class="f_upload_btn">
@@ -1899,7 +1900,7 @@
                      </div>
                      <div class="modal-body s_modal_body">
                         <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Question State 
+                           <strong>Question State
                               <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
@@ -1929,14 +1930,14 @@
                         <hr>
                         <hr>
                         <div class="heading_modal_statement">
-                           <strong>Question Statement (<a href="#">Expand</a>) 
+                           <strong>Question Statement (<a href="#">Expand</a>)
                               <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                             This section provides a markdown editor to write a program statement. <br>
                                                What does it mean: Markdown is a lightweight markup language with plain text formatting syntax:<br>
                                                Learning Refrence:
-                                               
+
                                                 <br>
                                                 http://markdowntutorial.com
                                                 <br>
@@ -1991,13 +1992,13 @@
                                                     <input type="number" name="marks" min="1" class="form-control" required="required" style="">
                                                 </div>
                                                 <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Question Level 
+                           <strong>Question Level
                               <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 Question level determines the standard of the question. supported classification are easy, intermediate and hard.
-                                             
-                                                
+
+
                                             </span>
                                         </div>
                            </strong>
@@ -2022,7 +2023,7 @@
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               Each question can be associated with multiple tags. <br>
-                                              
+
                                                 <br>
                                                 Why it matters:
                                                 <br>
@@ -2052,13 +2053,13 @@
                            <div class="col-md-6 col-sm-12 col-xs-12">
                               <div class="form-group form-group-sm">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                  <strong>Provider 
+                                  <strong>Provider
                                       <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                             This optional field is meant to contain the <br>
                                               organization name that serves as the provider of the question.
-                                               
+
                                             </span>
                                         </div>
                                   </strong>
@@ -2077,7 +2078,7 @@
                                             <span class="s_popuptext">
                                             This field is meant to contain the <br>
                                              name of the author of the question.
-                                               
+
                                             </span>
                                         </div>
                                 </div>
@@ -2134,13 +2135,13 @@
                           <div class="col-md-3 col-sm-12 col-xs-12">
                              <div class="form-group form-group-sm">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                  <strong>Text 
+                                  <strong>Text
                                      <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                            Provide the solution to the question in text if the question is required to use. <br>
-                                              
-                                               
+
+
                                             </span>
                                         </div>
                                   </strong>
@@ -2153,13 +2154,13 @@
                           <div class="col-md-3 col-sm-12 col-xs-12">
                              <div class="form-group form-group-sm">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                  <strong>Code 
+                                  <strong>Code
                                     <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                            Provide the solution to the question in code if the question is required to use. <br>
-                                              
-                                               
+
+
                                             </span>
                                         </div>
                                   </strong>
@@ -2172,13 +2173,13 @@
                           <div class="col-md-3 col-sm-12 col-xs-12">
                              <div class="form-group form-group-sm">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                  <strong>URL 
+                                  <strong>URL
                                     <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                            Provide the solution to the question in URL if the question is required to use. <br>
-                                              
-                                               
+
+
                                             </span>
                                         </div>
                                   </strong>
@@ -2188,13 +2189,13 @@
                           </div>
                        </div>
                        <div class="heading_modal_statement heading_padding_bottom">
-                        <strong>Files 
+                        <strong>Files
                             <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                            Provide the solution to the question in file if the question is required to use. <br>
-                                              
-                                               
+
+
                                             </span>
                                         </div>
                         </strong>
@@ -2560,7 +2561,8 @@
 <script src="{{ asset('public/assets/js/jquery.blink.js') }}"></script>
 <script src="{{ asset('public/assets/js/jquery.localscroll.js') }}"></script>
 <script src="{{ asset('public/assets/js/jquery.scrollTo.js') }}"></script>
-<script src="{{ asset('public/assets/js/editor.js') }}"></script>
+<!-- <script src="{{ asset('public/assets/js/editor.js') }}"></script> -->
+<script src="{{ asset('public/assets/js/froala_editor.min.js') }}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 
@@ -2572,7 +2574,15 @@
             $('.dropdown-menu', this).toggleClass('open');
         });
     });
+
+    $('.edit')
+      .on('froalaEditor.initialized', function (e, editor) {
+        $('.edit').parents('form').on('submit', function () {
+          console.log($('#edit').val());
+          return false;
+        })
+      })
+      .froalaEditor({enter: $.FroalaEditor.ENTER_P, placeholderText: null});
 </script>
 </body>
 </html>
-
