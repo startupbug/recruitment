@@ -86,9 +86,11 @@ Route::post('/test_completion_mail','Recruiter\CompanyController@test_completion
 //Employee Test Template Routes Started
 Route::get('/view', 'Recruiter\TemplatesController@manage_test_view')->name('manage_test_view');
 Route::post('/create_test_template','Recruiter\TemplatesController@create_test_template')->name('create_test_template');
-Route::get('/host_text/{id}', 'Recruiter\TemplatesController@host_text')->name('host_text');
+Route::get('/edit_template/{id}', 'Recruiter\TemplatesController@edit_template')->name('edit_template');
+Route::post('/update_test_template/{id}','Recruiter\TemplatesController@update_test_template')->name('update_test_template');
 Route::get('/delete_test_template/{id}', 'Recruiter\TemplatesController@delete_test_template')->name('delete_test_template');
 Route::get('/template_public_preview/{id}', 'Recruiter\TemplatesController@template_public_preview')->name('template_public_preview');
+Route::post('/create_duplicate_template_post','Recruiter\TemplatesController@create_duplicate_template_post')->name('create_duplicate_template_post');
 //Employee Test Template Routes Ended
 
 });

@@ -2347,38 +2347,7 @@
     </div>
 </div>
 <!--setup manual end-->
-<!--create duplicate template on view page-->
-<div class="modal fade" id="createtemplate" role="dialog">
-    <div class="modal-dialog  modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content filter fa_evaluate">
-            <div class="modal-header s_modal_form_header">
-                <div class="pull-right">
-                    <!--<button type="button" class="btn s_save_button s_font" data-dismiss="modal">Create</button>-->
-                    <!--<button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>-->
-                </div>
-                <h3 class="modal-title s_font f_font"><i class="fa fa-copy duplicate_copy"></i>Create Duplicate Test Template</h3>
-            </div>
-            <div class="modal-body s_modal_form_body modal_top modal_duplicate">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Test-template Name:</label>
-                            <div class="col-md-9">
-                                <div class="template"><input id="name" name="name" type="text" placeholder="Enter name of the new test template" class="form-control general">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="button_duplicate"><button type="button" class="btn">Create</button>
-                            <button type="button" class="btn btn-default s_font f_font" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end -->
+@yield('createtemplate')
 <!--Setting page on user management-->
 <div class="modal fade" id="usermanagement" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -2566,7 +2535,14 @@
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.duplicate_modal_id').click(function(){
+            var a = $(this).attr('data-target-id');
+            $(".modal-body input[name=previous_template_id]").val(a);
+      });
+    });
+</script>
 <script type="text/javascript">
     $('body').scrollspy({target: "#myScrollspy"})
     $(document).ready(function(){
@@ -2574,15 +2550,6 @@
             $('.dropdown-menu', this).toggleClass('open');
         });
     });
-
-    $('.edit')
-      .on('froalaEditor.initialized', function (e, editor) {
-        $('.edit').parents('form').on('submit', function () {
-          console.log($('#edit').val());
-          return false;
-        })
-      })
-      .froalaEditor({enter: $.FroalaEditor.ENTER_P, placeholderText: null});
 </script>
 </body>
 </html>

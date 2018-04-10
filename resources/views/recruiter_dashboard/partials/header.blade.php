@@ -7,10 +7,12 @@
          
                <ul>
                   <li>
+                     <a href="{{route('dashboard')}}">
                      <div class="logo_left"><img src="{{ asset('public/assets/img/logo.png') }}"></div>
+                     </a>
                   </li>
                   <li>
-                     <a href="dashboard/view.php">
+                     <a href="{{route('manage_test_view')}}">
                         <div class="list-parent">
                            <div class="list-child">
                               <img src="{{ asset('public/assets/img/icon-edit.png') }}">Manage Tests

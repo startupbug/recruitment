@@ -231,7 +231,7 @@
                             <div class="right_tab">
                                 <ul>
                                     <li><a href="{{route('template_public_preview',['id'=>$value->id])}}" target="_blank">Public Preview</a></li>
-                                    <li><a href="{{route('host_text',['id'=>$value->id])}}">Edit</a></li>
+                                    <li><a href="{{route('edit_template',['id'=>$value->id])}}">Edit</a></li>
                                     <li class="host_content">
                                         <div class="host">
                                             <a href="host_text.php">Host this test</a>
@@ -245,8 +245,12 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                 <li><a href="previewtest.php" target="blank">Preview Templates</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#createtemplate">Create Duplicate Template</a></li>
-                                                <li><a href="{{route('delete_test_template',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Test Template?')">Delete</a></li>
+                                                <li>
+                                                    <a href="#" class="duplicate_modal_id" data-toggle="modal" data-target-id="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{route('delete_test_template',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Test Template?')">Delete</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </li>
@@ -308,8 +312,47 @@
         </div>
     </div>
 </div>
+@endsection    
+@section('createtemplate')
+<!--create duplicate template on view page-->
+<div class="modal fade" id="createtemplate" role="dialog">
+    <div class="modal-dialog  modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content filter fa_evaluate">
+            <div class="modal-header s_modal_form_header">
+                <div class="pull-right">
+                    <!--<button type="button" class="btn s_save_button s_font" data-dismiss="modal">Create</button>-->
+                    <!--<button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>-->
+                </div>
+                <h3 class="modal-title s_font f_font"><i class="fa fa-copy duplicate_copy"></i>Create Duplicate Test Template</h3>
+            </div>
+            <div class="modal-body s_modal_form_body modal_top modal_duplicate">
+                <form action="{{route('create_duplicate_template_post')}}" id="create_duplicate_template_post" method="POST">
+                    {{csrf_field()}}
+                    <input type="hidden" name="previous_template_id">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group title">
+                                <label class="col-md-3 control-label" for="name">Test-template Name:</label>
+                                <div class="col-md-9">
+                                    <div class="template">
+                                        <input id="name" name="title" value="" type="text" placeholder="Enter name of the new test template" class="form-control general">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="button_duplicate">
+                                <button type="submit" class="btn">Create</button>
+                                <button type="button" id="close_modal_template" class="btn btn-default s_font f_font" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end -->
 @endsection
-    
 @section('create_template_modal')
 <!--View page on create a test template -->
 <div class="modal fade" id="create-test-template-Modal" role="dialog">
@@ -378,4 +421,3 @@
 </div>
 <!--Close-->
 @endsection
-

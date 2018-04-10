@@ -2,7 +2,7 @@
 @section('content')
 
 <section class="view">
-
+@include('general_partials.error_section')
 	<br>
 	<div class="container-fluit padding-15-fluit">
 
@@ -69,7 +69,9 @@
 					<!-- Start basic_detail -->
 					<div id="basic_detail" class="tab-pane fade in active">
 						<div class="col-md-6 col-sm-12 col-xs-12 padding-0">
-							<form class="form-vertical" action="#">
+							<form class="form-vertical" id="update_test_template" action="{{route('update_test_template',['id'=>$edit->id])}}" method="post">
+								{{csrf_field()}}							
+								<input type="hidden" name="template_type_id" value="{{$edit->template_type_id}}">
 								<div class="form-group">
 									<label class="control-label" for="title">Title
 
@@ -101,7 +103,7 @@
 										</div>
 									</label>
 									<div>
-										<textarea class='edit' style="margin-top: 30px;"placeholder="Type some text">
+										<textarea name="description" class='edit' style="margin-top: 30px;"placeholder="Type some text">
 											@if(isset($edit->description)) {{$edit->description}} @endif
 										</textarea>
 										<!-- <textarea id="s_txt_BD_DescriptionEditor" rows="8" cols="80" name="description">
@@ -129,7 +131,7 @@
 										</textarea>
 									</div>
 								</div>
-
+									<button type="submit" class="btn f_btn" name="save_button">Save</button>
 							</form>
 						</div>
 						<div class="col-md-6 col-sm-12 col-xs-12">
@@ -4297,7 +4299,7 @@
 							</div>
 							<div class="form-group">
 								<label>Page Content <i class="fa fa-info-circle"></i></label>
-								<textarea id="s_txtEditor_Edit_public_page"></textarea>
+								<textarea class="edit" style="margin-top: 30px;"></textarea>
 							</div>
 						</form>
 					</div>

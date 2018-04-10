@@ -2586,3 +2586,9 @@ li.active {
 .button_general {
     margin-left: 238px;
 }
+
+.f_btn {
+    margin-top: 15px;
+    background-color: #261f63;
+    color: white;
+}

@@ -1,3 +1,7 @@
+$('.edit')
+      .froalaEditor({enter: $.FroalaEditor.ENTER_P, placeholderText: null});
+
+
 var $radios = $('input[name=role_id]').change(function () {
     var value = $radios.filter(':checked').val();
     if (value == 2) {
