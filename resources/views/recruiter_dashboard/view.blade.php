@@ -74,7 +74,7 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                             <li><a href="invited_candidates.php">View Invited Candidates</a></li>
-                                            <li><a href="previewtest.php" target="blank">Preview Test</a></li>
+                                            <li><a href="{{route('preview_test')}}" target="blank">Preview Test</a></li>
                                             <li><a href="#">Delete Test</a></li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="#" data-toggle="modal" data-target="#setup_manual
@@ -244,7 +244,7 @@
                                             <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                <li><a href="previewtest.php" target="blank">Preview Templates</a></li>
+                                                <li><a href="{{route('preview_test')}}" target="blank">Preview Templates</a></li>
                                                 <li>
                                                     <a href="#" class="duplicate_modal_id" data-toggle="modal" data-target-id="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
                                                 </li>

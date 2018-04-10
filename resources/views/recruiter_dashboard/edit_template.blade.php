@@ -8,7 +8,7 @@
 
 		<div class="row s_margin_bottom">
 			<div class="col-xs-8">
-				<a href="view.php">
+				<a href="{{route('manage_test_view')}}">
 					<button type="submit" class="btn">Back</button>
 				</a>
 				<strong>&nbsp;&nbsp;&nbsp;Template: BPO Test - CodeGround</strong>
@@ -29,34 +29,42 @@
 					<li class="active"><a data-toggle="pill" href="#basic_detail"><i class="fa fa-th-list nav-icon" aria-hidden="true"></i> Basic Details </a></li>
 					<li>
 						<a data-toggle="pill" href="#section_subject"><i class="fa fa-question-circle nav-icon" aria-hidden="true"></i> Sections</a>
-						<ul class="subtitle_subject">
+						<ul class="subtitle_subject">	
+
+							@foreach($sections as $key => $value)
+							@php
+								$order = $value->order_number;
+							@endphp
 							<li>
 								<a data-toggle="pill" href="#section_subject">
-									<i class="fa fa-caret-right"></i> English Profici...
+									<i class="fa fa-caret-right"></i>{{$value->section_name}}{{ ++$key }}
 								</a>
 								<div class="pull-right">
-									<a><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-									<a><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
-									<a><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+									@if(!$loop->first)
+										<a href="{{route('move_up',['id'=>$value->id])}}">
+											<i class="fa fa-arrow-up" aria-hidden="true"></i>
+										</a>
+									@endif
+									@if(!$loop->last)
+										<a href="{{route('move_down',['id'=>$value->id])}}">
+											<i class="fa fa-arrow-down" aria-hidden="true"></i>
+										</a>
+									@endif
+									
+									<a href="{{route('delete_section',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Test Template?')">
+									<i class="fa fa-trash text-danger" aria-hidden="true"></i>
+									</a>
+
 								</div>
-							</li>
-							<li>
-								<i class="fa fa-caret-right"></i> English Profici...
-								<div class="pull-right">
-									<a href="#"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-									<a href="#"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
-									<a href="#" class=""><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
-								</div>
-							</li>
-							<li>
-								<i class="fa fa-caret-right"></i> English Profici...
-								<div class="pull-right">
-									<a href="#"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-									<a href="#"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
-									<a href="#" class=""><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
-								</div>
-							</li>
-							<button type="button" class="btn btn-default" name="button"> + Add Section</button>
+							</li>	
+							@endforeach						
+							<form action="{{route('add_section')}}" id="add_section" method="post">
+								{{csrf_field()}}								
+								<input type="hidden" name="order_value" value="{{ $order = $order ? $order : 0 }}">
+								<input type="hidden" name="template_id" value="{{$edit->id}}">
+								<button type="submit" class="btn btn-default" name="button"> + Add 	Section
+								</button>
+							</form>
 						</ul>
 					</li>
 					<li><a data-toggle="pill" href="#section_setting"><i class="fa fa-cog nav-icon" aria-hidden="true"></i> Settings</a></li>

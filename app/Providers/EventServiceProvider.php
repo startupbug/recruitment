@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserCompanyProfile' => [
             'App\Listeners\CreateCompanyProfile',
         ],
+        'App\Events\TemplateSection' => [
+            'App\Listeners\CreateTemplateSection',
+        ],
     ];
 
     /**

@@ -3,8 +3,7 @@
       <div class="row">
          @if(Auth::check())
          <div class="col-md-9">
-            <div class="top_left">
-         
+            <div class="top_left">         
                <ul>
                   <li>
                      <a href="{{route('dashboard')}}">

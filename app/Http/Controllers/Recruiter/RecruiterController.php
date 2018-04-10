@@ -46,11 +46,6 @@ class RecruiterController extends Controller
         return view('recruiter_dashboard.library_public_questions');
     }
 
-    public function preview_test()
-    {
-        return view('recruiter_dashboard.preview_test');
-    }
-
     public function preview_test_questions()
     {
         return view('recruiter_dashboard.preview_test_questions');
