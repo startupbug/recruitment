@@ -21,7 +21,7 @@
                      </a>
                   </li>
                   <li>
-                     <a href="dashboard/LibraryPublicQuestions.php">
+                     <a href="{{route('library_public_questions')}}">
                         <div class="list-parent">
                            <div class="list-child">
                               <img src="{{ asset('public/assets/img/icon-library.png') }}">Library
