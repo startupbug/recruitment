@@ -22,6 +22,15 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\TemplateSection' => [
             'App\Listeners\CreateTemplateSection',
         ],
+        'App\Events\QuestionChoice' => [
+            'App\Listeners\CreateQuestionChoice',
+        ],
+        'App\Events\QuestionDetail' => [
+            'App\Listeners\CreateQuestionDetail',
+        ],
+        'App\Events\QuestionSolution' => [
+            'App\Listeners\CreateQuestionSolution',
+        ],
     ];
 
     /**

@@ -87,13 +87,13 @@ function addrow_choice() {
 
      $('#choices_table tbody tr:last').after('<tr>'+
        '<td valign="center">'+colCount+'.</td>'+
-       '<td> <input type="checkbox" name="" value=""> </td>'+
+       '<td> <input type="checkbox" name="status" value="1"> </td>'+
        '<td class="s_weight" valign="center">'+
-           '<textarea class="form-control" name="option" required=""></textarea>'+
+           '<textarea class="form-control" name="choice[]" required=""></textarea>'+
        '</td>'+
        '<td valign="center" class="hidden">'+
            '<div class="input-group input-group-sm">'+
-               '<input type="number" class="form-control" width="30px" max="100" min="0" >'+
+               '<input type="number" name="partial_marks[]" class="form-control" width="30px" max="100" min="0" >'+
                '<span class="input-group-addon" id="basic-addon1">%</span>'+
            '</div>'+
        '</td>'+
@@ -108,13 +108,13 @@ function addrow_choice() {
 
       $('#choices_table tbody tr:last').after('<tr>'+
         '<td valign="center">'+colCount+'.</td>'+
-        '<td class="hidden"> <input type="checkbox" name="" value=""> </td>'+
+        '<td class="hidden"> <input type="checkbox" name="status" value="1"> </td>'+
         '<td class="s_weight" valign="center">'+
-            '<textarea class="form-control" name="option" required=""></textarea>'+
+            '<textarea class="form-control" name="choice[]" required=""></textarea>'+
         '</td>'+
         '<td valign="center">'+
             '<div class="input-group input-group-sm">'+
-                '<input type="number" class="form-control" width="30px" max="100" min="0" >'+
+                '<input type="number" class="form-control" name="partial_marks[]" width="30px" max="100" min="0" >'+
                 '<span class="input-group-addon" id="basic-addon1">%</span>'+
             '</div>'+
         '</td>'+

@@ -95,8 +95,11 @@ Route::post('/add_section', 'Recruiter\TemplatesController@add_section')->name('
 Route::get('/delete_section/{id}', 'Recruiter\TemplatesController@delete_section')->name('delete_section');
 Route::get('/move_up/{id}', 'Recruiter\TemplatesController@move_up')->name('move_up');
 Route::get('/move_down/{id}', 'Recruiter\TemplatesController@move_down')->name('move_down');
-
 //Recruiter Test Template Routes Ended
+
+//Recruiter Questions Routes Started
+Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
+//Recruiter Questions Routes Ended
 
 });
 /*Recruiter Routes Ended*/

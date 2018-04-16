@@ -16,4 +16,8 @@ class Test_template extends Model
     {   
         return $this->hasOne('App\Test_template_types');
     } 
+    public function template_section()
+    {           
+        return $this->hasMany('App\Section', 'template_id');
+    } 
 }

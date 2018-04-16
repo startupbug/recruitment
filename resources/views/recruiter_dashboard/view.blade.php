@@ -289,18 +289,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($sections[$value->id] as $key => $section)
                                         <tr>
-                                            <td>Section1   <span class="pull-right">10MCQ (15min)</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Section2   <span class="pull-right">5MCQ (10min)</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Section3   <span class="pull-right">5MCQ (10min)</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Section4   <span class="pull-right">5MCQ (10min)</span></td>
-                                        </tr>
+                                            <td>{{$section->section_name}}{{++$key}}<span class="pull-right">10MCQ (15min)</span></td>
+                                        </tr>    
+                                        @endforeach                                    
                                     </tbody>
                                 </table>
                             </div>

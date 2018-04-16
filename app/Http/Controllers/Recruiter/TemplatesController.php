@@ -15,7 +15,10 @@ class TemplatesController extends Controller
 	// Manage Test View Index
 	public function manage_test_view(){
     	$args['count'] = Test_template::count();
-    	$args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
+        $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
+        foreach ($args['listing'] as $value) {
+            $args['sections'][$value->id] = Section::where('template_id',$value->id)->get();            
+        }
         return view('recruiter_dashboard.view')->with($args);
     }
 	// Manage Test View Index
@@ -55,9 +58,10 @@ class TemplatesController extends Controller
 	// Creating Test Templates
 
 	// Editing Test Template
-	public function edit_template($id){
+	public function edit_template($id){        
+        $args['tags'] = DB::table('question_tags')->get();
       	$args['edit'] = Test_template::find($id);  
-      	$args['sections'] = Section::where('template_id',$id)->orderBy('order_number','ASC')->get();
+      	$args['sections'] = Section::where('template_id',$id)->orderBy('order_number','ASC')->get();        
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 	// Editing Test Template
