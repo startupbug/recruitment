@@ -2348,6 +2348,7 @@
 </div>
 <!--setup manual end-->
 @yield('createtemplate')
+@yield('modal_content')
 <!--Setting page on user management-->
 <div class="modal fade" id="usermanagement" role="dialog">
     <div class="modal-dialog  modal-lg">
