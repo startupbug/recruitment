@@ -152,17 +152,18 @@
                </div>
                <!-- End basic_detail -->
                <!-- Start section_subject -->
-               @foreach($sections as $value)
-               <div id="section_subject-{{$value->id}}" class="tab-pane fade">
+
+               @foreach($sections_tabs as $key => $sec)
+               <div id="section_subject-{{$key}}" class="tab-pane fade">
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
                      <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$value->id}}">Multiple Choice (10)</a></li>
-                        <li><a data-toggle="pill" href="#sections-coding-{{$value->id}}">Coding (2)</a></li>
-                        <li><a data-toggle="pill" href="#sections-submission-{{$value->id}}">Submission (2)</a></li>
+                        <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$key}}">Multiple Choice ({{ $sec['count'] }})</a></li>
+                        <li><a data-toggle="pill" href="#sections-coding-{{$key}}">Coding (2)</a></li>
+                        <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission (2)</a></li>
                         <li class="pull-right"></li>
                      </ul>
                      <div class="tab-content">
-                        <div id="sections-multiplechoice-{{$value->id}}" class="tab-pane fade in active">
+                        <div id="sections-multiplechoice-{{$key}}" class="tab-pane fade in active">
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
@@ -174,6 +175,7 @@
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @foreach($sec['ques'] as $q)
                                     <tr>
                                        <td><input type="checkbox"></td>
                                        <td>1</td>
@@ -181,7 +183,7 @@
                                           <div class="statement">
                                              <div class="row">
                                                 <div class="single-line-ellipsis">
-                                                   <a href="" class="no-underline">Very cool Number</a>
+                                                   <a href="" class="no-underline">{{$q->question_statement}}</a>
                                                 </div>
                                              </div>
                                           </div>
@@ -191,111 +193,34 @@
                                                    <div class="row">
                                                       <div class="col-xs-6">
                                                          <span style="text-transform:capitalize;">
-                                                         <i>easy</i>
+                                                         <i>{{$q->question_level['level_name']}}</i>
                                                          </span>
                                                       </div>
                                                       <div class="col-xs-6 no-padding-left">
                                                          <span class="text-muted">Marks</span>
-                                                         <span class="conjunction">:</span>49
+                                                         <span class="conjunction">:</span>{{$q->question_detail['marks']}}
                                                       </div>
                                                    </div>
                                                 </div>
                                                 <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
                                                    <span class="text-muted">Tags : </span>
-                                                   <span class="question-tags">Programming</span>
+                                                   <span class="question-tags">{{$q->question_detail->question_tag['tag_name']}}</span>
                                                 </div>
                                              </div>
                                           </div>
                                        </td>
                                        <td>
-                                          <a>
-                                          <i class="fa fa-times-circle text-danger"></i>
+                                          <a id="delete_question" href="{{route('delete_question',['id'=>$q->id])}}" id="delete_question" >
+                                             <i class="fa fa-times-circle text-danger"></i>
                                           </a>
                                        </td>
-                                    </tr>
-                                    <tr>
-                                       <td><input type="checkbox"></td>
-                                       <td>2</td>
-                                       <td class="col-md-10 col-sm-12 col-xs-12">
-                                          <div class="statement">
-                                             <div class="row">
-                                                <div class="single-line-ellipsis">
-                                                   <a href="" class="no-underline">Very cool Number</a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="description text-muted">
-                                             <div class="row">
-                                                <div class="col-md-4 col-sm-12 col-xs-12">
-                                                   <div class="row">
-                                                      <div class="col-xs-6">
-                                                         <span style="text-transform:capitalize;">
-                                                         <i>easy</i>
-                                                         </span>
-                                                      </div>
-                                                      <div class="col-xs-6 no-padding-left">
-                                                         <span class="text-muted">Marks</span>
-                                                         <span class="conjunction">:</span>49
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                                <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
-                                                   <span class="text-muted">Tags : </span>
-                                                   <span class="question-tags">Programming</span>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </td>
-                                       <td>
-                                          <a>
-                                          <i class="fa fa-times-circle text-danger"></i>
-                                          </a>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td><input type="checkbox"></td>
-                                       <td>3</td>
-                                       <td class="col-md-10 col-sm-12 col-xs-12">
-                                          <div class="statement">
-                                             <div class="row">
-                                                <div class="single-line-ellipsis">
-                                                   <a href="" class="no-underline">Very cool Number</a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="description text-muted">
-                                             <div class="row">
-                                                <div class="col-md-4 col-sm-12 col-xs-12">
-                                                   <div class="row">
-                                                      <div class="col-xs-6">
-                                                         <span style="text-transform:capitalize;">
-                                                         <i>easy</i>
-                                                         </span>
-                                                      </div>
-                                                      <div class="col-xs-6 no-padding-left">
-                                                         <span class="text-muted">Marks</span>
-                                                         <span class="conjunction">:</span>49
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                                <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
-                                                   <span class="text-muted">Tags : </span>
-                                                   <span class="question-tags">Programming</span>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </td>
-                                       <td>
-                                          <a>
-                                          <i class="fa fa-times-circle text-danger"></i>
-                                          </a>
-                                       </td>
-                                    </tr>
+                                    </tr>    
+                                    @endforeach                                
                                  </tbody>
                                  <tfoot>
                                     <tr>
                                        <td colspan="4">
-                                          <button type="button" class="btn" data-toggle="modal" data-target="#section-mcqs-Modal" onclick="section_id({{$value->id}})">
+                                          <button type="button" class="btn" data-toggle="modal" data-target="#section-mcqs-Modal" onclick="section_id({{$key}})">
                                           <i class="fa fa-plus"></i> Add MCQ
                                           </button>
                                           <button type="button" class="btn" data-toggle="modal" data-target="#section-choice-mcqs-Modal">
@@ -307,7 +232,7 @@
                               </table>
                            </div>
                         </div>
-                        <div id="sections-coding-{{$value->id}}" class="tab-pane fade">
+                        <div id="sections-coding-{{$key}}" class="tab-pane fade">
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
