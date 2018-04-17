@@ -161,6 +161,8 @@
                         <li><a data-toggle="pill" href="#sections-coding-{{$key}}">Coding (2)</a></li>
                         <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission (2)</a></li>
                         <li class="pull-right"></li>
+                        <input type="submit" id="submit_prog" value='Submit' data-target="
+                        "/>
                      </ul>
                      <div class="tab-content">
                         <div id="sections-multiplechoice-{{$key}}" class="tab-pane fade in active">
@@ -177,7 +179,7 @@
                                  <tbody>
                                     @foreach($sec['ques'] as $q)
                                     <tr>
-                                       <td><input type="checkbox"></td>
+                                       <td><input type="checkbox" name="prog" value="{{$q->id}}"></td>
                                        <td>1</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">

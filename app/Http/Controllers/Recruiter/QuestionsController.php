@@ -38,8 +38,7 @@ class QuestionsController extends Controller
 		}
 	}
 
-	public function delete_question($id){
-		   // dd($id);   	
+	public function delete_question($id){		  	
 		$delete = Question::find($id);
 		if ($delete->delete()){
 			return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted The Question']);					

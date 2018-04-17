@@ -2592,3 +2592,6 @@ li.active {
     background-color: #261f63;
     color: white;
 }
+.submit_prog{
+     display: none;
+}

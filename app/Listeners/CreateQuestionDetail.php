@@ -40,8 +40,8 @@ class CreateQuestionDetail
             $filename=time() . '.' . $image->getClientOriginalExtension();
             $location=public_path('public/storage/question-detail-media/'.$filename);
             $section->media=$filename;
+            $section->media = $this->UploadFile('media', $event->question_data['request']['media']);
         }
-        $section->media = $this->UploadFile('media', $event->question_data['request']['media']);
         $section->save();
     }
     public function UploadFile($type, $file){

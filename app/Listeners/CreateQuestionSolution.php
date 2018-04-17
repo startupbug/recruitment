@@ -38,8 +38,8 @@ class CreateQuestionSolution
             $filename=time() . '.' . $image->getClientOriginalExtension();
             $location=public_path('public/storage/question-solution-media/'.$filename);
             $section->solution_media=$filename;
+            $section->solution_media = $this->UploadFile('solution_media', $event->question_data['request']['solution_media']);
         }
-        $section->solution_media = $this->UploadFile('solution_media', $event->question_data['request']['solution_media']);
         $section->save();
     }
     public function UploadFile($type, $file){

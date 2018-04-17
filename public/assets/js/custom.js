@@ -317,3 +317,17 @@ console.log('add click event');
 // });
 
 })
+$(document).ready(function() {
+
+  $('.submit_prog').click(function(){
+    var target = $(this).attr('data-target');
+    var data = $('.prog-'+target).val();
+  });
+
+  $('input[type=checkbox]').click(function(){
+    var target_class = $(this).attr('class');
+    var target_attr = $(this).attr('data-target');
+    $("input[data-target='"+target_attr+"']").show();
+  });   
+
+});
