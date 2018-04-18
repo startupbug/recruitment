@@ -698,4 +698,335 @@
 		</div>
 	</div>
 </section>
+
+<div class="modal fade" id="modal_pencil" role="dialog">
+   <div class="modal-dialog  modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header s_modal_form_header">
+            <div class="pull-right">
+               <span>Please add atleast 3 characters in the question statement </span>
+               <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
+               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+            </div>
+            <h3 class="modal-title s_font">Submission Question</h3>
+         </div>
+         <div class="modal-body s_modal_form_body">
+            <div class="row">
+               <div class="col-md-10 col-md-offset-1">
+                  <!-- Question State -->
+                  <div class="modal-content s_modal s_blue_color_modal">
+                     <div class="modal-header s_modal_header s_blue_color_header">
+                        <h4 class="modal-title s_font">Question Statement</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <strong>
+                              Question State
+                              <div class="s_popup">
+                                 <i class="fa fa-info-circle"> </i>
+                                 <span class="s_popuptext">
+                                 There are three possible states for a question. <br>
+                                 (1) Stage (2) Ready (3) Abondoned<br>
+                                 Why is it needed: The purpose of the states is to manage the question development cycle.
+                                 <br>
+                                 Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented.
+                                 </span>
+                              </div>
+                           </strong>
+                        </div>
+                        <div>
+                           <label class="container_radio border_radio_left">STAGE
+                           <input type="radio" checked="checked" name="radio" disabled>
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio">READY
+                           <input type="radio" name="radio">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio border_radio_right">ABANDONED
+                           <input type="radio" name="radio" disabled>
+                           <span class="checkmark"></span>
+                           </label>
+                        </div>
+                        <hr>
+                        <hr>
+                        <div class="heading_modal_statement">
+                           <strong>
+                              Question Statement (<a href="#">Expand</a>)
+                              <div class="s_popup">
+                                 <i class="fa fa-info-circle"> </i>
+                                 <span class="s_popuptext">
+                                 This section provides a markdown editor to write a program statement. <br>
+                                 What does it mean: Markdown is a lightweight markup language with plain text formatting syntax:<br>
+                                 Learning Refrence:
+                                 <br>
+                                 http://markdowntutorial.com
+                                 <br>
+                                 Good to know: The expends link open an expanded view of the editor for a better view of the text while typing/editing.
+                                 </span>
+                              </div>
+                           </strong>
+                        </div>
+                        <textarea id="s_txtEditor_submission_Add_section_fill_blanks"></textarea>
+                        <br>
+                     </div>
+                  </div>
+                  <br>
+                  <!-- Media and Resources -->
+                  <div class="modal-content s_modal s_green_color_modal">
+                     <div class="modal-header s_modal_header s_green_color_header">
+                        <h4 class="modal-title s_font">Media and Resources</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <div class="">
+                              <h5><b>Media(Audio/Video)</b></h5>
+                              <!--<button type="button" class="btn">Upload Media</button>-->
+                              <div class="f_upload_btn">
+                                 Upload Media
+                                 <input type="file" name="">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <!-- Fill In The Blanks Solution Details -->
+                  <div class="modal-content s_modal s_yellow_light_color_modal">
+                     <div class="modal-header s_modal_header s_yellow_light_green_color_header">
+                        <h4 class="modal-title s_font">Fill In The Blanks Solution Details</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <h4>Enter Solutions for the Blanks</h4>
+                     </div>
+                  </div>
+                  <br>
+                  <!--  Question Details -->
+                  <div class="modal-content s_modal s_gray_color_modal">
+                     <div class="modal-header s_modal_header s_gray_color_header">
+                        <h4 class="modal-title s_font"> Question Details</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="form-group form-group-sm" >
+                           <label>Marks for this Question <i class="fa fa-info-circle"></i></label>
+                           <input type="number" name="marks" min="1" class="form-control" required="required" style="">
+                        </div>
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <strong>
+                              Question Level
+                              <div class="s_popup">
+                                 <i class="fa fa-info-circle"> </i>
+                                 <span class="s_popuptext">
+                                 Question level determines the standard of the question. supported classification are easy, intermediate and hard.
+                                 </span>
+                              </div>
+                           </strong>
+                        </div>
+                        <div class="heading_padding_bottom">
+                           <label class="container_radio border_radio_left">Easy
+                           <input type="radio" checked="checked" name="radio">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio">Medium
+                           <input type="radio" name="radio">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio border_radio_right">Hard
+                           <input type="radio" name="radio">
+                           <span class="checkmark"></span>
+                           </label>
+                        </div>
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <strong>
+                              Tags
+                              <div class="s_popup">
+                                 <i class="fa fa-info-circle"> </i>
+                                 <span class="s_popuptext">
+                                 Each question can be associated with multiple tags. <br>
+                                 <br>
+                                 Why it matters:
+                                 <br>
+                                 (1) Tags are used in filters while searching through the library.<br>
+                                 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
+                                 </span>
+                              </div>
+                              No tags added
+                           </strong>
+                        </div>
+                        <div class="form-group-sm">
+                           <div class="row">
+                              <div class="col-md-3">
+                                 <select class="form-control">
+                                    <option value="add Tag" disabled="">Select Tag</option>
+                                    <option>algo</option>
+                                    <option>basic-programming</option>
+                                    <option>database</option>
+                                    <option>design</option>
+                                    <option>iterative</option>
+                                    <option>maths</option>
+                                    <option>recursion</option>
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>
+                                       Provider
+                                       <div class="s_popup">
+                                          <i class="fa fa-info-circle"> </i>
+                                          <span class="s_popuptext">
+                                          This optional field is meant to contain the <br>
+                                          organization name that serves as the provider of the question.
+                                          </span>
+                                       </div>
+                                    </strong>
+                                 </div>
+                                 <input type="text" class="form-control">
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Author </strong>
+                                    <div class="s_popup">
+                                       <i class="fa fa-info-circle"> </i>
+                                       <span class="s_popuptext">
+                                       This field is meant to contain the <br>
+                                       name of the author of the question.
+                                       </span>
+                                    </div>
+                                 </div>
+                                 <input type="text" class="form-control">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <!--   Evaluation Parameters (Optional) -->
+                  <div class="modal-content s_modal s_orange_color_modal">
+                     <div class="modal-header s_modal_header s_orange_color_header">
+                        <h4 class="modal-title s_font">  Evaluation Parameters (Optional)</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="no-more-tables ">
+                           <table class="table s_table">
+                              <thead>
+                                 <th>Tile</th>
+                                 <th>Weightage (%)</th>
+                                 <th></th>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td class="s_weight" valign="center">
+                                       <div >
+                                          <input type="text" class="form-control text-margin" name="title" value="">
+                                       </div>
+                                    </td>
+                                    <td valign="center">
+                                       <div class="input-group input-group-sm">
+                                          <input type="number" class="form-control" width="30px" max="100" min="0">
+                                          <span class="input-group-addon" id="basic-addon1">%</span>
+                                       </div>
+                                    </td>
+                                    <td valign="center">
+                                       <button type="button" class="btn">+ Save New</button>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <!--   Evaluation Parameters (Optional) -->
+                  <div class="modal-content s_modal s_light_green_color_modal">
+                     <div class="modal-header s_modal_header s_light_green_color_header">
+                        <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="row">
+                           <div class="col-md-3 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>
+                                       Text
+                                       <div class="s_popup">
+                                          <i class="fa fa-info-circle"> </i>
+                                          <span class="s_popuptext">
+                                          Provide the solution to the question in text if the question is required to use. <br>
+                                          </span>
+                                       </div>
+                                    </strong>
+                                 </div>
+                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-3 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>
+                                       Code
+                                       <div class="s_popup">
+                                          <i class="fa fa-info-circle"> </i>
+                                          <span class="s_popuptext">
+                                          Provide the solution to the question in code if the question is required to use. <br>
+                                          </span>
+                                       </div>
+                                    </strong>
+                                 </div>
+                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-3 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>
+                                       URL
+                                       <div class="s_popup">
+                                          <i class="fa fa-info-circle"> </i>
+                                          <span class="s_popuptext">
+                                          Provide the solution to the question in URL if the question is required to use. <br>
+                                          </span>
+                                       </div>
+                                    </strong>
+                                 </div>
+                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <strong>
+                              Files
+                              <div class="s_popup">
+                                 <i class="fa fa-info-circle"> </i>
+                                 <span class="s_popuptext">
+                                 Provide the solution to the question in file if the question is required to use. <br>
+                                 </span>
+                              </div>
+                           </strong>
+                        </div>
+                        <!--<button type="file" class="btn">Upload Files</button>-->
+                        <div class="f_upload_btn">
+                           Upload Media
+                           <input type="file" name="">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 @endsection

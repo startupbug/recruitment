@@ -50,7 +50,7 @@
                            </a>
                         </div>
                      </li>
-                     @endforeach		
+                     @endforeach    
                      <form action="{{route('add_section')}}" id="add_section" method="post">
                         {{csrf_field()}}                       
                         <input type="hidden" name="order_value" value="{{ $order = $order ? $order : 0 }}">
@@ -152,7 +152,6 @@
                </div>
                <!-- End basic_detail -->
                <!-- Start section_subject -->
-
                @foreach($sections_tabs as $key => $sec)
                <div id="section_subject-{{$key}}" class="tab-pane fade">
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
@@ -211,10 +210,10 @@
                                        </td>
                                        <td>
                                           <a id="delete_question" href="{{route('delete_question',['id'=>$q->id])}}" id="delete_question" >
-                                             <i class="fa fa-times-circle text-danger"></i>
+                                          <i class="fa fa-times-circle text-danger"></i>
                                           </a>
                                        </td>
-                                    </tr>    
+                                    </tr>
                                     @endforeach                                
                                  </tbody>
                                  <tfoot>
@@ -1052,7 +1051,6 @@
       </div>
    </div>
 </section>
-
 <!-- Edit-public-page-Modal -->
 <div class="modal fade" id="_first_model" role="dialog" style="">
    <div class="modal-dialog  modal-lg s-modal-lg ">
@@ -1569,7 +1567,7 @@
          </div>
       </div>
    </div>
-</div> 
+</div>
 <div class="modal fade" id="section-choice-mcqs-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
@@ -2460,7 +2458,7 @@
          </div>
       </div>
    </div>
-</div> 
+</div>
 <!-- section-coding-debug-Modal -->
 <div class="modal fade" id="section-coding-debug-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
@@ -3910,7 +3908,6 @@
       </div>
    </div>
 </div>
-
 <!-- Edit-public-page-Modal -->
 <div class="modal fade" id="edit-public-page-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
@@ -3958,472 +3955,446 @@
 <div class="modal fade" id="section-mcqs-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
-         <form action="{{route('create_question')}}" method="POST" enctype="multipart/form-data">
-        {{csrf_field()}}   
-        <input type="hidden" name="section_id" id="section_id" value="">     
-        <input type="hidden" name="question_type_id" value="1">     
-        <div class="modal-content">
-           <div class="modal-header s_modal_form_header">
-              <div class="pull-right">
-                 <span>Please add atleast 3 characters in the question statement </span>
-                 <button type="submit" class="btn s_save_button s_font">Save</button>
-                 <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
-              </div>
-              <h3 class="modal-title s_font">Multiple Choice Question</h3>
-           </div>
-           <div class="modal-body s_modal_form_body">
-              <div class="row">
-                 <div class="col-md-10 col-md-offset-1">
-                    <!-- Question Statement -->
-                    <div class="modal-content s_modal s_blue_color_modal">
-                       <div class="modal-header s_modal_header s_blue_color_header">
-                          <h4 class="modal-title s_font">Question Statement</h4>
-                       </div>
-                       <div class="modal-body s_modal_body">
-                          <div class="heading_modal_statement heading_padding_bottom">
-                             <strong>Question State <i class="fa fa-info-circle"></i></strong>
-                          </div>
-                          <div>
-                             <label class="container_radio border_radio_left">STAGE
-                             <input type="radio" checked="checked" name="question_state_id" value="1">
-                             <span class="checkmark"></span>
-                             </label>
-                             <label class="container_radio">READY
-                             <input type="radio" name="question_state_id" value="2">
-                             <span class="checkmark"></span>
-                             </label>
-                             <label class="container_radio border_radio_right">ABANDONED
-                             <input type="radio" name="question_state_id" value="3">
-                             <span class="checkmark"></span>
-                             </label>
-                          </div>
-                          <hr>
-                          <div class="heading_modal_statement">
-                             <strong>Question Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
-                             <span>Please add atleast 3 characters in the statement</span>
-                          </div>
-                          <textarea id="s_select_mcqs_txtEditor" name="question_statement"></textarea>
-                          <h5><b>Media(Audio/Video)</b></h5>
-                          <div class="f_upload_btn">
-                                    Upload Media
-                                <input type="file" name="media" >
-                            </div>
-                          <!-- <button type="button" class="btn">Upload Media</button> -->
-                       </div>
-                    </div>
-                    <br>
-                    <!-- Choices -->
-                    <div class="modal-content s_modal s_green_color_modal">
-                       <div class="modal-header s_modal_header s_green_color_header">
-                          <h4 class="modal-title s_font">Choices</h4>
-                       </div>
-                       <div class="modal-body s_modal_body">
-                          <div class="heading_modal_statement heading_padding_bottom">
-                             <strong>
-                                Choices
-                                <div class="s_popup">
-                                   <i class="fa fa-info-circle"> </i>
-                                   <span class="s_popuptext">
-                                   Under this section, one can add the <br>
-                                   Good to Know: <br>
-                                   (1) Multiple choice multiple answer type questions are supported.
-                                   <br>
-                                   <br>
-                                   (2) Choice field's value cannot be empty or a duplicate.
-                                   </span>
-                                </div>
-                             </strong>
-                             <strong class="pull-right">
-                             <input type="checkbox" name="partial_marks" id="partial_marks">
-                             Partial marks
-                             </strong>
-                             <div class="no-more-tables ">
-                                <table class="table s_table" id="choices_table">
-                                   <tbody>
-                                      <tr>
-                                         <td valign="center">1.</td>
-                                         <td>
-                                            <input type="checkbox" name="status" class="choices_table_checkbox">
-                                         </td>
-                                         <td class="s_weight" valign="center">
-                                            <textarea class="form-control" name="choice[]" required=""></textarea>
-                                         </td>
-                                         <td valign="center" class="hidden">
-                                            <div class="input-group input-group-sm">
-                                               <input type="number" name="partial_marks[]" value="" class="form-control" width="30px" max="100" min="0" >
-                                               <span class="input-group-addon" id="basic-addon1">%</span>
-                                            </div>
-                                         </td>
-                                         <td valign="center">
-                                            <a class="delete_row">
-                                            <i class="fa fa-times-circle-o"></i>
-                                            </a>
-                                         </td>
-                                      </tr>
-                                      <tr>
-                                         <td valign="center">2.</td>
-                                        <td>
-                                            <input type="checkbox" name="status"  class="choices_table_checkbox">
-                                         </td>
-                                         <td class="s_weight" valign="center">
-                                            <textarea class="form-control" name="choice[]" required=""></textarea>
-                                         </td>
-                                         <td valign="center" class="hidden">
-                                            <div class="input-group input-group-sm">
-                                               <input type="number" name="partial_marks[]" value="" class="form-control" width="30px" max="100" min="0" >
-                                               <span class="input-group-addon" id="basic-addon1">%</span>
-                                            </div>
-                                         </td>
-                                         <td valign="center">
-                                            <a class="delete_row">
-                                            <i class="fa fa-times-circle-o"></i>
-                                            </a>
-                                         </td>
-                                      </tr>
-                                      <tr>
-                                         <td valign="center">3.</td>
-                                         <td>
-                                            <input type="checkbox" name="status" class="choices_table_checkbox">
-                                         </td>
-                                         <td class="s_weight" valign="center">
-                                            <textarea class="form-control" name="choice[]" required=""></textarea>
-                                         </td>
-                                         <td valign="center" class="hidden">
-                                            <div class="input-group input-group-sm">
-                                               <input type="number" name="partial_marks[]" value="" class="form-control" width="30px" max="100" min="0" >
-                                               <span class="input-group-addon" id="basic-addon1">%</span>
-                                            </div>
-                                         </td>
-                                         <td valign="center">
-                                            <a class="delete_row">
-                                            <i class="fa fa-times-circle-o"></i>
-                                            </a>
-                                         </td>
-                                      </tr>
-                                   </tbody>
-                                   <tfoot>
-                                      <tr>
-                                         <td colspan="5" class="text-align-center">
-                                            <button class="btn btn-add-new btn-block" onclick="addrow_choice()"> + Add New Option</button>
-                                         </td>
-                                      </tr>
-                                   </tfoot>
-                                </table>
-                             </div>
-                             <div class="checkbox">
-                                <label>
-                                <input type="checkbox">Shuffle the options in the test
-                                </label>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                    <br>
-                    <!-- Question Details -->
-                    <div class="modal-content s_modal s_yellow_color_modal">
-                       <div class="modal-header s_modal_header s_yellow_color_header">
-                          <h4 class="modal-title s_font">Question Details</h4>
-                       </div>
-                       <div class="modal-body s_modal_body">
-                          <div class="row">
-                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group form-group-sm">
-                                   <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>Marks for this Question</strong>
-                                   </div>
-                                   <input type="text" name="marks" class="form-control">
-                                </div>
-                             </div>
-                          </div>
-                          <div class="row">
-                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group form-group-sm">
-                                   <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>Negative Marks for Answering Wrong <i class="fa fa-info-circle"></i></strong>
-                                   </div>
-                                   <input type="text" name="negative_marks" class="form-control">
-                                </div>
-                             </div>
-                          </div>
-                          <div class="heading_modal_statement heading_padding_bottom">
-                             <strong>Question State <i class="fa fa-info-circle"></i> No tags added</strong>
-                          </div>
-                          <div class="form-group-sm">
-                             <div class="row">
-                                <div class="col-md-3">
-                                   <select name="tag_id" class="form-control">
-                                      <option value="add Tag" disabled="">Add Tag</option>
-                                       @foreach($tags as $value)
-                                        <option value="{{$value->id}}">{{$value->tag_name}}</option>
-                                      @endforeach                                     
-                                   </select>
-                                </div>
-                             </div>
-                          </div>
-                          <div class="heading_modal_statement heading_padding_bottom">
-                             <strong>Question Level <i class="fa fa-info-circle"></i></strong>
-                          </div>
-                          <div class="heading_padding_bottom">
-                             <label class="container_radio border_radio_left">Easy
-                             <input type="radio" checked="checked" name="question_level_id" value="1">
-                             <span class="checkmark"></span>
-                             </label>
-                             <label class="container_radio">Medium
-                             <input type="radio" name="question_level_id" value="2">
-                             <span class="checkmark"></span>
-                             </label>
-                             <label class="container_radio border_radio_right">Hard
-                             <input type="radio" name="question_level_id" value="3">
-                             <span class="checkmark"></span>
-                             </label>
-                          </div>
-                          <div class="row">
-                             <div class="col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group form-group-sm">
-                                   <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>Provider <i class="fa fa-info-circle"></i></strong>
-                                   </div>
-                                   <input type="text" name="provider" class="form-control">
-                                </div>
-                             </div>
-                          </div>
-                          <div class="row">
-                             <div class="col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group form-group-sm">
-                                   <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>Author <i class="fa fa-info-circle"></i></strong>
-                                   </div>
-                                   <input type="text" name="author" class="form-control">
-                                </div>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                    <br>
-                    <!--  Solution Details (Optional) -->
-                    <div class="modal-content s_modal s_gray_color_modal">
-                       <div class="modal-header s_modal_header s_gray_color_header">
-                          <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
-                       </div>
-                       <div class="modal-body s_modal_body">
-                          <div class="row">
-                             <div class="col-md-3 col-sm-12 col-xs-12">
-                                <div class="form-group form-group-sm">
-                                   <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>Text <i class="fa fa-info-circle"></i></strong>
-                                   </div>
-                                   <textarea min="0" class="form-control" name="text" style=""></textarea>
-                                </div>
-                             </div>
-                          </div>
-                          <div class="row">
-                             <div class="col-md-3 col-sm-12 col-xs-12">
-                                <div class="form-group form-group-sm">
-                                   <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>Code <i class="fa fa-info-circle"></i></strong>
-                                   </div>
-                                   <textarea min="0" class="form-control" name="code" style=""></textarea>
-                                </div>
-                             </div>
-                          </div>
-                          <div class="row">
-                             <div class="col-md-3 col-sm-12 col-xs-12">
-                                <div class="form-group form-group-sm">
-                                   <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>URL <i class="fa fa-info-circle"></i></strong>
-                                   </div>
-                                   <textarea min="0" class="form-control" name="url" style=""></textarea>
-                                </div>
-                             </div>
-                          </div>
-                          <div class="heading_modal_statement heading_padding_bottom">
-                             <strong>Files <i class="fa fa-info-circle"></i></strong>
-                          </div>
-                          <input type="file" name="solution_media">
-                       </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-      </form>
-   </div>
-</div> 
-<!-- section-mcqs-Modal -->
-@endsection
-
-@section('modal_content')
-<div class="modal fade" id="question_modal" role="dialog">
-    <div class="modal-dialog  modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content">
+      <form action="{{route('create_question')}}" method="POST" enctype="multipart/form-data">
+         {{csrf_field()}}   
+         <input type="hidden" name="section_id" id="section_id" value="">     
+         <input type="hidden" name="question_type_id" value="1">     
+         <div class="modal-content">
             <div class="modal-header s_modal_form_header">
-                <div class="pull-right">
-                  
-                    <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
-                </div>
-                <h3 class="modal-title s_font"></i>Multiple Choice Question</h3>
+               <div class="pull-right">
+                  <span>Please add atleast 3 characters in the question statement </span>
+                  <button type="submit" class="btn s_save_button s_font">Save</button>
+                  <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+               </div>
+               <h3 class="modal-title s_font">Multiple Choice Question</h3>
             </div>
             <div class="modal-body s_modal_form_body">
-                <div style=""><div class="content-area content-area-70 new-question">
-<form name="mcq">
-<div class="form-group">
-<div class="form-inline">
-<label>Question Statement</label>
-<span>(Current state of question : READY)</span>
-<div class="pull-right">
-<a target="_blank" href="#" class="btn-sm btn-link">
-<span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
-
-
-</div>
-</div>
-<div class="disabled">
-<pagedown-editor content="currentMCQ.statement" show-preview="true" rows="5" class="ng-isolate-scope"><div class="ng-scope"><div class="wmd-panel wmd-editor"><div id="wmd-button-bar-3"><ul id="wmd-button-row-3" class="wmd-button-row"><li class="wmd-button" id="wmd-bold-button-3" title="Strong <strong> Ctrl+B" style="left: 0px;"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" id="wmd-italic-button-3" title="Emphasis <em> Ctrl+I" style="left: 25px;"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1-3"></li><li class="wmd-button" id="wmd-link-button-3" title="Hyperlink <a> Ctrl+L" style="left: 75px;"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" id="wmd-quote-button-3" title="Blockquote <blockquote> Ctrl+Q" style="left: 100px;"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" id="wmd-code-button-3" title="Code Sample <pre><code> Ctrl+K" style="left: 125px;"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" id="wmd-image-button-3" title="Image <img> Ctrl+G" style="left: 150px;"><span style="background-position: -100px 0px;"></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2-3"></li><li class="wmd-button" id="wmd-olist-button-3" title="Numbered List <ol> Ctrl+O" style="left: 200px;"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" id="wmd-ulist-button-3" title="Bulleted List <ul> Ctrl+U" style="left: 225px;"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" id="wmd-heading-button-3" title="Heading <h1>/<h2> Ctrl+H" style="left: 250px;"><span style="background-position: -180px 0px;"></span></li><li class="wmd-button" id="wmd-hr-button-3" title="Horizontal Rule <hr> Ctrl+R" style="left: 275px;"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3-3"></li><li class="wmd-button" id="wmd-undo-button-3" title="Undo - Ctrl+Z" style="left: 325px;"><span style="background-position: -220px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button-3" title="Redo - Ctrl+Y" style="left: 350px;"><span style="background-position: -240px -20px;"></span></li><li class="wmd-button wmd-help-button" id="wmd-help-button-3" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -260px 0px;"></span></li></ul></div><textarea class="wmd-input form-control ng-pristine ng-untouched ng-valid" id="wmd-input-3" ng-model="content" placeholder="" rows="5"></textarea></div><div id="wmd-preview-3" class="pagedown-preview wmd-panel wmd-preview" style=""><p>Heart of Data Encryption Standard (DES), is the</p></div></div></pagedown-editor>
-</div>
-</div>
-<div class="">
-
-<div class="form-group">
-<label>Marks for this Question</label>
-<input type="number" name="marks" min="1" class="form-control" required="required" style="">
-
-<span class="">
-<label>Negative Marks for Answering Wrong</label>
-<input type="number" step="any" name="negativeMarks" min="0" class="form-control" required="required">
-</span>
-</div>
-<input type="submit" class="btn btn-primary btn-sm" value="Update Marks">
-
-</div>
-
-<div>
-This is demo account thus the choices are hidden.
-<br>
-</div>
-<table class="table">
-<thead>
-<tr>
-<th colspan="3">Choices</th>
-</tr>
-</thead>
-<tbody>
-<tr class="">
-<td class="">1.</td>
-<td class="">
-<input type="radio" name="893" value="true" disabled="disabled">
-
-</td>
-<td>
-<textarea class="form-control" name="option" required="" disabled="disabled">Cipher</textarea>
-</td>
-<td width="120px" class="">
-<div class="input-group input-group-sm">
-<input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
-<span class="input-group-addon" id="basic-addon1">%</span>
-</div>
-</td>
-<td>
-</td>
-</tr><tr>
-<td class="ng-binding">2.</td>
-<td>
-<input type="radio" name="903" value="true" disabled="disabled">
-</td>
-<td>
-<textarea class="form-control" name="option" required="" disabled="disabled">Rounds</textarea>
-</td>
-<td width="120px" class="">
-<div class="input-group input-group-sm">
-<input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
-<span class="input-group-addon" id="basic-addon1">%</span>
-</div>
-</td>
-<td>
-
-</td>
-</tr><tr>
-<td>3.</td>
-<td>
-<input type="radio" name="913" value="true" disabled="disabled"> 
-
-</td>
-<td>
-<textarea class="form-control" name="option" required="" disabled="disabled">Encryption</textarea>
-</td>
-<td width="120px" class="ng-hide">
-<div class="input-group input-group-sm">
-<input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
-<span class="input-group-addon" id="basic-addon1">%</span>
-</div>
-</td>
-<td>
-</td>
-</tr><tr>
-<td>4.</td>
-<td>
-<input type="radio" name="923" value="true" disabled="disabled">
-</td>
-<td>
-<textarea class="form-control" name="option" required="" disabled="disabled">DES function</textarea>
-</td>
-<td width="120px">
-<div class="input-group input-group-sm">
-<input type="number" class="form-control" width="30px" max="100" min="0" data-ng-disabled="true">
-<span class="input-group-addon" id="basic-addon1">%</span>
-</div>
-</td>
-<td>
-
-</td>
-</tr>
-</tbody>
-</table>
-<div class="form-group">
-<input type="checkbox" disabled="disabled"> Partial marks
-</div>
-<div class="form-group">
-<input type="checkbox" disabled="disabled">Shuffle the options in the test
-</div>
-<div>
-<label>Tags</label>
-<div>
-
-<span class="">
-No tags
-</span>
-</div>
-</div>
-<div class="form-group">
-<label>Level : </label>easy
-</div>
-
-<div class="">
-<div class="form-group">
-<label>Question Level</label>
-<div class="row">
-<div class="col-md-8">easy</div>
-</div>
-</div>
-
-<div class="form-group">
-<label>Author</label>
-<div class="row">
-<div class="col-md-8"></div>
-</div>
-</div>
-<div class="form-group">
-<label>provider</label>
-<div class="row">
-<div class="col-md-8"></div>
-</div>
-</div>
-</div>
-</form>
-</div>
-</div>
+               <div class="row">
+                  <div class="col-md-10 col-md-offset-1">
+                     <!-- Question Statement -->
+                     <div class="modal-content s_modal s_blue_color_modal">
+                        <div class="modal-header s_modal_header s_blue_color_header">
+                           <h4 class="modal-title s_font">Question Statement</h4>
+                        </div>
+                        <div class="modal-body s_modal_body">
+                           <div class="heading_modal_statement heading_padding_bottom">
+                              <strong>Question State <i class="fa fa-info-circle"></i></strong>
+                           </div>
+                           <div>
+                              <label class="container_radio border_radio_left">STAGE
+                              <input type="radio" checked="checked" name="question_state_id" value="1">
+                              <span class="checkmark"></span>
+                              </label>
+                              <label class="container_radio">READY
+                              <input type="radio" name="question_state_id" value="2">
+                              <span class="checkmark"></span>
+                              </label>
+                              <label class="container_radio border_radio_right">ABANDONED
+                              <input type="radio" name="question_state_id" value="3">
+                              <span class="checkmark"></span>
+                              </label>
+                           </div>
+                           <hr>
+                           <div class="heading_modal_statement">
+                              <strong>Question Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                              <span>Please add atleast 3 characters in the statement</span>
+                           </div>
+                           <textarea id="s_select_mcqs_txtEditor" name="question_statement"></textarea>
+                           <h5><b>Media(Audio/Video)</b></h5>
+                           <div class="f_upload_btn">
+                              Upload Media
+                              <input type="file" name="media" >
+                           </div>
+                           <!-- <button type="button" class="btn">Upload Media</button> -->
+                        </div>
+                     </div>
+                     <br>
+                     <!-- Choices -->
+                     <div class="modal-content s_modal s_green_color_modal">
+                        <div class="modal-header s_modal_header s_green_color_header">
+                           <h4 class="modal-title s_font">Choices</h4>
+                        </div>
+                        <div class="modal-body s_modal_body">
+                           <div class="heading_modal_statement heading_padding_bottom">
+                              <strong>
+                                 Choices
+                                 <div class="s_popup">
+                                    <i class="fa fa-info-circle"> </i>
+                                    <span class="s_popuptext">
+                                    Under this section, one can add the <br>
+                                    Good to Know: <br>
+                                    (1) Multiple choice multiple answer type questions are supported.
+                                    <br>
+                                    <br>
+                                    (2) Choice field's value cannot be empty or a duplicate.
+                                    </span>
+                                 </div>
+                              </strong>
+                              <strong class="pull-right">
+                              <input type="checkbox" name="partial_marks" id="partial_marks">
+                              Partial marks
+                              </strong>
+                              <div class="no-more-tables ">
+                                 <table class="table s_table" id="choices_table">
+                                    <tbody>
+                                       <tr>
+                                          <td valign="center">1.</td>
+                                          <td>
+                                             <input type="checkbox" name="status" class="choices_table_checkbox">
+                                          </td>
+                                          <td class="s_weight" valign="center">
+                                             <textarea class="form-control" name="choice[]" required=""></textarea>
+                                          </td>
+                                          <td valign="center" class="hidden">
+                                             <div class="input-group input-group-sm">
+                                                <input type="number" name="partial_marks[]" value="" class="form-control" width="30px" max="100" min="0" >
+                                                <span class="input-group-addon" id="basic-addon1">%</span>
+                                             </div>
+                                          </td>
+                                          <td valign="center">
+                                             <a class="delete_row">
+                                             <i class="fa fa-times-circle-o"></i>
+                                             </a>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td valign="center">2.</td>
+                                          <td>
+                                             <input type="checkbox" name="status"  class="choices_table_checkbox">
+                                          </td>
+                                          <td class="s_weight" valign="center">
+                                             <textarea class="form-control" name="choice[]" required=""></textarea>
+                                          </td>
+                                          <td valign="center" class="hidden">
+                                             <div class="input-group input-group-sm">
+                                                <input type="number" name="partial_marks[]" value="" class="form-control" width="30px" max="100" min="0" >
+                                                <span class="input-group-addon" id="basic-addon1">%</span>
+                                             </div>
+                                          </td>
+                                          <td valign="center">
+                                             <a class="delete_row">
+                                             <i class="fa fa-times-circle-o"></i>
+                                             </a>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td valign="center">3.</td>
+                                          <td>
+                                             <input type="checkbox" name="status" class="choices_table_checkbox">
+                                          </td>
+                                          <td class="s_weight" valign="center">
+                                             <textarea class="form-control" name="choice[]" required=""></textarea>
+                                          </td>
+                                          <td valign="center" class="hidden">
+                                             <div class="input-group input-group-sm">
+                                                <input type="number" name="partial_marks[]" value="" class="form-control" width="30px" max="100" min="0" >
+                                                <span class="input-group-addon" id="basic-addon1">%</span>
+                                             </div>
+                                          </td>
+                                          <td valign="center">
+                                             <a class="delete_row">
+                                             <i class="fa fa-times-circle-o"></i>
+                                             </a>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                    <tfoot>
+                                       <tr>
+                                          <td colspan="5" class="text-align-center">
+                                             <button class="btn btn-add-new btn-block" onclick="addrow_choice()"> + Add New Option</button>
+                                          </td>
+                                       </tr>
+                                    </tfoot>
+                                 </table>
+                              </div>
+                              <div class="checkbox">
+                                 <label>
+                                 <input type="checkbox">Shuffle the options in the test
+                                 </label>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <br>
+                     <!-- Question Details -->
+                     <div class="modal-content s_modal s_yellow_color_modal">
+                        <div class="modal-header s_modal_header s_yellow_color_header">
+                           <h4 class="modal-title s_font">Question Details</h4>
+                        </div>
+                        <div class="modal-body s_modal_body">
+                           <div class="row">
+                              <div class="col-md-12 col-sm-12 col-xs-12">
+                                 <div class="form-group form-group-sm">
+                                    <div class="heading_modal_statement heading_padding_bottom">
+                                       <strong>Marks for this Question</strong>
+                                    </div>
+                                    <input type="text" name="marks" class="form-control">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-12 col-sm-12 col-xs-12">
+                                 <div class="form-group form-group-sm">
+                                    <div class="heading_modal_statement heading_padding_bottom">
+                                       <strong>Negative Marks for Answering Wrong <i class="fa fa-info-circle"></i></strong>
+                                    </div>
+                                    <input type="text" name="negative_marks" class="form-control">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="heading_modal_statement heading_padding_bottom">
+                              <strong>Question State <i class="fa fa-info-circle"></i> No tags added</strong>
+                           </div>
+                           <div class="form-group-sm">
+                              <div class="row">
+                                 <div class="col-md-3">
+                                    <select name="tag_id" class="form-control">
+                                       <option value="add Tag" disabled="">Add Tag</option>
+                                       @foreach($tags as $value)
+                                       <option value="{{$value->id}}">{{$value->tag_name}}</option>
+                                       @endforeach                                     
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="heading_modal_statement heading_padding_bottom">
+                              <strong>Question Level <i class="fa fa-info-circle"></i></strong>
+                           </div>
+                           <div class="heading_padding_bottom">
+                              <label class="container_radio border_radio_left">Easy
+                              <input type="radio" checked="checked" name="question_level_id" value="1">
+                              <span class="checkmark"></span>
+                              </label>
+                              <label class="container_radio">Medium
+                              <input type="radio" name="question_level_id" value="2">
+                              <span class="checkmark"></span>
+                              </label>
+                              <label class="container_radio border_radio_right">Hard
+                              <input type="radio" name="question_level_id" value="3">
+                              <span class="checkmark"></span>
+                              </label>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-6 col-sm-12 col-xs-12">
+                                 <div class="form-group form-group-sm">
+                                    <div class="heading_modal_statement heading_padding_bottom">
+                                       <strong>Provider <i class="fa fa-info-circle"></i></strong>
+                                    </div>
+                                    <input type="text" name="provider" class="form-control">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-6 col-sm-12 col-xs-12">
+                                 <div class="form-group form-group-sm">
+                                    <div class="heading_modal_statement heading_padding_bottom">
+                                       <strong>Author <i class="fa fa-info-circle"></i></strong>
+                                    </div>
+                                    <input type="text" name="author" class="form-control">
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <br>
+                     <!--  Solution Details (Optional) -->
+                     <div class="modal-content s_modal s_gray_color_modal">
+                        <div class="modal-header s_modal_header s_gray_color_header">
+                           <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                        </div>
+                        <div class="modal-body s_modal_body">
+                           <div class="row">
+                              <div class="col-md-3 col-sm-12 col-xs-12">
+                                 <div class="form-group form-group-sm">
+                                    <div class="heading_modal_statement heading_padding_bottom">
+                                       <strong>Text <i class="fa fa-info-circle"></i></strong>
+                                    </div>
+                                    <textarea min="0" class="form-control" name="text" style=""></textarea>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-3 col-sm-12 col-xs-12">
+                                 <div class="form-group form-group-sm">
+                                    <div class="heading_modal_statement heading_padding_bottom">
+                                       <strong>Code <i class="fa fa-info-circle"></i></strong>
+                                    </div>
+                                    <textarea min="0" class="form-control" name="code" style=""></textarea>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-3 col-sm-12 col-xs-12">
+                                 <div class="form-group form-group-sm">
+                                    <div class="heading_modal_statement heading_padding_bottom">
+                                       <strong>URL <i class="fa fa-info-circle"></i></strong>
+                                    </div>
+                                    <textarea min="0" class="form-control" name="url" style=""></textarea>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="heading_modal_statement heading_padding_bottom">
+                              <strong>Files <i class="fa fa-info-circle"></i></strong>
+                           </div>
+                           <input type="file" name="solution_media">
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
+         </div>
+      </form>
+   </div>
+</div>
+<!-- section-mcqs-Modal -->
+@endsection
+@section('modal_content')
+<div class="modal fade" id="question_modal" role="dialog">
+   <div class="modal-dialog  modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header s_modal_form_header">
+            <div class="pull-right">
+               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+            </div>
+            <h3 class="modal-title s_font"></i>Multiple Choice Question</h3>
+         </div>
+         <div class="modal-body s_modal_form_body">
+            <div style="">
+               <div class="content-area content-area-70 new-question">
+                  <form name="mcq">
+                     <div class="form-group">
+                        <div class="form-inline">
+                           <label>Question Statement</label>
+                           <span>(Current state of question : READY)</span>
+                           <div class="pull-right">
+                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link">
+                              <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="">
+                        <div class="form-group">
+                           <label>Marks for this Question</label>
+                           <input type="number" name="marks" min="1" class="form-control" required="required" style="">
+                           <span class="">
+                           <label>Negative Marks for Answering Wrong</label>
+                           <input type="number" step="any" name="negativeMarks" min="0" class="form-control" required="required">
+                           </span>
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-sm" value="Update Marks">
+                     </div>
+                     <div>
+                        This is demo account thus the choices are hidden.
+                        <br>
+                     </div>
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th colspan="3">Choices</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="">
+                              <td class="">1.</td>
+                              <td class="">
+                                 <input type="radio" name="893" value="true" disabled="disabled">
+                              </td>
+                              <td>
+                                 <textarea class="form-control" name="option" required="" disabled="disabled">Cipher</textarea>
+                              </td>
+                              <td width="120px" class="">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="ng-binding">2.</td>
+                              <td>
+                                 <input type="radio" name="903" value="true" disabled="disabled">
+                              </td>
+                              <td>
+                                 <textarea class="form-control" name="option" required="" disabled="disabled">Rounds</textarea>
+                              </td>
+                              <td width="120px" class="">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>3.</td>
+                              <td>
+                                 <input type="radio" name="913" value="true" disabled="disabled"> 
+                              </td>
+                              <td>
+                                 <textarea class="form-control" name="option" required="" disabled="disabled">Encryption</textarea>
+                              </td>
+                              <td width="120px">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>4.</td>
+                              <td>
+                                 <input type="radio" name="923" value="true" disabled="disabled">
+                              </td>
+                              <td>
+                                 <textarea class="form-control" name="option" required="" disabled="disabled">DES function</textarea>
+                              </td>
+                              <td width="120px">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" data-ng-disabled="true">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <div class="form-group">
+                        <input type="checkbox" disabled="disabled"> Partial marks
+                     </div>
+                     <div class="form-group">
+                        <input type="checkbox" disabled="disabled">Shuffle the options in the test
+                     </div>
+                     <div>
+                        <label>Tags</label>
+                        <div>
+                           <span class="">
+                           No tags
+                           </span>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label>Level : </label>easy
+                     </div>
+                     <div class="">
+                        <div class="form-group">
+                           <label>Question Level</label>
+                           <div class="row">
+                              <div class="col-md-8">easy</div>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
 @endsection

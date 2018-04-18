@@ -232,8 +232,20 @@ $(document).ready(function() {
   $("#s_txtEditor_Add_public_page").Editor();
   $("#s_txtEditor_Edit_public_page").Editor();
 
+
+  //open modal in new tab
+
+
 });
 
+
+$(function(){
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var c = url.searchParams.get("modal");
+  $('#'+c).modal('show');
+  console.log(c);
+});
 $(function () {
 
 
