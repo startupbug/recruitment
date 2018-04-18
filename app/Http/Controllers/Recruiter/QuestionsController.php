@@ -46,4 +46,18 @@ class QuestionsController extends Controller
 			return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);					
 		}
 	}
+	public function delete_all_mcqs_questions(Request $request){				
+		$myArray = explode(',', $request->section_mc_id[0]);		
+		if (isset($myArray)) {			
+			foreach($myArray as $value) {				
+				$delete = Question::find($value);
+				$delete->delete();		
+			}
+			$this->set_session('You Have Successfully Deleted All The Selected Questions', true);
+				return redirect()->back();
+		}else{
+			$this->set_session('Something Went Wrong, Please Try Again!', false);
+				return redirect()->back();
+		}
+	}
 }

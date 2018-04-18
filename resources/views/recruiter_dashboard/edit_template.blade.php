@@ -152,7 +152,6 @@
                </div>
                <!-- End basic_detail -->
                <!-- Start section_subject -->
-
                @foreach($sections_tabs as $key => $sec)
                <div id="section_subject-{{$key}}" class="tab-pane fade">
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
@@ -160,32 +159,34 @@
                         <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$key}}">Multiple Choice ({{ $sec['count'] }})</a></li>
                         <li><a data-toggle="pill" href="#sections-coding-{{$key}}">Coding (2)</a></li>
                         <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission (2)</a></li>
-                        <li class="pull-right"></li>
-                        <input type="submit" id="submit_prog" value='Submit' data-target="
-                        "/>
+                        <li class="pull-right"></li>                        
                      </ul>
                      <div class="tab-content">
                         <div id="sections-multiplechoice-{{$key}}" class="tab-pane fade in active">
+                           <form action="{{route('delete_all_mcqs_questions')}}" method="get"> 
+                              <input type="hidden" name="section_mc_id[]"  id="section_mc_id">
+                              <button type="submit" class="btn delete_section_mc hidden">Delete</button>
+                           </form>
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
                                     <tr>
                                        <th><input type="checkbox"></th>
                                        <th>#</th>
-                                       <th>Statement112</th>
-                                       <th></th>
+                                       <th>Statement</th>
+                                       <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    @foreach($sec['ques'] as $q)
+                                    @foreach($sec['ques'] as $serial_number => $q)
                                     <tr>
-                                       <td><input type="checkbox" name="prog" value="{{$q->id}}"></td>
-                                       <td>1</td>
+                                       <td><input type="checkbox" name="prog" class="prog_mc" value="{{$q->id}}"></td>
+                                       <td>{{++$serial_number}}</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
                                              <div class="row">
                                                 <div class="single-line-ellipsis">
-                                                   <a href="" class="no-underline">{{$q->question_statement}}</a>
+                                                   <a href="#" data-toggle="modal" data-target="#question_modal"class="no-underline">{{$q->question_statement}}</a>
                                                 </div>
                                              </div>
                                           </div>
@@ -235,6 +236,10 @@
                            </div>
                         </div>
                         <div id="sections-coding-{{$key}}" class="tab-pane fade">
+                           <form>
+                              <input type="text" name="section_c_id[]"  id="section_c_id">
+                              <button type="submit" class="btn delete_section_c hidden">Delete</button>
+                           </form>
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
@@ -247,7 +252,7 @@
                                  </thead>
                                  <tbody>
                                     <tr>
-                                       <td><input type="checkbox"></td>
+                                       <td><input type="checkbox" class="prog_c"></td>
                                        <td>1</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -391,7 +396,11 @@
                               </table>
                            </div>
                         </div>
-                        <div id="sections-submission-{{$value->id}}" class="tab-pane fade">
+                        <div id="sections-submission-{{$key}}" class="tab-pane fade">
+                           <form>
+                              <input type="text" name="section_s_id[]"  id="section_s_id">
+                              <button type="submit" class="btn delete_section_s hidden">Delete</button>
+                           </form>
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
@@ -404,7 +413,7 @@
                                  </thead>
                                  <tbody>
                                     <tr>
-                                       <td><input type="checkbox"></td>
+                                       <td><input type="checkbox" class="prog_s"></td>
                                        <td>1</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -4252,4 +4261,187 @@
    </div>
 </div> 
 <!-- section-mcqs-Modal -->
+@endsection
+
+@section('modal_content')
+<div class="modal fade" id="question_modal" role="dialog">
+   <div class="modal-dialog  modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header s_modal_form_header">
+            <div class="pull-right">
+               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+            </div>
+            <h3 class="modal-title s_font"></i>Multiple Choice Question</h3>
+         </div>
+         <div class="modal-body s_modal_form_body">
+            <div style="">
+               <div class="content-area content-area-70 new-question">
+                  <form name="mcq">
+                     <div class="form-group">
+                        <div class="form-inline">
+                           <label>Question Statement</label>
+                           <span>(Current state of question : READY)</span>
+                           <div class="pull-right">
+                              <a target="_blank" href="#" class="btn-sm btn-link">
+                              <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
+                           </div>
+                        </div>
+                        <!--<div class="disabled">
+                           <pagedown-editor content="currentMCQ.statement" show-preview="true" rows="5" class="ng-isolate-scope">
+                              <div class="ng-scope">
+                                 <div class="wmd-panel wmd-editor">
+                                    <div id="wmd-button-bar-3">
+                                       <ul id="wmd-button-row-3" class="wmd-button-row">
+                                          <li class="wmd-button" id="wmd-bold-button-3" title="Strong <strong> Ctrl+B" style="left: 0px;"><span style="background-position: 0px 0px;"></span></li>
+                                          <li class="wmd-button" id="wmd-italic-button-3" title="Emphasis <em> Ctrl+I" style="left: 25px;"><span style="background-position: -20px 0px;"></span></li>
+                                          <li class="wmd-spacer wmd-spacer1" id="wmd-spacer1-3"></li>
+                                          <li class="wmd-button" id="wmd-link-button-3" title="Hyperlink <a> Ctrl+L" style="left: 75px;"><span style="background-position: -40px 0px;"></span></li>
+                                          <li class="wmd-button" id="wmd-quote-button-3" title="Blockquote <blockquote> Ctrl+Q" style="left: 100px;"><span style="background-position: -60px 0px;"></span></li>
+                                          <li class="wmd-button" id="wmd-code-button-3" title="Code Sample <pre><code> Ctrl+K" style="left: 125px;"><span style="background-position: -80px 0px;"></span></li>
+                                          <li class="wmd-button" id="wmd-image-button-3" title="Image <img> Ctrl+G" style="left: 150px;"><span style="background-position: -100px 0px;"></span></li>
+                                          <li class="wmd-spacer wmd-spacer2" id="wmd-spacer2-3"></li>
+                                          <li class="wmd-button" id="wmd-olist-button-3" title="Numbered List <ol> Ctrl+O" style="left: 200px;"><span style="background-position: -140px 0px;"></span></li>
+                                          <li class="wmd-button" id="wmd-ulist-button-3" title="Bulleted List <ul> Ctrl+U" style="left: 225px;"><span style="background-position: -160px 0px;"></span></li>
+                                          <li class="wmd-button" id="wmd-heading-button-3" title="Heading <h1>/<h2> Ctrl+H" style="left: 250px;"><span style="background-position: -180px 0px;"></span></li>
+                                          <li class="wmd-button" id="wmd-hr-button-3" title="Horizontal Rule <hr> Ctrl+R" style="left: 275px;"><span style="background-position: -180px 0px;"></span></li>
+                                          <li class="wmd-spacer wmd-spacer3" id="wmd-spacer3-3"></li>
+                                          <li class="wmd-button" id="wmd-undo-button-3" title="Undo - Ctrl+Z" style="left: 325px;"><span style="background-position: -220px -20px;"></span></li>
+                                          <li class="wmd-button" id="wmd-redo-button-3" title="Redo - Ctrl+Y" style="left: 350px;"><span style="background-position: -240px -20px;"></span></li>
+                                          <li class="wmd-button wmd-help-button" id="wmd-help-button-3" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -260px 0px;"></span></li>
+                                       </ul>
+                                    </div>
+                                    <textarea class="wmd-input form-control ng-pristine ng-untouched ng-valid" id="wmd-input-3" ng-model="content" placeholder="" rows="5"></textarea>
+                                 </div>
+                                 <div id="wmd-preview-3" class="pagedown-preview wmd-panel wmd-preview" style="">
+                                    <p>Heart of Data Encryption Standard (DES), is the</p>
+                                 </div>
+                              </div>
+                           </pagedown-editor>
+                        </div>-->
+                     </div>
+                     <div class="">
+                        <div class="form-group">
+                           <label>Marks for this Question</label>
+                           <input type="number" name="marks" min="1" class="form-control" required="required" style="">
+                           <span class="">
+                           <label>Negative Marks for Answering Wrong</label>
+                           <input type="number" step="any" name="negativeMarks" min="0" class="form-control" required="required">
+                           </span>
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-sm" value="Update Marks">
+                     </div>
+                     <div>
+                        This is demo account thus the choices are hidden.
+                        <br>
+                     </div>
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th colspan="3">Choices</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="">
+                              <td class="">1.</td>
+                              <td class="">
+                                 <input type="radio" name="893" value="true" disabled="disabled">
+                              </td>
+                              <td>
+                                 <textarea class="form-control" name="option" required="" disabled="disabled">Cipher</textarea>
+                              </td>
+                              <td width="120px" class="">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="ng-binding">2.</td>
+                              <td>
+                                 <input type="radio" name="903" value="true" disabled="disabled">
+                              </td>
+                              <td>
+                                 <textarea class="form-control" name="option" required="" disabled="disabled">Rounds</textarea>
+                              </td>
+                              <td width="120px" class="">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>3.</td>
+                              <td>
+                                 <input type="radio" name="913" value="true" disabled="disabled"> 
+                              </td>
+                              <td>
+                                 <textarea class="form-control" name="option" required="" disabled="disabled">Encryption</textarea>
+                              </td>
+                              <td width="120px" class="ng-hide">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td>4.</td>
+                              <td>
+                                 <input type="radio" name="923" value="true" disabled="disabled">
+                              </td>
+                              <td>
+                                 <textarea class="form-control" name="option" required="" disabled="disabled">DES function</textarea>
+                              </td>
+                              <td width="120px">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" data-ng-disabled="true">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <div class="form-group">
+                        <input type="checkbox" disabled="disabled"> Partial marks
+                     </div>
+                     <div class="form-group">
+                        <input type="checkbox" disabled="disabled">Shuffle the options in the test
+                     </div>
+                     <div>
+                        <label>Tags</label>
+                        <div>
+                           <span class="">
+                           No tags
+                           </span>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label>Level : </label>easy
+                     </div>
+                     <div class="">
+                        <div class="form-group">
+                           <label>Question Level</label>
+                           <div class="row">
+                              <div class="col-md-8">easy</div>
+                           </div>
+                        </div>
+                        
+                     
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 @endsection
