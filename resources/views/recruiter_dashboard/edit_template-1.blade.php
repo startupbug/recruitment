@@ -4121,7 +4121,7 @@
                               </div>
                               <div class="checkbox">
                                  <label>
-                                 <input type="checkbox" name="shuffle_status">Shuffle the options in the test
+                                 <input type="checkbox">Shuffle the options in the test
                                  </label>
                               </div>
                            </div>
@@ -4280,7 +4280,7 @@
                      <div class="form-group">
                         <div class="form-inline">
                            <label>Question Statement</label>
-                           <span>(Current state of question : <span id="state_name"></span>)</span>
+                           <span>(Current state of question : <h6 id="state_name"></h6>)</span>
                            <br>                         
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
@@ -4304,21 +4304,88 @@
                         This is demo account thus the choices are hidden.
                         <br>
                      </div>
-                     <table class="table" >
+                     <table class="table">
                         <thead>
                            <tr>
                               <th colspan="3">Choices</th>
                            </tr>
                         </thead>
-                        <tbody id="choiceTable">
-                          
+                        <tbody>
+                           <tr class="" id="mcqrow0">
+                              <td class="">1.</td>
+                              <td class="">
+                                 <input type="radio" name="893" value="true" disabled="disabled">
+                              </td>
+                              <td>
+                                 <textarea class="form-control" id="mcq0" name="option" required="" disabled="disabled">Cipher</textarea>
+                              </td>
+                              <td width="120px" class="">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr>
+                           <tr id="mcqrow1">
+                              <td class="ng-binding">2.</td>
+                              <td>
+                                 <input type="radio" name="903" value="true" disabled="disabled">
+                              </td>
+                              <td>
+                                 <textarea class="form-control" id="mcq1" name="option" required="" disabled="disabled">Rounds</textarea>
+                              </td>
+                              <td width="120px" class="">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr>
+                           <tr id="mcqrow2">
+                              <td>3.</td>
+                              <td>
+                                 <input type="radio" name="913" value="true" disabled="disabled"> 
+                              </td>
+                              <td>
+                                 <textarea class="form-control" id="mcq2" name="option" required="" disabled="disabled">Encryption</textarea>
+                              </td>
+                              <td width="120px">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" disabled="disabled">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr>
+                           <tr id="mcqrow3">
+                              <td>4.</td>
+                              <td>
+                                 <input type="radio" name="923" value="true" disabled="disabled">
+                              </td>
+                              <td>
+                                 <textarea class="form-control" id="mcq3" name="option" required="" disabled="disabled">DES function</textarea>
+                              </td>
+                              <td width="120px">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" max="100" min="0" data-ng-disabled="true">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr>
                         </tbody>
                      </table>
                      <div class="form-group">
-                        <input type="checkbox" class="partialCheck" disabled="disabled"> Partial marks
+                        <input type="checkbox" disabled="disabled"> Partial marks
                      </div>
                      <div class="form-group">
-                        <input type="checkbox" class="shuffleCheck" disabled="disabled">Shuffle the options in the test
+                        <input type="checkbox" disabled="disabled">Shuffle the options in the test
                      </div>
                      <div>
                         <label>Tags</label>

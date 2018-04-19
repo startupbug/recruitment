@@ -101,6 +101,8 @@ Route::get('/move_down/{id}', 'Recruiter\TemplatesController@move_down')->name('
 Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
 Route::get('/delete_question/{id}', 'Recruiter\QuestionsController@delete_question')->name('delete_question');
 Route::get('/delete_all_mcqs_questions', 'Recruiter\QuestionsController@delete_all_mcqs_questions')->name('delete_all_mcqs_questions');
+Route::post('/question_modal_partial_data', 'Recruiter\QuestionsController@question_modal_partial_data')->name('question_modal_partial_data');
+Route::post('/update_partial_question', 'Recruiter\QuestionsController@update_partial_question')->name('update_partial_question');
 //Recruiter Questions Routes Ended
 
 });
