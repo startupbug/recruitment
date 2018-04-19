@@ -573,6 +573,13 @@ function addrow_weightage() {
    });
 }
 
+$(function(){
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var c = url.searchParams.get("modal");
+  $('#'+c).modal('show');
+  console.log(c);
+});
 var testtemp_setInterval_Expand;
 var testtemp_setInterval_Collapse;
 
@@ -727,3 +734,126 @@ function template_row_add_choice() {
        });
    });
 }
+
+$(document).ready(function() {
+
+  $('.submit_prog').click(function(){
+    var target = $(this).attr('data-target');
+    var data = $('.prog-'+target).val();
+  });
+
+  var array_mc = [];
+  $('.prog_mc').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+      array_mc.push(value);
+
+      if (array_mc.length == 0)
+      {
+        $(".delete_section_mc").addClass('hidden');
+        $("#section_mc_id").val(array_mc);
+      }
+      else
+      {
+        $(".delete_section_mc").removeClass('hidden');
+        $("#section_mc_id").val(array_mc);
+      }
+    }
+    else{
+      removeItem = $(this).val();
+
+      array_mc = $.grep(array_mc, function(value) {
+        return value != removeItem;
+      });
+
+      if (array_mc.length == 0)
+      {
+        $(".delete_section_mc").addClass('hidden');
+        $("#section_mc_id").val(array_mc);
+      }
+      else
+      {
+        $(".delete_section_mc").removeClass('hidden');
+        $("#section_mc_id").val(array_mc);
+      }
+    }
+  });
+
+  var array_c = [];
+  $('.prog_c').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+      array_c.push(value);
+
+      if (array_c.length == 0)
+      {
+        $(".delete_section_c").addClass('hidden');
+        $("#section_c_id").val(array_c);
+      }
+      else
+      {
+        $(".delete_section_c").removeClass('hidden');
+        $("#section_c_id").val(array_c);
+      }
+    }
+    else{
+      removeItem = $(this).val();
+
+      array_c = $.grep(array_c, function(value) {
+        return value != removeItem;
+      });
+
+      if (array_c.length == 0)
+      {
+        $(".delete_section_c").addClass('hidden');
+        $("#section_c_id").val(array_c);
+      }
+      else
+      {
+        $(".delete_section_c").removeClass('hidden');
+        $("#section_c_id").val(array_c);
+      }
+    }
+  });
+
+  var array_s = [];
+  $('.prog_s').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+      array_s.push(value);
+
+      if (array_s.length == 0)
+      {
+        $(".delete_section_s").addClass('hidden');
+        $("#section_s_id").val(array_s);
+      }
+      else
+      {
+        $(".delete_section_s").removeClass('hidden');
+        $("#section_s_id").val(array_s);
+      }
+    }
+    else{
+      removeItem = $(this).val();
+
+      array_s = $.grep(array_s, function(value) {
+        return value != removeItem;
+      });
+
+      if (array_s.length == 0)
+      {
+        $(".delete_section_s").addClass('hidden');
+        $("#section_s_id").val(array_s);
+      }
+      else
+      {
+        $(".delete_section_s").removeClass('hidden');
+        $("#section_s_id").val(array_s);
+      }
+    }
+  });
+
+});

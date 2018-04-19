@@ -359,7 +359,7 @@
                         <button type="submit" class="btn s_save_button s_font">Create</button>
                         <button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>
                     </div>
-                    <h3 class="modal-title s_font">Create New Test Template</h3>
+                    <h3 class="modal-title s_font">Create New Test Template1</h3>
                 </div>
                 <div class="modal-body s_modal_form_body test_template">
                     <div class="row">
@@ -401,6 +401,7 @@
                                     <div class="col-md-9">
                                         <div class="radio">
                                             <label><input type="radio" name="template_type_id" value="1">Public</label>
+                                            
                                             <label><input type="radio" name="template_type_id" value="2">Invite-Only</label>
                                         </div>
                                     </div>

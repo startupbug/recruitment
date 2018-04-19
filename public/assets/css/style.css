@@ -2592,6 +2592,7 @@ li.active {
     background-color: #261f63;
     color: white;
 }
+
 .btn-group-sm>.btn, .btn-sm {
     padding: 5px 10px !important;
     font-size: 12px !important;
@@ -2604,4 +2605,42 @@ li.active {
 }
 #section-mcqs-Modal-Collapse .fr-element {
     height: 600px;
+}
+
+.submit_prog{
+     display: none;
+}
+.f_pencil {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.5);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-221deg);
+}
+.glyphicon.f_pencil {
+   top: 2px !important;
+    left: 10px;
+    font-size: 18px !important;
+}
+.delete_section_mc{
+    background: #261f63;
+    color: #fff;
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
+.delete_section_c{
+    background: #261f63;
+    color: #fff;
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
+.delete_section_s{
+    background: #261f63;
+    color: #fff;
+    position: absolute;
+    right: 15px;
+    top: 5px;
 }
