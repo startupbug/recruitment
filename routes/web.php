@@ -105,5 +105,10 @@ Route::post('/question_modal_partial_data', 'Recruiter\QuestionsController@quest
 Route::post('/update_partial_question', 'Recruiter\QuestionsController@update_partial_question')->name('update_partial_question');
 //Recruiter Questions Routes Ended
 
+//Recruiter Test Templates Setting Routes Started
+Route::post('/templatetestSetting', 'Recruiter\TemplateSetting@templatetestSetting')->name('templatetestSetting');
+Route::post('/templatetestContactSetting', 'Recruiter\TemplateSetting@templatetestContactSetting')->name('templatetestContactSetting');
+//Recruiter Test Templates Setting Routes Ended
+
 });
 /*Recruiter Routes Ended*/

@@ -5,8 +5,11 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Events\TemplateSection;
 use App\Test_template_types;
+use App\Templates_test_setting;
+use App\Templates_contact_setting;
 use App\Test_template;
 use App\Section;
+use App\Webcam;
 use App\Question;
 use Auth;
 use DB;
@@ -15,11 +18,13 @@ class TemplatesController extends Controller
 {
 	// Manage Test View Index
 	public function manage_test_view(){
+
     	$args['count'] = Test_template::count();
         $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
         foreach ($args['listing'] as $value) {
-            $args['sections'][$value->id] = Section::where('template_id',$value->id)->get();            
+            $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')->select('sections.*', DB::raw('count(questions.id) as count_ques'))->where('sections.template_id','=',$value->id)->get();            
         }
+        //dd($args['sections']);
         return view('recruiter_dashboard.view')->with($args);
     }
 	// Manage Test View Index
@@ -67,6 +72,10 @@ class TemplatesController extends Controller
              $args['sections_tabs'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              $args['sections_tabs'][$value->id]['count'] = $value->section_questions;
         }
+        $args['test_setting_types'] = Test_template_types::get();
+        $args['test_setting_webcam'] = Webcam::get();
+        $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
+        $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 	// Editing Test Template

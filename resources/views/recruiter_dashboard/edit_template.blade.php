@@ -641,31 +641,31 @@
                         <ul class="s_setting_nav">
                            <li class="active">
                               <div class="setting_nav_border">
-                                 <img src="../assets/img/testSettings.png" height="20" alt="" class="pull-left">
+                                 <img src="{{asset('public/assets/img/testSettings.png')}}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#test_setting">Test Settings</a>
                               </div>
                            </li>
                            <li>
                               <div class="setting_nav_border">
-                                 <img src="../assets/img/questionnair.png" height="20" alt="" class="pull-left">
+                                 <img src="{{asset('public/assets/img/questionnair.png')}}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#questionnaire">Questionnaire</a>
                               </div>
                            </li>
                            <li>
                               <div class="setting_nav_border">
-                                 <img src="../assets/img/contact.png" height="20" alt="" class="pull-left">
+                                 <img src="{{asset('public/assets/img/contact.png')}}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#contact_details">Contact Details</a>
                               </div>
                            </li>
                            <li>
                               <div class="setting_nav_border">
-                                 <img src="../assets/img/mailSettings.png" height="20" alt="" class="pull-left">
+                                 <img src="{{asset('public/assets/img/mailSettings.png')}}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#mail_settings">Mail Settings</a>
                               </div>
                            </li>
                            <li>
                               <div class="setting_nav_border">
-                                 <img src="../assets/img/mailSettings.png" height="20" alt="" class="pull-left">
+                                 <img src="{{asset('public/assets/img/mailSettings.png')}}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#mail_templates">Mail Templates</a>
                               </div>
                            </li>
@@ -679,86 +679,62 @@
                                  Test Timings and Minimum Pass Percentage
                                  </strong>
                               </div>
-                              <div class="panel-body s_panelBodyHeight">
-                                 <form class="form-horizontal" name="tSettings">
-                                    <div class="form-group form-group-sm">
-                                       <label class="col-sm-3 control-label">
-                                          Type of the test &nbsp;
-                                          <div class="s_popup">
-                                             <i class="fa fa-info-circle"> </i>
-                                             <span class="s_popuptext">
-                                             htmltooltip.editTesttemplateType
-                                             </span>
-                                          </div>
-                                       </label>
-                                       <div class="col-sm-9">
-                                          <div class="row">
-                                             <div class="col-sm-5">
-                                                <select class="form-control">
-                                                   <option value="boolean:true" label="Public" selected="selected">Public</option>
-                                                   <option value="boolean:false" label="Invite Only">Invite Only</option>
-                                                </select>
-                                             </div>
-                                          </div>
-                                          <p class="help-block">This test will be open for all interested candidates</p>
-                                       </div>
-                                    </div>
-                                    <div class="form-group form-group-sm">
-                                       <label class="col-sm-3 control-label">
-                                          Webcam &nbsp;
-                                          <div class="s_popup">
-                                             <i class="fa fa-info-circle"> </i>
-                                             <span class="s_popuptext">
-                                             This is a cheating prevention mechanism to
-                                             <br>
-                                             remotely monitor the candidates.How it works: This
-                                             <br>
-                                             capture a series of screenshots at regular intervals.
-                                             </span>
-                                          </div>
-                                       </label>
-                                       <div class="col-sm-9">
-                                          <div class="row">
-                                             <div class="col-sm-5">
-                                                <select class="form-control">
-                                                   <option value="Required">Strictly Required</option>
-                                                   <option value="Not_Required">Capture webcam if available</option>
-                                                   <option value="Strictly_Not_Required">Not Required</option>
-                                                </select>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="form-group form-group-sm">
-                                       <label class="col-sm-3 control-label">
-                                          Candidate Resume &nbsp;
-                                          <div class="s_popup">
-                                             <i class="fa fa-info-circle"> </i>
-                                             <span class="s_popuptext">
-                                             This allows you to ask for a candidate's resume.<br>
-                                             during the registration
-                                             Good to know: you can <br>
-                                             choose to make the resume submission mandatory
-                                             </span>
-                                          </div>
-                                       </label>
-                                       <div class="col-sm-9">
-                                          <div class="checkbox">
-                                             <label>
-                                             <input type="checkbox"> Request Resume
-                                             </label>
-                                          </div>
-                                          <div class="checkbox">
-                                             <label>
-                                             <input type="checkbox"> Mandate Resume
-                                             </label>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div>
+                              <form class="form-horizontal" name="tSettings" id="templatetestSetting" action="{{route('templatetestSetting')}}" method="POST">
+                                 {{csrf_field()}}
+                                 <input type="hidden" name="template_id" value="{{$edit->id}}">
+                                 <div class="panel-body s_panelBodyHeight">
                                        <div class="form-group form-group-sm">
                                           <label class="col-sm-3 control-label">
-                                             Disable Finish Test Button &nbsp;
+                                             Type of the test &nbsp;
+                                             <div class="s_popup">
+                                                <i class="fa fa-info-circle"> </i>
+                                                <span class="s_popuptext">
+                                                htmltooltip.editTesttemplateType
+                                                </span>
+                                             </div>
+                                          </label>
+                                          <div class="col-sm-9">
+                                             <div class="row">
+                                                <div class="col-sm-5">
+                                                   <select name="test_template_types_id" class="form-control">
+                                                      @foreach($test_setting_types as $value)
+                                                      <option value="{{$value->id}}">{{$value->name}}</option>      
+                                                      @endforeach()
+                                                   </select>
+                                                </div>
+                                             </div>
+                                             <p class="help-block">This test will be open for all interested candidates</p>
+                                          </div>
+                                       </div>
+                                       <div class="form-group form-group-sm">
+                                          <label class="col-sm-3 control-label">
+                                             Webcam &nbsp;
+                                             <div class="s_popup">
+                                                <i class="fa fa-info-circle"> </i>
+                                                <span class="s_popuptext">
+                                                This is a cheating prevention mechanism to
+                                                <br>
+                                                remotely monitor the candidates.How it works: This
+                                                <br>
+                                                capture a series of screenshots at regular intervals.
+                                                </span>
+                                             </div>
+                                          </label>
+                                          <div class="col-sm-9">
+                                             <div class="row">
+                                                <div class="col-sm-5">
+                                                   <select name="webcam_id" class="form-control">
+                                                      @foreach($test_setting_webcam as $value)
+                                                      <option value="{{$value->id}}">{{$value->webcam_name}}</option>
+                                                      @endforeach
+                                                   </select>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="form-group form-group-sm">
+                                          <label class="col-sm-3 control-label">
+                                             Candidate Resume &nbsp;
                                              <div class="s_popup">
                                                 <i class="fa fa-info-circle"> </i>
                                                 <span class="s_popuptext">
@@ -770,45 +746,72 @@
                                              </div>
                                           </label>
                                           <div class="col-sm-9">
-                                             <div class="checkbox no-padding">
-                                                <label>
-                                                <input type="checkbox">
+                                             <div class="checkbox">
+                                                <label> 
+                                                <input type="checkbox" value="1" @if($edit_test_settings->request_resume == 1) checked='checked' @endif name="request_resume" id="request_resume"> Request Resume
+                                                </label>
+                                             </div>
+                                             <div class="checkbox">
+                                                <label id="mandate_resume_label" class="hidden">
+                                                <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) checked='checked' @endif   name="mandatory_resume" id="mandate_resume" disabled> Mandate Resume
                                                 </label>
                                              </div>
                                           </div>
                                        </div>
-                                    </div>
-                                    <div class="form-group form-group-sm">
-                                       <label class="col-sm-3 control-label">
-                                          Enable Email Verification &nbsp;
-                                          <div class="s_popup">
-                                             <i class="fa fa-info-circle"> </i>
-                                             <span class="s_popuptext">
-                                             This allows you to ask for a candidate's resume.<br>
-                                             during the registration
-                                             Good to know: you can <br>
-                                             choose to make the resume submission mandatory
-                                             </span>
-                                          </div>
-                                       </label>
-                                       <div class="col-sm-9">
-                                          <div class="checkbox">
-                                             <label>
-                                             <input type="checkbox">
-                                             &nbsp;
+                                       <div>
+                                       <!--    <div class="form-group form-group-sm">
+                                             <label class="col-sm-3 control-label">
+                                                Disable Finish Test Button &nbsp;
+                                                <div class="s_popup">
+                                                   <i class="fa fa-info-circle"> </i>
+                                                   <span class="s_popuptext">
+                                                   This allows you to ask for a candidate's resume.<br>
+                                                   during the registration
+                                                   Good to know: you can <br>
+                                                   choose to make the resume submission mandatory
+                                                   </span>
+                                                </div>
                                              </label>
-                                             <div class="help-block">(The candidate will not be able to resume the test in case of system failure)</div>
-                                             <div class="help-block">(Email-id will always be verified for the login or invite only test)</div>
+                                             <div class="col-sm-9">
+                                                <div class="checkbox no-padding">
+                                                   <label>
+                                                   <input type="checkbox">
+                                                   </label>
+                                                </div>
+                                             </div>
+                                          </div> -->
+                                       </div>
+                                       <div class="form-group form-group-sm">
+                                          <label class="col-sm-3 control-label">
+                                             Enable Email Verification &nbsp;
+                                             <div class="s_popup">
+                                                <i class="fa fa-info-circle"> </i>
+                                                <span class="s_popuptext">
+                                                This allows you to ask for a candidate's resume.<br>
+                                                during the registration
+                                                Good to know: you can <br>
+                                                choose to make the resume submission mandatory
+                                                </span>
+                                             </div>
+                                          </label>
+                                          <div class="col-sm-9">
+                                             <div class="checkbox">
+                                                <label>
+                                                <input type="checkbox" value="1" @if($edit_test_settings->email_verification == 1) checked='checked' @endif  name="email_verification" id="enable_verification">
+                                                &nbsp;
+                                                </label>
+                                                <div class="help-block" id="enable_verification_bloc">(The candidate will not be able to resume the test in case of system failure)</div>
+                                                <div class="help-block hidden">(Email-id will always be verified for the login or invite only test)</div>
+                                             </div>
                                           </div>
                                        </div>
-                                    </div>
-                                 </form>
-                              </div>
-                              <div class="clearfix panel-footer borderTop">
-                                 <div class="col-sm-3 s_margin_bottom">
-                                    <button type="submit" class="btn btn-sm">Save</button>
                                  </div>
-                              </div>
+                                 <div class="clearfix panel-footer borderTop">
+                                    <div class="col-sm-3 s_margin_bottom">
+                                       <button type="submit" class="btn btn-sm">Save</button>
+                                    </div>
+                                 </div>
+                              </form>
                            </div>
                         </div>
                         <div id="questionnaire" class="tab-pane fade">
@@ -843,7 +846,9 @@
                                  Contact Details <i class="fa fa-info-circle"></i>
                                  </strong>
                               </div>
-                              <form class="form-horizontal" name="tSettings">
+                              <form class="form-horizontal" name="tSettings" id="templatetestContactSetting" action="{{route('templatetestContactSetting')}}" method="POST">
+                                 {{csrf_field()}}
+                                 <input type="hidden" name="template_id" value="{{$edit->id}}">
                                  <div class="panel-body s_panelBodyHeight">
                                     <p class="s_modal_body_heading text-center">These are the contact details for the candidate’s reference incase of any query.</p>
                                     <br>
@@ -852,10 +857,10 @@
                                        Email ID
                                        </label>
                                        <div class="col-sm-6">
-                                          <input type="text" class="form-control" name="" value="jyothi@codeground.in" disabled>
+                                          <input type="text" class="form-control" name="email" value="{{Auth::user()->email}}" disabled>
                                           <div class="">
                                              <label>
-                                             <input type="checkbox"> Make visible to candidate
+                                             <input type="checkbox" value="1"@if($edit_test_contact_settings->email_visible == 1) checked='checked' @endif name="email_visible"> Make visible to candidate
                                              </label>
                                           </div>
                                        </div>
@@ -865,10 +870,10 @@
                                        Contact Number
                                        </label>
                                        <div class="col-sm-6">
-                                          <input type="text" class="form-control" name="" value="080 655 55 814" disabled>
+                                          <input type="text" class="form-control" name="phone" value="{{Auth::user()->profile->phone}}" disabled>
                                           <div class="">
                                              <label>
-                                             <input type="checkbox"> Show Contact Number to candidate for help
+                                             <input type="checkbox" value="1" @if($edit_test_contact_settings->contact_visible == 1) checked='checked' @endif name="contact_visible"> Show Contact Number to candidate for help
                                              </label>
                                           </div>
                                        </div>
