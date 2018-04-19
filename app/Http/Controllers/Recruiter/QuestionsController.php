@@ -37,4 +37,14 @@ class QuestionsController extends Controller
 			return redirect()->back();
 		}
 	}
+
+	public function delete_question($id){
+		   // dd($id);   	
+		$delete = Question::find($id);
+		if ($delete->delete()){
+			return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted The Question']);					
+		}else{
+			return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);					
+		}
+	}
 }

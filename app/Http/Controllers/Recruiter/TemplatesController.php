@@ -7,6 +7,7 @@ use App\Events\TemplateSection;
 use App\Test_template_types;
 use App\Test_template;
 use App\Section;
+use App\Question;
 use Auth;
 use DB;
 
@@ -61,13 +62,18 @@ class TemplatesController extends Controller
 	public function edit_template($id){        
         $args['tags'] = DB::table('question_tags')->get();
       	$args['edit'] = Test_template::find($id);  
-      	$args['sections'] = Section::where('template_id',$id)->orderBy('order_number','ASC')->get();        
+      	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
+        foreach ($args['sections'] as $key => $value) {
+             $args['sections_tabs'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
+             $args['sections_tabs'][$value->id]['count'] = $value->section_questions;
+        }
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 	// Editing Test Template
 
     //Deleting Test Template
-    public function delete_test_template($id){        
+    public function delete_test_template($id){  
+            
         $delete = Test_template::find($id);                
         $delete->delete();
         $this->set_session('Test Template Is Deleted', true); 

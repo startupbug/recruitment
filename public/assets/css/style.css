@@ -1103,7 +1103,7 @@
 }
 td button.btn {
     background-color: #262063;
-    border: 1px solid #262063;
+    /* border: 1px solid #262063; */
     color: #ffffff;
     font-size: 14px;
     font-family: 'SourceSansPro-Regular';
@@ -1129,7 +1129,7 @@ td button.btn.focus, td button.btn:focus, td button.btn:hover {
     line-height: 35px;
     font-size: 13px;
     vertical-align: middle;
-    text-align: center;
+    /* text-align: center; */
 }
 .s_table tbody tr td a {
   color: #262063;
@@ -2529,7 +2529,7 @@ span.s_popuptext.f_popup {
 }
 
 .dropdown-menu {
-    padding: 0px 0px;  
+    padding: 0px 0px;
 }
 
 label.upcoming {
@@ -2591,4 +2591,17 @@ li.active {
     margin-top: 15px;
     background-color: #261f63;
     color: white;
+}
+.btn-group-sm>.btn, .btn-sm {
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    border-radius: 3px !important;
+}
+
+#section-mcqs-Modal-Collapse{
+    background: rgba(0, 0, 0, 0.52);
+}
+#section-mcqs-Modal-Collapse .fr-element {
+    height: 600px;
 }

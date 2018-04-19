@@ -15,4 +15,9 @@ class Question_detail extends Model
 	{ 
 	    return $this->belongsTo('App\Question');
 	}
+
+	public function question_tag()
+    {   
+        return $this->belongsTo('App\Question_tag','tag_id');
+    }
 }

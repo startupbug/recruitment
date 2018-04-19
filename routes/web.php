@@ -99,6 +99,7 @@ Route::get('/move_down/{id}', 'Recruiter\TemplatesController@move_down')->name('
 
 //Recruiter Questions Routes Started
 Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
+Route::get('/delete_question/{id}', 'Recruiter\QuestionsController@delete_question')->name('delete_question');
 //Recruiter Questions Routes Ended
 
 });
