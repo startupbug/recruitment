@@ -49,10 +49,10 @@
                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                            </a>
                         </div>
-                     </li>
-                     @endforeach    
+                     </li>  
+                     @endforeach 
                      <form action="{{route('add_section')}}" id="add_section" method="post">
-                        {{csrf_field()}}                       
+                        {{csrf_field()}}
                         <input type="hidden" name="order_value" value="{{ $order = $order ? $order : 0 }}">
                         <input type="hidden" name="template_id" value="{{$edit->id}}">
                         <button type="submit" class="btn btn-default" name="button"> + Add   Section
@@ -70,7 +70,7 @@
                <div id="basic_detail" class="tab-pane fade in active">
                   <div class="col-md-6 col-sm-12 col-xs-12 padding-0">
                      <form class="form-vertical" id="update_test_template" action="{{route('update_test_template',['id'=>$edit->id])}}" method="post">
-                        {{csrf_field()}}                    
+                        {{csrf_field()}}
                         <input type="hidden" name="template_type_id" value="{{$edit->template_type_id}}">
                         <div class="form-group">
                            <label class="control-label" for="title">
@@ -179,51 +179,51 @@
                                  </thead>
                                  <tbody>
                                     @foreach($sec['ques'] as $serial_number => $q)
-                                  <tr>
-                                       <td><input type="checkbox" name="prog" class="prog_mc" value="{{$q->id}}"></td>
-                                       <td>{{++$serial_number}}</td>
-                                       <td class="col-md-10 col-sm-12 col-xs-12">
-                                          <div class="statement">
-                                             <div class="row">
-                                                <div class="single-line-ellipsis">
-                                                   <a href="#" onclick="modal_data({{$q->id}})" data-toggle="modal" data-target="#question_modal"class="no-underline">{{$q->question_statement}}</a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="description text-muted">
-                                             <div class="row">
-                                                <div class="col-md-4 col-sm-12 col-xs-12">
-                                                   <div class="row">
-                                                      <div class="col-xs-6">
-                                                         <span style="text-transform:capitalize;">
-                                                         <i>{{$q->question_level['level_name']}}</i>
-                                                         </span>
-                                                      </div>
-                                                      <div class="col-xs-6 no-padding-left">
-                                                         <span class="text-muted">Marks</span>
-                                                         <span class="conjunction">:</span>{{$q->question_detail['marks']}}
-                                                      </div>
+                                     <tr>
+                                          <td><input type="checkbox" name="prog" class="prog_mc" value="{{$q->id}}"></td>
+                                          <td>{{++$serial_number}}</td>
+                                          <td class="col-md-10 col-sm-12 col-xs-12">
+                                             <div class="statement">
+                                                <div class="row">
+                                                   <div class="single-line-ellipsis">
+                                                      <a href="#" onclick="modal_data({{$q->id}})" data-toggle="modal" data-target="#question_modal"class="no-underline">{{$q->question_statement}}</a>
                                                    </div>
                                                 </div>
-                                                <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
-                                                   <span class="text-muted">Tags : </span>
-                                                   <span class="question-tags">{{$q->question_detail->question_tag['tag_name']}}</span>
+                                             </div>
+                                             <div class="description text-muted">
+                                                <div class="row">
+                                                   <div class="col-md-4 col-sm-12 col-xs-12">
+                                                      <div class="row">
+                                                         <div class="col-xs-6">
+                                                            <span style="text-transform:capitalize;">
+                                                            <i>{{$q->question_level['level_name']}}</i>
+                                                            </span>
+                                                         </div>
+                                                         <div class="col-xs-6 no-padding-left">
+                                                            <span class="text-muted">Marks</span>
+                                                            <span class="conjunction">:</span>{{$q->question_detail['marks']}}
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
+                                                      <span class="text-muted">Tags : </span>
+                                                      <span class="question-tags">{{$q->question_detail->question_tag['tag_name']}}</span>
+                                                   </div>
                                                 </div>
                                              </div>
-                                          </div>
-                                       </td>
-                                       <td>
-                                          <a id="delete_question" href="{{route('delete_question',['id'=>$q->id])}}" id="delete_question" >
-                                          <i class="fa fa-times-circle text-danger"></i>
-                                          </a>
-                                       </td>
-                                    </tr>
-                                    @endforeach                                
+                                          </td>
+                                          <td>
+                                             <a id="delete_question" href="{{route('delete_question',['id'=>$q->id])}}" id="delete_question" >
+                                             <i class="fa fa-times-circle text-danger"></i>
+                                             </a>
+                                          </td>
+                                       </tr>
+                                    @endforeach
                                  </tbody>
                                  <tfoot>
                                     <tr>
                                        <td colspan="4">
-                                          <button type="button" class="btn" data-toggle="modal" data-target="#section-mcqs-Modal" onclick="section_id({{$key}})">
+                                          <button type="button" class="btn" data-toggle="modal" data-target="#section-mcqs-Modal" onclick="edittesttemplate_Expand(); section_id({{$key}})">
                                           <i class="fa fa-plus"></i> Add MCQ
                                           </button>
                                           <button type="button" class="btn" data-toggle="modal" data-target="#section-choice-mcqs-Modal">
@@ -648,6 +648,7 @@
                            <li>
                               <div class="setting_nav_border">
                                  <img src="{{asset('public/assets/img/questionnair.png')}}" height="20" alt="" class="pull-left">
+                                 <img src="{{ asset('public/assets/img/questionnair.png') }}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#questionnaire">Questionnaire</a>
                               </div>
                            </li>
@@ -981,7 +982,7 @@
                      </div>
                      <div class="ept_body">
                         <div class="ept_container">
-                           <div class="ept_cover_image" style="background-image: url(&quot;https://storage.googleapis.com/codegrounds/PublicTestImages320419ea-36fb-455d-ae46-767c2aafa16d_USER-RecruiterCopy_ITEM-logo1.png&quot;);">
+                           <div class="ept_cover_image" style="background-image: url(&quot;https://storage.googleapis.com/codegrounds/PublicTestImages320419ea-36fb-455d-ae46-767c2aafa16d_USER-RecruiterCopy_ITEM-logo1.png') }}&quot;);">
                               <div class="ept_cover_image_top">
                                  <div class="clearfix">
                                     <div class="pull-right">
@@ -1079,6 +1080,7 @@
             </h3>
          </div>
          <div class="modal-body">
+           <form id="hostTestAdd" method="post" action="{{route('host_test_post')}}">
             <div class="row">
                <div class="col-md-12" style="border-right: 0px solid #ddd">
                   <div class="form-group form-group-sm">
@@ -1086,7 +1088,8 @@
                         <label class="control-label">
                         Hosting Test Title <i class="fa fa-info-circle"></i>
                         </label>
-                        <input type="text" class="form-control" name="testName" required="">
+                        <input type="hidden" name="template_id" value="{{$template_id}}">
+                        <input type="text" class="form-control" name="host_name" required="">
                      </div>
                   </div>
                   <div class="form-group form-group-sm" data-ng-init="modalObject.settings.cutOff = 0">
@@ -1096,7 +1099,7 @@
                      </label>
                      <div class="row">
                         <div class="col-sm-2">
-                           <input type="number" name="cutOff" class="form-control" min="0" value="0" required="" integer="">
+                           <input type="number" name="cut_off_marks" class="form-control" min="0" value="0" required="" integer="">
                         </div>
                      </div>
                   </div>
@@ -1114,68 +1117,68 @@
                                     <div class="clearfix">
                                        <div class="form-group s_form_control_group">
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:1" label="1">1</option>
-                                                <option value="number:2" label="2">2</option>
-                                                <option value="number:3" label="3">3</option>
-                                                <option value="number:4" label="4">4</option>
-                                                <option value="number:5" label="5" selected="selected">5</option>
-                                                <option value="number:6" label="6">6</option>
-                                                <option value="number:7" label="7">7</option>
-                                                <option value="number:8" label="8">8</option>
-                                                <option value="number:9" label="9">9</option>
-                                                <option value="number:10" label="10">10</option>
-                                                <option value="number:11" label="11">11</option>
-                                                <option value="number:12" label="12">12</option>
-                                                <option value="number:13" label="13">13</option>
-                                                <option value="number:14" label="14">14</option>
-                                                <option value="number:15" label="15">15</option>
-                                                <option value="number:16" label="16">16</option>
-                                                <option value="number:17" label="17">17</option>
-                                                <option value="number:18" label="18">18</option>
-                                                <option value="number:19" label="19">19</option>
-                                                <option value="number:20" label="20">20</option>
-                                                <option value="number:21" label="21">21</option>
-                                                <option value="number:22" label="22">22</option>
-                                                <option value="number:23" label="23">23</option>
-                                                <option value="number:24" label="24">24</option>
-                                                <option value="number:25" label="25">25</option>
-                                                <option value="number:26" label="26">26</option>
-                                                <option value="number:27" label="27">27</option>
-                                                <option value="number:28" label="28">28</option>
-                                                <option value="number:29" label="29">29</option>
-                                                <option value="number:30" label="30">30</option>
-                                                <option value="number:31" label="31">31</option>
+                                             <select class="form-control" name="op_t_d">
+                                                <option value="1" label="1">1</option>
+                                                <option value="2" label="2">2</option>
+                                                <option value="3" label="3">3</option>
+                                                <option value="4" label="4">4</option>
+                                                <option value="5" label="5" selected="selected">5</option>
+                                                <option value="6" label="6">6</option>
+                                                <option value="7" label="7">7</option>
+                                                <option value="8" label="8">8</option>
+                                                <option value="9" label="9">9</option>
+                                                <option value="10" label="10">10</option>
+                                                <option value="11" label="11">11</option>
+                                                <option value="12" label="12">12</option>
+                                                <option value="13" label="13">13</option>
+                                                <option value="14" label="14">14</option>
+                                                <option value="15" label="15">15</option>
+                                                <option value="16" label="16">16</option>
+                                                <option value="17" label="17">17</option>
+                                                <option value="18" label="18">18</option>
+                                                <option value="19" label="19">19</option>
+                                                <option value="20" label="20">20</option>
+                                                <option value="21" label="21">21</option>
+                                                <option value="22" label="22">22</option>
+                                                <option value="23" label="23">23</option>
+                                                <option value="24" label="24">24</option>
+                                                <option value="25" label="25">25</option>
+                                                <option value="26" label="26">26</option>
+                                                <option value="27" label="27">27</option>
+                                                <option value="28" label="28">28</option>
+                                                <option value="29" label="29">29</option>
+                                                <option value="30" label="30">30</option>
+                                                <option value="31" label="31">31</option>
                                              </select>
                                           </div>
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:0" label="Jan">Jan</option>
-                                                <option value="number:1" label="Feb">Feb</option>
-                                                <option value="number:2" label="Mar" selected="selected">Mar</option>
-                                                <option value="number:3" label="Apr">Apr</option>
-                                                <option value="number:4" label="May">May</option>
-                                                <option value="number:5" label="Jun">Jun</option>
-                                                <option value="number:6" label="Jul">Jul</option>
-                                                <option value="number:7" label="Aug">Aug</option>
-                                                <option value="number:8" label="Sep">Sep</option>
-                                                <option value="number:9" label="Oct">Oct</option>
-                                                <option value="number:10" label="Nov">Nov</option>
-                                                <option value="number:11" label="Dec">Dec</option>
+                                             <select class="form-control" name="op_t_m">
+                                                <option value="1" label="Jan">Jan</option>
+                                                <option value="2" label="Feb">Feb</option>
+                                                <option value="3" label="Mar" selected="selected">Mar</option>
+                                                <option value="4" label="Apr">Apr</option>
+                                                <option value="5" label="May">May</option>
+                                                <option value="6" label="Jun">Jun</option>
+                                                <option value="7" label="Jul">Jul</option>
+                                                <option value="8" label="Aug">Aug</option>
+                                                <option value="8" label="Sep">Sep</option>
+                                                <option value="10" label="Oct">Oct</option>
+                                                <option value="11" label="Nov">Nov</option>
+                                                <option value="12" label="Dec">Dec</option>
                                              </select>
                                           </div>
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:2011" label="2011">2011</option>
-                                                <option value="number:2012" label="2012">2012</option>
-                                                <option value="number:2013" label="2013">2013</option>
-                                                <option value="number:2014" label="2014">2014</option>
-                                                <option value="number:2015" label="2015">2015</option>
-                                                <option value="number:2016" label="2016">2016</option>
-                                                <option value="number:2017" label="2017">2017</option>
-                                                <option value="number:2018" label="2018" selected="selected">2018</option>
-                                                <option value="number:2019" label="2019">2019</option>
-                                                <option value="number:2020" label="2020">2020</option>
+                                             <select class="form-control" name="op_t_y">
+                                                <option value="2011" label="2011">2011</option>
+                                                <option value="2012" label="2012">2012</option>
+                                                <option value="2013" label="2013">2013</option>
+                                                <option value="2014" label="2014">2014</option>
+                                                <option value="2015" label="2015">2015</option>
+                                                <option value="2016" label="2016">2016</option>
+                                                <option value="2017" label="2017">2017</option>
+                                                <option value="2018" label="2018" selected="selected">2018</option>
+                                                <option value="2019" label="2019">2019</option>
+                                                <option value="2020" label="2020">2020</option>
                                              </select>
                                           </div>
                                        </div>
@@ -1186,7 +1189,7 @@
                                           <div class="time-box hidden">
                                              <div class="form-group s_form_control_group">
                                                 <div class="form-field">
-                                                   <select class="form-control">
+                                                   <select class="form-control" name="op_time_hrs">
                                                       <option value="12">12</option>
                                                       <option value="01">01</option>
                                                       <option value="02">02</option>
@@ -1202,7 +1205,7 @@
                                                    </select>
                                                 </div>
                                                 <div class="form-field">
-                                                   <select class="form-control">
+                                                   <select class="form-control" name="op_time_min">
                                                       <option value="00">00</option>
                                                       <option value="01">01</option>
                                                       <option value="02">02</option>
@@ -1267,10 +1270,10 @@
                                                 </div>
                                              </div>
                                              <div class="radio-inline form-control-group-radio">
-                                                <label><input type="radio" value="AM">AM &nbsp;&nbsp;&nbsp; </label>
+                                                <label><input type="radio" name="op_time_format" value="AM">AM &nbsp;&nbsp;&nbsp; </label>
                                              </div>
                                              <div class="radio-inline form-control-group-radio">
-                                                <label><input type="radio" value="PM">PM &nbsp;&nbsp;&nbsp; </label>
+                                                <label><input type="radio" name="op_time_format" value="PM">PM &nbsp;&nbsp;&nbsp; </label>
                                              </div>
                                           </div>
                                        </span>
@@ -1291,68 +1294,68 @@
                                     <div class="clearfix">
                                        <div class="form-group s_form_control_group">
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:1" label="1">1</option>
-                                                <option value="number:2" label="2">2</option>
-                                                <option value="number:3" label="3">3</option>
-                                                <option value="number:4" label="4">4</option>
-                                                <option value="number:5" label="5" selected="selected">5</option>
-                                                <option value="number:6" label="6">6</option>
-                                                <option value="number:7" label="7">7</option>
-                                                <option value="number:8" label="8">8</option>
-                                                <option value="number:9" label="9">9</option>
-                                                <option value="number:10" label="10">10</option>
-                                                <option value="number:11" label="11">11</option>
-                                                <option value="number:12" label="12">12</option>
-                                                <option value="number:13" label="13">13</option>
-                                                <option value="number:14" label="14">14</option>
-                                                <option value="number:15" label="15">15</option>
-                                                <option value="number:16" label="16">16</option>
-                                                <option value="number:17" label="17">17</option>
-                                                <option value="number:18" label="18">18</option>
-                                                <option value="number:19" label="19">19</option>
-                                                <option value="number:20" label="20">20</option>
-                                                <option value="number:21" label="21">21</option>
-                                                <option value="number:22" label="22">22</option>
-                                                <option value="number:23" label="23">23</option>
-                                                <option value="number:24" label="24">24</option>
-                                                <option value="number:25" label="25">25</option>
-                                                <option value="number:26" label="26">26</option>
-                                                <option value="number:27" label="27">27</option>
-                                                <option value="number:28" label="28">28</option>
-                                                <option value="number:29" label="29">29</option>
-                                                <option value="number:30" label="30">30</option>
-                                                <option value="number:31" label="31">31</option>
+                                             <select class="form-control" name="cl_t_d">
+                                                <option value="1" label="1">1</option>
+                                                <option value="2" label="2">2</option>
+                                                <option value="3" label="3">3</option>
+                                                <option value="4" label="4">4</option>
+                                                <option value="5" label="5" selected="selected">5</option>
+                                                <option value="6" label="6">6</option>
+                                                <option value="7" label="7">7</option>
+                                                <option value="8" label="8">8</option>
+                                                <option value="9" label="9">9</option>
+                                                <option value="10" label="10">10</option>
+                                                <option value="11" label="11">11</option>
+                                                <option value="12" label="12">12</option>
+                                                <option value="13" label="13">13</option>
+                                                <option value="14" label="14">14</option>
+                                                <option value="15" label="15">15</option>
+                                                <option value="16" label="16">16</option>
+                                                <option value="17" label="17">17</option>
+                                                <option value="18" label="18">18</option>
+                                                <option value="19" label="19">19</option>
+                                                <option value="20" label="20">20</option>
+                                                <option value="21" label="21">21</option>
+                                                <option value="22" label="22">22</option>
+                                                <option value="23" label="23">23</option>
+                                                <option value="24" label="24">24</option>
+                                                <option value="25" label="25">25</option>
+                                                <option value="26" label="26">26</option>
+                                                <option value="27" label="27">27</option>
+                                                <option value="28" label="28">28</option>
+                                                <option value="29" label="29">29</option>
+                                                <option value="30" label="30">30</option>
+                                                <option value="31" label="31">31</option>
                                              </select>
                                           </div>
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:0" label="Jan">Jan</option>
-                                                <option value="number:1" label="Feb">Feb</option>
-                                                <option value="number:2" label="Mar" selected="selected">Mar</option>
-                                                <option value="number:3" label="Apr">Apr</option>
-                                                <option value="number:4" label="May">May</option>
-                                                <option value="number:5" label="Jun">Jun</option>
-                                                <option value="number:6" label="Jul">Jul</option>
-                                                <option value="number:7" label="Aug">Aug</option>
-                                                <option value="number:8" label="Sep">Sep</option>
-                                                <option value="number:9" label="Oct">Oct</option>
-                                                <option value="number:10" label="Nov">Nov</option>
-                                                <option value="number:11" label="Dec">Dec</option>
+                                             <select class="form-control" name="cl_t_m">
+                                                <option value="1" label="Jan">Jan</option>
+                                                <option value="2" label="Feb">Feb</option>
+                                                <option value="3" label="Mar" selected="selected">Mar</option>
+                                                <option value="4" label="Apr">Apr</option>
+                                                <option value="5" label="May">May</option>
+                                                <option value="6" label="Jun">Jun</option>
+                                                <option value="7" label="Jul">Jul</option>
+                                                <option value="8" label="Aug">Aug</option>
+                                                <option value="9" label="Sep">Sep</option>
+                                                <option value="10" label="Oct">Oct</option>
+                                                <option value="11" label="Nov">Nov</option>
+                                                <option value="12" label="Dec">Dec</option>
                                              </select>
                                           </div>
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:2011" label="2011">2011</option>
-                                                <option value="number:2012" label="2012">2012</option>
-                                                <option value="number:2013" label="2013">2013</option>
-                                                <option value="number:2014" label="2014">2014</option>
-                                                <option value="number:2015" label="2015">2015</option>
-                                                <option value="number:2016" label="2016">2016</option>
-                                                <option value="number:2017" label="2017">2017</option>
-                                                <option value="number:2018" label="2018" selected="selected">2018</option>
-                                                <option value="number:2019" label="2019">2019</option>
-                                                <option value="number:2020" label="2020">2020</option>
+                                             <select class="form-control" name="cl_t_y">
+                                                <option value="2011" label="2011">2011</option>
+                                                <option value="2012" label="2012">2012</option>
+                                                <option value="2013" label="2013">2013</option>
+                                                <option value="2014" label="2014">2014</option>
+                                                <option value="2015" label="2015">2015</option>
+                                                <option value="2016" label="2016">2016</option>
+                                                <option value="2017" label="2017">2017</option>
+                                                <option value="2018" label="2018" selected="selected">2018</option>
+                                                <option value="2019" label="2019">2019</option>
+                                                <option value="2020" label="2020">2020</option>
                                              </select>
                                           </div>
                                        </div>
@@ -1363,7 +1366,7 @@
                                           <div class="time-box hidden">
                                              <div class="form-group s_form_control_group">
                                                 <div class="form-field">
-                                                   <select class="form-control">
+                                                   <select class="form-control" name="cl_time_hrs">
                                                       <option value="12">12</option>
                                                       <option value="01">01</option>
                                                       <option value="02">02</option>
@@ -1379,7 +1382,7 @@
                                                    </select>
                                                 </div>
                                                 <div class="form-field">
-                                                   <select class="form-control">
+                                                   <select class="form-control" name="cl_time_min">
                                                       <option value="00">00</option>
                                                       <option value="01">01</option>
                                                       <option value="02">02</option>
@@ -1444,10 +1447,10 @@
                                                 </div>
                                              </div>
                                              <div class="radio-inline form-control-group-radio">
-                                                <label><input type="radio" value="AM">AM &nbsp;&nbsp;&nbsp; </label>
+                                                <label><input type="radio" name="cl_time_format" value="AM">AM &nbsp;&nbsp;&nbsp; </label>
                                              </div>
                                              <div class="radio-inline form-control-group-radio">
-                                                <label><input type="radio" value="PM">PM &nbsp;&nbsp;&nbsp; </label>
+                                                <label><input type="radio" name="cl_time_format" value="PM">PM &nbsp;&nbsp;&nbsp; </label>
                                              </div>
                                           </div>
                                        </span>
@@ -1464,109 +1467,109 @@
                         <span>
                            <a class="btn btn-link btn-sm click_time">(UTC+04:00) Baku</a>
                            <div class="col-sm-6 hidden">
-                              <select class="form-control">
-                                 <option value="1" label="(UTC-12:00) International Date Line West">(UTC-12:00) International Date Line West</option>
-                                 <option value="2" label="(UTC-11:00) Coordinated Universal Time-11">(UTC-11:00) Coordinated Universal Time-11</option>
-                                 <option value="3" label="(UTC-10:00) Hawaii">(UTC-10:00) Hawaii</option>
-                                 <option value="4" label="(UTC-09:00) Alaska">(UTC-09:00) Alaska</option>
-                                 <option value="5" label="(UTC-08:00) Baja California">(UTC-08:00) Baja California</option>
-                                 <option value="6" label="(UTC-08:00) Pacific Time (US &amp; Canada)">(UTC-08:00) Pacific Time (US &amp; Canada)</option>
-                                 <option value="7" label="(UTC-07:00) Arizona">(UTC-07:00) Arizona</option>
-                                 <option value="8" label="(UTC-07:00) Chihuahua, La Paz, Mazatlan">(UTC-07:00) Chihuahua, La Paz, Mazatlan</option>
-                                 <option value="9" label="(UTC-07:00) Mountain Time (US &amp; Canada)">(UTC-07:00) Mountain Time (US &amp; Canada)</option>
-                                 <option value="10" label="(UTC-06:00) Central America">(UTC-06:00) Central America</option>
-                                 <option value="11" label="(UTC-06:00) Central Time (US &amp; Canada)">(UTC-06:00) Central Time (US &amp; Canada)</option>
-                                 <option value="12" label="(UTC-06:00) Guadalajara, Mexico City, Monterrey">(UTC-06:00) Guadalajara, Mexico City, Monterrey</option>
-                                 <option value="13" label="(UTC-06:00) Saskatchewan">(UTC-06:00) Saskatchewan</option>
-                                 <option value="14" label="(UTC-05:00) Bogota, Lima, Quito">(UTC-05:00) Bogota, Lima, Quito</option>
-                                 <option value="15" label="(UTC-05:00) Eastern Time (US &amp; Canada)">(UTC-05:00) Eastern Time (US &amp; Canada)</option>
-                                 <option value="16" label="(UTC-05:00) Indiana (East)">(UTC-05:00) Indiana (East)</option>
-                                 <option value="17" label="(UTC-04:30) Caracas">(UTC-04:30) Caracas</option>
-                                 <option value="18" label="(UTC-04:00) Asuncion">(UTC-04:00) Asuncion</option>
-                                 <option value="19" label="(UTC-04:00) Atlantic Time (Canada)">(UTC-04:00) Atlantic Time (Canada)</option>
+                              <select class="form-control" name="time_zone">
+                                 <option value="(UTC-12:00) International Date Line West" label="(UTC-12:00) International Date Line West">(UTC-12:00) International Date Line West</option>
+                                 <option value="(UTC-11:00) Coordinated Universal Time-11" label="(UTC-11:00) Coordinated Universal Time-11">(UTC-11:00) Coordinated Universal Time-11</option>
+                                 <option value="(UTC-10:00) Hawaii" label="(UTC-10:00) Hawaii">(UTC-10:00) Hawaii</option>
+                                 <option value="(UTC-09:00) Alaska" label="(UTC-09:00) Alaska">(UTC-09:00) Alaska</option>
+                                 <option value="(UTC-08:00) Baja California" label="(UTC-08:00) Baja California">(UTC-08:00) Baja California</option>
+                                 <option value="(UTC-08:00) Pacific Time (US &amp; Canada)" label="(UTC-08:00) Pacific Time (US &amp; Canada)">(UTC-08:00) Pacific Time (US &amp; Canada)</option>
+                                 <option value="(UTC-07:00) Arizona" label="(UTC-07:00) Arizona">(UTC-07:00) Arizona</option>
+                                 <option value="(UTC-07:00) Chihuahua, La Paz, Mazatlan" label="(UTC-07:00) Chihuahua, La Paz, Mazatlan">(UTC-07:00) Chihuahua, La Paz, Mazatlan</option>
+                                 <option value="(UTC-07:00) Mountain Time (US &amp; Canada)" label="(UTC-07:00) Mountain Time (US &amp; Canada)">(UTC-07:00) Mountain Time (US &amp; Canada)</option>
+                                 <option value="(UTC-06:00) Central America" label="(UTC-06:00) Central America">(UTC-06:00) Central America</option>
+                                 <option value="(UTC-06:00) Central Time (US &amp; Canada)" label="(UTC-06:00) Central Time (US &amp; Canada)">(UTC-06:00) Central Time (US &amp; Canada)</option>
+                                 <option value="(UTC-06:00) Guadalajara, Mexico City, Monterrey" label="(UTC-06:00) Guadalajara, Mexico City, Monterrey">(UTC-06:00) Guadalajara, Mexico City, Monterrey</option>
+                                 <option value="(UTC-06:00) Saskatchewan" label="(UTC-06:00) Saskatchewan">(UTC-06:00) Saskatchewan</option>
+                                 <option value="(UTC-05:00) Bogota, Lima, Quito" label="(UTC-05:00) Bogota, Lima, Quito">(UTC-05:00) Bogota, Lima, Quito</option>
+                                 <option value="(UTC-05:00) Eastern Time (US &amp; Canada)" label="(UTC-05:00) Eastern Time (US &amp; Canada)">(UTC-05:00) Eastern Time (US &amp; Canada)</option>
+                                 <option value="(UTC-05:00) Indiana (East)" label="(UTC-05:00) Indiana (East)">(UTC-05:00) Indiana (East)</option>
+                                 <option value="(UTC-04:30) Caracas" label="(UTC-04:30) Caracas">(UTC-04:30) Caracas</option>
+                                 <option value="(UTC-04:00) Asuncion" label="(UTC-04:00) Asuncion">(UTC-04:00) Asuncion</option>
+                                 <option value="(UTC-04:00) Atlantic Time (Canada)" label="(UTC-04:00) Atlantic Time (Canada)">(UTC-04:00) Atlantic Time (Canada)</option>
                                  <option value="20" label="(UTC-04:00) Cuiaba">(UTC-04:00) Cuiaba</option>
                                  <option value="21" label="(UTC-04:00) Georgetown, La Paz, Manaus, San Juan">(UTC-04:00) Georgetown, La Paz, Manaus, San Juan</option>
-                                 <option value="22" label="(UTC-04:00) Santiago">(UTC-04:00) Santiago</option>
-                                 <option value="23" label="(UTC-03:30) Newfoundland">(UTC-03:30) Newfoundland</option>
-                                 <option value="24" label="(UTC-03:00) Brasilia">(UTC-03:00) Brasilia</option>
-                                 <option value="25" label="(UTC-03:00) Buenos Aires">(UTC-03:00) Buenos Aires</option>
-                                 <option value="26" label="(UTC-03:00) Cayenne, Fortaleza">(UTC-03:00) Cayenne, Fortaleza</option>
-                                 <option value="27" label="(UTC-03:00) Greenland">(UTC-03:00) Greenland</option>
-                                 <option value="28" label="(UTC-03:00) Montevideo">(UTC-03:00) Montevideo</option>
-                                 <option value="29" label="(UTC-03:00) Salvador">(UTC-03:00) Salvador</option>
-                                 <option value="30" label="(UTC-02:00) Coordinated Universal Time-02">(UTC-02:00) Coordinated Universal Time-02</option>
-                                 <option value="31" label="(UTC-02:00) Mid-Atlantic - Old">(UTC-02:00) Mid-Atlantic - Old</option>
-                                 <option value="32" label="(UTC-01:00) Azores">(UTC-01:00) Azores</option>
-                                 <option value="33" label="(UTC-01:00) Cape Verde Is.">(UTC-01:00) Cape Verde Is.</option>
-                                 <option value="34" label="(UTC) Casablanca">(UTC) Casablanca</option>
-                                 <option value="35" label="(UTC) Coordinated Universal Time">(UTC) Coordinated Universal Time</option>
-                                 <option value="36" label="(UTC) Dublin, Edinburgh, Lisbon, London">(UTC) Dublin, Edinburgh, Lisbon, London</option>
-                                 <option value="37" label="(UTC) Monrovia, Reykjavik">(UTC) Monrovia, Reykjavik</option>
-                                 <option value="38" label="(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna">(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
-                                 <option value="39" label="(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague">(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
-                                 <option value="40" label="(UTC+01:00) Brussels, Copenhagen, Madrid, Paris">(UTC+01:00) Brussels, Copenhagen, Madrid, Paris</option>
-                                 <option value="41" label="(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb">(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
-                                 <option value="42" label="(UTC+01:00) West Central Africa">(UTC+01:00) West Central Africa</option>
-                                 <option value="43" label="(UTC+01:00) Windhoek">(UTC+01:00) Windhoek</option>
-                                 <option value="44" label="(UTC+02:00) Athens, Bucharest">(UTC+02:00) Athens, Bucharest</option>
-                                 <option value="45" label="(UTC+02:00) Beirut">(UTC+02:00) Beirut</option>
-                                 <option value="46" label="(UTC+02:00) Cairo">(UTC+02:00) Cairo</option>
-                                 <option value="47" label="(UTC+02:00) Damascus">(UTC+02:00) Damascus</option>
-                                 <option value="48" label="(UTC+02:00) E. Europe">(UTC+02:00) E. Europe</option>
-                                 <option value="49" label="(UTC+02:00) Harare, Pretoria">(UTC+02:00) Harare, Pretoria</option>
-                                 <option value="50" label="(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius">(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
-                                 <option value="51" label="(UTC+02:00) Istanbul">(UTC+02:00) Istanbul</option>
-                                 <option value="52" label="(UTC+02:00) Jerusalem">(UTC+02:00) Jerusalem</option>
-                                 <option value="53" label="(UTC+02:00) Tripoli">(UTC+02:00) Tripoli</option>
-                                 <option value="54" label="(UTC+03:00) Amman">(UTC+03:00) Amman</option>
-                                 <option value="55" label="(UTC+03:00) Baghdad">(UTC+03:00) Baghdad</option>
-                                 <option value="56" label="(UTC+03:00) Kaliningrad, Minsk">(UTC+03:00) Kaliningrad, Minsk</option>
-                                 <option value="57" label="(UTC+03:00) Kuwait, Riyadh">(UTC+03:00) Kuwait, Riyadh</option>
-                                 <option value="58" label="(UTC+03:00) Nairobi">(UTC+03:00) Nairobi</option>
-                                 <option value="59" label="(UTC+03:30) Tehran">(UTC+03:30) Tehran</option>
-                                 <option value="60" label="(UTC+04:00) Abu Dhabi, Muscat">(UTC+04:00) Abu Dhabi, Muscat</option>
-                                 <option value="61" label="(UTC+04:00) Baku" selected="selected">(UTC+04:00) Baku</option>
-                                 <option value="62" label="(UTC+04:00) Moscow, St. Petersburg, Volgograd">(UTC+04:00) Moscow, St. Petersburg, Volgograd</option>
-                                 <option value="63" label="(UTC+04:00) Port Louis">(UTC+04:00) Port Louis</option>
-                                 <option value="64" label="(UTC+04:00) Tbilisi">(UTC+04:00) Tbilisi</option>
-                                 <option value="65" label="(UTC+04:00) Yerevan">(UTC+04:00) Yerevan</option>
-                                 <option value="66" label="(UTC+04:30) Kabul">(UTC+04:30) Kabul</option>
-                                 <option value="67" label="(UTC+05:00) Ashgabat, Tashkent">(UTC+05:00) Ashgabat, Tashkent</option>
-                                 <option value="68" label="(UTC+05:00) Islamabad, Karachi">(UTC+05:00) Islamabad, Karachi</option>
-                                 <option value="69" label="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi">(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
-                                 <option value="70" label="(UTC+05:30) Sri Jayawardenepura">(UTC+05:30) Sri Jayawardenepura</option>
-                                 <option value="71" label="(UTC+05:45) Kathmandu">(UTC+05:45) Kathmandu</option>
-                                 <option value="72" label="(UTC+06:00) Astana">(UTC+06:00) Astana</option>
-                                 <option value="73" label="(UTC+06:00) Dhaka">(UTC+06:00) Dhaka</option>
-                                 <option value="74" label="(UTC+06:00) Ekaterinburg">(UTC+06:00) Ekaterinburg</option>
-                                 <option value="75" label="(UTC+06:30) Yangon (Rangoon)">(UTC+06:30) Yangon (Rangoon)</option>
-                                 <option value="76" label="(UTC+07:00) Bangkok, Hanoi, Jakarta">(UTC+07:00) Bangkok, Hanoi, Jakarta</option>
-                                 <option value="77" label="(UTC+07:00) Novosibirsk">(UTC+07:00) Novosibirsk</option>
-                                 <option value="78" label="(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi">(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
-                                 <option value="79" label="(UTC+08:00) Krasnoyarsk">(UTC+08:00) Krasnoyarsk</option>
-                                 <option value="80" label="(UTC+08:00) Kuala Lumpur, Singapore">(UTC+08:00) Kuala Lumpur, Singapore</option>
-                                 <option value="81" label="(UTC+08:00) Perth">(UTC+08:00) Perth</option>
-                                 <option value="82" label="(UTC+08:00) Taipei">(UTC+08:00) Taipei</option>
-                                 <option value="83" label="(UTC+08:00) Ulaanbaatar">(UTC+08:00) Ulaanbaatar</option>
-                                 <option value="84" label="(UTC+09:00) Irkutsk">(UTC+09:00) Irkutsk</option>
-                                 <option value="85" label="(UTC+09:00) Osaka, Sapporo, Tokyo">(UTC+09:00) Osaka, Sapporo, Tokyo</option>
-                                 <option value="86" label="(UTC+09:00) Seoul">(UTC+09:00) Seoul</option>
-                                 <option value="87" label="(UTC+09:30) Adelaide">(UTC+09:30) Adelaide</option>
-                                 <option value="88" label="(UTC+09:30) Darwin">(UTC+09:30) Darwin</option>
-                                 <option value="89" label="(UTC+10:00) Brisbane">(UTC+10:00) Brisbane</option>
-                                 <option value="90" label="(UTC+10:00) Canberra, Melbourne, Sydney">(UTC+10:00) Canberra, Melbourne, Sydney</option>
-                                 <option value="91" label="(UTC+10:00) Guam, Port Moresby">(UTC+10:00) Guam, Port Moresby</option>
-                                 <option value="92" label="(UTC+10:00) Hobart">(UTC+10:00) Hobart</option>
-                                 <option value="93" label="(UTC+10:00) Yakutsk">(UTC+10:00) Yakutsk</option>
-                                 <option value="94" label="(UTC+11:00) Solomon Is., New Caledonia">(UTC+11:00) Solomon Is., New Caledonia</option>
-                                 <option value="95" label="(UTC+11:00) Vladivostok">(UTC+11:00) Vladivostok</option>
-                                 <option value="96" label="(UTC+12:00) Auckland, Wellington">(UTC+12:00) Auckland, Wellington</option>
-                                 <option value="97" label="(UTC+12:00) Coordinated Universal Time+12">(UTC+12:00) Coordinated Universal Time+12</option>
-                                 <option value="98" label="(UTC+12:00) Fiji">(UTC+12:00) Fiji</option>
-                                 <option value="99" label="(UTC+12:00) Magadan">(UTC+12:00) Magadan</option>
-                                 <option value="100" label="(UTC+12:00) Petropavlovsk-Kamchatsky - Old">(UTC+12:00) Petropavlovsk-Kamchatsky - Old</option>
-                                 <option value="101" label="(UTC+13:00) Nuku'alofa">(UTC+13:00) Nuku'alofa</option>
-                                 <option value="102" label="(UTC+13:00) Samoa">(UTC+13:00) Samoa</option>
+                                 <option value="(UTC-04:00) Cuiaba" label="(UTC-04:00) Santiago">(UTC-04:00) Santiago</option>
+                                 <option value="(UTC-03:30) Newfoundland" label="(UTC-03:30) Newfoundland">(UTC-03:30) Newfoundland</option>
+                                 <option value="(UTC-03:00) Brasilia" label="(UTC-03:00) Brasilia">(UTC-03:00) Brasilia</option>
+                                 <option value="(UTC-03:00) Buenos Aires" label="(UTC-03:00) Buenos Aires">(UTC-03:00) Buenos Aires</option>
+                                 <option value="(UTC-03:00) Cayenne, Fortaleza" label="(UTC-03:00) Cayenne, Fortaleza">(UTC-03:00) Cayenne, Fortaleza</option>
+                                 <option value="(UTC-03:00) Greenland" label="(UTC-03:00) Greenland">(UTC-03:00) Greenland</option>
+                                 <option value="(UTC-03:00) Montevideo" label="(UTC-03:00) Montevideo">(UTC-03:00) Montevideo</option>
+                                 <option value="(UTC-03:00) Salvador" label="(UTC-03:00) Salvador">(UTC-03:00) Salvador</option>
+                                 <option value="(UTC-02:00) Coordinated Universal Time-02" label="(UTC-02:00) Coordinated Universal Time-02">(UTC-02:00) Coordinated Universal Time-02</option>
+                                 <option value="(UTC-02:00) Mid-Atlantic - Old" label="(UTC-02:00) Mid-Atlantic - Old">(UTC-02:00) Mid-Atlantic - Old</option>
+                                 <option value="(UTC-01:00) Azores" label="(UTC-01:00) Azores">(UTC-01:00) Azores</option>
+                                 <option value="(UTC-01:00) Cape Verde Is." label="(UTC-01:00) Cape Verde Is.">(UTC-01:00) Cape Verde Is.</option>
+                                 <option value="(UTC) Casablanca" label="(UTC) Casablanca">(UTC) Casablanca</option>
+                                 <option value="(UTC) Coordinated Universal Time" label="(UTC) Coordinated Universal Time">(UTC) Coordinated Universal Time</option>
+                                 <option value="(UTC) Dublin, Edinburgh, Lisbon, London" label="(UTC) Dublin, Edinburgh, Lisbon, London">(UTC) Dublin, Edinburgh, Lisbon, London</option>
+                                 <option value="(UTC) Monrovia, Reykjavik" label="(UTC) Monrovia, Reykjavik">(UTC) Monrovia, Reykjavik</option>
+                                 <option value="(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna" label="(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna">(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+                                 <option value="(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague" label="(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague">(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+                                 <option value="(UTC+01:00) Brussels, Copenhagen, Madrid, Paris" label="(UTC+01:00) Brussels, Copenhagen, Madrid, Paris">(UTC+01:00) Brussels, Copenhagen, Madrid, Paris</option>
+                                 <option value="(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb" label="(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb">(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
+                                 <option value="(UTC+01:00) West Central Africa" label="(UTC+01:00) West Central Africa">(UTC+01:00) West Central Africa</option>
+                                 <option value="(UTC+01:00) Windhoek" label="(UTC+01:00) Windhoek">(UTC+01:00) Windhoek</option>
+                                 <option value="(UTC+02:00) Athens, Bucharest" label="(UTC+02:00) Athens, Bucharest">(UTC+02:00) Athens, Bucharest</option>
+                                 <option value="(UTC+02:00) Beirut" label="(UTC+02:00) Beirut">(UTC+02:00) Beirut</option>
+                                 <option value="(UTC+02:00) Cairo" label="(UTC+02:00) Cairo">(UTC+02:00) Cairo</option>
+                                 <option value="(UTC+02:00) Damascus" label="(UTC+02:00) Damascus">(UTC+02:00) Damascus</option>
+                                 <option value="(UTC+02:00) E. Europe" label="(UTC+02:00) E. Europe">(UTC+02:00) E. Europe</option>
+                                 <option value="(UTC+02:00) Harare, Pretoria" label="(UTC+02:00) Harare, Pretoria">(UTC+02:00) Harare, Pretoria</option>
+                                 <option value="(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius" label="(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius">(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
+                                 <option value="(UTC+02:00) Istanbul" label="(UTC+02:00) Istanbul">(UTC+02:00) Istanbul</option>
+                                 <option value="(UTC+02:00) Jerusalem" label="(UTC+02:00) Jerusalem">(UTC+02:00) Jerusalem</option>
+                                 <option value="(UTC+02:00) Tripoli" label="(UTC+02:00) Tripoli">(UTC+02:00) Tripoli</option>
+                                 <option value="(UTC+03:00) Amman" label="(UTC+03:00) Amman">(UTC+03:00) Amman</option>
+                                 <option value="(UTC+03:00) Baghdad" label="(UTC+03:00) Baghdad">(UTC+03:00) Baghdad</option>
+                                 <option value="(UTC+03:00) Kaliningrad, Minsk" label="(UTC+03:00) Kaliningrad, Minsk">(UTC+03:00) Kaliningrad, Minsk</option>
+                                 <option value="(UTC+03:00) Kuwait, Riyadh" label="(UTC+03:00) Kuwait, Riyadh">(UTC+03:00) Kuwait, Riyadh</option>
+                                 <option value="(UTC+03:00) Nairobi" label="(UTC+03:00) Nairobi">(UTC+03:00) Nairobi</option>
+                                 <option value="(UTC+03:30) Tehran" label="(UTC+03:30) Tehran">(UTC+03:30) Tehran</option>
+                                 <option value="(UTC+04:00) Abu Dhabi, Muscat" label="(UTC+04:00) Abu Dhabi, Muscat">(UTC+04:00) Abu Dhabi, Muscat</option>
+                                 <option value="(UTC+04:00) Baku" label="(UTC+04:00) Baku" selected="selected">(UTC+04:00) Baku</option>
+                                 <option value="(UTC+04:00) Moscow, St. Petersburg, Volgograd" label="(UTC+04:00) Moscow, St. Petersburg, Volgograd">(UTC+04:00) Moscow, St. Petersburg, Volgograd</option>
+                                 <option value="(UTC+04:00) Port Louis" label="(UTC+04:00) Port Louis">(UTC+04:00) Port Louis</option>
+                                 <option value="(UTC+04:00) Tbilisi" label="(UTC+04:00) Tbilisi">(UTC+04:00) Tbilisi</option>
+                                 <option value="(UTC+04:00) Yerevan" label="(UTC+04:00) Yerevan">(UTC+04:00) Yerevan</option>
+                                 <option value="(UTC+04:30) Kabul" label="(UTC+04:30) Kabul">(UTC+04:30) Kabul</option>
+                                 <option value="(UTC+05:00) Ashgabat, Tashkent" label="(UTC+05:00) Ashgabat, Tashkent">(UTC+05:00) Ashgabat, Tashkent</option>
+                                 <option value="(UTC+05:00) Islamabad, Karachi" label="(UTC+05:00) Islamabad, Karachi">(UTC+05:00) Islamabad, Karachi</option>
+                                 <option value="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi" label="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi">(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
+                                 <option value="(UTC+05:30) Sri Jayawardenepura" label="(UTC+05:30) Sri Jayawardenepura">(UTC+05:30) Sri Jayawardenepura</option>
+                                 <option value="(UTC+05:45) Kathmandu" label="(UTC+05:45) Kathmandu">(UTC+05:45) Kathmandu</option>
+                                 <option value="(UTC+06:00) Astana" label="(UTC+06:00) Astana">(UTC+06:00) Astana</option>
+                                 <option value="(UTC+06:00) Dhaka" label="(UTC+06:00) Dhaka">(UTC+06:00) Dhaka</option>
+                                 <option value="(UTC+06:00) Ekaterinburg" label="(UTC+06:00) Ekaterinburg">(UTC+06:00) Ekaterinburg</option>
+                                 <option value="(UTC+06:30) Yangon (Rangoon)" label="(UTC+06:30) Yangon (Rangoon)">(UTC+06:30) Yangon (Rangoon)</option>
+                                 <option value="(UTC+07:00) Bangkok, Hanoi, Jakarta" label="(UTC+07:00) Bangkok, Hanoi, Jakarta">(UTC+07:00) Bangkok, Hanoi, Jakarta</option>
+                                 <option value="(UTC+07:00) Novosibirsk" label="(UTC+07:00) Novosibirsk">(UTC+07:00) Novosibirsk</option>
+                                 <option value="(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi" label="(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi">(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
+                                 <option value="(UTC+08:00) Krasnoyarsk" label="(UTC+08:00) Krasnoyarsk">(UTC+08:00) Krasnoyarsk</option>
+                                 <option value="(UTC+08:00) Kuala Lumpur, Singapore" label="(UTC+08:00) Kuala Lumpur, Singapore">(UTC+08:00) Kuala Lumpur, Singapore</option>
+                                 <option value="(UTC+08:00) Perth" label="(UTC+08:00) Perth">(UTC+08:00) Perth</option>
+                                 <option value="(UTC+08:00) Taipei" label="(UTC+08:00) Taipei">(UTC+08:00) Taipei</option>
+                                 <option value="(UTC+08:00) Ulaanbaatar" label="(UTC+08:00) Ulaanbaatar">(UTC+08:00) Ulaanbaatar</option>
+                                 <option value="(UTC+09:00) Irkutsk" label="(UTC+09:00) Irkutsk">(UTC+09:00) Irkutsk</option>
+                                 <option value="(UTC+09:00) Osaka, Sapporo, Tokyo" label="(UTC+09:00) Osaka, Sapporo, Tokyo">(UTC+09:00) Osaka, Sapporo, Tokyo</option>
+                                 <option value="(UTC+09:00) Seoul" label="(UTC+09:00) Seoul">(UTC+09:00) Seoul</option>
+                                 <option value="(UTC+09:30) Adelaide" label="(UTC+09:30) Adelaide">(UTC+09:30) Adelaide</option>
+                                 <option value="(UTC+09:30) Darwin" label="(UTC+09:30) Darwin">(UTC+09:30) Darwin</option>
+                                 <option value="(UTC+10:00) Brisbane" label="(UTC+10:00) Brisbane">(UTC+10:00) Brisbane</option>
+                                 <option value="(UTC+10:00) Canberra, Melbourne, Sydney" label="(UTC+10:00) Canberra, Melbourne, Sydney">(UTC+10:00) Canberra, Melbourne, Sydney</option>
+                                 <option value="(UTC+10:00) Guam, Port Moresby" label="(UTC+10:00) Guam, Port Moresby">(UTC+10:00) Guam, Port Moresby</option>
+                                 <option value="(UTC+10:00) Hobart" label="(UTC+10:00) Hobart">(UTC+10:00) Hobart</option>
+                                 <option value="(UTC+10:00) Yakutsk" label="(UTC+10:00) Yakutsk">(UTC+10:00) Yakutsk</option>
+                                 <option value="(UTC+11:00) Solomon Is., New Caledonia" label="(UTC+11:00) Solomon Is., New Caledonia">(UTC+11:00) Solomon Is., New Caledonia</option>
+                                 <option value="(UTC+11:00) Vladivostok" label="(UTC+11:00) Vladivostok">(UTC+11:00) Vladivostok</option>
+                                 <option value="(UTC+12:00) Auckland, Wellington" label="(UTC+12:00) Auckland, Wellington">(UTC+12:00) Auckland, Wellington</option>
+                                 <option value="(UTC+12:00) Coordinated Universal Time+12" label="(UTC+12:00) Coordinated Universal Time+12">(UTC+12:00) Coordinated Universal Time+12</option>
+                                 <option value="(UTC+12:00) Fiji" label="(UTC+12:00) Fiji">(UTC+12:00) Fiji</option>
+                                 <option value="(UTC+12:00) Magadan" label="(UTC+12:00) Magadan">(UTC+12:00) Magadan</option>
+                                 <option value="(UTC+12:00) Petropavlovsk-Kamchatsky - Old" label="(UTC+12:00) Petropavlovsk-Kamchatsky - Old">(UTC+12:00) Petropavlovsk-Kamchatsky - Old</option>
+                                 <option value="(UTC+13:00) Nuku'alofa" label="(UTC+13:00) Nuku'alofa">(UTC+13:00) Nuku'alofa</option>
+                                 <option value="(UTC+13:00) Samoa" label="(UTC+13:00) Samoa">(UTC+13:00) Samoa</option>
                               </select>
                            </div>
                         </span>
@@ -1581,6 +1584,7 @@
                   <button type="submit" class="btn">Publish Test</button>
                </div>
             </div>
+           </form>
          </div>
       </div>
    </div>
@@ -2148,333 +2152,424 @@
 </div>
 <!-- section-coding-add-compilable-question-Modal -->
 <div class="modal fade" id="section-coding-add-compilable-question-Modal" role="dialog">
-   <div class="modal-dialog  modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-         <div class="modal-header s_modal_form_header">
-            <div class="pull-right">
-               <span>Please add the question title </span>
-               <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
-               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+    <div class="modal-dialog  modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header s_modal_form_header">
+                <div class="pull-right">
+                    <span>Please add the question title </span>
+                    <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+                </div>
+                <h3 class="modal-title s_font">Coding Question</h3>
             </div>
-            <h3 class="modal-title s_font">Coding Question</h3>
-         </div>
-         <div class="modal-body s_modal_form_body">
-            <div class="row">
-               <div class="col-md-10 col-md-offset-1">
-                  <!-- Question State -->
-                  <div class="modal-content s_modal s_blue_color_modal">
-                     <div class="modal-header s_modal_header s_blue_color_header">
-                        <h4 class="modal-title s_font">Question State</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Question State <i class="fa fa-info-circle"></i></strong>
+            <div class="modal-body s_modal_form_body">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <!-- Question State -->
+                        <div class="modal-content s_modal s_blue_color_modal">
+                            <div class="modal-header s_modal_header s_blue_color_header">
+                                <h4 class="modal-title s_font">Question State</h4>
+                            </div>
+                            <div class="modal-body s_modal_body">
+                                <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Question State
+                                        <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                              There are three possible states for a question. <br>
+                                               (1) Stage (2) Ready (3) Abondoned<br>
+                                                Why is it needed: The purpose of the states is to manage the question development cycle.
+                                                <br>
+                                                Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented.
+                                            </span>
+                                        </div>
+                                    </strong>
+                                </div>
+                                <div>
+                                  <label class="container_radio border_radio_left">STAGE
+                                  <input type="radio" name="question_state_id" value="1" disabled>
+                                  <span class="checkmark"></span>
+                                  </label>
+                                  <label class="container_radio">READY
+                                  <input type="radio" checked="checked" name="question_state_id" value="2">
+                                  <span class="checkmark"></span>
+                                  </label>
+                                  <label class="container_radio border_radio_right">ABANDONED
+                                  <input type="radio" name="question_state_id" value="3" disabled>
+                                  <span class="checkmark"></span>
+                                  </label>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group form-group-sm">
+                                            <div class="heading_modal_statement heading_padding_bottom">
+                                                <strong>Program Title
+                                                    <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                                This is meant to contain a suitable title <br>
+                                                representing the program.<br>
+                                               Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
+                                               and also serve as a parameter for filters while searching through the library.
+                                            </span>
+                                        </div>
+                                                </strong>
+                                            </div>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="heading_modal_statement">
+                                    <strong>Program Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                                </div>
+                                <textarea class="edit" rows="8"></textarea>
+                                <br>
+                                <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Sample Input & Output
+                                        <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                               htmlTooltip.modalProgramSamples <br>
+
+                                            </span>
+                                        </div>
+                                    </strong>
+                                    <div class="no-more-tables ">
+                                        <table class="table s_table" id="section_coding_table">
+                                            <thead>
+                                                <th></th>
+                                                <th>Input</th>
+                                                <th>Output</th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td valign="center">1.</td>
+                                                    <td valign="center">
+                                                        <textarea class="form-control" name="input" required=""></textarea>
+                                                    </td>
+                                                    <td valign="center">
+                                                        <textarea class="form-control" name="output" required=""></textarea>
+                                                    </td>
+                                                    <td valign="center">
+                                                        <a class="delete_row">
+                                                        <i class="fa fa-times-circle-o"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4" class="text-align-center">
+                                                        <button class="btn" onclick="addrow_section_codingquestion()">+ Add Sample Test Case</button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                           <label class="container_radio border_radio_left">STAGE
-                           <input type="radio" checked="checked" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio">READY
-                           <input type="radio" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio border_radio_right">ABANDONED
-                           <input type="radio" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                        </div>
-                        <hr>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Provider <i class="fa fa-info-circle"></i></strong>
-                                 </div>
-                                 <input type="text" class="form-control">
-                              </div>
-                           </div>
-                        </div>
-                        <div class="heading_modal_statement">
-                           <strong>Program Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
-                        </div>
-                        <textarea id="s_txtEditor_selection_coding"></textarea>
                         <br>
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Sample Input & Output <i class="fa fa-info-circle"></i></strong>
-                           <div class="no-more-tables ">
-                              <table class="table s_table">
-                                 <thead>
-                                    <th></th>
-                                    <th>Input</th>
-                                    <th>Output</th>
-                                    <th></th>
-                                 </thead>
-                                 <tbody>
-                                    <tr>
-                                       <td valign="center">1.</td>
-                                       <td valign="center">
-                                          <textarea class="form-control" name="option" required=""></textarea>
-                                       </td>
-                                       <td valign="center">
-                                          <textarea class="form-control" name="option" required=""></textarea>
-                                       </td>
-                                       <td valign="center">
-                                          <a href="">
-                                          <i class="fa fa-times-circle-o"></i>
-                                          </a>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                                 <tfoot>
-                                    <tr>
-                                       <td colspan="4" class="text-align-center">
-                                          <button class="btn">+ Add Sample Test Case</button>
-                                       </td>
-                                    </tr>
-                                 </tfoot>
-                              </table>
+                        <!-- Test Cases -->
+                        <div class="modal-content s_modal s_green_color_modal">
+                            <div class="modal-header s_modal_header s_green_color_header">
+                                <h4 class="modal-title s_font">Test Cases</h4>
+                            </div>
+                            <div class="modal-body s_modal_body">
+                                <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Test Cases
+                                         <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                               htmlTooltip.modalProgramTestcases <br>
+
+                                            </span>
+                                        </div>
+                                    </strong>
+                                    <strong class="pull-right">
+                                    <input type="checkbox" name="" value="">
+                                    Equalize Weightage, <a href="#">Total: 100%</a>
+                                    </strong>
+                                    <table class="table s_table" id="weightage_row">
+                                        <thead>
+                                            <th></th>
+                                            <th class="col-md-2">Name</th>
+                                            <th class="col-md-3">Input</th>
+                                            <th class="col-md-3">Output</th>
+                                            <th class="col-md-4 text-center">Weightage</th>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <button class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
+                                    <button class="btn">Upload Test Case Files</button>
+                                    <a href="#">Test case file format</a>
+                                    <div class="checkbox s_margin_0">
+                                        <label>
+                                        <input type="checkbox">Verify the Test Cases
+                                        </label>
+                                    </div>
+                                    <p>Test Cases should be added/uploaded</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- Default Codes -->
+                        <div class="modal-content s_modal s_yellow_color_modal">
+                            <div class="modal-header s_modal_header s_yellow_color_header">
+                                <h4 class="modal-title s_font">Default Codes</h4>
+                            </div>
+                            <div class="modal-body s_modal_body">
+                                <div class="heading_modal_statement heading_padding_bottom">
+                                    <div class="checkbox s_margin_0">
+                                        <label>
+                                        <input type="checkbox">
+                                        <strong>
+                                        Add Default Codes for the Question
+                                         <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                              These codes will be provided to the candidate during the test will be the only allowed languages for which the code is provided. <br>
+
+                                            </span>
+                                        </div>
+                                        <a href="#"> Advanced</a>
+                                        </strong>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <!--  Question Details -->
+                        <div class="modal-content s_modal s_gray_color_modal">
+                           <div class="modal-header s_modal_header s_gray_color_header">
+                              <h4 class="modal-title s_font"> Question Details</h4>
                            </div>
-                        </div>
-                     </div>
-                  </div>
-                  <br>
-                  <!-- Test Cases -->
-                  <div class="modal-content s_modal s_green_color_modal">
-                     <div class="modal-header s_modal_header s_green_color_header">
-                        <h4 class="modal-title s_font">Test Cases</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Test Cases <i class="fa fa-info-circle"></i></strong>
-                           <strong class="pull-right">
-                           <input type="checkbox" name="" value="">
-                           Equalize Weightage, <a href="#">Total: 0%</a>
-                           </strong>
-                           <hr>
-                           <button class="btn">+ Add Test Case as Text</button>
-                           <button class="btn">Upload Test Case Files</button>
-                           <a href="#">Test case file format</a>
-                           <div class="checkbox s_margin_0">
-                              <label>
-                              <input type="checkbox">Verify the Test Cases
-                              </label>
-                           </div>
-                           <p>Test Cases should be added/uploaded</p>
-                        </div>
-                     </div>
-                  </div>
-                  <br>
-                  <!-- Default Codes -->
-                  <div class="modal-content s_modal s_yellow_color_modal">
-                     <div class="modal-header s_modal_header s_yellow_color_header">
-                        <h4 class="modal-title s_font">Default Codes</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <div class="checkbox s_margin_0">
-                              <label>
-                              <input type="checkbox">
-                              <strong>
-                              Add Default Codes for the Question
-                              <i class="fa fa-info-circle"></i>
-                              <a href="#"> Advanced</a>
-                              </strong>
-                              </label>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <br>
-                  <!--  Question Details -->
-                  <div class="modal-content s_modal s_gray_color_modal">
-                     <div class="modal-header s_modal_header s_gray_color_header">
-                        <h4 class="modal-title s_font"> Question Details</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="form-group form-group-sm">
-                           <strong>Marks for this Question <i class="fa fa-info-circle"></i></strong>
-                           <input type="number" name="marks" min="1" class="form-control" required="required" style="">
-                        </div>
-                        <div class="form-group form-group-sm">
-                           <strong>Allowed languages <i class="fa fa-info-circle"></i></strong>
-                           <div class="row">
-                              <div class="col-sm-2">
-                                 <div class="checkbox no-margin">
-                                    <label class="ng-binding">
-                                    <input type="checkbox" value="JAVA" checked="checked"> JAVA
-                                    </label>
-                                 </div>
-                              </div>
-                              <div class="col-sm-2">
-                                 <div class="checkbox no-margin">
-                                    <label class="ng-binding">
-                                    <input type="checkbox" value="C" checked="checked"> C
-                                    </label>
-                                 </div>
-                              </div>
-                              <div class="col-sm-2">
-                                 <div class="checkbox no-margin">
-                                    <label>
-                                    <input type="checkbox" value="CPP" checked="checked"> CPP
-                                    </label>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-2">
-                                 <div class="checkbox no-margin">
-                                    <label>
-                                    <input type="checkbox" value="PYTHON" checked="checked"> PYTHON
-                                    </label>
-                                 </div>
-                              </div>
-                              <div class="col-sm-2">
-                                 <div class="checkbox no-margin">
-                                    <label>
-                                    <input type="checkbox" value="RUBY" checked="checked"> RUBY
-                                    </label>
-                                 </div>
-                              </div>
-                              <div class="col-sm-2">
-                                 <div class="checkbox no-margin">
-                                    <label>
-                                    <input type="checkbox" value="PHP" checked="checked"> PHP
-                                    </label>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-2">
-                                 <div class="checkbox no-margin">
-                                    <label>
-                                    <input type="checkbox" value="JAVASCRIPT" checked="checked"> JAVASCRIPT
-                                    </label>
-                                 </div>
-                              </div>
-                              <div class="col-sm-2">
-                                 <div class="checkbox no-margin">
-                                    <label>
-                                    <input type="checkbox" value="CSHARP" checked="checked"> CSHARP
-                                    </label>
-                                 </div>
-                              </div>
-                              <div class="col-sm-2">
-                                 <div class="checkbox no-margin">
-                                    <label>
-                                    <input type="checkbox" value="R" checked="checked"> R
-                                    </label>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Tags <i class="fa fa-info-circle"></i></strong>
-                        </div>
-                        <div class="form-group-sm">
-                           <div class="row">
-                              <div class="col-md-3">
-                                 <select class="form-control">
-                                    <option value="add Tag" disabled="">Select Tag</option>
-                                    <option>algo</option>
-                                    <option>basic-programming</option>
-                                    <option>database</option>
-                                    <option>design</option>
-                                    <option>iterative</option>
-                                    <option>maths</option>
-                                    <option>recursion</option>
-                                 </select>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Question Level <i class="fa fa-info-circle"></i></strong>
-                        </div>
-                        <div class="heading_padding_bottom">
-                           <label class="container_radio border_radio_left">Easy
-                           <input type="radio" checked="checked" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio">Medium
-                           <input type="radio" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio border_radio_right">Hard
-                           <input type="radio" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
+                           <div class="modal-body s_modal_body">
                               <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Provider <i class="fa fa-info-circle"></i></strong>
-                                 </div>
-                                 <input type="text" class="form-control">
+                                 <strong>Marks for this Question <i class="fa fa-info-circle"></i></strong>
+                                 <input type="number" name="marks" min="1" class="form-control" required="required" style="">
                               </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
                               <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Author <i class="fa fa-info-circle"></i></strong>
+                                 <strong>Allowed languages <i class="fa fa-info-circle"></i></strong>
+                                 <div class="row">
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label class="ng-binding">
+                                          <input type="checkbox" value="JAVA" checked="checked"> JAVA
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label class="ng-binding">
+                                          <input type="checkbox" value="C" checked="checked"> C
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" value="CPP" checked="checked"> CPP
+                                          </label>
+                                       </div>
+                                    </div>
                                  </div>
-                                 <input type="text" class="form-control">
+                                 <div class="row">
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" value="PYTHON" checked="checked"> PYTHON
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" value="RUBY" checked="checked"> RUBY
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" value="PHP" checked="checked"> PHP
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" value="JAVASCRIPT" checked="checked"> JAVASCRIPT
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" value="CSHARP" checked="checked"> CSHARP
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" value="R" checked="checked"> R
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="heading_modal_statement heading_padding_bottom">
+                                 <strong>Tags <i class="fa fa-info-circle"></i></strong>
+                              </div>
+                              <div class="form-group-sm">
+                                 <div class="row">
+                                    <div class="col-md-3">
+                                       <select class="form-control">
+                                          <option value="add Tag" disabled="">Select Tag</option>
+                                          <option>algo</option>
+                                          <option>basic-programming</option>
+                                          <option>database</option>
+                                          <option>design</option>
+                                          <option>iterative</option>
+                                          <option>maths</option>
+                                          <option>recursion</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="heading_modal_statement heading_padding_bottom"><br>
+                                 <strong>Question Level <i class="fa fa-info-circle"></i></strong>
+                              </div>
+                              <div class="heading_padding_bottom">
+                                 <label class="container_radio border_radio_left">Easy
+                                 <input type="radio" checked="checked" name="radio">
+                                 <span class="checkmark"></span>
+                                 </label>
+                                 <label class="container_radio">Medium
+                                 <input type="radio" name="radio">
+                                 <span class="checkmark"></span>
+                                 </label>
+                                 <label class="container_radio border_radio_right">Hard
+                                 <input type="radio" name="radio">
+                                 <span class="checkmark"></span>
+                                 </label>
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group form-group-sm">
+                                       <div class="heading_modal_statement heading_padding_bottom">
+                                          <strong>Provider <i class="fa fa-info-circle"></i></strong>
+                                       </div>
+                                       <input type="text" class="form-control">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group form-group-sm">
+                                       <div class="heading_modal_statement heading_padding_bottom">
+                                          <strong>Author <i class="fa fa-info-circle"></i></strong>
+                                       </div>
+                                       <input type="text" class="form-control">
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <br>
-                  <!--  Solution Details (Optional) -->
-                  <div class="modal-content s_modal s_orange_color_modal">
-                     <div class="modal-header s_modal_header s_orange_color_header">
-                        <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="row">
-                           <div class="col-md-3 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Text <i class="fa fa-info-circle"></i></strong>
-                                 </div>
-                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
-                              </div>
-                           </div>
+                        <br>
+                        <!--  Solution Details (Optional) -->
+                        <div class="modal-content s_modal s_orange_color_modal">
+                            <div class="modal-header s_modal_header s_orange_color_header accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#solution2" aria-expanded="false">
+                                <h4 class="modal-title s_font"><i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
+                            </div>
+                            <div class="modal-body s_modal_body panel-collapse collapse" id="solution2">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="form-group form-group-sm">
+                                            <div class="heading_modal_statement heading_padding_bottom">
+                                                <strong>Text
+                                                     <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                             Provide the solution of the question in text if the question is required to use.
+
+                                            </span>
+                                        </div>
+                                                </strong>
+                                            </div>
+                                            <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="form-group form-group-sm">
+                                            <div class="heading_modal_statement heading_padding_bottom">
+                                                <strong>Code
+                                                     <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                             Provide the solution of the question in code if the question is required to use.
+
+                                            </span>
+                                        </div>
+                                                </strong>
+                                            </div>
+                                            <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="form-group form-group-sm">
+                                            <div class="heading_modal_statement heading_padding_bottom">
+                                                <strong>URL
+                                                <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                             Provide the solution of the question in URL if the question is required to use.
+
+                                            </span>
+                                        </div>
+
+                                                </strong>
+                                            </div>
+                                            <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Files
+                                        <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                             Provide the solution of the question in FILE if the question is required to use.
+
+                                            </span>
+                                        </div>
+                                    </strong>
+                                </div>
+                               <!-- <button type="file" class="btn">Upload Files</button>-->
+                               <div class="f_upload_btn">
+                                    Upload Media
+                                    <input type="file" name="">
+                                </div>
+                            </div>
                         </div>
-                        <div class="row">
-                           <div class="col-md-3 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Code <i class="fa fa-info-circle"></i></strong>
-                                 </div>
-                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-3 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>URL <i class="fa fa-info-circle"></i></strong>
-                                 </div>
-                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Files <i class="fa fa-info-circle"></i></strong>
-                        </div>
-                        <button type="file" class="btn">Upload Files</button>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 </div>
 <!-- section-coding-debug-Modal -->
 <div class="modal fade" id="section-coding-debug-Modal" role="dialog">
@@ -2529,7 +2624,7 @@
                         <div class="heading_modal_statement">
                            <strong>Program Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
                         </div>
-                        <textarea id="s_txtEditor_programming_debug"></textarea>
+                        <textarea class="edit"></textarea>
                         <br>
                      </div>
                   </div>
@@ -3290,7 +3385,7 @@
                         <div class="heading_modal_statement">
                            <strong>Question Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
                         </div>
-                        <textarea id="s_txtEditor_Add_section_submission"></textarea>
+                        <textarea class="edit"></textarea>
                         <div class="checkbox">
                            <label>
                            <input type="checkbox"> Enable code modification and show difference
@@ -3554,7 +3649,7 @@
                         <div class="heading_modal_statement">
                            <strong>Question Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
                         </div>
-                        <textarea id="s_txtEditor_Add_section_fill_blanks_submission"></textarea>
+                        <textarea class="edit"></textarea>
                         <br>
                      </div>
                   </div>
@@ -3901,7 +3996,7 @@
                      </div>
                      <div class="form-group">
                         <label>Page Content <i class="fa fa-info-circle"></i></label>
-                        <textarea id="s_txtEditor_Add_public_page"></textarea>
+                        <textarea class="edit"></textarea>
                      </div>
                   </form>
                </div>
@@ -3972,300 +4067,346 @@
 <div class="modal fade" id="section-mcqs-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
-      <form action="{{route('create_question')}}" method="POST" enctype="multipart/form-data">
-         {{csrf_field()}}   
-         <input type="hidden" name="section_id" id="section_id" value="">     
-         <input type="hidden" name="question_type_id" value="1">     
-         <div class="modal-content">
-            <div class="modal-header s_modal_form_header">
-               <div class="pull-right">
-                  <span>Please add atleast 3 characters in the question statement </span>
-                  <button type="submit" class="btn s_save_button s_font">Save</button>
-                  <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
-               </div>
-               <h3 class="modal-title s_font">Multiple Choice Question</h3>
-            </div>
-            <div class="modal-body s_modal_form_body">
-               <div class="row">
-                  <div class="col-md-10 col-md-offset-1">
-                     <!-- Question Statement -->
-                     <div class="modal-content s_modal s_blue_color_modal">
-                        <div class="modal-header s_modal_header s_blue_color_header">
-                           <h4 class="modal-title s_font">Question Statement</h4>
-                        </div>
-                        <div class="modal-body s_modal_body">
-                           <div class="heading_modal_statement heading_padding_bottom">
-                              <strong>Question State <i class="fa fa-info-circle"></i></strong>
-                           </div>
-                           <div>
-                              <label class="container_radio border_radio_left">STAGE
-                              <input type="radio" checked="checked" name="question_state_id" value="1">
-                              <span class="checkmark"></span>
-                              </label>
-                              <label class="container_radio">READY
-                              <input type="radio" name="question_state_id" value="2">
-                              <span class="checkmark"></span>
-                              </label>
-                              <label class="container_radio border_radio_right">ABANDONED
-                              <input type="radio" name="question_state_id" value="3">
-                              <span class="checkmark"></span>
-                              </label>
-                           </div>
-                           <hr>
-                           <div class="heading_modal_statement">
-                              <strong>Question Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
-                              <span>Please add atleast 3 characters in the statement</span>
-                           </div>
-                           <textarea id="s_select_mcqs_txtEditor" name="question_statement"></textarea>
-                           <h5><b>Media(Audio/Video)</b></h5>
-                           <div class="f_upload_btn">
-                              Upload Media
-                              <input type="file" name="media" >
-                           </div>
-                           <!-- <button type="button" class="btn">Upload Media</button> -->
-                        </div>
-                     </div>
-                     <br>
-                     <!-- Choices -->
-                     <div class="modal-content s_modal s_green_color_modal">
-                        <div class="modal-header s_modal_header s_green_color_header">
-                           <h4 class="modal-title s_font">Choices</h4>
-                        </div>
-                        <div class="modal-body s_modal_body">
-                           <div class="heading_modal_statement heading_padding_bottom">
-                              <strong>
-                                 Choices
-                                 <div class="s_popup">
-                                    <i class="fa fa-info-circle"> </i>
-                                    <span class="s_popuptext">
-                                    Under this section, one can add the <br>
-                                    Good to Know: <br>
-                                    (1) Multiple choice multiple answer type questions are supported.
-                                    <br>
-                                    <br>
-                                    (2) Choice field's value cannot be empty or a duplicate.
-                                    </span>
-                                 </div>
-                              </strong>
-                              <strong class="pull-right">
-                              <input type="checkbox" name="partial_marks" id="partial_marks">
-                              Partial marks
-                              </strong>
-                              <div class="no-more-tables ">
-                                 <table class="table s_table" id="choices_table">
-                                    <tbody>
-                                       <tr>
-                                          <td valign="center">1.</td>
-                                          <td>
-                                             <input type="checkbox" name="status" class="choices_table_checkbox">
-                                          </td>
-                                          <td class="s_weight" valign="center">
-                                             <textarea class="form-control" name="choice[]" required=""></textarea>
-                                          </td>
-                                          <td valign="center" class="hidden">
-                                             <div class="input-group input-group-sm">
-                                                <input type="number" name="partial_marks[]" value="" class="form-control" width="30px" max="100" min="0" >
-                                                <span class="input-group-addon" id="basic-addon1">%</span>
-                                             </div>
-                                          </td>
-                                          <td valign="center">
-                                             <a class="delete_row">
-                                             <i class="fa fa-times-circle-o"></i>
-                                             </a>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td valign="center">2.</td>
-                                          <td>
-                                             <input type="checkbox" name="status"  class="choices_table_checkbox">
-                                          </td>
-                                          <td class="s_weight" valign="center">
-                                             <textarea class="form-control" name="choice[]" required=""></textarea>
-                                          </td>
-                                          <td valign="center" class="hidden">
-                                             <div class="input-group input-group-sm">
-                                                <input type="number" name="partial_marks[]" value="" class="form-control" width="30px" max="100" min="0" >
-                                                <span class="input-group-addon" id="basic-addon1">%</span>
-                                             </div>
-                                          </td>
-                                          <td valign="center">
-                                             <a class="delete_row">
-                                             <i class="fa fa-times-circle-o"></i>
-                                             </a>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td valign="center">3.</td>
-                                          <td>
-                                             <input type="checkbox" name="status" class="choices_table_checkbox">
-                                          </td>
-                                          <td class="s_weight" valign="center">
-                                             <textarea class="form-control" name="choice[]" required=""></textarea>
-                                          </td>
-                                          <td valign="center" class="hidden">
-                                             <div class="input-group input-group-sm">
-                                                <input type="number" name="partial_marks[]" value="" class="form-control" width="30px" max="100" min="0" >
-                                                <span class="input-group-addon" id="basic-addon1">%</span>
-                                             </div>
-                                          </td>
-                                          <td valign="center">
-                                             <a class="delete_row">
-                                             <i class="fa fa-times-circle-o"></i>
-                                             </a>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                    <tfoot>
-                                       <tr>
-                                          <td colspan="5" class="text-align-center">
-                                             <button class="btn btn-add-new btn-block" onclick="addrow_choice()"> + Add New Option</button>
-                                          </td>
-                                       </tr>
-                                    </tfoot>
-                                 </table>
-                              </div>
-                              <div class="checkbox">
-                                 <label>
-                                 <input type="checkbox" name="shuffle_status">Shuffle the options in the test
-                                 </label>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <br>
-                     <!-- Question Details -->
-                     <div class="modal-content s_modal s_yellow_color_modal">
-                        <div class="modal-header s_modal_header s_yellow_color_header">
-                           <h4 class="modal-title s_font">Question Details</h4>
-                        </div>
-                        <div class="modal-body s_modal_body">
-                           <div class="row">
-                              <div class="col-md-12 col-sm-12 col-xs-12">
-                                 <div class="form-group form-group-sm">
-                                    <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Marks for this Question</strong>
-                                    </div>
-                                    <input type="text" name="marks" class="form-control">
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-12 col-sm-12 col-xs-12">
-                                 <div class="form-group form-group-sm">
-                                    <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Negative Marks for Answering Wrong <i class="fa fa-info-circle"></i></strong>
-                                    </div>
-                                    <input type="text" name="negative_marks" class="form-control">
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="heading_modal_statement heading_padding_bottom">
-                              <strong>Question State <i class="fa fa-info-circle"></i> No tags added</strong>
-                           </div>
-                           <div class="form-group-sm">
-                              <div class="row">
-                                 <div class="col-md-3">
-                                    <select name="tag_id" class="form-control">
-                                       <option value="add Tag" disabled="">Add Tag</option>
+         <form action="{{route('create_question')}}" method="POST" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <input type="hidden" name="section_id" id="section_id" value="">
+        <input type="hidden" name="question_type_id" value="1">
+        <div class="modal-content">
+           <div class="modal-header s_modal_form_header">
+              <div class="pull-right">
+                 <span>Please add atleast 3 characters in the question statement </span>
+                 <button type="submit" class="btn s_save_button s_font">Save</button>
+                 <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+              </div>
+              <h3 class="modal-title s_font">Multiple Choice Question</h3>
+           </div>
+           <div class="modal-body s_modal_form_body">
+              <div class="row">
+                 <div class="col-md-10 col-md-offset-1">
+                    <!-- Question Statement -->
+                    <div class="modal-content s_modal s_blue_color_modal">
+                       <div class="modal-header s_modal_header s_blue_color_header">
+                          <h4 class="modal-title s_font">Question Statement</h4>
+                       </div>
+                       <div class="modal-body s_modal_body">
+                          <div class="heading_modal_statement heading_padding_bottom">
+                             <strong>Question State <i class="fa fa-info-circle"></i></strong>
+                          </div>
+                          <div>
+                             <label class="container_radio border_radio_left">STAGE
+                             <input type="radio" checked="checked" name="question_state_id" value="1">
+                             <span class="checkmark"></span>
+                             </label>
+                             <label class="container_radio">READY
+                             <input type="radio" name="question_state_id" value="2">
+                             <span class="checkmark"></span>
+                             </label>
+                             <label class="container_radio border_radio_right">ABANDONED
+                             <input type="radio" name="question_state_id" value="3">
+                             <span class="checkmark"></span>
+                             </label>
+                          </div>
+                          <hr>
+                          <div class="heading_modal_statement">
+                             <strong>Question Statement (<a href="#section-mcqs-Modal-Collapse" data-toggle="modal" onclick="edittesttemplate_Collapse()" >Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                             <span>Please add atleast 3 characters in the statement</span>
+                          </div><br>
+                          <textarea class="edit" name="question_statement"></textarea>
+                          <br>
+                          <div class="panel panel-pagedown-preview hidden" id="edittemp_panel">
+                            <div class="panel-heading">
+                              <strong>Preview</strong>
+                            </div>
+                            <div class="panel-body">
+                              <p id="preview_data_section_expand"></p>
+                            </div>
+                          </div>
+
+                          <h5><b>Media(Audio/Video)</b></h5>
+                          <div class="f_upload_btn">
+                                    Upload Media
+                                <input type="file" name="media" >
+                          </div>
+                       </div>
+                    </div>
+                    <br>
+                    <!-- Choices -->
+                    <div class="modal-content s_modal s_green_color_modal">
+                       <div class="modal-header s_modal_header s_green_color_header">
+                          <h4 class="modal-title s_font">Choices</h4>
+                       </div>
+                       <div class="modal-body s_modal_body">
+                          <div class="heading_modal_statement heading_padding_bottom">
+                             <strong>
+                                Choices
+                                <div class="s_popup">
+                                   <i class="fa fa-info-circle"> </i>
+                                   <span class="s_popuptext">
+                                   Under this section, one can add the <br>
+                                   Good to Know: <br>
+                                   (1) Multiple choice multiple answer type questions are supported.
+                                   <br>
+                                   <br>
+                                   (2) Choice field's value cannot be empty or a duplicate.
+                                   </span>
+                                </div>
+                             </strong>
+                             <strong class="pull-right">
+                             <input type="checkbox" name="partial_marks" id="section_partial_marks">
+                             Partial marks
+                             </strong>
+                             <div class="no-more-tables ">
+                                <table class="table s_table" id="section_choices_table">
+                                   <tbody>
+                                      <tr>
+                                         <td valign="center">1.</td>
+                                         <td>
+                                            <input type="checkbox" name="answer[]" class="choices_table_checkbox">
+                                         </td>
+                                         <td class="s_weight" valign="center">
+                                            <textarea class="form-control" name="choice[]" required=""></textarea>
+                                         </td>
+                                         <td valign="center" class="hidden">
+                                            <div class="input-group input-group-sm">
+                                               <input type="number" name="partial_marks[]" value="0" class="form-control" width="30px" max="100" min="0" >
+                                               <span class="input-group-addon" id="basic-addon1">%</span>
+                                            </div>
+                                         </td>
+                                         <td valign="center">
+                                            <a class="delete_row">
+                                            <i class="fa fa-times-circle-o"></i>
+                                            </a>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td valign="center">2.</td>
+                                        <td>
+                                            <input type="checkbox" name="status"  class="choices_table_checkbox">
+                                         </td>
+                                         <td class="s_weight" valign="center">
+                                            <textarea class="form-control" name="choice[]" required=""></textarea>
+                                         </td>
+                                         <td valign="center" class="hidden">
+                                            <div class="input-group input-group-sm">
+                                               <input type="number" name="partial_marks[]" value="0" class="form-control" width="30px" max="100" min="0" >
+                                               <span class="input-group-addon" id="basic-addon1">%</span>
+                                            </div>
+                                         </td>
+                                         <td valign="center">
+                                            <a class="delete_row">
+                                            <i class="fa fa-times-circle-o"></i>
+                                            </a>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td valign="center">3.</td>
+                                         <td>
+                                            <input type="checkbox" name="status" class="choices_table_checkbox">
+                                         </td>
+                                         <td class="s_weight" valign="center">
+                                            <textarea class="form-control" name="choice[]" required=""></textarea>
+                                         </td>
+                                         <td valign="center" class="hidden">
+                                            <div class="input-group input-group-sm">
+                                               <input type="number" name="partial_marks[]" value="0" class="form-control" width="30px" max="100" min="0" >
+                                               <span class="input-group-addon" id="basic-addon1">%</span>
+                                            </div>
+                                         </td>
+                                         <td valign="center">
+                                            <a class="delete_row">
+                                            <i class="fa fa-times-circle-o"></i>
+                                            </a>
+                                         </td>
+                                      </tr>
+                                   </tbody>
+                                   <tfoot>
+                                      <tr>
+                                         <td colspan="5" class="text-align-center">
+                                            <button type="button" class="btn btn-add-new btn-block" onclick="template_row_add_choice()"> + Add New Option</button>
+                                         </td>
+                                      </tr>
+                                   </tfoot>
+                                </table>
+                             </div>
+                             <div class="checkbox">
+                                <label>
+                                <input type="checkbox">Shuffle the options in the test
+                                </label>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <br>
+                    <!-- Question Details -->
+                    <div class="modal-content s_modal s_yellow_color_modal">
+                       <div class="modal-header s_modal_header s_yellow_color_header">
+                          <h4 class="modal-title s_font">Question Details</h4>
+                       </div>
+                       <div class="modal-body s_modal_body">
+                          <div class="row">
+                             <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Marks for this Question</strong>
+                                   </div>
+                                   <input type="text" name="marks" class="form-control">
+                                </div>
+                             </div>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Negative Marks for Answering Wrong <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <input type="text" name="negative_marks" class="form-control">
+                                </div>
+                             </div>
+                          </div>
+                          <div class="heading_modal_statement heading_padding_bottom">
+                             <strong>Question State <i class="fa fa-info-circle"></i> No tags added</strong>
+                          </div>
+                          <div class="form-group-sm">
+                             <div class="row">
+                                <div class="col-md-3">
+                                   <select name="tag_id" class="form-control">
+                                      <option value="add Tag" disabled="">Add Tag</option>
                                        @foreach($tags as $value)
-                                       <option value="{{$value->id}}">{{$value->tag_name}}</option>
-                                       @endforeach                                     
-                                    </select>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="heading_modal_statement heading_padding_bottom">
-                              <strong>Question Level <i class="fa fa-info-circle"></i></strong>
-                           </div>
-                           <div class="heading_padding_bottom">
-                              <label class="container_radio border_radio_left">Easy
-                              <input type="radio" checked="checked" name="question_level_id" value="1">
-                              <span class="checkmark"></span>
-                              </label>
-                              <label class="container_radio">Medium
-                              <input type="radio" name="question_level_id" value="2">
-                              <span class="checkmark"></span>
-                              </label>
-                              <label class="container_radio border_radio_right">Hard
-                              <input type="radio" name="question_level_id" value="3">
-                              <span class="checkmark"></span>
-                              </label>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-12 col-xs-12">
-                                 <div class="form-group form-group-sm">
-                                    <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Provider <i class="fa fa-info-circle"></i></strong>
-                                    </div>
-                                    <input type="text" name="provider" class="form-control">
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-12 col-xs-12">
-                                 <div class="form-group form-group-sm">
-                                    <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Author <i class="fa fa-info-circle"></i></strong>
-                                    </div>
-                                    <input type="text" name="author" class="form-control">
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <br>
-                     <!--  Solution Details (Optional) -->
-                     <div class="modal-content s_modal s_gray_color_modal">
-                        <div class="modal-header s_modal_header s_gray_color_header">
-                           <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
-                        </div>
-                        <div class="modal-body s_modal_body">
-                           <div class="row">
-                              <div class="col-md-3 col-sm-12 col-xs-12">
-                                 <div class="form-group form-group-sm">
-                                    <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Text <i class="fa fa-info-circle"></i></strong>
-                                    </div>
-                                    <textarea min="0" class="form-control" name="text" style=""></textarea>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-3 col-sm-12 col-xs-12">
-                                 <div class="form-group form-group-sm">
-                                    <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Code <i class="fa fa-info-circle"></i></strong>
-                                    </div>
-                                    <textarea min="0" class="form-control" name="code" style=""></textarea>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-3 col-sm-12 col-xs-12">
-                                 <div class="form-group form-group-sm">
-                                    <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>URL <i class="fa fa-info-circle"></i></strong>
-                                    </div>
-                                    <textarea min="0" class="form-control" name="url" style=""></textarea>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="heading_modal_statement heading_padding_bottom">
-                              <strong>Files <i class="fa fa-info-circle"></i></strong>
-                           </div>
-                           <input type="file" name="solution_media">
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
+                                        <option value="{{$value->id}}">{{$value->tag_name}}</option>
+                                      @endforeach
+                                   </select>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="heading_modal_statement heading_padding_bottom">
+                             <strong>Question Level <i class="fa fa-info-circle"></i></strong>
+                          </div>
+                          <div class="heading_padding_bottom">
+                             <label class="container_radio border_radio_left">Easy
+                             <input type="radio" checked="checked" name="question_level_id" value="1">
+                             <span class="checkmark"></span>
+                             </label>
+                             <label class="container_radio">Medium
+                             <input type="radio" name="question_level_id" value="2">
+                             <span class="checkmark"></span>
+                             </label>
+                             <label class="container_radio border_radio_right">Hard
+                             <input type="radio" name="question_level_id" value="3">
+                             <span class="checkmark"></span>
+                             </label>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Provider <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <input type="text" name="provider" class="form-control">
+                                </div>
+                             </div>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Author <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <input type="text" name="author" class="form-control">
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <br>
+                    <!--  Solution Details (Optional) -->
+                    <div class="modal-content s_modal s_gray_color_modal">
+                       <div class="modal-header s_modal_header s_gray_color_header">
+                          <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                       </div>
+                       <div class="modal-body s_modal_body">
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Text <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="text" style=""></textarea>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Code <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="code" style=""></textarea>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>URL <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="url" style=""></textarea>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="heading_modal_statement heading_padding_bottom">
+                             <strong>Files <i class="fa fa-info-circle"></i></strong>
+                          </div>
+                          <input type="file" name="solution_media">
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
       </form>
    </div>
+</div> 
+<!-- section-mcqs-Modal -->
+<div class="modal fade" id="section-mcqs-Modal-Collapse" role="dialog">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+       <div class="modal-body s_modal_form_body">
+          <div class="row">
+            <div class="col-md-12">
+              <strong>Question Statement (<a onclick="collapse_modal()" >Collapse</a>)</strong>
+              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <textarea class="edit" id="edit_collapse" name="question_statement"></textarea>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-pagedown-preview">
+                <div class="panel-heading">
+                  <strong>Preview</strong>
+                </div>
+                <div class="panel-body" style="height: 647px;">
+                  <p id="preview_data_section"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+       </div>
+    </div>
+  </div>
 </div>
 <!-- section-mcqs-Modal -->
 @endsection
 @section('modal_content')
+<script type="text/javascript">
+   $(document).ready(function(){
+      @if(isset($hostFlag) && $hostFlag)
+         $('#_first_model').modal('show');    
+      @endif
+   });
+</script>
 <div class="modal fade" id="question_modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->

@@ -44,6 +44,7 @@
             <div class="view_filter_right">
                 <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
             </div>
+        @foreach($hosted_tests as $hosted_test)
             <section class="tab_nav accordion-toggle" data-toggle="collapse"
                  data-parent="#accordion" data-target="#collapse_livecode" aria-expanded="false">
                 <div class="row main_tab">
@@ -56,7 +57,7 @@
                                     </a>
                                 </li>
                                 <li>Live</li>
-                                <li>Java Coding(Try)</li>
+                                <li>{{$hosted_test->host_name}}</li>
                             </ul>
                         </div>
                     </div>
@@ -142,7 +143,9 @@
                                             <span>Starts at</span>
                                             <span class="pull-right margin_23">
                                             <span class="margin_25">:</span>
-                                            Tue, Feb 6, 8:42 AM, CAST
+                                           <!--  Tue, Feb 6, 8:42 AM, CAST -->
+                                             {{ date("F jS, Y", strtotime($hosted_test->test_open_date)) }}
+                                             {{ $hosted_test->test_open_time }}
                                             </span>
                                         </td>
                                     </tr>
@@ -150,14 +153,20 @@
                                         <td><span>Ends at  </span>
                                             <span class="pull-right margin_25">
                                             <span class="margin_25">:</span>
-                                            Tue, Feb 20, 8:39 AM, CAST</span>
+                                            {{ date("F jS, Y", strtotime($hosted_test->test_close_date)) }}
+                                            {{ $hosted_test->test_close_time }} </span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><span>Duration</span>
+                                        <?php 
+                                        $to_time = strtotime(date("H:i:s",strtotime($hosted_test->test_open_date)));
+                                        $from_time = strtotime(date("H:i:s",strtotime($hosted_test->test_close_date)));
+
+                                        ?>
                                             <span class="pull-right margin_22">
                                             <span class="margin_29">:</span>
-                                            1 hour 30 minutes</span>
+                                            <?php echo round(abs($to_time - $from_time) / 60 / 60  ,2). " Hours";?></span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -182,7 +191,7 @@
                                         <td><span>Cut-off Score</span>
                                             <span class="pull-right margin_20">
                                             <span class="margin_25">:</span>
-                                            106</span>
+                                            {{$hosted_test->cut_off_marks}}</span>
                                         </td>
                                         </td>
                                     </tr>
@@ -206,6 +215,7 @@
                     </div>
                 </div>
             </section>
+        @endforeach            
         </div>
         <div id="testemplate" class="tab-pane fade">
             <div class="col-md-12 s_testtemplate_border">
@@ -234,7 +244,7 @@
                                     <li><a href="{{route('edit_template',['id'=>$value->id])}}">Edit</a></li>
                                     <li class="host_content">
                                         <div class="host">
-                                            <a href="host_text.php">Host this test</a>
+                                            <a href="{{route('host_test_page',['id'=>$value->id])}}">Host this test</a>
                                         </div>
                                     </li>
                                     <li>

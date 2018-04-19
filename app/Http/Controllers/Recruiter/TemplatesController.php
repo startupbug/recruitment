@@ -13,19 +13,21 @@ use App\Webcam;
 use App\Question;
 use Auth;
 use DB;
+use App\Hosted_test;
 
 class TemplatesController extends Controller
 {
 	// Manage Test View Index
 	public function manage_test_view(){
-
     	$args['count'] = Test_template::count();
         $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
         foreach ($args['listing'] as $value) {
             $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')->select('sections.*', DB::raw('count(questions.id) as count_ques'))->where('sections.template_id','=',$value->id)->get();            
         }
         //dd($args['sections']);
-        return view('recruiter_dashboard.view')->with($args);
+        $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+                        ->where('test_templates.user_id', Auth::user()->id)->get();
+              return view('recruiter_dashboard.view')->with($args);
     }
 	// Manage Test View Index
 
@@ -76,13 +78,13 @@ class TemplatesController extends Controller
         $args['test_setting_webcam'] = Webcam::get();
         $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
+        $args['template_id'] = $id;
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 	// Editing Test Template
 
     //Deleting Test Template
-    public function delete_test_template($id){  
-            
+    public function delete_test_template($id){              
         $delete = Test_template::find($id);                
         $delete->delete();
         $this->set_session('Test Template Is Deleted', true); 
