@@ -641,31 +641,31 @@
                         <ul class="s_setting_nav">
                            <li class="active">
                               <div class="setting_nav_border">
-                                 <img src="../assets/img/testSettings.png" height="20" alt="" class="pull-left">
+                                 <img src="{{ asset('public/assets/img/testSettings.png') }}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#test_setting">Test Settings</a>
                               </div>
                            </li>
                            <li>
                               <div class="setting_nav_border">
-                                 <img src="../assets/img/questionnair.png" height="20" alt="" class="pull-left">
+                                 <img src="{{ asset('public/assets/img/questionnair.png') }}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#questionnaire">Questionnaire</a>
                               </div>
                            </li>
                            <li>
                               <div class="setting_nav_border">
-                                 <img src="../assets/img/contact.png" height="20" alt="" class="pull-left">
+                                 <img src="{{ asset('public/assets/img/contact.png') }}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#contact_details">Contact Details</a>
                               </div>
                            </li>
                            <li>
                               <div class="setting_nav_border">
-                                 <img src="../assets/img/mailSettings.png" height="20" alt="" class="pull-left">
+                                 <img src="{{ asset('public/assets/img/mailSettings.png') }}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#mail_settings">Mail Settings</a>
                               </div>
                            </li>
                            <li>
                               <div class="setting_nav_border">
-                                 <img src="../assets/img/mailSettings.png" height="20" alt="" class="pull-left">
+                                 <img src="{{ asset('public/assets/img/mailSettings.png') }}" height="20" alt="" class="pull-left">
                                  <a data-toggle="pill" href="#mail_templates">Mail Templates</a>
                               </div>
                            </li>
@@ -976,7 +976,7 @@
                      </div>
                      <div class="ept_body">
                         <div class="ept_container">
-                           <div class="ept_cover_image" style="background-image: url(&quot;https://storage.googleapis.com/codegrounds/PublicTestImages320419ea-36fb-455d-ae46-767c2aafa16d_USER-RecruiterCopy_ITEM-logo1.png&quot;);">
+                           <div class="ept_cover_image" style="background-image: url(&quot;https://storage.googleapis.com/codegrounds/PublicTestImages320419ea-36fb-455d-ae46-767c2aafa16d_USER-RecruiterCopy_ITEM-logo1.png') }}&quot;);">
                               <div class="ept_cover_image_top">
                                  <div class="clearfix">
                                     <div class="pull-right">
@@ -1074,6 +1074,7 @@
             </h3>
          </div>
          <div class="modal-body">
+           <form id="hostTestAdd" method="post" action="{{route('host_test_post')}}">
             <div class="row">
                <div class="col-md-12" style="border-right: 0px solid #ddd">
                   <div class="form-group form-group-sm">
@@ -1081,7 +1082,8 @@
                         <label class="control-label">
                         Hosting Test Title <i class="fa fa-info-circle"></i>
                         </label>
-                        <input type="text" class="form-control" name="testName" required="">
+                        <input type="hidden" name="template_id" value="{{$template_id}}">
+                        <input type="text" class="form-control" name="host_name" required="">
                      </div>
                   </div>
                   <div class="form-group form-group-sm" data-ng-init="modalObject.settings.cutOff = 0">
@@ -1091,7 +1093,7 @@
                      </label>
                      <div class="row">
                         <div class="col-sm-2">
-                           <input type="number" name="cutOff" class="form-control" min="0" value="0" required="" integer="">
+                           <input type="number" name="cut_off_marks" class="form-control" min="0" value="0" required="" integer="">
                         </div>
                      </div>
                   </div>
@@ -1109,68 +1111,68 @@
                                     <div class="clearfix">
                                        <div class="form-group s_form_control_group">
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:1" label="1">1</option>
-                                                <option value="number:2" label="2">2</option>
-                                                <option value="number:3" label="3">3</option>
-                                                <option value="number:4" label="4">4</option>
-                                                <option value="number:5" label="5" selected="selected">5</option>
-                                                <option value="number:6" label="6">6</option>
-                                                <option value="number:7" label="7">7</option>
-                                                <option value="number:8" label="8">8</option>
-                                                <option value="number:9" label="9">9</option>
-                                                <option value="number:10" label="10">10</option>
-                                                <option value="number:11" label="11">11</option>
-                                                <option value="number:12" label="12">12</option>
-                                                <option value="number:13" label="13">13</option>
-                                                <option value="number:14" label="14">14</option>
-                                                <option value="number:15" label="15">15</option>
-                                                <option value="number:16" label="16">16</option>
-                                                <option value="number:17" label="17">17</option>
-                                                <option value="number:18" label="18">18</option>
-                                                <option value="number:19" label="19">19</option>
-                                                <option value="number:20" label="20">20</option>
-                                                <option value="number:21" label="21">21</option>
-                                                <option value="number:22" label="22">22</option>
-                                                <option value="number:23" label="23">23</option>
-                                                <option value="number:24" label="24">24</option>
-                                                <option value="number:25" label="25">25</option>
-                                                <option value="number:26" label="26">26</option>
-                                                <option value="number:27" label="27">27</option>
-                                                <option value="number:28" label="28">28</option>
-                                                <option value="number:29" label="29">29</option>
-                                                <option value="number:30" label="30">30</option>
-                                                <option value="number:31" label="31">31</option>
+                                             <select class="form-control" name="op_t_d">
+                                                <option value="1" label="1">1</option>
+                                                <option value="2" label="2">2</option>
+                                                <option value="3" label="3">3</option>
+                                                <option value="4" label="4">4</option>
+                                                <option value="5" label="5" selected="selected">5</option>
+                                                <option value="6" label="6">6</option>
+                                                <option value="7" label="7">7</option>
+                                                <option value="8" label="8">8</option>
+                                                <option value="9" label="9">9</option>
+                                                <option value="10" label="10">10</option>
+                                                <option value="11" label="11">11</option>
+                                                <option value="12" label="12">12</option>
+                                                <option value="13" label="13">13</option>
+                                                <option value="14" label="14">14</option>
+                                                <option value="15" label="15">15</option>
+                                                <option value="16" label="16">16</option>
+                                                <option value="17" label="17">17</option>
+                                                <option value="18" label="18">18</option>
+                                                <option value="19" label="19">19</option>
+                                                <option value="20" label="20">20</option>
+                                                <option value="21" label="21">21</option>
+                                                <option value="22" label="22">22</option>
+                                                <option value="23" label="23">23</option>
+                                                <option value="24" label="24">24</option>
+                                                <option value="25" label="25">25</option>
+                                                <option value="26" label="26">26</option>
+                                                <option value="27" label="27">27</option>
+                                                <option value="28" label="28">28</option>
+                                                <option value="29" label="29">29</option>
+                                                <option value="30" label="30">30</option>
+                                                <option value="31" label="31">31</option>
                                              </select>
                                           </div>
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:0" label="Jan">Jan</option>
-                                                <option value="number:1" label="Feb">Feb</option>
-                                                <option value="number:2" label="Mar" selected="selected">Mar</option>
-                                                <option value="number:3" label="Apr">Apr</option>
-                                                <option value="number:4" label="May">May</option>
-                                                <option value="number:5" label="Jun">Jun</option>
-                                                <option value="number:6" label="Jul">Jul</option>
-                                                <option value="number:7" label="Aug">Aug</option>
-                                                <option value="number:8" label="Sep">Sep</option>
-                                                <option value="number:9" label="Oct">Oct</option>
-                                                <option value="number:10" label="Nov">Nov</option>
-                                                <option value="number:11" label="Dec">Dec</option>
+                                             <select class="form-control" name="op_t_m">
+                                                <option value="1" label="Jan">Jan</option>
+                                                <option value="2" label="Feb">Feb</option>
+                                                <option value="3" label="Mar" selected="selected">Mar</option>
+                                                <option value="4" label="Apr">Apr</option>
+                                                <option value="5" label="May">May</option>
+                                                <option value="6" label="Jun">Jun</option>
+                                                <option value="7" label="Jul">Jul</option>
+                                                <option value="8" label="Aug">Aug</option>
+                                                <option value="8" label="Sep">Sep</option>
+                                                <option value="10" label="Oct">Oct</option>
+                                                <option value="11" label="Nov">Nov</option>
+                                                <option value="12" label="Dec">Dec</option>
                                              </select>
                                           </div>
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:2011" label="2011">2011</option>
-                                                <option value="number:2012" label="2012">2012</option>
-                                                <option value="number:2013" label="2013">2013</option>
-                                                <option value="number:2014" label="2014">2014</option>
-                                                <option value="number:2015" label="2015">2015</option>
-                                                <option value="number:2016" label="2016">2016</option>
-                                                <option value="number:2017" label="2017">2017</option>
-                                                <option value="number:2018" label="2018" selected="selected">2018</option>
-                                                <option value="number:2019" label="2019">2019</option>
-                                                <option value="number:2020" label="2020">2020</option>
+                                             <select class="form-control" name="op_t_y">
+                                                <option value="2011" label="2011">2011</option>
+                                                <option value="2012" label="2012">2012</option>
+                                                <option value="2013" label="2013">2013</option>
+                                                <option value="2014" label="2014">2014</option>
+                                                <option value="2015" label="2015">2015</option>
+                                                <option value="2016" label="2016">2016</option>
+                                                <option value="2017" label="2017">2017</option>
+                                                <option value="2018" label="2018" selected="selected">2018</option>
+                                                <option value="2019" label="2019">2019</option>
+                                                <option value="2020" label="2020">2020</option>
                                              </select>
                                           </div>
                                        </div>
@@ -1181,7 +1183,7 @@
                                           <div class="time-box hidden">
                                              <div class="form-group s_form_control_group">
                                                 <div class="form-field">
-                                                   <select class="form-control">
+                                                   <select class="form-control" name="op_time_hrs">
                                                       <option value="12">12</option>
                                                       <option value="01">01</option>
                                                       <option value="02">02</option>
@@ -1197,7 +1199,7 @@
                                                    </select>
                                                 </div>
                                                 <div class="form-field">
-                                                   <select class="form-control">
+                                                   <select class="form-control" name="op_time_min">
                                                       <option value="00">00</option>
                                                       <option value="01">01</option>
                                                       <option value="02">02</option>
@@ -1262,10 +1264,10 @@
                                                 </div>
                                              </div>
                                              <div class="radio-inline form-control-group-radio">
-                                                <label><input type="radio" value="AM">AM &nbsp;&nbsp;&nbsp; </label>
+                                                <label><input type="radio" name="op_time_format" value="AM">AM &nbsp;&nbsp;&nbsp; </label>
                                              </div>
                                              <div class="radio-inline form-control-group-radio">
-                                                <label><input type="radio" value="PM">PM &nbsp;&nbsp;&nbsp; </label>
+                                                <label><input type="radio" name="op_time_format" value="PM">PM &nbsp;&nbsp;&nbsp; </label>
                                              </div>
                                           </div>
                                        </span>
@@ -1286,68 +1288,68 @@
                                     <div class="clearfix">
                                        <div class="form-group s_form_control_group">
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:1" label="1">1</option>
-                                                <option value="number:2" label="2">2</option>
-                                                <option value="number:3" label="3">3</option>
-                                                <option value="number:4" label="4">4</option>
-                                                <option value="number:5" label="5" selected="selected">5</option>
-                                                <option value="number:6" label="6">6</option>
-                                                <option value="number:7" label="7">7</option>
-                                                <option value="number:8" label="8">8</option>
-                                                <option value="number:9" label="9">9</option>
-                                                <option value="number:10" label="10">10</option>
-                                                <option value="number:11" label="11">11</option>
-                                                <option value="number:12" label="12">12</option>
-                                                <option value="number:13" label="13">13</option>
-                                                <option value="number:14" label="14">14</option>
-                                                <option value="number:15" label="15">15</option>
-                                                <option value="number:16" label="16">16</option>
-                                                <option value="number:17" label="17">17</option>
-                                                <option value="number:18" label="18">18</option>
-                                                <option value="number:19" label="19">19</option>
-                                                <option value="number:20" label="20">20</option>
-                                                <option value="number:21" label="21">21</option>
-                                                <option value="number:22" label="22">22</option>
-                                                <option value="number:23" label="23">23</option>
-                                                <option value="number:24" label="24">24</option>
-                                                <option value="number:25" label="25">25</option>
-                                                <option value="number:26" label="26">26</option>
-                                                <option value="number:27" label="27">27</option>
-                                                <option value="number:28" label="28">28</option>
-                                                <option value="number:29" label="29">29</option>
-                                                <option value="number:30" label="30">30</option>
-                                                <option value="number:31" label="31">31</option>
+                                             <select class="form-control" name="cl_t_d">
+                                                <option value="1" label="1">1</option>
+                                                <option value="2" label="2">2</option>
+                                                <option value="3" label="3">3</option>
+                                                <option value="4" label="4">4</option>
+                                                <option value="5" label="5" selected="selected">5</option>
+                                                <option value="6" label="6">6</option>
+                                                <option value="7" label="7">7</option>
+                                                <option value="8" label="8">8</option>
+                                                <option value="9" label="9">9</option>
+                                                <option value="10" label="10">10</option>
+                                                <option value="11" label="11">11</option>
+                                                <option value="12" label="12">12</option>
+                                                <option value="13" label="13">13</option>
+                                                <option value="14" label="14">14</option>
+                                                <option value="15" label="15">15</option>
+                                                <option value="16" label="16">16</option>
+                                                <option value="17" label="17">17</option>
+                                                <option value="18" label="18">18</option>
+                                                <option value="19" label="19">19</option>
+                                                <option value="20" label="20">20</option>
+                                                <option value="21" label="21">21</option>
+                                                <option value="22" label="22">22</option>
+                                                <option value="23" label="23">23</option>
+                                                <option value="24" label="24">24</option>
+                                                <option value="25" label="25">25</option>
+                                                <option value="26" label="26">26</option>
+                                                <option value="27" label="27">27</option>
+                                                <option value="28" label="28">28</option>
+                                                <option value="29" label="29">29</option>
+                                                <option value="30" label="30">30</option>
+                                                <option value="31" label="31">31</option>
                                              </select>
                                           </div>
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:0" label="Jan">Jan</option>
-                                                <option value="number:1" label="Feb">Feb</option>
-                                                <option value="number:2" label="Mar" selected="selected">Mar</option>
-                                                <option value="number:3" label="Apr">Apr</option>
-                                                <option value="number:4" label="May">May</option>
-                                                <option value="number:5" label="Jun">Jun</option>
-                                                <option value="number:6" label="Jul">Jul</option>
-                                                <option value="number:7" label="Aug">Aug</option>
-                                                <option value="number:8" label="Sep">Sep</option>
-                                                <option value="number:9" label="Oct">Oct</option>
-                                                <option value="number:10" label="Nov">Nov</option>
-                                                <option value="number:11" label="Dec">Dec</option>
+                                             <select class="form-control" name="cl_t_m">
+                                                <option value="1" label="Jan">Jan</option>
+                                                <option value="2" label="Feb">Feb</option>
+                                                <option value="3" label="Mar" selected="selected">Mar</option>
+                                                <option value="4" label="Apr">Apr</option>
+                                                <option value="5" label="May">May</option>
+                                                <option value="6" label="Jun">Jun</option>
+                                                <option value="7" label="Jul">Jul</option>
+                                                <option value="8" label="Aug">Aug</option>
+                                                <option value="9" label="Sep">Sep</option>
+                                                <option value="10" label="Oct">Oct</option>
+                                                <option value="11" label="Nov">Nov</option>
+                                                <option value="12" label="Dec">Dec</option>
                                              </select>
                                           </div>
                                           <div class="form-field">
-                                             <select class="form-control">
-                                                <option value="number:2011" label="2011">2011</option>
-                                                <option value="number:2012" label="2012">2012</option>
-                                                <option value="number:2013" label="2013">2013</option>
-                                                <option value="number:2014" label="2014">2014</option>
-                                                <option value="number:2015" label="2015">2015</option>
-                                                <option value="number:2016" label="2016">2016</option>
-                                                <option value="number:2017" label="2017">2017</option>
-                                                <option value="number:2018" label="2018" selected="selected">2018</option>
-                                                <option value="number:2019" label="2019">2019</option>
-                                                <option value="number:2020" label="2020">2020</option>
+                                             <select class="form-control" name="cl_t_y">
+                                                <option value="2011" label="2011">2011</option>
+                                                <option value="2012" label="2012">2012</option>
+                                                <option value="2013" label="2013">2013</option>
+                                                <option value="2014" label="2014">2014</option>
+                                                <option value="2015" label="2015">2015</option>
+                                                <option value="2016" label="2016">2016</option>
+                                                <option value="2017" label="2017">2017</option>
+                                                <option value="2018" label="2018" selected="selected">2018</option>
+                                                <option value="2019" label="2019">2019</option>
+                                                <option value="2020" label="2020">2020</option>
                                              </select>
                                           </div>
                                        </div>
@@ -1358,7 +1360,7 @@
                                           <div class="time-box hidden">
                                              <div class="form-group s_form_control_group">
                                                 <div class="form-field">
-                                                   <select class="form-control">
+                                                   <select class="form-control" name="cl_time_hrs">
                                                       <option value="12">12</option>
                                                       <option value="01">01</option>
                                                       <option value="02">02</option>
@@ -1374,7 +1376,7 @@
                                                    </select>
                                                 </div>
                                                 <div class="form-field">
-                                                   <select class="form-control">
+                                                   <select class="form-control" name="cl_time_min">
                                                       <option value="00">00</option>
                                                       <option value="01">01</option>
                                                       <option value="02">02</option>
@@ -1439,10 +1441,10 @@
                                                 </div>
                                              </div>
                                              <div class="radio-inline form-control-group-radio">
-                                                <label><input type="radio" value="AM">AM &nbsp;&nbsp;&nbsp; </label>
+                                                <label><input type="radio" name="cl_time_format" value="AM">AM &nbsp;&nbsp;&nbsp; </label>
                                              </div>
                                              <div class="radio-inline form-control-group-radio">
-                                                <label><input type="radio" value="PM">PM &nbsp;&nbsp;&nbsp; </label>
+                                                <label><input type="radio" name="cl_time_format" value="PM">PM &nbsp;&nbsp;&nbsp; </label>
                                              </div>
                                           </div>
                                        </span>
@@ -1459,109 +1461,109 @@
                         <span>
                            <a class="btn btn-link btn-sm click_time">(UTC+04:00) Baku</a>
                            <div class="col-sm-6 hidden">
-                              <select class="form-control">
-                                 <option value="1" label="(UTC-12:00) International Date Line West">(UTC-12:00) International Date Line West</option>
-                                 <option value="2" label="(UTC-11:00) Coordinated Universal Time-11">(UTC-11:00) Coordinated Universal Time-11</option>
-                                 <option value="3" label="(UTC-10:00) Hawaii">(UTC-10:00) Hawaii</option>
-                                 <option value="4" label="(UTC-09:00) Alaska">(UTC-09:00) Alaska</option>
-                                 <option value="5" label="(UTC-08:00) Baja California">(UTC-08:00) Baja California</option>
-                                 <option value="6" label="(UTC-08:00) Pacific Time (US &amp; Canada)">(UTC-08:00) Pacific Time (US &amp; Canada)</option>
-                                 <option value="7" label="(UTC-07:00) Arizona">(UTC-07:00) Arizona</option>
-                                 <option value="8" label="(UTC-07:00) Chihuahua, La Paz, Mazatlan">(UTC-07:00) Chihuahua, La Paz, Mazatlan</option>
-                                 <option value="9" label="(UTC-07:00) Mountain Time (US &amp; Canada)">(UTC-07:00) Mountain Time (US &amp; Canada)</option>
-                                 <option value="10" label="(UTC-06:00) Central America">(UTC-06:00) Central America</option>
-                                 <option value="11" label="(UTC-06:00) Central Time (US &amp; Canada)">(UTC-06:00) Central Time (US &amp; Canada)</option>
-                                 <option value="12" label="(UTC-06:00) Guadalajara, Mexico City, Monterrey">(UTC-06:00) Guadalajara, Mexico City, Monterrey</option>
-                                 <option value="13" label="(UTC-06:00) Saskatchewan">(UTC-06:00) Saskatchewan</option>
-                                 <option value="14" label="(UTC-05:00) Bogota, Lima, Quito">(UTC-05:00) Bogota, Lima, Quito</option>
-                                 <option value="15" label="(UTC-05:00) Eastern Time (US &amp; Canada)">(UTC-05:00) Eastern Time (US &amp; Canada)</option>
-                                 <option value="16" label="(UTC-05:00) Indiana (East)">(UTC-05:00) Indiana (East)</option>
-                                 <option value="17" label="(UTC-04:30) Caracas">(UTC-04:30) Caracas</option>
-                                 <option value="18" label="(UTC-04:00) Asuncion">(UTC-04:00) Asuncion</option>
-                                 <option value="19" label="(UTC-04:00) Atlantic Time (Canada)">(UTC-04:00) Atlantic Time (Canada)</option>
+                              <select class="form-control" name="time_zone">
+                                 <option value="(UTC-12:00) International Date Line West" label="(UTC-12:00) International Date Line West">(UTC-12:00) International Date Line West</option>
+                                 <option value="(UTC-11:00) Coordinated Universal Time-11" label="(UTC-11:00) Coordinated Universal Time-11">(UTC-11:00) Coordinated Universal Time-11</option>
+                                 <option value="(UTC-10:00) Hawaii" label="(UTC-10:00) Hawaii">(UTC-10:00) Hawaii</option>
+                                 <option value="(UTC-09:00) Alaska" label="(UTC-09:00) Alaska">(UTC-09:00) Alaska</option>
+                                 <option value="(UTC-08:00) Baja California" label="(UTC-08:00) Baja California">(UTC-08:00) Baja California</option>
+                                 <option value="(UTC-08:00) Pacific Time (US &amp; Canada)" label="(UTC-08:00) Pacific Time (US &amp; Canada)">(UTC-08:00) Pacific Time (US &amp; Canada)</option>
+                                 <option value="(UTC-07:00) Arizona" label="(UTC-07:00) Arizona">(UTC-07:00) Arizona</option>
+                                 <option value="(UTC-07:00) Chihuahua, La Paz, Mazatlan" label="(UTC-07:00) Chihuahua, La Paz, Mazatlan">(UTC-07:00) Chihuahua, La Paz, Mazatlan</option>
+                                 <option value="(UTC-07:00) Mountain Time (US &amp; Canada)" label="(UTC-07:00) Mountain Time (US &amp; Canada)">(UTC-07:00) Mountain Time (US &amp; Canada)</option>
+                                 <option value="(UTC-06:00) Central America" label="(UTC-06:00) Central America">(UTC-06:00) Central America</option>
+                                 <option value="(UTC-06:00) Central Time (US &amp; Canada)" label="(UTC-06:00) Central Time (US &amp; Canada)">(UTC-06:00) Central Time (US &amp; Canada)</option>
+                                 <option value="(UTC-06:00) Guadalajara, Mexico City, Monterrey" label="(UTC-06:00) Guadalajara, Mexico City, Monterrey">(UTC-06:00) Guadalajara, Mexico City, Monterrey</option>
+                                 <option value="(UTC-06:00) Saskatchewan" label="(UTC-06:00) Saskatchewan">(UTC-06:00) Saskatchewan</option>
+                                 <option value="(UTC-05:00) Bogota, Lima, Quito" label="(UTC-05:00) Bogota, Lima, Quito">(UTC-05:00) Bogota, Lima, Quito</option>
+                                 <option value="(UTC-05:00) Eastern Time (US &amp; Canada)" label="(UTC-05:00) Eastern Time (US &amp; Canada)">(UTC-05:00) Eastern Time (US &amp; Canada)</option>
+                                 <option value="(UTC-05:00) Indiana (East)" label="(UTC-05:00) Indiana (East)">(UTC-05:00) Indiana (East)</option>
+                                 <option value="(UTC-04:30) Caracas" label="(UTC-04:30) Caracas">(UTC-04:30) Caracas</option>
+                                 <option value="(UTC-04:00) Asuncion" label="(UTC-04:00) Asuncion">(UTC-04:00) Asuncion</option>
+                                 <option value="(UTC-04:00) Atlantic Time (Canada)" label="(UTC-04:00) Atlantic Time (Canada)">(UTC-04:00) Atlantic Time (Canada)</option>
                                  <option value="20" label="(UTC-04:00) Cuiaba">(UTC-04:00) Cuiaba</option>
                                  <option value="21" label="(UTC-04:00) Georgetown, La Paz, Manaus, San Juan">(UTC-04:00) Georgetown, La Paz, Manaus, San Juan</option>
-                                 <option value="22" label="(UTC-04:00) Santiago">(UTC-04:00) Santiago</option>
-                                 <option value="23" label="(UTC-03:30) Newfoundland">(UTC-03:30) Newfoundland</option>
-                                 <option value="24" label="(UTC-03:00) Brasilia">(UTC-03:00) Brasilia</option>
-                                 <option value="25" label="(UTC-03:00) Buenos Aires">(UTC-03:00) Buenos Aires</option>
-                                 <option value="26" label="(UTC-03:00) Cayenne, Fortaleza">(UTC-03:00) Cayenne, Fortaleza</option>
-                                 <option value="27" label="(UTC-03:00) Greenland">(UTC-03:00) Greenland</option>
-                                 <option value="28" label="(UTC-03:00) Montevideo">(UTC-03:00) Montevideo</option>
-                                 <option value="29" label="(UTC-03:00) Salvador">(UTC-03:00) Salvador</option>
-                                 <option value="30" label="(UTC-02:00) Coordinated Universal Time-02">(UTC-02:00) Coordinated Universal Time-02</option>
-                                 <option value="31" label="(UTC-02:00) Mid-Atlantic - Old">(UTC-02:00) Mid-Atlantic - Old</option>
-                                 <option value="32" label="(UTC-01:00) Azores">(UTC-01:00) Azores</option>
-                                 <option value="33" label="(UTC-01:00) Cape Verde Is.">(UTC-01:00) Cape Verde Is.</option>
-                                 <option value="34" label="(UTC) Casablanca">(UTC) Casablanca</option>
-                                 <option value="35" label="(UTC) Coordinated Universal Time">(UTC) Coordinated Universal Time</option>
-                                 <option value="36" label="(UTC) Dublin, Edinburgh, Lisbon, London">(UTC) Dublin, Edinburgh, Lisbon, London</option>
-                                 <option value="37" label="(UTC) Monrovia, Reykjavik">(UTC) Monrovia, Reykjavik</option>
-                                 <option value="38" label="(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna">(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
-                                 <option value="39" label="(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague">(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
-                                 <option value="40" label="(UTC+01:00) Brussels, Copenhagen, Madrid, Paris">(UTC+01:00) Brussels, Copenhagen, Madrid, Paris</option>
-                                 <option value="41" label="(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb">(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
-                                 <option value="42" label="(UTC+01:00) West Central Africa">(UTC+01:00) West Central Africa</option>
-                                 <option value="43" label="(UTC+01:00) Windhoek">(UTC+01:00) Windhoek</option>
-                                 <option value="44" label="(UTC+02:00) Athens, Bucharest">(UTC+02:00) Athens, Bucharest</option>
-                                 <option value="45" label="(UTC+02:00) Beirut">(UTC+02:00) Beirut</option>
-                                 <option value="46" label="(UTC+02:00) Cairo">(UTC+02:00) Cairo</option>
-                                 <option value="47" label="(UTC+02:00) Damascus">(UTC+02:00) Damascus</option>
-                                 <option value="48" label="(UTC+02:00) E. Europe">(UTC+02:00) E. Europe</option>
-                                 <option value="49" label="(UTC+02:00) Harare, Pretoria">(UTC+02:00) Harare, Pretoria</option>
-                                 <option value="50" label="(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius">(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
-                                 <option value="51" label="(UTC+02:00) Istanbul">(UTC+02:00) Istanbul</option>
-                                 <option value="52" label="(UTC+02:00) Jerusalem">(UTC+02:00) Jerusalem</option>
-                                 <option value="53" label="(UTC+02:00) Tripoli">(UTC+02:00) Tripoli</option>
-                                 <option value="54" label="(UTC+03:00) Amman">(UTC+03:00) Amman</option>
-                                 <option value="55" label="(UTC+03:00) Baghdad">(UTC+03:00) Baghdad</option>
-                                 <option value="56" label="(UTC+03:00) Kaliningrad, Minsk">(UTC+03:00) Kaliningrad, Minsk</option>
-                                 <option value="57" label="(UTC+03:00) Kuwait, Riyadh">(UTC+03:00) Kuwait, Riyadh</option>
-                                 <option value="58" label="(UTC+03:00) Nairobi">(UTC+03:00) Nairobi</option>
-                                 <option value="59" label="(UTC+03:30) Tehran">(UTC+03:30) Tehran</option>
-                                 <option value="60" label="(UTC+04:00) Abu Dhabi, Muscat">(UTC+04:00) Abu Dhabi, Muscat</option>
-                                 <option value="61" label="(UTC+04:00) Baku" selected="selected">(UTC+04:00) Baku</option>
-                                 <option value="62" label="(UTC+04:00) Moscow, St. Petersburg, Volgograd">(UTC+04:00) Moscow, St. Petersburg, Volgograd</option>
-                                 <option value="63" label="(UTC+04:00) Port Louis">(UTC+04:00) Port Louis</option>
-                                 <option value="64" label="(UTC+04:00) Tbilisi">(UTC+04:00) Tbilisi</option>
-                                 <option value="65" label="(UTC+04:00) Yerevan">(UTC+04:00) Yerevan</option>
-                                 <option value="66" label="(UTC+04:30) Kabul">(UTC+04:30) Kabul</option>
-                                 <option value="67" label="(UTC+05:00) Ashgabat, Tashkent">(UTC+05:00) Ashgabat, Tashkent</option>
-                                 <option value="68" label="(UTC+05:00) Islamabad, Karachi">(UTC+05:00) Islamabad, Karachi</option>
-                                 <option value="69" label="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi">(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
-                                 <option value="70" label="(UTC+05:30) Sri Jayawardenepura">(UTC+05:30) Sri Jayawardenepura</option>
-                                 <option value="71" label="(UTC+05:45) Kathmandu">(UTC+05:45) Kathmandu</option>
-                                 <option value="72" label="(UTC+06:00) Astana">(UTC+06:00) Astana</option>
-                                 <option value="73" label="(UTC+06:00) Dhaka">(UTC+06:00) Dhaka</option>
-                                 <option value="74" label="(UTC+06:00) Ekaterinburg">(UTC+06:00) Ekaterinburg</option>
-                                 <option value="75" label="(UTC+06:30) Yangon (Rangoon)">(UTC+06:30) Yangon (Rangoon)</option>
-                                 <option value="76" label="(UTC+07:00) Bangkok, Hanoi, Jakarta">(UTC+07:00) Bangkok, Hanoi, Jakarta</option>
-                                 <option value="77" label="(UTC+07:00) Novosibirsk">(UTC+07:00) Novosibirsk</option>
-                                 <option value="78" label="(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi">(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
-                                 <option value="79" label="(UTC+08:00) Krasnoyarsk">(UTC+08:00) Krasnoyarsk</option>
-                                 <option value="80" label="(UTC+08:00) Kuala Lumpur, Singapore">(UTC+08:00) Kuala Lumpur, Singapore</option>
-                                 <option value="81" label="(UTC+08:00) Perth">(UTC+08:00) Perth</option>
-                                 <option value="82" label="(UTC+08:00) Taipei">(UTC+08:00) Taipei</option>
-                                 <option value="83" label="(UTC+08:00) Ulaanbaatar">(UTC+08:00) Ulaanbaatar</option>
-                                 <option value="84" label="(UTC+09:00) Irkutsk">(UTC+09:00) Irkutsk</option>
-                                 <option value="85" label="(UTC+09:00) Osaka, Sapporo, Tokyo">(UTC+09:00) Osaka, Sapporo, Tokyo</option>
-                                 <option value="86" label="(UTC+09:00) Seoul">(UTC+09:00) Seoul</option>
-                                 <option value="87" label="(UTC+09:30) Adelaide">(UTC+09:30) Adelaide</option>
-                                 <option value="88" label="(UTC+09:30) Darwin">(UTC+09:30) Darwin</option>
-                                 <option value="89" label="(UTC+10:00) Brisbane">(UTC+10:00) Brisbane</option>
-                                 <option value="90" label="(UTC+10:00) Canberra, Melbourne, Sydney">(UTC+10:00) Canberra, Melbourne, Sydney</option>
-                                 <option value="91" label="(UTC+10:00) Guam, Port Moresby">(UTC+10:00) Guam, Port Moresby</option>
-                                 <option value="92" label="(UTC+10:00) Hobart">(UTC+10:00) Hobart</option>
-                                 <option value="93" label="(UTC+10:00) Yakutsk">(UTC+10:00) Yakutsk</option>
-                                 <option value="94" label="(UTC+11:00) Solomon Is., New Caledonia">(UTC+11:00) Solomon Is., New Caledonia</option>
-                                 <option value="95" label="(UTC+11:00) Vladivostok">(UTC+11:00) Vladivostok</option>
-                                 <option value="96" label="(UTC+12:00) Auckland, Wellington">(UTC+12:00) Auckland, Wellington</option>
-                                 <option value="97" label="(UTC+12:00) Coordinated Universal Time+12">(UTC+12:00) Coordinated Universal Time+12</option>
-                                 <option value="98" label="(UTC+12:00) Fiji">(UTC+12:00) Fiji</option>
-                                 <option value="99" label="(UTC+12:00) Magadan">(UTC+12:00) Magadan</option>
-                                 <option value="100" label="(UTC+12:00) Petropavlovsk-Kamchatsky - Old">(UTC+12:00) Petropavlovsk-Kamchatsky - Old</option>
-                                 <option value="101" label="(UTC+13:00) Nuku'alofa">(UTC+13:00) Nuku'alofa</option>
-                                 <option value="102" label="(UTC+13:00) Samoa">(UTC+13:00) Samoa</option>
+                                 <option value="(UTC-04:00) Cuiaba" label="(UTC-04:00) Santiago">(UTC-04:00) Santiago</option>
+                                 <option value="(UTC-03:30) Newfoundland" label="(UTC-03:30) Newfoundland">(UTC-03:30) Newfoundland</option>
+                                 <option value="(UTC-03:00) Brasilia" label="(UTC-03:00) Brasilia">(UTC-03:00) Brasilia</option>
+                                 <option value="(UTC-03:00) Buenos Aires" label="(UTC-03:00) Buenos Aires">(UTC-03:00) Buenos Aires</option>
+                                 <option value="(UTC-03:00) Cayenne, Fortaleza" label="(UTC-03:00) Cayenne, Fortaleza">(UTC-03:00) Cayenne, Fortaleza</option>
+                                 <option value="(UTC-03:00) Greenland" label="(UTC-03:00) Greenland">(UTC-03:00) Greenland</option>
+                                 <option value="(UTC-03:00) Montevideo" label="(UTC-03:00) Montevideo">(UTC-03:00) Montevideo</option>
+                                 <option value="(UTC-03:00) Salvador" label="(UTC-03:00) Salvador">(UTC-03:00) Salvador</option>
+                                 <option value="(UTC-02:00) Coordinated Universal Time-02" label="(UTC-02:00) Coordinated Universal Time-02">(UTC-02:00) Coordinated Universal Time-02</option>
+                                 <option value="(UTC-02:00) Mid-Atlantic - Old" label="(UTC-02:00) Mid-Atlantic - Old">(UTC-02:00) Mid-Atlantic - Old</option>
+                                 <option value="(UTC-01:00) Azores" label="(UTC-01:00) Azores">(UTC-01:00) Azores</option>
+                                 <option value="(UTC-01:00) Cape Verde Is." label="(UTC-01:00) Cape Verde Is.">(UTC-01:00) Cape Verde Is.</option>
+                                 <option value="(UTC) Casablanca" label="(UTC) Casablanca">(UTC) Casablanca</option>
+                                 <option value="(UTC) Coordinated Universal Time" label="(UTC) Coordinated Universal Time">(UTC) Coordinated Universal Time</option>
+                                 <option value="(UTC) Dublin, Edinburgh, Lisbon, London" label="(UTC) Dublin, Edinburgh, Lisbon, London">(UTC) Dublin, Edinburgh, Lisbon, London</option>
+                                 <option value="(UTC) Monrovia, Reykjavik" label="(UTC) Monrovia, Reykjavik">(UTC) Monrovia, Reykjavik</option>
+                                 <option value="(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna" label="(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna">(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+                                 <option value="(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague" label="(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague">(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+                                 <option value="(UTC+01:00) Brussels, Copenhagen, Madrid, Paris" label="(UTC+01:00) Brussels, Copenhagen, Madrid, Paris">(UTC+01:00) Brussels, Copenhagen, Madrid, Paris</option>
+                                 <option value="(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb" label="(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb">(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
+                                 <option value="(UTC+01:00) West Central Africa" label="(UTC+01:00) West Central Africa">(UTC+01:00) West Central Africa</option>
+                                 <option value="(UTC+01:00) Windhoek" label="(UTC+01:00) Windhoek">(UTC+01:00) Windhoek</option>
+                                 <option value="(UTC+02:00) Athens, Bucharest" label="(UTC+02:00) Athens, Bucharest">(UTC+02:00) Athens, Bucharest</option>
+                                 <option value="(UTC+02:00) Beirut" label="(UTC+02:00) Beirut">(UTC+02:00) Beirut</option>
+                                 <option value="(UTC+02:00) Cairo" label="(UTC+02:00) Cairo">(UTC+02:00) Cairo</option>
+                                 <option value="(UTC+02:00) Damascus" label="(UTC+02:00) Damascus">(UTC+02:00) Damascus</option>
+                                 <option value="(UTC+02:00) E. Europe" label="(UTC+02:00) E. Europe">(UTC+02:00) E. Europe</option>
+                                 <option value="(UTC+02:00) Harare, Pretoria" label="(UTC+02:00) Harare, Pretoria">(UTC+02:00) Harare, Pretoria</option>
+                                 <option value="(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius" label="(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius">(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
+                                 <option value="(UTC+02:00) Istanbul" label="(UTC+02:00) Istanbul">(UTC+02:00) Istanbul</option>
+                                 <option value="(UTC+02:00) Jerusalem" label="(UTC+02:00) Jerusalem">(UTC+02:00) Jerusalem</option>
+                                 <option value="(UTC+02:00) Tripoli" label="(UTC+02:00) Tripoli">(UTC+02:00) Tripoli</option>
+                                 <option value="(UTC+03:00) Amman" label="(UTC+03:00) Amman">(UTC+03:00) Amman</option>
+                                 <option value="(UTC+03:00) Baghdad" label="(UTC+03:00) Baghdad">(UTC+03:00) Baghdad</option>
+                                 <option value="(UTC+03:00) Kaliningrad, Minsk" label="(UTC+03:00) Kaliningrad, Minsk">(UTC+03:00) Kaliningrad, Minsk</option>
+                                 <option value="(UTC+03:00) Kuwait, Riyadh" label="(UTC+03:00) Kuwait, Riyadh">(UTC+03:00) Kuwait, Riyadh</option>
+                                 <option value="(UTC+03:00) Nairobi" label="(UTC+03:00) Nairobi">(UTC+03:00) Nairobi</option>
+                                 <option value="(UTC+03:30) Tehran" label="(UTC+03:30) Tehran">(UTC+03:30) Tehran</option>
+                                 <option value="(UTC+04:00) Abu Dhabi, Muscat" label="(UTC+04:00) Abu Dhabi, Muscat">(UTC+04:00) Abu Dhabi, Muscat</option>
+                                 <option value="(UTC+04:00) Baku" label="(UTC+04:00) Baku" selected="selected">(UTC+04:00) Baku</option>
+                                 <option value="(UTC+04:00) Moscow, St. Petersburg, Volgograd" label="(UTC+04:00) Moscow, St. Petersburg, Volgograd">(UTC+04:00) Moscow, St. Petersburg, Volgograd</option>
+                                 <option value="(UTC+04:00) Port Louis" label="(UTC+04:00) Port Louis">(UTC+04:00) Port Louis</option>
+                                 <option value="(UTC+04:00) Tbilisi" label="(UTC+04:00) Tbilisi">(UTC+04:00) Tbilisi</option>
+                                 <option value="(UTC+04:00) Yerevan" label="(UTC+04:00) Yerevan">(UTC+04:00) Yerevan</option>
+                                 <option value="(UTC+04:30) Kabul" label="(UTC+04:30) Kabul">(UTC+04:30) Kabul</option>
+                                 <option value="(UTC+05:00) Ashgabat, Tashkent" label="(UTC+05:00) Ashgabat, Tashkent">(UTC+05:00) Ashgabat, Tashkent</option>
+                                 <option value="(UTC+05:00) Islamabad, Karachi" label="(UTC+05:00) Islamabad, Karachi">(UTC+05:00) Islamabad, Karachi</option>
+                                 <option value="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi" label="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi">(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
+                                 <option value="(UTC+05:30) Sri Jayawardenepura" label="(UTC+05:30) Sri Jayawardenepura">(UTC+05:30) Sri Jayawardenepura</option>
+                                 <option value="(UTC+05:45) Kathmandu" label="(UTC+05:45) Kathmandu">(UTC+05:45) Kathmandu</option>
+                                 <option value="(UTC+06:00) Astana" label="(UTC+06:00) Astana">(UTC+06:00) Astana</option>
+                                 <option value="(UTC+06:00) Dhaka" label="(UTC+06:00) Dhaka">(UTC+06:00) Dhaka</option>
+                                 <option value="(UTC+06:00) Ekaterinburg" label="(UTC+06:00) Ekaterinburg">(UTC+06:00) Ekaterinburg</option>
+                                 <option value="(UTC+06:30) Yangon (Rangoon)" label="(UTC+06:30) Yangon (Rangoon)">(UTC+06:30) Yangon (Rangoon)</option>
+                                 <option value="(UTC+07:00) Bangkok, Hanoi, Jakarta" label="(UTC+07:00) Bangkok, Hanoi, Jakarta">(UTC+07:00) Bangkok, Hanoi, Jakarta</option>
+                                 <option value="(UTC+07:00) Novosibirsk" label="(UTC+07:00) Novosibirsk">(UTC+07:00) Novosibirsk</option>
+                                 <option value="(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi" label="(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi">(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
+                                 <option value="(UTC+08:00) Krasnoyarsk" label="(UTC+08:00) Krasnoyarsk">(UTC+08:00) Krasnoyarsk</option>
+                                 <option value="(UTC+08:00) Kuala Lumpur, Singapore" label="(UTC+08:00) Kuala Lumpur, Singapore">(UTC+08:00) Kuala Lumpur, Singapore</option>
+                                 <option value="(UTC+08:00) Perth" label="(UTC+08:00) Perth">(UTC+08:00) Perth</option>
+                                 <option value="(UTC+08:00) Taipei" label="(UTC+08:00) Taipei">(UTC+08:00) Taipei</option>
+                                 <option value="(UTC+08:00) Ulaanbaatar" label="(UTC+08:00) Ulaanbaatar">(UTC+08:00) Ulaanbaatar</option>
+                                 <option value="(UTC+09:00) Irkutsk" label="(UTC+09:00) Irkutsk">(UTC+09:00) Irkutsk</option>
+                                 <option value="(UTC+09:00) Osaka, Sapporo, Tokyo" label="(UTC+09:00) Osaka, Sapporo, Tokyo">(UTC+09:00) Osaka, Sapporo, Tokyo</option>
+                                 <option value="(UTC+09:00) Seoul" label="(UTC+09:00) Seoul">(UTC+09:00) Seoul</option>
+                                 <option value="(UTC+09:30) Adelaide" label="(UTC+09:30) Adelaide">(UTC+09:30) Adelaide</option>
+                                 <option value="(UTC+09:30) Darwin" label="(UTC+09:30) Darwin">(UTC+09:30) Darwin</option>
+                                 <option value="(UTC+10:00) Brisbane" label="(UTC+10:00) Brisbane">(UTC+10:00) Brisbane</option>
+                                 <option value="(UTC+10:00) Canberra, Melbourne, Sydney" label="(UTC+10:00) Canberra, Melbourne, Sydney">(UTC+10:00) Canberra, Melbourne, Sydney</option>
+                                 <option value="(UTC+10:00) Guam, Port Moresby" label="(UTC+10:00) Guam, Port Moresby">(UTC+10:00) Guam, Port Moresby</option>
+                                 <option value="(UTC+10:00) Hobart" label="(UTC+10:00) Hobart">(UTC+10:00) Hobart</option>
+                                 <option value="(UTC+10:00) Yakutsk" label="(UTC+10:00) Yakutsk">(UTC+10:00) Yakutsk</option>
+                                 <option value="(UTC+11:00) Solomon Is., New Caledonia" label="(UTC+11:00) Solomon Is., New Caledonia">(UTC+11:00) Solomon Is., New Caledonia</option>
+                                 <option value="(UTC+11:00) Vladivostok" label="(UTC+11:00) Vladivostok">(UTC+11:00) Vladivostok</option>
+                                 <option value="(UTC+12:00) Auckland, Wellington" label="(UTC+12:00) Auckland, Wellington">(UTC+12:00) Auckland, Wellington</option>
+                                 <option value="(UTC+12:00) Coordinated Universal Time+12" label="(UTC+12:00) Coordinated Universal Time+12">(UTC+12:00) Coordinated Universal Time+12</option>
+                                 <option value="(UTC+12:00) Fiji" label="(UTC+12:00) Fiji">(UTC+12:00) Fiji</option>
+                                 <option value="(UTC+12:00) Magadan" label="(UTC+12:00) Magadan">(UTC+12:00) Magadan</option>
+                                 <option value="(UTC+12:00) Petropavlovsk-Kamchatsky - Old" label="(UTC+12:00) Petropavlovsk-Kamchatsky - Old">(UTC+12:00) Petropavlovsk-Kamchatsky - Old</option>
+                                 <option value="(UTC+13:00) Nuku'alofa" label="(UTC+13:00) Nuku'alofa">(UTC+13:00) Nuku'alofa</option>
+                                 <option value="(UTC+13:00) Samoa" label="(UTC+13:00) Samoa">(UTC+13:00) Samoa</option>
                               </select>
                            </div>
                         </span>
@@ -1576,6 +1578,7 @@
                   <button type="submit" class="btn">Publish Test</button>
                </div>
             </div>
+           </form>
          </div>
       </div>
    </div>
@@ -2562,7 +2565,6 @@
         </div>
     </div>
 </div>
-
 <!-- section-coding-debug-Modal -->
 <div class="modal fade" id="section-coding-debug-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
@@ -4358,7 +4360,7 @@
         </div>
       </form>
    </div>
-</div>
+</div> 
 <!-- section-mcqs-Modal -->
 <div class="modal fade" id="section-mcqs-Modal-Collapse" role="dialog">
   <div class="modal-dialog  modal-lg">
@@ -4392,6 +4394,13 @@
 <!-- section-mcqs-Modal -->
 @endsection
 @section('modal_content')
+<script type="text/javascript">
+   $(document).ready(function(){
+      @if(isset($hostFlag) && $hostFlag)
+         $('#_first_model').modal('show');    
+      @endif
+   });
+</script>
 <div class="modal fade" id="question_modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->

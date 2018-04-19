@@ -10,6 +10,7 @@ use App\Section;
 use App\Question;
 use Auth;
 use DB;
+use App\Hosted_test;
 
 class TemplatesController extends Controller
 {
@@ -20,6 +21,10 @@ class TemplatesController extends Controller
         foreach ($args['listing'] as $value) {
             $args['sections'][$value->id] = Section::where('template_id',$value->id)->get();            
         }
+        $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+                        ->where('test_templates.user_id', Auth::user()->id)->get();
+        // dd($args['hosted_tests']);
+
         return view('recruiter_dashboard.view')->with($args);
     }
 	// Manage Test View Index
@@ -67,6 +72,9 @@ class TemplatesController extends Controller
              $args['sections_tabs'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              $args['sections_tabs'][$value->id]['count'] = $value->section_questions;
         }
+
+        $args['template_id'] = $id;
+
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 	// Editing Test Template

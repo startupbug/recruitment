@@ -61,7 +61,7 @@ Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {
 
 
 /*Recruiter Routes Started*/
-Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], function () {	
+Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard');
@@ -104,6 +104,12 @@ Route::get('/delete_all_mcqs_questions', 'Recruiter\QuestionsController@delete_a
 Route::post('/question_modal_partial_data', 'Recruiter\QuestionsController@question_modal_partial_data')->name('question_modal_partial_data');
 Route::post('/update_partial_question', 'Recruiter\QuestionsController@update_partial_question')->name('update_partial_question');
 //Recruiter Questions Routes Ended
+
+/* Host Test Routes */
+Route::get('/host_test_page/{id}', 'Recruiter\HostController@host_test_page')->name('host_test_page');
+
+//Add Host Test Post request
+Route::post('/host_test_post', 'Recruiter\HostController@host_test_post')->name('host_test_post');
 
 });
 /*Recruiter Routes Ended*/
