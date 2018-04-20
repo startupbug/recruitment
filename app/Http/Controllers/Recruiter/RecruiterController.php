@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Recruiter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Support;
+use Illuminate\Support\Facades\Input;
+use DB;
+use Session;
 class RecruiterController extends Controller
 {
     /**
@@ -26,9 +29,20 @@ class RecruiterController extends Controller
         return view('recruiter_dashboard.dashboard');
     }
 
-    public function customer_service()
+    public function customer_support()
     {
-        return view('recruiter_dashboard.customer_service');
+    
+         $search_item = Input::get('query');
+          $data[] = "";
+            $searching= DB::table('supports')
+            ->where('description','LIKE','%'.$search_item.'%')->get();
+            
+            if (count($searching) == 0) {
+                
+                Session::flash('not_found','no query found with this text');
+            }
+     
+        return view('recruiter_dashboard.customer_support', ['searching' => $searching]);
     }
 
     public function history()

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Recruiter;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Events\TemplateSection;
 use App\Test_template_types;
 use App\Templates_test_setting;
@@ -19,6 +20,52 @@ class TemplatesController extends Controller
 {
 	// Manage Test View Index
 	public function manage_test_view(){
+        $name = Input::get('name');
+        $check_box = Input::get('search');
+        if(isset($name))
+        {
+            if(in_array(1 , $check_box))
+            {
+                $args['listing'] = Test_template::where('user_id',Auth::user()->id)
+                ->where('template_type_id',1)
+                ->where('title','LIKE','%'.$name.'%')
+                ->get();
+                $args['count'] = Test_template::where('template_type_id',1)
+                ->where('title','LIKE','%'.$name.'%')
+                ->count();
+                foreach ($args['listing'] as $value) {
+                $args['sections'][$value->id] = Section::where('template_id',$value->id)->get();            
+                }
+                return view('recruiter_dashboard.view')->with($args);
+                // dd($args['listing']);
+            }
+            elseif (in_array(2, $check_box)) {
+                $args['listing'] = Test_template::where('user_id',Auth::user()->id)
+                ->where('template_type_id',2)
+                ->where('title','LIKE','%'.$name.'%')
+                ->get();
+                $args['count'] = Test_template::where('template_type_id',2)->count();
+                foreach ($args['listing'] as $value) {
+                $args['sections'][$value->id] = Section::where('template_id',$value->id)->get();            
+                }
+                return view('recruiter_dashboard.view')->with($args);
+                // dd($args['listing']);
+            }
+            else
+            {
+                $args['listing'] = Test_template::where('user_id',Auth::user()->id)
+                ->where('title','LIKE','%'.$name.'%')
+                ->get();
+                $args['count'] = Test_template::where('title','LIKE','%'.$name.'%')->count();
+                foreach ($args['listing'] as $value) {
+                $args['sections'][$value->id] = Section::where('template_id',$value->id)->get();            
+                }
+                return view('recruiter_dashboard.view')->with($args);
+                // dd($args['listing']);
+            }
+            
+        }
+
     	$args['count'] = Test_template::count();
         $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
         foreach ($args['listing'] as $value) {
@@ -28,7 +75,6 @@ class TemplatesController extends Controller
             ->where('sections.template_id','=',$value->id)
             ->groupBy('sections.id')
             ->get();
-
 
             //  DB::raw('count(questions.id) as count_ques')
 
@@ -52,10 +98,14 @@ class TemplatesController extends Controller
             //     ->groupBy('sections.id')
             //     ->get();            
         }
-       // dd($args['sections']);
+       // dd($args['sections']);     
+
         $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
-                        ->where('test_templates.user_id', Auth::user()->id)->get();
-              return view('recruiter_dashboard.view')->with($args);
+                ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status')->where('test_templates.user_id', Auth::user()->id)->get();
+         //dd($args['hosted_tests']);
+
+        return view('recruiter_dashboard.view')->with($args);
+
     }
 	// Manage Test View Index
 

@@ -66,6 +66,8 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard');
 Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
+Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query');
+
 Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
 
 Route::get('/invited_candidates', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
@@ -115,5 +117,15 @@ Route::post('/templatetestContactSetting', 'Recruiter\TemplateSetting@templatete
 Route::get('/host_test_page/{id}', 'Recruiter\HostController@host_test_page')->name('host_test_page');
 //Add Host Test Post request
 Route::post('/host_test_post', 'Recruiter\HostController@host_test_post')->name('host_test_post');
+
+//Delete Host
+Route::post('/delete_host', 'Recruiter\HostController@host_test_del')->name('host_test_del');
+
+//Terminate host //host_terminate
+Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name('host_terminate');
+
+//Public preview of host 
+Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
+
 });
 /*Recruiter Routes Ended*/
