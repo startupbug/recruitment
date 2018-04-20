@@ -2300,7 +2300,7 @@
 </div>
 <!--setup manual end-->
 @yield('createtemplate')
-@yield('modal_content')
+
 <!--Setting page on user management-->
 <div class="modal fade" id="usermanagement" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -2487,6 +2487,7 @@
 <script src="{{ asset('public/assets/js/froala_editor.min.js') }}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
+<script src="{{ asset('public/assets/js/f.js') }}"></script>
 <script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
 <script type="text/javascript">
@@ -2505,5 +2506,6 @@
         });
     });
 </script>
+@yield('modal_content')
 </body>
 </html>
