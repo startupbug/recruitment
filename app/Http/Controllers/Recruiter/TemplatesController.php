@@ -22,9 +22,9 @@ class TemplatesController extends Controller
     	$args['count'] = Test_template::count();
         $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
         foreach ($args['listing'] as $value) {
-            $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')->select('sections.*', DB::raw('count(questions.id) as count_ques'))->where('sections.template_id','=',$value->id)->get();            
+            $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')->select('sections.*',  DB::raw("count(questions.question_type_id) as count_ques"))->groupBy('sections.id')->where('sections.template_id','=',$value->id)->get();            
         }
-        //dd($args['sections']);
+        dd($args['sections']);
         $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
                         ->where('test_templates.user_id', Auth::user()->id)->get();
               return view('recruiter_dashboard.view')->with($args);
