@@ -71,11 +71,7 @@ $("#create_duplicate_template_post").on('submit', function(e){
        }
      });
 });
-//Duplicate Test Template
-function section_id(id) {
-  console.log(id);
-  $('#section_id').val(id);
-}
+
 
 //Adding Section
 $("#add_section").on('submit', function(e){  

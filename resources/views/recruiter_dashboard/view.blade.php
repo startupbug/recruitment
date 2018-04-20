@@ -301,7 +301,11 @@
                                     <tbody>
                                         @foreach($sections[$value->id] as $key => $section)
                                         <tr>
-                                            <td>{{$section->section_name}}{{++$key}}<span class="pull-right">10MCQ (15min)</span></td>
+                                            <td>{{$section->section_name}}{{++$key}}<span class="pull-right">
+                                                @if($section->question_type_id == 1)
+                                                {{$section->count_ques}}MCQ (15min)
+                                                @endif
+                                            </span></td>
                                         </tr>    
                                         @endforeach                                    
                                     </tbody>
