@@ -1,8 +1,15 @@
 @extends('recruiter_dashboard.layouts.app')
 @section('content')
+
 <section class="customer_support">
 	<div class="container">
 		<div class="row">
+			 @if (Session::has('query'))
+                    <div class="alert alert-success">{{ Session::get('query') }}</div>
+                @endif
+                @if (Session::has('not_found'))
+                    <div class="alert alert-danger">{{ Session::get('not_found') }}</div>
+                @endif
 			<div class="col-md-6">
 			<div class="customer_image"><img src="{{ asset('assets/img/customer_image.png') }}" class="img-responsive"></div>
 				<h3 class="content_customer">
@@ -22,10 +29,22 @@
 				<h3 class="customer_right">
 					Need help? Say it here
 				</h3>
-				  <div class="input_field"><span class="glyphicon glyphicon-user"></span><input type="text"  class="form-control" id="email"></div>
+				  
+				  	<form action="{{route('customer_support')}}" method="get">
+				  		<div class="input_field"><span class="glyphicon glyphicon-user"></span><input type="text"  class="form-control" id="email" name="query"></div>
+				  		<input type="submit" name="submit">	
+				  	</form>
+				  	
 				  <p class="customer_bottom">e.g. :How to host test</p>
-			</div>
+				 
+				  @foreach($searching as $search)
+				  	
+				  	{{($search->description)}}
 
+				  @endforeach
+				  
+				  
+			</div>
 		</div>
 	</div>
 </section>
@@ -33,14 +52,15 @@
 <div class="popUpCont transition300 hidden" id="send_your_query_popup">
    <div class="rightArrow transition300" id="send_your_query_popup_remove"></div>
    <h2>Send Us Your Query</h2>
-   <form class="">
+   <form class="" action="{{route('send_query')}}" method="post">
+   	{{csrf_field()}}
       <div class="form-group">
          <label>Title</label>
          <input type="text" class="form-control" name="title" required="">
       </div>
       <div class="form-group">
          <label>Description</label>
-         <textarea class="form-control" name="info" rows="7" required=""></textarea>
+         <textarea class="form-control" name="description" rows="7" required=""></textarea>
       </div>
       <div class="form-group">
          <center>

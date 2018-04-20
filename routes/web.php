@@ -66,6 +66,8 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard');
 Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
+Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query');
+
 Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
 
 Route::get('/invited_candidates', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
