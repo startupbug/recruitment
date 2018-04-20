@@ -23,7 +23,7 @@ class TemplatesController extends Controller
         }
         $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
                         ->where('test_templates.user_id', Auth::user()->id)->get();
-        // dd($args['hosted_tests']);
+         //dd($args['hosted_tests']);
 
         return view('recruiter_dashboard.view')->with($args);
     }

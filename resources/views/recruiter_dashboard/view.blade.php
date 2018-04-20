@@ -65,7 +65,7 @@
                         <div class="right_tab">
                             <ul>
                                 <li><a href="#">Invite Candidates</a></li>
-                                <li>Edit</li>
+                                <li><a href="{{route('edit_template',['id'=>$hosted_test->test_template_id])}}">Edit</a></li>
                                 <li>Report</li>
                                 <li>
                                     <div class="dropdown">
@@ -144,7 +144,7 @@
                                             <span class="pull-right margin_23">
                                             <span class="margin_25">:</span>
                                            <!--  Tue, Feb 6, 8:42 AM, CAST -->
-                                             {{ date("F jS, Y", strtotime($hosted_test->test_open_date)) }}
+                                             {{ date("F jS, Y H:i", strtotime($hosted_test->test_open_date)) }}
                                              {{ $hosted_test->test_open_time }}
                                             </span>
                                         </td>
@@ -153,20 +153,24 @@
                                         <td><span>Ends at  </span>
                                             <span class="pull-right margin_25">
                                             <span class="margin_25">:</span>
-                                            {{ date("F jS, Y", strtotime($hosted_test->test_close_date)) }}
+                                            {{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}
                                             {{ $hosted_test->test_close_time }} </span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><span>Duration</span>
                                         <?php 
-                                        $to_time = strtotime(date("H:i:s",strtotime($hosted_test->test_open_date)));
-                                        $from_time = strtotime(date("H:i:s",strtotime($hosted_test->test_close_date)));
+                                        $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
+                                        $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
+                                    
+                                        $datetime1 = new DateTime($to_time." ".$hosted_test->test_open_time);
+                                        $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
+                                        $interval = $datetime1->diff($datetime2);
 
                                         ?>
                                             <span class="pull-right margin_22">
                                             <span class="margin_29">:</span>
-                                            <?php echo round(abs($to_time - $from_time) / 60 / 60  ,2). " Hours";?></span>
+                                            <?php echo $interval->format('%hh %im');?></span>
                                         </td>
                                     </tr>
                                 </tbody>
