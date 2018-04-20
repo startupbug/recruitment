@@ -2606,6 +2606,12 @@ li.active {
 #section-mcqs-Modal-Collapse .fr-element {
     height: 600px;
 }
+#section-coding-add-compilable-question-Modal-Collapse{
+    background: rgba(0, 0, 0, 0.52);
+}
+#section-coding-add-compilable-question-Modal-Collapse .fr-element {
+    height: 600px;
+}
 
 .submit_prog{
      display: none;

@@ -9,7 +9,7 @@
             <a href="{{route('manage_test_view')}}">
             <button type="submit" class="btn">Back</button>
             </a>
-            <strong>&nbsp;&nbsp;&nbsp;Template: BPO Test - Recruitment</strong>
+            <strong>Template: BPO Test - Recruitment</strong>
          </div>
          <div class="col-xs-2 col-xs-offset-2">
             <h4>
@@ -49,8 +49,8 @@
                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                            </a>
                         </div>
-                     </li>  
-                     @endforeach 
+                     </li>
+                     @endforeach
                      <form action="{{route('add_section')}}" id="add_section" method="post">
                         {{csrf_field()}}
                         <input type="hidden" name="order_value" value="{{ $order = $order ? $order : 0 }}">
@@ -159,11 +159,11 @@
                         <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$key}}">Multiple Choice ({{ $sec['count'] }})</a></li>
                         <li><a data-toggle="pill" href="#sections-coding-{{$key}}">Coding (2)</a></li>
                         <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission (2)</a></li>
-                        <li class="pull-right"></li>                        
+                        <li class="pull-right"></li>
                      </ul>
                      <div class="tab-content">
                         <div id="sections-multiplechoice-{{$key}}" class="tab-pane fade in active">
-                           <form action="{{route('delete_all_mcqs_questions')}}" method="get"> 
+                           <form action="{{route('delete_all_mcqs_questions')}}" method="get">
                               <input type="hidden" name="section_mc_id[]"  id="section_mc_id">
                               <button type="submit" class="btn delete_section_mc hidden">Delete</button>
                            </form>
@@ -237,7 +237,7 @@
                         </div>
                         <div id="sections-coding-{{$key}}" class="tab-pane fade">
                            <form>
-                              <input type="text" name="section_c_id[]"  id="section_c_id">
+                              <input type="hidden" name="section_c_id[]"  id="section_c_id">
                               <button type="submit" class="btn delete_section_c hidden">Delete</button>
                            </form>
                            <div class="no-more-tables">
@@ -383,7 +383,7 @@
                                              </button>
                                              </span>
                                              <ul class="dropdown-menu s_addquestion_dropdown_menu">
-                                                <li><a data-toggle="modal" data-target="#section-coding-add-compilable-question-Modal">Add Compilable Question</a></li>
+                                                <li><a data-toggle="modal" data-target="#section-coding-add-compilable-question-Modal"  onclick="code_edittesttemplate_Expand();">Add Compilable Question</a></li>
                                                 <li><a data-toggle="modal" data-target="#section-coding-debug-Modal">Add Debug Question</a></li>
                                              </ul>
                                           </span>
@@ -2216,9 +2216,18 @@
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement">
-                                    <strong>Program Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Program Statement (<a href="#section-coding-add-compilable-question-Modal-Collapse" data-toggle="modal" onclick="code_edittesttemplate_Collapse()" >Expand</a>) <i class="fa fa-info-circle"></i></strong>
                                 </div>
-                                <textarea class="edit" rows="8"></textarea>
+                                <textarea class="edit"></textarea>
+                                <br>
+                                <div class="panel panel-pagedown-preview hidden" id="code_edittemp_panel">
+                                  <div class="panel-heading">
+                                    <strong>Preview</strong>
+                                  </div>
+                                  <div class="panel-body">
+                                    <p id="code_preview_data_section_expand"></p>
+                                  </div>
+                                </div>
                                 <br>
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Sample Input & Output
@@ -2564,6 +2573,35 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade" id="section-coding-add-compilable-question-Modal-Collapse" role="dialog">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+       <div class="modal-body s_modal_form_body">
+          <div class="row">
+            <div class="col-md-12">
+              <strong>Question Statement (<a onclick="code_collapse_modal()" >Collapse</a>)</strong>
+              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <textarea class="edit"></textarea>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-pagedown-preview">
+                <div class="panel-heading">
+                  <strong>Preview</strong>
+                </div>
+                <div class="panel-body" style="height: 647px;">
+                  <p id="code_preview_data_section"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+       </div>
+    </div>
+  </div>
 </div>
 <!-- section-coding-debug-Modal -->
 <div class="modal fade" id="section-coding-debug-Modal" role="dialog">
@@ -4057,6 +4095,7 @@
       </div>
    </div>
 </div>
+
 <!-- section-mcqs-Modal -->
 <div class="modal fade" id="section-mcqs-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
@@ -4360,8 +4399,7 @@
         </div>
       </form>
    </div>
-</div> 
-<!-- section-mcqs-Modal -->
+</div>
 <div class="modal fade" id="section-mcqs-Modal-Collapse" role="dialog">
   <div class="modal-dialog  modal-lg">
     <div class="modal-content">
@@ -4397,7 +4435,7 @@
 <script type="text/javascript">
    $(document).ready(function(){
       @if(isset($hostFlag) && $hostFlag)
-         $('#_first_model').modal('show');    
+         $('#_first_model').modal('show');
       @endif
    });
 </script>
@@ -4421,7 +4459,7 @@
                         <div class="form-inline">
                            <label>Question Statement</label>
                            <span>(Current state of question : <span id="state_name"></span>)</span>
-                           <br>                         
+                           <br>
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
                               <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link">
@@ -4451,7 +4489,7 @@
                            </tr>
                         </thead>
                         <tbody id="choiceTable">
-                          
+
                         </tbody>
                      </table>
                      <div class="form-group">
@@ -4463,11 +4501,11 @@
                      <div>
                         <label>Tags</label>
                         <div>
-                           <span class="" id="tagName">                          
+                           <span class="" id="tagName">
                            </span>
                         </div>
                      </div>
-                     
+
                      <div class="">
                         <div class="form-group">
                            <label>Question Level</label>

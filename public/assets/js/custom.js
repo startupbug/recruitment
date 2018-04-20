@@ -299,12 +299,10 @@ function functionAddTag() {
   $('#s_button_general_tag').addClass("hidden");
   $('#s_add_tag_button').removeClass("hidden");
 }
-
 function functionCancelTag() {
   $('#s_button_general_tag').removeClass("hidden");
   $('#s_add_tag_button').addClass("hidden");
 }
-
 function addrow_choice() {
    var colCount = 1;
    $('#choices_table tbody tr').each(function () {
@@ -353,49 +351,6 @@ function addrow_choice() {
       '</tr>');
    }
 }
-
-// function addrow_codingquestion() {
-//    var colCount = 0;
-//    $('#coding_qustion_table tbody tr').each(function () {
-//        colCount++;
-//
-//        console.log(colCount);
-//    });
-//
-//    if (colCount == 1) {
-//      $('#coding_qustion_table tbody').append('<tr>'+
-//        '<td valign="center">'+colCount+'.</td>'+
-//        '<td valign="center">'+
-//            '<textarea class="form-control" name="option" required=""></textarea>'+
-//        '</td>'+
-//        '<td valign="center">'+
-//            '<textarea class="form-control" name="option" required=""></textarea>'+
-//        '</td>'+
-//        '<td valign="center">'+
-//            '<a class="delete_row">'+
-//             '<i class="fa fa-times-circle-o"></i>'+
-//            '</a>'+
-//        '</td>'+
-//      '</tr>');
-//    }
-//    else {
-//      $('#coding_qustion_table tbody tr:last').after('<tr>'+
-//      '<td valign="center">'+colCount+'.</td>'+
-//      '<td valign="center">'+
-//      '<textarea class="form-control" name="option" required=""></textarea>'+
-//      '</td>'+
-//      '<td valign="center">'+
-//      '<textarea class="form-control" name="option" required=""></textarea>'+
-//      '</td>'+
-//      '<td valign="center">'+
-//      '<a class="delete_row">'+
-//      '<i class="fa fa-times-circle-o"></i>'+
-//      '</a>'+
-//      '</td>'+
-//      '</tr>');
-//    }
-//
-// }
 function addrow_codingquestion() {
    var colCount = 0;
    $('#coding_qustion_table tbody tr').each(function (data) {
@@ -438,7 +393,6 @@ function addrow_codingquestion() {
    }
 
 }
-
 function addrow_section_codingquestion() {
    var colCount = 1;
    $('#section_coding_table tbody tr').each(function (data) {
@@ -479,7 +433,6 @@ function addrow_section_codingquestion() {
    }
 
 }
-
 function addrow_weightage() {
    var colCount = 1;
    $('#weightage_row tbody tr').each(function (data) {
@@ -572,7 +525,6 @@ function addrow_weightage() {
        count--;
    });
 }
-
 $(function(){
   var url_string = window.location.href;
   var url = new URL(url_string);
@@ -580,11 +532,10 @@ $(function(){
   $('#'+c).modal('show');
   console.log(c);
 });
+
 var testtemp_setInterval_Expand;
 var testtemp_setInterval_Collapse;
-
 function edittesttemplate_Collapse() {
-
   clearInterval(testtemp_setInterval_Expand);
   testtemp_setInterval_Collapse = setInterval(
     function(){
@@ -605,7 +556,6 @@ function edittesttemplate_Collapse() {
      }
   , 1000);
 }
-
 function edittesttemplate_Expand() {
   testtemp_setInterval_Expand = setInterval(
     function(){
@@ -629,6 +579,55 @@ function collapse_modal() {
   $("#section-mcqs-Modal").css('overflow','scroll');
   clearInterval(testtemp_setInterval_Collapse);
   edittesttemplate_Expand();
+}
+
+
+var code_testtemp_setInterval_Expand;
+var code_testtemp_setInterval_Collapse;
+function code_edittesttemplate_Collapse() {
+  clearInterval(code_testtemp_setInterval_Expand);
+  code_testtemp_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#section-coding-add-compilable-question-Modal-Collapse .fr-element.fr-view" ).html();
+      $("#code_preview_data_section").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#section-coding-add-compilable-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#code_edittemp_panel").addClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        console.log(htmlString);
+        $("#section-coding-add-compilable-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#code_edittemp_panel").removeClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function code_edittesttemplate_Expand() {
+  code_testtemp_setInterval_Expand = setInterval(
+    function(){
+      var htmlString = $( "#section-coding-add-compilable-question-Modal .fr-element.fr-view" ).html();
+      $("#code_preview_data_section").html(htmlString);
+      $("#section-coding-add-compilable-question-Modal-Collapse .fr-element.fr-view").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#code_edittemp_panel").addClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#code_edittemp_panel").removeClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function code_collapse_modal() {
+  $("#section-coding-add-compilable-question-Modal-Collapse").modal('hide');
+  $("#section-coding-add-compilable-question-Modal").css('overflow','scroll');
+  clearInterval(code_testtemp_setInterval_Collapse);
+  code_edittesttemplate_Expand();
 }
 
 // Create Template Section
