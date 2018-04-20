@@ -215,21 +215,21 @@
                     </div>
                 </div>
             </section>
-    @endforeach            
+        @endforeach            
         </div>
         <div id="testemplate" class="tab-pane fade">
             <div class="col-md-12 s_testtemplate_border">
                 <div class="view_filter_right">
                     <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
                 </div>
-                @foreach($listing as $value)
-                <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template1" aria-expanded="false">
+                @foreach($listing as $key => $value)
+                <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template_{{$key}}" aria-expanded="false">
                     <div class="row main_tab">
                         <div class="col-md-6">
                             <div class="left_tab">
                                 <ul>
                                     <li>
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#template1" aria-expanded="false">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#template_{{$key}}" aria-expanded="false">
                                         <span class="fa fa-caret-right"></span>
                                         </a>
                                     </li>
@@ -269,7 +269,7 @@
                         </div>
                     </div>
                     <div class="row border_view">
-                        <div id="template1" class="panel-collapse collapse">
+                        <div id="template_{{$key}}" class="panel-collapse collapse">
                             <div class="col-md-12">
                                 <p class="view_content">Webcam : required</p>
                             </div>
