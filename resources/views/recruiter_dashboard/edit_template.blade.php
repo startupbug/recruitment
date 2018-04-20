@@ -749,12 +749,12 @@
                                           <div class="col-sm-9">
                                              <div class="checkbox">
                                                 <label> 
-                                                <input type="checkbox" value="1" @if($edit_test_settings->request_resume == 1) checked='checked' @endif name="request_resume" id="request_resume"> Request Resume
+                                                <input type="checkbox" value="1" @if(isset($edit_test_settings->request_resume) && $edit_test_settings->request_resume == 1) checked='checked' @endif name="request_resume" id="request_resume"> Request Resume
                                                 </label>
                                              </div>
                                              <div class="checkbox">
                                                 <label id="mandate_resume_label" class="hidden">
-                                                <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) checked='checked' @endif   name="mandatory_resume" id="mandate_resume" disabled> Mandate Resume
+                                                <input type="checkbox" value="1" @if(isset($edit_test_settings->mandate_resume) && $edit_test_settings->mandate_resume == 1) checked='checked' @endif   name="mandatory_resume" id="mandate_resume" disabled> Mandate Resume
                                                 </label>
                                              </div>
                                           </div>
@@ -798,7 +798,7 @@
                                           <div class="col-sm-9">
                                              <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" value="1" @if($edit_test_settings->email_verification == 1) checked='checked' @endif  name="email_verification" id="enable_verification">
+                                                <input type="checkbox" value="1" @if(isset($edit_test_settings->email_verification) && $edit_test_settings->email_verification == 1) checked='checked' @endif  name="email_verification" id="enable_verification">
                                                 &nbsp;
                                                 </label>
                                                 <div class="help-block" id="enable_verification_bloc">(The candidate will not be able to resume the test in case of system failure)</div>
@@ -861,7 +861,7 @@
                                           <input type="text" class="form-control" name="email" value="{{Auth::user()->email}}" disabled>
                                           <div class="">
                                              <label>
-                                             <input type="checkbox" value="1"@if($edit_test_contact_settings->email_visible == 1) checked='checked' @endif name="email_visible"> Make visible to candidate
+                                             <input type="checkbox" value="1"@if(isset($edit_test_contact_settings->email_visible) && $edit_test_contact_settings->email_visible == 1) checked='checked' @endif name="email_visible"> Make visible to candidate
                                              </label>
                                           </div>
                                        </div>
@@ -874,7 +874,7 @@
                                           <input type="text" class="form-control" name="phone" value="{{Auth::user()->profile->phone}}" disabled>
                                           <div class="">
                                              <label>
-                                             <input type="checkbox" value="1" @if($edit_test_contact_settings->contact_visible == 1) checked='checked' @endif name="contact_visible"> Show Contact Number to candidate for help
+                                             <input type="checkbox" value="1" @if(isset($edit_test_contact_settings->contact_visible) && $edit_test_contact_settings->contact_visible == 1) checked='checked' @endif name="contact_visible"> Show Contact Number to candidate for help
                                              </label>
                                           </div>
                                        </div>
