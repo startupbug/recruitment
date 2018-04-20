@@ -114,5 +114,15 @@ Route::post('/templatetestContactSetting', 'Recruiter\TemplateSetting@templatete
 Route::get('/host_test_page/{id}', 'Recruiter\HostController@host_test_page')->name('host_test_page');
 //Add Host Test Post request
 Route::post('/host_test_post', 'Recruiter\HostController@host_test_post')->name('host_test_post');
+
+//Delete Host
+Route::post('/delete_host', 'Recruiter\HostController@host_test_del')->name('host_test_del');
+
+//Terminate host //host_terminate
+Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name('host_terminate');
+
+//Public preview of host 
+Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
+
 });
 /*Recruiter Routes Ended*/
