@@ -38,15 +38,7 @@ class QuestionsController extends Controller
 			return redirect()->back();
 		}
 	}
-
-	public function delete_question($id){		  	
-		$delete = Question::find($id);
-		if ($delete->delete()){
-			return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted The Question']);					
-		}else{
-			return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);					
-		}
-	}
+	
 	public function question_modal_partial_data(Request $request){		
 		$question_modal_partial_data = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
 								->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
@@ -57,31 +49,14 @@ class QuestionsController extends Controller
 								->leftJoin('question_tags','question_tags.id','=','question_details.tag_id')
 								->where('questions.id',$request->question_id)
 								->first();
-
-	 $question_modal_choices = Mulitple_choice::where('question_id',$request->question_id)->get();
-
-//print_r($question_modal_partial_data);
+	 	$question_modal_choices = Mulitple_choice::where('question_id',$request->question_id)->get();
 		if (isset($question_modal_partial_data)){			
-			return \Response()->Json([ 'status' => 200, 'question_data'=>$question_modal_partial_data, 'question_choices' => $question_modal_choices]);			
+			return \Response()->Json([ 'status' => 200, 'question_data'=>$question_modal_partial_data, 'question_choices' => $question_modal_choices]);		
 		}else{
 			$this->set_session('Something Went Wrong, Please Try Again!', false);
 			return redirect()->back();		
 		}		
-	}				
-	public function delete_all_mcqs_questions(Request $request){
-		$myArray = explode(',', $request->section_mc_id[0]);		
-		if (isset($myArray)) {			
-			foreach($myArray as $value) {				
-				$delete = Question::find($value);
-				$delete->delete();		
-			}
-			$this->set_session('You Have Successfully Deleted All The Selected Questions', true);
-				return redirect()->back();
-		}else{
-			$this->set_session('Something Went Wrong, Please Try Again!', false);
-				return redirect()->back();
-		}
-	}
+	}	
 	public function update_partial_question(Request $request){		
 		if (!empty($request->question_id)){
 			DB::table('question_details')
@@ -95,5 +70,29 @@ class QuestionsController extends Controller
 				$this->set_session('Something Went Wrong, Please Try Again', false);	
 			}			
 			return redirect()->back();
+	}	
+
+	public function delete_question($id){		  	
+		$delete = Question::find($id);
+		if ($delete->delete()){
+			return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted The Question']);					
+		}else{
+			return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);					
+		}
 	}
+
+	public function delete_all_mcqs_questions(Request $request){
+		$myArray = explode(',', $request->section_mc_id[0]);		
+		if (isset($myArray)) {			
+			foreach($myArray as $value) {				
+				$delete = Question::find($value);
+				$delete->delete();		
+			}
+			$this->set_session('You Have Successfully Deleted All The Selected Questions', true);
+				return redirect()->back();
+		}else{
+			$this->set_session('Something Went Wrong, Please Try Again!', false);
+				return redirect()->back();
+		}
+	}	
 }
