@@ -9,10 +9,15 @@
       </div>
    </div>
    <div class="container border_question">
+    @foreach($section_question as $key => $section)
+
+    
       <div class="row">
          <div class="col-md-3">
-            <h3 class="side_caution">English Proficiency</h3>
+            <h3 class="side_caution">Section - {{$key}}</h3>
          </div>
+         
+         
          <div class="col-md-9">
             <ul class="pagination question">
                <li><a href="#">«</a></li>
@@ -24,6 +29,7 @@
                <li><a href="#">»</a></li>
             </ul>
          </div>
+        @foreach($section as $key => $question)
          <div class="col-md-12 border_content">
             <div class="row">
                <div class="col-md-8">
@@ -36,20 +42,21 @@
                </div>
             </div>
          </div>
-
+         
          <div class="col-md-5">
             <p class="discription_test"><em>You are provided with two definitions and options,choose the correct option which fits the discription best.</em></p>
-            <p class="last_test"><strong>work with another  -------------</strong></p>
-
-            <p class="last_test"><strong>work with another  -------------</strong></p>
+            <p class="last_test"><strong>{{($question->question_statement)}}</strong></p>
          </div>
+         
          <div class="col-md-7 ">
              <div class="panel panel-default test_panel">
+  
+{{dd($question)}}
     <div class="panel-body"><div class="radio">
   <label><input type="radio" name="optradio">collaborate,collaborate</label>
 </div></div>
   </div>
-
+@endforeach
   <div class="panel panel-default test_panel">
     <div class="panel-body"><div class="radio">
   <label><input type="radio" name="optradio">collaborate,collaborate</label>
@@ -71,6 +78,7 @@
 
          </div>
       </div>
+      @endforeach
    </div>
 
 

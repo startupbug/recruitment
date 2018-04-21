@@ -1643,7 +1643,7 @@
                            <div class="form-group form-group-sm">
                               <label class="control-label"><strong>Question Statement</strong></label>
                               <div class="">
-                                 <input type="text" class="form-control" name="" value="" placeholder="Enter question statement">
+                                 <input type="text" class="form-control" name="" value="" required="" placeholder="Enter question statement">
                               </div>
                            </div>
                            <button class="btn btn-sm btn-success">Apply</button>
@@ -1689,22 +1689,22 @@
                                                          <h5>Choices</h5>
                                                          <ul class="ng-scope">
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true" name="question[]" ></i>
                                                                &nbsp;&nbsp;
                                                                &lt;a href="url" new&gt;
                                                             </li>
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true" name="question[] ></i>
                                                                &nbsp;&nbsp;
                                                                &lt;a href="url" target="_blank"&gt;
                                                             </li>
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true" name="question[]" ></i>
                                                                &nbsp;&nbsp;
                                                                &lt;a href="url" target="new"&gt;
                                                             </li>
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true"  name="question[]" ></i>
                                                                &nbsp;&nbsp;
                                                                None of the above
                                                             </li>
@@ -4259,7 +4259,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Negative Marks for Answering Wrong <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="negative_marks" class="form-control">
+                                   <input type="text" name="negative_marks" class="form-control" required="s">
                                 </div>
                              </div>
                           </div>
@@ -4301,7 +4301,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Provider <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="provider" class="form-control">
+                                   <input type="text" name="provider" class="form-control" required="">
                                 </div>
                              </div>
                           </div>
@@ -4311,7 +4311,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Author <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="author" class="form-control">
+                                   <input type="text" name="author" class="form-control" required="">
                                 </div>
                              </div>
                           </div>

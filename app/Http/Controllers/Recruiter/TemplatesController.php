@@ -15,6 +15,8 @@ use App\Question;
 use Auth;
 use DB;
 use App\Hosted_test;
+use App\Multiple_choice;
+
 
 class TemplatesController extends Controller
 {
@@ -258,8 +260,31 @@ class TemplatesController extends Controller
     	$this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Lower One', true); 
         return redirect()->back();
     }
-    public function preview_test(){
-        return view('recruiter_dashboard.preview_test');
+    public function preview_test($id){
+
+//        $s =  DB::table('mulitple_choices')->get();
+// dd($s);
+        $sections = DB::table('sections')->where('template_id','=',$id)->get();
+         // dd($sections);
+            $section_question = array();
+            foreach ($sections as $key => $value)
+            {
+               
+
+                 // dd($value);
+                 $questions = Question::where('section_id','=',$value->id)->get();
+                //  dd($sections);
+                // $question_choices = array();
+                // foreach ( $section_question[$value->order_number] as $key => $value) {
+                // // dd($key);
+                //     $section_question[$value->section_name[$value->question_statement]]
+                //      = DB::table('mulitple_choices')->where('question_id','=',$value->id)->get();
+                //     dd($section_question);
+                // }
+                dd($questions);
+            }
+             // dd($section_question);
+        return view('recruiter_dashboard.preview_test',['section_question'=>$section_question]);
     }
     
     public function template_public_preview(){
