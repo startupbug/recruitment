@@ -164,14 +164,14 @@
                      <div class="tab-content">
                         <div id="sections-multiplechoice-{{$key}}" class="tab-pane fade in active">
                            <form action="{{route('delete_all_mcqs_questions')}}" method="get"> 
-                              <input type="hidden" name="section_mc_id[]"  id="section_mc_id">
+                              <input type="text" name="section_mc_id[]"  class="input_c_id" id="section_mc_id">
                               <button type="submit" class="btn delete_section_mc hidden">Delete</button>
                            </form>
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
                                     <tr>
-                                       <th><input type="checkbox"></th>
+                                       <th><input type="checkbox" class="codeQuesCheck"></th>
                                        <th>#</th>
                                        <th>Statement</th>
                                        <th>Action</th>
@@ -237,14 +237,15 @@
                         </div>
                         <div id="sections-coding-{{$key}}" class="tab-pane fade">
                            <form>
-                              <input type="hidden" name="section_c_id[]"  id="section_c_id">
+                              <input type="text" name="section_c_id[]" class="input_c_id"  id="section_c_id">
+
                               <button type="submit" class="btn delete_section_c hidden">Delete</button>
                            </form>
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
                                     <tr>
-                                       <th><input type="checkbox"></th>
+                                       <th><input type="checkbox" name="" class="codeQuesCheck"></th>
                                        <th>#</th>
                                        <th>Statementp</th>
                                        <th></th>
@@ -252,7 +253,7 @@
                                  </thead>
                                  <tbody>
                                     <tr>
-                                       <td><input type="checkbox" class="prog_c"></td>
+                                       <td><input type="checkbox" class="prog_c" value="1"></td>
                                        <td>1</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -291,7 +292,7 @@
                                        </td>
                                     </tr>
                                     <tr>
-                                       <td><input type="checkbox"></td>
+                                       <td><input type="checkbox" class="prog_c" value="2"></td>
                                        <td>2</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -330,7 +331,7 @@
                                        </td>
                                     </tr>
                                     <tr>
-                                       <td><input type="checkbox"></td>
+                                       <td><input type="checkbox" class="prog_c" value="3"></td>
                                        <td>3</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -400,14 +401,15 @@
                         </div>
                         <div id="sections-submission-{{$key}}" class="tab-pane fade">
                            <form>
-                              <input type="hidden" name="section_s_id[]"  id="section_s_id">
+                              <input type="text" name="section_s_id[]" class="input_c_id" id="section_s_id">
+
                               <button type="submit" class="btn delete_section_s hidden">Delete</button>
                            </form>
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
                                     <tr>
-                                       <th><input type="checkbox"></th>
+                                       <th><input type="checkbox" class="codeQuesCheck"></th>
                                        <th>#</th>
                                        <th>Statement000</th>
                                        <th></th>
@@ -906,11 +908,56 @@
                                        <div class="col-sm-6">
                                           <div class="checkbox">
                                              <label>
-                                             <input type="checkbox"> Receive mail whenever a candidate completes the test
+                                             <input type="checkbox" id="check_emailreport"> Receive mail whenever a candidate completes the test
                                              </label>
                                           </div>
                                        </div>
                                     </div>
+
+                                    <div class="form-group form-group-sm rec_div" style="">
+                                       <label class="col-sm-3 control-label">Receivers</label>
+                                       <div class="col-sm-8">
+                                       <ul class="unordered-list">
+                                       </ul>
+                                       <button class="btn btn-info btn-sm" ng-init="showNewReciever = false" ng-hide="showNewReciever" ng-click="showNewReciever = true" style="" id="rev_button">+ Addz receiver</button>
+                                       </div>
+                                    </div>
+
+
+                                    <div class="panel-body rec_div2">
+                                          <form class="ng-invalid ng-invalid-required ng-valid-min ng-valid-max ng-valid-email ng-dirty ng-valid-parse" style="">
+                                          <div class="form-group form-group-sm">
+                                          <label class="control-label col-sm-4">Receiver email</label>
+                                           <div class="col-sm-8">
+                                          <input type="email" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-touched" ng-model="newTestReportMailReciever.receiverEmail" required="" style="">
+                                          </div>
+                                          </div>
+                                          <div class="form-group form-group-sm" ng-hide="testData.isSubmissionOnlyTest">
+                                          <label class="control-label col-sm-4">Minimum percentage required</label>
+                                          <div class="col-sm-8">
+                                          <input type="number" class="form-control ng-pristine ng-valid ng-valid-min ng-valid-max ng-touched" ng-model="newTestReportMailReciever.minPercentageRequired" min="0" max="100" style="">
+                                          </div>
+                                          </div>
+                                          <div class="form-group form-group-sm" ng-hide="testData.isSubmissionOnlyTest">
+                                          <div class="col-sm-8 col-sm-offset-4">
+                                          <div class="checkbox">
+                                          <label>
+                                          <input type="checkbox" ng-model="newTestReportMailReciever.includeQuestionnaire" class="ng-valid ng-dirty ng-valid-parse ng-touched" style=""> Include questionnaire results
+                                          </label>
+                                          </div>
+                                          </div>
+                                          </div>
+
+                                          <div class="row">
+                                          <div class="col-sm-8 col-sm-offset-4">
+                                          <button class="btn btn-sm btn-info" type="submit" data-ng-disabled="newTestReportMailReciever.minPercentageRequired == undefined" data-ng-click="addNewTestReportMailReciever();showNewReciever = false">Done</button>
+                                          <button class="btn btn-sm btn-default" data-ng-click="showNewReciever = false" id="rev_cancel_button">Cancel</button>
+                                          </div>
+                                          </div>
+                                          </form>
+                                     </div>
+
+                                                                      
                                     <div class="form-group form-group-sm">
                                        <label class="col-sm-3 control-label">
                                        Candidate Mail Setting
@@ -1645,7 +1692,7 @@
                            <div class="form-group form-group-sm">
                               <label class="control-label"><strong>Question Statement</strong></label>
                               <div class="">
-                                 <input type="text" class="form-control" name="" value="" placeholder="Enter question statement">
+                                 <input type="text" class="form-control" name="" value="" required="" placeholder="Enter question statement">
                               </div>
                            </div>
                            <button class="btn btn-sm btn-success">Apply</button>
@@ -1691,22 +1738,22 @@
                                                          <h5>Choices</h5>
                                                          <ul class="ng-scope">
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true" name="question[]" ></i>
                                                                &nbsp;&nbsp;
                                                                &lt;a href="url" new&gt;
                                                             </li>
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true" name="question[] ></i>
                                                                &nbsp;&nbsp;
                                                                &lt;a href="url" target="_blank"&gt;
                                                             </li>
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true" name="question[]" ></i>
                                                                &nbsp;&nbsp;
                                                                &lt;a href="url" target="new"&gt;
                                                             </li>
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true"  name="question[]" ></i>
                                                                &nbsp;&nbsp;
                                                                None of the above
                                                             </li>
@@ -4231,7 +4278,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Negative Marks for Answering Wrong <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="negative_marks" class="form-control">
+                                   <input type="text" name="negative_marks" class="form-control" required="s">
                                 </div>
                              </div>
                           </div>
@@ -4273,7 +4320,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Provider <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="provider" class="form-control">
+                                   <input type="text" name="provider" class="form-control" required="">
                                 </div>
                              </div>
                           </div>
@@ -4283,7 +4330,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Author <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="author" class="form-control">
+                                   <input type="text" name="author" class="form-control" required="">
                                 </div>
                              </div>
                           </div>

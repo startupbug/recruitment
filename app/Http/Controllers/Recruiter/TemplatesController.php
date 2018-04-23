@@ -15,6 +15,9 @@ use App\Question;
 use Auth;
 use DB;
 use App\Hosted_test;
+use App\Mulitple_choice;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+
 
 class TemplatesController extends Controller
 {
@@ -69,43 +72,12 @@ class TemplatesController extends Controller
     	$args['count'] = Test_template::count();
         $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
         foreach ($args['listing'] as $value) {
-            $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
-            ->select('sections.template_id','sections.section_name','questions.question_type_id',
-                DB::raw("(CASE WHEN (questions.question_type_id = 1) THEN count(questions.id) END) as count_1"),DB::raw("(CASE WHEN (questions.question_type_id = 2) THEN count(questions.id) END) as count_2"),DB::raw("(CASE WHEN (questions.question_type_id = 3) THEN count(questions.id) END) as count_3"))
-            ->where('sections.template_id','=',$value->id)
-            ->groupBy('sections.id')
-            ->get();
-
-            //  DB::raw('count(questions.id) as count_ques')
-
-
-            // $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
-            //     ->select('sections.*', DB::raw('count(questions.id) as count_ques'))
-            //     ->where('sections.template_id','=',$value->id)                
-            //     ->groupBy('sections.id')
-            //     ->get(); 
-
-                
-            // $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
-            // ->select('sections.template_id','sections.section_name','questions.question_type_id',DB::raw("SELECT count('questions.id') FROM questions WHERE question_type_id = 1")
-            // ->where('sections.template_id','=',$value->id)
-            // ->groupBy('sections.id')
-            // ->get();
-
-            // $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
-            //     ->select('sections.*', DB::raw('count(questions.id) as count_ques'))
-            //     ->where('sections.template_id','=',$value->id)                
-            //     ->groupBy('sections.id')
-            //     ->get();            
+            $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')->select('sections.*', DB::raw('count(questions.id) as count_ques'))->where('sections.template_id','=',$value->id)->get();            
         }
-       // dd($args['sections']);     
-
+        //dd($args['sections']);
         $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
-                ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status')->where('test_templates.user_id', Auth::user()->id)->get();
-         //dd($args['hosted_tests']);
-
-        return view('recruiter_dashboard.view')->with($args);
-
+                        ->where('test_templates.user_id', Auth::user()->id)->get();
+              return view('recruiter_dashboard.view')->with($args);
     }
 	// Manage Test View Index
 
@@ -307,8 +279,42 @@ class TemplatesController extends Controller
     	$this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Lower One', true); 
         return redirect()->back();
     }
-    public function preview_test(){
-        return view('recruiter_dashboard.preview_test');
+    public function preview_test($id){
+        //dd($id);
+//        $s =  DB::table('mulitple_choices')->get();
+// dd($s);
+        // $sections = DB::table('sections')->where('template_id','=',$id)->get();
+        //$sections = Section::where('template_id','=',$id)->with('template')->get();
+        $test_template = Test_template::find($id);        
+        $sections = $test_template->template_section()->paginate(1);
+                
+
+        // $section_question  = $sections[0]->questions()->paginate(1);
+       
+        // $choices = $section_question[0]->multiple_choice()->paginate(1);
+       
+       // dd($choices);
+        //$choice_count = count($choices);
+        //dd($sections[0]->questions()->get());
+
+        // dd($sections);
+
+            // $section_question = array();
+
+            // foreach ($sections as $key => $value)
+            // {
+            //     // dd($value);
+            //     $section_question[$value->id] = Question::Join('mulitple_choices','questions.id','=','mulitple_choices.question_id')
+            //     ->select('mulitple_choices.id as mulitple_choices_id','mulitple_choices.question_id as m_q_id','mulitple_choices.choice','mulitple_choices.partial_marks','mulitple_choices.status','mulitple_choices.shuffle_status','questions.id as q_id','questions.question_statement')
+            //     ->with('section')
+            //     ->where('section_id','=',$value->id)
+                
+            //     ->get();
+            //      dd($section_question);
+            // }
+ 
+
+        return view('recruiter_dashboard.preview_test',['sections'=>$sections]);
     }
     
     public function template_public_preview(){
