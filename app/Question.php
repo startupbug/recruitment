@@ -35,6 +35,6 @@ class Question extends Model
     }
     public function multiple_choice()
     {           
-        return $this->hasMany('App\Multiple_choice');
+        return $this->hasMany('App\Mulitple_choice');
     } 
 }

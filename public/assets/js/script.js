@@ -2,15 +2,49 @@ $(document).ready(function(){
 
 
 });
-function confirmAlert(){
-	alertify.confirm('Are You Sure ?', 'You are about to delete this template permanently and you cannot undo this action.', function(){ 
-   alertify.success('Ok') 
- }, function(){ alertify.error('Cancel')});
+function confirmAlert(ques, action, id){
+	alertify.confirm(ques, function(){ 
+   
+    //alertify.success('Deleting..````````````')
+
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+  });
+  
+  console.log("action" + action);
+
+  $.ajax({
+    type: 'post',
+    url: action,
+    data: {'id': id},                  
+    success: function (data) { 
+      console.log(data);
+       if(data.status == 200){
+          alertify.success(data.msg);
+       
+         setTimeout(function(){
+           window.location.reload();
+         }, 2000);
+
+       }else if(data.status==202){
+          alertify.warning(data.msg)
+       }
+    },
+    error: function (data) {
+      alertify.warning("Oops. something went wrong. Please try again");
+    }
+  });
+
+ }, function(){ 
+
+    alertify.error('Cancelz')
+
+});
 }
 
 function confirmAlert_test(){
 	alertify.confirm('Hello !! This is preview', function(){ 
-   alertify.success('Ok') 
+   //alertify.success('Ok') 
  }, );
 }
 
@@ -71,11 +105,7 @@ $("#create_duplicate_template_post").on('submit', function(e){
        }
      });
 });
-//Duplicate Test Template
-function section_id(id) {
-  console.log(id);
-  $('#section_id').val(id);
-}
+
 
 //Adding Section
 $("#add_section").on('submit', function(e){  

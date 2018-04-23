@@ -101,6 +101,7 @@ Route::get('/move_down/{id}', 'Recruiter\TemplatesController@move_down')->name('
 
 //Recruiter Questions Routes Started
 Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
+Route::post('/create_question_coding','Recruiter\QuestionsController@create_question_coding')->name('create_question_coding');
 Route::get('/delete_question/{id}', 'Recruiter\QuestionsController@delete_question')->name('delete_question');
 Route::get('/delete_all_mcqs_questions', 'Recruiter\QuestionsController@delete_all_mcqs_questions')->name('delete_all_mcqs_questions');
 Route::post('/question_modal_partial_data', 'Recruiter\QuestionsController@question_modal_partial_data')->name('question_modal_partial_data');
@@ -116,5 +117,15 @@ Route::post('/templatetestContactSetting', 'Recruiter\TemplateSetting@templatete
 Route::get('/host_test_page/{id}', 'Recruiter\HostController@host_test_page')->name('host_test_page');
 //Add Host Test Post request
 Route::post('/host_test_post', 'Recruiter\HostController@host_test_post')->name('host_test_post');
+
+//Delete Host
+Route::post('/delete_host', 'Recruiter\HostController@host_test_del')->name('host_test_del');
+
+//Terminate host //host_terminate
+Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name('host_terminate');
+
+//Public preview of host 
+Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
+
 });
 /*Recruiter Routes Ended*/

@@ -31,6 +31,15 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\QuestionSolution' => [
             'App\Listeners\CreateQuestionSolution',
         ],
+         'App\Events\CodingQuestionDetail' => [
+            'App\Listeners\CreateCodingQuestionDetail',
+        ],
+        'App\Events\CodingEntries' => [
+            'App\Listeners\CreateCodingEntries',
+        ],
+        'App\Events\CodingQuestionLanguage' => [
+            'App\Listeners\CreateCodingQuestionLanguage',
+        ],
     ];
 
     /**

@@ -15,7 +15,8 @@ use App\Question;
 use Auth;
 use DB;
 use App\Hosted_test;
-use App\Multiple_choice;
+use App\Mulitple_choice;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 
 class TemplatesController extends Controller
@@ -261,30 +262,41 @@ class TemplatesController extends Controller
         return redirect()->back();
     }
     public function preview_test($id){
-
+        //dd($id);
 //        $s =  DB::table('mulitple_choices')->get();
 // dd($s);
-        $sections = DB::table('sections')->where('template_id','=',$id)->get();
-         // dd($sections);
-            $section_question = array();
-            foreach ($sections as $key => $value)
-            {
-               
+        // $sections = DB::table('sections')->where('template_id','=',$id)->get();
+        //$sections = Section::where('template_id','=',$id)->with('template')->get();
+        $test_template = Test_template::find($id);        
+        $sections = $test_template->template_section()->paginate(1);
+                
 
-                 // dd($value);
-                 $questions = Question::where('section_id','=',$value->id)->get();
-                //  dd($sections);
-                // $question_choices = array();
-                // foreach ( $section_question[$value->order_number] as $key => $value) {
-                // // dd($key);
-                //     $section_question[$value->section_name[$value->question_statement]]
-                //      = DB::table('mulitple_choices')->where('question_id','=',$value->id)->get();
-                //     dd($section_question);
-                // }
-                dd($questions);
-            }
-             // dd($section_question);
-        return view('recruiter_dashboard.preview_test',['section_question'=>$section_question]);
+        // $section_question  = $sections[0]->questions()->paginate(1);
+       
+        // $choices = $section_question[0]->multiple_choice()->paginate(1);
+       
+       // dd($choices);
+        //$choice_count = count($choices);
+        //dd($sections[0]->questions()->get());
+
+        // dd($sections);
+
+            // $section_question = array();
+
+            // foreach ($sections as $key => $value)
+            // {
+            //     // dd($value);
+            //     $section_question[$value->id] = Question::Join('mulitple_choices','questions.id','=','mulitple_choices.question_id')
+            //     ->select('mulitple_choices.id as mulitple_choices_id','mulitple_choices.question_id as m_q_id','mulitple_choices.choice','mulitple_choices.partial_marks','mulitple_choices.status','mulitple_choices.shuffle_status','questions.id as q_id','questions.question_statement')
+            //     ->with('section')
+            //     ->where('section_id','=',$value->id)
+                
+            //     ->get();
+            //      dd($section_question);
+            // }
+ 
+
+        return view('recruiter_dashboard.preview_test',['sections'=>$sections]);
     }
     
     public function template_public_preview(){

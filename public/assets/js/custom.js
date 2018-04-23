@@ -449,10 +449,10 @@ function addrow_section_codingquestion() {
      $('#section_coding_table tbody').append('<tr>'+
        '<td valign="center">'+colCount+'.</td>'+
        '<td valign="center">'+
-           '<textarea class="form-control" name="input" required=""></textarea>'+
+           '<textarea class="form-control" name="coding_input[]" required=""></textarea>'+
        '</td>'+
        '<td valign="center">'+
-           '<textarea class="form-control" name="output" required=""></textarea>'+
+           '<textarea class="form-control" name="coding_output[]" required=""></textarea>'+
        '</td>'+
        '<td valign="center">'+
            '<a class="delete_row">'+
@@ -465,10 +465,10 @@ function addrow_section_codingquestion() {
      $('#section_coding_table tbody tr:last').after('<tr>'+
        '<td valign="center">'+colCount+'.</td>'+
        '<td valign="center">'+
-           '<textarea class="form-control" name="input" required=""></textarea>'+
+           '<textarea class="form-control" name="coding_input[]" required=""></textarea>'+
        '</td>'+
        '<td valign="center">'+
-           '<textarea class="form-control" name="output" required=""></textarea>'+
+           '<textarea class="form-control" name="coding_output[]" required=""></textarea>'+
        '</td>'+
        '<td valign="center">'+
            '<a class="delete_row">'+
@@ -606,7 +606,21 @@ function edittesttemplate_Collapse() {
   , 1000);
 }
 
-function edittesttemplate_Expand() {
+//Duplicate Test Template
+function section_id(id) {
+  console.log(id);
+  $('#section_id_1').val(id);
+  $('#section_id_2').val(id);
+  $('#section_id_3').val(id);
+}
+function edittesttemplate_Expand(id) {
+  
+  console.log(id);
+  $('#section_id_1').val(id);
+  $('#section_id_2').val(id);
+  $('#section_id_3').val(id);
+
+
   testtemp_setInterval_Expand = setInterval(
     function(){
       var htmlString = $( "#section-mcqs-Modal .fr-element.fr-view" ).html();

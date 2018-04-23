@@ -16,7 +16,7 @@
     <ul class="nav nav-tabs">        
         <li class="active">
             <a data-toggle="pill" href="#home">
-                Test Hosted (1)
+                Test Hosted ({{count($hosted_tests)}})
                 <div class="s_click_popup">
                     <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
                     <span class="s_click_popuptext f_popup">
@@ -44,19 +44,40 @@
             <div class="view_filter_right">
                 <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
             </div>
-        @foreach($hosted_tests as $hosted_test)
+        @foreach($hosted_tests as $key => $hosted_test)
             <section class="tab_nav accordion-toggle" data-toggle="collapse"
-                 data-parent="#accordion" data-target="#collapse_livecode" aria-expanded="false">
+                 data-parent="#accordion" data-target="#collapse_livecode{{$key}}" aria-expanded="false">
                 <div class="row main_tab">
                     <div class="col-md-6">
                         <div class="left_tab">
                             <ul>
                                 <li>
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_livecode" aria-expanded="false">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_livecode{{$key}}" aria-expanded="false">
                                     <span class="fa fa-caret-right"></span>
                                     </a>
                                 </li>
-                                <li>Live</li>
+                                <?php 
+                                    $todaydate = new DateTime();
+                                    $todaydate = $todaydate->format('Y-m-d');
+
+                                    $expired_status=false;
+                                    $live_status=false;
+                                ?>
+                                @if($hosted_test->status == 2)
+                                    <!-- Terminated -->
+                                    <li>Expired (terminated)</li>
+                                   <?php $expired_status=true;  ?>  
+                                @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
+                                 <li>Expired</li>
+                                 <?php $expired_status=true;   ?>                         
+                                @elseif(strtotime($todaydate) == strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
+                                 <li>Live</li>
+                                 <?php $live_status=true;  ?>  
+                                @elseif(strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
+                                 <li>Live</li>
+                                 <?php $live_status=true;  ?>                                             
+                                @endif
+
                                 <li>{{$hosted_test->host_name}}</li>
                             </ul>
                         </div>
@@ -64,8 +85,10 @@
                     <div class="col-md-6">
                         <div class="right_tab">
                             <ul>
-                                <li><a href="#">Invite Candidates</a></li>
-                                <li>Edit</li>
+                                 @if(!(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date)))))
+                                    <li><a href="#">Invite Candidates</a></li>
+                                    <li><a href="{{route('edit_template',['id'=>$hosted_test->test_template_id])}}">Edit</a></li>                                                                 
+                                 @endif
                                 <li>Report</li>
                                 <li>
                                     <div class="dropdown">
@@ -75,8 +98,15 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                             <li><a href="invited_candidates.php">View Invited Candidates</a></li>
-                                            <li><a href="" target="blank">Preview Test</a></li>
-                                            <li><a href="#">Delete Test</a></li>
+
+                                            <li><a href="{{route('preview_public_testpage', ['id' => $hosted_test->host_id])}}" target="blank">Preview Public Test Page</a></li>
+                                            <li><a href="#" target="blank">View subscribed candidates</a></li>
+                                           <li><a href="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" target="blank">Preview Test</a></li>                                            
+                                            <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to delete this Host.', '{{route('host_test_del')}}', {{$hosted_test->host_id}} )" >Delete Test</a></li>
+                                            @if($live_status)
+                                                 <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to terminate this Host.', '{{route('host_terminate')}}', {{$hosted_test->host_id}} )" >Terminate</a></li>
+                                            @endif
+
                                             <li role="separator" class="divider"></li>
                                             <li><a href="#" data-toggle="modal" data-target="#setup_manual
                                                 ">Setup Manual Evaluation</a></li>
@@ -88,7 +118,7 @@
                     </div>
                 </div>
                 <div class="row border_view">
-                    <div id="collapse_livecode" class="panel-collapse collapse">
+                    <div id="collapse_livecode{{$key}}" class="panel-collapse collapse">
                         <div class="col-md-12">
                             <p class="view_content">Webcam : required</p>
                         </div>
@@ -144,7 +174,7 @@
                                             <span class="pull-right margin_23">
                                             <span class="margin_25">:</span>
                                            <!--  Tue, Feb 6, 8:42 AM, CAST -->
-                                             {{ date("F jS, Y", strtotime($hosted_test->test_open_date)) }}
+                                             {{ date("F jS, Y H:i", strtotime($hosted_test->test_open_date)) }}
                                              {{ $hosted_test->test_open_time }}
                                             </span>
                                         </td>
@@ -153,20 +183,24 @@
                                         <td><span>Ends at  </span>
                                             <span class="pull-right margin_25">
                                             <span class="margin_25">:</span>
-                                            {{ date("F jS, Y", strtotime($hosted_test->test_close_date)) }}
+                                            {{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}
                                             {{ $hosted_test->test_close_time }} </span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><span>Duration</span>
                                         <?php 
-                                        $to_time = strtotime(date("H:i:s",strtotime($hosted_test->test_open_date)));
-                                        $from_time = strtotime(date("H:i:s",strtotime($hosted_test->test_close_date)));
+                                        $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
+                                        $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
+                                    
+                                        $datetime1 = new DateTime($to_time." ".$hosted_test->test_open_time);
+                                        $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
+                                        $interval = $datetime1->diff($datetime2);
 
                                         ?>
                                             <span class="pull-right margin_22">
                                             <span class="margin_29">:</span>
-                                            <?php echo round(abs($to_time - $from_time) / 60 / 60  ,2). " Hours";?></span>
+                                            <?php echo $interval->format('%hh %im');?></span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -214,6 +248,7 @@
                         </div>
                     </div>
                 </div>
+
             </section>
         @endforeach            
         </div>
@@ -222,7 +257,9 @@
                 <div class="view_filter_right">
                     <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
                 </div>
+                
                 @foreach($listing as $key => $value)
+
                 <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template_{{$key}}" aria-expanded="false">
                     <div class="row main_tab">
                         <div class="col-md-6">
@@ -302,7 +339,11 @@
                                     <tbody>
                                         @foreach($sections[$value->id] as $key => $section)
                                         <tr>
-                                            <td>{{$section->section_name}}{{++$key}}<span class="pull-right">10MCQ (15min)</span></td>
+                                            <td>{{$section->section_name}}{{++$key}}<span class="pull-right">
+                                                @if($section->question_type_id == 1)
+                                                {{$section->count_ques}}MCQ (15min)
+                                                @endif
+                                            </span></td>
                                         </tr>    
                                         @endforeach                                    
                                     </tbody>
