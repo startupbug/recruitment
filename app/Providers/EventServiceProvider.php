@@ -40,6 +40,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\CodingQuestionLanguage' => [
             'App\Listeners\CreateCodingQuestionLanguage',
         ],
+        'App\Events\CodingTestCases' => [
+            'App\Listeners\CreateCodingTestCases',
+        ],
     ];
 
     /**

@@ -29,10 +29,7 @@ class CreateCodingEntries
     */
     public function handle(CodingEntries $event)
     {
-        //yarray =  explode(',', $event->question_data['request']['coding_output']);
-           
-        foreach ($event->question_data['request']['coding_input'] as $key => $value){            
-            
+        foreach ($event->question_data['request']['coding_input'] as $key => $value){          
             $section =new  Coding_entry;           
             $section->question_id = $event->question_data['store']->id;
             $section->input = $value;      

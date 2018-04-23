@@ -19,10 +19,7 @@ class CreateTestCasesTable extends Migration
             $table->string('test_case_name')->nullable();
             $table->string('test_case_input')->nullable();
             $table->string('test_case_output')->nullable();
-            $table->string('weightage')->nullable();
-            $table->string('test_case_file')->nullable();
-            $table->tinyInteger('weightage_status')->nullable()->default('0');
-            $table->tinyInteger('test_case_verify')->nullable()->default('0');            
+            $table->string('weightage')->nullable();                     
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade')->onUpdate('cascade'); 
             $table->timestamps();
 

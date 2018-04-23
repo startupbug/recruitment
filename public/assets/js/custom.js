@@ -238,7 +238,7 @@ $( document ).ready(function() {
       }
       total = total - s_value;
 
-      $('#weightage_row tbody tr:nth-child('+colCount_value+') td:nth-child(5)').html('<div class="col-md-offset-1 col-md-4"><input type="number" id="weightage" name="weightage" class="form-control input-md" value="'+s_value+'" disabled="disabled"></div><div class="col-md-7"><button class="btn btn-info btn-sm"><i class="fa fa-floppy-o"></i> Save</button><button class="btn btn-default btn-sm delete_row"><i class="fa fa-times"></i></button></div>');
+      $('#weightage_row tbody tr:nth-child('+colCount_value+') td:nth-child(5)').html('<div class="col-md-offset-1 col-md-4"><input type="number" id="weightage" name="weightage[]" class="form-control input-md" value="'+s_value+'"></div><div class="col-md-7"><button class="btn btn-info btn-sm"><i class="fa fa-floppy-o"></i> Save</button><button class="btn btn-default btn-sm delete_row"><i class="fa fa-times"></i></button></div>');
       $('#weightage_row tbody tr:nth-child('+colCount_value+') td:nth-child(1)').html(colCount_value+'.');
       count--;
     });
@@ -489,29 +489,36 @@ function addrow_weightage() {
    if (colCount == 1) {
      $('#weightage_row tbody').append('<tr>'+
        '<td valign="center">'+colCount+'.</td>'+
+
        '<td>'+
          '<div class="text-center" style="margin-top: -11px">'+
            '<small class="text-danger"><em>*Unsaved</em></small>'+
          '</div>'+
-         '<input type="text" class="form-control" name="option" required="" >'+
+         '<input type="text" class="form-control" name="test_case_name[]" required="" >'+
        '</td>'+
+
        '<td valign="center">'+
-         '<textarea class="form-control" name="input" required=""></textarea>'+
+         '<textarea class="form-control" name="test_case_input[]" required=""></textarea>'+
        '</td>'+
+
        '<td valign="center">'+
-         '<textarea class="form-control" name="output" required=""></textarea>'+
+         '<textarea class="form-control" name="test_case_output[]" required=""></textarea>'+
        '</td>'+
+
        '<td valign="center">'+
          '<div class="col-md-offset-1 col-md-4">'+
-           '<input type="number" id="weightage" name="weightage" class="form-control input-md" value="100" disabled="disabled">'+
+           '<input type="number" id="weightage" name="weightage[]" class="form-control input-md" value="100">'+
          '</div>'+
+
          '<div class="col-md-7">'+
             '<button class="btn btn-info btn-sm">'+
               '<i class="fa fa-floppy-o"></i> Save'+
             '</button>'+
+
             '<button class="btn btn-default btn-sm delete_row">'+
               '<i class="fa fa-times"></i>'+
             '</button>'+
+
          '</div>'+
        '</td>'+
      '</tr>');
@@ -519,29 +526,36 @@ function addrow_weightage() {
    else {
      $('#weightage_row tbody tr:last').after('<tr>'+
        '<td valign="center">'+colCount+'.</td>'+
+
        '<td>'+
          '<div class="text-center" style="margin-top: -11px">'+
            '<small class="text-danger"><em>*Unsaved</em></small>'+
          '</div>'+
-         '<input type="text" class="form-control" name="option" required="" >'+
+         '<input type="text" class="form-control" name="test_case_name[]" required="">'+
        '</td>'+
+
        '<td valign="center">'+
-         '<textarea class="form-control" name="input" required=""></textarea>'+
+         '<textarea class="form-control" name="test_case_input[]" required=""></textarea>'+
        '</td>'+
+
        '<td valign="center">'+
-         '<textarea class="form-control" name="output" required=""></textarea>'+
+         '<textarea class="form-control" name="test_case_output[]" required=""></textarea>'+
        '</td>'+
+
        '<td valign="center">'+
          '<div class="col-md-offset-1 col-md-4">'+
-           '<input type="number" id="weightage" name="weightage" class="form-control input-md" disabled="disabled">'+
+           '<input type="number" id="weightage" name="weightage[]" class="form-control input-md">'+
          '</div>'+
+
          '<div class="col-md-7">'+
             '<button class="btn btn-info btn-sm">'+
               '<i class="fa fa-floppy-o"></i> Save'+
             '</button>'+
+
             '<button class="btn btn-default btn-sm delete_row">'+
               '<i class="fa fa-times"></i>'+
             '</button>'+
+
          '</div>'+
        '</td>'+
      '</tr>');
@@ -567,7 +581,7 @@ function addrow_weightage() {
       }
       total = total - s_value;
 
-      $('#weightage_row tbody tr:nth-child('+colCount_value+') td:nth-child(5)').html('<div class="col-md-offset-1 col-md-4"><input type="number" id="weightage" name="weightage" class="form-control input-md" value="'+s_value+'" disabled="disabled"></div><div class="col-md-7"><button class="btn btn-info btn-sm"><i class="fa fa-floppy-o"></i> Save</button><button class="btn btn-default btn-sm delete_row"><i class="fa fa-times"></i></button></div>');
+      $('#weightage_row tbody tr:nth-child('+colCount_value+') td:nth-child(5)').html('<div class="col-md-offset-1 col-md-4"><input type="number" id="weightage" name="weightage[]" class="form-control input-md" value="'+s_value+'"></div><div class="col-md-7"><button class="btn btn-info btn-sm"><i class="fa fa-floppy-o"></i> Save</button><button class="btn btn-default btn-sm delete_row"><i class="fa fa-times"></i></button></div>');
 
        count--;
    });

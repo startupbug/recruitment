@@ -157,7 +157,7 @@
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
                      <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$key}}">Multiple Choice ({{ $sec['count'] }})</a></li>
-                        <li><a data-toggle="pill" href="#sections-coding-{{$key}}">Coding (2)</a></li>
+                        <li><a data-toggle="pill" href="#sections-coding-{{$key}}">Coding ({{ $sec['count2'] }})</a></li>
                         <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission (2)</a></li>
                         <li class="pull-right"></li>                        
                      </ul>
@@ -178,7 +178,7 @@
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    @foreach($sec['ques'] as $serial_number => $q)
+                                    @foreach($sec['ques1'] as $serial_number => $q)
                                      <tr>
                                           <td><input type="checkbox" name="prog" class="prog_mc" value="{{$q->id}}"></td>
                                           <td>{{++$serial_number}}</td>
@@ -2297,7 +2297,7 @@
                                         </div>
                                     </strong>
                                     <strong class="pull-right">
-                                    <input type="checkbox" name="" value="">
+                                    <input type="checkbox" name="weightage_status" value="1">
                                     Equalize Weightage, <a href="#">Total: 100%</a>
                                     </strong>
                                     <table class="table s_table" id="weightage_row">
@@ -2315,12 +2315,12 @@
                                     <button class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
                                    <div class="s_uplosd_btn f_upload_btn">
                                      Upload Test Case Files
-                                     <input type="file" name="file" >
+                                     <input type="file" name="test_case_file" >
                                    </div>
                                     <a href="#">Test case file format</a>
                                     <div class="checkbox s_margin_0">
                                         <label>
-                                        <input type="checkbox" name="verify_test_case">Verify the Test Cases
+                                        <input type="checkbox" name="test_case_verify">Verify the Test Cases
                                         </label>
                                     </div>
 
