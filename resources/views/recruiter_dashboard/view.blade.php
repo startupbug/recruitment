@@ -44,7 +44,6 @@
             <div class="view_filter_right">
                 <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
             </div>
-            
         @foreach($hosted_tests as $key => $hosted_test)
             <section class="tab_nav accordion-toggle" data-toggle="collapse"
                  data-parent="#accordion" data-target="#collapse_livecode{{$key}}" aria-expanded="false">
@@ -99,13 +98,15 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                             <li><a href="invited_candidates.php">View Invited Candidates</a></li>
+
                                             <li><a href="{{route('preview_public_testpage', ['id' => $hosted_test->host_id])}}" target="blank">Preview Public Test Page</a></li>
                                             <li><a href="#" target="blank">View subscribed candidates</a></li>
-                                           <li><a href="{{route('preview_test')}}" target="blank">Preview Test</a></li>                                            
+                                           <li><a href="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" target="blank">Preview Test</a></li>                                            
                                             <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to delete this Host.', '{{route('host_test_del')}}', {{$hosted_test->host_id}} )" >Delete Test</a></li>
                                             @if($live_status)
                                                  <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to terminate this Host.', '{{route('host_terminate')}}', {{$hosted_test->host_id}} )" >Terminate</a></li>
                                             @endif
+
                                             <li role="separator" class="divider"></li>
                                             <li><a href="#" data-toggle="modal" data-target="#setup_manual
                                                 ">Setup Manual Evaluation</a></li>
@@ -256,7 +257,9 @@
                 <div class="view_filter_right">
                     <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
                 </div>
+                
                 @foreach($listing as $key => $value)
+
                 <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template_{{$key}}" aria-expanded="false">
                     <div class="row main_tab">
                         <div class="col-md-6">
@@ -287,8 +290,9 @@
                                             More
                                             <span class="caret"></span>
                                             </button>
+
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                <li><a href="{{route('preview_test')}}" target="blank">Preview Templates</a></li>
+                                                <li><a href="{{route('preview_test',['id'=>$value->id])}}" target="blank">Preview Templates</a></li>
                                                 <li>
                                                     <a href="#" class="duplicate_modal_id" data-toggle="modal" data-target-id="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
                                                 </li>
@@ -335,7 +339,11 @@
                                     <tbody>
                                         @foreach($sections[$value->id] as $key => $section)
                                         <tr>
-                                            <td>{{$section->section_name}}{{++$key}}<span class="pull-right">10MCQ (15min)</span></td>
+                                            <td>{{$section->section_name}}{{++$key}}<span class="pull-right">
+                                                @if($section->question_type_id == 1)
+                                                {{$section->count_ques}}MCQ (15min)
+                                                @endif
+                                            </span></td>
                                         </tr>    
                                         @endforeach                                    
                                     </tbody>

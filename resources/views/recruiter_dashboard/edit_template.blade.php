@@ -223,7 +223,7 @@
                                  <tfoot>
                                     <tr>
                                        <td colspan="4">
-                                          <button type="button" class="btn" data-toggle="modal" data-target="#section-mcqs-Modal" onclick="edittesttemplate_Expand(); section_id({{$key}})">
+                                          <button type="button" class="btn" data-toggle="modal" data-target="#section-mcqs-Modal" onclick="edittesttemplate_Expand({{$key}}); ">
                                           <i class="fa fa-plus"></i> Add MCQ
                                           </button>
                                           <button type="button" class="btn" data-toggle="modal" data-target="#section-choice-mcqs-Modal">
@@ -238,6 +238,7 @@
                         <div id="sections-coding-{{$key}}" class="tab-pane fade">
                            <form>
                               <input type="text" name="section_c_id[]" class="input_c_id"  id="section_c_id">
+
                               <button type="submit" class="btn delete_section_c hidden">Delete</button>
                            </form>
                            <div class="no-more-tables">
@@ -383,7 +384,9 @@
                                              </button>
                                              </span>
                                              <ul class="dropdown-menu s_addquestion_dropdown_menu">
-                                                <li><a data-toggle="modal" data-target="#section-coding-add-compilable-question-Modal">Add Compilable Question</a></li>
+                                                <li>
+                                                <a data-toggle="modal" onclick="section_id({{$key}});" data-target="#section-coding-add-compilable-question-Modal">Add Compilable Question</a>
+                                             </li>
                                                 <li><a data-toggle="modal" data-target="#section-coding-debug-Modal">Add Debug Question</a></li>
                                              </ul>
                                           </span>
@@ -399,6 +402,7 @@
                         <div id="sections-submission-{{$key}}" class="tab-pane fade">
                            <form>
                               <input type="text" name="section_s_id[]" class="input_c_id" id="section_s_id">
+
                               <button type="submit" class="btn delete_section_s hidden">Delete</button>
                            </form>
                            <div class="no-more-tables">
@@ -1688,7 +1692,7 @@
                            <div class="form-group form-group-sm">
                               <label class="control-label"><strong>Question Statement</strong></label>
                               <div class="">
-                                 <input type="text" class="form-control" name="" value="" placeholder="Enter question statement">
+                                 <input type="text" class="form-control" name="" value="" required="" placeholder="Enter question statement">
                               </div>
                            </div>
                            <button class="btn btn-sm btn-success">Apply</button>
@@ -1734,22 +1738,22 @@
                                                          <h5>Choices</h5>
                                                          <ul class="ng-scope">
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true" name="question[]" ></i>
                                                                &nbsp;&nbsp;
                                                                &lt;a href="url" new&gt;
                                                             </li>
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true" name="question[] ></i>
                                                                &nbsp;&nbsp;
                                                                &lt;a href="url" target="_blank"&gt;
                                                             </li>
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true" name="question[]" ></i>
                                                                &nbsp;&nbsp;
                                                                &lt;a href="url" target="new"&gt;
                                                             </li>
                                                             <li>
-                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               <i class="fa fa-square-o" aria-hidden="true"  name="question[]" ></i>
                                                                &nbsp;&nbsp;
                                                                None of the above
                                                             </li>
@@ -2195,15 +2199,20 @@
       </div>
    </div>
 </div>
+<!-- Coding Modal -->
 <!-- section-coding-add-compilable-question-Modal -->
 <div class="modal fade" id="section-coding-add-compilable-question-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
         <!-- Modal content-->
+         <form action="{{route('create_question_coding')}}" method="POST" enctype="multipart/form-data">
+        {{csrf_field()}}
+         <input type="hidden" name="section_id" id="section_id_2" value="">
+         <input type="hidden" name="question_type_id" value="2">
         <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
                     <span>Please add the question title </span>
-                    <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
+                    <button type="submit" class="btn s_save_button s_font">Save</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
                 <h3 class="modal-title s_font">Coding Question</h3>
@@ -2233,7 +2242,7 @@
                                 </div>
                                 <div>
                                   <label class="container_radio border_radio_left">STAGE
-                                  <input type="radio" name="question_state_id" value="1" disabled>
+                                  <input type="radio" name="`" value="1" disabled>
                                   <span class="checkmark"></span>
                                   </label>
                                   <label class="container_radio">READY
@@ -2262,14 +2271,14 @@
                                         </div>
                                                 </strong>
                                             </div>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="coding_program_title" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement">
                                     <strong>Program Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
                                 </div>
-                                <textarea class="edit" rows="8"></textarea>
+                                <textarea class="edit" name="question_statement" rows="8"></textarea>
                                 <br>
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Sample Input & Output
@@ -2293,10 +2302,10 @@
                                                 <tr>
                                                     <td valign="center">1.</td>
                                                     <td valign="center">
-                                                        <textarea class="form-control" name="input" required=""></textarea>
+                                                        <textarea class="form-control" name="coding_input[]" required=""></textarea>
                                                     </td>
                                                     <td valign="center">
-                                                        <textarea class="form-control" name="output" required=""></textarea>
+                                                        <textarea class="form-control" name="coding_output[]" required=""></textarea>
                                                     </td>
                                                     <td valign="center">
                                                         <a class="delete_row">
@@ -2351,20 +2360,24 @@
                                     </table>
                                     <hr>
                                     <button class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
-                                    <button class="btn">Upload Test Case Files</button>
+                                   <div class="s_uplosd_btn f_upload_btn">
+                                     Upload Test Case Files
+                                     <input type="file" name="file" >
+                                   </div>
                                     <a href="#">Test case file format</a>
                                     <div class="checkbox s_margin_0">
                                         <label>
-                                        <input type="checkbox">Verify the Test Cases
+                                        <input type="checkbox" name="verify_test_case">Verify the Test Cases
                                         </label>
                                     </div>
+
                                     <p>Test Cases should be added/uploaded</p>
                                 </div>
                             </div>
                         </div>
                         <br>
                         <!-- Default Codes -->
-                        <div class="modal-content s_modal s_yellow_color_modal">
+                        <!-- <div class="modal-content s_modal s_yellow_color_modal">
                             <div class="modal-header s_modal_header s_yellow_color_header">
                                 <h4 class="modal-title s_font">Default Codes</h4>
                             </div>
@@ -2388,7 +2401,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <br>
                         <!--  Question Details -->
                         <div class="modal-content s_modal s_gray_color_modal">
@@ -2406,44 +2419,21 @@
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label class="ng-binding">
-                                          <input type="checkbox" value="JAVA" checked="checked"> JAVA
+                                          <input type="checkbox" name="allowed_languages_id[]" value="1" checked="checked"> JAVA
                                           </label>
                                        </div>
                                     </div>
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label class="ng-binding">
-                                          <input type="checkbox" value="C" checked="checked"> C
+                                          <input type="checkbox" name="allowed_languages_id[]" value="2" checked="checked"> C
                                           </label>
                                        </div>
                                     </div>
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label>
-                                          <input type="checkbox" value="CPP" checked="checked"> CPP
-                                          </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="row">
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" value="PYTHON" checked="checked"> PYTHON
-                                          </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" value="RUBY" checked="checked"> RUBY
-                                          </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" value="PHP" checked="checked"> PHP
+                                          <input type="checkbox" name="allowed_languages_id[]" value="3" checked="checked"> CPP
                                           </label>
                                        </div>
                                     </div>
@@ -2452,21 +2442,44 @@
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label>
-                                          <input type="checkbox" value="JAVASCRIPT" checked="checked"> JAVASCRIPT
+                                          <input type="checkbox" name="allowed_languages_id[]" value="4" checked="checked"> PYTHON
                                           </label>
                                        </div>
                                     </div>
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label>
-                                          <input type="checkbox" value="CSHARP" checked="checked"> CSHARP
+                                          <input type="checkbox" name="allowed_languages_id[]" value="5" checked="checked"> RUBY
                                           </label>
                                        </div>
                                     </div>
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label>
-                                          <input type="checkbox" value="R" checked="checked"> R
+                                          <input type="checkbox" name="allowed_languages_id[]" value="6" checked="checked"> PHP
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="7" checked="checked"> JAVASCRIPT
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="8" checked="checked"> CSHARP
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="9" checked="checked"> R
                                           </label>
                                        </div>
                                     </div>
@@ -2478,15 +2491,11 @@
                               <div class="form-group-sm">
                                  <div class="row">
                                     <div class="col-md-3">
-                                       <select class="form-control">
-                                          <option value="add Tag" disabled="">Select Tag</option>
-                                          <option>algo</option>
-                                          <option>basic-programming</option>
-                                          <option>database</option>
-                                          <option>design</option>
-                                          <option>iterative</option>
-                                          <option>maths</option>
-                                          <option>recursion</option>
+                                       <select name="tag_id" class="form-control">
+                                         <option value="add Tag" disabled="">Add Tag</option>
+                                          @foreach($tags as $value)
+                                           <option value="{{$value->id}}">{{$value->tag_name}}</option>
+                                         @endforeach
                                        </select>
                                     </div>
                                  </div>
@@ -2496,15 +2505,15 @@
                               </div>
                               <div class="heading_padding_bottom">
                                  <label class="container_radio border_radio_left">Easy
-                                 <input type="radio" checked="checked" name="radio">
+                                 <input type="radio" checked="checked" value="1" name="question_level_id">
                                  <span class="checkmark"></span>
                                  </label>
                                  <label class="container_radio">Medium
-                                 <input type="radio" name="radio">
+                                 <input type="radio" name="question_level_id" value="2">
                                  <span class="checkmark"></span>
                                  </label>
                                  <label class="container_radio border_radio_right">Hard
-                                 <input type="radio" name="radio">
+                                 <input type="radio" name="question_level_id" value="3">
                                  <span class="checkmark"></span>
                                  </label>
                               </div>
@@ -2514,7 +2523,7 @@
                                        <div class="heading_modal_statement heading_padding_bottom">
                                           <strong>Provider <i class="fa fa-info-circle"></i></strong>
                                        </div>
-                                       <input type="text" class="form-control">
+                                       <input type="text" name="provider" class="form-control">
                                     </div>
                                  </div>
                               </div>
@@ -2524,7 +2533,7 @@
                                        <div class="heading_modal_statement heading_padding_bottom">
                                           <strong>Author <i class="fa fa-info-circle"></i></strong>
                                        </div>
-                                       <input type="text" class="form-control">
+                                       <input type="text" name="author" class="form-control">
                                     </div>
                                  </div>
                               </div>
@@ -2532,91 +2541,56 @@
                         </div>
                         <br>
                         <!--  Solution Details (Optional) -->
-                        <div class="modal-content s_modal s_orange_color_modal">
-                            <div class="modal-header s_modal_header s_orange_color_header accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#solution2" aria-expanded="false">
-                                <h4 class="modal-title s_font"><i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
-                            </div>
-                            <div class="modal-body s_modal_body panel-collapse collapse" id="solution2">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="form-group form-group-sm">
-                                            <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Text
-                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                             Provide the solution of the question in text if the question is required to use.
-
-                                            </span>
-                                        </div>
-                                                </strong>
-                                            </div>
-                                            <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
-                                        </div>
-                                    </div>
+                          <div class="modal-content s_modal s_gray_color_modal">
+                       <div class="modal-header s_modal_header s_gray_color_header">
+                          <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                       </div>
+                       <div class="modal-body s_modal_body">
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Text <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="text" style=""></textarea>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="form-group form-group-sm">
-                                            <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Code
-                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                             Provide the solution of the question in code if the question is required to use.
-
-                                            </span>
-                                        </div>
-                                                </strong>
-                                            </div>
-                                            <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
-                                        </div>
-                                    </div>
+                             </div>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Code <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="code" style=""></textarea>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="form-group form-group-sm">
-                                            <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>URL
-                                                <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                             Provide the solution of the question in URL if the question is required to use.
-
-                                            </span>
-                                        </div>
-
-                                                </strong>
-                                            </div>
-                                            <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
-                                        </div>
-                                    </div>
+                             </div>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>URL <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="url" style=""></textarea>
                                 </div>
-                                <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Files
-                                        <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                             Provide the solution of the question in FILE if the question is required to use.
-
-                                            </span>
-                                        </div>
-                                    </strong>
-                                </div>
-                               <!-- <button type="file" class="btn">Upload Files</button>-->
-                               <div class="f_upload_btn">
-                                    Upload Media
-                                    <input type="file" name="">
-                                </div>
-                            </div>
-                        </div>
+                             </div>
+                          </div>
+                          <div class="heading_modal_statement heading_padding_bottom">
+                             <strong>Files <i class="fa fa-info-circle"></i></strong>
+                          </div>
+                          <input type="file" name="solution_media">
+                       </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
+      </form>
     </div>
 </div>
 <!-- section-coding-debug-Modal -->
+<!-- Coding Modal -->
 <div class="modal fade" id="section-coding-debug-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
@@ -4114,7 +4088,7 @@
       <!-- Modal content-->
          <form action="{{route('create_question')}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
-        <input type="hidden" name="section_id" id="section_id" value="">
+        <input type="hidden" name="section_id" id="section_id_1" value="">
         <input type="hidden" name="question_type_id" value="1">
         <div class="modal-content">
            <div class="modal-header s_modal_form_header">
@@ -4304,7 +4278,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Negative Marks for Answering Wrong <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="negative_marks" class="form-control">
+                                   <input type="text" name="negative_marks" class="form-control" required="s">
                                 </div>
                              </div>
                           </div>
@@ -4346,7 +4320,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Provider <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="provider" class="form-control">
+                                   <input type="text" name="provider" class="form-control" required="">
                                 </div>
                              </div>
                           </div>
@@ -4356,7 +4330,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Author <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="author" class="form-control">
+                                   <input type="text" name="author" class="form-control" required="">
                                 </div>
                              </div>
                           </div>
