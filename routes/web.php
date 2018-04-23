@@ -126,5 +126,8 @@ Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name(
 //Public preview of host 
 Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
 
+//Report
+Route::get('/report/{id}', 'Recruiter\HostController@can_report')->name('can_report');
+
 });
 /*Recruiter Routes Ended*/

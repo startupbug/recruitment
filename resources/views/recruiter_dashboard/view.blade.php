@@ -90,7 +90,7 @@
                                     <li><a href="#">Invite Candidates</a></li>
                                     <li><a href="{{route('edit_template',['id'=>$hosted_test->test_template_id])}}">Edit</a></li>                                                                 
                                  @endif
-                                <li>Report</li>
+                               <!--  <li>Report</li> -->
                                 <li>
                                     <div class="dropdown">
                                         <button type="button" id="dropdownMenu2" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

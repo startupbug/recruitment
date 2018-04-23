@@ -71,7 +71,7 @@ class TemplatesController extends Controller
         foreach ($args['listing'] as $value) {
             $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')->select('sections.*',  DB::raw("count(questions.question_type_id) as count_ques"))->groupBy('sections.id')->where('sections.template_id','=',$value->id)->get();            
         }
-        dd($args['sections']);
+        //dd($args['sections']);
         $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
                 ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status')->where('test_templates.user_id', Auth::user()->id)->get();
          //dd($args['hosted_tests']);
