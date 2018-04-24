@@ -80,6 +80,15 @@
     $('.select2').select2();
     CKEDITOR.replace('editor1')
   })
+  function load_js()
+  {
+     var head= document.getElementsByTagName('head')[0];
+     var script= document.createElement('script');
+     script.type= 'text/javascript';
+     script.src= '{{ asset("public/assets/js/custom.js") }}';
+     head.appendChild(script);
+  }
+
 </script>
 </body>
 </html>

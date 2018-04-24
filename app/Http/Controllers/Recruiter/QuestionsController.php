@@ -9,6 +9,7 @@ use App\Events\QuestionChoice;
 use App\Events\CodingQuestionDetail;
 use App\Events\CodingQuestionLanguage;
 use App\Events\CodingEntries;
+use App\Events\CodingTestCases;
 use App\Events\QuestionDetail;
 use App\Events\QuestionSolution;
 use App\Mulitple_choice;
@@ -44,16 +45,16 @@ class QuestionsController extends Controller
 	}
 
 	public function create_question_coding(Request $request){
-		//Questions Table Data
+		// Questions Table Data
 		//  "_token" => "hDqdUbmC06tKeZQfBMeiA8x56cZUbviFh55g6oPQ"
 		// "section_id" => "32"
 		// "question_type_id" => "2"
 		// "question_state_id" => "2"
 		// "question_level_id" => "2"
 		// "question_statement" => "<p>adsadaddasd</p>"
-		//Questions Table Data
+		// Questions Table Data
 
-		//Questions Details Table Data
+		// Questions Details Table Data
 		// "coding_program_title" => "asdadddasa"
 		// "tag_id" => "4"
 		// "provider" => "sdada"
@@ -69,7 +70,7 @@ class QuestionsController extends Controller
 		// "text" => "asdad"
 		// "code" => "adasd"
 		// "url" => "asdadd"
-		//dd($request->input());
+		// dd($request->input());
 		if (!empty($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
@@ -88,6 +89,9 @@ class QuestionsController extends Controller
 			event(new  QuestionSolution($question_data));
 			event(new  CodingEntries($question_data));
 			event(new  CodingQuestionLanguage($question_data));
+
+				//dd($question_data);
+			event(new  CodingTestCases($question_data));
 			return redirect()->back();	
 		}else{
 			$this->set_session('Please Give The Required Data', false);

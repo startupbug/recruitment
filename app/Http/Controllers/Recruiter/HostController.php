@@ -149,4 +149,9 @@ class HostController extends Controller
        // dd($args);
     	return view('recruiter_dashboard.public_preview')->with($args);
     }
+
+    public function can_report($id){
+        dd($id);
+        return view('recruiter_dashboard.canreport');
+    }
 }

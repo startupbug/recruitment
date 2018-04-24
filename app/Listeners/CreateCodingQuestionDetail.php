@@ -35,25 +35,28 @@ class CreateCodingQuestionDetail
         $section->coding_program_title = $event->question_data['request']['coding_program_title'];
         $section->provider = $event->question_data['request']['provider'];
         $section->author = $event->question_data['request']['author'];
+        $section->weightage_status=$event->question_data['request']['weightage_status'];
+        $section->test_case_verify=$event->question_data['request']['test_case_verify'];
+        $section->test_case_file=$event->question_data['request']['test_case_file'];
         $section->save();
         $section_id = $section->id;
         
-        // if(isset($event->question_data['request']['media'])){
-        //     $image=$event->question_data['request']['media'];
-        //     $filename=md5($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();
-        //     $location=public_path('public/storage/question-detail-media/'.$filename);
-        //     Question_detail::where('id' ,'=', $section_id)->update([
-        //     'media' => $filename
-        //     ]); 
-        //     $section->media = $this->UploadFile('media', $event->question_data['request']['media']);
-        // }
+        if(isset($event->question_data['request']['test_case_file'])){
+            $image=$event->question_data['request']['test_case_file'];
+            $filename=md5($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();
+            $location=public_path('public/storage/question-detail-test_case_file/'.$filename);
+            Question_detail::where('id' ,'=', $section_id)->update([
+            'test_case_file' => $filename
+            ]); 
+            $section->test_case_file = $this->UploadFile('test_case_file', $event->question_data['request']['test_case_file']);
+        }
     }
-    // public function UploadFile($type, $file){
-    //     if( $type == 'media'){
-    //     $path = 'public/storage/question-detail-media/';
-    //     }
-    //     $filename = md5($file->getClientOriginalName() . time()) . '.' . $file->getClientOriginalExtension();
-    //     $file->move( $path , $filename);
-    //     return $filename;
-    // }
+    public function UploadFile($type, $file){
+        if( $type == 'test_case_file'){
+        $path = 'public/storage/question-detail-test_case_file/';
+        }
+        $filename = md5($file->getClientOriginalName() . time()) . '.' . $file->getClientOriginalExtension();
+        $file->move( $path , $filename);
+        return $filename;
+    }
 }
