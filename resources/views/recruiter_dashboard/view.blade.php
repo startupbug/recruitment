@@ -13,7 +13,7 @@
     </div>
 </section>
 <div class="container-fluid padding-15-fluid">
-    <ul class="nav nav-tabs">        
+    <ul class="nav nav-tabs">
         <li class="active">
             <a data-toggle="pill" href="#home">
                 Test Hosted ({{count($hosted_tests)}})
@@ -250,7 +250,7 @@
                 </div>
 
             </section>
-        @endforeach            
+        @endforeach
         </div>
         <div id="testemplate" class="tab-pane fade">
             <div class="col-md-12 s_testtemplate_border">
@@ -265,43 +265,42 @@
                         <div class="col-md-6">
                             <div class="left_tab">
                                 <ul>
-                                    <li>
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#template_{{$key}}" aria-expanded="false">
-                                        <span class="fa fa-caret-right"></span>
-                                        </a>
-                                    </li>
-                                    <li> {{$value->title}}  <span class="test-muted">(Try)</span></li>
+                                  <li>
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#template_{{$key}}" aria-expanded="false">
+                                      <span class="fa fa-caret-right"></span>
+                                    </a>
+                                  </li>
+                                  <li> {{$value->title}} <span class="test-muted">(Try)</span></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="right_tab">
                                 <ul>
-                                    <li><a href="{{route('template_public_preview',['id'=>$value->id])}}" target="_blank">Public Preview</a></li>
-                                    <li><a href="{{route('edit_template',['id'=>$value->id])}}">Edit</a></li>
-                                    <li class="host_content">
-                                        <div class="host">
-                                            <a href="{{route('host_test_page',['id'=>$value->id])}}">Host this test</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown">
-                                            <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            More
-                                            <span class="caret"></span>
-                                            </button>
-
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                <li><a href="{{route('preview_test',['id'=>$value->id])}}" target="blank">Preview Templates</a></li>
-                                                <li>
-                                                    <a href="#" class="duplicate_modal_id" data-toggle="modal" data-target-id="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{route('delete_test_template',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Test Template?')">Delete</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                  <li><a href="{{route('template_public_preview',['id'=>$value->id])}}" target="_blank">Public Preview</a></li>
+                                  <li><a href="{{route('edit_template',['id'=>$value->id])}}"  onclick="edit_template_text_editor()">Edit</a></li>
+                                  <li class="host_content">
+                                      <div class="host">
+                                          <a href="{{route('host_test_page',['id'=>$value->id])}}">Host this test</a>
+                                      </div>
+                                  </li>
+                                  <li>
+                                      <div class="dropdown">
+                                          <button type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                          More
+                                          <span class="caret"></span>
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                              <li><a href="{{route('preview_test')}}" target="blank">Preview Templates</a></li>
+                                              <li>
+                                                  <a href="#" class="duplicate_modal_id" data-toggle="modal" data-target-id="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
+                                              </li>
+                                              <li>
+                                                  <a href="{{route('delete_test_template',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Test Template?')">Delete</a>
+                                              </li>
+                                          </ul>
+                                      </div>
+                                  </li>                                
                                 </ul>
                             </div>
                         </div>
@@ -371,15 +370,13 @@
                 </section>    
                 @endforeach() 
                 @if($count == 0)
-
                 <h1>No template to found</h1>
-
                 @endif
             </div>
         </div>
     </div>
 </div>
-@endsection    
+@endsection
 @section('createtemplate')
 <!--create duplicate template on view page-->
 <div class="modal fade" id="createtemplate" role="dialog">
@@ -438,7 +435,7 @@
                 <div class="modal-body s_modal_form_body test_template">
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            
+
                                 <div class="form-group title">
                                     <label class="col-md-3 control-label" for="name">Template Title
                                         <div class="s_popup">
@@ -475,11 +472,11 @@
                                     <div class="col-md-9">
                                         <div class="radio">
                                             <label><input type="radio" name="template_type_id" value="1">Public</label>
-                                            
+
                                             <label><input type="radio" name="template_type_id" value="2">Invite-Only</label>
                                         </div>
                                     </div>
-                                </div>                            
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -489,7 +486,6 @@
 </div>
 <!--Close-->
 @endsection
-
 @section('filter_criteria_template_modal')
 <div class="modal fade" id="filter_view" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -535,3 +531,4 @@
     </div>
 </div>
 @endsection
+
