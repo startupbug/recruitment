@@ -4370,8 +4370,6 @@
   </div>
 </div>
 <!-- section-mcqs-Modal -->
-@endsection
-@section('modal_content')
 <script type="text/javascript">
    $(document).ready(function(){
       @if(isset($hostFlag) && $hostFlag)

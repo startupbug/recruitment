@@ -55,6 +55,13 @@ Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {
 	Route::get('/remove_picture_admin/{user_id}','Admin\AdminController@remove_picture_admin')->name('remove_picture_admin');
 	//Admin Removing ProfilePicture
 
+	//ADMIN QUESTIONS
+	Route::get('adminquestion_index','Admin\Admin_questionController@index')->name('adminquestion_index');
+	Route::get('/admin_question_form','Admin\Admin_questionController@new')->name('create_admin_question');
+	Route::post('/create_admin_questions','Admin\Admin_questionController@create')->name('create_question_for_admin');
+	Route::get('/admin_edit_question/{id}','Admin\Admin_questionController@question_edit')->name('admin_edit_question');
+	Route::post('/admin_question_update/{id}','Admin\Admin_questionController@question_update')->name('update_question_for_admin');
+	Route::get('/admin_question_delete/{id}','Admin\Admin_questionController@question_destroy')->name('admin_question_destroy');
 });
 
 /*Admin Routes Ended*/
