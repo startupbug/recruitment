@@ -400,7 +400,7 @@
                                     </label>
                                     <div class="col-md-9">
                                         <div class="radio">
-                                            <label><input type="radio" name="template_type_id" value="1">Public</label>
+                                            <label><input type="radio" name="template_type_id" value="1"  checked="checked">Public</label>
                                             
                                             <label><input type="radio" name="template_type_id" value="2">Invite-Only</label>
                                         </div>

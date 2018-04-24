@@ -1,6 +1,5 @@
 @extends('recruiter_dashboard.layouts.app')
 @section('content')
-
 <section class="view">
 	<br>
 	<div class="container-fluid padding-15-fluit">
@@ -698,7 +697,6 @@
 		</div>
 	</div>
 </section>
-
 <div class="modal fade" id="modal_pencil" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->

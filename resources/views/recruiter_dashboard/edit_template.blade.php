@@ -140,9 +140,9 @@
                         <div class="panel-heading">Preview</div>
                         <div class="panel-body">
                            <h3>Customer Service Test - CodeGround</h3>
-                           <h4>Description</h4>
+                           <h4 class="f_des">Description</h4>
                            <p>This test is hosted via Codeground. Please read the instructions carefully before proceeding.</p>
-                           <h4>Instructions</h4>
+                           <h4 class="f_des">Instructions</h4>
                            <p>(1) Make sure you have a proper internet connection.</p>
                            <p>(2) If your computer is taking unexpected time to load, it is recommended to reboot the system before you start the test.</p>
                            <p>(3) Once you start the test, it is recommended to pursue it in one go for the complete duration.</p>
