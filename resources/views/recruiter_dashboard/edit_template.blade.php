@@ -161,7 +161,7 @@
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
                      <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$key}}">Multiple Choice ({{ $sec['count'] }})</a></li>
-                        <li><a data-toggle="pill" href="#sections-coding-{{$key}}">Coding (2)</a></li>
+                        <li><a data-toggle="pill" href="#sections-coding-{{$key}}">Coding ({{ $sec['count2'] }})</a></li>
                         <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission (2)</a></li>
                         <li class="pull-right"></li>
                      </ul>
@@ -175,14 +175,14 @@
                               <table class="table s_table">
                                  <thead>
                                     <tr>
-                                       <th><input type="checkbox"></th>
+                                       <th><input type="checkbox" class="codeQuesCheck"></th>
                                        <th>#</th>
                                        <th>Statement</th>
                                        <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    @foreach($sec['ques'] as $serial_number => $q)
+                                    @foreach($sec['ques1'] as $serial_number => $q)
                                      <tr>
                                           <td><input type="checkbox" name="prog" class="prog_mc" value="{{$q->id}}"></td>
                                           <td>{{++$serial_number}}</td>
@@ -227,7 +227,7 @@
                                  <tfoot>
                                     <tr>
                                        <td colspan="4">
-                                          <button type="button" class="btn" data-toggle="modal" data-target="#section-mcqs-Modal" onclick="edittesttemplate_Expand(); section_id({{$key}})">
+                                          <button type="button" class="btn" data-toggle="modal" data-target="#section-mcqs-Modal" onclick="edittesttemplate_Expand({{$key}}); ">
                                           <i class="fa fa-plus"></i> Add MCQ
                                           </button>
                                           <button type="button" class="btn" data-toggle="modal" data-target="#section-choice-mcqs-Modal">
@@ -248,7 +248,7 @@
                               <table class="table s_table">
                                  <thead>
                                     <tr>
-                                       <th><input type="checkbox"></th>
+                                       <th><input type="checkbox" name="" class="codeQuesCheck"></th>
                                        <th>#</th>
                                        <th>Statementp</th>
                                        <th></th>
@@ -256,7 +256,7 @@
                                  </thead>
                                  <tbody>
                                     <tr>
-                                       <td><input type="checkbox" class="prog_c"></td>
+                                       <td><input type="checkbox" class="prog_c" value="1"></td>
                                        <td>1</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -295,7 +295,7 @@
                                        </td>
                                     </tr>
                                     <tr>
-                                       <td><input type="checkbox"></td>
+                                       <td><input type="checkbox" class="prog_c" value="2"></td>
                                        <td>2</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -334,7 +334,7 @@
                                        </td>
                                     </tr>
                                     <tr>
-                                       <td><input type="checkbox"></td>
+                                       <td><input type="checkbox" class="prog_c" value="3"></td>
                                        <td>3</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -387,7 +387,9 @@
                                              </button>
                                              </span>
                                              <ul class="dropdown-menu s_addquestion_dropdown_menu">
-                                                <li><a data-toggle="modal" data-target="#section-coding-add-compilable-question-Modal"  onclick="code_edittesttemplate_Expand();">Add Compilable Question</a></li>
+                                                <li>
+                                                <a data-toggle="modal" onclick="section_id({{$key}});" data-target="#section-coding-add-compilable-question-Modal">Add Compilable Question</a>
+                                             </li>
                                                 <li><a data-toggle="modal" data-target="#section-coding-debug-Modal">Add Debug Question</a></li>
                                              </ul>
                                           </span>
@@ -402,14 +404,15 @@
                         </div>
                         <div id="sections-submission-{{$key}}" class="tab-pane fade">
                            <form>
-                              <input type="text" name="section_s_id[]"  id="section_s_id">
+                              <input type="text" name="section_s_id[]" class="input_c_id" id="section_s_id">
+
                               <button type="submit" class="btn delete_section_s hidden">Delete</button>
                            </form>
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
                                     <tr>
-                                       <th><input type="checkbox"></th>
+                                       <th><input type="checkbox" class="codeQuesCheck"></th>
                                        <th>#</th>
                                        <th>Statement000</th>
                                        <th></th>
@@ -753,14 +756,17 @@
                                           <div class="col-sm-9">
                                              <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" value="1" @if($edit_test_settings->request_resume == 1) checked='checked' @endif name="request_resume" id="request_resume" checked> Request Resume
+                                                <input type="checkbox" value="1" 
+                                                @if($edit_test_settings->request_resume == 1) checked='checked' @endif
+                                                 name="request_resume" id="request_resume" checked> Request Resume
                                                 </label>
                                              </div>
                                              <div class="checkbox">
                                                 <label id="mandate_resume_label">
-                                                <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) checked='checked' @endif   name="mandatory_resume" id="mandate_resume"> Mandate Resume
+                                                <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) checked='checked' @endif   name="mandatory_resume" id="mandate_resume">
+                                                 Mandate Resume
                                                 </label>
-                                             </div>
+                                               </div>                                         
                                           </div>
                                        </div>
                                        <div>
@@ -802,7 +808,7 @@
                                           <div class="col-sm-9">
                                              <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" value="1" @if($edit_test_settings->email_verification == 1) checked='checked' @endif  name="email_verification" id="enable_verification">
+                                                <input type="checkbox" value="1" @if(isset($edit_test_settings->email_verification) && $edit_test_settings->email_verification == 1) checked='checked' @endif  name="email_verification" id="enable_verification">
                                                 &nbsp;
                                                 </label>
                                                 <div @if($edit_test_settings->email_verification == 1) class="help-block hidden" @else class="help-block hidden" @endif id="enable_verification_bloc">(The candidate will not be able to resume the test in case of system failure)</div>
@@ -900,7 +906,7 @@
                                           <input type="text" class="form-control" name="email" value="{{Auth::user()->email}}" disabled>
                                           <div class="">
                                              <label>
-                                             <input type="checkbox" value="1"@if($edit_test_contact_settings->email_visible == 1) checked='checked' @endif name="email_visible"> Make visible to candidate
+                                             <input type="checkbox" value="1"@if(isset($edit_test_contact_settings->email_visible) && $edit_test_contact_settings->email_visible == 1) checked='checked' @endif name="email_visible"> Make visible to candidate
                                              </label>
                                           </div>
                                        </div>
@@ -913,7 +919,7 @@
                                           <input type="text" class="form-control" name="phone" value="{{Auth::user()->profile->phone}}" disabled>
                                           <div class="">
                                              <label>
-                                             <input type="checkbox" value="1" @if($edit_test_contact_settings->contact_visible == 1) checked='checked' @endif name="contact_visible"> Show Contact Number to candidate for help
+                                             <input type="checkbox" value="1" @if(isset($edit_test_contact_settings->contact_visible) && $edit_test_contact_settings->contact_visible == 1) checked='checked' @endif name="contact_visible"> Show Contact Number to candidate for help
                                              </label>
                                           </div>
                                        </div>
@@ -943,11 +949,56 @@
                                        <div class="col-sm-6">
                                           <div class="checkbox">
                                              <label>
-                                             <input type="checkbox"> Receive mail whenever a candidate completes the test
+                                             <input type="checkbox" id="check_emailreport"> Receive mail whenever a candidate completes the test
                                              </label>
                                           </div>
                                        </div>
                                     </div>
+
+                                    <div class="form-group form-group-sm rec_div" style="">
+                                       <label class="col-sm-3 control-label">Receivers</label>
+                                       <div class="col-sm-8">
+                                       <ul class="unordered-list">
+                                       </ul>
+                                       <button class="btn btn-info btn-sm" ng-init="showNewReciever = false" ng-hide="showNewReciever" ng-click="showNewReciever = true" style="" id="rev_button">+ Addz receiver</button>
+                                       </div>
+                                    </div>
+
+
+                                    <div class="panel-body rec_div2">
+                                          <form class="ng-invalid ng-invalid-required ng-valid-min ng-valid-max ng-valid-email ng-dirty ng-valid-parse" style="">
+                                          <div class="form-group form-group-sm">
+                                          <label class="control-label col-sm-4">Receiver email</label>
+                                           <div class="col-sm-8">
+                                          <input type="email" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-touched" ng-model="newTestReportMailReciever.receiverEmail" required="" style="">
+                                          </div>
+                                          </div>
+                                          <div class="form-group form-group-sm" ng-hide="testData.isSubmissionOnlyTest">
+                                          <label class="control-label col-sm-4">Minimum percentage required</label>
+                                          <div class="col-sm-8">
+                                          <input type="number" class="form-control ng-pristine ng-valid ng-valid-min ng-valid-max ng-touched" ng-model="newTestReportMailReciever.minPercentageRequired" min="0" max="100" style="">
+                                          </div>
+                                          </div>
+                                          <div class="form-group form-group-sm" ng-hide="testData.isSubmissionOnlyTest">
+                                          <div class="col-sm-8 col-sm-offset-4">
+                                          <div class="checkbox">
+                                          <label>
+                                          <input type="checkbox" ng-model="newTestReportMailReciever.includeQuestionnaire" class="ng-valid ng-dirty ng-valid-parse ng-touched" style=""> Include questionnaire results
+                                          </label>
+                                          </div>
+                                          </div>
+                                          </div>
+
+                                          <div class="row">
+                                          <div class="col-sm-8 col-sm-offset-4">
+                                          <button class="btn btn-sm btn-info" type="submit" data-ng-disabled="newTestReportMailReciever.minPercentageRequired == undefined" data-ng-click="addNewTestReportMailReciever();showNewReciever = false">Done</button>
+                                          <button class="btn btn-sm btn-default" data-ng-click="showNewReciever = false" id="rev_cancel_button">Cancel</button>
+                                          </div>
+                                          </div>
+                                          </form>
+                                     </div>
+
+                                                                      
                                     <div class="form-group form-group-sm">
                                        <label class="col-sm-3 control-label">
                                        Candidate Mail Setting
@@ -1704,7 +1755,7 @@
                            <div class="form-group form-group-sm">
                               <label class="control-label"><strong>Question Statement</strong></label>
                               <div class="">
-                                 <input type="text" class="form-control" name="" value="" placeholder="Enter question statement">
+                                 <input type="text" class="form-control" name="" value="" required="" placeholder="Enter question statement">
                               </div>
                            </div>
                            <button class="btn btn-sm btn-success">Apply</button>
@@ -1751,18 +1802,22 @@
                                                          <ul class="ng-scope">
                                                             <li>
                                                                <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               &nbsp;&nbsp;
                                                                &lt;a href="url" new&gt;
                                                             </li>
                                                             <li>
                                                                <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               &nbsp;&nbsp;
                                                                &lt;a href="url" target="_blank"&gt;
                                                             </li>
                                                             <li>
                                                                <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               &nbsp;&nbsp;
                                                                &lt;a href="url" target="new"&gt;
                                                             </li>
                                                             <li>
                                                                <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               &nbsp;&nbsp;
                                                                None of the above
                                                             </li>
                                                          </ul>
@@ -2190,15 +2245,20 @@
       </div>
    </div>
 </div>
+<!-- Coding Modal -->
 <!-- section-coding-add-compilable-question-Modal -->
 <div class="modal fade" id="section-coding-add-compilable-question-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
         <!-- Modal content-->
+         <form action="{{route('create_question_coding')}}" method="POST" enctype="multipart/form-data">
+        {{csrf_field()}}
+         <input type="hidden" name="section_id" id="section_id_2" value="">
+         <input type="hidden" name="question_type_id" value="2">
         <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
                     <span>Please add the question title </span>
-                    <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
+                    <button type="submit" class="btn s_save_button s_font">Save</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
                 <h3 class="modal-title s_font">Coding Question</h3>
@@ -2228,7 +2288,7 @@
                                 </div>
                                 <div>
                                   <label class="container_radio border_radio_left">STAGE
-                                  <input type="radio" name="question_state_id" value="1" disabled>
+                                  <input type="radio" name="`" value="1" disabled>
                                   <span class="checkmark"></span>
                                   </label>
                                   <label class="container_radio">READY
@@ -2257,7 +2317,7 @@
                                         </div>
                                                 </strong>
                                             </div>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="coding_program_title" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -2265,16 +2325,7 @@
                                     <strong>Program Statement (<a href="#section-coding-add-compilable-question-Modal-Collapse" data-toggle="modal" onclick="code_edittesttemplate_Collapse()" >Expand</a>) <i class="fa fa-info-circle"></i></strong>
                                 </div>
                                 <textarea class="edit"></textarea>
-                                <br>
-                                <div class="panel panel-pagedown-preview hidden" id="code_edittemp_panel">
-                                  <div class="panel-heading">
-                                    <strong>Preview</strong>
-                                  </div>
-                                  <div class="panel-body">
-                                    <p id="code_preview_data_section_expand"></p>
-                                  </div>
-                                </div>
-                                <br>
+                                <br>                                
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Sample Input & Output
                                         <div class="s_popup">
@@ -2285,6 +2336,16 @@
                                             </span>
                                         </div>
                                     </strong>
+                                    <div class="heading_modal_statement heading_padding_bottom">
+                                       <strong>Sample Input & Output
+                                           <div class="s_popup">
+                                               <i class="fa fa-info-circle"> </i>
+                                               <span class="s_popuptext">
+                                                  htmlTooltip.modalProgramSamples <br>
+
+                                               </span>
+                                           </div>
+                                       </strong>
                                     <div class="no-more-tables ">
                                         <table class="table s_table" id="section_coding_table">
                                             <thead>
@@ -2297,10 +2358,10 @@
                                                 <tr>
                                                     <td valign="center">1.</td>
                                                     <td valign="center">
-                                                        <textarea class="form-control" name="input" required=""></textarea>
+                                                        <textarea class="form-control" name="coding_input[]" required=""></textarea>
                                                     </td>
                                                     <td valign="center">
-                                                        <textarea class="form-control" name="output" required=""></textarea>
+                                                        <textarea class="form-control" name="coding_output[]" required=""></textarea>
                                                     </td>
                                                     <td valign="center">
                                                         <a class="delete_row">
@@ -2318,6 +2379,7 @@
                                             </tfoot>
                                         </table>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -2339,7 +2401,7 @@
                                         </div>
                                     </strong>
                                     <strong class="pull-right">
-                                    <input type="checkbox" name="" value="">
+                                    <input type="checkbox" name="weightage_status" value="1">
                                     Equalize Weightage, <a href="#">Total: 100%</a>
                                     </strong>
                                     <table class="table s_table" id="weightage_row">
@@ -2354,16 +2416,15 @@
                                         </tbody>
                                     </table>
                                     <hr>
-                                    <button class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
-                                    <div class="s_uplosd_btn f_upload_btn">
-                                      Upload Test Case Files
-                                      <input type="file" name="file" >
-                                    </div>
-                                    <!-- <button class="btn">Upload Test Case Files</button> -->
+                                  <button class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
+                                   <div class="s_uplosd_btn f_upload_btn">
+                                     Upload Test Case Files
+                                     <input type="file" name="test_case_file" >
+                                   </div>
                                     <a href="#">Test case file format</a>
                                     <div class="checkbox s_margin_0">
                                         <label>
-                                        <input type="checkbox">Verify the Test Cases
+                                        <input type="checkbox" name="test_case_verify">Verify the Test Cases
                                         </label>
                                     </div>
                                     <p>Test Cases should be added/uploaded</p>
@@ -2372,7 +2433,7 @@
                         </div>
                         <br>
                         <!-- Default Codes -->
-                        <div class="modal-content s_modal s_yellow_color_modal">
+                        <!-- <div class="modal-content s_modal s_yellow_color_modal">
                             <div class="modal-header s_modal_header s_yellow_color_header">
                                 <h4 class="modal-title s_font">Default Codes</h4>
                             </div>
@@ -2396,7 +2457,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <br>
                         <!--  Question Details -->
                         <div class="modal-content s_modal s_gray_color_modal">
@@ -2414,44 +2475,21 @@
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label class="ng-binding">
-                                          <input type="checkbox" value="JAVA" checked="checked"> JAVA
+                                          <input type="checkbox" name="allowed_languages_id[]" value="1" checked="checked"> JAVA
                                           </label>
                                        </div>
                                     </div>
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label class="ng-binding">
-                                          <input type="checkbox" value="C" checked="checked"> C
+                                          <input type="checkbox" name="allowed_languages_id[]" value="2" checked="checked"> C
                                           </label>
                                        </div>
                                     </div>
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label>
-                                          <input type="checkbox" value="CPP" checked="checked"> CPP
-                                          </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="row">
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" value="PYTHON" checked="checked"> PYTHON
-                                          </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" value="RUBY" checked="checked"> RUBY
-                                          </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" value="PHP" checked="checked"> PHP
+                                          <input type="checkbox" name="allowed_languages_id[]" value="3" checked="checked"> CPP
                                           </label>
                                        </div>
                                     </div>
@@ -2460,21 +2498,44 @@
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label>
-                                          <input type="checkbox" value="JAVASCRIPT" checked="checked"> JAVASCRIPT
+                                          <input type="checkbox" name="allowed_languages_id[]" value="4" checked="checked"> PYTHON
                                           </label>
                                        </div>
                                     </div>
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label>
-                                          <input type="checkbox" value="CSHARP" checked="checked"> CSHARP
+                                          <input type="checkbox" name="allowed_languages_id[]" value="5" checked="checked"> RUBY
                                           </label>
                                        </div>
                                     </div>
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
                                           <label>
-                                          <input type="checkbox" value="R" checked="checked"> R
+                                          <input type="checkbox" name="allowed_languages_id[]" value="6" checked="checked"> PHP
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="7" checked="checked"> JAVASCRIPT
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="8" checked="checked"> CSHARP
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="9" checked="checked"> R
                                           </label>
                                        </div>
                                     </div>
@@ -2486,15 +2547,11 @@
                               <div class="form-group-sm">
                                  <div class="row">
                                     <div class="col-md-3">
-                                       <select class="form-control">
-                                          <option value="add Tag" disabled="">Select Tag</option>
-                                          <option>algo</option>
-                                          <option>basic-programming</option>
-                                          <option>database</option>
-                                          <option>design</option>
-                                          <option>iterative</option>
-                                          <option>maths</option>
-                                          <option>recursion</option>
+                                       <select name="tag_id" class="form-control">
+                                         <option value="add Tag" disabled="">Add Tag</option>
+                                          @foreach($tags as $value)
+                                           <option value="{{$value->id}}">{{$value->tag_name}}</option>
+                                         @endforeach
                                        </select>
                                     </div>
                                  </div>
@@ -2504,15 +2561,15 @@
                               </div>
                               <div class="heading_padding_bottom">
                                  <label class="container_radio border_radio_left">Easy
-                                 <input type="radio" checked="checked" name="radio">
+                                 <input type="radio" checked="checked" value="1" name="question_level_id">
                                  <span class="checkmark"></span>
                                  </label>
                                  <label class="container_radio">Medium
-                                 <input type="radio" name="radio">
+                                 <input type="radio" name="question_level_id" value="2">
                                  <span class="checkmark"></span>
                                  </label>
                                  <label class="container_radio border_radio_right">Hard
-                                 <input type="radio" name="radio">
+                                 <input type="radio" name="question_level_id" value="3">
                                  <span class="checkmark"></span>
                                  </label>
                               </div>
@@ -2522,7 +2579,7 @@
                                        <div class="heading_modal_statement heading_padding_bottom">
                                           <strong>Provider <i class="fa fa-info-circle"></i></strong>
                                        </div>
-                                       <input type="text" class="form-control">
+                                       <input type="text" name="provider" class="form-control">
                                     </div>
                                  </div>
                               </div>
@@ -2532,7 +2589,7 @@
                                        <div class="heading_modal_statement heading_padding_bottom">
                                           <strong>Author <i class="fa fa-info-circle"></i></strong>
                                        </div>
-                                       <input type="text" class="form-control">
+                                       <input type="text" name="author" class="form-control">
                                     </div>
                                  </div>
                               </div>
@@ -2540,88 +2597,52 @@
                         </div>
                         <br>
                         <!--  Solution Details (Optional) -->
-                        <div class="modal-content s_modal s_orange_color_modal">
-                            <div class="modal-header s_modal_header s_orange_color_header accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#solution2" aria-expanded="false">
-                                <h4 class="modal-title s_font"><i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
-                            </div>
-                            <div class="modal-body s_modal_body panel-collapse collapse" id="solution2">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="form-group form-group-sm">
-                                            <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Text
-                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                             Provide the solution of the question in text if the question is required to use.
-
-                                            </span>
-                                        </div>
-                                                </strong>
-                                            </div>
-                                            <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
-                                        </div>
-                                    </div>
+                          <div class="modal-content s_modal s_gray_color_modal">
+                       <div class="modal-header s_modal_header s_gray_color_header">
+                          <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                       </div>
+                       <div class="modal-body s_modal_body">
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Text <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="text" style=""></textarea>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="form-group form-group-sm">
-                                            <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Code
-                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                             Provide the solution of the question in code if the question is required to use.
-
-                                            </span>
-                                        </div>
-                                                </strong>
-                                            </div>
-                                            <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
-                                        </div>
-                                    </div>
+                             </div>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Code <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="code" style=""></textarea>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-12 col-xs-12">
-                                        <div class="form-group form-group-sm">
-                                            <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>URL
-                                                <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                             Provide the solution of the question in URL if the question is required to use.
-
-                                            </span>
-                                        </div>
-
-                                                </strong>
-                                            </div>
-                                            <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
-                                        </div>
-                                    </div>
+                             </div>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>URL <i class="fa fa-info-circle"></i></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="url" style=""></textarea>
                                 </div>
-                                <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Files
-                                        <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                             Provide the solution of the question in FILE if the question is required to use.
-
-                                            </span>
-                                        </div>
-                                    </strong>
-                                </div>
-                               <!-- <button type="file" class="btn">Upload Files</button>-->
-                               <div class="f_upload_btn">
-                                    Upload Media
-                                    <input type="file" name="">
-                                </div>
-                            </div>
-                        </div>
+                             </div>
+                          </div>
+                          <div class="heading_modal_statement heading_padding_bottom">
+                             <strong>Files <i class="fa fa-info-circle"></i></strong>
+                          </div>
+                          <input type="file" name="solution_media">
+                       </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
+      </form>
     </div>
 </div>
 <div class="modal fade" id="section-coding-add-compilable-question-Modal-Collapse" role="dialog">
@@ -2654,6 +2675,7 @@
   </div>
 </div>
 <!-- section-coding-debug-Modal -->
+<!-- Coding Modal -->
 <div class="modal fade" id="section-coding-debug-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
@@ -4152,7 +4174,7 @@
       <!-- Modal content-->
          <form action="{{route('create_question')}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
-        <input type="hidden" name="section_id" id="section_id" value="">
+        <input type="hidden" name="section_id" id="section_id_1" value="">
         <input type="hidden" name="question_type_id" value="1">
         <div class="modal-content">
            <div class="modal-header s_modal_form_header">
@@ -4342,7 +4364,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Negative Marks for Answering Wrong <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="negative_marks" class="form-control">
+                                   <input type="text" name="negative_marks" class="form-control" required="s">
                                 </div>
                              </div>
                           </div>
@@ -4384,7 +4406,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Provider <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="provider" class="form-control">
+                                   <input type="text" name="provider" class="form-control" required="">
                                 </div>
                              </div>
                           </div>
@@ -4394,7 +4416,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Author <i class="fa fa-info-circle"></i></strong>
                                    </div>
-                                   <input type="text" name="author" class="form-control">
+                                   <input type="text" name="author" class="form-control" required="">
                                 </div>
                              </div>
                           </div>

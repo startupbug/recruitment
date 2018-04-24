@@ -11,6 +11,7 @@ use App\Test_template;
 use App\Section;
 use App\Question;
 use App\Hosted_test;
+use App\Teststatus;
 
 class HostController extends Controller
 {
@@ -74,5 +75,83 @@ class HostController extends Controller
             return redirect()->route('profile');                
         }
 
+    }
+
+    //delete host
+    public function host_test_del(Request $request){
+
+    	try{
+    		if($request->has('id')){
+    			
+    			//Can you Delete this Host?
+		    	$hosted_test_del = Hosted_test::find($request->input('id'));
+		    	
+		    	$test_temp = Test_template::where('id', $hosted_test_del->test_template_id)->first(['user_id']);
+
+		    	if($test_temp->user_id != Auth::user()->id){
+		    		return \Response()->Json([ 'status' => 202,'msg'=>'You cannot delete this Host']);
+		    	}
+		    	
+		    	$hosted_test_del = $hosted_test_del->delete();
+
+		    	if($hosted_test_del){
+		    		return \Response()->Json([ 'status' => 200, 'msg'=>'Host Successfully deleted']);
+		    	}else{
+		    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be deleted']);
+		    	}
+
+    		}else{
+    			return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be deleted']);
+    		}	    	
+
+    	}catch(\Exception $e){
+    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be deleted'.$e->getMessage()]);
+        }
+    }
+
+    //terminate host
+    public function host_terminate(Request $request){
+
+    	try{
+    		if($request->has('id')){
+    			
+    			//Can you Delete this Host?
+		    	$hosted_test_del = Hosted_test::find($request->input('id'));
+		    	
+		    	$test_temp = Test_template::where('id', $hosted_test_del->test_template_id)->first(['user_id']);
+
+		    	if($test_temp->user_id != Auth::user()->id){
+		    		return \Response()->Json([ 'status' => 202,'msg'=>'You cannot delete this Host']);
+		    	}
+		    	
+		    	$hosted_test_del->status = 2;
+
+		    	if($hosted_test_del->save()){
+		    		return \Response()->Json([ 'status' => 200, 'msg'=>'Host Successfully Termibated']);
+		    	}else{
+		    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Termibated']);
+		    	}
+
+    		}else{
+    			return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Termibated']);
+    		}	    	
+
+    	}catch(\Exception $e){
+    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Termibated'.$e->getMessage()]);
+        }
+    }
+
+    public function host_public_preview($id){
+
+        $args['hosted_test'] = Hosted_test::leftjoin('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+        		->leftjoin('users', 'test_templates.user_id', '=', 'users.id')
+                ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status', 'users.name as username', 'test_templates.instruction', 'test_templates.description')->where('hosted_tests.id', $id)->first();
+       // dd($args);
+    	return view('recruiter_dashboard.public_preview')->with($args);
+    }
+
+    public function can_report($id){
+        dd($id);
+        return view('recruiter_dashboard.canreport');
     }
 }

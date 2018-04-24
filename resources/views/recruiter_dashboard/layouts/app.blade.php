@@ -2222,57 +2222,9 @@
 @yield('create_template_modal')
 
 <!--view page on Filter -->
-<div class="modal fade" id="filter_view" role="dialog">
-    <div class="modal-dialog  modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content filter">
-            <div class="modal-header s_modal_form_header">
-                <div class="pull-right">
-                    <!--<button type="button" class="btn s_save_button s_font" data-dismiss="modal">Create</button>-->
-                    <button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>
-                </div>
-                <h3 class="modal-title s_font f_font"><i class="fa fa-filter">Filter Criteria</i></h3>
-            </div>
-            <div class="modal-body s_modal_form_body">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Name:</label>
-                            <div class="col-md-9">
-                                <div class="template"><input id="name" name="name" type="text" placeholder="Enter the name of the test" class="form-control general">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Test type:</label>
-                            <div class="col-md-9">
-                                <div class="checkbox both">
-                                    <label><input type="checkbox" value="">Invite only</label>
-                                    <label><input type="checkbox" value="">Public</label>
-                                    <label><input type="checkbox" value="">Both</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Test status:</label>
-                            <div class="col-md-9">
-                                <div class="checkbox both">
-                                    <label><input type="checkbox" value="">Live</label>
-                                    <label class="upcoming"><input type="checkbox" value="">Upcoming</label>
-                                    <label><input type="checkbox" value="">Expired</label>
-                                    <label><input type="checkbox" value="">All</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="button_filter">
-                            <button type="button" class="btn">Apply</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@yield('filter_criteria_template_modal')
+
+
 <!--filter modal view page end-->
 <!--view page on Setup manual-->
 <div class="modal fade" id="setup_manual" role="dialog">

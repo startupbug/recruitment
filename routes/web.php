@@ -66,6 +66,8 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard');
 Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
+Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query');
+
 Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
 
 Route::get('/invited_candidates', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
@@ -90,7 +92,7 @@ Route::post('/update_test_template/{id}','Recruiter\TemplatesController@update_t
 Route::get('/delete_test_template/{id}', 'Recruiter\TemplatesController@delete_test_template')->name('delete_test_template');
 Route::get('/template_public_preview/{id}', 'Recruiter\TemplatesController@template_public_preview')->name('template_public_preview');
 Route::post('/create_duplicate_template_post','Recruiter\TemplatesController@create_duplicate_template_post')->name('create_duplicate_template_post');
-Route::get('/preview_test', 'Recruiter\TemplatesController@preview_test')->name('preview_test');
+Route::get('/preview_test/{id}','Recruiter\TemplatesController@preview_test')->name('preview_test');
 Route::post('/add_section', 'Recruiter\TemplatesController@add_section')->name('add_section');
 Route::get('/delete_section/{id}', 'Recruiter\TemplatesController@delete_section')->name('delete_section');
 Route::get('/move_up/{id}', 'Recruiter\TemplatesController@move_up')->name('move_up');
@@ -99,6 +101,7 @@ Route::get('/move_down/{id}', 'Recruiter\TemplatesController@move_down')->name('
 
 //Recruiter Questions Routes Started
 Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
+Route::post('/create_question_coding','Recruiter\QuestionsController@create_question_coding')->name('create_question_coding');
 Route::get('/delete_question/{id}', 'Recruiter\QuestionsController@delete_question')->name('delete_question');
 Route::get('/delete_all_mcqs_questions', 'Recruiter\QuestionsController@delete_all_mcqs_questions')->name('delete_all_mcqs_questions');
 Route::post('/question_modal_partial_data', 'Recruiter\QuestionsController@question_modal_partial_data')->name('question_modal_partial_data');
@@ -114,5 +117,18 @@ Route::post('/templatetestContactSetting', 'Recruiter\TemplateSetting@templatete
 Route::get('/host_test_page/{id}', 'Recruiter\HostController@host_test_page')->name('host_test_page');
 //Add Host Test Post request
 Route::post('/host_test_post', 'Recruiter\HostController@host_test_post')->name('host_test_post');
+
+//Delete Host
+Route::post('/delete_host', 'Recruiter\HostController@host_test_del')->name('host_test_del');
+
+//Terminate host //host_terminate
+Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name('host_terminate');
+
+//Public preview of host 
+Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
+
+//Report
+Route::get('/report/{id}', 'Recruiter\HostController@can_report')->name('can_report');
+
 });
 /*Recruiter Routes Ended*/
