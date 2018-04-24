@@ -244,6 +244,39 @@ $( document ).ready(function() {
     });
   });
 
+  $("#weightage_row_edit").on('click', '.delete_row', function () {
+
+    $(this).closest('tr').remove();
+
+    var colCount = 0;
+    $('#weightage_row_edit tbody tr').each(function (data) {
+      colCount++;
+    });
+
+    var total = 100;
+    var count = colCount;
+    var colCount_value = 0;
+    $('#weightage_row_edit tbody tr').each(function () {
+      colCount_value++;
+
+      var s_value ;
+      var val ;
+      var value = total / count;
+      var split_value = String(value).split(".");
+      if (split_value[1]) {
+        s_value = parseInt(split_value[0])+1;
+      }
+      else {
+        s_value = parseInt(value);
+      }
+      total = total - s_value;
+
+      $('#weightage_row_edit tbody tr:nth-child('+colCount_value+') td:nth-child(5)').html('<div class="col-md-offset-1 col-md-4"><input type="number" id="weightage" name="weightage[]" class="form-control input-md" value="'+s_value+'"></div><div class="col-md-7"><button class="btn btn-info btn-sm"><i class="fa fa-floppy-o"></i> Save</button><button class="btn btn-default btn-sm delete_row"><i class="fa fa-times"></i></button></div>');
+      $('#weightage_row_edit tbody tr:nth-child('+colCount_value+') td:nth-child(1)').html(colCount_value+'.');
+      count--;
+    });
+  });
+
   $("#section_choices_table").on('click', '.delete_row', function () {
 
       var colCount_alert = 0;
@@ -480,6 +513,114 @@ function addrow_section_codingquestion() {
 
 }
 
+function addrow_weightage_edit() {
+   var colCount = 1;
+   $('#weightage_row_edit tbody tr').each(function (data) {
+        colCount++;
+   });
+
+   if (colCount == 1) {
+     $('#weightage_row_edit tbody').append('<tr>'+
+       '<td valign="center">'+colCount+'.</td>'+
+
+       '<td>'+
+         '<div class="text-center" style="margin-top: -11px">'+
+           '<small class="text-danger"><em>*Unsaved</em></small>'+
+         '</div>'+
+         '<input type="text" class="form-control" name="test_case_name[]" required="" >'+
+       '</td>'+
+
+       '<td valign="center">'+
+         '<textarea class="form-control" name="test_case_input[]" required=""></textarea>'+
+       '</td>'+
+
+       '<td valign="center">'+
+         '<textarea class="form-control" name="test_case_output[]" required=""></textarea>'+
+       '</td>'+
+
+       '<td valign="center">'+
+         '<div class="col-md-offset-1 col-md-4">'+
+           '<input type="number" id="weightage" name="weightage[]" class="form-control input-md" value="100">'+
+         '</div>'+
+
+         '<div class="col-md-7">'+
+            '<button class="btn btn-info btn-sm">'+
+              '<i class="fa fa-floppy-o"></i> Save'+
+            '</button>'+
+
+            '<button class="btn btn-default btn-sm delete_row">'+
+              '<i class="fa fa-times"></i>'+
+            '</button>'+
+
+         '</div>'+
+       '</td>'+
+     '</tr>');
+   }
+   else {
+     $('#weightage_row_edit tbody tr:last').after('<tr>'+
+       '<td valign="center">'+colCount+'.</td>'+
+
+       '<td>'+
+         '<div class="text-center" style="margin-top: -11px">'+
+           '<small class="text-danger"><em>*Unsaved</em></small>'+
+         '</div>'+
+         '<input type="text" class="form-control" name="test_case_name[]" required="">'+
+       '</td>'+
+
+       '<td valign="center">'+
+         '<textarea class="form-control" name="test_case_input[]" required=""></textarea>'+
+       '</td>'+
+
+       '<td valign="center">'+
+         '<textarea class="form-control" name="test_case_output[]" required=""></textarea>'+
+       '</td>'+
+
+       '<td valign="center">'+
+         '<div class="col-md-offset-1 col-md-4">'+
+           '<input type="number" id="weightage" name="weightage[]" class="form-control input-md">'+
+         '</div>'+
+
+         '<div class="col-md-7">'+
+            '<button class="btn btn-info btn-sm">'+
+              '<i class="fa fa-floppy-o"></i> Save'+
+            '</button>'+
+
+            '<button class="btn btn-default btn-sm delete_row">'+
+              '<i class="fa fa-times"></i>'+
+            '</button>'+
+
+         '</div>'+
+       '</td>'+
+     '</tr>');
+
+   }
+
+   // var value = 100 / colCount;
+   var total = 100;
+   var count = colCount;
+   var colCount_value = 0;
+   $('#weightage_row_edit tbody tr').each(function () {
+      colCount_value++;
+
+      var s_value ;
+      var val ;
+      var value = total / count;
+      var split_value = String(value).split(".");
+      if (split_value[1]) {
+        s_value = parseInt(split_value[0])+1;
+      }
+      else {
+        s_value = parseInt(value);
+      }
+      total = total - s_value;
+
+      $('#weightage_row_edit tbody tr:nth-child('+colCount_value+') td:nth-child(5)').html('<div class="col-md-offset-1 col-md-4"><input type="number" id="weightage" name="weightage[]" class="form-control input-md" value="'+s_value+'"></div><div class="col-md-7"><button class="btn btn-info btn-sm"><i class="fa fa-floppy-o"></i> Save</button><button class="btn btn-default btn-sm delete_row"><i class="fa fa-times"></i></button></div>');
+
+       count--;
+   });
+}
+
+
 function addrow_weightage() {
    var colCount = 1;
    $('#weightage_row tbody tr').each(function (data) {
@@ -626,6 +767,7 @@ function section_id(id) {
   $('#section_id_1').val(id);
   $('#section_id_2').val(id);
   $('#section_id_3').val(id);
+  $('#section_id_4').val(id);
 }
 function edittesttemplate_Expand(id) {
   
