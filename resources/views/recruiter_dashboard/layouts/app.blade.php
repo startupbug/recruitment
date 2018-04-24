@@ -33,6 +33,11 @@
     <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('public/bower_components/alertify/themes/alertify.default.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/S_style.css') }}">
+
+    <script type="text/javascript">
+
+
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -2538,15 +2543,15 @@
 <script src="{{ asset('public/assets/js/f.js') }}"></script>
 <script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
-<script type="text/javascript">
+<script language="text/javascript">
+
     $(document).ready(function(){
         $('.duplicate_modal_id').click(function(){
             var a = $(this).attr('data-target-id');
             $(".modal-body input[name=previous_template_id]").val(a);
       });
     });
-</script>
-<script type="text/javascript">
+
     $('body').scrollspy({target: "#myScrollspy"})
     $(document).ready(function(){
         $(".dropdown").click(function() {

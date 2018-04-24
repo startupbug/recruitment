@@ -111,7 +111,7 @@ width: 600px;
 }
 .setting_nav_border {
     border: 1px solid #fff;
-    padding: 5px 5px;
+    padding: 7px 3px;
 }
 .setting_nav_border a {
     color: #323754;
@@ -342,7 +342,7 @@ li.searchbar input.form-control.input-search:hover + label.glyphicon.glyphicon-s
     background-color: #fff;
     box-shadow: 0px 13px 10px 0px #ccc;
     padding: 2% 15px 5% 20px;
-    
+
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -391,4 +391,7 @@ p.customer_inner_content {
 }
 .customer_image img.img-responsive {
     height: 270px !important;
+}
+.s_questionnaire_body{
+      min-height: 700px;
 }

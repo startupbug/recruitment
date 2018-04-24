@@ -1,4 +1,14 @@
+
+
 $( document ).ready(function() {
+
+
+  $(".allow_number").on("keypress keyup blur",function (event) {
+     $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+          event.preventDefault();
+      }
+  });
 
   $('.edit').froalaEditor({enter: $.FroalaEditor.ENTER_P, placeholderText: null});
 
@@ -290,6 +300,189 @@ $( document ).ready(function() {
           }
       });
   });
+
+  $('#request_resume').change(function() {
+      if($(this).is(":checked")) {
+        $("#mandate_resume_label").removeClass("hidden");
+        $("#mandate_resume").attr("disabled", false);
+      }
+      else {
+        $("#mandate_resume_label").addClass("hidden");
+        $("#mandate_resume").attr("disabled", true);
+      }
+  });
+
+  $('#mandate_resume').change(function() {
+      if($(this).is(":checked")) {
+        $("#request_resume").attr("disabled", true);
+      }
+      else {
+        $("#request_resume").attr("disabled", false);
+      }
+  });
+
+  $('#enable_verification').change(function() {
+      if($(this).is(":checked")) {
+        $("#enable_verification_bloc").addClass("hidden");
+      }
+      else {
+        $("#enable_verification_bloc").removeClass("hidden");
+      }
+  });
+
+  $('#test_template_types_id').change(function() {
+    var item=$(this);
+    if (item.val() == 1) {
+      $('#test_template_types_id_help').html("This test will be open for all interested candidates");
+    }
+    else {
+      $('#test_template_types_id_help').html("Only invited candidates can take the test");
+    }
+  });
+
+  $('#webcam_id').change(function() {
+    var item=$(this);
+    if (item.val() == 1) {
+      $('#webcam_id_help').html("(If webcam is not found, then candidate will not be able to give the test. The candidate will be prompted to check for webcam)");
+    }
+    else {
+      $('#webcam_id_help').html("");
+    }
+  });
+
+  $('.format_class').change(function() {
+    var item=$(this);
+    console.log(item.val());
+    var abc = $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").children().find( ".option_table" );
+
+    if (item.val() == 1) {
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+    }
+    else if (item.val() == 2) {
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
+
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+    }
+    else if (item.val() == 3) {
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
+
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+    }
+    else if (item.val() == 4) {
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+    }
+    else if (item.val() == 5) {
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+    }
+    else if (item.val() == 6) {
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+    }
+    else if (item.val() == 7) {
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+
+      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+    }
+  });
+
+  $('.add_option').click(function(){
+     var colCount = 1;
+     $(this).closest( "tfoot" ).siblings("tbody").find( "tr" ).each(function () {
+         colCount++;
+     });
+
+     $(this).closest( "tfoot" ).siblings("tbody").find( "tr:last" ).after('<tr>'+
+         '<td valign="center">Option '+colCount+'</td>'+
+         '<td class="s_weight" valign="center">'+
+          '<input type="text" class="form-control option_text" name="option[]">'+
+         '</td>'+
+         '<td valign="center">'+
+            '<a href="javascript:void(0)" class="delete_row_option">'+
+              '<i class="fa fa-times-circle-o"></i>'+
+            '</a>'+
+         '</td>'+
+     '</tr>');
+
+
+       $('.delete_row_option').on("click",function(){
+
+         var colCount_alert = 0;
+         $(this).closest( "tbody" ).find( "tr" ).each(function () {
+             colCount_alert++;
+         });
+         console.log(colCount_alert);
+         if (colCount_alert == 1) {
+           alert("Atleast One options are mandatory..");
+         }else {
+           $(this).closest('tr').remove();
+         }
+
+         var colCount = 0;
+         $(this).closest( "tbody" ).find( "tr" ).each(function () {
+             colCount++;
+             $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
+         });
+
+       });
+  });
+
+  $('.delete_row_option').on("click",function(){
+
+    var colCount_alert = 0;
+    $(this).closest( "tbody" ).find( "tr" ).each(function () {
+        colCount_alert++;
+    });
+    console.log(colCount_alert);
+    if (colCount_alert == 1) {
+      alert("Atleast One options are mandatory..");
+    }else {
+      $(this).closest('tr').remove();
+    }
+
+    var colCount = 0;
+    $(this).closest( "tbody" ).find( "tr" ).each(function () {
+        colCount++;
+        $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
+    });
+
+  });
+
+  // $('.edit_question').click(function() {
+  //   $( this ).closest( ".row" ).siblings('.capsule').toggleClass('hidden');
+  // });
+
+
+  var edit_template_text_editor_setInterval;
+  edit_template_text_editor_setInterval = setInterval(
+    function(){
+
+      var objVal = $('#title').val();
+      if(objVal != ''){
+        $('h3#title_video').text(objVal);
+      }
+
+      var instruction = $( "#edit_template_text_editor_instruction .fr-element.fr-view" ).html();
+      $("#edit_template_text_editor_instruction_data").html(instruction);
+
+      var description = $( "#edit_template_text_editor_description .fr-element.fr-view" ).html();
+      $("#edit_template_text_editor_description_data").html(description);
+
+     }
+  , 1000);
 
 });
 
@@ -630,6 +823,11 @@ function code_collapse_modal() {
   code_edittesttemplate_Expand();
 }
 
+function edit_template_text_editor() {
+  // clearInterval(code_testtemp_setInterval_Expand);
+
+}
+
 // Create Template Section
 $( "#section_partial_marks" ).on( "click", function() {
   if ($("#section_partial_marks:checked").length == 1) {
@@ -733,6 +931,263 @@ function template_row_add_choice() {
        });
    });
 }
+
+function addQuestionnaire(id) {
+
+//  load_js();
+
+  $(".unordered-list").append('<li class="questionBorder">'+
+    '<div class="row" id="">'+
+      '<div class="col-xs-6 title">'+
+        '<small class="text-primary" uib-tooltip="Mandatory Question (Edit to change)" tooltip-placement="right">'+
+          '<i class="fa fa-star" aria-hidden="true"></i>'+
+        '</small>'+
+        '<span class="separator transparent-border"></span>'+
+        '<span title="Help Text">What is your CGPA?</span>'+
+      '</div>'+
+      '<div class="col-xs-3 title">'+
+        '<span class="light-font">Text</span>'+
+      '</div>'+
+      '<div class="col-xs-3">'+
+        '<div class="pull-right">'+
+          '<div class="btn-group">'+
+            '<button class="btn btn-sm btn-link">'+
+                '<span class="fa fa-arrow-up"></span>'+
+            '</button>'+
+            '<button class="btn btn-sm btn-link no-hover">'+
+                '<span class="fa fa-arrow-up transparent-font"></span>'+
+            '</button>'+
+            '<button type="button" class="btn btn-sm btn-link edit_question" >'+
+                '<span class="fa fa-pencil"></span>'+
+            '</button>'+
+            '<button class="btn btn-sm btn-link text-danger">'+
+                '<span class="fa fa-trash"></span>'+
+            '</button>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="form-horizontal hidden capsule">'+
+      '<div class="form-group form-group-sm">'+
+        '<label class="control-label col-sm-2">Question</label>'+
+        '<div class="col-sm-10">'+
+          '<input type="text" class="form-control" placeholder=" Eg: Enter your University name">'+
+        '</div>'+
+      '</div>'+
+      '<div class="form-group form-group-sm">'+
+        '<label class="control-label col-sm-2">Support text</label>'+
+        '<div class="col-sm-10">'+
+          '<input type="text" class="form-control" placeholder="Eg: Give the full form of your University">'+
+        '</div>'+
+      '</div>'+
+      '<div class="form-group form-group-sm">'+
+        '<label class="control-label col-sm-2">'+
+          'Knock out'+
+          '<i class="fa fa-info-circle"></i>'+
+        '</label>'+
+        '<div class="col-sm-10">'+
+          '<div class="checkbox" style="padding: 1px">'+
+            '<label class="control-label">'+
+              '<input type="checkbox" style="top:4px" disabled="disabled">'+
+              'Dont allow the candidate to take the test if the criteria does not meet'+
+            '</label>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="dropdown_format_menu">'+
+        '<div class="form-group form-group-sm">'+
+          '<label class="control-label col-sm-2">Format</label>'+
+          '<div class="col-sm-4">'+
+            '<select class="form-control format_class">'+
+              '<option value="1">Number</option>'+
+              '<option value="2">Text</option>'+
+              '<option value="3">Text Area</option>'+
+              '<option value="4">Check box</option>'+
+              '<option value="5">Multiple choice</option>'+
+              '<option value="6">Radio group</option>'+
+              '<option value="7">Drop down</option>'+
+            '</select>'+
+          '</div>'+
+          '<div class="col-sm-4">'+
+            '<div class="checkbox" style="padding: 1px">'+
+              '<label class="control-label">'+
+                '<input type="checkbox" style="top:4px"> Mandatory'+
+              '</label>'+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+        '<div class="row hidden option_text_data">'+
+          '<div class="col-sm-9 col-sm-offset-2">'+
+            '<div class="no-more-tables">'+
+              '<table class="table s_table option_table">'+
+                '<tbody>'+
+                   '<tr>'+
+                      '<td valign="center">Option 1</td>'+
+                      '<td class="s_weight" valign="center">'+
+                       '<input type="text" class="form-control option_text" name="option[]">'+
+                      '</td>'+
+                      '<td valign="center">'+
+                         '<a class="delete_row_option">'+
+                         '<i class="fa fa-times-circle-o"></i>'+
+                         '</a>'+
+                      '</td>'+
+                   '</tr>'+
+                '</tbody>'+
+                '<tfoot>'+
+                   '<tr>'+
+                     '<td></td>'+
+                     '<td colspan="2" class="text-align-center">'+
+                       '<button type="button" class="btn btn-sm btn-warning add_option">+ Add Option</button>'+
+                     '</td>'+
+                   '</tr>'+
+                '</tfoot>'+
+              '</table>'+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+        '<div class="form-group form-group-sm hidden placeholder_text_data" style="">'+
+          '<label class="control-label col-sm-2">Placeholder</label>'+
+          '<div class="col-sm-10">'+
+            '<input type="text" class="form-control placeholder_text" disabled>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="row">'+
+        '<div class="col-sm-10 col-sm-offset-2">'+
+          '<button class="btn btn-sm btn-info">Done</button>'+
+          '<button class="btn btn-sm btn-default">Cancel</button>'+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+  '</li>');
+
+  loadJS();
+
+}
+
+$(function(){
+  loadJS();
+})
+
+ function loadJS (){
+
+   $('.format_class').change(function() {
+     var item=$(this);
+     console.log(item.val());
+     var abc = $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").children().find( ".option_table" );
+
+     if (item.val() == 1) {
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+     }
+     else if (item.val() == 2) {
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
+
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+     }
+     else if (item.val() == 3) {
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
+
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+     }
+     else if (item.val() == 4) {
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+     }
+     else if (item.val() == 5) {
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+     }
+     else if (item.val() == 6) {
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+     }
+     else if (item.val() == 7) {
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+
+       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+     }
+   });
+
+   $('.add_option').click(function(){
+      var colCount = 1;
+      $(this).closest( "tfoot" ).siblings("tbody").find( "tr" ).each(function () {
+          colCount++;
+      });
+
+      $(this).closest( "tfoot" ).siblings("tbody").find( "tr:last" ).after('<tr>'+
+          '<td valign="center">Option '+colCount+'</td>'+
+          '<td class="s_weight" valign="center">'+
+           '<input type="text" class="form-control option_text" name="option[]">'+
+          '</td>'+
+          '<td valign="center">'+
+             '<a href="javascript:void(0)" class="delete_row_option">'+
+               '<i class="fa fa-times-circle-o"></i>'+
+             '</a>'+
+          '</td>'+
+      '</tr>');
+
+
+        $('.delete_row_option').on("click",function(){
+
+          var colCount_alert = 0;
+          $(this).closest( "tbody" ).find( "tr" ).each(function () {
+              colCount_alert++;
+          });
+          console.log(colCount_alert);
+          if (colCount_alert == 1) {
+            alert("Atleast One options are mandatory..");
+          }else {
+            $(this).closest('tr').remove();
+          }
+
+          var colCount = 0;
+          $(this).closest( "tbody" ).find( "tr" ).each(function () {
+              colCount++;
+              $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
+          });
+
+        });
+   });
+
+   $('.delete_row_option').on("click",function(){
+
+     var colCount_alert = 0;
+     $(this).closest( "tbody" ).find( "tr" ).each(function () {
+         colCount_alert++;
+     });
+     console.log(colCount_alert);
+     if (colCount_alert == 1) {
+       alert("Atleast One options are mandatory..");
+     }else {
+       $(this).closest('tr').remove();
+     }
+
+     var colCount = 0;
+     $(this).closest( "tbody" ).find( "tr" ).each(function () {
+         colCount++;
+         $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
+     });
+
+   });
+
+   $('.edit_question').click(function() {
+      console.log("sadsjadh");
+       $( this ).closest( ".row" ).siblings('.capsule').toggleClass('hidden');
+    });
+
+ }
 
 $(document).ready(function() {
 
@@ -852,6 +1307,31 @@ $(document).ready(function() {
         $(".delete_section_s").removeClass('hidden');
         $("#section_s_id").val(array_s);
       }
+    }
+  });
+
+  var public_question_mcq = [];
+  $('.public_question_mcq').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+
+      public_question_mcq.push(value);
+
+      console.log(public_question_mcq);
+
+      $("#public_question_mcq_id").val(public_question_mcq);
+    }
+    else{
+      removeItem = $(this).val();
+
+      public_question_mcq = $.grep(public_question_mcq, function(value) {
+        return value != removeItem;
+      });
+
+      console.log(public_question_mcq);
+
+      $("#public_question_mcq_id").val(public_question_mcq);
     }
   });
 

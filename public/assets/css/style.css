@@ -2650,3 +2650,82 @@ li.active {
     right: 15px;
     top: 5px;
 }
+.s_uplosd_btn {
+    color: black;
+    background: #ddd;
+    height: auto;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.s_uplosd_btn  input[type="file"] {
+  opacity: 0;
+  width: 147px;
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  cursor: pointer !important;
+}
+.s_dropdown_ , .s_dropdown_:hover, .s_dropdown_:focus{
+    color: #fff;
+    background-color: #261f63;
+    border-color: #261f63;
+    background-image: linear-gradient(to bottom,#261f63 0,#261f63 100%);
+}
+
+.open>.dropdown-toggle.s_dropdown_:focus, .open>.dropdown-toggle.s_dropdown_:hover {
+    color: #fff;
+    background-color: #261f63;
+    border-color: #261f63;
+}
+
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  background-image: linear-gradient(to bottom,#261f63 0,#261f63 100%);
+}
+
+.unordered-list>li:hover {
+    background: rgba(0,0,0,.015);
+}
+.unordered-list>li:first-child {
+    border-top: 1px solid #ddd;
+}
+.unordered-list>li {
+    border-bottom: 1px solid #ddd;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.questionBorder {
+    border: 1px dashed #ddd!important;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+.unordered-list>li div.title {
+    line-height: 28px;
+}
+.light-font {
+    color: #bbb;
+}
+.transparent-border {
+    border-color: transparent!important;
+}
+.separator {
+    border-left: 1px solid #ddd;
+    margin: 0 10px;
+}
+.s_drop_down li a {
+    font-size: 12px;
+}
