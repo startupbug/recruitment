@@ -2233,16 +2233,14 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Question State
                                         <div class="s_popup">
-
-                                           <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a>
-                                           <!-- <i class="fa fa-info-circle"> </i>
+                                            <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               There are three possible states for a question. <br>
                                                (1) Stage (2) Ready (3) Abondoned<br>
                                                 Why is it needed: The purpose of the states is to manage the question development cycle.
                                                 <br>
                                                 Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented.
-                                            </span>-->
+                                            </span>
                                         </div>
                                     </strong>
                                 </div>
@@ -2267,14 +2265,13 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Program Title
                                                     <div class="s_popup">
-                                                       <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a>
-                                            <!--<i class="fa fa-info-circle"> </i>
+                                            <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 This is meant to contain a suitable title <br>
                                                 representing the program.<br>
                                                Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
                                                and also serve as a parameter for filters while searching through the library.
-                                            </span>-->
+                                            </span>
                                         </div>
                                                 </strong>
                                             </div>
@@ -2283,30 +2280,28 @@
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement">
-                                    <strong>Program Statement (<a href="#section-coding-add-compilable-question-Modal-Collapse" data-toggle="modal" onclick="code_edittesttemplate_Collapse()" >Expand</a>)  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                                    <strong>Program Statement (<a href="#section-coding-add-compilable-question-Modal-Collapse" data-toggle="modal" onclick="code_edittesttemplate_Collapse()" >Expand</a>) <i class="fa fa-info-circle"></i></strong>
                                 </div>
                                 <textarea class="edit"></textarea>
-                                <br>
+                                <br>                                
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <!-- <strong>Sample Input & Output
+                                    <strong>Sample Input & Output
                                         <div class="s_popup">
-                                           <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a>
-                                           <!-- <i class="fa fa-info-circle"> </i>
+                                            <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                htmlTooltip.modalProgramSamples <br>
 
-                                            </span>-->
+                                            </span>
                                         </div>
-                                    </strong> -->
+                                    </strong>
                                     <div class="heading_modal_statement heading_padding_bottom">
                                        <strong>Sample Input & Output
                                            <div class="s_popup">
-                                              <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a>
-                                               <!--<i class="fa fa-info-circle"> </i>
+                                               <i class="fa fa-info-circle"> </i>
                                                <span class="s_popuptext">
                                                   htmlTooltip.modalProgramSamples <br>
 
-                                               </span>-->
+                                               </span>
                                            </div>
                                        </strong>
                                     <div class="no-more-tables ">
@@ -2336,7 +2331,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="4" class="text-align-center">
-                                                        <button type="button" class="btn" onclick="addrow_section_codingquestion()">+ Add Sample Test Case</button>
+                                                        <button class="btn" onclick="addrow_section_codingquestion()">+ Add Sample Test Case</button>
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -2356,11 +2351,11 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Test Cases
                                          <div class="s_popup">
-                                           <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a>
-                                            <!--<i class="fa fa-info-circle"> </i>
+                                            <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                htmlTooltip.modalProgramTestcases <br>
-                                            </span>-->
+
+                                            </span>
                                         </div>
                                     </strong>
                                     <strong class="pull-right">
@@ -2379,7 +2374,7 @@
                                         </tbody>
                                     </table>
                                     <hr>
-                                   <button type="button" class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
+                                 <button type="button" class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
                                    <div class="s_uplosd_btn f_upload_btn">
                                      Upload Test Case Files
                                      <input type="file" name="test_case_file" >
@@ -2429,11 +2424,11 @@
                            </div>
                            <div class="modal-body s_modal_body">
                               <div class="form-group form-group-sm">
-                                 <strong>Marks for this Question  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                                 <strong>Marks for this Question <i class="fa fa-info-circle"></i></strong>
                                  <input type="number" name="marks" min="1" class="form-control" required="required" style="">
                               </div>
                               <div class="form-group form-group-sm">
-                                 <strong>Allowed languages  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                                 <strong>Allowed languages <i class="fa fa-info-circle"></i></strong>
                                  <div class="row">
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
@@ -2505,7 +2500,7 @@
                                  </div>
                               </div>
                               <div class="heading_modal_statement heading_padding_bottom">
-                                 <strong>Tags  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                                 <strong>Tags <i class="fa fa-info-circle"></i></strong>
                               </div>
                               <div class="form-group-sm">
                                  <div class="row">
@@ -2520,7 +2515,7 @@
                                  </div>
                               </div>
                               <div class="heading_modal_statement heading_padding_bottom"><br>
-                                 <strong>Question Level  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                                 <strong>Question Level <i class="fa fa-info-circle"></i></strong>
                               </div>
                               <div class="heading_padding_bottom">
                                  <label class="container_radio border_radio_left">Easy
@@ -2540,7 +2535,7 @@
                                  <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group form-group-sm">
                                        <div class="heading_modal_statement heading_padding_bottom">
-                                          <strong>Provider  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                                          <strong>Provider <i class="fa fa-info-circle"></i></strong>
                                        </div>
                                        <input type="text" name="provider" class="form-control">
                                     </div>
@@ -2550,7 +2545,7 @@
                                  <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group form-group-sm">
                                        <div class="heading_modal_statement heading_padding_bottom">
-                                          <strong>Author  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                                          <strong>Author <i class="fa fa-info-circle"></i></strong>
                                        </div>
                                        <input type="text" name="author" class="form-control">
                                     </div>
@@ -2569,7 +2564,7 @@
                              <div class="col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group form-group-sm">
                                    <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>Text  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                                      <strong>Text <i class="fa fa-info-circle"></i></strong>
                                    </div>
                                    <textarea min="0" class="form-control" name="text" style=""></textarea>
                                 </div>
@@ -2579,7 +2574,7 @@
                              <div class="col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group form-group-sm">
                                    <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>Code  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                                      <strong>Code <i class="fa fa-info-circle"></i></strong>
                                    </div>
                                    <textarea min="0" class="form-control" name="code" style=""></textarea>
                                 </div>
@@ -2589,20 +2584,16 @@
                              <div class="col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group form-group-sm">
                                    <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>URL  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                                      <strong>URL <i class="fa fa-info-circle"></i></strong>
                                    </div>
                                    <textarea min="0" class="form-control" name="url" style=""></textarea>
                                 </div>
                              </div>
                           </div>
                           <div class="heading_modal_statement heading_padding_bottom">
-                             <strong>Files <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
+                             <strong>Files <i class="fa fa-info-circle"></i></strong>
                           </div>
-                          <!--<input type="file" name="solution_media">-->
-                            <div class="f_upload_btn">
-                                    Upload Files
-                                    <input type="file" name="">
-                                </div>
+                          <input type="file" name="solution_media">
                        </div>
                     </div>
                     </div>
@@ -2632,7 +2623,7 @@
                   <strong>Preview</strong>
                 </div>
                 <div class="panel-body" style="height: 647px;">
-                  <p id="code_`data_section"></p>
+                  <p id="code_preview_data_section"></p>
                 </div>
               </div>
             </div>
@@ -2664,39 +2655,6 @@
                </div>
                <h3 class="modal-title s_font">Coding Question</h3>
             </div>
-         </div>
-         <div class="modal-body s_modal_form_body">
-            <div class="row">
-               <div class="col-md-10 col-md-offset-1">
-                  <!-- Question State -->
-                  <div class="modal-content s_modal s_blue_color_modal">
-                     <div class="modal-header s_modal_header s_blue_color_header">
-                        <h4 class="modal-title s_font">Question</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Question State  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-                        </div>
-                        <div>
-                           <label class="container_radio border_radio_left">STAGE
-                           <input type="radio" checked="checked" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio">READY
-                           <input type="radio" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio border_radio_right">ABANDONED
-                           <input type="radio" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                        </div>
-                        <hr>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Provider  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
             <div class="modal-body s_modal_form_body">
                <div class="row">
                   <div class="col-md-10 col-md-offset-1">
@@ -2734,85 +2692,63 @@
                                  </div>
                               </div>
                            </div>
-                        </div>
-                        <div class="heading_modal_statement">
-                           <strong>Program Statement (<a href="#">Expand</a>)  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-                        </div>
-                        <textarea name="question_statement" class="edit"></textarea>
-                        <br>
-                     </div>
-                  </div>
-                  <br>
-                  <!-- Test Cases -->
-                  <div class="modal-content s_modal s_green_color_modal">
-                     <div class="modal-header s_modal_header s_green_color_header">
-                        <h4 class="modal-title s_font">Test Cases</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Test Cases  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-                           <strong class="pull-right">
-                           <input type="checkbox" name="" value="">
-                           Equalize Weightage, <a href="#">Total: 0%</a>
-                           </strong>
-                           <hr>
-                           <button class="btn">+ Add Test Case as Text</button>
-                           <button class="btn">Upload Test Case Files</button>
-                           <a href="#">Test case file format</a>
-                           <div class="checkbox s_margin_0">
-                              <label>
-                              <input type="checkbox">Verify the Test Cases
-                              </label>
+                           <div class="heading_modal_statement">
+                              <strong>Program Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
                            </div>
+                           <textarea name="question_statement" class="edit"></textarea>
+                           <br>
+                        </div>
+                     </div>
                      <br>
                      <!-- Test Cases -->
-                     <div class="modal-content s_modal s_green_color_modal">
-                         <div class="modal-header s_modal_header s_green_color_header">
-                             <h4 class="modal-title s_font">Test Cases</h4>
-                         </div>
-                         <div class="modal-body s_modal_body">
-                             <div class="heading_modal_statement heading_padding_bottom">
-                                 <strong>Test Cases
-                                      <div class="s_popup">
-                                         <i class="fa fa-info-circle"> </i>
-                                         <span class="s_popuptext">
-                                            htmlTooltip.modalProgramTestcases <br>
+                         <div class="modal-content s_modal s_green_color_modal">
+                               <div class="modal-header s_modal_header s_green_color_header">
+                                   <h4 class="modal-title s_font">Test Cases</h4>
+                               </div>
+                               <div class="modal-body s_modal_body">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                       <strong>Test Cases
+                                            <div class="s_popup">
+                                               <i class="fa fa-info-circle"> </i>
+                                               <span class="s_popuptext">
+                                                  htmlTooltip.modalProgramTestcases <br>
 
-                                         </span>
-                                     </div>
-                                 </strong>
-                                 <strong class="pull-right">
-                                 <input type="checkbox" name="weightage_status" value="1">
-                                 Equalize Weightage, <a href="#">Total: 100%</a>
-                                 </strong>
-                                 <table class="table s_table" id="weightage_row_edit">
-                                     <thead>
-                                         <th></th>
-                                         <th class="col-md-2">Name</th>
-                                         <th class="col-md-3">Input</th>
-                                         <th class="col-md-3">Output</th>
-                                         <th class="col-md-4 text-center">Weightage</th>
-                                     </thead>
-                                     <tbody>
-                                     </tbody>
-                                 </table>
-                                 <hr>
-                                 <button type="button" class="btn" onclick="addrow_weightage_edit()">+ Add Test Case as Text</button>
-                                <div class="s_uplosd_btn f_upload_btn">
-                                  Upload Test Case Files
-                                  <input type="file" name="test_case_file" >
-                                </div>
-                                 <a href="#">Test case file format</a>
-                                 <div class="checkbox s_margin_0">
-                                     <label>
-                                     <input type="checkbox" name="test_case_verify" value="1">Verify the Test Cases
-                                     </label>
-                                 </div>
-                                 <p>Test Cases should be added/uploaded</p>
-                             </div>
-                         </div>
-                     </div>
-                     <br>
+                                               </span>
+                                           </div>
+                                       </strong>
+                                       <strong class="pull-right">
+                                       <input type="checkbox" name="weightage_status" value="1">
+                                       Equalize Weightage, <a href="#">Total: 100%</a>
+                                       </strong>
+                                       <table class="table s_table" id="weightage_row_edit">
+                                           <thead>
+                                               <th></th>
+                                               <th class="col-md-2">Name</th>
+                                               <th class="col-md-3">Input</th>
+                                               <th class="col-md-3">Output</th>
+                                               <th class="col-md-4 text-center">Weightage</th>
+                                           </thead>
+                                           <tbody>
+                                           </tbody>
+                                       </table>
+                                       <hr>
+                                       <button type="button" class="btn" onclick="addrow_weightage_edit()">+ Add Test Case as Text</button>
+                                      <div class="s_uplosd_btn f_upload_btn">
+                                        Upload Test Case Files
+                                        <input type="file" name="test_case_file" >
+                                      </div>
+                                       <a href="#">Test case file format</a>
+                                       <div class="checkbox s_margin_0">
+                                           <label>
+                                           <input type="checkbox" name="test_case_verify" value="1">Verify the Test Cases
+                                           </label>
+                                       </div>
+
+                                       <p>Test Cases should be added/uploaded</p>
+                                   </div>
+                               </div>
+                           </div>
+                           <br>
                      <!-- Default Codes -->
                      <div class="modal-content s_modal s_yellow_color_modal hidden">
                         <div class="modal-header s_modal_header s_yellow_color_header">
@@ -2857,54 +2793,17 @@
                            </div>
                         </div>
                      </div>
-                      </div>
-                  <br>
-                  <!--  Question Details -->
-                  <div class="modal-content s_modal s_gray_color_modal">
-                     <div class="modal-header s_modal_header s_gray_color_header">
-                        <h4 class="modal-title s_font"> Question Details</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="form-group form-group-sm">
-                           <strong>Marks for this Question  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-                           <input type="number" name="marks" min="1" class="form-control" required="required" style="">
+                     <br>
+                     <!--  Question Details -->
+                     <div class="modal-content s_modal s_gray_color_modal">
+                        <div class="modal-header s_modal_header s_gray_color_header">
+                           <h4 class="modal-title s_font"> Question Details</h4>
                         </div>
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Tags  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a> No tags added</strong>
-
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Question Level  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-                        </div>
-                        <div class="heading_padding_bottom">
-                           <label class="container_radio border_radio_left">Easy
-                           <input type="radio" checked="checked" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio">Medium
-                           <input type="radio" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio border_radio_right">Hard
-                           <input type="radio" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Provider  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-                                 </div>
-                                 <input type="text" class="form-control">
-                              </div>
+                        <div class="modal-body s_modal_body">
+                           <div class="form-group form-group-sm">
+                              <strong>Marks for this Question <i class="fa fa-info-circle"></i></strong>
+                              <input type="number" name="marks" min="1" class="form-control" required="required" style="">
                            </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Author  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-
                            <div class="heading_modal_statement heading_padding_bottom">
                               <strong>Tags <i class="fa fa-info-circle"></i> No tags added</strong>
                            </div>
@@ -2917,37 +2816,9 @@
                                         <option value="{{$value->id}}">{{$value->tag_name}}</option>
                                       @endforeach
                                     </select>
-
                                  </div>
                               </div>
                            </div>
-
-                        </div>
-                     </div>
-                  </div>
-                  <br>
-                  <!--  Solution Details (Optional) -->
-                  <div class="modal-content s_modal s_orange_color_modal">
-                     <div class="modal-header s_modal_header s_orange_color_header">
-                        <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="row">
-                           <div class="col-md-3 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Text  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-                                 </div>
-                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-3 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Code  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-
                            <div class="heading_modal_statement heading_padding_bottom">
                               <strong>Question Level <i class="fa fa-info-circle"></i></strong>
                            </div>
@@ -2972,18 +2843,9 @@
                                        <strong>Provider <i class="fa fa-info-circle"></i></strong>
                                     </div>
                                     <input type="text" name="provider" class="form-control">
-
                                  </div>
                               </div>
                            </div>
-
-                        </div>
-                        <div class="row">
-                           <div class="col-md-3 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>URL  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-
                            <div class="row">
                               <div class="col-md-6 col-sm-12 col-xs-12">
                                  <div class="form-group form-group-sm">
@@ -2995,17 +2857,6 @@
                               </div>
                            </div>
                         </div>
-
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>Files  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-                        </div>
-                        <!--<button type="file" class="btn">Upload Files</button>-->
-                         <div class="f_upload_btn">
-                                    Upload Files
-                                    <input type="file" name="">
-                                </div>
-
-
                      </div>
                      <br>
                      <!--  Solution Details (Optional) -->
@@ -3054,7 +2905,7 @@
                </div>
             </div>
          </div>
-      </form>
+   </form>
    </div>
 </div>
 <!-- Coding Modal Second Type-->
@@ -4797,4 +4648,11 @@
       </div>
    </div>
 </div>
+<script type="text/javascript">
+   $(document).ready(function(){
+      @if(isset($hostFlag) && $hostFlag)
+         $('#_first_model').modal('show');
+      @endif
+   });
+</script>
 @endsection
