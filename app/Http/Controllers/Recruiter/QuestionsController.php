@@ -18,13 +18,13 @@ use DB;
 
 class QuestionsController extends Controller
 {
-    public function create_question(Request $request){
-    	//dd($request->section_id);
+    public function create_question(Request $request){    	
 		if (!empty($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
 			$store->section_id = $request->section_id;
 			$store->question_state_id = $request->question_state_id;
+			$store->question_sub_types_id = $request->question_sub_types_id;
 			$store->question_type_id = $request->question_type_id;
 			$store->question_level_id = $request->question_level_id;
 			$store->question_statement = $request->question_statement;
@@ -44,38 +44,13 @@ class QuestionsController extends Controller
 		}
 	}
 
-	public function create_question_coding(Request $request){
-		// Questions Table Data
-		//  "_token" => "hDqdUbmC06tKeZQfBMeiA8x56cZUbviFh55g6oPQ"
-		// "section_id" => "32"
-		// "question_type_id" => "2"
-		// "question_state_id" => "2"
-		// "question_level_id" => "2"
-		// "question_statement" => "<p>adsadaddasd</p>"
-		// Questions Table Data
-
-		// Questions Details Table Data
-		// "coding_program_title" => "asdadddasa"
-		// "tag_id" => "4"
-		// "provider" => "sdada"
-		// "author" => "asdda"
-		// "marks" => "12"
-
-		//CodingEntries
-		// "coding_input" => array:4 [▶]
-		// "coding_output" => array:4 [▶]
-
-		// "allowed_languages_id" => array:9 [▶]
-
-		// "text" => "asdad"
-		// "code" => "adasd"
-		// "url" => "asdadd"
-		// dd($request->input());
+	public function create_question_coding(Request $request){		
 		if (!empty($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
 			$store->section_id = $request->section_id;
 			$store->question_state_id = $request->question_state_id;
+			$store->question_sub_types_id = $request->question_sub_types_id;
 			$store->question_type_id = $request->question_type_id;
 			$store->question_level_id = $request->question_level_id;
 			$store->question_statement = $request->question_statement;
@@ -99,6 +74,63 @@ class QuestionsController extends Controller
 		}
 	}
 	
+	public function create_question_coding_debug(Request $request){		
+		//dd($request->input());
+
+
+  // "section_id" => "32"
+  // "question_type_id" => "2"
+  // "question_sub_types_id" => "3"
+  // "question_state_id" => "2"
+  // "coding_program_title" => "asdad"
+  // "question_statement" => "<p>asdasdad</p>"
+  // "weightage_status" => "1"
+  // "test_case_name" => array:2 [▶]
+  // "test_case_input" => array:2 [▶]
+  // "test_case_output" => array:2 [▶]
+  // "weightage" => array:2 [▶]
+
+
+  // "test_case_verify" => "1"
+  // "marks" => "123"
+  // "tag_id" => "4"
+  // "question_level_id" => "2"
+  // "provider" => "3123"
+  // "author" => "123123"
+  // "text" => "321312"
+  // "code" => "31313"
+  // "url" => "21321"
+
+
+
+
+		if (!empty($request->section_id)){
+			$store = new Question;
+			$store->user_id = Auth::user()->id;
+			$store->section_id = $request->section_id;
+			$store->question_state_id = $request->question_state_id;
+			$store->question_sub_types_id = $request->question_sub_types_id;
+			$store->question_type_id = $request->question_type_id;
+			$store->question_level_id = $request->question_level_id;
+			$store->question_statement = $request->question_statement;
+			if ($store->save()){				
+				$this->set_session('You Have Successfully Saved The Coding Question Data', true);
+			}else{
+				$this->set_session('Something Went Wrong, Please Try Again', false);	
+			}
+			$question_data =  array('store' => $store, 'request' =>$request->all());			
+			event(new  CodingQuestionDetail($question_data));
+			event(new  CodingTestCases($question_data));
+			event(new  QuestionSolution($question_data));			
+			// event(new  CodingEntries($question_data));
+			// event(new  CodingQuestionLanguage($question_data));
+			//dd($question_data);
+			return redirect()->back();	
+		}else{
+			$this->set_session('Please Give The Required Data', false);
+			return redirect()->back();
+		}
+	}
 	public function question_modal_partial_data(Request $request){		
 		$question_modal_partial_data = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
 								->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
@@ -142,7 +174,7 @@ class QuestionsController extends Controller
 	}
 
 	public function delete_all_mcqs_questions(Request $request){
-		$myArray = explode(',', $request->section_mc_id[0]);		
+		$myArray = explode(',', $request->section_mc_id[0]);	
 		if (isset($myArray)) {			
 			foreach($myArray as $value) {				
 				$delete = Question::find($value);

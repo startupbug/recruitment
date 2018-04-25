@@ -338,11 +338,28 @@
                                     <tbody>
                                         @foreach($sections[$value->id] as $key => $section)
                                         <tr>
-                                            <td>{{$section->section_name}}{{++$key}}<span class="pull-right">
-                                                @if($section->question_type_id == 1)
-                                                {{$section->count_ques}}MCQ (15min)
-                                                @endif
-                                            </span></td>
+                                            <td>{{$section->section_name}}{{++$key}}
+                                                <?php 
+                                                $abc = App\Question::select('questions.id')->where('questions.question_type_id',1)
+                                                ->where('questions.section_id',$section->id)
+                                                ->count();
+                                                $def = App\Question::select('questions.id')->where('questions.question_type_id',2)
+                                                ->where('questions.section_id',$section->id)
+                                                ->count();
+                                                 $hij = App\Question::select('questions.id')->where('questions.question_type_id',3)
+                                                ->where('questions.section_id',$section->id)
+                                                ->count();
+                                                ?>
+
+                                            <span class="pull-right">                     
+                                                {{$abc}} MCQ (15min)
+                                                /
+                                                {{$def}} MCQ (15min)
+                                                /
+                                                {{$hij}} MCQ (15min)
+                                            </span>
+
+                                            </td>
                                         </tr>    
                                         @endforeach                                    
                                     </tbody>

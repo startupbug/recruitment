@@ -1507,18 +1507,7 @@ $(document).ready(function() {
       }
     }
     else{
-
       removeItem = $(this).val();
-
-      public_question_mcq = $.grep(public_question_mcq, function(value) {
-        return value != removeItem;
-      });
-
-      $('.codeQuesCheck_public_question_mcq').prop('checked', false);
-
-      $(this).closest('tr').css('background-color', '#fff');
-      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", true);
-      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", true);
       $("#public_question_mcq_id").val(public_question_mcq);
 
       if (public_question_mcq.length >= 1) {
@@ -1529,7 +1518,6 @@ $(document).ready(function() {
         $('#add_selected_question_button').addClass('hidden');
         $('#add_selected_question_span').removeClass('hidden');
       }
-
     }
   });
   $('.codeQuesCheck_public_question_mcq').change(function() {
@@ -1597,6 +1585,7 @@ $(document).ready(function() {
         $('#add_selected_question_button').addClass('hidden');
         $('#add_selected_question_span').removeClass('hidden');
       }
+
     }
     else{
       removeItem = $(this).val();
