@@ -71,10 +71,19 @@ class TemplatesController extends Controller
 
     	$args['count'] = Test_template::count();
         $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
+        
         foreach ($args['listing'] as $value) {
-            $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')->select('sections.*', DB::raw('count(questions.id) as count_ques'))->where('sections.template_id','=',$value->id)->get();            
+            $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
+                    ->select('sections.*','questions.question_type_id'
+                        ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 1) as mulitple_questions')
+                        ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 2) as coding_questions')
+                        ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 3) as submission_questions'))
+                    ->where('sections.template_id','=',$value->id)
+                    ->groupBy('sections.id')
+                    ->get();            
         }
-        //dd($args['sections']);
+
+        // dd($args['sections']);
         $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
                         ->where('test_templates.user_id', Auth::user()->id)->get();
               return view('recruiter_dashboard.view')->with($args);
@@ -131,7 +140,7 @@ class TemplatesController extends Controller
 
              $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']); 
 
-             $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',2)->where('section_id', $value->id)->get();
+             $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',3)->where('section_id', $value->id)->get();
 
              $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']); 
 
@@ -141,7 +150,7 @@ class TemplatesController extends Controller
 
 
         }
-
+        //dd($args['sections_tabs']);
         $args['test_setting_types'] = Test_template_types::get();
         $args['test_setting_webcam'] = Webcam::get();
         $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
