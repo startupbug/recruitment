@@ -2219,7 +2219,7 @@
                     <button type="submit" class="btn s_save_button s_font">Save</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
-                <h3 class="modal-title s_font">Coding Question</h3>
+                <h3 class="modal-title s_font">Coding Question234</h3>
             </div>
             <div class="modal-body s_modal_form_body">
                 <div class="row">
@@ -2233,14 +2233,20 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Question State
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                         
+                                          <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" There are three possible states for a question. <br>
+                                               (1) Stage (2) Ready (3) Abondoned<br>
+                                                Why is it needed: The purpose of the states is to manage the question development cycle.
+                                                <br>
+                                                Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               There are three possible states for a question. <br>
                                                (1) Stage (2) Ready (3) Abondoned<br>
                                                 Why is it needed: The purpose of the states is to manage the question development cycle.
                                                 <br>
                                                 Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented.
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -2265,13 +2271,17 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Program Title
                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                        <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  This is meant to contain a suitable title <br>
+                                                representing the program.<br>
+                                               Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
+                                               and also serve as a parameter for filters while searching through the library."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 This is meant to contain a suitable title <br>
                                                 representing the program.<br>
                                                Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
                                                and also serve as a parameter for filters while searching through the library.
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -2280,30 +2290,26 @@
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement">
-                                    <strong>Program Statement (<a href="#section-coding-add-compilable-question-Modal-Collapse" data-toggle="modal" onclick="code_edittesttemplate_Collapse()" >Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Program Statement (<a href="#section-coding-add-compilable-question-Modal-Collapse" data-toggle="modal" onclick="code_edittesttemplate_Collapse()" >Expand</a>)  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  This is meant to contain a suitable title <br>
+                                                representing the program.<br>
+                                               Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
+                                               and also serve as a parameter for filters while searching through the library."> <i class="fa fa-info-circle"> </i></a></strong>
                                 </div>
                                 <textarea class="edit"></textarea>
                                 <br>                                
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Sample Input & Output
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                           <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                htmlTooltip.modalProgramSamples <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                     <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Sample Input & Output
-                                           <div class="s_popup">
-                                               <i class="fa fa-info-circle"> </i>
-                                               <span class="s_popuptext">
-                                                  htmlTooltip.modalProgramSamples <br>
-
-                                               </span>
-                                           </div>
-                                       </strong>
+                                     
                                     <div class="no-more-tables ">
                                         <table class="table s_table" id="section_coding_table">
                                             <thead>
@@ -2351,11 +2357,12 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Test Cases
                                          <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                           <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                htmlTooltip.modalProgramTestcases <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                     <strong class="pull-right">
@@ -2424,11 +2431,11 @@
                            </div>
                            <div class="modal-body s_modal_body">
                               <div class="form-group form-group-sm">
-                                 <strong>Marks for this Question <i class="fa fa-info-circle"></i></strong>
+                                 <strong>Marks for this Question <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                  <input type="number" name="marks" min="1" class="form-control" required="required" style="">
                               </div>
                               <div class="form-group form-group-sm">
-                                 <strong>Allowed languages <i class="fa fa-info-circle"></i></strong>
+                                 <strong>Allowed languages <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                  <div class="row">
                                     <div class="col-sm-2">
                                        <div class="checkbox no-margin">
@@ -2500,7 +2507,7 @@
                                  </div>
                               </div>
                               <div class="heading_modal_statement heading_padding_bottom">
-                                 <strong>Tags <i class="fa fa-info-circle"></i></strong>
+                                 <strong>Tags <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                               </div>
                               <div class="form-group-sm">
                                  <div class="row">
@@ -2515,7 +2522,7 @@
                                  </div>
                               </div>
                               <div class="heading_modal_statement heading_padding_bottom"><br>
-                                 <strong>Question Level <i class="fa fa-info-circle"></i></strong>
+                                 <strong>Question Level <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                               </div>
                               <div class="heading_padding_bottom">
                                  <label class="container_radio border_radio_left">Easy
@@ -2535,7 +2542,7 @@
                                  <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group form-group-sm">
                                        <div class="heading_modal_statement heading_padding_bottom">
-                                          <strong>Provider <i class="fa fa-info-circle"></i></strong>
+                                          <strong>Provider <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                        </div>
                                        <input type="text" name="provider" class="form-control">
                                     </div>
@@ -2545,7 +2552,7 @@
                                  <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="form-group form-group-sm">
                                        <div class="heading_modal_statement heading_padding_bottom">
-                                          <strong>Author <i class="fa fa-info-circle"></i></strong>
+                                          <strong>Author <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                        </div>
                                        <input type="text" name="author" class="form-control">
                                     </div>
@@ -2564,7 +2571,7 @@
                              <div class="col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group form-group-sm">
                                    <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>Text <i class="fa fa-info-circle"></i></strong>
+                                      <strong>Text <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                    </div>
                                    <textarea min="0" class="form-control" name="text" style=""></textarea>
                                 </div>
@@ -2574,7 +2581,7 @@
                              <div class="col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group form-group-sm">
                                    <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>Code <i class="fa fa-info-circle"></i></strong>
+                                      <strong>Code <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                    </div>
                                    <textarea min="0" class="form-control" name="code" style=""></textarea>
                                 </div>
@@ -2584,16 +2591,20 @@
                              <div class="col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group form-group-sm">
                                    <div class="heading_modal_statement heading_padding_bottom">
-                                      <strong>URL <i class="fa fa-info-circle"></i></strong>
+                                      <strong>URL <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                    </div>
                                    <textarea min="0" class="form-control" name="url" style=""></textarea>
                                 </div>
                              </div>
                           </div>
                           <div class="heading_modal_statement heading_padding_bottom">
-                             <strong>Files <i class="fa fa-info-circle"></i></strong>
+                             <strong>Files <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                           </div>
-                          <input type="file" name="solution_media">
+                          <!--<input type="file" name="solution_media">-->
+                           <div class="f_upload_btn">
+                                    Upload Files
+                                    <input type="file" name="">
+                                </div>
                        </div>
                     </div>
                     </div>
@@ -2653,7 +2664,7 @@
                   <button type="submit" class="btn s_save_button s_font">Save</button>
                   <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                </div>
-               <h3 class="modal-title s_font">Coding Question</h3>
+               <h3 class="modal-title s_font">Coding Question123</h3>
             </div>
             <div class="modal-body s_modal_form_body">
                <div class="row">
@@ -2665,7 +2676,7 @@
                         </div>
                         <div class="modal-body s_modal_body">
                            <div class="heading_modal_statement heading_padding_bottom">
-                              <strong>Question State <i class="fa fa-info-circle"></i></strong>
+                              <strong>Question State <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the organization name that serves as the provider of the question. "> <i class="fa fa-info-circle"> </i></a></strong>
                            </div>
                              <div>
                                <label class="container_radio border_radio_left">STAGE
@@ -2686,14 +2697,14 @@
                               <div class="col-md-6 col-sm-12 col-xs-12">
                                  <div class="form-group form-group-sm">
                                     <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Program Title  <i class="fa fa-info-circle"></i></strong>
+                                       <strong>Program Title  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the organization name that serves as the provider of the question. "> <i class="fa fa-info-circle"> </i></a></strong>
                                     </div>
                                     <input type="text" name="coding_program_title" class="form-control">
                                  </div>
                               </div>
                            </div>
                            <div class="heading_modal_statement">
-                              <strong>Program Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                              <strong>Program Statement (<a href="#">Expand</a>) <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the organization name that serves as the provider of the question. "> <i class="fa fa-info-circle"> </i></a></strong>
                            </div>
                            <textarea name="question_statement" class="edit"></textarea>
                            <br>
@@ -2709,11 +2720,11 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                        <strong>Test Cases
                                             <div class="s_popup">
-                                               <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a>
+                                               <!--<i class="fa fa-info-circle"> </i>
                                                <span class="s_popuptext">
                                                   htmlTooltip.modalProgramTestcases <br>
-
-                                               </span>
+                                               </span>-->
                                            </div>
                                        </strong>
                                        <strong class="pull-right">
@@ -2801,11 +2812,11 @@
                         </div>
                         <div class="modal-body s_modal_body">
                            <div class="form-group form-group-sm">
-                              <strong>Marks for this Question <i class="fa fa-info-circle"></i></strong>
+                              <strong>Marks for this Question  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a></strong>
                               <input type="number" name="marks" min="1" class="form-control" required="required" style="">
                            </div>
                            <div class="heading_modal_statement heading_padding_bottom">
-                              <strong>Tags <i class="fa fa-info-circle"></i> No tags added</strong>
+                              <strong>Tags  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a> No tags added</strong>
                            </div>
                            <div class="form-group-sm">
                               <div class="row">
@@ -2820,7 +2831,7 @@
                               </div>
                            </div>
                            <div class="heading_modal_statement heading_padding_bottom">
-                              <strong>Question Level <i class="fa fa-info-circle"></i></strong>
+                              <strong>Question Level  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a></strong>
                            </div>
                              <div class="heading_padding_bottom">
                                     <label class="container_radio border_radio_left">Easy
@@ -2840,7 +2851,7 @@
                               <div class="col-md-6 col-sm-12 col-xs-12">
                                  <div class="form-group form-group-sm">
                                     <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Provider <i class="fa fa-info-circle"></i></strong>
+                                       <strong>Provider  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a></strong>
                                     </div>
                                     <input type="text" name="provider" class="form-control">
                                  </div>
@@ -2850,7 +2861,7 @@
                               <div class="col-md-6 col-sm-12 col-xs-12">
                                  <div class="form-group form-group-sm">
                                     <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Author <i class="fa fa-info-circle"></i></strong>
+                                       <strong>Author  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a></strong>
                                     </div>
                                     <input type="text" name="author" class="form-control">
                                  </div>
@@ -2869,7 +2880,7 @@
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                    <div class="form-group form-group-sm">
                                       <div class="heading_modal_statement heading_padding_bottom">
-                                         <strong>Text <i class="fa fa-info-circle"></i></strong>
+                                         <strong>Text  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a></strong>
                                       </div>
                                       <textarea min="0" class="form-control" name="text" style=""></textarea>
                                    </div>
@@ -2879,7 +2890,7 @@
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                    <div class="form-group form-group-sm">
                                       <div class="heading_modal_statement heading_padding_bottom">
-                                         <strong>Code <i class="fa fa-info-circle"></i></strong>
+                                         <strong>Code  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a></strong>
                                       </div>
                                       <textarea min="0" class="form-control" name="code" style=""></textarea>
                                    </div>
@@ -2889,16 +2900,20 @@
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                    <div class="form-group form-group-sm">
                                       <div class="heading_modal_statement heading_padding_bottom">
-                                         <strong>URL <i class="fa fa-info-circle"></i></strong>
+                                         <strong>URL  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a></strong>
                                       </div>
                                       <textarea min="0" class="form-control" name="url" style=""></textarea>
                                    </div>
                                 </div>
                              </div>
                              <div class="heading_modal_statement heading_padding_bottom">
-                                <strong>Files <i class="fa fa-info-circle"></i></strong>
+                                <strong>Files  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a></strong>
                              </div>
-                             <input type="file" name="solution_media">
+                             <!--<input type="file" name="solution_media">-->
+                               <div class="f_upload_btn">
+                                    Upload Files
+                                    <input type="file" name="">
+                                </div>
                           </div>
                        </div>
                   </div>
