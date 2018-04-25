@@ -4,14 +4,12 @@
 	<br>
 	<div class="container-fluid padding-15-fluit">
 		<div class="row border-row display-table s_magin-10">
-
 			<div class="col-md-3 col-sm-12 col-xs-12 display-table-cell padding-0 nav-background">
 				<ul class="nav nav-tabs nav-sidebar">
 				 <li class="active"><a data-toggle="pill" href="#public">Public Questions <i class=""></i></a></li>
 				 <li><a data-toggle="pill" href="#private">Private Questions <i class=""></i></a></li>
 			 	</ul>
 			</div>
-
 			<div class="col-md-9 col-sm-12 col-xs-12 display-table-cell padding-col">
 			 <div class="tab-content sidebar-content">
 				 <!-- Start Public Question -->

@@ -29,12 +29,15 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label" for="name">Full Name 
 											<div class="s_popup">
-												<i class="fa fa-info-circle"> </i>
+												<a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This is the Account holders name. <br>
+											  		Good to Know: <br>
+											  		This will be the showcased on the top right corner of the titlebar."> <i class="fa fa-info-circle"> </i></a>
+												<!--<i class="fa fa-info-circle"> </i>
 											  	<span class="s_popuptext">
 											  		This is the Account holders name. <br>
 											  		Good to Know: <br>
 											  		This will be the showcased on the top right corner of the titlebar.
-											  	</span>
+											  	</span>-->
 											</div>
 										</label>
 										<div class="col-md-9">
@@ -46,13 +49,17 @@
 										<label class="col-md-3 control-label" for="email">Company Logo Url 
 											
 											<div class="s_popup">
-												<i class="fa fa-info-circle"> </i>
+												<a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Insert the link to the company's logo. <br>
+											  		Good to Know: <br>
+											  		This logo will be the shown on the upper left corner of the titlebar. and the candidate registration page. <br>
+											  		Logo size will be fit to 75px x 50px."> </i></a>
+												<!--<i class="fa fa-info-circle"> </i>
 											  	<span class="s_popuptext">
 											  		Insert the link to the company's logo. <br>
 											  		Good to Know: <br>
 											  		This logo will be the shown on the upper left corner of the titlebar. and the candidate registration page. <br>
 											  		Logo size will be fit to 75px x 50px.
-											  	</span>
+											  	</span>-->
 											</div>
 										</label>
 										<div class="col-md-9">
@@ -73,7 +80,10 @@
 								Contact Details
 							</div>
 							<div class="panel-body">
-								<p class="contact_content">These are the contact details for the candidate's reference incase of any query. <i class="fa fa-info-circle"></i></p>
+								<p class="contact_content">These are the contact details for the candidate's reference incase of any query.  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle f_circle"> </i></a></p>
 								<form action="{{route('post_contact_details')}}" method="post" enctype="multipart/form-data">
 									{{csrf_field()}}								
 									<div class="form-group">
@@ -161,25 +171,35 @@
 								Question Tags
 							</div>
 							<div class="panel-body">
-								<p class="contact_content">Repository of tags that are used to tag questions in the library <div class="s_popup">
-											<i class="fa fa-info-circle"> </i>
+								<p class="contact_content">Repository of tags that are used to tag questions in the library 
+									 <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a>
+								</p>
+									
+									
+											<!--<i class="fa fa-info-circle"> </i>
 										  	<span class="s_popuptext">
 										  		This is the Account holders name. <br>
 										  		Good to Know: <br>
 										  		This will be the showcased on the top right corner of the titlebar.
-										  	</span>
-										</div>
+										  	</span>-->
+										
 
-								</p>
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="name">Tags 
 										<div class="s_popup">
-											<i class="fa fa-info-circle"> </i>
+											 <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a>
+											<!--<i class="fa fa-info-circle"> </i>
 										  	<span class="s_popuptext">
 										  		This is the Account holders name. <br>
 										  		Good to Know: <br>
 										  		This will be the showcased on the top right corner of the titlebar.
-										  	</span>
+										  	</span>-->
 										</div>
 									</label>
 									<div class="col-md-9">

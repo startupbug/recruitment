@@ -404,10 +404,13 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-2">
                             <div class="button_duplicate">
                                 <button type="submit" class="btn">Create</button>
                                 <button type="button" id="close_modal_template" class="btn btn-default s_font f_font" data-dismiss="modal">Cancel</button>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </form>
@@ -471,9 +474,12 @@
                                     </label>
                                     <div class="col-md-9">
                                         <div class="radio">
-                                            <label><input type="radio" name="template_type_id" value="1">Public</label>
-
-                                            <label><input type="radio" name="template_type_id" value="2">Invite-Only</label>
+                                            <label>
+                                                <input type="radio" name="template_type_id" value="1"  checked="checked">Public
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="template_type_id" value="2">Invite-Only
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
