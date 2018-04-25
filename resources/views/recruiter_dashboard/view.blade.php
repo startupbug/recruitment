@@ -338,11 +338,28 @@
                                     <tbody>
                                         @foreach($sections[$value->id] as $key => $section)
                                         <tr>
-                                            <td>{{$section->section_name}}{{++$key}}<span class="pull-right">
-                                                @if($section->question_type_id == 1)
-                                                {{$section->count_ques}}MCQ (15min)
-                                                @endif
-                                            </span></td>
+                                            <td>{{$section->section_name}}{{++$key}}
+                                                <?php 
+                                                $abc = App\Question::select('questions.id')->where('questions.question_type_id',1)
+                                                ->where('questions.section_id',$section->id)
+                                                ->count();
+                                                $def = App\Question::select('questions.id')->where('questions.question_type_id',2)
+                                                ->where('questions.section_id',$section->id)
+                                                ->count();
+                                                 $hij = App\Question::select('questions.id')->where('questions.question_type_id',3)
+                                                ->where('questions.section_id',$section->id)
+                                                ->count();
+                                                ?>
+
+                                            <span class="pull-right">                     
+                                                {{$abc}} MCQ (15min)
+                                                /
+                                                {{$def}} MCQ (15min)
+                                                /
+                                                {{$hij}} MCQ (15min)
+                                            </span>
+
+                                            </td>
                                         </tr>    
                                         @endforeach                                    
                                     </tbody>
@@ -387,10 +404,13 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-2">
                             <div class="button_duplicate">
                                 <button type="submit" class="btn">Create</button>
                                 <button type="button" id="close_modal_template" class="btn btn-default s_font f_font" data-dismiss="modal">Cancel</button>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </form>
@@ -454,9 +474,12 @@
                                     </label>
                                     <div class="col-md-9">
                                         <div class="radio">
-                                            <label><input type="radio" name="template_type_id" value="1">Public</label>
-
-                                            <label><input type="radio" name="template_type_id" value="2">Invite-Only</label>
+                                            <label>
+                                                <input type="radio" name="template_type_id" value="1"  checked="checked">Public
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="template_type_id" value="2">Invite-Only
+                                            </label>
                                         </div>
                                     </div>
                                 </div>

@@ -37,7 +37,7 @@ class CreateQuestionSolution
         $section_id = $section->id;
         if(isset($event->question_data['request']['solution_media'])){
             $image=$event->question_data['request']['solution_media'];
-            $filename=md5($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();
+            $filename = md5($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();
             $location=public_path('public/storage/question-solution-media/'.$filename);
             Question_solution::where('id' ,'=', $section_id)->update([
             'solution_media' => $filename
@@ -46,11 +46,13 @@ class CreateQuestionSolution
         }        
     }
     public function UploadFile($type, $file){
+
         if( $type == 'solution_media'){
         $path = 'public/storage/question-solution-media/';
         }
         $filename = md5($file->getClientOriginalName() . time()) . '.' . $file->getClientOriginalExtension();
         $file->move( $path , $filename);
+        // dd($filename);
         return $filename;
     }
 }
