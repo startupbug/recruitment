@@ -189,8 +189,9 @@
                                           <td class="col-md-10 col-sm-12 col-xs-12">
                                              <div class="statement">
                                                 <div class="row">
+                                                   <!-- pass question id in modal -->
                                                    <div class="single-line-ellipsis">
-                                                      <a href="#" onclick="modal_data({{$q->id}})" data-toggle="modal" data-target="#question_modal"class="no-underline">{{$q->question_statement}}</a>
+                                                      <a href="#" onclick="modal_data({{$q->id}})" data-toggle="modal" data-target="#question_modal" class="no-underline">{{$q->question_statement}}</a>
                                                    </div>
                                                 </div>
                                              </div>
@@ -4522,9 +4523,17 @@
          <div class="modal-body s_modal_form_body">
             <div style="">
                <div class="content-area content-area-70 new-question">
+
                   <form name="mcq" action="{{route('update_partial_question')}}" method="post">
                      {{csrf_field()}}
-                     <input type="hidden" name="question_id" id="question_id_id" value="">
+                     <input type="text" name="question_id" id="question_id_id" value="">
+                     <?php
+                     //$question_id =  
+                     ?>
+                     <script>
+                        var check = $("#question_id_id").val();
+                           <?php //$check = ?>
+                     </script>
                      <div class="form-group">
                         <div class="form-inline">
                            <label>Question Statement</label>
@@ -4532,17 +4541,18 @@
                            <br>
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
-                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link">
+                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link ajax_route">
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
                            </div>
                         </div>
                      </div>
+                   
                      <div class="">
                         <div class="form-group">
                            <label>Marks for this Question</label>
                            <input type="number" value="" id="questionmarks" name="marks" min="1" class="form-control" required="required" style="">
                            <span class="">
-                           <label>Negative Marks for Answering Wrong</label>
+                           <label>Negative Marks for Answering Wrongssss</label>
                            <input type="number" step="any" id="negativeMarks" name="negative_marks" min="0" class="form-control" required="required">
                            </span>
                         </div>

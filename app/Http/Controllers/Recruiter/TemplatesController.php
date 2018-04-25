@@ -119,7 +119,7 @@ class TemplatesController extends Controller
 	public function edit_template($id){        
         $args['tags'] = DB::table('question_tags')->get();
       	$args['edit'] = Test_template::find($id);  
-      	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
+      	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
 
         foreach ($args['sections'] as $key => $value) {
 
@@ -138,8 +138,6 @@ class TemplatesController extends Controller
 
              // $args['sections_tabs2'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              // $args['sections_tabs'][$value->id]['count2'] = $value->section_questions;
-
-
         }
 
         $args['test_setting_types'] = Test_template_types::get();
@@ -147,6 +145,7 @@ class TemplatesController extends Controller
         $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
         $args['template_id'] = $id;
+       
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 	// Editing Test Template

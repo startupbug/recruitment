@@ -291,7 +291,7 @@
                                           <span class="caret"></span>
                                           </button>
                                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                              <li><a href="{{route('preview_test')}}" target="blank">Preview Templates</a></li>
+                                              <li><a href="" target="blank">Preview Templates</a></li>
                                               <li>
                                                   <a href="#" class="duplicate_modal_id" data-toggle="modal" data-target-id="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
                                               </li>

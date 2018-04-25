@@ -2511,6 +2511,91 @@
         });
     });
 </script>
+
+<script type="text/javascript">
+
+function modal_data(id){ 
+
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+  });
+  $.ajax({
+    url: base_url  + 'recruiter/question_modal_partial_data',
+    type: 'post',
+    data: {'question_id': id},
+    'dataType' : 'json',
+    success: function (data) { 
+      console.log("123");
+      console.log(data.dataz);
+      console.log(data.question_data.question_level_id);
+      $("#questionmarks").val(data.question_data.marks);         
+      $("#negativeMarks").val(data.question_data.negative_marks);         
+      $("#question_id_id").val(data.question_data.question_id);         
+      $(".ajax_route").attr("href","{{route('library_public_questions')}}/"+data.question_data.question_id+"?modal=modal_pencil");     
+      
+
+      $("#question_statement_id").text(data.question_data.question_statement);         
+      $("#state_name").text(data.question_data.state_name);         
+      $("#level_name").text(data.question_data.level_name);         
+      $("#tagName").text(data.question_data.tag_name);
+      // $("#question_ki_id").text(id);
+
+      /* Multiple Choices HTML */
+      $choices_html = ``;
+
+    var i=1;
+    var partialFlag = 0;
+    var shuffleFlag = 0;
+    $.each(data.question_choices, function( index, value ) {
+             //alert( index + ": " + value );
+             //value.partial_marks = value.partial_marks ? value.partial_marks : '';
+             $choices_html += `<tr class="">
+                              <td class="">`+i+`.</td>
+                              <td class="">
+                                 <input type="radio" name="893" value="true" disabled="disabled">
+                              </td>
+                              <td>
+                                 <textarea class="form-control" name="option" required="" disabled="disabled">`+value.choice+`</textarea>
+                              </td>
+                              <td width="120px" class="">
+                                 <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" width="30px" value="`+value.partial_marks+`"  disabled="disabled">
+                                    <span class="input-group-addon" id="basic-addon1">%</span>
+                                 </div>
+                              </td>
+                              <td>
+                              </td>
+                           </tr> `;
+              //checking partial flag 
+              if(value.partial_marks != null){
+                    partialFlag = 1;
+              }
+              if(value.shuffleFlag != 0){
+                    shuffleFlag = 1;
+              }
+      i++;                     
+    });
+
+    //Ticking Partial flag if required
+    if(partialFlag == 1){
+      $('.partialCheck').prop('checked', true);
+    }
+    if(shuffleFlag == 1){
+      $('.shuffleCheck').prop('checked', true);
+    }
+    
+
+    $("#choiceTable").html($choices_html);
+ 
+
+    },
+    error: function (data) {
+      console.log(data);
+    }
+  });        
+
+}
+</script>
 @yield('modal_content')
 </body>
 </html>

@@ -78,7 +78,11 @@ Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send
 Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
 
 Route::get('/invited_candidates', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
-Route::get('/library_public_questions', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
+Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
+
+Route::post('/update_questions_modal/{id}','Recruiter\QuestionsController@update_questions_modal')->name('update_questions_modal');
+Route::get('/delete_question_choice/{id?}','Recruiter\QuestionsController@delete_choice')->name('delete_choice');
+
 Route::get('/preview_test_questions', 'Recruiter\RecruiterController@preview_test_questions')->name('preview_test_questions');
 Route::get('/change_password', 'Recruiter\RecruiterController@change_password')->name('change_password');
 Route::get('/general_setting', 'Recruiter\RecruiterController@general_setting')->name('general_setting');
