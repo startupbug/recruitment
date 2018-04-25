@@ -630,6 +630,7 @@
      font-family: 'SourceSansPro-Regular';
      font-weight: bold;
      color: #333333;
+     margin-left: 19px;
 
 }
  .form-group textarea {
@@ -817,18 +818,19 @@
      font-weight: bold;
      color: #333333;
 }
- .panel {
+.panel {
      border-radius: 0px;
 }
- .top_right li a {
+.top_right li a {
      color: white;
      font-size: 16px;
      padding-left: 10px;
 }
- .dropdown-menu>li>a {
-     color: #333 !important;
+.dropdown-menu>li>a {
+    color: #333 !important;
+    cursor: pointer;
 }
- .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
      width: 100%;
 }
  section.info {
@@ -1848,7 +1850,8 @@ button.btn.cancel_footer {
     padding-bottom: 10px;
 }
 .button_duplicate {
-    text-align: right;
+    /* text-align: right; */
+    margin-left: -87px;
 }
 
 .button_duplicate button.btn.btn-default.f_font {
@@ -2369,7 +2372,8 @@ p.candididate_user {
 }
 /* Popup container - can be anything you want */
 .s_popup {
-    position: relative;
+     margin-top: 10px;
+    /*position: relative;*/
     display: inline-block;
     cursor: pointer;
     -webkit-user-select: none;
@@ -2486,20 +2490,7 @@ span.host_popup {
     top: 140%;
     right: -311px !important;
   }
-.s_popup .s_popuptext {
-    width: 65px;
-    background-color: #261f63c4;
-    color: #fff;
-    text-align: left;
-    border-radius: 2px;
-    /* padding: 8px 10px; */
-    position: absolute;
-    z-index: 1;
-    top: 140%;
-    right: -22px;
-    /* margin-left: -67px; */
-    font-size: 12px;
-}
+
 .right_tab >ul > li.host_content:hover {
     background: transparent;
 }
@@ -2613,6 +2604,21 @@ li.active {
     height: 600px;
 }
 
+#section-submission-question-Modal-collapse{
+    background: rgba(0, 0, 0, 0.52);
+}
+#section-submission-question-Modal-collapse .fr-element {
+    height: 600px;
+}
+
+#section-submission-fill-blanks-question-Modal-collapse{
+    background: rgba(0, 0, 0, 0.52);
+}
+#section-submission-fill-blanks-question-Modal-collapse .fr-element {
+    height: 600px;
+}
+
+
 .submit_prog{
      display: none;
 }
@@ -2628,6 +2634,11 @@ li.active {
    top: 2px !important;
     left: 10px;
     font-size: 18px !important;
+}
+
+h4.f_des {
+    font-size: 19px;
+    font-weight: bold;
 }
 .delete_section_mc{
     background: #261f63;
@@ -2728,4 +2739,87 @@ li.active {
 }
 .s_drop_down li a {
     font-size: 12px;
+}
+
+
+.tooltip-inner {
+    max-width: 200px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: center;
+    background-color: #221d59;
+    border-radius: 4px;
+}
+
+.f_circle {
+    color: #b8b7b7;
+}
+
+.f_upload {
+    position: absolute;
+}
+
+.f_plus {
+    height: 27px;
+}
+
+.f_btn:hover {
+    margin-top: 15px;
+    background-color: #261f63;
+    color: white;
+}
+
+.f_label1 {
+    font-size: 11px !important;
+}
+
+#add_selected_question_button{
+    margin-right: 8px;
+}
+#add_selected_question_span{
+    margin-right: 8px;
+}
+.moreSettings_button {
+    color: #23527c;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.s_orange_color_modal .s_modal_body button.btn.btn-default {
+    border: 1px solid;
+    background: linear-gradient(to bottom,#969393,#615c5c 100%);
+}
+.s_orange_color_modal .s_modal_body button.btn.btn-danger {
+    background: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
+}
+.s_orange_color_modal .s_modal_body button.btn.btn-info {
+    background: linear-gradient(to bottom,#5bc0de 0,#2aabd2 100%);
+}
+.s_sbtn.f_upload_btn {
+    display: inline-block;
+    background-color: #dddddd;
+    color: #000000;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    height: 100%;
+}
+
+
+.f_update {
+    margin-bottom: 10px;
 }

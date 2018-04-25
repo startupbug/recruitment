@@ -484,10 +484,59 @@ $( document ).ready(function() {
      }
   , 1000);
 
+
+  $('.level_easy').change(function() {
+      if ($(this).is(":checked") && $('.level_medium').is(":checked") && $('.level_hard').is(":checked")) {
+        $('.level_all').attr('checked', true);
+        $('.level_easy').attr('checked', true);
+      }
+      else {
+        $('.level_all').attr('checked', false);
+        $('.level_easy').attr('checked', false);
+      }
+  });
+  $('.level_medium').change(function() {
+      if ($(this).is(":checked") && $('.level_easy').is(":checked") && $('.level_hard').is(":checked")) {
+        $('.level_all').attr('checked', true);
+        $('.level_medium').attr('checked', true);
+      }
+      else {
+        $('.level_all').attr('checked', false);
+        $('.level_medium').attr('checked', false);
+      }
+  });
+  $('.level_hard').change(function() {
+      if ($(this).is(":checked") && $('.level_easy').is(":checked") && $('.level_medium').is(":checked")) {
+        $('.level_all').attr('checked', true);
+        $('.level_hard').attr('checked', true);
+      }
+      else {
+        $('.level_all').attr('checked', false);
+        $('.level_hard').attr('checked', false);
+      }
+  });
+
+  $('.level_all').change(function() {
+      if ($(this).is(":checked")) {
+        $('.level_easy').attr('checked', true);
+        $('.level_medium').attr('checked', true);
+        $('.level_hard').attr('checked', true);
+      }
+      else {
+        $('.level_easy').attr('checked', false);
+        $('.level_medium').attr('checked', false);
+        $('.level_hard').attr('checked', false);
+      }
+  });
+
+
 });
 
 
-
+function moreSettings() {
+  $('.moreSettings').removeClass('hidden');
+  $('.moreSettings_button').addClass('hidden');
+}
 function functionAddTag() {
   $('#s_button_general_tag').addClass("hidden");
   $('#s_add_tag_button').removeClass("hidden");
@@ -763,7 +812,6 @@ function edittesttemplate_Collapse() {
      }
   , 1000);
 }
-
 //Duplicate Test Template
 function section_id(id) {
   console.log(id);
@@ -870,6 +918,108 @@ function code_collapse_modal() {
   clearInterval(code_testtemp_setInterval_Collapse);
   code_edittesttemplate_Expand();
 }
+
+
+var submission_testtemp_setInterval_Expand;
+var submission_testtemp_setInterval_Collapse;
+function submission_edittesttemplate_Expand() {
+  clearInterval(submission_testtemp_setInterval_Collapse);
+  submission_testtemp_setInterval_Expand = setInterval(
+    function(){
+      var htmlString = $( "#section-submission-question-Modal .fr-element.fr-view" ).html();
+
+      if (htmlString == "<p><br></p>") {
+        $("#section-submission-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").addClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        console.log(htmlString);
+        $("#section-submission-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").removeClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function submission_edittesttemplate_Collapse() {
+  clearInterval(submission_testtemp_setInterval_Expand);
+  submission_testtemp_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#section-submission-question-Modal-collapse .fr-element.fr-view" ).html();
+      $("#submission_preview_data_section_collapse").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#section-submission-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").addClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#section-submission-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").removeClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function submission_collapse_modal() {
+  $("#section-submission-question-Modal-collapse").modal('hide');
+  $("#section-submission-question-Modal").css('overflow','scroll');
+  clearInterval(submission_edittesttemplate_Expand);
+  submission_edittesttemplate_Expand();
+}
+
+
+var submission_fill_testtemp_setInterval_Expand;
+var submission_fill_testtemp_setInterval_Collapse;
+function submission_fill_edittesttemplate_Expand() {
+  clearInterval(submission_fill_testtemp_setInterval_Collapse);
+  submission_fill_testtemp_setInterval_Expand = setInterval(
+    function(){
+      var htmlString = $( "#section-submission-fill-blanks-question-Modal .fr-element.fr-view" ).html();
+
+      if (htmlString == "<p><br></p>") {
+        $("#section-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").addClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        console.log(htmlString);
+        $("#section-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").removeClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function submission_fill_edittesttemplate_Collapse() {
+  clearInterval(submission_fill_testtemp_setInterval_Expand);
+  submission_fill_testtemp_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#section-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view" ).html();
+      $("#submission_fill_preview_data_section_collapse").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#section-submission-fill-blanks-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").addClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#section-submission-fill-blanks-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").removeClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function submission_fill_collapse_modal() {
+  $("#section-submission-fill-blanks-question-Modal-collapse").modal('hide');
+  $("#section-submission-fill-blanks-question-Modal").css('overflow','scroll');
+  clearInterval(submission_fill_edittesttemplate_Expand);
+  submission_fill_edittesttemplate_Expand();
+}
+
+
 
 function edit_template_text_editor() {
   // clearInterval(code_testtemp_setInterval_Expand);
@@ -1461,18 +1611,7 @@ $(document).ready(function() {
       }
     }
     else{
-
       removeItem = $(this).val();
-
-      public_question_mcq = $.grep(public_question_mcq, function(value) {
-        return value != removeItem;
-      });
-
-      $('.codeQuesCheck_public_question_mcq').prop('checked', false);
-
-      $(this).closest('tr').css('background-color', '#fff');
-      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", true);
-      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", true);
       $("#public_question_mcq_id").val(public_question_mcq);
 
       if (public_question_mcq.length >= 1) {
@@ -1483,7 +1622,6 @@ $(document).ready(function() {
         $('#add_selected_question_button').addClass('hidden');
         $('#add_selected_question_span').removeClass('hidden');
       }
-
     }
   });
   $('.codeQuesCheck_public_question_mcq').change(function() {
@@ -1551,6 +1689,7 @@ $(document).ready(function() {
         $('#add_selected_question_button').addClass('hidden');
         $('#add_selected_question_span').removeClass('hidden');
       }
+
     }
     else{
       removeItem = $(this).val();

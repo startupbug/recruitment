@@ -4,14 +4,12 @@
 	<br>
 	<div class="container-fluid padding-15-fluit">
 		<div class="row border-row display-table s_magin-10">
-
 			<div class="col-md-3 col-sm-12 col-xs-12 display-table-cell padding-0 nav-background">
 				<ul class="nav nav-tabs nav-sidebar">
 				 <li class="active"><a data-toggle="pill" href="#public">Public Questions <i class=""></i></a></li>
 				 <li><a data-toggle="pill" href="#private">Private Questions <i class=""></i></a></li>
 			 	</ul>
 			</div>
-
 			<div class="col-md-9 col-sm-12 col-xs-12 display-table-cell padding-col">
 			 <div class="tab-content sidebar-content">
 				 <!-- Start Public Question -->
@@ -697,14 +695,18 @@
 		</div>
 	</div>
 </section>
-<div class="modal fade" id="modal_pencil" role="dialog">
+<div class="modal fade" id="modal_pencil" role="dialog">	
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
+      
+      <!-- HASAN MEHDI NAQVI -->
+   	<form action="{{route('update_questions_modal',$get_data->question_id)}}" method="post" enctype="multipart/form-data">
+   		{{csrf_field()}}
       <div class="modal-content">
          <div class="modal-header s_modal_form_header">
             <div class="pull-right">
                <span>Please add atleast 3 characters in the question statement </span>
-               <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
+               <button type="submit" class="btn s_save_button s_font" >Save</button>
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
             <h3 class="modal-title s_font">Submission Question</h3>
@@ -734,18 +736,20 @@
                            </strong>
                         </div>
                         <div>
+                        
                            <label class="container_radio border_radio_left">STAGE
-                           <input type="radio" checked="checked" name="radio" disabled>
+                           <input type="radio" @if($get_data->question_state_id == 1)  checked="checked" value="1" @endif name="question_state_id" >
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio">READY
-                           <input type="radio" name="radio">
+                           <input type="radio" name="question_state_id" @if($get_data->question_state_id == 2)  checked="checked" value="2" @endif >
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio border_radio_right">ABANDONED
-                           <input type="radio" name="radio" disabled>
+                           <input type="radio" name="question_state_id" @if($get_data->question_state_id == 3)  checked="checked" value="3" @endif >
                            <span class="checkmark"></span>
                            </label>
+                       
                         </div>
                         <hr>
                         <hr>
@@ -766,7 +770,7 @@
                               </div>
                            </strong>
                         </div>
-                        <textarea id="s_txtEditor_submission_Add_section_fill_blanks"></textarea>
+                        <textarea id="s_txtEditor_submission_Add_section_fill_blanks" class="edit" name="question_statement" value="{{$get_data->question_statement}}" >{{$get_data->question_statement}}</textarea>
                         <br>
                      </div>
                   </div>
@@ -783,7 +787,7 @@
                               <!--<button type="button" class="btn">Upload Media</button>-->
                               <div class="f_upload_btn">
                                  Upload Media
-                                 <input type="file" name="">
+                                 <input type="file" name="audio_video1" value="{{$get_data->media}}">
                               </div>
                            </div>
                         </div>
@@ -808,7 +812,7 @@
                      <div class="modal-body s_modal_body">
                         <div class="form-group form-group-sm" >
                            <label>Marks for this Question <i class="fa fa-info-circle"></i></label>
-                           <input type="number" name="marks" min="1" class="form-control" required="required" style="">
+                           <input type="number" name="marks" min="1" class="form-control" required="required" style="" value="{{$get_data->marks}}">
                         </div>
                         <div class="heading_modal_statement heading_padding_bottom">
                            <strong>
@@ -822,18 +826,59 @@
                            </strong>
                         </div>
                         <div class="heading_padding_bottom">
+                        @if($get_data->question_level_id == 1)
                            <label class="container_radio border_radio_left">Easy
-                           <input type="radio" checked="checked" name="radio">
+                           <input type="radio" checked="checked" name="question_level" value="1">
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio">Medium
-                           <input type="radio" name="radio">
+                           <input type="radio" name="question_level" value="2">
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio border_radio_right">Hard
-                           <input type="radio" name="radio">
+                           <input type="radio" name="question_level" value="3">
                            <span class="checkmark"></span>
                            </label>
+                        @elseif($get_data->question_level_id == 2)
+                           <label class="container_radio border_radio_left">Easy
+                           <input type="radio" name="question_level" value="1">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio">Medium
+                           <input type="radio" name="question_level" checked="checked" value="2">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio border_radio_right">Hard
+                           <input type="radio" name="question_level" value="3">
+                           <span class="checkmark"></span>
+                           </label>
+                        @elseif($get_data->question_level_id == 3)
+                           <label class="container_radio border_radio_left">Easy
+                           <input type="radio"  name="question_level" value="1">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio">Medium
+                           <input type="radio" name="question_level" value="2">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio border_radio_right">Hard
+                           <input type="radio" name="question_level" checked="checked" value="3">
+                           <span class="checkmark"></span>
+                           </label>
+                        @else
+                        	<label class="container_radio border_radio_left">Easy
+                            <input type="radio"  name="question_level" value="1">
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="container_radio">Medium
+                            <input type="radio" name="question_level" value="2">
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="container_radio border_radio_right">Hard
+                            <input type="radio" name="question_level" value="3">
+                            <span class="checkmark"></span>
+                            </label>
+                        @endif
                         </div>
                         <div class="heading_modal_statement heading_padding_bottom">
                            <strong>
@@ -855,15 +900,11 @@
                         <div class="form-group-sm">
                            <div class="row">
                               <div class="col-md-3">
-                                 <select class="form-control">
-                                    <option value="add Tag" disabled="">Select Tag</option>
-                                    <option>algo</option>
-                                    <option>basic-programming</option>
-                                    <option>database</option>
-                                    <option>design</option>
-                                    <option>iterative</option>
-                                    <option>maths</option>
-                                    <option>recursion</option>
+                                 <select class="form-control"  name="tag_name">
+										<option selected disabled >choose a tag</option>
+				                    @foreach($items as $value)
+				                    <option value="{{$value->id}}" required>{{$value->tag_name}}</option>
+				                    @endforeach
                                  </select>
                               </div>
                            </div>
@@ -883,7 +924,7 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <input type="text" class="form-control">
+                                 <input type="text" class="form-control" name="provider" value="{{$get_data->provider}}">
                               </div>
                            </div>
                         </div>
@@ -900,7 +941,7 @@
                                        </span>
                                     </div>
                                  </div>
-                                 <input type="text" class="form-control">
+                                 <input type="text" class="form-control" name="author" value="{{$get_data->author}}">
                               </div>
                            </div>
                         </div>
@@ -908,40 +949,77 @@
                   </div>
                   <br>
                   <!--   Evaluation Parameters (Optional) -->
-                  <div class="modal-content s_modal s_orange_color_modal">
-                     <div class="modal-header s_modal_header s_orange_color_header">
-                        <h4 class="modal-title s_font">  Evaluation Parameters (Optional)</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="no-more-tables ">
-                           <table class="table s_table">
-                              <thead>
-                                 <th>Tile</th>
-                                 <th>Weightage (%)</th>
-                                 <th></th>
-                              </thead>
-                              <tbody>
-                                 <tr>
-                                    <td class="s_weight" valign="center">
-                                       <div >
-                                          <input type="text" class="form-control text-margin" name="title" value="">
-                                       </div>
-                                    </td>
-                                    <td valign="center">
-                                       <div class="input-group input-group-sm">
-                                          <input type="number" class="form-control" width="30px" max="100" min="0">
-                                          <span class="input-group-addon" id="basic-addon1">%</span>
-                                       </div>
-                                    </td>
-                                    <td valign="center">
-                                       <button type="button" class="btn">+ Save New</button>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                     </div>
-                  </div>
+                  <div class="modal-content s_modal s_green_color_modal">
+                       <div class="modal-header s_modal_header s_green_color_header">
+                          <h4 class="modal-title s_font">Choices</h4>
+                       </div>
+                       <div class="modal-body s_modal_body">
+                          <div class="heading_modal_statement heading_padding_bottom">
+                             <strong>
+                                Choices
+                                <div class="s_popup">
+                                   <i class="fa fa-info-circle"> </i>
+                                   <span class="s_popuptext">
+                                   Under this section, one can add the <br>
+                                   Good to Know: <br>
+                                   (1) Multiple choice multiple answer type questions are supported.
+                                   <br>
+                                   <br>
+                                   (2) Choice field's value cannot be empty or a duplicate.
+                                   </span>
+                                </div>
+                             </strong>
+                             <strong class="pull-right">
+                             <input type="checkbox" name="partial_marks" id="section_partial_marks">
+                             Partial marks
+                             </strong>
+                             <div class="no-more-tables ">
+                                <table class="table s_table" id="section_choices_table">
+                                   <tbody>
+                                   	@php $k = 1 @endphp
+                                   	@foreach($choices as $choice)
+
+                                      <tr>
+                                         <td valign="center">{{$k}}</td>
+                                         <td>
+                                            <input type="checkbox" name="answer[]" class="choices_table_checkbox">
+                                         </td>
+                                         <input type="hidden" name="choice_id[]" value="{{$choice->id}}">
+                                         <td class="s_weight" valign="center">
+                                            <textarea class="form-control" name="choice[]" required="" value="{{$choice->id}}">{{$choice->choice}}</textarea>
+                                         </td>
+                                         <td valign="center" class="hidden">
+                                            <div class="input-group input-group-sm">
+                                               <input type="number" name="partial_marks[]" value="{{$choice->partial_marks}}" class="form-control" width="30px" max="100" min="0" >
+                                               <span class="input-group-addon" id="basic-addon1">{{$choice->partial_marks}}%</span>
+                                            </div>
+                                         </td>
+                                         <td valign="center">
+                                            <a href="{{route('delete_choice',$choice->id)}}" id="delete_choice" class="delete_row" data-id = "{{$choice->id}}" >
+                                            <i class="fa fa-times-circle-o"></i>
+                                            </a>
+                                         </td>
+                                      </tr>
+                                      @php $k++ @endphp
+                                      @endforeach
+                                   </tbody>
+                                   <tfoot>
+                                      <tr>
+                                         <td colspan="5" class="text-align-center">
+                                            <button type="button" class="btn btn-add-new btn-block" onclick="template_row_add_choice()"> + Add New Option</button>
+                                         </td>
+                                      </tr>
+                                   </tfoot>
+                                </table>
+                             </div>
+                             <div class="checkbox">
+                                <label>
+                                <input type="checkbox">Shuffle the options in the test
+                                </label>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
                   <br>
                   <!--   Evaluation Parameters (Optional) -->
                   <div class="modal-content s_modal s_light_green_color_modal">
@@ -963,7 +1041,7 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                                 <textarea min="0" class="form-control" name="solutiontext" style="" value="{{$solution->text}}">{{$solution->text}}</textarea>
                               </div>
                            </div>
                         </div>
@@ -981,7 +1059,7 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                                 <textarea min="0" class="form-control" name="solutioncode" style="" value="{{$solution->code}}" >{{$solution->code}}</textarea>
                               </div>
                            </div>
                         </div>
@@ -999,7 +1077,7 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                                 <textarea min="0" class="form-control" name="solutionurl" style="" value="{{$solution->url}}" >{{$solution->url}}</textarea>
                               </div>
                            </div>
                         </div>
@@ -1017,7 +1095,7 @@
                         <!--<button type="file" class="btn">Upload Files</button>-->
                         <div class="f_upload_btn">
                            Upload Media
-                           <input type="file" name="">
+                           <input type="file" name="audio_video" value="{{$solution->solution_media}}" >
                         </div>
                      </div>
                   </div>
@@ -1025,6 +1103,7 @@
             </div>
          </div>
       </div>
+  	</form>
    </div>
 </div>
 @endsection

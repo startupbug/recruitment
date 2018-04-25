@@ -28,7 +28,10 @@ class AddUserIdToAdminSettingQuestions extends Migration
      */
     public function down()
     {
+        
+         Schema::table('admin_setting_questions', function (Blueprint $table) {
         $table->dropColumn('user_id');
         $table->dropColumn('format_setting_id');
+        });
     }
 }
