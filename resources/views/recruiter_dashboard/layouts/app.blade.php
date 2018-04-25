@@ -824,7 +824,7 @@
                                                 <strong>Code
                                                     <div class="s_popup">
                                                           <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a>
-                                           
+
                                         </div>
                                                 </strong>
                                             </div>
@@ -2604,6 +2604,7 @@
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 <script src="{{ asset('public/assets/js/f.js') }}"></script>
+<script src="{{ asset('public/assets/js/s_js.js') }}"></script>
 <script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
 <script language="text/javascript">
@@ -2621,6 +2622,11 @@
             $('.dropdown-menu', this).toggleClass('open');
         });
     });
+    // $(document).ready(function(){
+    //   @if(isset($hostFlag) && $hostFlag)
+    //   $('#_first_model').modal('show');
+    //   @endif
+    // });
 </script>
 
 <script type="text/javascript">
