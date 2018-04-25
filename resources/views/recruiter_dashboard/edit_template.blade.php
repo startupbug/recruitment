@@ -276,7 +276,7 @@
                                                 <div class="statement">
                                                    <div class="row">
                                                       <div class="single-line-ellipsis">
-                                                          <a href="#" onclick="modal_data({{$q->id}})" data-toggle="modal" data-target="" class="no-underline">{{$q->question_statement}}</a>
+                                                          <a href="#" onclick="modal_data({{$q->id}})" data-toggle="modal" data-target="#coding_modal" class="no-underline">{{$q->question_statement}}</a>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -4657,6 +4657,121 @@
                         </div>
                      </div>
                   </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+<div class="modal fade" id="coding_modal" role="dialog">
+   <div class="modal-dialog  modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header s_modal_form_header">
+            <div class="pull-right">
+               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+            </div>
+            <h3 class="modal-title s_font"></i>Coding Question</h3>
+         </div>
+         <div class="modal-body s_modal_form_body">
+            <div style="">
+               <div class="content-area content-area-70 new-question">
+                  <form name="mcq" action="{{route('update_partial_question')}}" method="post">
+                     {{csrf_field()}}
+                     <input type="hidden" name="question_id" id="question_id_id" value="">
+                     <div class="form-group">
+                        <div class="form-inline">
+                           <label>program Title</label>
+                           <span>(Current state of question : READY<span id="state_name"></span>)</span>
+
+                            <label>program Title</label>
+                           <span>(Current state of question : READY<span id="state_name"></span>)</span>
+                           <br>
+                           <span id="question_statement_id"></span>
+                           <div class="pull-right">
+                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link">
+                              <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="form-group ng-scope" data-ng-if="isTestQuestion">
+<label>Marks for this Question</label>
+<input type="number" name="marks" min="0" class="form-control" required="required">
+</div>
+
+<input type="submit" value="Update Marks" class="btn btn-primary btn-sm f_update">
+
+<table class="table">
+<thead>
+<tr>
+<th colspan="4">Samples</th>
+</tr>
+<tr data-ng-if="currentQuestion.sampleInOut.length" class="">
+<th></th>
+<th>Input</th>
+<th>Output</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>
+<textarea id="sampleInput" wrap="off" name="sampleInput" class="form-control disabled="disabled"></textarea>
+</td>
+<td>
+<textarea id="sampleOutput" wrap="off" name="sampleOutput" class="form-control" required="" disabled="disabled"></textarea>
+</td>
+</tr><tr class="">
+<td class="">2</td>
+<td>
+<textarea id="sampleInput" wrap="off" name="sampleInput" class="form-control disabled="disabled"></textarea>
+</td>
+<td>
+<textarea id="sampleOutput" wrap="off" name="sampleOutput" class="form-control" required="" disabled="disabled"></textarea>
+</td>
+</tr>
+</tbody>
+</table>
+
+<div>
+<label>Tags</label>
+<div>
+<span class="">
+<span class="pad-right-10">
+<span class="tags form-group"> maths </span>
+</span>
+</span>
+</div>
+</div>
+<form>
+<div class="form-group">
+<label>Question Level:</label>
+<div class="row">
+<div class="col-md-8">intermediate</div>
+</div>
+</div>
+
+<div class="form-group">
+<label>Author</label>
+<div class="row">
+<div class="col-md-8">12321</div>
+</div>
+</div>
+
+<div class="form-group">
+<label>provider</label>
+<div class="row">
+<div class="col-md-8">3123</div>
+</div>
+</div>
+</form>
+                     
+                 
                </div>
             </div>
          </div>
