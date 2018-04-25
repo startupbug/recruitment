@@ -812,7 +812,6 @@ function edittesttemplate_Collapse() {
      }
   , 1000);
 }
-
 //Duplicate Test Template
 function section_id(id) {
   console.log(id);
@@ -916,6 +915,108 @@ function code_collapse_modal() {
   clearInterval(code_testtemp_setInterval_Collapse);
   code_edittesttemplate_Expand();
 }
+
+
+var submission_testtemp_setInterval_Expand;
+var submission_testtemp_setInterval_Collapse;
+function submission_edittesttemplate_Expand() {
+  clearInterval(submission_testtemp_setInterval_Collapse);
+  submission_testtemp_setInterval_Expand = setInterval(
+    function(){
+      var htmlString = $( "#section-submission-question-Modal .fr-element.fr-view" ).html();
+
+      if (htmlString == "<p><br></p>") {
+        $("#section-submission-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").addClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        console.log(htmlString);
+        $("#section-submission-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").removeClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function submission_edittesttemplate_Collapse() {
+  clearInterval(submission_testtemp_setInterval_Expand);
+  submission_testtemp_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#section-submission-question-Modal-collapse .fr-element.fr-view" ).html();
+      $("#submission_preview_data_section_collapse").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#section-submission-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").addClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#section-submission-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").removeClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function submission_collapse_modal() {
+  $("#section-submission-question-Modal-collapse").modal('hide');
+  $("#section-submission-question-Modal").css('overflow','scroll');
+  clearInterval(submission_edittesttemplate_Expand);
+  submission_edittesttemplate_Expand();
+}
+
+
+var submission_fill_testtemp_setInterval_Expand;
+var submission_fill_testtemp_setInterval_Collapse;
+function submission_fill_edittesttemplate_Expand() {
+  clearInterval(submission_fill_testtemp_setInterval_Collapse);
+  submission_fill_testtemp_setInterval_Expand = setInterval(
+    function(){
+      var htmlString = $( "#section-submission-fill-blanks-question-Modal .fr-element.fr-view" ).html();
+
+      if (htmlString == "<p><br></p>") {
+        $("#section-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").addClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        console.log(htmlString);
+        $("#section-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").removeClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function submission_fill_edittesttemplate_Collapse() {
+  clearInterval(submission_fill_testtemp_setInterval_Expand);
+  submission_fill_testtemp_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#section-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view" ).html();
+      $("#submission_fill_preview_data_section_collapse").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#section-submission-fill-blanks-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").addClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#section-submission-fill-blanks-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").removeClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function submission_fill_collapse_modal() {
+  $("#section-submission-fill-blanks-question-Modal-collapse").modal('hide');
+  $("#section-submission-fill-blanks-question-Modal").css('overflow','scroll');
+  clearInterval(submission_fill_edittesttemplate_Expand);
+  submission_fill_edittesttemplate_Expand();
+}
+
+
 
 function edit_template_text_editor() {
   // clearInterval(code_testtemp_setInterval_Expand);

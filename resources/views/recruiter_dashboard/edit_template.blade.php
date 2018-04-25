@@ -477,8 +477,8 @@
                                              </button>
                                              </span>
                                              <ul class="dropdown-menu s_addquestion_dropdown_menu">
-                                                <li><a data-toggle="modal" data-target="#section-submission-question-Modal">Add Submission Question</a></li>
-                                                <li><a data-toggle="modal" data-target="#section-submission-fill-blanks-question-Modal">Add Fill In The Blanks Question</a></li>
+                                                <li><a data-toggle="modal" onclick="submission_edittesttemplate_Expand()" data-target="#section-submission-question-Modal">Add Submission Question</a></li>
+                                                <li><a data-toggle="modal" onclick="submission_fill_edittesttemplate_Expand()" data-target="#section-submission-fill-blanks-question-Modal">Add Fill In The Blanks Question</a></li>
                                              </ul>
                                           </span>
                                           <button type="button" class="btn" data-toggle="modal" data-target="#section-submission-fill-blanks-choice-Modal">
@@ -3442,25 +3442,35 @@
                         </div>
                         <div>
                            <label class="container_radio border_radio_left">STAGE
-                           <input type="radio" checked="checked" name="radio" disabled>
+                           <input type="radio" name="radio_1" value="1" disabled>
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio">READY
-                           <input type="radio" name="radio">
+                           <input type="radio" name="radio_1" value="2" checked="checked">
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio border_radio_right">ABANDONED
-                           <input type="radio" name="radio" disabled>
+                           <input type="radio" name="radio_1" value="3" disabled>
                            <span class="checkmark"></span>
                            </label>
                         </div>
                         <hr>
                         <hr>
                         <div class="heading_modal_statement">
-                           <strong>Question Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                           <strong>Question Statement (<a href="#section-submission-question-Modal-collapse" data-toggle="modal" onclick="submission_edittesttemplate_Collapse()" >Expand</a>) <i class="fa fa-info-circle"></i></strong>
                         </div>
                         <textarea class="edit"></textarea>
-                        <div class="checkbox">
+                        <br>
+                        <div class="panel panel-pagedown-preview hidden" id="submission_edittemp_panel">
+                          <div class="panel-heading">
+                            <strong>Preview</strong>
+                          </div>
+                          <div class="panel-body">
+                            <p id="submission_preview_data_section_expand"></p>
+                          </div>
+                        </div>
+
+                        <div class="checkbox hidden">
                            <label>
                            <input type="checkbox"> Enable code modification and show difference
                            </label>
@@ -3481,7 +3491,10 @@
                         <div class="heading_modal_statement heading_padding_bottom">
                            <div class="">
                               <h5><b>Media(Audio/Video)</b></h5>
-                              <button type="button" class="btn">Upload Media</button>
+                              <div class="s_sbtn f_upload_btn">
+                                        Upload Media
+                                  <input type="file" name="media" >
+                              </div>
                            </div>
                            <br>
                            <strong>
@@ -3492,7 +3505,10 @@
                            (These resources will be available for the candidate to download during the test)
                            </label>
                            <div class="s_pur_body">
-                              <button type="button" class="btn"> + Add resources</button>
+                             <div class="f_upload_btn">
+                                       + Add resources
+                                 <input type="file" name="resources" >
+                             </div>
                            </div>
                            <hr>
                            <strong>
@@ -3601,33 +3617,41 @@
                         <h4 class="modal-title s_font">  Evaluation Parameters (Optional)</h4>
                      </div>
                      <div class="modal-body s_modal_body">
-                        <div class="no-more-tables ">
-                           <table class="table s_table">
-                              <thead>
+                       <div class="row">
+                         <div class="col-md-10">
+                           <div class="no-more-tables">
+                             <table class="table s_table" id="weightage_table">
+                               <thead>
                                  <th>Tile</th>
-                                 <th>Weightage (%)</th>
-                                 <th></th>
-                              </thead>
-                              <tbody>
+                                 <th colspan="3" class="text-center">
+                                   Weightage (%)
+                                   <div>
+                                     <a class="equalize" style="font-weight:normal" >Equalize</a>
+                                   </div>
+                                 </th>
+                               </thead>
+                               <tbody>
                                  <tr>
-                                    <td class="s_weight" valign="center">
-                                       <div >
-                                          <input type="text" class="form-control text-margin" name="title" value="">
-                                       </div>
-                                    </td>
-                                    <td valign="center">
-                                       <div class="input-group input-group-sm">
-                                          <input type="number" class="form-control" width="30px" max="100" min="0">
-                                          <span class="input-group-addon" id="basic-addon1">%</span>
-                                       </div>
-                                    </td>
-                                    <td valign="center">
-                                       <button type="button" class="btn">+ Save New</button>
-                                    </td>
+                                   <td class="s_weight" valign="center">
+                                     <div>
+                                       <input type="text" class="form-control text-margin weightage_title" name="title" value="">
+                                     </div>
+                                   </td>
+                                   <td valign="center">
+                                     <div class="input-group input-group-sm">
+                                       <input type="number" class="form-control weightage_no" style="width:60px;">
+                                       <span class="input-group-addon" id="basic-addon1">%</span>
+                                     </div>
+                                   </td>
+                                   <td valign="center" colspan="2">
+                                     <button type="button" class="btn save_button" disabled>+ Save New</button>
+                                   </td>
                                  </tr>
-                              </tbody>
-                           </table>
-                        </div>
+                               </tbody>
+                             </table>
+                           </div>
+                         </div>
+                       </div>
                      </div>
                   </div>
                   <br>
@@ -3679,6 +3703,36 @@
       </div>
    </div>
 </div>
+<div class="modal fade" id="section-submission-question-Modal-collapse" role="dialog">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+       <div class="modal-body s_modal_form_body">
+          <div class="row">
+            <div class="col-md-12">
+              <strong>Question Statement (<a onclick="submission_collapse_modal()" >Collapse</a>)</strong>
+              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <textarea class="edit collapse_editor" name="sub_question_statement"></textarea>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-pagedown-preview">
+                <div class="panel-heading">
+                  <strong>Preview</strong>
+                </div>
+                <div class="panel-body" style="height: 647px;">
+                  <p id="submission_preview_data_section_collapse"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
+
 <!-- section-submission-fill-blanks-question-Modal -->
 <div class="modal fade" id="section-submission-fill-blanks-question-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
@@ -3721,10 +3775,18 @@
                         <hr>
                         <hr>
                         <div class="heading_modal_statement">
-                           <strong>Question Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                           <strong>Question Statement (<a href="#section-submission-fill-blanks-question-Modal-collapse" data-toggle="modal" onclick="submission_fill_edittesttemplate_Collapse()">Expand</a>) <i class="fa fa-info-circle"></i></strong>
                         </div>
                         <textarea class="edit"></textarea>
                         <br>
+                        <div class="panel panel-pagedown-preview hidden" id="submission_fill_edittemp_panel">
+                          <div class="panel-heading">
+                            <strong>Preview</strong>
+                          </div>
+                          <div class="panel-body">
+                            <p id="submission_fill_preview_data_section_expand"></p>
+                          </div>
+                        </div>
                      </div>
                   </div>
                   <br>
@@ -3737,7 +3799,10 @@
                         <div class="heading_modal_statement heading_padding_bottom">
                            <div class="">
                               <h5><b>Media(Audio/Video)</b></h5>
-                              <button type="button" class="btn">Upload Media</button>
+                              <div class="s_sbtn f_upload_btn">
+                                        Upload Media
+                                  <input type="file" name="media" >
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -3828,33 +3893,41 @@
                         <h4 class="modal-title s_font">  Evaluation Parameters (Optional)</h4>
                      </div>
                      <div class="modal-body s_modal_body">
-                        <div class="no-more-tables ">
-                           <table class="table s_table">
-                              <thead>
-                                 <th>Tile</th>
-                                 <th>Weightage (%)</th>
-                                 <th></th>
-                              </thead>
-                              <tbody>
-                                 <tr>
+                       <div class="row">
+                         <div class="col-md-10">
+                            <div class="no-more-tables ">
+                              <table class="table s_table" id="weightage_fill_table">
+                                <thead>
+                                  <th>Tile</th>
+                                  <th colspan="3" class="text-center">
+                                    Weightage (%)
+                                    <div>
+                                      <a class="equalize" style="font-weight:normal" >Equalize</a>
+                                    </div>
+                                  </th>
+                                </thead>
+                                <tbody>
+                                  <tr>
                                     <td class="s_weight" valign="center">
-                                       <div >
-                                          <input type="text" class="form-control text-margin" name="title" value="">
-                                       </div>
+                                      <div>
+                                        <input type="text" class="form-control text-margin weightage_title" name="title" value="">
+                                      </div>
                                     </td>
                                     <td valign="center">
-                                       <div class="input-group input-group-sm">
-                                          <input type="number" class="form-control" width="30px" max="100" min="0">
-                                          <span class="input-group-addon" id="basic-addon1">%</span>
-                                       </div>
+                                      <div class="input-group input-group-sm">
+                                        <input type="number" class="form-control weightage_no" style="width:60px;">
+                                        <span class="input-group-addon" id="basic-addon1">%</span>
+                                      </div>
                                     </td>
-                                    <td valign="center">
-                                       <button type="button" class="btn">+ Save New</button>
+                                    <td valign="center" colspan="2">
+                                      <button type="button" class="btn save_button" disabled>+ Save New</button>
                                     </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                         </div>
+                       </div>
                      </div>
                   </div>
                   <br>
@@ -3906,6 +3979,37 @@
       </div>
    </div>
 </div>
+<div class="modal fade" id="section-submission-fill-blanks-question-Modal-collapse" role="dialog">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+       <div class="modal-body s_modal_form_body">
+          <div class="row">
+            <div class="col-md-12">
+              <strong>Question Statement (<a onclick="submission_fill_collapse_modal()" >Collapse</a>)</strong>
+              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <textarea class="edit collapse_editor" name="sub_fill_question_statement"></textarea>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-pagedown-preview">
+                <div class="panel-heading">
+                  <strong>Preview</strong>
+                </div>
+                <div class="panel-body" style="height: 647px;">
+                  <p id="submission_fill_preview_data_section_collapse"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- section-debug-Modal -->
 <div class="modal fade" id="section-submission-fill-blanks-choice-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
@@ -4554,12 +4658,5 @@
       </div>
    </div>
 </div>
-<script type="text/javascript">
-   $(document).ready(function(){
-      @if(isset($hostFlag) && $hostFlag)
-         $('#_first_model').modal('show');
-      @endif
-   });
-</script>
 <!-- section-mcqs-Modal -->
 @endsection

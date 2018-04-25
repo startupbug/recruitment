@@ -2493,6 +2493,7 @@
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 <script src="{{ asset('public/assets/js/f.js') }}"></script>
+<script src="{{ asset('public/assets/js/s_js.js') }}"></script>
 <script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
 <script language="text/javascript">
@@ -2509,6 +2510,11 @@
         $(".dropdown").click(function() {
             $('.dropdown-menu', this).toggleClass('open');
         });
+    });
+    $(document).ready(function(){
+      @if(isset($hostFlag) && $hostFlag)
+      $('#_first_model').modal('show');
+      @endif
     });
 </script>
 @yield('modal_content')
