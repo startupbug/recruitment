@@ -168,14 +168,14 @@
                      <div class="tab-content">
                         <div id="sections-multiplechoice-{{$key}}" class="tab-pane fade in active">
                            <form action="{{route('delete_all_mcqs_questions')}}" method="get">
-                              <input type="hidden" name="section_mc_id[]"  id="section_mc_id">
+                              <input type="hidden" name="section_mc_id[]" class="input_c_id"  id="section_mc_id">
                               <button type="submit" class="btn delete_section_mc hidden">Delete</button>
                            </form>
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
                                     <tr>
-                                       <th><input type="checkbox" class="codeQuesCheck"></th>
+                                       <th><input type="checkbox" class="codeQuesCheck_prog_mc"></th>
                                        <th>#</th>
                                        <th>Statement</th>
                                        <th>Action</th>
@@ -241,14 +241,14 @@
                         </div>
                         <div id="sections-coding-{{$key}}" class="tab-pane fade">
                            <form>
-                              <input type="hidden" name="section_c_id[]"  id="section_c_id">
+                              <input type="hidden" name="section_c_id[]" class="input_c_id"  id="section_c_id">
                               <button type="submit" class="btn delete_section_c hidden">Delete</button>
                            </form>
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
                                     <tr>
-                                       <th><input type="checkbox" name="" class="codeQuesCheck"></th>
+                                       <th><input type="checkbox" name="" class="codeQuesCheck_prog_c"></th>
                                        <th>#</th>
                                        <th>Statementp</th>
                                        <th></th>
@@ -404,15 +404,14 @@
                         </div>
                         <div id="sections-submission-{{$key}}" class="tab-pane fade">
                            <form>
-                              <input type="text" name="section_s_id[]" class="input_c_id" id="section_s_id">
-
+                              <input type="hidden" name="section_s_id[]" class="input_c_id" id="section_s_id">
                               <button type="submit" class="btn delete_section_s hidden">Delete</button>
                            </form>
                            <div class="no-more-tables">
                               <table class="table s_table">
                                  <thead>
                                     <tr>
-                                       <th><input type="checkbox" class="codeQuesCheck"></th>
+                                       <th><input type="checkbox" class="codeQuesCheck_prog_s"></th>
                                        <th>#</th>
                                        <th>Statement000</th>
                                        <th></th>
@@ -420,7 +419,7 @@
                                  </thead>
                                  <tbody>
                                     <tr>
-                                       <td><input type="checkbox" class="prog_s"></td>
+                                       <td><input type="checkbox" class="prog_s" value="1"></td>
                                        <td>1</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -459,7 +458,7 @@
                                        </td>
                                     </tr>
                                     <tr>
-                                       <td><input type="checkbox"></td>
+                                       <td><input type="checkbox" class="prog_s" value="2"></td>
                                        <td>2</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -498,7 +497,7 @@
                                        </td>
                                     </tr>
                                     <tr>
-                                       <td><input type="checkbox"></td>
+                                       <td><input type="checkbox" class="prog_s" value="3"></td>
                                        <td>3</td>
                                        <td class="col-md-10 col-sm-12 col-xs-12">
                                           <div class="statement">
@@ -756,7 +755,7 @@
                                           <div class="col-sm-9">
                                              <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" value="1" 
+                                                <input type="checkbox" value="1"
                                                 @if($edit_test_settings->request_resume == 1) checked='checked' @endif
                                                  name="request_resume" id="request_resume" checked> Request Resume
                                                 </label>
@@ -766,7 +765,7 @@
                                                 <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) checked='checked' @endif   name="mandatory_resume" id="mandate_resume">
                                                  Mandate Resume
                                                 </label>
-                                               </div>                                         
+                                               </div>
                                           </div>
                                        </div>
                                        <div>
@@ -998,7 +997,7 @@
                                           </form>
                                      </div>
 
-                                                                      
+
                                     <div class="form-group form-group-sm">
                                        <label class="col-sm-3 control-label">
                                        Candidate Mail Setting
@@ -1685,9 +1684,11 @@
       <div class="modal-content">
          <div class="modal-header s_modal_form_header">
             <div class="pull-right">
-               <span>Select the question(s) and enter marks  </span>
-               <input type="text" name="public_mcq_id" id="public_question_mcq_id">
-               <button type="button" class="btn s_save_button s_font" data-dismiss="modal"><i class="fa fa-list"></i> Add Selected Questions</button>
+               <form class="pull-left">
+                 <span id="add_selected_question_span">Select the question(s) and enter marks</span>
+                 <input type="hidden" name="public_mcq_id" id="public_question_mcq_id" style="color: black;">
+                 <button type="submit" class="btn s_save_button s_font hidden" id="add_selected_question_button" data-dismiss="modal"><i class="fa fa-list"></i> Add Selected Questions</button>
+               </form>
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Clear selection</button>
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
@@ -1718,46 +1719,54 @@
                                 <div class="col-md-6">
                                    <div class="checkbox no-margin">
                                       <label>
-                                      <input type="checkbox">Easy
+                                      <input type="checkbox" class="level_easy" checked>Easy
                                       </label>
                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                    <div class="checkbox no-margin">
                                       <label>
-                                      <input type="checkbox" checked>Medium
+                                      <input type="checkbox" class="level_medium">Medium
                                       </label>
                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                    <div class="checkbox no-margin">
                                       <label>
-                                      <input type="checkbox">Hard
+                                      <input type="checkbox" class="level_hard">Hard
                                       </label>
                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                    <div class="checkbox no-margin">
                                       <label>
-                                      <input type="checkbox">All
+                                      <input type="checkbox" class="level_all">All
                                       </label>
                                    </div>
                                 </div>
                              </div>
                            </div>
 
-                           <div class="form-group form-group-sm">
-                              <label class="control-label"><strong>Question Id</strong></label>
-                              <div class="">
-                                 <input type="text" class="form-control" name="" value="" placeholder="Enter question id">
-                              </div>
+                           <div class="moreSettings_button" onclick="moreSettings()" style="margin-bottom:5px;">
+                             More
                            </div>
-                           <div class="form-group form-group-sm">
-                              <label class="control-label"><strong>Question Statement</strong></label>
-                              <div class="">
-                                 <input type="text" class="form-control" name="" value="" required="" placeholder="Enter question statement">
-                              </div>
+                           <div class="moreSettings hidden">
+
+                             <div class="form-group form-group-sm">
+                                <label class="control-label"><strong>Question Id</strong></label>
+                                <div class="">
+                                   <input type="text" class="form-control" name="" value="" placeholder="Enter question id">
+                                </div>
+                             </div>
+                             <div class="form-group form-group-sm">
+                                <label class="control-label"><strong>Question Statement</strong></label>
+                                <div class="">
+                                   <input type="text" class="form-control" name="" value="" required="" placeholder="Enter question statement">
+                                </div>
+                             </div>
+
                            </div>
+
                            <button class="btn btn-sm btn-success">Apply</button>
                            <button class="btn btn-sm btn-default">Reset</button>
                         </form>
@@ -1776,7 +1785,7 @@
                            <table class="table s_table">
                               <thead>
                                  <tr>
-                                    <th><input type="checkbox"></th>
+                                    <th><input type="checkbox" class="codeQuesCheck_public_question_mcq"></th>
                                     <th></th>
                                     <th style="text-align: left;"><b>Statement</b></th>
                                     <th>Positive Marks</th>
@@ -1854,10 +1863,10 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="text" value="10" class="form-control allow_number">
+                                       <input type="text" value="10" class="form-control allow_number" disabled>
                                     </td>
                                     <td>
-                                       <input type="text" class="form-control allow_number">
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                                  <tr>
@@ -1926,10 +1935,10 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="text" value="10" class="form-control allow_number">
+                                       <input type="text" value="10" class="form-control allow_number" disabled>
                                     </td>
                                     <td>
-                                       <input type="text" class="form-control allow_number">
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                                  <tr>
@@ -1998,10 +2007,10 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="text" value="10" class="form-control allow_number">
+                                       <input type="text" value="10" class="form-control allow_number" disabled>
                                     </td>
                                     <td>
-                                       <input type="text" class="form-control allow_number">
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                               </tbody>
@@ -2013,7 +2022,7 @@
                            <table class="table s_table">
                               <thead>
                                  <tr>
-                                    <th><input type="checkbox"></th>
+                                    <th><input type="checkbox" class="codeQuesCheck_private_question_mcq"></th>
                                     <th></th>
                                     <th style="text-align: left;"><b>Statement</b></th>
                                     <th>Positive Marks</th>
@@ -2022,7 +2031,7 @@
                               </thead>
                               <tbody>
                                  <tr>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" class="private_question_mcq" value="9"></td>
                                     <td>
                                        <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_4"></i>
                                        <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_4">
@@ -2085,14 +2094,14 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="text"  value="10" class="form-control allow_number">
+                                       <input type="text"  value="10" class="form-control allow_number" disabled>
                                     </td>
                                     <td>
-                                       <input type="text" class="form-control allow_number">
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                                  <tr>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" class="private_question_mcq" value="256"></td>
                                     <td>
                                        <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_5"></i>
                                        <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_5">
@@ -2155,14 +2164,14 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="text" value="10" class="form-control allow_number">
+                                       <input type="text" value="10" class="form-control allow_number" disabled>
                                     </td>
                                     <td>
-                                       <input type="text" class="form-control allow_number">
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                                  <tr>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" class="private_question_mcq" value="23"></td>
                                     <td>
                                        <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_6"></i>
                                        <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_6">
@@ -2228,10 +2237,10 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="text" value="10" class="form-control allow_number">
+                                       <input type="text" value="10" class="form-control allow_number" disabled>
                                     </td>
                                     <td>
-                                       <input type="text" class="form-control allow_number">
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                               </tbody>
@@ -2325,9 +2334,9 @@
                                     <strong>Program Statement (<a href="#section-coding-add-compilable-question-Modal-Collapse" data-toggle="modal" onclick="code_edittesttemplate_Collapse()" >Expand</a>) <i class="fa fa-info-circle"></i></strong>
                                 </div>
                                 <textarea class="edit"></textarea>
-                                <br>                                
+                                <br>
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Sample Input & Output
+                                    <!-- <strong>Sample Input & Output
                                         <div class="s_popup">
                                             <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
@@ -2335,7 +2344,7 @@
 
                                             </span>
                                         </div>
-                                    </strong>
+                                    </strong> -->
                                     <div class="heading_modal_statement heading_padding_bottom">
                                        <strong>Sample Input & Output
                                            <div class="s_popup">
@@ -2373,7 +2382,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="4" class="text-align-center">
-                                                        <button class="btn" onclick="addrow_section_codingquestion()">+ Add Sample Test Case</button>
+                                                        <button type="button" class="btn" onclick="addrow_section_codingquestion()">+ Add Sample Test Case</button>
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -2416,7 +2425,7 @@
                                         </tbody>
                                     </table>
                                     <hr>
-                                  <button class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
+                                  <button type="button" class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
                                    <div class="s_uplosd_btn f_upload_btn">
                                      Upload Test Case Files
                                      <input type="file" name="test_case_file" >

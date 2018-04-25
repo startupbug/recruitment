@@ -817,18 +817,19 @@
      font-weight: bold;
      color: #333333;
 }
- .panel {
+.panel {
      border-radius: 0px;
 }
- .top_right li a {
+.top_right li a {
      color: white;
      font-size: 16px;
      padding-left: 10px;
 }
- .dropdown-menu>li>a {
-     color: #333 !important;
+.dropdown-menu>li>a {
+    color: #333 !important;
+    cursor: pointer;
 }
- .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
      width: 100%;
 }
  section.info {
@@ -2728,4 +2729,15 @@ li.active {
 }
 .s_drop_down li a {
     font-size: 12px;
+}
+#add_selected_question_button{
+    margin-right: 8px;
+}
+#add_selected_question_span{
+    margin-right: 8px;
+}
+.moreSettings_button {
+    color: #23527c;
+    cursor: pointer;
+    margin-bottom: 5px;
 }
