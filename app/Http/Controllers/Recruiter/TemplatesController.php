@@ -192,20 +192,23 @@ class TemplatesController extends Controller
     
     //Duplicating Test Template
     public function create_duplicate_template_post(Request $request){
+
     	$test_template_id = $request->previous_template_id;
     	$previous_template = Test_template::find($test_template_id);
-    	try {
-    	if (Auth::check()) {
-				if (isset($previous_template)) {
+        //dd($test_template_id);
+        try {
+        if (Auth::check()) {
+                if (isset($previous_template)) {
 		    	$store = new Test_template;
 				$store->user_id = Auth::user()->id;
 				$store->title =$request->title;
 				$store->template_type_id =$previous_template->template_type_id;
 				$store->description =$previous_template->description;
 				$store->instruction = $previous_template->instruction;
-				if ($store->save()) {			
+				if ($store->save()) {	
+                // $section_of_templates = Section::where()->get();		
 					return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Duplicated The Test Template']);
-					//return redirect()->route('edit_template',['id' => $store->id]);
+					
 				}else{
 					return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong']);
 					//return redirect()->back();
@@ -213,6 +216,7 @@ class TemplatesController extends Controller
 			}
 		}
 		} catch (QueryException $e) {
+
     		return \Response()->Json([ 'array' => $e]);
     	}
     }
