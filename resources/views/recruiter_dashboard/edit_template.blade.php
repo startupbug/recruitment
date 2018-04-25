@@ -2664,8 +2664,6 @@
                </div>
                <h3 class="modal-title s_font">Coding Question</h3>
             </div>
-<<<<<<< HEAD
-            <h3 class="modal-title s_font">Coding Question</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div class="row">
@@ -2699,7 +2697,6 @@
                               <div class="form-group form-group-sm">
                                  <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Provider  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
-=======
             <div class="modal-body s_modal_form_body">
                <div class="row">
                   <div class="col-md-10 col-md-offset-1">
@@ -2734,21 +2731,14 @@
                                        <strong>Program Title  <i class="fa fa-info-circle"></i></strong>
                                     </div>
                                     <input type="text" name="coding_program_title" class="form-control">
->>>>>>> 510a767eeccf521d7d0af8ead9a9fd26e2a04ad3
                                  </div>
                               </div>
                            </div>
-                           <div class="heading_modal_statement">
-                              <strong>Program Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
-                           </div>
-                           <textarea name="question_statement" class="edit"></textarea>
-                           <br>
                         </div>
-<<<<<<< HEAD
                         <div class="heading_modal_statement">
                            <strong>Program Statement (<a href="#">Expand</a>)  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
                         </div>
-                        <textarea class="edit"></textarea>
+                        <textarea name="question_statement" class="edit"></textarea>
                         <br>
                      </div>
                   </div>
@@ -2773,59 +2763,56 @@
                               <label>
                               <input type="checkbox">Verify the Test Cases
                               </label>
-=======
-                     </div>
+                           </div>
                      <br>
                      <!-- Test Cases -->
-                         <div class="modal-content s_modal s_green_color_modal">
-                               <div class="modal-header s_modal_header s_green_color_header">
-                                   <h4 class="modal-title s_font">Test Cases</h4>
-                               </div>
-                               <div class="modal-body s_modal_body">
-                                   <div class="heading_modal_statement heading_padding_bottom">
-                                       <strong>Test Cases
-                                            <div class="s_popup">
-                                               <i class="fa fa-info-circle"> </i>
-                                               <span class="s_popuptext">
-                                                  htmlTooltip.modalProgramTestcases <br>
+                     <div class="modal-content s_modal s_green_color_modal">
+                         <div class="modal-header s_modal_header s_green_color_header">
+                             <h4 class="modal-title s_font">Test Cases</h4>
+                         </div>
+                         <div class="modal-body s_modal_body">
+                             <div class="heading_modal_statement heading_padding_bottom">
+                                 <strong>Test Cases
+                                      <div class="s_popup">
+                                         <i class="fa fa-info-circle"> </i>
+                                         <span class="s_popuptext">
+                                            htmlTooltip.modalProgramTestcases <br>
 
-                                               </span>
-                                           </div>
-                                       </strong>
-                                       <strong class="pull-right">
-                                       <input type="checkbox" name="weightage_status" value="1">
-                                       Equalize Weightage, <a href="#">Total: 100%</a>
-                                       </strong>
-                                       <table class="table s_table" id="weightage_row_edit">
-                                           <thead>
-                                               <th></th>
-                                               <th class="col-md-2">Name</th>
-                                               <th class="col-md-3">Input</th>
-                                               <th class="col-md-3">Output</th>
-                                               <th class="col-md-4 text-center">Weightage</th>
-                                           </thead>
-                                           <tbody>
-                                           </tbody>
-                                       </table>
-                                       <hr>
-                                       <button type="button" class="btn" onclick="addrow_weightage_edit()">+ Add Test Case as Text</button>
-                                      <div class="s_uplosd_btn f_upload_btn">
-                                        Upload Test Case Files
-                                        <input type="file" name="test_case_file" >
-                                      </div>
-                                       <a href="#">Test case file format</a>
-                                       <div class="checkbox s_margin_0">
-                                           <label>
-                                           <input type="checkbox" name="test_case_verify" value="1">Verify the Test Cases
-                                           </label>
-                                       </div>
-
-                                       <p>Test Cases should be added/uploaded</p>
-                                   </div>
-                               </div>
->>>>>>> 510a767eeccf521d7d0af8ead9a9fd26e2a04ad3
-                           </div>
-                           <br>
+                                         </span>
+                                     </div>
+                                 </strong>
+                                 <strong class="pull-right">
+                                 <input type="checkbox" name="weightage_status" value="1">
+                                 Equalize Weightage, <a href="#">Total: 100%</a>
+                                 </strong>
+                                 <table class="table s_table" id="weightage_row_edit">
+                                     <thead>
+                                         <th></th>
+                                         <th class="col-md-2">Name</th>
+                                         <th class="col-md-3">Input</th>
+                                         <th class="col-md-3">Output</th>
+                                         <th class="col-md-4 text-center">Weightage</th>
+                                     </thead>
+                                     <tbody>
+                                     </tbody>
+                                 </table>
+                                 <hr>
+                                 <button type="button" class="btn" onclick="addrow_weightage_edit()">+ Add Test Case as Text</button>
+                                <div class="s_uplosd_btn f_upload_btn">
+                                  Upload Test Case Files
+                                  <input type="file" name="test_case_file" >
+                                </div>
+                                 <a href="#">Test case file format</a>
+                                 <div class="checkbox s_margin_0">
+                                     <label>
+                                     <input type="checkbox" name="test_case_verify" value="1">Verify the Test Cases
+                                     </label>
+                                 </div>
+                                 <p>Test Cases should be added/uploaded</p>
+                             </div>
+                         </div>
+                     </div>
+                     <br>
                      <!-- Default Codes -->
                      <div class="modal-content s_modal s_yellow_color_modal hidden">
                         <div class="modal-header s_modal_header s_yellow_color_header">
@@ -2870,8 +2857,7 @@
                            </div>
                         </div>
                      </div>
-<<<<<<< HEAD
-                  </div>
+                      </div>
                   <br>
                   <!--  Question Details -->
                   <div class="modal-content s_modal s_gray_color_modal">
@@ -2885,21 +2871,7 @@
                         </div>
                         <div class="heading_modal_statement heading_padding_bottom">
                            <strong>Tags  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a> No tags added</strong>
-=======
-                     <br>
-                     <!--  Question Details -->
-                     <div class="modal-content s_modal s_gray_color_modal">
-                        <div class="modal-header s_modal_header s_gray_color_header">
-                           <h4 class="modal-title s_font"> Question Details</h4>
->>>>>>> 510a767eeccf521d7d0af8ead9a9fd26e2a04ad3
-                        </div>
-                        <div class="modal-body s_modal_body">
-                           <div class="form-group form-group-sm">
-                              <strong>Marks for this Question <i class="fa fa-info-circle"></i></strong>
-                              <input type="number" name="marks" min="1" class="form-control" required="required" style="">
-                           </div>
-<<<<<<< HEAD
-                        </div>
+
                         <div class="heading_modal_statement heading_padding_bottom">
                            <strong>Question Level  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a></strong>
                         </div>
@@ -3082,7 +3054,7 @@
                </div>
             </div>
          </div>
-   </form>
+      </form>
    </div>
 </div>
 <!-- Coding Modal Second Type-->
@@ -4743,17 +4715,6 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-<!-- section-mcqs-Modal -->
-<script type="text/javascript">
-   $(document).ready(function(){
-      @if(isset($hostFlag) && $hostFlag)
-         $('#_first_model').modal('show');
-      @endif
-   });
-</script>
-=======
->>>>>>> 510a767eeccf521d7d0af8ead9a9fd26e2a04ad3
 <div class="modal fade" id="question_modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
@@ -4836,14 +4797,4 @@
       </div>
    </div>
 </div>
-
-@endsection
-<script type="text/javascript">
-   $(document).ready(function(){
-      @if(isset($hostFlag) && $hostFlag)
-         $('#_first_model').modal('show');
-      @endif
-   });
-</script>
-<!-- section-mcqs-Modal -->
 @endsection
