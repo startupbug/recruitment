@@ -35,8 +35,8 @@
                         <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                           <li><a href="dashboard/history.php"><i class="fa fa-clock-o" aria-hidden="true"></i>Assessment History</a></li>
-                           <li><a href="dashboard/customersupport.php"><i class="fa fa-headphones"></i>Customer Support</a></li>
+                           <li><a href="{{route('history')}}"><i class="fa fa-clock-o" aria-hidden="true"></i>Assessment History</a></li>
+                           <li><a href="{{route('customer_support')}}"><i class="fa fa-headphones"></i>Customer Support</a></li>
                         </ul>
                      </div>
                   </li>

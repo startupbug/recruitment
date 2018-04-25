@@ -27,15 +27,19 @@ class CreateQuestionChoice
      * @return void
     */
     public function handle(QuestionChoice $event)
-    {
-        // dd($event->question_data['request']['partial_marks']);
+    {        
         foreach ($event->question_data['request']['choice'] as $key => $value){            
             $section =new  Mulitple_choice;
             if(isset($event->question_data['request']['partial_marks'][$key])){                
                 $section->partial_marks = $event->question_data['request']['partial_marks'][$key];
                 $section->status = 1;
-            }else{                    
+            }else{ 
                 $section->status = 0;
+            }
+            if(isset($event->question_data['request']['shuffle_status']) && $event->question_data['request']['shuffle_status'] == 'on'){                
+               $section->shuffle_status = 1;
+            }else{                    
+                $section->shuffle_status = 0;
             }
             $section->question_id = $event->question_data['store']->id;
             $section->choice = $value;      

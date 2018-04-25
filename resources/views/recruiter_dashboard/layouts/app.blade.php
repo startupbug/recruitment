@@ -33,6 +33,11 @@
     <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('public/bower_components/alertify/themes/alertify.default.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/S_style.css') }}">
+
+    <script type="text/javascript">
+
+
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -511,7 +516,17 @@
                                     <strong>Question State
 
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+
+                                            <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" There are three possible states for a question. <br>
+                                                (1)Stage (2) Ready (3) Abandoned <br>
+                                                <br>
+                                                <br>
+                                                Why is it needed:The purpose of the states is to manage the question development cycle.
+                                                <br>
+                                                <br>
+                                                Question is the Stage state the represents the question which is
+                                                added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the Abondoned state represents a question which is rejected."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                There are three possible states for a question. <br>
                                                 (1)Stage (2) Ready (3) Abandoned <br>
@@ -522,7 +537,7 @@
                                                 <br>
                                                 Question is the Stage state the represents the question which is
                                                 added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the Abondoned state represents a question which is rejected.
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -542,7 +557,7 @@
                                 </div>
                                 <hr>
                                 <div class="heading_modal_statement">
-                                    <strong>Question Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Question Statement  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Click me"> <i class="fa fa-info-circle"> </i></a></strong>
                                     <span>Please add atleast 3 characters in the statement</span>
                                 </div>
                                 <textarea id="s_txtEditor"></textarea>
@@ -566,7 +581,13 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Choices
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Under this section, one can add the <br>
+                                                Good to Know: <br>
+                                                (1) Multiple choice multiple answer type questions are supported.
+                                                <br>
+                                                <br>
+                                                (2) Choice field's value cannot be empty or a duplicate."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 Under this section, one can add the <br>
                                                 Good to Know: <br>
@@ -574,7 +595,7 @@
                                                 <br>
                                                 <br>
                                                 (2) Choice field's value cannot be empty or a duplicate.
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                     <strong class="pull-right">
@@ -667,7 +688,14 @@
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Tags <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Each question can be associated with multiple tags. <br>
+                                                <br>
+                                                Why it matters:
+                                                <br>
+                                                <br>
+                                                (1) Tags are used in filters while searching through the library.
+                                                (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classifiaction."> <i class="fa fa-info-circle"> </i></a>
+                                           <!-- <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                Each question can be associated with multiple tags. <br>
                                                 <br>
@@ -676,7 +704,7 @@
                                                 <br>
                                                 (1) Tags are used in filters while searching through the library.
                                                 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classifiaction.
-                                            </span>
+                                            </span>-->
                                         </div>
                                      No tags added</strong>
                                 </div>
@@ -699,11 +727,12 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Question Level
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                Question level determines the standard of the question. Supported classification are easy, intermediate and hard. <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -727,11 +756,12 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Provider
                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the organization name that serves as the provider of the question. "> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 This optional field is meant to contain the organization name that serves as the provider of the question. <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -745,11 +775,12 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Author
                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                        <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 This field is meant to contain the name of the author of this question. <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -772,12 +803,13 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Text
                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                        <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 Provide the solution to the question in text if the question is required to use.
 
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -791,10 +823,8 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Code
                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
-                                            <span class="s_popuptext">
-                                               Provide the solution to the question in Code if the question is required to use.
-                                            </span>
+                                                          <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a>
+                                           
                                         </div>
                                                 </strong>
                                             </div>
@@ -808,10 +838,11 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>URL
                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                          <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in URL if the question is required to use."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                Provide the solution to the question in URL if the question is required to use.
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -822,10 +853,12 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Files
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in files if the question is required to use."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                Provide the solution to the question in files if the question is required to use.
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -867,14 +900,19 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Question State
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="   There are three possible states for a question. <br>
+                                               (1) Stage (2) Ready (3) Abondoned<br>
+                                                Why is it needed: The purpose of the states is to manage the question development cycle.
+                                                <br>
+                                                Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented."> </i></a>
+                                           <!-- <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               There are three possible states for a question. <br>
                                                (1) Stage (2) Ready (3) Abondoned<br>
                                                 Why is it needed: The purpose of the states is to manage the question development cycle.
                                                 <br>
                                                 Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented.
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -899,13 +937,17 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Program Title
                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                          <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This is meant to contain a suitable title <br>
+                                                representing the program.<br>
+                                               Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
+                                               and also serve as a parameter for filters while searching through the library."> </i></a>
+                                           <!-- <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 This is meant to contain a suitable title <br>
                                                 representing the program.<br>
                                                Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
                                                and also serve as a parameter for filters while searching through the library.
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -914,18 +956,19 @@
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement">
-                                    <strong>Program Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Program Statement (<a href="#">Expand</a>)  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in file if the question is required to use. <br>"> </i></a></strong>
                                 </div>
                                 <textarea id="s_txtEditor_programming"></textarea>
                                 <br>
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Sample Input & Output
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="htmlTooltip.modalProgramSamples <br>"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                htmlTooltip.modalProgramSamples <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                     <div class="no-more-tables ">
@@ -974,11 +1017,12 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Test Cases
                                          <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="htmlTooltip.modalProgramSamples <br>"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                htmlTooltip.modalProgramTestcases <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                     <strong class="pull-right">
@@ -1012,11 +1056,12 @@
                                         <strong>
                                         Add Default Codes for the Question
                                          <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in file if the question is required to use. <br>"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               These codes will be provided to the candidate during the test will be the only allowed languages for which the code is provided. <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                         <a href="#"> Advanced</a>
                                         </strong>
@@ -1035,7 +1080,13 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Tags
                                          <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Each question can be associated with multiple tags. <br>
+                                             Why it matters:<br>
+                                             (1) Tags are used in filters while searching through the library.
+                                             <br>
+                                             (2) Tagging is an efficient way of management of <br>library spanning multiple conceptual categories and <br>classification."> </i></a>
+
+                                           <!-- <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                              Each question can be associated with multiple tags. <br>
                                              Why it matters:<br>
@@ -1044,7 +1095,7 @@
                                              (2) Tagging is an efficient way of management of <br>library spanning multiple conceptual categories and <br>classification.
 
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                      No tags added</strong>
                                 </div>
@@ -1067,11 +1118,12 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Question Level
                                          <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> </i></a>
+                                           <!-- <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               Question level determines the standard of the question. Supported classification are easy, intermediate and hard. <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -1095,11 +1147,12 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Provider
                                                      <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                        <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This optional field is meant to contain the organization name that serves as the provider of the question. <br>"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                This optional field is meant to contain the organization name that serves as the provider of the question. <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -1113,11 +1166,12 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Author
                                                      <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the name of the author of this question. <br>"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               This field is meant to contain the name of the author of this question. <br>
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -1140,11 +1194,12 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Text
                                                      <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                          <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Provide the solution of the question in text if the question is required to use."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                              Provide the solution of the question in text if the question is required to use.
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -1158,11 +1213,12 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Code
                                                      <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                        <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution of the question in code if the question is required to use."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                              Provide the solution of the question in code if the question is required to use.
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -1176,11 +1232,12 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>URL
                                                 <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                     <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution of the question in URL if the question is required to use."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                              Provide the solution of the question in URL if the question is required to use.
 
-                                            </span>
+                                            </span>-->
                                         </div>
 
                                                 </strong>
@@ -1192,11 +1249,12 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Files
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution of the question in URL if the question is required to use."> </i></a>
+                                           <!-- <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                              Provide the solution of the question in FILE if the question is required to use.
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -1236,7 +1294,10 @@
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Question State <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Question State <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                 </div>
                                 <div>
                                     <label class="container_radio border_radio_left">STAGE
@@ -1257,14 +1318,20 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Provider <i class="fa fa-info-circle"></i></strong>
+                                                <strong>Provider <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                             </div>
                                             <input type="text" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement">
-                                    <strong>Program Statement (<a href="#">Expand</a>) <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Program Statement (<a href="#">Expand</a>) <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                 </div>
                                 <textarea id="s_txtEditor_programming_debug"></textarea>
                                 <br>
@@ -1278,7 +1345,10 @@
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Test Cases <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Test Cases <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                     <strong class="pull-right">
                                     <input type="checkbox" name="" value="">
                                     Equalize Weightage, <a href="#">Total: 0%</a>
@@ -1349,7 +1419,10 @@
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Tags <i class="fa fa-info-circle"></i> No tags added</strong>
+                                    <strong>Tags <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a> No tags added</strong>
                                 </div>
                                 <div class="form-group-sm">
                                     <div class="row">
@@ -1368,7 +1441,10 @@
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Question Level <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Question Level <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                 </div>
                                 <div class="heading_padding_bottom">
                                     <label class="container_radio border_radio_left">Easy
@@ -1388,7 +1464,10 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Provider <i class="fa fa-info-circle"></i></strong>
+                                                <strong>Provider <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                             </div>
                                             <input type="text" class="form-control">
                                         </div>
@@ -1398,7 +1477,10 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Author <i class="fa fa-info-circle"></i></strong>
+                                                <strong>Author <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                             </div>
                                             <input type="text" class="form-control">
                                         </div>
@@ -1410,14 +1492,17 @@
                         <!--  Solution Details (Optional) -->
                         <div class="modal-content s_modal s_orange_color_modal">
                             <div class="modal-header s_modal_header s_orange_color_header  accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#solution3" aria-expanded="false">
-                                <h4 class="modal-title s_font"> <i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
+                                <h4 class="modal-title s_font">  Solution Details (Optional)</h4>
                             </div>
                             <div class="modal-body s_modal_body panel-collapse collapse" id="solution3">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Text <i class="fa fa-info-circle"></i></strong>
+                                                <strong>Text <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                             </div>
                                             <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
                                         </div>
@@ -1427,7 +1512,10 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Code <i class="fa fa-info-circle"></i></strong>
+                                                <strong>Code <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                             </div>
                                             <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
                                         </div>
@@ -1437,14 +1525,20 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>URL <i class="fa fa-info-circle"></i></strong>
+                                                <strong>URL <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                             </div>
                                             <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Files <i class="fa fa-info-circle"></i></strong>
+                                    <strong>Files <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
+                                 This is a markdown editor <br>
+                                 Learning refrence:<br>
+                                 http://www.markdowntutorial.com/"> <i class="fa fa-info-circle"> </i></a></strong>
                                 </div>
                                 <!--<button type="file" class="btn">Upload Files</button>-->
                                 <div class="f_upload_btn">
@@ -1484,14 +1578,19 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Question State
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                            <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" There are three possible states for a question. <br>
+                                               (1) Stage (2) Ready (3) Abondoned<br>
+                                                Why is it needed: The purpose of the states is to manage the question development cycle.
+                                                <br>
+                                                Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               There are three possible states for a question. <br>
                                                (1) Stage (2) Ready (3) Abondoned<br>
                                                 Why is it needed: The purpose of the states is to manage the question development cycle.
                                                 <br>
                                                 Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented.
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -1514,7 +1613,11 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="form-group form-group-sm">
                                             <div class="heading_modal_statement heading_padding_bottom">
-                                                <strong>Question Type <i class="fa fa-info-circle"></i></strong>
+                                                <strong>Question Type   <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" There are three possible states for a question. <br>
+                                               (1) Stage (2) Ready (3) Abondoned<br>
+                                                Why is it needed: The purpose of the states is to manage the question development cycle.
+                                                <br>
+                                                Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented."> <i class="fa fa-info-circle"> </i></a></strong>
                                             </div>
                                             <select name="questionType" class="form-control">
                                                 <option value="DEFAULT">Normal Submission</option>
@@ -1526,7 +1629,14 @@
                                 <div class="heading_modal_statement">
                                     <strong>Question Statement (<a href="#">Expand</a>)
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+
+                                              <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This section provides a mark down editor to write the program statement. <br>
+                                               What does it mean: Markdown is a lightweight markup language with plain text formatting syntax.<br>
+                                               Learning refrence:
+                                               <br>
+                                                http://markdowntutorial.com/<br>
+                                                Good to know: The expand link opens an expanded view of the editor for a better view of the text while typing/editing."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                              This section provides a mark down editor to write the program statement. <br>
                                                What does it mean: Markdown is a lightweight markup language with plain text formatting syntax.<br>
@@ -1537,7 +1647,7 @@
 
 
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -1572,14 +1682,11 @@
                                     <strong>
                                     Resources
                                   <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                     <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalSubmissionResources"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                             htmlTooltip.modalSubmissionResources
-
-
-
-
-                                            </span>
+                                        </span>-->
                                         </div>
                                     </strong>
                                     <label class="control-label">
@@ -1596,14 +1703,11 @@
                                     <strong>
                                     Candidate can use
                                    <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                     <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalSubmissionResources"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 htmlTooltip.modalSubmissionCandidateResources
-
-
-
-
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                     <div class="checkbox">
@@ -1642,14 +1746,11 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Question Level
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question, Supported classification are easy, intermediate and hard."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 Question level determines the standard of the question, Supported classification are easy, intermediate and hard.
-
-
-
-
-                                            </span>
+                                            </span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -1670,7 +1771,13 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Tags
                                         <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                            <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Each question can be associated with multiple tags.
+                                               <br>
+                                               Why it matters:<br>
+                                               (1) Tags are used in filters while searching through the library.
+                                               <br>
+                                               (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                Each question can be associated with multiple tags.
                                                <br>
@@ -1678,11 +1785,7 @@
                                                (1) Tags are used in filters while searching through the library.
                                                <br>
                                                (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
-
-
-
-
-                                            </span>
+                                         </span>-->
                                         </div>
                                      No tags added</strong>
                                 </div>
@@ -1708,16 +1811,11 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Provider
                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                          <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This optional field is meant to contain the organization name that serves as the provider of the question."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               This optional field is meant to contain the organization name that serves as the provider of the question.
-
-
-
-
-
-
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -1731,16 +1829,11 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Author
                                                       <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the  name of the autor of the organization."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               This optional field is meant to contain the  name of the autor of the organization.
-
-
-
-
-
-
-                                            </span>
+                                            </span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -1799,11 +1892,12 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Text
                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the  name of the autor of the organization."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                              Provide the solution to the question in text if the question is required to use.
 
-                                            </span>
+                                            </span>-->
                                         </div>
 
 
@@ -1823,11 +1917,10 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Code
                                                        <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in Code if the question is required to use."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
-                                             Provide the solution to the question in Code if the question is required to use.
-
-                                            </span>
+                                             Provide the solution to the question in Code if the question is required to use.</span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -1841,11 +1934,10 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>URL
                                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Provide the solution to the question in text if the question is required to use."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
-                                             Provide the solution to the question in text if the question is required to use.
-
-                                            </span>
+                                             Provide the solution to the question in text if the question is required to use.</span>-->
                                         </div>
                                                 </strong>
                                             </div>
@@ -1856,11 +1948,10 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Files
                                            <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                             <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
-                                             Provide the solution to the question in text if the question is required to use.
-
-                                            </span>
+                                             Provide the solution to the question in text if the question is required to use.</span>-->
                                         </div>
                                     </strong>
                                 </div>
@@ -1902,14 +1993,19 @@
                         <div class="heading_modal_statement heading_padding_bottom">
                            <strong>Question State
                               <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                 <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" There are three possible states for a question. <br>
+                                               (1) Stage (2) Ready (3) Abondoned<br>
+                                                Why is it needed: The purpose of the states is to manage the question development cycle.
+                                                <br>
+                                                Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               There are three possible states for a question. <br>
                                                (1) Stage (2) Ready (3) Abondoned<br>
                                                 Why is it needed: The purpose of the states is to manage the question development cycle.
                                                 <br>
                                                 Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented.
-                                            </span>
+                                            </span>-->
                                         </div>
                            </strong>
                         </div>
@@ -1932,7 +2028,15 @@
                         <div class="heading_modal_statement">
                            <strong>Question Statement (<a href="#">Expand</a>)
                               <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                 <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This section provides a markdown editor to write a program statement. <br>
+                                               What does it mean: Markdown is a lightweight markup language with plain text formatting syntax:<br>
+                                               Learning Refrence:
+
+                                                <br>
+                                                http://markdowntutorial.com
+                                                <br>
+                                                Good to know: The expends link open an expanded view of the editor for a better view of the text while typing/editing."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                             This section provides a markdown editor to write a program statement. <br>
                                                What does it mean: Markdown is a lightweight markup language with plain text formatting syntax:<br>
@@ -1942,7 +2046,7 @@
                                                 http://markdowntutorial.com
                                                 <br>
                                                 Good to know: The expends link open an expanded view of the editor for a better view of the text while typing/editing.
-                                            </span>
+                                            </span>-->
                                         </div>
                            </strong>
                         </div>
@@ -1988,18 +2092,24 @@
                      </div>
                      <div class="modal-body s_modal_body">
                                                 <div class="form-group form-group-sm" >
-                                                    <label>Marks for this Question <i class="fa fa-info-circle"></i></label>
+                                                    <label>Marks for this Question  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This section provides a markdown editor to write a program statement. <br>
+                                               What does it mean: Markdown is a lightweight markup language with plain text formatting syntax:<br>
+                                               Learning Refrence:
+
+                                                <br>
+                                                http://markdowntutorial.com
+                                                <br>
+                                                Good to know: The expends link open an expanded view of the editor for a better view of the text while typing/editing."> </i></a></label>
                                                     <input type="number" name="marks" min="1" class="form-control" required="required" style="">
                                                 </div>
                                                 <div class="heading_modal_statement heading_padding_bottom">
                            <strong>Question Level
                               <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                 <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Question level determines the standard of the question. supported classification are easy, intermediate and hard."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                                 Question level determines the standard of the question. supported classification are easy, intermediate and hard.
-
-
-                                            </span>
+                                            </span>-->
                                         </div>
                            </strong>
                         </div>
@@ -2020,7 +2130,14 @@
                         <div class="heading_modal_statement heading_padding_bottom">
                            <strong>Tags
                               <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Each question can be associated with multiple tags. <br>
+
+                                                <br>
+                                                Why it matters:
+                                                <br>
+                                                (1) Tags are used in filters while searching through the library.<br>
+                                                (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification."> </i></a>
+                                           <!-- <i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                               Each question can be associated with multiple tags. <br>
 
@@ -2029,7 +2146,7 @@
                                                 <br>
                                                 (1) Tags are used in filters while searching through the library.<br>
                                                 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
-                                            </span>
+                                            </span>-->
                                         </div>
                             No tags added</strong>
                         </div>
@@ -2055,12 +2172,14 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                   <strong>Provider
                                       <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                          <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the <br>
+                                              organization name that serves as the provider of the question."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                             This optional field is meant to contain the <br>
                                               organization name that serves as the provider of the question.
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                   </strong>
                                 </div>
@@ -2074,12 +2193,14 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                    <strong>Author </strong>
                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This field is meant to contain the <br>
+                                             name of the author of the question."> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                             This field is meant to contain the <br>
                                              name of the author of the question.
 
-                                            </span>
+                                            </span>-->
                                         </div>
                                 </div>
                                  <input type="text" class="form-control">
@@ -2137,12 +2258,11 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                   <strong>Text
                                      <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Provide the solution to the question in text if the question is required to use. <br>"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                            Provide the solution to the question in text if the question is required to use. <br>
-
-
-                                            </span>
+                                       </span>-->
                                         </div>
                                   </strong>
                                 </div>
@@ -2156,12 +2276,11 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                   <strong>Code
                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in code if the question is required to use. <br>"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                            Provide the solution to the question in code if the question is required to use. <br>
-
-
-                                            </span>
+                                       </span>-->
                                         </div>
                                   </strong>
                                 </div>
@@ -2175,12 +2294,10 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                   <strong>URL
                                     <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                          <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Provide the solution to the question in URL if the question is required to use. <br>"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
-                                           Provide the solution to the question in URL if the question is required to use. <br>
-
-
-                                            </span>
+                                           Provide the solution to the question in URL if the question is required to use. <br></span>-->
                                         </div>
                                   </strong>
                                 </div>
@@ -2191,12 +2308,11 @@
                        <div class="heading_modal_statement heading_padding_bottom">
                         <strong>Files
                             <div class="s_popup">
-                                            <i class="fa fa-info-circle"> </i>
+                                <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in file if the question is required to use. <br>"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
                                             <span class="s_popuptext">
                                            Provide the solution to the question in file if the question is required to use. <br>
-
-
-                                            </span>
+                                       </span>-->
                                         </div>
                         </strong>
                        </div>
@@ -2217,57 +2333,9 @@
 @yield('create_template_modal')
 
 <!--view page on Filter -->
-<div class="modal fade" id="filter_view" role="dialog">
-    <div class="modal-dialog  modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content filter">
-            <div class="modal-header s_modal_form_header">
-                <div class="pull-right">
-                    <!--<button type="button" class="btn s_save_button s_font" data-dismiss="modal">Create</button>-->
-                    <button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>
-                </div>
-                <h3 class="modal-title s_font f_font"><i class="fa fa-filter">Filter Criteria</i></h3>
-            </div>
-            <div class="modal-body s_modal_form_body">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Name:</label>
-                            <div class="col-md-9">
-                                <div class="template"><input id="name" name="name" type="text" placeholder="Enter the name of the test" class="form-control general">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Test type:</label>
-                            <div class="col-md-9">
-                                <div class="checkbox both">
-                                    <label><input type="checkbox" value="">Invite only</label>
-                                    <label><input type="checkbox" value="">Public</label>
-                                    <label><input type="checkbox" value="">Both</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Test status:</label>
-                            <div class="col-md-9">
-                                <div class="checkbox both">
-                                    <label><input type="checkbox" value="">Live</label>
-                                    <label class="upcoming"><input type="checkbox" value="">Upcoming</label>
-                                    <label><input type="checkbox" value="">Expired</label>
-                                    <label><input type="checkbox" value="">All</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="button_filter">
-                            <button type="button" class="btn">Apply</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@yield('filter_criteria_template_modal')
+
+
 <!--filter modal view page end-->
 <!--view page on Setup manual-->
 <div class="modal fade" id="setup_manual" role="dialog">
@@ -2348,7 +2416,7 @@
 </div>
 <!--setup manual end-->
 @yield('createtemplate')
-@yield('modal_content')
+
 <!--Setting page on user management-->
 <div class="modal fade" id="usermanagement" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -2535,16 +2603,18 @@
 <script src="{{ asset('public/assets/js/froala_editor.min.js') }}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
+<script src="{{ asset('public/assets/js/f.js') }}"></script>
+<script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
-<script type="text/javascript">
+<script language="text/javascript">
+
     $(document).ready(function(){
         $('.duplicate_modal_id').click(function(){
             var a = $(this).attr('data-target-id');
             $(".modal-body input[name=previous_template_id]").val(a);
       });
     });
-</script>
-<script type="text/javascript">
+
     $('body').scrollspy({target: "#myScrollspy"})
     $(document).ready(function(){
         $(".dropdown").click(function() {
@@ -2552,5 +2622,6 @@
         });
     });
 </script>
+@yield('modal_content')
 </body>
 </html>

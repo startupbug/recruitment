@@ -35,14 +35,18 @@ class CreateQuestionDetail
         $section->negative_marks = $event->question_data['request']['negative_marks'];
         $section->provider = $event->question_data['request']['provider'];
         $section->author = $event->question_data['request']['author'];
+        $section->save();
+        $section_id = $section->id;
+        
         if(isset($event->question_data['request']['media'])){
             $image=$event->question_data['request']['media'];
-            $filename=time() . '.' . $image->getClientOriginalExtension();
+            $filename=md5($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();
             $location=public_path('public/storage/question-detail-media/'.$filename);
-            $section->media=$filename;
+            Question_detail::where('id' ,'=', $section_id)->update([
+            'media' => $filename
+            ]); 
+            $section->media = $this->UploadFile('media', $event->question_data['request']['media']);
         }
-        $section->media = $this->UploadFile('media', $event->question_data['request']['media']);
-        $section->save();
     }
     public function UploadFile($type, $file){
         if( $type == 'media'){

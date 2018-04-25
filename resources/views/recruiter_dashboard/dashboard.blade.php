@@ -26,7 +26,6 @@
 			</div>
 			<div class="col-md-4">
 				<a href="{{route('general_setting')}}">
-
 					<div class="border">
 						<div class="image_left"><img src="{{ asset('public/assets/img/option.png') }}" class="img-responsive">
 							<p class="content_bottom">Settings</p>
