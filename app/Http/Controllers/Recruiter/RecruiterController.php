@@ -58,7 +58,7 @@ class RecruiterController extends Controller
         return view('recruiter_dashboard.invited_candidates');
     }
 
-    public function library_public_questions($id)
+    public function library_public_questions($id=NULL)
     {
         $args['get_data'] = Question::join('question_details','questions.id','=','question_details.question_id')
         ->join('question_states','questions.question_state_id','=','question_states.id')

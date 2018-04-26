@@ -1140,6 +1140,7 @@ td button.btn.focus, td button.btn:focus, td button.btn:hover {
 .s_table tbody tr td a:hover {
   color: #262063;
   text-decoration: none;
+  cursor: pointer;
 }
 
 /* .s_table tbody tr td i {
@@ -2823,3 +2824,11 @@ h4.f_des {
 .f_update {
     margin-bottom: 10px;
 }
+.f_check {
+    margin-left: 0px;
+}
+.alertify-notifier.ajs-right {
+    right: 10px;
+    z-index: 99999999999999;
+}
+
