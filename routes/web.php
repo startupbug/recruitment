@@ -55,6 +55,13 @@ Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {
 	Route::get('/remove_picture_admin/{user_id}','Admin\AdminController@remove_picture_admin')->name('remove_picture_admin');
 	//Admin Removing ProfilePicture
 
+	//ADMIN QUESTIONS
+	Route::get('adminquestion_index','Admin\Admin_questionController@index')->name('adminquestion_index');
+	Route::get('/admin_question_form','Admin\Admin_questionController@new')->name('create_admin_question');
+	Route::post('/create_admin_questions','Admin\Admin_questionController@create')->name('create_question_for_admin');
+	Route::get('/admin_edit_question/{id}','Admin\Admin_questionController@question_edit')->name('admin_edit_question');
+	Route::post('/admin_question_update/{id}','Admin\Admin_questionController@question_update')->name('update_question_for_admin');
+	Route::get('/admin_question_delete/{id}','Admin\Admin_questionController@question_destroy')->name('admin_question_destroy');
 });
 
 /*Admin Routes Ended*/
@@ -71,7 +78,11 @@ Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send
 Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
 
 Route::get('/invited_candidates', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
-Route::get('/library_public_questions', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
+Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
+
+Route::post('/update_questions_modal/{id}','Recruiter\QuestionsController@update_questions_modal')->name('update_questions_modal');
+Route::get('/delete_question_choice/{id?}','Recruiter\QuestionsController@delete_choice')->name('delete_choice');
+
 Route::get('/preview_test_questions', 'Recruiter\RecruiterController@preview_test_questions')->name('preview_test_questions');
 Route::get('/change_password', 'Recruiter\RecruiterController@change_password')->name('change_password');
 Route::get('/general_setting', 'Recruiter\RecruiterController@general_setting')->name('general_setting');
@@ -103,8 +114,16 @@ Route::get('/move_down/{id}', 'Recruiter\TemplatesController@move_down')->name('
 Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
 Route::post('/create_question_coding','Recruiter\QuestionsController@create_question_coding')->name('create_question_coding');
 Route::post('/create_question_coding_debug','Recruiter\QuestionsController@create_question_coding_debug')->name('create_question_coding_debug');
+Route::post('/create_first_submission_question','Recruiter\QuestionsController@create_first_submission_question')->name('create_first_submission_question');
+Route::post('/create_second_submission_question','Recruiter\QuestionsController@create_second_submission_question')->name('create_second_submission_question');
 Route::get('/delete_question/{id}', 'Recruiter\QuestionsController@delete_question')->name('delete_question');
+
 Route::get('/delete_all_mcqs_questions', 'Recruiter\QuestionsController@delete_all_mcqs_questions')->name('delete_all_mcqs_questions');
+
+Route::get('/delete_all_coding_questions', 'Recruiter\QuestionsController@delete_all_coding_questions')->name('delete_all_coding_questions');
+
+Route::get('/delete_all_submission_questions', 'Recruiter\QuestionsController@delete_all_submission_questions')->name('delete_all_submission_questions');
+
 Route::post('/question_modal_partial_data', 'Recruiter\QuestionsController@question_modal_partial_data')->name('question_modal_partial_data');
 Route::post('/update_partial_question', 'Recruiter\QuestionsController@update_partial_question')->name('update_partial_question');
 //Recruiter Questions Routes Ended

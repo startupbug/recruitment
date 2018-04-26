@@ -10,6 +10,7 @@ use App\Templates_test_setting;
 use App\Templates_contact_setting;
 use App\Test_template;
 use App\Section;
+use App\Question_detail;
 use App\Webcam;
 use App\Question;
 use Auth;
@@ -128,7 +129,7 @@ class TemplatesController extends Controller
 	public function edit_template($id){        
         $args['tags'] = DB::table('question_tags')->get();
       	$args['edit'] = Test_template::find($id);  
-      	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
+      	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
 
         foreach ($args['sections'] as $key => $value) {
 
@@ -147,8 +148,6 @@ class TemplatesController extends Controller
 
              // $args['sections_tabs2'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              // $args['sections_tabs'][$value->id]['count2'] = $value->section_questions;
-
-
         }
         //dd($args['sections_tabs']);
         $args['test_setting_types'] = Test_template_types::get();
@@ -156,6 +155,7 @@ class TemplatesController extends Controller
         $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
         $args['template_id'] = $id;
+       
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 	// Editing Test Template
@@ -194,18 +194,56 @@ class TemplatesController extends Controller
     public function create_duplicate_template_post(Request $request){
     	$test_template_id = $request->previous_template_id;
     	$previous_template = Test_template::find($test_template_id);
-    	try {
-    	if (Auth::check()) {
-				if (isset($previous_template)) {
-		    	$store = new Test_template;
-				$store->user_id = Auth::user()->id;
-				$store->title =$request->title;
-				$store->template_type_id =$previous_template->template_type_id;
-				$store->description =$previous_template->description;
-				$store->instruction = $previous_template->instruction;
-				if ($store->save()) {			
-					return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Duplicated The Test Template']);
-					//return redirect()->route('edit_template',['id' => $store->id]);
+        $section_of_templates = Section::where('template_id',$test_template_id)->get();     
+        //$questions_of_sections = Question::where('template_id',$test_template_id)->get();
+        try {
+        if (Auth::check()) {
+                //Templates ka data copy horha hai yahan
+                if (isset($previous_template)) {		    	
+                $store = $previous_template->replicate();
+                $store->title = $request->title;               
+                if ($store->save()) {                
+                foreach ($section_of_templates as $key => $value) {
+                    $previous_section = Section::find($value->id);
+                    //Sections ka data copy horha hai yahan
+                    if (isset($previous_section)){
+                        $section_store = $previous_section->replicate();
+                        $section_store->template_id =$store->id;
+                        $section_store->save();
+                    }
+                    $questions_of_section = Question::where('section_id',$value->id)->get();
+                    foreach ($questions_of_section as $key => $one_question) {
+                        $previous_question = Question::find($one_question->id);
+                        //Questions ka data copy horha hai yahan
+                        if (isset($previous_question)){
+                            $question_store = $previous_question->replicate();
+                            $question_store->section_id =$section_store->id;
+                            $question_store->save();
+                        }                        
+                        $questions_details_of_question = Question_detail::where('question_id',$one_question->id)->get();
+                        foreach ($questions_details_of_question as $key => $question_detail) {
+                            $previous_question_detail =  Question::with('question_detail')->find($question_detail->question_id)->question_detail;
+                            //Question Detail ka data copy horha hai yahan
+                            if (isset($previous_question_detail)){
+                                $question_detail_store = $previous_question_detail->replicate();
+                                $question_detail_store->question_id =$question_store->id;
+                                $question_detail_store->save();
+                            }
+                        }
+
+                        // $questions_multiple_choice_of_question = Mulitple_choice::where('question_id',$one_question->id)->get();
+                        // foreach ($questions_multiple_choice_of_question as $key => $multiple_choice) {
+                        //     $previous_multiple_choice =  Question::with('multiple_choice')->find($multiple_choice->question_id)->multiple_choice;
+                        //     //Question Multiple Choice ka data copy horha hai yahan
+                        //     if (isset($previous_multiple_choice)){
+                        //     $question_mulitple_choice_store = $previous_multiple_choice->replicate();
+                        //         $question_mulitple_choice_store->question_id=$question_store->id;
+                        //         $question_mulitple_choice_store->save();
+                        //     }
+                        // }
+                    }
+                }
+					return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Duplicated The Test Template']);					
 				}else{
 					return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong']);
 					//return redirect()->back();

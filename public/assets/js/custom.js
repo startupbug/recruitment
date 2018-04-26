@@ -818,6 +818,9 @@ function section_id(id) {
   $('#section_id_1').val(id);
   $('#section_id_2').val(id);
   $('#section_id_3').val(id);
+  $('#section_id_4').val(id);
+  $('#section_id_5').val(id);
+  $('#section_id_6').val(id);
   testtemp_setInterval_Expand = setInterval(
     function(){
       var htmlString = $( "#section-mcqs-Modal .fr-element.fr-view" ).html();

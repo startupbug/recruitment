@@ -32,7 +32,9 @@ class CreateQuestionDetail
         $section->question_id = $event->question_data['store']->id;
         $section->tag_id = $event->question_data['request']['tag_id'];
         $section->marks = $event->question_data['request']['marks'];
+        if (isset($event->question_data['request']['negative_marks'])) {            
         $section->negative_marks = $event->question_data['request']['negative_marks'];
+        }
         $section->provider = $event->question_data['request']['provider'];
         $section->author = $event->question_data['request']['author'];
         $section->save();
