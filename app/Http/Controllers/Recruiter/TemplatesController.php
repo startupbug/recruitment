@@ -125,9 +125,9 @@ class TemplatesController extends Controller
 	// Creating Test Templates
 
 	// Editing Test Template
-	public function edit_template($id){        
+	public function edit_template($id){
         $args['tags'] = DB::table('question_tags')->get();
-      	$args['edit'] = Test_template::find($id);  
+      	$args['edit'] = Test_template::find($id);
       	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
 
         foreach ($args['sections'] as $key => $value) {
