@@ -45,7 +45,6 @@ class QuestionsController extends Controller
 			return redirect()->back();
 		}
 	}
-
 	public function create_question_coding(Request $request){		
 		if (!empty($request->section_id)){
 			$store = new Question;
@@ -74,38 +73,8 @@ class QuestionsController extends Controller
 			$this->set_session('Please Give The Required Data', false);
 			return redirect()->back();
 		}
-	}
-	
+	}	
 	public function create_question_coding_debug(Request $request){		
-		//dd($request->input());
-
-
-  // "section_id" => "32"
-  // "question_type_id" => "2"
-  // "question_sub_types_id" => "3"
-  // "question_state_id" => "2"
-  // "coding_program_title" => "asdad"
-  // "question_statement" => "<p>asdasdad</p>"
-  // "weightage_status" => "1"
-  // "test_case_name" => array:2 [▶]
-  // "test_case_input" => array:2 [▶]
-  // "test_case_output" => array:2 [▶]
-  // "weightage" => array:2 [▶]
-
-
-  // "test_case_verify" => "1"
-  // "marks" => "123"
-  // "tag_id" => "4"
-  // "question_level_id" => "2"
-  // "provider" => "3123"
-  // "author" => "123123"
-  // "text" => "321312"
-  // "code" => "31313"
-  // "url" => "21321"
-
-
-
-
 		if (!empty($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
@@ -132,6 +101,54 @@ class QuestionsController extends Controller
 			$this->set_session('Please Give The Required Data', false);
 			return redirect()->back();
 		}
+	}
+	public function create_first_submission_question(Request $request){		
+			if (!empty($request->section_id)){
+			$store = new Question;
+			$store->user_id = Auth::user()->id;
+			$store->section_id = $request->section_id;
+			$store->question_state_id = $request->question_state_id;
+			$store->question_sub_types_id = $request->question_sub_types_id;
+			$store->question_type_id = $request->question_type_id;
+			$store->question_level_id = $request->question_level_id;
+			$store->question_statement = $request->question_statement;
+			if ($store->save()){				
+				$this->set_session('You Have Successfully Saved The Question Data', true);
+			}else{
+				$this->set_session('Something Went Wrong, Please Try Again', false);	
+			}
+			$question_data =  array('store' => $store, 'request' =>$request->all());			
+			event(new  QuestionDetail($question_data));			
+			event(new  QuestionSolution($question_data));
+			return redirect()->back();	
+		}else{
+			$this->set_session('Please Give The Required Data', false);
+			return redirect()->back();
+		}		
+	}
+	public function create_second_submission_question(Request $request){
+			if (!empty($request->section_id)){
+			$store = new Question;
+			$store->user_id = Auth::user()->id;
+			$store->section_id = $request->section_id;
+			$store->question_state_id = $request->question_state_id;
+			$store->question_sub_types_id = $request->question_sub_types_id;
+			$store->question_type_id = $request->question_type_id;
+			$store->question_level_id = $request->question_level_id;
+			$store->question_statement = $request->question_statement;
+			if ($store->save()){				
+				$this->set_session('You Have Successfully Saved The Question Data', true);
+			}else{
+				$this->set_session('Something Went Wrong, Please Try Again', false);	
+			}
+			$question_data =  array('store' => $store, 'request' =>$request->all());			
+			event(new  QuestionDetail($question_data));			
+			event(new  QuestionSolution($question_data));
+			return redirect()->back();	
+		}else{
+			$this->set_session('Please Give The Required Data', false);
+			return redirect()->back();
+		}		
 	}
 	public function question_modal_partial_data(Request $request){		
 		$question_modal_partial_data = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
@@ -180,6 +197,49 @@ class QuestionsController extends Controller
 		}		
 	}
 
+
+	public function submission_question_modal_partial_data(Request $request){
+		//HASAN MEHDI CODING QUESTIONS FROM JQUERY 
+
+	 	$q_type_id = $request->input('quesType');
+	 	$q_id = $request->input('id');
+
+	 	$coding_question_data = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
+								->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
+								->leftJoin('question_types','question_types.id','=','questions.question_type_id')
+								->leftJoin('questions_submission_resources','questions.id','=','questions_submission_resources.question_id')
+								->leftJoin('question_submission_evaluations','questions.id','=','question_submission_evaluations.question_id')
+								->leftJoin('question_states','question_states.id','=','questions.question_state_id')
+								->leftJoin('question_levels','question_levels.id','=','questions.question_level_id')
+								->leftJoin('question_tags','question_tags.id','=','question_details.tag_id')
+								->select('questions.id', 'question_types.type_name', 'question_types.id as ques_type_id', 'question_details.coding_program_title', 'questions.question_statement', 'question_levels.level_name','question_details.provider','question_tags.tag_name','question_details.marks','question_details.provider','question_details.author','question_submission_evaluations.submission_evaluation_title','question_submission_evaluations.weightage','questions_submission_resources.candidate_help_material_tests_id')
+								->where('questions.id','=',$q_id)
+								->where('question_type_id','=',$q_type_id)
+								->first();
+								// return $coding_question_data;
+		$coding_question_entries = DB::table('candidate_help_material_tests')
+		->join('questions_submission_resources','candidate_help_material_tests.help_material_name','=','questions_submission_resources.candidate_help_material_tests_id')
+		->where('questions_submission_resources.question_id','=','$q_id')
+		->get();
+
+		if (isset($coding_question_data)){			
+			return \Response()->Json([ 'status' => 200, 'coding_question_data'=>$coding_question_data]);
+			if(isset($coding_question_entries))
+			{
+				return \Response()->Json([ 'status' => 200, 'coding_question_data'=>$coding_question_data ,'coding_question_entries'=>$coding_question_entries]);
+			}
+			else
+			{
+				$this->set_session('Something Went Wrong, Please Try Again!', false);
+				return redirect()->back();
+			}		
+		}else{
+			$this->set_session('Something Went Wrong, Please Try Again!', false);
+			return redirect()->back();		
+		}		
+	}
+
+
 	public function update_partial_question(Request $request){		
 		if (!empty($request->question_id)){
 			DB::table('question_details')
@@ -193,8 +253,7 @@ class QuestionsController extends Controller
 				$this->set_session('Something Went Wrong, Please Try Again', false);	
 			}			
 			return redirect()->back();
-	}	
-
+	}
 	public function delete_question($id){		  	
 		$delete = Question::find($id);
 		if ($delete->delete()){
@@ -203,9 +262,39 @@ class QuestionsController extends Controller
 			return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);					
 		}
 	}
-
 	public function delete_all_mcqs_questions(Request $request){
-		$myArray = explode(',', $request->section_mc_id[0]);	
+		$myArray = explode(',',$request->section_mc_id[0]);
+		dd($myArray);	
+		if (isset($myArray)) {			
+			foreach($myArray as $value) {				
+				$delete = Question::find($value);
+				$delete->delete();		
+			}
+			$this->set_session('You Have Successfully Deleted All The Selected Questions', true);
+				return redirect()->back();
+		}else{
+			$this->set_session('Something Went Wrong, Please Try Again!', false);
+				return redirect()->back();
+		}
+	}
+	public function delete_all_coding_questions(Request $request){
+		$myArray = explode(',',$request->section_c_id[0]);
+		dd($myArray);	
+		if (isset($myArray)) {			
+			foreach($myArray as $value) {				
+				$delete = Question::find($value);
+				$delete->delete();		
+			}
+			$this->set_session('You Have Successfully Deleted All The Selected Questions', true);
+				return redirect()->back();
+		}else{
+			$this->set_session('Something Went Wrong, Please Try Again!', false);
+				return redirect()->back();
+		}
+	}
+	public function delete_all_submission_questions(Request $request){
+		$myArray = explode(',',$request->section_s_id[0]);
+		dd($myArray);	
 		if (isset($myArray)) {			
 			foreach($myArray as $value) {				
 				$delete = Question::find($value);
