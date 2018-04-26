@@ -1041,7 +1041,7 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutiontext" style="" value="{{$solution->text}}">{{$solution->text}}</textarea>
+                                 <textarea min="0" class="form-control" name="solutiontext" style="" value="{{isset($solution->text) ?  $solution->text : ''}}">{{isset($solution->text) ?  $solution->text : ''}}</textarea>
                               </div>
                            </div>
                         </div>
@@ -1059,7 +1059,7 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutioncode" style="" value="{{$solution->code}}" >{{$solution->code}}</textarea>
+                                 <textarea min="0" class="form-control" name="solutioncode" style="" value="{{isset($solution->code) ?  $solution->code: ''}}" >{{isset($solution->code) ?  $solution->code: ''}}</textarea>
                               </div>
                            </div>
                         </div>
@@ -1077,7 +1077,7 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutionurl" style="" value="{{$solution->url}}" >{{$solution->url}}</textarea>
+                                 <textarea min="0" class="form-control" name="solutionurl" style="" value="{{isset($solution->url) ? $solution->url: ''}}" >{{isset($solution->url) ? $solution->url : ''}}</textarea>
                               </div>
                            </div>
                         </div>
@@ -1095,7 +1095,7 @@
                         <!--<button type="file" class="btn">Upload Files</button>-->
                         <div class="f_upload_btn">
                            Upload Media
-                           <input type="file" name="audio_video" value="{{$solution->solution_media}}" >
+                           <input type="file" name="audio_video" value="{{isset($solution->solution_media) ? $solution->solution_media : ''}}" >
                         </div>
                      </div>
                   </div>

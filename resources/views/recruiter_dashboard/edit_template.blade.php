@@ -167,6 +167,7 @@
                      </div>
                   </div>
                </div>
+
                <!-- End basic_detail -->
                <!-- Start section_subject -->
                @foreach($sections_tabs as $key => $sec)
@@ -196,6 +197,7 @@
                                  </thead>
                                  <tbody>
                                     @foreach($sec['ques1'] as $serial_number => $q)
+                                    <!-- q is question type id=1   -->
                                      <tr>
                                           <td><input type="checkbox" name="prog" class="prog_mc" value="{{$q->id}}"></td>
                                           <td>{{++$serial_number}}</td>
@@ -270,6 +272,7 @@
                                  </thead>
                                  <tbody>
                                     @foreach($sec['ques2'] as $serial_number => $q)
+                                    <!-- question type id = 2 -->
                                        <tr>
                                              <td><input type="checkbox" class="prog_c" value="1"></td>
                                              <td>{{++$serial_number}}</td>
@@ -277,7 +280,7 @@
                                                 <div class="statement">
                                                    <div class="row">
                                                       <div class="single-line-ellipsis">
-                                                          <a href="#" onclick="modal_data({{$q->id}})" data-toggle="modal" data-target="#coding_modal" class="no-underline">{{$q->question_statement}}</a>
+                                                          <a href="#" data-id="{{$q->id}}" data-url="{{route('coding_question_modal_partial_data')}}" data-toggle="modal" data-target="#coding_modal" class="no-underline coding_question_id" >45454{{$q->question_statement}}</a>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -297,9 +300,11 @@
                                                          </div>
                                                       </div>
                                                       <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
-                                                         <span class="text-muted">Tags : </span>
+                                                         <span class="text-muted">Tagstttt : </span>
                                                          <span class="question-tags">
-                              {{$q->question_detail->question_tag['tag_name']}}
+                                                            @if(isset($q->question_detail->question_tag['tag_name']))
+                                       {{$q->question_detail->question_tag['tag_name']}}
+                              @endif
 
                            </span>
                                                       </div>
@@ -701,18 +706,24 @@
                                                 </span>
                                              </div>
                                           </label>
+                                          
                                           <div class="col-sm-9">
                                              <div class="checkbox">
                                                 <label>
                                                 <input type="checkbox" value="1"
-                                                @if($edit_test_settings->request_resume == 1) checked='checked' @endif
-                                                 name="request_resume" id="request_resume" checked> Request Resume
+
+                                                @if($edit_test_settings->request_resume == 1)
+                                                   checked="checked" name="request_resume" id="request_resume" checked> Request Resume
+                                                @endif 
                                                 </label>
                                              </div>
                                              <div class="checkbox">
                                                 <label id="mandate_resume_label">
-                                                <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) checked='checked' @endif   name="mandatory_resume" id="mandate_resume">
-                                                 Mandate Resume
+                                                <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) 
+                                                checked='checked' 
+                                                @endif   
+                                                name="mandatory_resume" id="mandate_resume">
+                                                Mandate Resume
                                                 </label>
                                                </div>
                                           </div>
@@ -4674,7 +4685,7 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
+
 <!-- section-mcqs-Modal -->
 <script type="text/javascript">
    $(document).ready(function(){
@@ -4683,8 +4694,7 @@
       @endif
    });
 </script>
-=======
->>>>>>> 6a09b083d42b4b53f4857b151ac6c078fbba6846
+
 <div class="modal fade" id="question_modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
@@ -4693,7 +4703,7 @@
             <div class="pull-right">
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
-            <h3 class="modal-title s_font"></i>Multiple Choice Question</h3>
+            <h3 class="modal-title s_font"></i>Multipleee Choice Question</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div style="">
@@ -4787,14 +4797,14 @@
             <div class="pull-right">
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
-            <h3 class="modal-title s_font"></i>Coding Question</h3>
+            <h3 class="modal-title s_font"></i>Coding Questionsssssss</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div style="">
                <div class="content-area content-area-70 new-question">
-                  <form name="mcq" action="{{route('update_partial_question')}}" method="post">
+                  <form name="coding" action="{{route('update_partial_question')}}" method="post" >
                      {{csrf_field()}}
-                     <input type="hidden" name="question_id" id="question_id_id" value="">
+                     <input type="hidden" name="question_id" id="codings_question_id" value="">
                      <div class="form-group">
                         <div class="form-inline">
                            <label>program Title</label>
@@ -4805,7 +4815,7 @@
                            <br>
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
-                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link">
+                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link code_ajax_route" >
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
                            </div>
                         </div>
@@ -4813,7 +4823,7 @@
 
                      <div class="form-group ng-scope" data-ng-if="isTestQuestion">
 <label>Marks for this Question</label>
-<input type="number" name="marks" min="0" class="form-control" required="required">
+<input type="text" name="marks" min="0" id="coding_marks" class="form-control" required="required">
 </div>
 
 <input type="submit" value="Update Marks" class="btn btn-primary btn-sm f_update">
@@ -4830,24 +4840,8 @@
 <th></th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>
-<textarea id="sampleInput" wrap="off" name="sampleInput" class="form-control" disabled="disabled"></textarea>
-</td>
-<td>
-<textarea id="sampleOutput" wrap="off" name="sampleOutput" class="form-control" required="" disabled="disabled"></textarea>
-</td>
-</tr><tr class="">
-<td class="">2</td>
-<td>
-<textarea id="sampleInput" wrap="off" name="sampleInput" class="form-control" disabled="disabled"></textarea>
-</td>
-<td>
-<textarea id="sampleOutput" wrap="off" name="sampleOutput" class="form-control" required="" disabled="disabled"></textarea>
-</td>
-</tr>
+<tbody class="coding_question_table">
+
 </tbody>
 </table>
 
@@ -4856,30 +4850,29 @@
 <div>
 <span class="">
 <span class="pad-right-10">
-<span class="tags form-group"> maths </span>
+<span class="coding_tags form-group">  </span>
 </span>
 </span>
 </div>
 </div>
-<form>
 <div class="form-group">
 <label>Question Level:</label>
 <div class="row">
-<div class="col-md-8">intermediate</div>
+<div class="coding_question_level col-md-8"></div>
 </div>
 </div>
 
 <div class="form-group">
 <label>Author</label>
 <div class="row">
-<div class="col-md-8">12321</div>
+<div class="coding_author col-md-8"></div>
 </div>
 </div>
 
 <div class="form-group">
 <label>provider</label>
 <div class="row">
-<div class="col-md-8">3123</div>
+<div class="coding_provider col-md-8"></div>
 </div>
 </div>
 </form>
