@@ -400,3 +400,16 @@ span.modalcollapse {
     font-size: 15px;
     cursor: pointer;
 }
+button.btn.btn-default.btn-sm.edit_row {
+    margin-right: 5px;
+    color: gray;
+}
+button.btn.btn-danger.btn-sm.remove_row i {
+    color: #fff;
+}
+button.btn.btn-info.btn-sm.save_row {
+    margin-right: 5px;
+}
+button.btn.btn-info.btn-sm.save_row i{
+    color: #fff;
+}

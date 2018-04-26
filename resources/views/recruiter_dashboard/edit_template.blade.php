@@ -2312,10 +2312,13 @@
                                         </div>
                                     </strong>
                                     <strong class="pull-right">
-                                    <input type="checkbox" name="weightage_status" value="1">
-                                    Equalize Weightage, <a href="#">Total: 100%</a>
+                                      <input type="checkbox" name="weightage_status" id="weightage_status" value="1" checked>
+                                      Equalize Weightage,
+                                      <strong class="text-success weightage_blink_success">Total: 100%</strong>
+                                      <strong class="text-danger weightage_blink_error hidden">Total: 1001% (&gt; 100%)</strong>
                                     </strong>
-                                    <table class="table s_table" id="weightage_row">
+                                    <!-- id="weightage_row" -->
+                                    <table class="table s_table" id="weightage_code_table">
                                         <thead>
                                             <th></th>
                                             <th class="col-md-2">Name</th>
@@ -2327,7 +2330,7 @@
                                         </tbody>
                                     </table>
                                     <hr>
-                                 <button type="button" class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
+                                   <button type="button" class="btn" id="weightage_code_add_row">+ Add Test Case as Text</button>
                                    <div class="s_uplosd_btn f_upload_btn">
                                      Upload Test Case Files
                                      <input type="file" name="test_case_file" >
@@ -2670,10 +2673,12 @@
                                            </div>
                                        </strong>
                                        <strong class="pull-right">
-                                       <input type="checkbox" name="weightage_status" value="1">
-                                       Equalize Weightage, <a href="#">Total: 100%</a>
+                                       <input type="checkbox" name="weightage_status" id="weightage_edit_status" value="1" checked>
+                                       Equalize Weightage,
+                                       <strong class="text-success weightage_edit_blink_success">Total: 100%</strong>
+                                       <strong class="text-danger weightage_edit_blink_error hidden">Total: 1001% (&gt; 100%)</strong>
                                        </strong>
-                                       <table class="table s_table" id="weightage_row_edit">
+                                       <table class="table s_table" id="weightage_edit_code_table">
                                            <thead>
                                                <th></th>
                                                <th class="col-md-2">Name</th>
@@ -2685,7 +2690,7 @@
                                            </tbody>
                                        </table>
                                        <hr>
-                                       <button type="button" class="btn" onclick="addrow_weightage_edit()">+ Add Test Case as Text</button>
+                                       <button type="button" class="btn"  id="weightage_edit_code_add_row">+ Add Test Case as Text</button>
                                       <div class="s_uplosd_btn f_upload_btn">
                                         Upload Test Case Files
                                         <input type="file" name="test_case_file" >
