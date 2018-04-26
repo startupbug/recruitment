@@ -395,3 +395,8 @@ p.customer_inner_content {
 .s_questionnaire_body{
       min-height: 700px;
 }
+span.modalcollapse {
+    color: #337ab7;
+    font-size: 15px;
+    cursor: pointer;
+}

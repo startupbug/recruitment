@@ -298,9 +298,10 @@
                                                       <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
                                                          <span class="text-muted">Tags : </span>
                                                          <span class="question-tags">
-                              {{$q->question_detail->question_tag['tag_name']}}
-
-                           </span>
+                                                           @if(isset($q->question_detail->question_tag['tag_name']))
+                                                            {{$q->question_detail->question_tag['tag_name']}}
+                                                           @endif
+                                                         </span>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -328,7 +329,7 @@
                                              </span>
                                              <ul class="dropdown-menu s_addquestion_dropdown_menu">
                                                 <li>
-                                                <a data-toggle="modal" onclick="section_id({{$key}});" data-target="#section-coding-add-compilable-question-Modal">Add Compilable Question</a>
+                                                <a data-toggle="modal" onclick="section_id({{$key}}); code_edittesttemplate_Expand();" data-target="#section-coding-add-compilable-question-Modal">Add Compilable Question</a>
                                              </li>
                                                 <li><a data-toggle="modal" onclick="section_id({{$key}});" data-target="#section-coding-debug-Modal">Add Debug Question</a></li>
                                              </ul>
@@ -2203,6 +2204,8 @@
    </div>
 </div>
 <!-- Coding Modal -->
+
+
 <!-- section-coding-add-compilable-question-Modal -->
 <div class="modal fade" id="section-coding-add-compilable-question-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -2295,8 +2298,16 @@
                                                Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
                                                and also serve as a parameter for filters while searching through the library."> <i class="fa fa-info-circle"> </i></a></strong>
                                 </div>
-                                <textarea class="edit"></textarea>
+                                <textarea class="edit" name="question_statement"></textarea>
                                 <br>
+                                <div class="panel panel-pagedown-preview hidden" id="code_edittemp_panel">
+                                  <div class="panel-heading">
+                                    <strong>Preview</strong>
+                                  </div>
+                                  <div class="panel-body">
+                                    <p id="code_preview_data_section_expand"></p>
+                                  </div>
+                                </div>
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Sample Input & Output
                                         <div class="s_popup">
@@ -2337,7 +2348,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="4" class="text-align-center">
-                                                        <button class="btn" onclick="addrow_section_codingquestion()">+ Add Sample Test Case</button>
+                                                        <button type="button" class="btn" onclick="addrow_section_codingquestion()">+ Add Sample Test Case</button>
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -2620,7 +2631,7 @@
        <div class="modal-body s_modal_form_body">
           <div class="row">
             <div class="col-md-12">
-              <strong>Question Statement (<a onclick="code_collapse_modal()" >Collapse</a>)</strong>
+              <strong>Question Statement (<span onclick="code_collapse_modal()" class="modalcollapse">Collapse</span>)</strong>
               <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
@@ -2644,10 +2655,6 @@
   </div>
 </div>
 <!-- section-coding-debug-Modal -->
-<!-- Coding Modal -->
-
-
-
 <!-- Coding Modal Second Type -->
 <div class="modal fade" id="section-coding-debug-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
@@ -2924,7 +2931,6 @@
    </div>
 </div>
 <!-- Coding Modal Second Type-->
-
 
 
 <!-- section-debug-Modal -->
@@ -3732,10 +3738,9 @@
                         </div>
                         <!--<button type="file" class="btn">Upload Files</button>-->
                          <div class="f_upload_btn">
-                                    Upload Files
-                                    <input type="file" name="">
-                                </div>
-
+                            Upload Files
+                            <input type="file" name="">
+                        </div>
                      </div>
                   </div>
                </div>
@@ -3750,7 +3755,7 @@
        <div class="modal-body s_modal_form_body">
           <div class="row">
             <div class="col-md-12">
-              <strong>Question Statement (<a onclick="submission_collapse_modal()" >Collapse</a>)</strong>
+              <strong>Question Statement (<span onclick="submission_collapse_modal()" class="modalcollapse">Collapse</span>)</strong>
               <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
@@ -3773,6 +3778,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- section-submission-fill-blanks-question-Modal -->
 <div class="modal fade" id="section-submission-fill-blanks-question-Modal" role="dialog">
@@ -4027,7 +4033,7 @@
        <div class="modal-body s_modal_form_body">
           <div class="row">
             <div class="col-md-12">
-              <strong>Question Statement (<a onclick="submission_fill_collapse_modal()" >Collapse</a>)</strong>
+              <strong>Question Statement (<span onclick="submission_fill_collapse_modal()" class="modalcollapse">Collapse</span>)</strong>
               <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
@@ -4497,7 +4503,7 @@
                              </div>
                           </div>
                           <div class="heading_modal_statement heading_padding_bottom">
-                             <strong>Question State  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Under this section, one can add the <br>
+                             <strong>Tags  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Under this section, one can add the <br>
                                    Good to Know: <br>
                                    (1) Multiple choice multiple answer type questions are supported.
                                    <br>
@@ -4515,7 +4521,7 @@
                                    </select>
                                 </div>
                              </div>
-                          </div>
+                          </div><br>
                           <div class="heading_modal_statement heading_padding_bottom">
                              <strong>Question Level  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Under this section, one can add the <br>
                                    Good to Know: <br>
@@ -4650,7 +4656,7 @@
        <div class="modal-body s_modal_form_body">
           <div class="row">
             <div class="col-md-12">
-              <strong>Question Statement (<a onclick="collapse_modal()" >Collapse</a>)</strong>
+              <strong>Question Statement (<span onclick="collapse_modal()" class="modalcollapse">Collapse</span>)</strong>
               <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
