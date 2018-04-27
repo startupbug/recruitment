@@ -156,10 +156,16 @@ Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name(
 //Public preview of host 
 Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
 
-//Report
-Route::get('/report/{id}', 'Recruiter\HostController@can_report')->name('can_report');
+//Library controller
+Route::get('/library', 'Recruiter\LibraryController@lib_index')->name('lib_index');
 
+//Library ini filter
+Route::post('/library-filter', 'Recruiter\LibraryController@libFilter')->name('libFilter');
+
+//Library single detail data.
+Route::post('/library-question-detail', 'Recruiter\LibraryController@lib_ques_detail')->name('lib_ques_detail');
 });
+
 /*Recruiter Routes Ended*/
 
 

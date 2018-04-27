@@ -1,683 +1,573 @@
 @extends('recruiter_dashboard.layouts.app')
 @section('content')
 <section class="view">
-   <br>
-   <div class="container-fluid padding-15-fluit">
-      <div class="row border-row display-table s_magin-10">
-         <div class="col-md-3 col-sm-12 col-xs-12 display-table-cell padding-0 nav-background">
-            <ul class="nav nav-tabs nav-sidebar">
-               <li class="active"><a data-toggle="pill" href="#public">Public Questions <i class=""></i></a></li>
-               <li><a data-toggle="pill" href="#private">Private Questions <i class=""></i></a></li>
-            </ul>
-         </div>
-         <div class="col-md-9 col-sm-12 col-xs-12 display-table-cell padding-col">
-            <div class="tab-content sidebar-content">
-               <!-- Start Public Question -->
-               <div id="public" class="tab-pane fade in active">
-                  <ul class="nav nav-tabs">
-                     <li class="active"><a data-toggle="pill" href="#public-mcqs">MCQs (50)</a></li>
-                     <li><a data-toggle="pill" href="#public-programming-question">Programming Questions (2)</a></li>
-                  </ul>
-                  <div class="tab-content">
-                     <div id="public-mcqs" class="tab-pane fade in active">
-                        <div class="padding-col">
-                           <form>
-                              <div class="form-group col-md-3">
-                                 <select class="form-control radius-0" name="">
-                                    <option value="">All Levels</option>
-                                 </select>
-                              </div>
-                              <div class="form-group col-md-3">
-                                 <select class="form-control radius-0" name="">
-                                    <option value="">All Tag</option>
-                                 </select>
-                              </div>
-                              <div class="button_apply" >
-                                 <button type="button" class="btn">Apply</button>
-                                 <a data-toggle="modal" data-target="#mcqs-filter-Modal">Advanced Filter</a>
-                              </div>
-                           </form>
-                        </div>
-                        <div class="no-more-tables">
-                           <table class="table s_table">
-                              <thead>
-                                 <tr>
-                                    <th>Question Id & Statement</th>
-                                    <th>State</th>
-                                    <th>Level</th>
-                                    <th>Tags</th>
-                                    <th></th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false">
-                                       <span class="fa fa-caret-right"></span>
-                                       Collapsible Group Item #1
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td> <a data-toggle="modal" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
-                                 </tr>
-                                 <tr id="collapse1" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       <div class="modal-content s_modal">
-                                          <div class="modal-header s_modal_header">
-                                             <h4 class="modal-title s_font">Question Statement</h4>
-                                          </div>
-                                          <div class="modal-body s_modal_body">
-                                             <p>
-                                                The 'Miscria Champions League' (MCL) is coming soon, and its preparations have already started. ThunderCracker is busy practicing with his team, when suddenly he thinks of an interesting problem.
-                                                ThunderCracker's team consists of 'N' players (including himself). All the players stand in a straight line (numbered from 1 to N), and pass the ball to each other. The maximum power with which any player can hit the ball on the i'th pass is given by an array Ai. This means that if a player at position 'j' (1<=j<=N) has the ball at the time of the i'th pass, he can pass it to any player with a position from <strong>(j-Ai) to (j-1), or from (j+1) to (j+Ai)</strong> (provided that the position exists).
-                                             </p>
-                                             <br>
-                                             <h2>Output :</h2>
-                                             <p class="s_modal_body_heading">
-                                                A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
-                                             </p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                                       <span class="fa fa-caret-right"></span>
-                                       (1333565) What does the following idiom/ phras...
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td><a data-toggle="modal" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
-                                 </tr>
-                                 <tr id="collapse2" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       Hidden by default
-                                    </td>
-                                 </tr>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                                       <span class="fa fa-caret-right"></span>
-                                       (1333565) What does the following idiom/ phras...
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td><a data-toggle="modal" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
-                                 </tr>
-                                 <tr id="collapse3" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       <div >Hidden by default</div>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                     </div>
-                     <div id="public-programming-question" class="tab-pane fade">
-                        <div class="padding-col">
-                           <form>
-                              <div class="form-group col-md-3">
-                                 <select class="form-control radius-0" name="">
-                                    <option value="">All Levels</option>
-                                 </select>
-                              </div>
-                              <div class="form-group col-md-3">
-                                 <select class="form-control radius-0" name="">
-                                    <option value="">All Tag</option>
-                                 </select>
-                              </div>
-                              <div class="button_apply" >
-                                 <button type="button" class="btn">Apply</button>
-                                 <a data-toggle="modal" data-target="#filter-programming-Modal">Advanced Filter</a>
-                              </div>
-                           </form>
-                        </div>
-                        <div class="no-more-tables">
-                           <table class="table s_table">
-                              <thead>
-                                 <tr>
-                                    <th>Question Id & Statement</th>
-                                    <th>State</th>
-                                    <th>Level</th>
-                                    <th>Tags</th>
-                                    <th></th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false">
-                                       <span class="fa fa-caret-right"></span>
-                                       Collapsible Group Item #1
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td><a data-toggle="modal" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
-                                 </tr>
-                                 <tr id="collapse4" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       <div class="modal-content s_modal">
-                                          <div class="modal-header s_modal_header">
-                                             <h4 class="modal-title s_font">Question Statement</h4>
-                                          </div>
-                                          <div class="modal-body s_modal_body">
-                                             <p>
-                                                The 'Miscria Champions League' (MCL) is coming soon, and its preparations have already started. ThunderCracker is busy practicing with his team, when suddenly he thinks of an interesting problem.
-                                                ThunderCracker's team consists of 'N' players (including himself). All the players stand in a straight line (numbered from 1 to N), and pass the ball to each other. The maximum power with which any player can hit the ball on the i'th pass is given by an array Ai. This means that if a player at position 'j' (1<=j<=N) has the ball at the time of the i'th pass, he can pass it to any player with a position from <strong>(j-Ai) to (j-1), or from (j+1) to (j+Ai)</strong> (provided that the position exists).
-                                             </p>
-                                             <br>
-                                             <h2>Output :</h2>
-                                             <p class="s_modal_body_heading">
-                                                A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
-                                             </p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-                                       <span class="fa fa-caret-right"></span>
-                                       (1333565) What does the following idiom/ phras...
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td><a data-toggle="modal" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
-                                 </tr>
-                                 <tr id="collapse5" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       Hidden by default
-                                    </td>
-                                 </tr>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-                                       <span class="fa fa-caret-right"></span>
-                                       (1333565) What does the following idiom/ phras...
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td><a data-toggle="modal" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
-                                 </tr>
-                                 <tr id="collapse6" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       <div >Hidden by default</div>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- End Public Question -->
-               <!-- Start Private Question -->
-               <div id="private" class="tab-pane fade">
-                  <ul class="nav nav-tabs">
-                     <li class="active"><a data-toggle="pill" href="#private-mcqs">MCQs (50)</a></li>
-                     <li><a data-toggle="pill" href="#private-programming-question">Programming Questions (2)</a></li>
-                     <li><a data-toggle="pill" href="#private-submission-question">Submission Questions (2)</a></li>
-                     <li class="pull-right"></li>
-                  </ul>
-                  <div class="tab-content">
-                     <div id="private-mcqs" class="tab-pane fade in active">
-                        <div class="button_add_question pull-right">
-                           <button type="button" class="btn" data-toggle="modal" data-target="#private-mcqs-Modal"><i class="fa fa-plus"></i> Add a Question</button>
-                        </div>
-                        <div class="padding-col">
-                           <form>
-                              <div class="form-group col-md-3">
-                                 <select class="form-control radius-0" name="">
-                                    <option value="">All Levels</option>
-                                 </select>
-                              </div>
-                              <div class="form-group col-md-3">
-                                 <select class="form-control radius-0" name="">
-                                    <option value="">All Tag</option>
-                                 </select>
-                              </div>
-                              <div class="button_apply" >
-                                 <button type="button" class="btn">Apply</button>
-                                 <a data-toggle="modal" data-target="#mcqs-filter-Modal">Advanced Filter</a>
-                              </div>
-                           </form>
-                        </div>
-                        <div class="no-more-tables">
-                           <table class="table s_table">
-                              <thead>
-                                 <tr>
-                                    <th>Question Id & Statement</th>
-                                    <th>State</th>
-                                    <th>Level</th>
-                                    <th>Tags</th>
-                                    <th></th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false">
-                                       <span class="fa fa-caret-right"></span>
-                                       Collapsible Group Item #1
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td>
-                                       <a data-toggle="modal" data-target="#private-mcqs-Modal">
-                                       <i class="fa fa-pencil"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr id="collapse11" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       <div class="modal-content s_modal">
-                                          <div class="modal-header s_modal_header">
-                                             <h4 class="modal-title s_font">Question Statement</h4>
-                                          </div>
-                                          <div class="modal-body s_modal_body">
-                                             <p>
-                                                The 'Miscria Champions League' (MCL) is coming soon, and its preparations have already started. ThunderCracker is busy practicing with his team, when suddenly he thinks of an interesting problem.
-                                                ThunderCracker's team consists of 'N' players (including himself). All the players stand in a straight line (numbered from 1 to N), and pass the ball to each other. The maximum power with which any player can hit the ball on the i'th pass is given by an array Ai. This means that if a player at position 'j' (1<=j<=N) has the ball at the time of the i'th pass, he can pass it to any player with a position from <strong>(j-Ai) to (j-1), or from (j+1) to (j+Ai)</strong> (provided that the position exists).
-                                             </p>
-                                             <br>
-                                             <h2>Output :</h2>
-                                             <p class="s_modal_body_heading">
-                                                A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
-                                             </p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse12">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse12">
-                                       <span class="fa fa-caret-right"></span>
-                                       (1333565) What does the following idiom/ phras...
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td>
-                                       <a data-toggle="modal" data-target="#private-mcqs-Modal">
-                                       <i class="fa fa-pencil"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr id="collapse12" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       Hidden by default
-                                    </td>
-                                 </tr>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse13">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse13">
-                                       <span class="fa fa-caret-right"></span>
-                                       (1333565) What does the following idiom/ phras...
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td>
-                                       <a data-toggle="modal" data-target="#private-mcqs-Modal">
-                                       <i class="fa fa-pencil"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr id="collapse13" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       <div >Hidden by default</div>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                     </div>
-                     <div id="private-programming-question" class="tab-pane fade">
-                        <div class="button_add_question pull-right">
-                           <div class="open">
-                              <div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                                 <button class="btn s_dropdown_left_button" data-toggle="modal" data-target="#private-programming-question-Modal" style="right: 39px;">
-                                 <span class="fa fa-plus"></span>
-                                 Add Coding Question
-                                 </button>
-                                 <button class="btn s_dropdown_right_button">
-                                 <span class="caret"></span>
-                                 </button>
-                              </div>
-                              <ul class="dropdown-menu s_addquestion_dropdown_menu">
-                                 <li><a data-toggle="modal" data-target="#private-programming-question-Modal">Add Compilable Question</a></li>
-                                 <li><a data-toggle="modal" data-target="#private-programming-debug-Modal">Add Debug Question</a></li>
-                              </ul>
-                           </div>
-                           <!-- <button type="button" class="btn" data-toggle="modal" data-target="#private-programming-question-Modal"><i class="fa fa-plus"></i> Add Coding a Question</button> -->
-                        </div>
-                        <div class="padding-col">
-                           <form>
-                              <div class="form-group col-md-3">
-                                 <select class="form-control radius-0" name="">
-                                    <option value="">All Levels</option>
-                                 </select>
-                              </div>
-                              <div class="form-group col-md-3">
-                                 <select class="form-control radius-0" name="">
-                                    <option value="">All Tag</option>
-                                 </select>
-                              </div>
-                              <div class="button_apply" >
-                                 <button type="button" class="btn">Apply</button>
-                                 <a data-toggle="modal" data-target="#filter-programming-Modal">Advanced Filter</a>
-                              </div>
-                           </form>
-                        </div>
-                        <div class="no-more-tables">
-                           <table class="table s_table">
-                              <thead>
-                                 <tr>
-                                    <th>Question Id & Statement</th>
-                                    <th>State</th>
-                                    <th>Level</th>
-                                    <th>Tags</th>
-                                    <th></th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="false">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="false">
-                                       <span class="fa fa-caret-right"></span>
-                                       Collapsible Group Item #1
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td>
-                                       <a data-toggle="modal" data-target="#private-programming-question-Modal">
-                                       <i class="fa fa-pencil"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr id="collapse14" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       <div class="modal-content s_modal">
-                                          <div class="modal-header s_modal_header">
-                                             <h4 class="modal-title s_font">Question Statement</h4>
-                                          </div>
-                                          <div class="modal-body s_modal_body">
-                                             <p>
-                                                The 'Miscria Champions League' (MCL) is coming soon, and its preparations have already started. ThunderCracker is busy practicing with his team, when suddenly he thinks of an interesting problem.
-                                                ThunderCracker's team consists of 'N' players (including himself). All the players stand in a straight line (numbered from 1 to N), and pass the ball to each other. The maximum power with which any player can hit the ball on the i'th pass is given by an array Ai. This means that if a player at position 'j' (1<=j<=N) has the ball at the time of the i'th pass, he can pass it to any player with a position from <strong>(j-Ai) to (j-1), or from (j+1) to (j+Ai)</strong> (provided that the position exists).
-                                             </p>
-                                             <br>
-                                             <h2>Output :</h2>
-                                             <p class="s_modal_body_heading">
-                                                A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
-                                             </p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse15">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse15">
-                                       <span class="fa fa-caret-right"></span>
-                                       (1333565) What does the following idiom/ phras...
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td>
-                                       <a data-toggle="modal" data-target="#private-programming-question-Modal">
-                                       <i class="fa fa-pencil"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr id="collapse15" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       Hidden by default
-                                    </td>
-                                 </tr>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse16">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse16">
-                                       <span class="fa fa-caret-right"></span>
-                                       (1333565) What does the following idiom/ phras...
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td>
-                                       <a data-toggle="modal" data-target="#private-programming-question-Modal">
-                                       <i class="fa fa-pencil"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr id="collapse16" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       <div >Hidden by default</div>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                     </div>
-                     <div id="private-submission-question" class="tab-pane fade">
-                        <div class="button_add_question pull-right">
-                           <div class="open">
-                              <div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                                 <button class="btn s_dropdown_left_button" data-toggle="modal" data-target="#private-submission-question-Modal" style="right: 39px;">
-                                 <span class="fa fa-plus"></span>
-                                 Add Submission Question
-                                 </button>
-                                 <button class="btn s_dropdown_right_button">
-                                 <span class="caret"></span>
-                                 </button>
-                              </div>
-                              <ul class="dropdown-menu s_addquestion_dropdown_menu">
-                                 <li><a data-toggle="modal" data-target="#private-submission-question-Modal">Add Submission Question</a></li>
-                                 <li><a data-toggle="modal" data-target="#private-submission-fill-blanks-question-Modal">Add Fill In The Blanks Question</a></li>
-                              </ul>
-                           </div>
-                        </div>
-                        <div class="padding-col">
-                           <form>
-                              <div class="form-group col-md-3">
-                                 <select class="form-control radius-0" name="">
-                                    <option value="">All Levels</option>
-                                 </select>
-                              </div>
-                              <div class="form-group col-md-3">
-                                 <select class="form-control radius-0" name="">
-                                    <option value="">All Tag</option>
-                                 </select>
-                              </div>
-                              <div class="button_apply" >
-                                 <button type="button" class="btn">Apply</button>
-                                 <a data-toggle="modal" data-target="#mcqs-filter-Modal">Advanced Filter</a>
-                              </div>
-                           </form>
-                        </div>
-                        <div class="no-more-tables">
-                           <table class="table s_table">
-                              <thead>
-                                 <tr>
-                                    <th>Question Id & Statement</th>
-                                    <th>State</th>
-                                    <th>Level</th>
-                                    <th>Tags</th>
-                                    <th></th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse17" aria-expanded="false">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse17" aria-expanded="false">
-                                       <span class="fa fa-caret-right"></span>
-                                       Collapsible Group Item #1
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td>
-                                       <a data-toggle="modal" data-target="#private-submission-question-Modal">
-                                       <i class="fa fa-pencil"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr id="collapse17" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       <div class="modal-content s_modal">
-                                          <div class="modal-header s_modal_header">
-                                             <h4 class="modal-title s_font">Question Statement</h4>
-                                          </div>
-                                          <div class="modal-body s_modal_body">
-                                             <p>
-                                                The 'Miscria Champions League' (MCL) is coming soon, and its preparations have already started. ThunderCracker is busy practicing with his team, when suddenly he thinks of an interesting problem.
-                                                ThunderCracker's team consists of 'N' players (including himself). All the players stand in a straight line (numbered from 1 to N), and pass the ball to each other. The maximum power with which any player can hit the ball on the i'th pass is given by an array Ai. This means that if a player at position 'j' (1<=j<=N) has the ball at the time of the i'th pass, he can pass it to any player with a position from <strong>(j-Ai) to (j-1), or from (j+1) to (j+Ai)</strong> (provided that the position exists).
-                                             </p>
-                                             <br>
-                                             <h2>Output :</h2>
-                                             <p class="s_modal_body_heading">
-                                                A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
-                                             </p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse18">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse18">
-                                       <span class="fa fa-caret-right"></span>
-                                       (1333565) What does the following idiom/ phras...
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td>
-                                       <a data-toggle="modal" data-target="#private-submission-question-Modal">
-                                       <i class="fa fa-pencil"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr id="collapse18" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       Hidden by default
-                                    </td>
-                                 </tr>
-                                 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse19">
-                                    <td>
-                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse19">
-                                       <span class="fa fa-caret-right"></span>
-                                       (1333565) What does the following idiom/ phras...
-                                       </a>
-                                    </td>
-                                    <td>READY</td>
-                                    <td>Intermediate</td>
-                                    <td>
-                                       <span class="badge">
-                                       <span>Dynamic Programing </span>
-                                       </span>
-                                    </td>
-                                    <td>
-                                       <a data-toggle="modal" data-target="#private-submission-question-Modal">
-                                       <i class="fa fa-pencil"></i>
-                                       </a>
-                                    </td>
-                                 </tr>
-                                 <tr id="collapse19" class="panel-collapse collapse">
-                                    <td colspan="5">
-                                       <div >Hidden by default</div>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+	<br>
+	<div class="container-fluid padding-15-fluit">
+		<div class="row border-row display-table s_magin-10">
+			@php $temp_unset=false @endphp
+			@if(!isset($templateType_fil))
+				@php $temp_unset=true @endphp
+			@endif
+			<div class="col-md-3 col-sm-12 col-xs-12 display-table-cell padding-0 nav-background">
+				<ul class="nav nav-tabs nav-sidebar">
+				 <li @if(isset($templateType_fil) && $templateType_fil==1) class="active" @endif ><a data-toggle="pill" href="#public">Public Questions <i class=""></i></a></li>
+				 <li @if(isset($templateType_fil) && $templateType_fil==2) class="active" @endif ><a data-toggle="pill" href="#private">Private Questions <i class=""></i></a></li>
+			 	</ul>
+			</div>
+
+			<div class="col-md-9 col-sm-12 col-xs-12 display-table-cell padding-col">
+			 <div class="tab-content sidebar-content">
+				 <!-- Start Public Question -->
+				 <div id="public" class="tab-pane fade @if(isset($templateType_fil) && $templateType_fil==1) in active @elseif($temp_unset) in active @endif ">
+					<ul class="nav nav-tabs">
+			 			<li @if(isset($questionType_fil) && $questionType_fil==1) class="active"@elseif(!isset($templateType_fil)) class="active"@endif><a data-toggle="pill" href="#public-mcqs">MCQs ({{isset($public_questions_mcqs) ? $public_questions_mcqs->total() : ''}})</a></li>
+			 			<li @if(isset($questionType_fil) && $questionType_fil==2) class="active" @endif><a data-toggle="pill" href="#public-programming-question">Programming Questions ({{isset($public_questions_codings) ? $public_questions_codings->total() : ''}})</a></li>
+		 			</ul>
+			 		<div class="tab-content">
+			 			<div id="public-mcqs" class="tab-pane fade in active">
+							<div class="padding-col">
+								<form id="libFilterMCQ" action="{{route('libFilter')}}" method="post">
+								    <div class="form-group col-md-3">
+	 										<select class="form-control radius-0" name="level">
+	 											<option value="">All Levels</option>
+	 											@foreach($levels as $level)
+	 											<option value="{{$level->id}}">{{$level->level_name}}</option>
+	 											@endforeach
+	 										</select>
+								    </div>
+										<div class="form-group col-md-3">
+	 										<select class="form-control radius-0" name="tag">
+	 										    <option value="">All Tag</option>
+	 											@foreach($tags as $tag)
+	 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+	 											@endforeach
+	 										</select>
+								    </div>
+									<div class="button_apply" >
+										 <input type="hidden" name="templateType" value="1">
+										 <input type="hidden" name="questionType" value="1">
+										  <input type="hidden" name="_token" value="{{Session::token()}}">
+										<button type="submit" class="btn">Apply</button>
+										<a data-toggle="modal" data-target="#mcqs-filter-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter</a>
+									</div>
+							    </form>
+							</div>
+							<div class="no-more-tables">
+								<table class="table s_table">
+							    <thead>
+							      <tr>
+							        <th>Question Id & Statement</th>
+							        <th>State</th>
+							        <th>Level</th>
+							        <th>Tags</th>
+											<th></th>
+							      </tr>
+							    </thead>
+							    <tbody>
+							@if(isset($public_questions_mcqs) && count($public_questions_mcqs) > 0)							    
+							    @foreach($public_questions_mcqs as $public_questions_mcq)
+
+							      <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_mcq->id}}" aria-expanded="false">
+							        <td>
+												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_mcq->id}}" aria-expanded="false">
+													<span class="fa fa-caret-right"></span>
+								          
+								          ({{$public_questions_mcq->id}}) {!! substr($public_questions_mcq->question_statement, 0, 35).'...'!!}
+								        </a>
+											</td>
+							        <td>{{$public_questions_mcq->state_name}}</td>
+							        <td>{{$public_questions_mcq->level_name}}</td>
+							        <td>
+											<span class="badge">
+												<span>{{$public_questions_mcq->tag_name}} </span>
+											</span>
+											</td>
+											<td> <a data-toggle="modal" data-url="{{route('lib_ques_detail')}}" data-id="{{$public_questions_mcq->id}}" class="quesDetail" data-questype="1" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
+							      </tr>
+
+						      
+										<tr id="collapse{{$public_questions_mcq->id}}" class="panel-collapse collapse">
+											<td colspan="5">
+												<div class="modal-content s_modal">
+												 <div class="modal-header s_modal_header">
+													 <h4 class="modal-title s_font">Question Statement</h4>
+												 </div>
+												 <div class="modal-body s_modal_body">
+													<p>
+													{{$public_questions_mcq->question_statement}}
+													</p>
+
+									<!-- 				<br>
+													<h2>Output :</h2>
+													<p class="s_modal_body_heading">
+														A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
+													</p> -->
+												 </div>
+											 </div>
+					           			 </td>
+										</tr>
+							    @endforeach
+		  					  @else
+ 								<p>No Questions Found</p>
+ 							  @endif							    
+							    </tbody>
+							  </table>
+							 
+							</div>
+							@if(isset($private_questions_submissions))
+							 {{ $private_questions_submissions->links() }}
+							 @endif
+						</div>
+
+			 			<div id="public-programming-question" class="tab-pane fade">
+							<div class="padding-col">
+								<form id="libFilterMCQ" action="{{route('libFilter')}}" method="post">
+									<div class="form-group col-md-3">
+ 										<select class="form-control radius-0" name="123">
+ 											<option value="">All Levels</option>
+ 											@foreach($levels as $level)
+ 											<option value="{{$level->id}}">{{$level->level_name}}</option>
+ 											@endforeach
+ 										</select>
+									</div>
+									<div class="form-group col-md-3">
+ 										<select class="form-control radius-0" name="">
+ 										    <option value="">All Tag</option>
+ 											@foreach($tags as $tag)
+ 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+ 											@endforeach
+ 										</select>
+									</div>
+									<div class="button_apply" >
+										 <input type="hidden" name="templateType" value="1">
+										 <input type="hidden" name="questionType" value="2">
+										  <input type="hidden" name="_token" value="{{Session::token()}}">
+
+										<button type="submit" class="btn">Apply</button>
+
+										<a data-toggle="modal" data-target="#filter-programming-Modal" data-temptype="1" data-questype="2" class="adv_filButton">Advanced Filter</a>
+									</div>
+								</form>
+							</div>
+							<div class="no-more-tables">
+								<table class="table s_table">
+									<thead>
+										<tr>
+											<th>Question Id & Statement</th>
+											<th>State</th>
+											<th>Level</th>
+											<th>Tags</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+							@if( isset($public_questions_codings) && count($public_questions_codings) > 0 )										
+							    @foreach($public_questions_codings as $public_questions_coding)
+										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_coding->id}}" aria-expanded="false">
+											<td>
+												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_coding->id}}" aria-expanded="false">
+													<span class="fa fa-caret-right"></span>
+													({{$public_questions_coding->id}}) {!! substr($public_questions_coding->question_statement, 0, 35).'...' !!}
+												</a>
+											</td>
+											<td>{{$public_questions_coding->state_name}}</td>
+											<td>{{$public_questions_coding->level_name}}</td>
+											<td>
+												<span class="badge">
+													<span>{{$public_questions_coding->tag_name}} </span>
+												</span>
+											</td>
+											<td><a data-toggle="modal" data-url="{{route('lib_ques_detail')}}" data-id="{{$public_questions_coding->id}}" class="quesDetail" data-questype="2" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
+
+										</tr>
+										<tr id="collapse{{$public_questions_coding->id}}" class="panel-collapse collapse">
+											<td colspan="5">
+												<div class="modal-content s_modal">
+												 <div class="modal-header s_modal_header">
+													 <h4 class="modal-title s_font">Question Statement</h4>
+												 </div>
+												 <div class="modal-body s_modal_body">
+													<p>
+														{{$public_questions_coding->question_statement}}
+													</p>
+	
+												 </div>
+											 </div>
+											</td>
+										</tr>
+							    @endforeach
+		  					  @else
+ 								<p>No Questions Found</p>
+ 							  @endif							    									
+									</tbody>
+								</table>
+							</div>
+							@if(isset($public_questions_codings))
+							   {{ $public_questions_codings->links() }}
+							@endif
+						</div>
+			 		</div>
+				 </div>
+ 			 	 <!-- End Public Question -->
+
+				 <!-- Start Private Question -->
+				 <div id="private" class="tab-pane fade @if(isset($templateType_fil) && $templateType_fil==2)  active in @endif ">
+					<ul class="nav nav-tabs">
+ 			 			<li @if(isset($questionType_fil) && $questionType_fil==1) class="active"@elseif(!isset($templateType_fil)) class="active"@endif><a data-toggle="pill" href="#private-mcqs">MCQs ({{isset($private_questions_mcqs) ?  count($private_questions_mcqs) : ''}})</a></li>
+ 			 			<li @if(isset($questionType_fil) && $questionType_fil==2) class="active" @endif><a data-toggle="pill" href="#private-programming-question">Programming Questions ({{isset($private_questions_codings) ? count($private_questions_codings): '' }})</a></li>
+ 			 			<li @if(isset($questionType_fil) && $questionType_fil==3) class="active" @endif ><a data-toggle="pill" href="#private-submission-question">Submission Questions ({{isset($private_questions_submissions) ? count($private_questions_submissions) : '' }})</a></li>
+						<li class="pull-right"></li>
+ 		 			</ul>
+					<div class="tab-content">
+						<div id="private-mcqs" class="tab-pane fade in active">
+							<div class="button_add_question pull-right">
+								<button type="button" class="btn" data-toggle="modal" data-target="#private-mcqs-Modal"><i class="fa fa-plus"></i> Add a Question</button>
+							</div>
+ 							<div class="padding-col">
+
+								<form id="libFilterMCQ" action="{{route('libFilter')}}" method="post">
+								    <div class="form-group col-md-3">
+	 										<select class="form-control radius-0" name="level">
+	 											<option value="">All Levels</option>
+	 											@foreach($levels as $level)
+	 											<option value="{{$level->id}}">{{$level->level_name}}</option>
+	 											@endforeach
+	 										</select>
+								    </div>
+										<div class="form-group col-md-3">
+	 										<select class="form-control radius-0" name="tag">
+	 										    <option value="">All Tag</option>
+	 											@foreach($tags as $tag)
+	 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+	 											@endforeach
+	 										</select>
+								    </div>
+									<div class="button_apply" >
+										 <input type="hidden" name="templateType" value="2">
+										 <input type="hidden" name="questionType" value="1">
+										  <input type="hidden" name="_token" value="{{Session::token()}}">
+										<button type="submit" class="btn">Apply</button>
+										<a data-toggle="modal" data-target="#mcqs-filter-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter</a>
+									</div>
+							    </form>
+
+ 								<!-- <form>
+ 							    <div class="form-group col-md-3">
+ 										<select class="form-control radius-0" name="123">
+ 											<option value="">All Levels</option>
+ 											@foreach($levels as $level)
+ 											<option value="{{$level->id}}">{{$level->level_name}}</option>
+ 											@endforeach
+ 										</select>
+ 							    </div>
+ 									<div class="form-group col-md-3">
+ 										<select class="form-control radius-0" name="">
+ 											@foreach($tags as $tag)
+ 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+ 											@endforeach
+ 										</select>
+ 							    </div>
+ 									<div class="button_apply" >
+ 										<button type="button" class="btn">Apply</button>
+										<a data-toggle="modal" data-target="#mcqs-filter-Modal">Advanced Filter</a>
+
+ 									</div>
+ 							  </form> -->
+
+
+ 							</div>
+ 							<div class="no-more-tables">
+ 								<table class="table s_table">
+ 							    <thead>
+ 							      <tr>
+ 							        <th>Question Id & Statement</th>
+ 							        <th>State</th>
+ 							        <th>Level</th>
+ 							        <th>Tags</th>
+ 											<th></th>
+ 							      </tr>
+ 							    </thead>
+ 							    <tbody>
+							@if(isset($private_questions_mcqs) && count($private_questions_mcqs) > 0)
+ 							      @foreach($private_questions_mcqs as $private_questions_mcq)
+
+ 							      <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_mcq->id}}" aria-expanded="false">
+ 							        <td>
+		 										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_mcq->id}}" aria-expanded="false">
+		 											<span class="fa fa-caret-right"></span>
+								({{$private_questions_mcq->id}}) {!! substr($private_questions_mcq->question_statement, 0, 35).'...'!!} 								          		
+ 								        </a>
+ 											</td>
+ 							        <td>{{$private_questions_mcq->state_name}}</td>
+ 							        <td>{{$private_questions_mcq->level_name}}</td>
+ 							        <td>
+												<span class="badge">
+													<span>{{$private_questions_mcq->tag_name}}</span>
+												</span>
+ 							        </td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-mcqs-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+ 							      </tr>
+ 										<tr id="collapse{{$private_questions_mcq->id}}" class="panel-collapse collapse">
+ 											<td colspan="5">
+ 												<div class="modal-content s_modal">
+ 												 <div class="modal-header s_modal_header">
+ 													 <h4 class="modal-title s_font">Question Statement</h4>
+ 												 </div>
+ 												 <div class="modal-body s_modal_body">
+ 													{!! $private_questions_mcq->question_statement !!}
+ 													<br>
+ <!-- 													<h2>Output :</h2>
+ 													<p class="s_modal_body_heading">
+ 														A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
+ 													</p> -->
+ 												 </div>
+ 											 </div>
+ 					            </td>
+ 										</tr>
+
+ 							      @endforeach
+		  					  @else
+ 								<p>No Questions Found</p>
+ 							  @endif 								
+ 							    </tbody>
+ 							  </table>
+ 							</div>
+ 							@if(isset($private_questions_mcqs))
+ 							{{ $private_questions_mcqs->links() }}
+ 							@endif
+ 						</div>
+
+ 			 			<div id="private-programming-question" class="tab-pane fade">
+							<div class="button_add_question pull-right">
+								<div class="open">
+									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+										<button class="btn s_dropdown_left_button" data-toggle="modal" data-target="#private-programming-question-Modal" style="right: 39px;">
+											<span class="fa fa-plus"></span>
+											Add Coding Question
+										</button>
+										<button class="btn s_dropdown_right_button">
+											<span class="caret"></span>
+										</button>
+									</div>
+									<ul class="dropdown-menu s_addquestion_dropdown_menu">
+									<li><a data-toggle="modal" data-target="#private-programming-question-Modal">Add Compilable Question</a></li>
+									<li><a data-toggle="modal" data-target="#private-programming-debug-Modal">Add Debug Question</a></li>
+									</ul>
+								</div>
+								<!-- <button type="button" class="btn" data-toggle="modal" data-target="#private-programming-question-Modal"><i class="fa fa-plus"></i> Add Coding a Question</button> -->
+							</div>
+ 							<div class="padding-col">
+								<form id="libFilterMCQ" action="{{route('libFilter')}}" method="post">
+								    <div class="form-group col-md-3">
+	 										<select class="form-control radius-0" name="level">
+	 											<option value="">All Levels</option>
+	 											@foreach($levels as $level)
+	 											<option value="{{$level->id}}">{{$level->level_name}}</option>
+	 											@endforeach
+	 										</select>
+								    </div>
+										<div class="form-group col-md-3">
+	 										<select class="form-control radius-0" name="tag">
+	 										    <option value="">All Tag</option>
+	 											@foreach($tags as $tag)
+	 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+	 											@endforeach
+	 										</select>
+								    </div>
+									<div class="button_apply" >
+										 <input type="hidden" name="templateType" value="2">
+										 <input type="hidden" name="questionType" value="2">
+										  <input type="hidden" name="_token" value="{{Session::token()}}">
+										<button type="submit" class="btn">Apply</button>
+										<a data-toggle="modal" data-target="#mcqs-filter-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter</a>
+									</div>
+							    </form>
+ 							</div>
+ 							<div class="no-more-tables">
+ 								<table class="table s_table">
+ 									<thead>
+ 										<tr>
+ 											<th>Question Id & Statement</th>
+ 											<th>State</th>
+ 											<th>Level</th>
+ 											<th>Tags</th>
+ 											<th></th>
+ 										</tr>
+ 									</thead>
+ 									<tbody>
+							@if(isset($private_questions_codings) &&  count($private_questions_codings) > 0) 									
+ 									@foreach($private_questions_codings as $private_questions_coding)
+
+ 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_coding->id}}" aria-expanded="false">
+ 											<td>
+ 												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_coding->id}}" aria-expanded="false">
+ 													<span class="fa fa-caret-right"></span>
+												({{$private_questions_coding->id}}) {!! substr($private_questions_coding->question_statement, 0, 35).'...'!!}
+
+ 												</a>
+ 											</td>
+ 											<td>{{$private_questions_coding->state_name}}</td>
+ 											<td>{{$private_questions_coding->level_name}}</td>
+ 											<td>
+												<span class="badge">
+													<span>{{$private_questions_coding->tag_name}} </span>
+												</span>
+ 											</td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-programming-question-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+ 										</tr>
+ 										<tr id="collapse{{$private_questions_coding->id}}" class="panel-collapse collapse">
+ 											<td colspan="5">
+ 												<div class="modal-content s_modal">
+ 												 <div class="modal-header s_modal_header">
+ 													 <h4 class="modal-title s_font">Question Statement</h4>
+ 												 </div>
+ 												 <div class="modal-body s_modal_body">
+ 														{!! $private_questions_coding->tag_name!!} 
+ 													<br>
+ 													<!-- <h2>Output :</h2>
+ 													<p class="s_modal_body_heading">
+ 														A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
+ 													</p> -->
+ 												 </div>
+ 											 </div>
+ 											</td>
+ 										</tr>
+ 									@endforeach
+		  					  @else
+ 								<p>No Questions Found</p>
+ 							  @endif 									
+ 									</tbody>
+ 								</table>
+ 							</div>
+ 						</div>
+
+						<div id="private-submission-question" class="tab-pane fade">
+							<div class="button_add_question pull-right">
+								<div class="open">
+									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+										<button class="btn s_dropdown_left_button" data-toggle="modal" data-target="#private-submission-question-Modal" style="right: 39px;">
+											<span class="fa fa-plus"></span>
+											Add Submission Question
+										</button>
+										<button class="btn s_dropdown_right_button">
+											<span class="caret"></span>
+										</button>
+									</div>
+									<ul class="dropdown-menu s_addquestion_dropdown_menu">
+									<li><a data-toggle="modal" data-target="#private-submission-question-Modal">Add Submission Question</a></li>
+									<li><a data-toggle="modal" data-target="#private-submission-fill-blanks-question-Modal">Add Fill In The Blanks Question</a></li>
+									</ul>
+								</div>
+							</div>
+ 							<div class="padding-col">
+								<form id="libFilterMCQ" action="{{route('libFilter')}}" method="post">
+								    <div class="form-group col-md-3">
+	 										<select class="form-control radius-0" name="level">
+	 											<option value="">All Levels</option>
+	 											@foreach($levels as $level)
+	 											<option value="{{$level->id}}">{{$level->level_name}}</option>
+	 											@endforeach
+	 										</select>
+								    </div>
+										<div class="form-group col-md-3">
+	 										<select class="form-control radius-0" name="tag">
+	 										    <option value="">All Tag</option>
+	 											@foreach($tags as $tag)
+	 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+	 											@endforeach
+	 										</select>
+								    </div>
+									<div class="button_apply" >
+										 <input type="hidden" name="templateType" value="2">
+										 <input type="hidden" name="questionType" value="3">
+										  <input type="hidden" name="_token" value="{{Session::token()}}">
+										<button type="submit" class="btn">Apply</button>
+										<a data-toggle="modal" data-target="#mcqs-filter-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter</a>
+									</div>
+							    </form>
+ 							</div>
+ 							<div class="no-more-tables">
+ 								<table class="table s_table">
+ 									<thead>
+ 										<tr>
+ 											<th>Question Id & Statement</th>
+ 											<th>State</th>
+ 											<th>Level</th>
+ 											<th>Tags</th>
+ 											<th></th>
+ 										</tr>
+ 									</thead>
+ 									<tbody>
+ 									@if(isset($private_questions_submissions) && count($private_questions_submissions) > 0)
+ 									   @foreach($private_questions_submissions as $private_questions_submission)
+										 
+										 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_submission->id}}" aria-expanded="false">
+ 											<td>
+ 												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_submission->id}}" aria-expanded="false">
+ 													<span class="fa fa-caret-right"></span>
+ 													({{$private_questions_submission->id}}) {!! substr($private_questions_submission->question_statement, 0, 35).'...'!!}
+ 												</a>
+ 											</td>
+ 											<td>{{$private_questions_submission->state_name}}</td>
+ 											<td>{{$private_questions_submission->level_name}}</td>
+ 											<td>
+												<span class="badge">
+													<span>{{$private_questions_submission->tag_name}} </span>
+												</span>
+ 											</td>
+ 											<td>
+												<a data-toggle="modal" data-target="#private-submission-question-Modal">
+													<i class="fa fa-pencil"></i>
+												</a>
+											</td>
+ 										</tr>
+ 										<tr id="collapse{{$private_questions_submission->id}}" class="panel-collapse collapse">
+ 											<td colspan="5">
+ 												<div class="modal-content s_modal">
+ 												 <div class="modal-header s_modal_header">
+ 													 <h4 class="modal-title s_font">Question Statement</h4>
+ 												 </div>
+ 												 <div class="modal-body s_modal_body">
+ 													{{$private_questions_submission->question_statement}}
+ 													<br>
+ 												<!-- 	<h2>Output :</h2>
+ 													<p class="s_modal_body_heading">
+ 														A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
+ 													</p> -->
+ 												 </div>
+ 											 </div>
+ 											</td>
+ 										</tr>
+
+ 									   @endforeach
+ 									  @else
+ 									   <p>No Questions Found</p>
+ 									  @endif
+ 									</tbody>
+ 								</table>
+ 							</div>
+ 							@if(isset($private_questions_submissions))
+ 							 {{ $private_questions_submissions->links() }}
+                          	@endif
+ 						</div>
+ 			 		</div>
+ 				 </div>
+			 </div>
+			</div>
+		</div>
+	</div>
 </section>
-<div class="modal fade" id="modal_pencil" role="dialog">	
+
+<div class="modal fade" id="modal_pencil" role="dialog">
+
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
       
@@ -1090,6 +980,7 @@
    </div>
 </div>
 <div class="modal fade" id="submission_modal1" role="dialog">
+
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
       <div class="modal-content">
@@ -1364,6 +1255,7 @@
       </div>
    </div>
 </div>
+
 <!-- Coding Full Edit Modal By Fareha -->
 <div class="modal fade" id="modal_coding" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -1781,4 +1673,89 @@
     </div>
 </div>
 <!-- Coding Full Edit Modal By Fareha -->
+
+<div class="modal fade" id="mcqs-filter-Modal" role="dialog">
+    <div class="modal-dialog  modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header s_modal_form_header">
+                <div class="pull-right">
+                    <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Apply</button>
+                    <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+                </div>
+                <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>Filter Criteria</h3>
+            </div>
+            <div class="modal-body s_modal_form_body">
+                <form class="form-horizontal" action="#">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="id">Question id:</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="id" placeholder="Enter question id" name="id"  min="0" max="9999999999999">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="statement">Question Statement:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="statement" placeholder="Enter question statement" name="statement">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Tags :</label>
+                        <div class="col-sm-9">
+                            <select id="tag_multi" multiple="multiple">
+                                <option value="1">Aptitude</option>
+                                <option value="2">Basic Algebra</option>
+                                <option value="3">HTML and CSS</option>
+                                <option value="4">JAVA</option>
+                                <option value="5">C#</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="statement">State :</label>
+                        <div class="checkbox col-sm-2 col-xs-4">
+                            <input type="checkbox">Staged
+                        </div>
+                        <div class="checkbox col-sm-2 col-xs-4">
+                            <input type="checkbox">Ready
+                        </div>
+                        <div class="checkbox col-sm-2 col-xs-4">
+                            <input type="checkbox">All
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="statement">State :</label>
+                        <div class="checkbox col-sm-2 col-xs-4">
+                            <input type="checkbox">Easy
+                        </div>
+                        <div class="checkbox col-md-2 col-xs-4">
+                            <input type="checkbox">EasyIntermediate
+                        </div>
+                        <div class="checkbox col-sm-2 col-xs-4">
+                            <input type="checkbox">Hard
+                        </div>
+                        <div class="checkbox col-sm-2 col-xs-4">
+                            <input type="checkbox">All
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="provider">Provider:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="provider" placeholder="Enter provider of question" name="provider">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="author">Author:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="author" placeholder="Enter author of question" name="author">
+                        </div>
+                        <div class="col-sm-9">
+                    		<button type="submit" class="btn s_save_button s_font" data-dismiss="modal">Apply</button>
+                        </div>                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
 @endsection
