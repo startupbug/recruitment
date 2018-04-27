@@ -32,14 +32,16 @@ class CreateQuestionDetail
         $section->question_id = $event->question_data['store']->id;
         $section->tag_id = $event->question_data['request']['tag_id'];
         $section->marks = $event->question_data['request']['marks'];
+        if (isset($event->question_data['request']['submission_limit'])) {            
+        $section->submission_limit = $event->question_data['request']['submission_limit'];
+        }
         if (isset($event->question_data['request']['negative_marks'])) {            
         $section->negative_marks = $event->question_data['request']['negative_marks'];
         }
         $section->provider = $event->question_data['request']['provider'];
         $section->author = $event->question_data['request']['author'];
         $section->save();
-        $section_id = $section->id;
-        
+        $section_id = $section->id;        
         if(isset($event->question_data['request']['media'])){
             $image=$event->question_data['request']['media'];
             $filename=md5($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();

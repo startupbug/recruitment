@@ -7,6 +7,8 @@ use App\Section;
 use App\Question;
 use App\Events\QuestionChoice;
 use App\Events\CodingQuestionDetail;
+use App\Events\QuestionSubmissionEvaluation;
+use App\Events\QuestionSubmissionResource;
 use App\Events\CodingQuestionLanguage;
 use App\Events\CodingEntries;
 use App\Events\CodingTestCases;
@@ -64,8 +66,6 @@ class QuestionsController extends Controller
 			event(new  QuestionSolution($question_data));
 			event(new  CodingEntries($question_data));
 			event(new  CodingQuestionLanguage($question_data));
-
-				//dd($question_data);
 			event(new  CodingTestCases($question_data));
 			return redirect()->back();	
 		}else{
@@ -101,7 +101,8 @@ class QuestionsController extends Controller
 			return redirect()->back();
 		}
 	}
-	public function create_first_submission_question(Request $request){		
+	public function create_first_submission_question(Request $request){	
+
 			if (!empty($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
@@ -119,6 +120,8 @@ class QuestionsController extends Controller
 			$question_data =  array('store' => $store, 'request' =>$request->all());			
 			event(new  QuestionDetail($question_data));			
 			event(new  QuestionSolution($question_data));
+			event(new  QuestionSubmissionEvaluation($question_data));			
+			event(new  QuestionSubmissionResource($question_data));			
 			return redirect()->back();	
 		}else{
 			$this->set_session('Please Give The Required Data', false);
@@ -140,7 +143,8 @@ class QuestionsController extends Controller
 			}else{
 				$this->set_session('Something Went Wrong, Please Try Again', false);	
 			}
-			$question_data =  array('store' => $store, 'request' =>$request->all());			
+			$question_data =  array('store' => $store, 'request' =>$request->all());	
+			event(new  QuestionSubmissionEvaluation($question_data));
 			event(new  QuestionDetail($question_data));			
 			event(new  QuestionSolution($question_data));
 			return redirect()->back();	

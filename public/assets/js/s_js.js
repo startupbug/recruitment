@@ -1,85 +1,3 @@
-// $('.save_button').click(function() {
-//   var title = $(this).closest('td').siblings().find('.weightage_title').val();
-//   var no = $(this).closest('td').siblings().find('.weightage_no').val();
-//   $('#weightage_table tbody tr:first').before('<tr>'+
-//     '<td class="form-group form-group-sm">'+
-//        '<div class="weightage_title_view">'+title+'</div>'+
-//
-//        '<div class="weightage_title_edit hidden">'+
-//           '<input type="text" class="form-control weightage_title" name="weightage_title[]" value="'+title+'">'+
-//        '</div>'+
-//
-//     '</td>'+
-//     '<td class="form-group form-group-sm  text-align-center">'+
-//        '<div class="weightage_no_view">'+no+'</div>'+
-//
-//        '<div class="weightage_no_edit hidden">'+
-//           '<div class="input-group input-group-sm">'+
-//              '<input type="number" class="form-control weightage_no" name="weightage_no[]" value="'+no+'" style="width:60px;">'+
-//              '<span class="input-group-addon">%</span>'+
-//           '</div>'+
-//        '</div>'+
-//
-//     '</td>'+
-//     '<td class="form-group form-group-sm">'+
-//        '<div class="weightage_save_view">'+
-//           '<button type="button" class="btn btn-info weightage_edit_button"><i class="fa fa-pencil" aria-hidden="true"></i></button>'+
-//        '</div>'+
-//
-//        '<div class="weightage_save_edit hidden">'+
-//           '<button type="button" class="btn weightage_save_button"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>'+
-//        '</div>'+
-//
-//     '</td>'+
-//     '<td class="form-group form-group-sm">'+
-//        '<div class="weightage_cancel_view">'+
-//           '<button type="button" class="btn btn-danger weightage_remove_button"><i class="fa fa-trash" aria-hidden="true"></i></button>'+
-//        '</div>'+
-//
-//        '<div class="weightage_cancel_edit hidden">'+
-//           '<button type="button" class="btn btn-default weightage_cancel_button"><i class="fa fa-times" aria-hidden="true"></i></button>'+
-//        '</div>'+
-//
-//     '</td>'+
-//   '</tr>');
-//
-//   $(this).closest('td').siblings().find('.weightage_title').val("");
-//   $(this).closest('td').siblings().find('.weightage_no').val("");
-//   $(this).attr("disabled", true);
-//
-//
-//   var colCount = 0;
-//   var value = 0;
-//   $('#weightage_table tbody tr').each(function () {
-  //     colCount++;
-  //     var no = $('#weightage_table tbody tr:nth-child('+colCount+') td:nth-child(2)').find('.weightage_no').val();
-  //
-  //     if (no != "") {
-    //       value = parseInt(value) + parseInt(no);
-    //     }
-    //   });
-    //
-    //   console.log(value);
-    //   if (value > 100) {
-      //     alertify.warning("Total weightage of the parameters cannot be grater than 100");
-      //   }
-      //
-      // });
-
-// $(".weightage_no").keyup(function( event ) {
-//
-//   if ($(this).val().length > 0) {
-//     $(this).closest('td').siblings().children('.save_button').attr("disabled", false);
-//   }
-//   else {
-//     $(this).closest('td').siblings().children('.save_button').attr("disabled", true);
-//   }
-//
-//   if(parseInt($(this).val()) > 100){
-//     $(this).closest('td').siblings().children('.save_button').attr("disabled", true);
-//   }
-//
-// });
 
 $("#weightage_table").on('keyup', '.weightage_no', function( event ) {
 
@@ -139,7 +57,7 @@ $("#weightage_table").on('click', '.save_button', function() {
        '<div class="weightage_title_view">'+title+'</div>'+
 
        '<div class="weightage_title_edit hidden">'+
-          '<input type="text" class="form-control weightage_title" name="weightage_title[]" value="'+title+'">'+
+          '<input type="text" class="form-control weightage_title" name="submission_evaluation_title[]" value="'+title+'">'+
        '</div>'+
 
     '</td>'+
@@ -148,7 +66,7 @@ $("#weightage_table").on('click', '.save_button', function() {
 
        '<div class="weightage_no_edit hidden">'+
           '<div class="input-group input-group-sm">'+
-             '<input type="number" class="form-control weightage_no" name="weightage_no[]" value="'+no+'" style="width:60px;">'+
+             '<input type="number" class="form-control weightage_no" name="weightage[]" value="'+no+'" style="width:60px;">'+
              '<span class="input-group-addon">%</span>'+
           '</div>'+
        '</div>'+
@@ -315,7 +233,7 @@ $("#weightage_fill_table").on('click', '.save_button', function() {
        '<div class="weightage_title_view">'+title+'</div>'+
 
        '<div class="weightage_title_edit hidden">'+
-          '<input type="text" class="form-control weightage_title" name="weightage_title[]" value="'+title+'">'+
+          '<input type="text" class="form-control weightage_title" name="submission_evaluation_title[]" value="'+title+'">'+
        '</div>'+
 
     '</td>'+
@@ -324,7 +242,7 @@ $("#weightage_fill_table").on('click', '.save_button', function() {
 
        '<div class="weightage_no_edit hidden">'+
           '<div class="input-group input-group-sm">'+
-             '<input type="number" class="form-control weightage_no" name="weightage_no[]" value="'+no+'" style="width:60px;">'+
+             '<input type="number" class="form-control weightage_no" name="weightage[]" value="'+no+'" style="width:60px;">'+
              '<span class="input-group-addon">%</span>'+
           '</div>'+
        '</div>'+

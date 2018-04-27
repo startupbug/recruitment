@@ -131,6 +131,8 @@ Route::post('/update_partial_question', 'Recruiter\QuestionsController@update_pa
 //Recruiter Test Templates Setting Routes Started
 Route::post('/templatetestSetting', 'Recruiter\TemplateSetting@templatetestSetting')->name('templatetestSetting');
 Route::post('/templatetestContactSetting', 'Recruiter\TemplateSetting@templatetestContactSetting')->name('templatetestContactSetting');
+Route::post('/template_setting_message_post', 'Recruiter\TemplateSetting@template_setting_message_post')->name('template_setting_message_post');
+Route::post('/templatetestMailSetting', 'Recruiter\TemplateSetting@templatetestMailSetting')->name('templatetestMailSetting');
 //Recruiter Test Templates Setting Routes Ended
 
 /* Host Test Routes */

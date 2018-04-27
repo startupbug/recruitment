@@ -11,12 +11,19 @@ use App\Templates_contact_setting;
 use App\Test_template;
 use App\Section;
 use App\Question_detail;
+use App\Question_solution;
 use App\Webcam;
 use App\Question;
 use Auth;
 use DB;
 use App\Hosted_test;
 use App\Mulitple_choice;
+use App\Coding_question_language;
+use App\Question_submission_evaluation;
+use App\Templates_mail_setting;
+use App\Template_setting_message;
+use App\Questions_submission_resource;
+use App\Coding_entry;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 
@@ -150,9 +157,12 @@ class TemplatesController extends Controller
              // $args['sections_tabs'][$value->id]['count2'] = $value->section_questions;
         }
         //dd($args['sections_tabs']);
+
         $args['test_setting_types'] = Test_template_types::get();
         $args['test_setting_webcam'] = Webcam::get();
         $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
+        $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
+        $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
         $args['template_id'] = $id;
        
@@ -193,15 +203,16 @@ class TemplatesController extends Controller
     //Duplicating Test Template
     public function create_duplicate_template_post(Request $request){
     	$test_template_id = $request->previous_template_id;
-    	$previous_template = Test_template::find($test_template_id);
+        
+        $previous_template = Test_template::find($test_template_id);
         $section_of_templates = Section::where('template_id',$test_template_id)->get();     
         //$questions_of_sections = Question::where('template_id',$test_template_id)->get();
         try {
         if (Auth::check()) {
                 //Templates ka data copy horha hai yahan
-                if (isset($previous_template)) {		    	
+                if (isset($previous_template)) {                
                 $store = $previous_template->replicate();
-                $store->title = $request->title;               
+                $store->title = $request->title;
                 if ($store->save()) {                
                 foreach ($section_of_templates as $key => $value) {
                     $previous_section = Section::find($value->id);
@@ -212,7 +223,7 @@ class TemplatesController extends Controller
                         $section_store->save();
                     }
                     $questions_of_section = Question::where('section_id',$value->id)->get();
-                    foreach ($questions_of_section as $key => $one_question) {
+                        foreach ($questions_of_section as $key => $one_question) {
                         $previous_question = Question::find($one_question->id);
                         //Questions ka data copy horha hai yahan
                         if (isset($previous_question)){
@@ -231,28 +242,83 @@ class TemplatesController extends Controller
                             }
                         }
 
-                        // $questions_multiple_choice_of_question = Mulitple_choice::where('question_id',$one_question->id)->get();
-                        // foreach ($questions_multiple_choice_of_question as $key => $multiple_choice) {
-                        //     $previous_multiple_choice =  Question::with('multiple_choice')->find($multiple_choice->question_id)->multiple_choice;
-                        //     //Question Multiple Choice ka data copy horha hai yahan
-                        //     if (isset($previous_multiple_choice)){
-                        //     $question_mulitple_choice_store = $previous_multiple_choice->replicate();
-                        //         $question_mulitple_choice_store->question_id=$question_store->id;
-                        //         $question_mulitple_choice_store->save();
-                        //     }
-                        // }
+                        $questions_multiple_choice_of_question = Mulitple_choice::where('question_id',$one_question->id)->get();
+                        foreach ($questions_multiple_choice_of_question as $key => $multiple_choice) {
+                            $previous_multiple_choice = Mulitple_choice::where('question_id',$multiple_choice->question_id)->first();
+                            //Question Multiple Choice ka data copy horha hai yahan
+                            if (isset($previous_multiple_choice)){
+                            $question_mulitple_choice_store = $previous_multiple_choice->replicate();
+                                $question_mulitple_choice_store['question_id']=$question_store->id;
+                                $question_mulitple_choice_store->save();
+                            }
+                        }
+
+                        $questions_solution_of_question = Question_solution::where('question_id',$one_question->id)->get();
+                        foreach ($questions_solution_of_question as $key => $question_solution) {
+                            $previous_question_solution =  Question::with('question_solution')->find($question_solution->question_id)->question_solution;
+                            //Question Solution ka data copy horha hai yahan
+                            if (isset($previous_question_solution)){
+                                $question_solution_store = $previous_question_solution->replicate();
+                                $question_solution_store->question_id =$question_store->id;
+                                $question_solution_store->save();
+                            }
+                        }
+
+                        $questions_coding_entry_of_question = Coding_entry::where('question_id',$one_question->id)->get();
+                        foreach ($questions_coding_entry_of_question as $key => $coding_entry) {
+                            $previous_coding_entry = Coding_entry::where('question_id',$coding_entry->question_id)->first();
+                            //Question Coding Entry ka data copy horha hai yahan
+                            if (isset($previous_coding_entry)){
+                            $question_coding_entry_store = $previous_coding_entry->replicate();
+                                $question_coding_entry_store['question_id']=$question_store->id;
+                                $question_coding_entry_store->save();
+                            }
+                        }
+
+                        $questions_coding_language_of_question = Coding_question_language::where('question_id',$one_question->id)->get();
+                        foreach ($questions_coding_language_of_question as $key => $coding_language) {
+                            $previous_coding_language = Coding_question_language::where('question_id',$coding_language->question_id)->first();
+                            //Question Coding Languages ka data copy horha hai yahan
+                            if (isset($previous_coding_language)){
+                            $question_coding_language_store = $previous_coding_language->replicate();
+                                $question_coding_language_store['question_id']=$question_store->id;
+                                $question_coding_language_store->save();
+                            }
+                        }
+                        $questions_submission_evaluation_of_question = Question_submission_evaluation::where('question_id',$one_question->id)->get();
+                        foreach ($questions_submission_evaluation_of_question as $key => $submission_evaluation) {
+                            $previous_submission_evaluation = Question_submission_evaluation::where('question_id',$submission_evaluation->question_id)->first();
+                            //Question Submission Evaluation ka data copy horha hai yahan
+                            if (isset($previous_submission_evaluation)){
+                                $question_submission_evaluation_store = $previous_submission_evaluation->replicate();
+                                $question_submission_evaluation_store['question_id']=$question_store->id;
+                                $question_submission_evaluation_store->save();
+                            }
+                        }
+                        $questions_submission_resource_of_question = Questions_submission_resource::where('question_id',$one_question->id)->get();
+                        foreach ($questions_submission_resource_of_question as $key => $submission_resource) {
+                            $previous_submission_resource = Questions_submission_resource::where('question_id',$submission_resource->question_id)->first();
+                            //Question Submission Resources ka data copy horha hai yahan
+                            if (isset($previous_submission_resource)){
+                            $question_submission_resource_store = $previous_submission_resource->replicate();
+                                $question_submission_resource_store['question_id']=$question_store->id;
+                                $question_submission_resource_store->save();
+                            }
+                        }
+
+
                     }
                 }
-					return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Duplicated The Test Template']);					
-				}else{
-					return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong']);
-					//return redirect()->back();
-				}
-			}
-		}
-		} catch (QueryException $e) {
-    		return \Response()->Json([ 'array' => $e]);
-    	}
+                    return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Duplicated The Test Template']);                    
+                }else{
+                    return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong']);
+                    //return redirect()->back();
+                }
+            }
+        }
+        } catch (QueryException $e) {
+            return \Response()->Json([ 'array' => $e]);
+        }
     }
     //Duplicating Test Template
 

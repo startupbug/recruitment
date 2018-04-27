@@ -15,10 +15,7 @@ class CreateQuestionsSubmissionResourcesTable extends Migration
     {
         Schema::create('questions_submission_resources', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('candidate_help_material_tests_id')->unsigned();  
-            $table->string('submission_resources')->nullable();
-            $table->string('submission_media')->nullable();
-            $table->string('submission_limit')->nullable();
+            $table->integer('candidate_help_material_tests_id')->unsigned();           
             $table->timestamps();
         });
     }
