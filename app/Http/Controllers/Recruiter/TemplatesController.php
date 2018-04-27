@@ -32,6 +32,7 @@ class TemplatesController extends Controller
 	// Manage Test View Index
 	public function manage_test_view(){
         $name = Input::get('name');
+
         $check_box = Input::get('search');
         if(isset($name))
         {
@@ -94,6 +95,8 @@ class TemplatesController extends Controller
         // dd($args['sections']);
         $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
                         ->where('test_templates.user_id', Auth::user()->id)->get();
+                        // dd(count($args['hosted_tests']));
+
               return view('recruiter_dashboard.view')->with($args);
     }
 	// Manage Test View Index
@@ -107,6 +110,7 @@ class TemplatesController extends Controller
 				$store->template_type_id =$request->template_type_id;
 				$store->title =$request->title;
 				$store->description ='This test is hosted via Codeground. Please read the instructions carefully before proceeding.';
+
 				$store->instruction ='(1) Make sure you have a proper internet connection.
 
 				(2) If your computer is taking unexpected time to load, it is recommended to reboot the system before you start the test.
@@ -115,7 +119,9 @@ class TemplatesController extends Controller
 				if ($store->save()) {
 					event(new  TemplateSection($store)); 
 					$this->set_session('You Have Successfully Create Test Template',true);
+                    
 					return redirect()->route('edit_template',['id' => $store->id]);
+
 				}else{
 					$this->set_session('Test Template Not Created, Please Try Again', false);
 					return redirect()->back();
@@ -133,10 +139,15 @@ class TemplatesController extends Controller
 	// Creating Test Templates
 
 	// Editing Test Template
-	public function edit_template($id){        
+	public function edit_template($id){
         $args['tags'] = DB::table('question_tags')->get();
-      	$args['edit'] = Test_template::find($id);  
-      	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
+      	$args['edit'] = Test_template::find($id);
+      	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
+        ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))
+        ->where('template_id',$id)
+        ->groupBy('sections.id')
+        ->orderBy('order_number','ASC')
+        ->get();
 
         foreach ($args['sections'] as $key => $value) {
 
@@ -165,7 +176,7 @@ class TemplatesController extends Controller
         $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
         $args['template_id'] = $id;
-       
+       // dd($args);
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 	// Editing Test Template

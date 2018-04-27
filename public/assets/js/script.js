@@ -1,11 +1,11 @@
 $(document).ready(function(){
 
-  $("#duplication_of_template").click(function () {
-    
+  $("#testemplate").on('click', 'section .duplication_of_template', function(){
     var abc = $(this).data("message");
     console.log(abc);
     $('#duplication_of_template_ki_id').val(abc);
   });
+
 
 });
 function confirmAlert(ques, action, id){

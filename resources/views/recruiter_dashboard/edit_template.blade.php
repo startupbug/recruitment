@@ -171,6 +171,7 @@
                      </div>
                   </div>
                </div>
+
                <!-- End basic_detail -->
                <!-- Start section_subject -->
                @foreach($sections_tabs as $key => $sec)
@@ -200,6 +201,8 @@
                                  </thead>
                                  <tbody>
                                     @foreach($sec['ques1'] as $serial_number => $q)
+
+                                    <!-- q is question type id=1   -->
                                      <tr>
                                           <td><input type="checkbox" name="prog" class="prog_mc" value="{{$q->id}}"></td>
                                           <td>{{++$serial_number}}</td>
@@ -274,6 +277,7 @@
                                  </thead>
                                  <tbody>
                                     @foreach($sec['ques2'] as $serial_number => $q)
+                                    <!-- question type id = 2 -->
                                        <tr>
                                              <td><input type="checkbox"  class="prog_c" value="{{$q->id}}"></td>
                                              <td>{{++$serial_number}}</td>
@@ -281,7 +285,7 @@
                                                 <div class="statement">
                                                    <div class="row">
                                                       <div class="single-line-ellipsis">
-                                                          <a href="#" onclick="modal_data({{$q->id}})" data-toggle="modal" data-target="#coding_modal" class="no-underline">{{$q->question_statement}}</a>
+                                                          <a href="#" data-id="{{$q->id}}" data-url="{{route('coding_question_modal_partial_data')}}" data-toggle="modal" data-target="#coding_modal" class="no-underline coding_question_id" >45454{{$q->question_statement}}</a>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -301,10 +305,10 @@
                                                          </div>
                                                       </div>
                                                       <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
-                                                         <span class="text-muted">Tags : </span>
+                                                         <span class="text-muted">Tagstttt : </span>
                                                          <span class="question-tags">
                                                             @if(isset($q->question_detail->question_tag['tag_name']))
-                              {{$q->question_detail->question_tag['tag_name']}}
+                                                               {{$q->question_detail->question_tag['tag_name']}}
                               @endif
 
                            </span>
@@ -373,7 +377,7 @@
                                           <div class="statement">
                                              <div class="row">
                                                 <div class="single-line-ellipsis">
-                                                   <a href="" onclick="modal_data({{$q->id}})" class="no-underline">{{$q->question_statement}}</a>
+                                                   <a href="" data-id="{{$q->id}}" data-url="{{route('submission_question_modal_partial_data')}}" data-toggle="modal" data-target="#submission_modal" class="no-underline submission_question_id">{{$q->question_statement}}</a>
                                                 </div>
                                              </div>
                                           </div>
@@ -393,7 +397,7 @@
                                                    </div>
                                                 </div>
                                                 <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
-                                                   <span class="text-muted">Tags : </span>
+                                                   <span class="text-muted">Tagsvvvv : </span>
                                                    <span class="question-tags">
                                                       @if(isset($q->question_detail->question_tag['tag_name']))
                                                          {{$q->question_detail->question_tag['tag_name']}}
@@ -637,18 +641,24 @@
                                                 </span>
                                              </div>
                                           </label>
+                                          
                                           <div class="col-sm-9">
                                              <div class="checkbox">
                                                 <label>
                                                 <input type="checkbox" value="1"
-                                                @if($edit_test_settings->request_resume == 1) checked='checked' @endif
-                                                 name="request_resume" id="request_resume" checked> Request Resume
+
+                                                @if($edit_test_settings->request_resume == 1)
+                                                   checked="checked" name="request_resume" id="request_resume" checked> Request Resume
+                                                @endif 
                                                 </label>
                                              </div>
                                              <div class="checkbox">
                                                 <label id="mandate_resume_label">
-                                                <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) checked='checked' @endif   name="mandatory_resume" id="mandate_resume">
-                                                 Mandate Resume
+                                                <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) 
+                                                checked='checked' 
+                                                @endif   
+                                                name="mandatory_resume" id="mandate_resume">
+                                                Mandate Resume
                                                 </label>
                                                </div>
                                           </div>
@@ -2304,10 +2314,13 @@
                                         </div>
                                     </strong>
                                     <strong class="pull-right">
-                                    <input type="checkbox" name="weightage_status" value="1">
-                                    Equalize Weightage, <a href="#">Total: 100%</a>
+                                      <input type="checkbox" name="weightage_status" id="weightage_status" value="1" checked>
+                                      Equalize Weightage,
+                                      <strong class="text-success weightage_blink_success">Total: 100%</strong>
+                                      <strong class="text-danger weightage_blink_error hidden">Total: 1001% (&gt; 100%)</strong>
                                     </strong>
-                                    <table class="table s_table" id="weightage_row">
+                                    <!-- id="weightage_row" -->
+                                    <table class="table s_table" id="weightage_code_table">
                                         <thead>
                                             <th></th>
                                             <th class="col-md-2">Name</th>
@@ -2319,7 +2332,7 @@
                                         </tbody>
                                     </table>
                                     <hr>
-                                 <button type="button" class="btn" onclick="addrow_weightage()">+ Add Test Case as Text</button>
+                                   <button type="button" class="btn" id="weightage_code_add_row">+ Add Test Case as Text</button>
                                    <div class="s_uplosd_btn f_upload_btn">
                                      Upload Test Case Files
                                      <input type="file" name="test_case_file" >
@@ -2582,7 +2595,6 @@
   </div>
 </div>
 
-
 <!-- section-coding-debug-Modal -->
 <!-- Coding Modal -->
 <!-- Coding Modal Second Type -->
@@ -2665,10 +2677,12 @@
                                            </div>
                                        </strong>
                                        <strong class="pull-right">
-                                       <input type="checkbox" name="weightage_status" value="1">
-                                       Equalize Weightage, <a href="#">Total: 100%</a>
+                                       <input type="checkbox" name="weightage_status" id="weightage_edit_status" value="1" checked>
+                                       Equalize Weightage,
+                                       <strong class="text-success weightage_edit_blink_success">Total: 100%</strong>
+                                       <strong class="text-danger weightage_edit_blink_error hidden">Total: 1001% (&gt; 100%)</strong>
                                        </strong>
-                                       <table class="table s_table" id="weightage_row_edit">
+                                       <table class="table s_table" id="weightage_edit_code_table">
                                            <thead>
                                                <th></th>
                                                <th class="col-md-2">Name</th>
@@ -2680,7 +2694,7 @@
                                            </tbody>
                                        </table>
                                        <hr>
-                                       <button type="button" class="btn" onclick="addrow_weightage_edit()">+ Add Test Case as Text</button>
+                                       <button type="button" class="btn"  id="weightage_edit_code_add_row">+ Add Test Case as Text</button>
                                       <div class="s_uplosd_btn f_upload_btn">
                                         Upload Test Case Files
                                         <input type="file" name="test_case_file" >
@@ -3705,7 +3719,6 @@
   </div>
 </div>
 
-
 <div class="modal fade" id="section-submission-fill-blanks-question-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
@@ -3786,7 +3799,7 @@
                       </div>
                       <br>
                       <!-- Fill In The Blanks Solution Details -->
-                      <div class="modal-content s_modal s_yellow_light_color_modal">
+                      <!-- <div class="modal-content s_modal s_yellow_light_color_modal">
                          <div class="modal-header s_modal_header s_yellow_light_green_color_header">
                             <h4 class="modal-title s_font">Fill In The Blanks Solution Details</h4>
                          </div>
@@ -3794,7 +3807,7 @@
                             <h4>Enter Solutions for the Blanks</h4>
                          </div>
                       </div>
-                      <br>
+                      <br> -->
                       <!--  Question Details -->
                       <div class="modal-content s_modal s_gray_color_modal">
                          <div class="modal-header s_modal_header s_gray_color_header">
@@ -4607,6 +4620,16 @@
   </div>
 </div>
 
+
+<!-- section-mcqs-Modal -->
+<script type="text/javascript">
+   $(document).ready(function(){
+      @if(isset($hostFlag) && $hostFlag)
+         $('#_first_model').modal('show');
+      @endif
+   });
+</script>
+
 <div class="modal fade" id="question_modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
@@ -4615,7 +4638,7 @@
             <div class="pull-right">
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
-            <h3 class="modal-title s_font"></i>Multiple Choice Question</h3>
+            <h3 class="modal-title s_font"></i>Multipleee Choice Question</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div style="">
@@ -4699,7 +4722,8 @@
    </div>
 </div>
 
-<div class="modal fade" id="coding_modal" role="dialog">
+<!-- Submission Edit  Partial Modal And Complete Modal -->
+<div class="modal fade" id="submission_modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
       <div class="modal-content">
@@ -4707,7 +4731,7 @@
             <div class="pull-right">
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
-            <h3 class="modal-title s_font"></i>Coding Question</h3>
+            <h3 class="modal-title s_font"></i>Multiple Choice Question</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div style="">
@@ -4717,85 +4741,127 @@
                      <input type="hidden" name="question_id" id="question_id_id" value="">
                      <div class="form-group">
                         <div class="form-inline">
-                           <label>program Title</label>
-                           <span>(Current state of question : READY<span id="state_name"></span>)</span>
-                           <label>program Title</label>
-                           <span>(Current state of question : READY<span id="state_name"></span>)</span>
+                           <label>Question Statement</label>
+                           <span>(Current state of question : <span id="state_name"></span>)</span>
                            <br>
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
-                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link">
+                              <a target="_blank" href="{{route('library_public_questions')}}?modal=submission_modal1" 
+                                 class="btn-sm btn-link" data-toggle="tooltip" data-placement="top" title="Edit Question">
+                                 <input type="text" name="question_id" id="submissions_question_id" value="">
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
                            </div>
                         </div>
                      </div>
-                     <div class="form-group ng-scope" data-ng-if="isTestQuestion">
-                        <label>Marks for this Question</label>
-                        <input type="number" name="marks" min="0" class="form-control" required="required">
+                     <div class="">
+                        <div class="form-group">
+                           <label>Marks for this Question</label>
+                           <input type="number" value="" id="submission_questionmarks" name="marks" min="1" class="form-control" required="required" style="">
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-sm" value="Update Marks">
                      </div>
-                     <input type="submit" value="Update Marks" class="btn btn-primary btn-sm f_update">
+                     <div class="form-group">
+                        <input type="checkbox" disabled=""> enable code modification and show difference
+                     </div>
                      <table class="table">
                         <thead>
                            <tr>
-                              <th colspan="4">Samples</th>
-                           </tr>
-                           <tr data-ng-if="currentQuestion.sampleInOut.length" class="">
-                              <th></th>
-                              <th>Input</th>
-                              58
-                              7
-                              <th>Output</th>
-                              <th></th>
+                              <th colspan="3">Resources</th>
                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td>1</td>
-                              <td>
-                                 <textarea id="sampleInput" wrap="off" name="sampleInput" class="form-control" disabled="disabled"></textarea>
-                              </td>
-                              <td>
-                                 <textarea id="sampleOutput" wrap="off" name="sampleOutput" class="form-control" required="" disabled="disabled"></textarea>
-                              </td>
-                           </tr>
-                           <tr class="">
-                              <td class="">2</td>
-                              <td>
-                                 <textarea id="sampleInput" wrap="off" name="sampleInput" class="form-control" disabled="disabled"></textarea>
-                              </td>
-                              <td>
-                                 <textarea id="sampleOutput" wrap="off" name="sampleOutput" class="form-control" required="" disabled="disabled"></textarea>
-                              </td>
-                           </tr>
                         </tbody>
                      </table>
-                     <div>
+                     <div class="form-group">
+                        <label>Resources allowed by candidate to upload</label>
+                        <div class="row">
+                           <div class="col-md-2">
+                              <div class="checkbox f_check">
+                                 <label>
+                                 <input type="checkbox" disabled="">
+                                 Images
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                              <div class="checkbox f_check">
+                                 <label>
+                                 <input type="checkbox" disabled="">
+                                 URLs
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                              <div class="checkbox f_check">
+                                 <label>
+                                 <input type="checkbox" disabled="">
+                                 Files
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                              <div class="checkbox f_check">
+                                 <label>
+                                 <input type="checkbox" disabled="">
+                                 Text
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                              <div class="checkbox f_check">
+                                 <label>
+                                 <input type="checkbox" disabled="">
+                                 Code
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="col-md-2">
+                              <div class="checkbox f_check">
+                                 <label class="">
+                                 <input type="checkbox" disabled="">
+                                 Audio (Max Length : 30)
+                                 </label>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="">
                         <label>Tags</label>
                         <div>
                            <span class="">
                            <span class="pad-right-10">
-                           <span class="tags form-group"> maths </span>
+                           <div class="submission_tags col-md-8"></div>
+                           <a href="" class="no-underline">×</a>
                            </span>
                            </span>
                         </div>
                      </div>
-                  <form>
                      <div class="form-group">
                         <label>Question Level:</label>
                         <div class="row">
-                           <div class="col-md-8">intermediate</div>
+                           <div class="col-md-8">
+                              <select class="form-control" required="" disabled="disabled">
+                                 <option value="easy">Easy</option>
+                                 <option value="intermediate">Intermediate</option>
+                                 <option value="hard">Hard</option>
+                              </select>
+                           </div>
                         </div>
                      </div>
                      <div class="form-group">
                         <label>Author</label>
                         <div class="row">
-                           <div class="col-md-8">12321</div>
+                           <div class="col-md-8">
+                              <input type="text" class="form-control submission_author" disabled="disabled">
+                           </div>
                         </div>
                      </div>
                      <div class="form-group">
                         <label>provider</label>
                         <div class="row">
-                           <div class="col-md-8">3123</div>
+                           <div class="col-md-8">
+                              <input type="text" class="form-control submission_provider" disabled="disabled">
+                           </div>
                         </div>
                      </div>
                   </form>
@@ -4806,6 +4872,94 @@
    </div>
 </div>
 
+<div class="modal fade" id="coding_modal" role="dialog">
+   <div class="modal-dialog  modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header s_modal_form_header">
+            <div class="pull-right">
+               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+            </div>
+            <h3 class="modal-title s_font"></i>Coding Questionsssssss</h3>
+         </div>
+         <div class="modal-body s_modal_form_body">
+            <div style="">
+               <div class="content-area content-area-70 new-question">
+                  <form name="coding" action="{{route('update_partial_question')}}" method="post" >
+                     {{csrf_field()}}
+                     <input type="hidden" name="question_id" id="codings_question_id" value="">
+                     <div class="form-group">
+                        <div class="form-inline">
+                           <label>program Title</label>
+                           <span>(Current state of question : READY<span id="state_name"></span>)</span>
+                           <label>program Title</label>
+                           <span>(Current state of question : READY<span id="state_name"></span>)</span>
+                           <br>
+                           <span id="question_statement_id"></span>
+                           <div class="pull-right">
+                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link code_ajax_route" >
+                              <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group ng-scope" data-ng-if="isTestQuestion">
+
+<label>Marks for this Questionnnn</label>
+<input type="number" name="marks" min="0" id="coding_marks" class="form-control" required="required">
+</div>
+
+<input type="submit" value="Update Marks" class="btn btn-primary btn-sm f_update">
+
+<table class="table">
+<thead>
+<tr>
+<th colspan="4">Samples</th>
+</tr>
+<tr data-ng-if="currentQuestion.sampleInOut.length" class="">
+<th></th>
+<th>Input</th>
+<th>Output</th>
+<th></th>
+</tr>
+</thead>
+<tbody class="coding_question_table">
+
+</tbody>
+</table>
+
+<div>
+<label>Tags</label>
+<div>
+<span class="">
+<span class="pad-right-10">
+<span class="coding_tags form-group">  </span>
+</span>
+</span>
+</div>
+</div>
+<div class="form-group">
+<label>Question Level:</label>
+<div class="row">
+<div class="coding_question_level col-md-8"></div>
+</div>
+</div>
+
+<div class="form-group">
+<label>Author</label>
+<div class="row">
+<div class="coding_author col-md-8"></div>
+</div>
+</div>
+
+<div class="form-group">
+<label>provider</label>
+<div class="row">
+<div class="coding_provider col-md-8"></div>
+</div>
+           
+</div>
+
+<!-- Submission Edit  Partial Modal And Complete Modal -->
 <script type="text/javascript">
    $(document).ready(function(){
       @if(isset($hostFlag) && $hostFlag)

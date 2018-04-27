@@ -35,9 +35,15 @@ class CreateCodingQuestionDetail
         $section->coding_program_title = $event->question_data['request']['coding_program_title'];
         $section->provider = $event->question_data['request']['provider'];
         $section->author = $event->question_data['request']['author'];
+        if (isset($event->question_data['request']['weightage_status'])) {
+            $section->weightage_status=$event->question_data['request']['weightage_status'];
+        }
         $section->weightage_status=$event->question_data['request']['weightage_status'];
         $section->test_case_verify=$event->question_data['request']['test_case_verify'];
-        $section->test_case_file=$event->question_data['request']['test_case_file'];
+        if(isset($event->question_data['request']['test_case_file']))
+        {
+            $section->test_case_file=$event->question_data['request']['test_case_file'];
+        }
         $section->save();
         $section_id = $section->id;
         

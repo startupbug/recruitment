@@ -16,6 +16,7 @@
     <ul class="nav nav-tabs">
         <li class="active">
             <a data-toggle="pill" href="#home">
+
                 Test Hosted ({{count($hosted_tests)}})
                 <div class="s_click_popup">
                     <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
@@ -293,7 +294,7 @@
                                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                               <li><a href="" target="blank">Preview Templates</a></li>
                                               <li>
-                                                  <a href="#" class="duplicate_modal_id"  id="duplication_of_template" data-toggle="modal" data-message="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
+                                                  <a href="#" class="duplicate_modal_id duplication_of_template" data-toggle="modal" data-message="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
                                               </li>
                                               <li>
                                                   <a href="{{route('delete_test_template',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Test Template?')">Delete</a>
@@ -426,7 +427,7 @@
 <div class="modal fade" id="create-test-template-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
         <!-- Modal content-->
-        <form action="{{route('create_test_template')}}" method="POST">
+        <form action="{{route('create_test_template')}}" method="post">
             {{csrf_field()}}
             <div class="modal-content">
                 <div class="modal-header s_modal_form_header">
@@ -507,6 +508,7 @@
             </div>
             <div class="modal-body s_modal_form_body">
                 <form action="{{route('manage_test_view')}}" method="get">
+                    {{csrf_field()}}
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <div class="form-group title">
