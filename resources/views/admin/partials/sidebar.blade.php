@@ -22,6 +22,20 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">PAGES</li>
       <li><a href="{{route('users')}}"><i class="fa fa-user text-aqua"></i> <span>Users</span></a></li>
+      
+      <li class="treeview">
+         <a href="#">
+           <i class="fa fa-dashboard"></i> <span>Admin Questions</span>
+           <span class="pull-right-container">
+             <i class="fa fa-angle-left pull-right"></i>
+           </span>
+         </a>
+         <ul class="treeview-menu" style="display: none;">
+           <li><a href="{{route('adminquestion_index')}}"><i class="fa fa-circle-o"></i> Index </a></li>
+           <li><a href="{{route('create_admin_question')}}"><i class="fa fa-circle-o"></i> Create </a></li>
+         </ul>
+       </li>
+
       <li class="treeview">
          <a href="#">
            <i class="fa fa-dashboard"></i> <span>Dashboard</span>

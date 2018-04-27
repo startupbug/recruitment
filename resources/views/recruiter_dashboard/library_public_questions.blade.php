@@ -1,6 +1,7 @@
 @extends('recruiter_dashboard.layouts.app')
 @section('content')
 <section class="view">
+
 	<br>
 	<div class="container-fluid padding-15-fluit">
 		<div class="row border-row display-table s_magin-10">
@@ -20,8 +21,8 @@
 				 <!-- Start Public Question -->
 				 <div id="public" class="tab-pane fade @if(isset($templateType_fil) && $templateType_fil==1) in active @elseif($temp_unset) in active @endif ">
 					<ul class="nav nav-tabs">
-			 			<li @if(isset($questionType_fil) && $questionType_fil==1) class="active"@elseif(!isset($templateType_fil)) class="active"@endif><a data-toggle="pill" href="#public-mcqs">MCQs ({{$public_questions_mcqs->total()}})</a></li>
-			 			<li @if(isset($questionType_fil) && $questionType_fil==2) class="active" @endif><a data-toggle="pill" href="#public-programming-question">Programming Questions ({{$public_questions_codings->total()}})</a></li>
+			 			<li @if(isset($questionType_fil) && $questionType_fil==1) class="active"@elseif(!isset($templateType_fil)) class="active"@endif><a data-toggle="pill" href="#public-mcqs">MCQs ({{isset($public_questions_mcqs) ? $public_questions_mcqs->total() : ''}})</a></li>
+			 			<li @if(isset($questionType_fil) && $questionType_fil==2) class="active" @endif><a data-toggle="pill" href="#public-programming-question">Programming Questions ({{isset($public_questions_codings) ? $public_questions_codings->total() : ''}})</a></li>
 		 			</ul>
 			 		<div class="tab-content">
 			 			<div id="public-mcqs" class="tab-pane fade in active">
@@ -64,7 +65,7 @@
 							      </tr>
 							    </thead>
 							    <tbody>
-							@if(count($public_questions_mcqs) > 0)							    
+							@if(isset($public_questions_mcqs) && count($public_questions_mcqs) > 0)							    
 							    @foreach($public_questions_mcqs as $public_questions_mcq)
 
 							      <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_mcq->id}}" aria-expanded="false">
@@ -161,7 +162,7 @@
 										</tr>
 									</thead>
 									<tbody>
-							@if( count($public_questions_codings) > 0 )										
+							@if( isset($public_questions_codings) && count($public_questions_codings) > 0 )										
 							    @foreach($public_questions_codings as $public_questions_coding)
 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_coding->id}}" aria-expanded="false">
 											<td>
@@ -213,9 +214,9 @@
 				 <!-- Start Private Question -->
 				 <div id="private" class="tab-pane fade @if(isset($templateType_fil) && $templateType_fil==2)  active in @endif ">
 					<ul class="nav nav-tabs">
- 			 			<li @if(isset($questionType_fil) && $questionType_fil==1) class="active"@elseif(!isset($templateType_fil)) class="active"@endif><a data-toggle="pill" href="#private-mcqs">MCQs ({{count($private_questions_mcqs)}})</a></li>
- 			 			<li @if(isset($questionType_fil) && $questionType_fil==2) class="active" @endif><a data-toggle="pill" href="#private-programming-question">Programming Questions ({{count($private_questions_codings)}})</a></li>
- 			 			<li @if(isset($questionType_fil) && $questionType_fil==3) class="active" @endif ><a data-toggle="pill" href="#private-submission-question">Submission Questions ({{count($private_questions_submissions)}})</a></li>
+ 			 			<li @if(isset($questionType_fil) && $questionType_fil==1) class="active"@elseif(!isset($templateType_fil)) class="active"@endif><a data-toggle="pill" href="#private-mcqs">MCQs ({{isset($private_questions_mcqs) ?  count($private_questions_mcqs) : ''}})</a></li>
+ 			 			<li @if(isset($questionType_fil) && $questionType_fil==2) class="active" @endif><a data-toggle="pill" href="#private-programming-question">Programming Questions ({{isset($private_questions_codings) ? count($private_questions_codings): '' }})</a></li>
+ 			 			<li @if(isset($questionType_fil) && $questionType_fil==3) class="active" @endif ><a data-toggle="pill" href="#private-submission-question">Submission Questions ({{isset($private_questions_submissions) ? count($private_questions_submissions) : '' }})</a></li>
 						<li class="pull-right"></li>
  		 			</ul>
 					<div class="tab-content">
@@ -288,7 +289,7 @@
  							      </tr>
  							    </thead>
  							    <tbody>
-							@if(count($private_questions_mcqs) > 0)
+							@if(isset($private_questions_mcqs) && count($private_questions_mcqs) > 0)
  							      @foreach($private_questions_mcqs as $private_questions_mcq)
 
  							      <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_mcq->id}}" aria-expanded="false">
@@ -399,7 +400,7 @@
  										</tr>
  									</thead>
  									<tbody>
-							@if(count($private_questions_codings) > 0) 									
+							@if(isset($private_questions_codings) &&  count($private_questions_codings) > 0) 									
  									@foreach($private_questions_codings as $private_questions_coding)
 
  										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_coding->id}}" aria-expanded="false">
@@ -506,7 +507,7 @@
  										</tr>
  									</thead>
  									<tbody>
- 									@if(count($private_questions_submissions) > 0)
+ 									@if(isset($private_questions_submissions) && count($private_questions_submissions) > 0)
  									   @foreach($private_questions_submissions as $private_questions_submission)
 										 
 										 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_submission->id}}" aria-expanded="false">
@@ -565,14 +566,20 @@
 		</div>
 	</div>
 </section>
+
 <div class="modal fade" id="modal_pencil" role="dialog">
+
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
+      
+      <!-- HASAN MEHDI NAQVI -->
+   	<form action="{{route('update_questions_modal',$get_data->question_id)}}" method="post" enctype="multipart/form-data">
+   		{{csrf_field()}}
       <div class="modal-content">
          <div class="modal-header s_modal_form_header">
             <div class="pull-right">
                <span>Please add atleast 3 characters in the question statement </span>
-               <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
+               <button type="submit" class="btn s_save_button s_font" >Save</button>
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
             <h3 class="modal-title s_font">Submission Question</h3>
@@ -602,18 +609,20 @@
                            </strong>
                         </div>
                         <div>
+                        
                            <label class="container_radio border_radio_left">STAGE
-                           <input type="radio" checked="checked" name="radio" disabled>
+                           <input type="radio" @if($get_data->question_state_id == 1)  checked="checked" value="1" @endif name="question_state_id" >
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio">READY
-                           <input type="radio" name="radio">
+                           <input type="radio" name="question_state_id" @if($get_data->question_state_id == 2)  checked="checked" value="2" @endif >
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio border_radio_right">ABANDONED
-                           <input type="radio" name="radio" disabled>
+                           <input type="radio" name="question_state_id" @if($get_data->question_state_id == 3)  checked="checked" value="3" @endif >
                            <span class="checkmark"></span>
                            </label>
+                       
                         </div>
                         <hr>
                         <hr>
@@ -634,7 +643,7 @@
                               </div>
                            </strong>
                         </div>
-                        <textarea id="s_txtEditor_submission_Add_section_fill_blanks"></textarea>
+                        <textarea id="s_txtEditor_submission_Add_section_fill_blanks" class="edit" name="question_statement" value="{{$get_data->question_statement}}" >{{$get_data->question_statement}}</textarea>
                         <br>
                      </div>
                   </div>
@@ -651,7 +660,7 @@
                               <!--<button type="button" class="btn">Upload Media</button>-->
                               <div class="f_upload_btn">
                                  Upload Media
-                                 <input type="file" name="">
+                                 <input type="file" name="audio_video1" value="{{$get_data->media}}">
                               </div>
                            </div>
                         </div>
@@ -676,7 +685,7 @@
                      <div class="modal-body s_modal_body">
                         <div class="form-group form-group-sm" >
                            <label>Marks for this Question <i class="fa fa-info-circle"></i></label>
-                           <input type="number" name="marks" min="1" class="form-control" required="required" style="">
+                           <input type="number" name="marks" min="1" class="form-control" required="required" style="" value="{{$get_data->marks}}">
                         </div>
                         <div class="heading_modal_statement heading_padding_bottom">
                            <strong>
@@ -690,18 +699,59 @@
                            </strong>
                         </div>
                         <div class="heading_padding_bottom">
+                        @if($get_data->question_level_id == 1)
                            <label class="container_radio border_radio_left">Easy
-                           <input type="radio" checked="checked" name="radio">
+                           <input type="radio" checked="checked" name="question_level" value="1">
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio">Medium
-                           <input type="radio" name="radio">
+                           <input type="radio" name="question_level" value="2">
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio border_radio_right">Hard
-                           <input type="radio" name="radio">
+                           <input type="radio" name="question_level" value="3">
                            <span class="checkmark"></span>
                            </label>
+                        @elseif($get_data->question_level_id == 2)
+                           <label class="container_radio border_radio_left">Easy
+                           <input type="radio" name="question_level" value="1">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio">Medium
+                           <input type="radio" name="question_level" checked="checked" value="2">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio border_radio_right">Hard
+                           <input type="radio" name="question_level" value="3">
+                           <span class="checkmark"></span>
+                           </label>
+                        @elseif($get_data->question_level_id == 3)
+                           <label class="container_radio border_radio_left">Easy
+                           <input type="radio"  name="question_level" value="1">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio">Medium
+                           <input type="radio" name="question_level" value="2">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio border_radio_right">Hard
+                           <input type="radio" name="question_level" checked="checked" value="3">
+                           <span class="checkmark"></span>
+                           </label>
+                        @else
+                        	<label class="container_radio border_radio_left">Easy
+                            <input type="radio"  name="question_level" value="1">
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="container_radio">Medium
+                            <input type="radio" name="question_level" value="2">
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="container_radio border_radio_right">Hard
+                            <input type="radio" name="question_level" value="3">
+                            <span class="checkmark"></span>
+                            </label>
+                        @endif
                         </div>
                         <div class="heading_modal_statement heading_padding_bottom">
                            <strong>
@@ -723,15 +773,11 @@
                         <div class="form-group-sm">
                            <div class="row">
                               <div class="col-md-3">
-                                 <select class="form-control">
-                                    <option value="add Tag" disabled="">Select Tag</option>
-                                    <option>algo</option>
-                                    <option>basic-programming</option>
-                                    <option>database</option>
-                                    <option>design</option>
-                                    <option>iterative</option>
-                                    <option>maths</option>
-                                    <option>recursion</option>
+                                 <select class="form-control"  name="tag_name">
+										<option selected disabled >choose a tag</option>
+				                    @foreach($items as $value)
+				                    <option value="{{$value->id}}" required>{{$value->tag_name}}</option>
+				                    @endforeach
                                  </select>
                               </div>
                            </div>
@@ -751,7 +797,7 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <input type="text" class="form-control">
+                                 <input type="text" class="form-control" name="provider" value="{{$get_data->provider}}">
                               </div>
                            </div>
                         </div>
@@ -767,6 +813,353 @@
                                        name of the author of the question.
                                        </span>
                                     </div>
+                                 </div>
+                                 <input type="text" class="form-control" name="author" value="{{$get_data->author}}">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <!--   Evaluation Parameters (Optional) -->
+                  <div class="modal-content s_modal s_green_color_modal">
+                       <div class="modal-header s_modal_header s_green_color_header">
+                          <h4 class="modal-title s_font">Choices</h4>
+                       </div>
+                       <div class="modal-body s_modal_body">
+                          <div class="heading_modal_statement heading_padding_bottom">
+                             <strong>
+                                Choices
+                                <div class="s_popup">
+                                   <i class="fa fa-info-circle"> </i>
+                                   <span class="s_popuptext">
+                                   Under this section, one can add the <br>
+                                   Good to Know: <br>
+                                   (1) Multiple choice multiple answer type questions are supported.
+                                   <br>
+                                   <br>
+                                   (2) Choice field's value cannot be empty or a duplicate.
+                                   </span>
+                                </div>
+                             </strong>
+                             <strong class="pull-right">
+                             <input type="checkbox" name="partial_marks" id="section_partial_marks">
+                             Partial marks
+                             </strong>
+                             <div class="no-more-tables ">
+                                <table class="table s_table" id="section_choices_table">
+                                   <tbody>
+                                   	@php $k = 1 @endphp
+                                   	@foreach($choices as $choice)
+
+                                      <tr>
+                                         <td valign="center">{{$k}}</td>
+                                         <td>
+                                            <input type="checkbox" name="answer[]" class="choices_table_checkbox">
+                                         </td>
+                                         <input type="hidden" name="choice_id[]" value="{{$choice->id}}">
+                                         <td class="s_weight" valign="center">
+                                            <textarea class="form-control" name="choice[]" required="" value="{{$choice->id}}">{{$choice->choice}}</textarea>
+                                         </td>
+                                         <td valign="center" class="hidden">
+                                            <div class="input-group input-group-sm">
+                                               <input type="number" name="partial_marks[]" value="{{$choice->partial_marks}}" class="form-control" width="30px" max="100" min="0" >
+                                               <span class="input-group-addon" id="basic-addon1">{{$choice->partial_marks}}%</span>
+                                            </div>
+                                         </td>
+                                         <td valign="center">
+                                            <a href="{{route('delete_choice',$choice->id)}}" id="delete_choice" class="delete_row" data-id = "{{$choice->id}}" >
+                                            <i class="fa fa-times-circle-o"></i>
+                                            </a>
+                                         </td>
+                                      </tr>
+                                      @php $k++ @endphp
+                                      @endforeach
+                                   </tbody>
+                                   <tfoot>
+                                      <tr>
+                                         <td colspan="5" class="text-align-center">
+                                            <button type="button" class="btn btn-add-new btn-block" onclick="template_row_add_choice()"> + Add New Option</button>
+                                         </td>
+                                      </tr>
+                                   </tfoot>
+                                </table>
+                             </div>
+                             <div class="checkbox">
+                                <label>
+                                <input type="checkbox">Shuffle the options in the test
+                                </label>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                  <br>
+                  <!--   Evaluation Parameters (Optional) -->
+                  <div class="modal-content s_modal s_light_green_color_modal">
+                     <div class="modal-header s_modal_header s_light_green_color_header">
+                        <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="row">
+                           <div class="col-md-3 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>
+                                       Text
+                                       <div class="s_popup">
+                                          <i class="fa fa-info-circle"> </i>
+                                          <span class="s_popuptext">
+                                          Provide the solution to the question in text if the question is required to use. <br>
+                                          </span>
+                                       </div>
+                                    </strong>
+                                 </div>
+                                 <textarea min="0" class="form-control" name="solutiontext" style="" value="{{isset($solution->text) ?  $solution->text : ''}}">{{isset($solution->text) ?  $solution->text : ''}}</textarea>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-3 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>
+                                       Code
+                                       <div class="s_popup">
+                                          <i class="fa fa-info-circle"> </i>
+                                          <span class="s_popuptext">
+                                          Provide the solution to the question in code if the question is required to use. <br>
+                                          </span>
+                                       </div>
+                                    </strong>
+                                 </div>
+                                 <textarea min="0" class="form-control" name="solutioncode" style="" value="{{isset($solution->code) ?  $solution->code: ''}}" >{{isset($solution->code) ?  $solution->code: ''}}</textarea>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-3 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>
+                                       URL
+                                       <div class="s_popup">
+                                          <i class="fa fa-info-circle"> </i>
+                                          <span class="s_popuptext">
+                                          Provide the solution to the question in URL if the question is required to use. <br>
+                                          </span>
+                                       </div>
+                                    </strong>
+                                 </div>
+
+                                 <textarea min="0" class="form-control" name="solutionurl" style="" value="{{isset($solution->url) ? $solution->url: ''}}" >{{isset($solution->url) ? $solution->url : ''}}</textarea>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <strong>
+                              Files
+                              <div class="s_popup">
+                                 <i class="fa fa-info-circle"> </i>
+                                 <span class="s_popuptext">
+                                 Provide the solution to the question in file if the question is required to use. <br>
+                                 </span>
+                              </div>
+                           </strong>
+                        </div>
+                        <!--<button type="file" class="btn">Upload Files</button>-->
+                        <div class="f_upload_btn">
+                           Upload Media
+                           <input type="file" name="audio_video" value="{{isset($solution->solution_media) ? $solution->solution_media : ''}}" >
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+  	</form>
+   </div>
+</div>
+<div class="modal fade" id="submission_modal1" role="dialog">
+
+   <div class="modal-dialog  modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header s_modal_form_header">
+            <div class="pull-right">
+               <span>Please add atleast 3 characters in the question statement </span>
+               <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
+               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+            </div>
+            <h3 class="modal-title s_font">Submission Question123</h3>
+         </div>
+         <div class="modal-body s_modal_form_body">
+            <div class="row">
+               <div class="col-md-10 col-md-offset-1">
+                  <!-- Question State -->
+                  <div class="modal-content s_modal s_blue_color_modal">
+                     <div class="modal-header s_modal_header s_blue_color_header">
+                        <h4 class="modal-title s_font">Question Statement</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <strong>Question State <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
+                        </div>
+                        <div>
+                           <label class="container_radio border_radio_left">STAGE
+                           <input type="radio" checked="checked" name="radio" disabled>
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio">READY
+                           <input type="radio" name="radio">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio border_radio_right">ABANDONED
+                           <input type="radio" name="radio" disabled>
+                           <span class="checkmark"></span>
+                           </label>
+                        </div>
+                        <hr>
+                        <hr>
+                        <div class="heading_modal_statement">
+                           <strong>Question Statement (<a href="#">Expand</a>) <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
+                        </div>
+                        <textarea class="edit"></textarea>
+                        <div class="checkbox">
+                           <label>
+                           <input type="checkbox"> Enable code modification and show difference
+                           </label>
+                           <br>
+                           <label class="control-label" style="color: #999;">
+                           (The candidate will be asked to modify the code and the differences will be shown in the report)
+                           </label>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <!-- Media and Resources -->
+                  <div class="modal-content s_modal s_green_color_modal">
+                     <div class="modal-header s_modal_header s_green_color_header">
+                        <h4 class="modal-title s_font">Media and Resources</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <div class="">
+                              <h5><b>Media(Audio/Video)</b></h5>
+                              <!--<button type="button" class="btn">Upload Media</button>-->
+                              <div class="f_upload_btn">
+                                 Upload Media
+                                 <input type="file" name="">
+                              </div>
+                           </div>
+                           <br>
+                           <strong>
+                           Resources
+                           <i class="fa fa-info-circle"></i>
+                           </strong>
+                           <label class="control-label">
+                           (These resources will be available for the candidate to download during the test)
+                           </label>
+                           <div class="s_pur_body">
+                              <!--<button type="button" class="btn"> + Add resources</button>-->
+                              <div class="f_upload_btn">
+                                 + Add resources
+                                 <input type="file" name="">
+                              </div>
+                           </div>
+                           <hr>
+                           <strong>
+                           Candidate can use
+                           <i class="fa fa-info-circle"></i>
+                           </strong>
+                           <div class="checkbox">
+                              <label><input type="checkbox"> Images</label>
+                           </div>
+                           <div class="checkbox">
+                              <label><input type="checkbox"> URLs</label>
+                           </div>
+                           <div class="checkbox">
+                              <label><input type="checkbox"> Files</label>
+                           </div>
+                           <div class="checkbox">
+                              <label><input type="checkbox"> Text</label>
+                           </div>
+                           <div class="checkbox">
+                              <label><input type="checkbox"> Code</label>
+                           </div>
+                           <div class="checkbox">
+                              <label><input type="checkbox"> Audio</label>
+                           </div>
+                           <span class="input-group input-group-sm">
+                           <span class="input-group-addon s_addon ">Limit</span>
+                           <input type="number" class="form-control" min="1" style="height:30px; width:70px;">
+                           <span class="input-group-addon s_addon">seconds</span>
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <!--  Question Details -->
+                  <div class="modal-content s_modal s_gray_color_modal">
+                     <div class="modal-header s_modal_header s_gray_color_header">
+                        <h4 class="modal-title s_font"> Question Details</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="form-group form-group-sm" >
+                           <label>Marks for this Question <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></label>
+                           <input type="number" name="marks" min="1" class="form-control" required="required" style="">
+                        </div>
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <strong>Question Level <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
+                        </div>
+                        <div class="heading_padding_bottom">
+                           <label class="container_radio border_radio_left">Easy
+                           <input type="radio" checked="checked" name="radio">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio">Medium
+                           <input type="radio" name="radio">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio border_radio_right">Hard
+                           <input type="radio" name="radio">
+                           <span class="checkmark"></span>
+                           </label>
+                        </div>
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <strong>Tags <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a> No tags added</strong>
+                        </div>
+                        <div class="form-group-sm">
+                           <div class="row">
+                              <div class="col-md-3">
+                                 <select class="form-control">
+                                    <option value="add Tag" disabled="">Select Tag</option>
+                                    <option>algo</option>
+                                    <option>basic-programming</option>
+                                    <option>database</option>
+                                    <option>design</option>
+                                    <option>iterative</option>
+                                    <option>maths</option>
+                                    <option>recursion</option>
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Provider <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
+                                 </div>
+                                 <input type="text" class="form-control">
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Author <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                  </div>
                                  <input type="text" class="form-control">
                               </div>
@@ -821,15 +1214,7 @@
                            <div class="col-md-3 col-sm-12 col-xs-12">
                               <div class="form-group form-group-sm">
                                  <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>
-                                       Text
-                                       <div class="s_popup">
-                                          <i class="fa fa-info-circle"> </i>
-                                          <span class="s_popuptext">
-                                          Provide the solution to the question in text if the question is required to use. <br>
-                                          </span>
-                                       </div>
-                                    </strong>
+                                    <strong>Text <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                  </div>
                                  <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
                               </div>
@@ -839,15 +1224,7 @@
                            <div class="col-md-3 col-sm-12 col-xs-12">
                               <div class="form-group form-group-sm">
                                  <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>
-                                       Code
-                                       <div class="s_popup">
-                                          <i class="fa fa-info-circle"> </i>
-                                          <span class="s_popuptext">
-                                          Provide the solution to the question in code if the question is required to use. <br>
-                                          </span>
-                                       </div>
-                                    </strong>
+                                    <strong>Code <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                  </div>
                                  <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
                               </div>
@@ -857,34 +1234,18 @@
                            <div class="col-md-3 col-sm-12 col-xs-12">
                               <div class="form-group form-group-sm">
                                  <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>
-                                       URL
-                                       <div class="s_popup">
-                                          <i class="fa fa-info-circle"> </i>
-                                          <span class="s_popuptext">
-                                          Provide the solution to the question in URL if the question is required to use. <br>
-                                          </span>
-                                       </div>
-                                    </strong>
+                                    <strong>URL <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                  </div>
                                  <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
                               </div>
                            </div>
                         </div>
                         <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>
-                              Files
-                              <div class="s_popup">
-                                 <i class="fa fa-info-circle"> </i>
-                                 <span class="s_popuptext">
-                                 Provide the solution to the question in file if the question is required to use. <br>
-                                 </span>
-                              </div>
-                           </strong>
+                           <strong>Files <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                         </div>
                         <!--<button type="file" class="btn">Upload Files</button>-->
                         <div class="f_upload_btn">
-                           Upload Media
+                           Upload Files
                            <input type="file" name="">
                         </div>
                      </div>
@@ -895,6 +1256,7 @@
       </div>
    </div>
 </div>
+
 
 <div class="modal fade" id="mcqs-filter-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -981,5 +1343,3 @@
     </div>
 </div> 
 @endsection
-
-
