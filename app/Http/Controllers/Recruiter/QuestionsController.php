@@ -18,6 +18,8 @@ use DB;
 use App\Question_solution;
 use App\Question_detail;
 use App\Coding_entry;
+use App\Admin_question;
+use App\Admin_question_type;
 class QuestionsController extends Controller
 {
     public function create_question(Request $request){    	
@@ -382,6 +384,20 @@ class QuestionsController extends Controller
         return response(['msg' => 'Product deleted', 'status' => 'success']);
     }
     return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
+    }
+
+    public function show_setting_newquestion()
+    {
+    	//return '444444444';
+    	$show_question = Admin_question::get();
+    	$question_type = Admin_question_type::get();
+
+    	if ($show_question && $question_type){
+
+			return \Response()->Json([ 'status' => 200,'show_question'=>$show_question, 'question_type'=>$question_type]);					
+		}else{
+			return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);					
+		}
     }
 
 }

@@ -7,18 +7,18 @@
         <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label">Question</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="question">
+                <input type="text" class="form-control" name="question" required>
             </div>
         </div>
         <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label">Support text</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="Supporttext">
+                <input type="text" class="form-control" name="Supporttext" required>
             </div>
         </div>
             <label class="col-sm-2 control-label">Knock out</label>
           
-                 <input type="checkbox" name="Knockout" value="1"> Don't allow the candidate to take the test if the criteria does not meet<br>
+                 <input type="checkbox" name="Knockout" value="1" required> Don't allow the candidate to take the test if the criteria does not meet<br>
            
         
         
@@ -32,7 +32,19 @@
                     @endforeach()
                 </select>
             </div>
-            <input type="checkbox" name="mandatory" value="1">mandatory
+            <input type="checkbox" name="mandatory" value="1" required>mandatory
+        </div>
+<br>
+        <div class="form-group">
+            <label for="inputCountry" class="col-sm-2 control-label">Question Type</label>
+            <div class="col-sm-6">
+                <select name="question_type" class="form-control" required>
+                    <option selected disabled>Select a Type</option>
+                    @foreach($question_type as $value)
+                    <option value="{{$value->id}}">{{$value->question_type}}</option>
+                    @endforeach()
+                </select>
+            </div>
         </div>
 
 

@@ -59,3 +59,56 @@
           );
 
   });
+
+
+
+//-------------------------------------------------------------------------------------------------------------
+
+//Hasan Mehdi Naqvi
+var loaded = false;
+
+$('#newquestion').on('click', function(e) {
+  
+       if(loaded) return;
+
+      $.ajax({
+                type: 'GET',
+                url: $(this).data('url'),
+                //data: {'id': 0},
+                success: function (data) { 
+                console.log("success");
+                console.log(data);
+
+                var liHtml = "";
+                $.each(data.show_question, function( index, value ) {
+                  console.log(value.question);
+                  if(value.admin_question_type_id == 1){
+                   liHtml += `<li><a href="#" data-id="`+value.id+`" data-question="`+value.question+`">`+value.question+`</a></li>`;
+                  }
+                
+                });
+
+                $('li.proLiHeader').after(liHtml);
+
+                var lihtml2 ="";
+
+                $.each(data.show_question, function(index, value)
+                {
+                  if(value.admin_question_type_id == 2)
+                  {
+                    lihtml2 += `<li><a href="#" data-id="`+value.id+`" data-question="`+value.question+`">`+value.question+`</a></li>`; 
+                  }
+                });
+
+                $('li.acaLiHeader').after(lihtml2);
+
+                //$(".liHtml").append(liHtml);
+
+              }, error: function (data) {
+
+              }
+
+       });
+      
+      loaded = true;      
+});

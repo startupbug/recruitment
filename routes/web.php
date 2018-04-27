@@ -132,6 +132,8 @@ Route::post('submission_question_modal_partial_data','Recruiter\QuestionsControl
 
 Route::post('/update_partial_question/{id?}', 'Recruiter\QuestionsController@update_partial_question')->name('update_partial_question');
 
+Route::get('/Questionnaire_newquestion','Recruiter\QuestionsController@show_setting_newquestion')->name('Questionnaire_newquestion');
+
 //Recruiter Questions Routes Ended
 
 //Recruiter Test Templates Setting Routes Started

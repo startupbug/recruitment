@@ -13,7 +13,8 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Question</th>                                    
+                                    <th>Question</th> 
+                                    <th>Questuion Type</th>                                   
                                     <th>Support text</th>
                                     <th>Knock out</th>
                                     <th>Format</th>
@@ -25,10 +26,25 @@
                             <tbody>
                                 @foreach($questions as  $question)
                                     <tr>
-                                        <td>{{$question->question}}</td>                                        
+                                        <td>{{$question->question}}</td>
+                                        @if($question->admin_question_type_id == 1)
+                                        <td>Professional</td>
+                                        @elseif($question->admin_question_type_id == 2)
+                                        <td>Academics</td>
+                                        @endif                                       
                                         <td>{{$question->support_text}}</td>
                                         <td>{{$question->knock_out}}</td>
-                                        <td>{{$question->format_setting_id}}</td>
+                                        @if($question->format_setting_id == 1)
+                                        <td>number</td>
+                                        @elseif($question->format_setting_id == 2)
+                                        <td>checkbox</td>
+                                        @elseif($question->format_setting_id == 3)
+                                        <td>Multiple choice</td>
+                                        @elseif($question->format_setting_id == 4)
+                                        <td>Radio Button</td>
+                                        @elseif($question->format_setting_id == 5)
+                                        <td>drop down</td>
+                                        @endif
                                         <td>{{$question->mandatory}}</td>  
                                         <td>  
                                             <a class="btn btn-primary" href="" title="Click To Deactivate">Activated</a>

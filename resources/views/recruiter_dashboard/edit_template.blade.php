@@ -748,19 +748,18 @@
                                      <div class="row">
                                        <div class="col-sm-4">
                                          <div class="dropdown">
-                                           <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" type="button" data-toggle="dropdown">
+                                           <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" id="newquestion" type="button" data-toggle="dropdown" data-url="{{route('Questionnaire_newquestion')}}" >
                                              + New Question <span class="caret"></span>
                                            </button>
-                                           <ul class="dropdown-menu s_drop_down btn-block">
+                                           <ul class="dropdown-menu s_drop_down btn-block question_select">
                                              <li><a href="#"><strong>Write own question</strong></a></li>
+
                                              <li class="divider"></li>
-                                             <li class="dropdown-header">Professional</li>
-                                             <li><a href="#" onclick="addQuestionnaire('ctc')">What is your current CTC?</a></li>
-                                             <li><a href="#" onclick="addQuestionnaire('experience')">What is your total work experience?</a></li>
+                                             <li class="dropdown-header proLiHeader">Professional</li>
+
                                              <li class="divider"></li>
-                                             <li class="dropdown-header">Academics</li>
-                                             <li><a href="#" onclick="addQuestionnaire('college_name')">What is your College name?</a></li>
-                                             <li><a href="#" onclick="addQuestionnaire('cgpa')">What is your CGPA?</a></li>
+                                             <li class="dropdown-header acaLiHeader">Academics</li>
+
                                            </ul>
                                          </div>
                                        </div>

@@ -10,6 +10,10 @@ use Session;
 use App\Question;
 use App\Question_detail;
 use App\Question_solution;
+
+use App\Question_level;
+use App\Question_tag;
+
 class RecruiterController extends Controller
 {
     /**
@@ -70,6 +74,8 @@ class RecruiterController extends Controller
         $args['items'] = DB::table('question_tags')->get();
         $args['solution'] = DB::table('question_solutions')->where('question_id','=',$id)->first();
 
+        $args['levels'] = Question_level::all();
+        $args['tags'] = Question_tag::all();        
         
         return view('recruiter_dashboard.library_public_questions')->with($args);
     }

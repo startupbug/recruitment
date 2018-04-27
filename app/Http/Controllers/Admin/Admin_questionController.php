@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Format_setting;
 use App\Admin_question;
+use App\Admin_question_type;
 use Auth;
 use Illuminate\Support\Facades\Input;
 class Admin_questionController extends Controller
@@ -19,8 +20,8 @@ class Admin_questionController extends Controller
     public function new()
     {
     	$items = Format_setting::all(['id', 'name']);
-    		
-    	return view('admin.admin_questions.create',['items'=>$items]);
+    	$question_type = Admin_question_type::all(['id','question_type']);	
+    	return view('admin.admin_questions.create',['items'=>$items, 'question_type'=>$question_type]);
     }
 
     public function create(Request $request)
@@ -28,6 +29,7 @@ class Admin_questionController extends Controller
     	$insert = new Admin_question;
     	$insert->user_id = Auth::user()->id;
     	$insert->format_setting_id = input::get('format');
+        $insert->admin_question_type_id = input::get('question_type');
     	$insert->question = input::get('question');
     	$insert->support_text = input::get('Supporttext');
     	$insert->knock_out = 1;
@@ -47,7 +49,8 @@ class Admin_questionController extends Controller
     	
     	$edit_task = Admin_question::where('id','=',$id)->first();
     	$items = Format_setting::all(['id', 'name']);
-    	return view('admin.admin_questions.edit',['edit_task'=>$edit_task, 'items'=>$items]);
+        $question_type = Admin_question_type::all(['id','question_type']);
+    	return view('admin.admin_questions.edit',['edit_task'=>$edit_task, 'items'=>$items, 'question_type'=>$question_type]);
     }
 
     public function question_update(Request $request, $id)
@@ -55,6 +58,7 @@ class Admin_questionController extends Controller
     	$update = Admin_question::find($id);
     	$update->format_setting_id = $request->get('format');
         $update->question = $request->get('question');
+        $update->admin_question_type_id = $request->get('question_type');
         $update->support_text = $request->get('Supporttext');
         $update->knock_out = $request->get('Knockout');
         $update->mandatory = $request->get('mandatory');

@@ -37,6 +37,18 @@
             <input type="checkbox" name="mandatory" value="1">mandatory
         </div>
 
+        <div class="form-group">
+            <label for="inputCountry" class="col-sm-2 control-label">Question Type</label>
+            <div class="col-sm-6">
+                <select name="question_type" class="form-control" required>
+                    <option selected disabled>Select a Type</option>
+                    @foreach($question_type as $value)
+                    <option value="{{$value->id}}">{{$value->question_type}}</option>
+                    @endforeach()
+                </select>
+            </div>
+        </div>
+
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
