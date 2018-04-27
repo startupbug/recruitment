@@ -2139,6 +2139,7 @@
       </div>
    </div>
 </div>
+
 <!-- Coding Modal -->
 <!-- section-coding-add-compilable-question-Modal -->
 <div class="modal fade" id="section-coding-add-compilable-question-Modal" role="dialog">
@@ -2583,8 +2584,8 @@
     </div>
   </div>
 </div>
-
 <!-- section-coding-debug-Modal -->
+
 <!-- Coding Modal -->
 <!-- Coding Modal Second Type -->
 <div class="modal fade" id="section-coding-debug-Modal" role="dialog">
@@ -4831,7 +4832,7 @@
                            <br>
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
-                              <a target="_blank" href="{{route('library_public_questions')}}?modal=submission_modal1" 
+                              <a target="_blank" href="{{route('library_public_questions')}}?modal=submission_modal1"
                                  class="btn-sm btn-link" data-toggle="tooltip" data-placement="top" title="Edit Question">
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
                            </div>
