@@ -294,7 +294,7 @@
                                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                               <li><a href="" target="blank">Preview Templates</a></li>
                                               <li>
-                                                  <a href="#" class="duplicate_modal_id"  id="duplication_of_template" data-toggle="modal" data-message="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
+                                                  <a href="#" class="duplicate_modal_id duplication_of_template" data-toggle="modal" data-message="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
                                               </li>
                                               <li>
                                                   <a href="{{route('delete_test_template',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Test Template?')">Delete</a>
@@ -394,7 +394,7 @@
             <div class="modal-body s_modal_form_body modal_top modal_duplicate">
                 <form action="{{route('create_duplicate_template_post')}}" id="create_duplicate_template_post" method="POST">
                     {{csrf_field()}}
-                    <input type="hidden" id="duplication_of_template_ki_id" value="" name="previous_template_id">
+                    <input type="text" id="duplication_of_template_ki_id" value="" name="previous_template_id">
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group title">
@@ -403,6 +403,7 @@
                                     <div class="template">
                                         <input id="name" name="title" value="" type="text" placeholder="Enter name of the new test template" class="form-control general">
                                     </div>
+                                    <img src="{{ asset('public/assets/img/loader.gif') }}" id="loader_image" style="display: none;">
                                 </div>
                             </div>
                         </div>

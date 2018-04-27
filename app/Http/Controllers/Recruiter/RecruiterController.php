@@ -1,15 +1,21 @@
 <?php
-
 namespace App\Http\Controllers\Recruiter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Support;
 use Illuminate\Support\Facades\Input;
 use DB;
+use Hash;
+use Auth;
 use Session;
 use App\Question;
 use App\Question_detail;
 use App\Question_solution;
+use App\User;
+use App\Question_level;
+use App\Question_tag;
+
+
 class RecruiterController extends Controller
 {
     /**
@@ -70,6 +76,9 @@ class RecruiterController extends Controller
         $args['items'] = DB::table('question_tags')->get();
         $args['solution'] = DB::table('question_solutions')->where('question_id','=',$id)->first();
 
+        $args['levels'] = Question_level::all();
+        $args['tags'] = Question_tag::all();
+
         
         return view('recruiter_dashboard.library_public_questions')->with($args);
     }
@@ -83,11 +92,41 @@ class RecruiterController extends Controller
 
 
     public function change_password(){
-         return view('recruiter_dashboard.setting.change_password');
+     
+        return view('recruiter_dashboard.setting.change_password');
     }
 
+    public function update_password_recruiter(Request $request){
+      try{
+        if (Hash::check($request->input('old_password'), Auth::user()->password)) {
+          // The passwords match...
+          $this->validate($request, [
+            'password' => 'required|confirmed|min:2|max:18',
+          ]);
+            //Updating Password
+            $newpassword1 = bcrypt($request->input('password'));
+            $user = User::find(Auth::user()->id);
+            $user->password = $newpassword1;
+            $password_updated = $user->save();
+          if($password_updated){
+             $this->set_session('Password Updated', true);
+          }else{
+            $this->set_session('Password couldnot be Updated. Please try again.', false); 
+        }
+      }else{
+        //old password doesn't match
+        $this->set_session('Please enter Correct Previous Password to change your Password.', false);  
+      }
+      return redirect()->route('change_password');  
+
+      }catch(\Exception $e){
+        $this->set_session('Password couldnot be Updated. '.$e->getMessage(), false);
+        return redirect()->route('change_password');                
+      }
+    }
     public function general_setting(){
-         return view('recruiter_dashboard.setting.general_setting');
+        $args['question_tags'] = Question_tag::all();
+         return view('recruiter_dashboard.setting.general_setting')->with($args);
     }
 
     public function setting_info(){

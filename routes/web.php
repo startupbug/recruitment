@@ -72,6 +72,7 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard');
+Route::post('update_password_recruiter', 'Recruiter\RecruiterController@update_password_recruiter')->name('update_password_recruiter');
 Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
 Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query');
 
@@ -137,6 +138,8 @@ Route::post('/update_partial_question/{id?}', 'Recruiter\QuestionsController@upd
 //Recruiter Test Templates Setting Routes Started
 Route::post('/templatetestSetting', 'Recruiter\TemplateSetting@templatetestSetting')->name('templatetestSetting');
 Route::post('/templatetestContactSetting', 'Recruiter\TemplateSetting@templatetestContactSetting')->name('templatetestContactSetting');
+Route::post('/template_setting_message_post', 'Recruiter\TemplateSetting@template_setting_message_post')->name('template_setting_message_post');
+Route::post('/templatetestMailSetting', 'Recruiter\TemplateSetting@templatetestMailSetting')->name('templatetestMailSetting');
 //Recruiter Test Templates Setting Routes Ended
 
 /* Host Test Routes */
@@ -153,8 +156,20 @@ Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name(
 //Public preview of host 
 Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
 
-//Report
-Route::get('/report/{id}', 'Recruiter\HostController@can_report')->name('can_report');
+//Library controller
+Route::get('/library', 'Recruiter\LibraryController@lib_index')->name('lib_index');
 
+//Library ini filter
+Route::post('/library-filter', 'Recruiter\LibraryController@libFilter')->name('libFilter');
+
+//Library single detail data.
+Route::post('/library-question-detail', 'Recruiter\LibraryController@lib_ques_detail')->name('lib_ques_detail');
 });
+
 /*Recruiter Routes Ended*/
+
+
+
+
+Route::post("ajax_tag_post", "Recruiter\TemplateSetting@ajax_tag_post");
+Route::post("delete_question_tag", "Recruiter\TemplateSetting@delete_question_tag")->name('delete_question_tag');

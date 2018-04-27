@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTemplatesMailSettingsTable extends Migration
+class CreateTemplateSettingMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateTemplatesMailSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('templates_mail_settings', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('template_setting_messages', function (Blueprint $table) {
+            $table->increments('id');  
             $table->integer('test_templates_id')->unsigned();
-            $table->string('receiver_email')->nullable();
-            $table->string('percentage_required')->nullable();
-            $table->tinyInteger('include_questionnaire')->nullable()->default('0');
-            $table->tinyInteger('candidate_mail_setting')->nullable()->default('0');
+            $table->longText('setting_message')->nullable(); 
             $table->foreign('test_templates_id')->references('id')->on('test_templates')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
@@ -32,6 +29,6 @@ class CreateTemplatesMailSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('templates_mail_settings');
+        Schema::dropIfExists('template_setting_messages');
     }
 }
