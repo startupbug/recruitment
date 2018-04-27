@@ -45,7 +45,7 @@
                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
                            </a>
                            @endif
-                           <a href="{{route('delete_section',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Test Template?')">
+                           <a href="{{route('delete_section',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Section?')">
                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                            </a>
                         </div>
@@ -751,17 +751,17 @@
                                            <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" type="button" data-toggle="dropdown">
                                              + New Question <span class="caret"></span>
                                            </button>
-                                           <ul class="dropdown-menu s_drop_down btn-block">
-                                             <li><a href="#"><strong>Write own question</strong></a></li>
-                                             <li class="divider"></li>
-                                             <li class="dropdown-header">Professional</li>
-                                             <li><a href="#" onclick="addQuestionnaire('ctc')">What is your current CTC?</a></li>
-                                             <li><a href="#" onclick="addQuestionnaire('experience')">What is your total work experience?</a></li>
-                                             <li class="divider"></li>
-                                             <li class="dropdown-header">Academics</li>
-                                             <li><a href="#" onclick="addQuestionnaire('college_name')">What is your College name?</a></li>
-                                             <li><a href="#" onclick="addQuestionnaire('cgpa')">What is your CGPA?</a></li>
-                                           </ul>
+      <ul class="dropdown-menu s_drop_down btn-block">
+      <li><a href="#"><strong>Write own question</strong></a></li>
+      <li class="divider"></li>
+      <li class="dropdown-header">Professional</li>
+      <li><a href="#" onclick="addQuestionnaire('ctc')">What is your current CTC?</a></li>
+      <li><a href="#" onclick="addQuestionnaire('experience')">What is your total work experience?</a></li>
+      <li class="divider"></li>
+      <li class="dropdown-header">Academics</li>
+      <li><a href="#" onclick="addQuestionnaire('college_name')">What is your College name?</a></li>
+      <li><a href="#" onclick="addQuestionnaire('cgpa')">What is your CGPA?</a></li>
+      </ul>
                                          </div>
                                        </div>
                                      </div>
@@ -4746,9 +4746,9 @@
                            <br>
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
-                              <a target="_blank" href="{{route('library_public_questions')}}?modal=submission_modal1" 
-                                 class="btn-sm btn-link" data-toggle="tooltip" data-placement="top" title="Edit Question">
-                                 <input type="text" name="question_id" id="submissions_question_id" value="">
+                  <a target="_blank" href="{{route('library_public_questions')}}?modal=submission_modal1" 
+                                 class="btn-sm btn-link code_ajax_route" data-toggle="tooltip" data-placement="top" title="Edit Question">
+                                 <input type="hidden" name="question_id" id="submissions_question_id" value="">
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
                            </div>
                         </div>
@@ -4880,7 +4880,7 @@
             <div class="pull-right">
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
-            <h3 class="modal-title s_font"></i>Coding Questionsssssss</h3>
+            <h3 class="modal-title s_font"></i>Coding Question</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div style="">
@@ -4892,19 +4892,17 @@
                         <div class="form-inline">
                            <label>program Title</label>
                            <span>(Current state of question : READY<span id="state_name"></span>)</span>
-                           <label>program Title</label>
-                           <span>(Current state of question : READY<span id="state_name"></span>)</span>
                            <br>
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
-                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link code_ajax_route" >
+                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_coding" class="btn-sm btn-link code_ajax_route" >
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
                            </div>
                         </div>
                      </div>
                      <div class="form-group ng-scope" data-ng-if="isTestQuestion">
 
-<label>Marks for this Questionnnn</label>
+<label>Marks for this Question</label>
 <input type="number" name="marks" min="0" id="coding_marks" class="form-control" required="required">
 </div>
 
@@ -4958,6 +4956,9 @@
 </div>
            
 </div>
+
+
+
 
 <!-- Submission Edit  Partial Modal And Complete Modal -->
 <script type="text/javascript">

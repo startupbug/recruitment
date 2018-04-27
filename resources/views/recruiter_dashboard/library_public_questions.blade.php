@@ -1364,4 +1364,421 @@
       </div>
    </div>
 </div>
+<!-- Coding Full Edit Modal By Fareha -->
+<div class="modal fade" id="modal_coding" role="dialog">
+    <div class="modal-dialog  modal-lg">
+        <!-- Modal content-->
+         <form action="" method="POST" enctype="multipart/form-data">
+        {{csrf_field()}}
+         <input type="hidden" name="section_id" id="section_id_2" value="">
+         <input type="hidden" name="question_type_id" value="">
+         <input type="hidden" name="question_sub_types_id" value="">
+        <div class="modal-content">
+            <div class="modal-header s_modal_form_header">
+                <div class="pull-right">
+                    <span>Please add the question title </span>
+                    <button type="submit" class="btn s_save_button s_font">Save</button>
+                    <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+                </div>
+                <h3 class="modal-title s_font">Coding Question234</h3>
+            </div>
+            <div class="modal-body s_modal_form_body">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <!-- Question State -->
+                        <div class="modal-content s_modal s_blue_color_modal">
+                            <div class="modal-header s_modal_header s_blue_color_header">
+                                <h4 class="modal-title s_font">Question State</h4>
+                            </div>
+                            <div class="modal-body s_modal_body">
+                                <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Question State
+                                        <div class="s_popup">
+
+                                          <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" There are three possible states for a question. <br>
+                                               (1) Stage (2) Ready (3) Abondoned<br>
+                                                Why is it needed: The purpose of the states is to manage the question development cycle.
+                                                <br>
+                                                Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                              There are three possible states for a question. <br>
+                                               (1) Stage (2) Ready (3) Abondoned<br>
+                                                Why is it needed: The purpose of the states is to manage the question development cycle.
+                                                <br>
+                                                Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented.
+                                            </span>-->
+                                        </div>
+                                    </strong>
+                                </div>
+                                <div>
+                                  <label class="container_radio border_radio_left">STAGE
+                                  <input type="radio" name="`" value="1" disabled>
+                                  <span class="checkmark"></span>
+                                  </label>
+                                  <label class="container_radio">READY
+                                  <input type="radio" checked="checked" name="question_state_id" value="2">
+                                  <span class="checkmark"></span>
+                                  </label>
+                                  <label class="container_radio border_radio_right">ABANDONED
+                                  <input type="radio" name="question_state_id" value="3" disabled>
+                                  <span class="checkmark"></span>
+                                  </label>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group form-group-sm">
+                                            <div class="heading_modal_statement heading_padding_bottom">
+                                                <strong>Program Title
+                                                    <div class="s_popup">
+                                                        <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  This is meant to contain a suitable title <br>
+                                                representing the program.<br>
+                                               Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
+                                               and also serve as a parameter for filters while searching through the library."> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                                This is meant to contain a suitable title <br>
+                                                representing the program.<br>
+                                               Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
+                                               and also serve as a parameter for filters while searching through the library.
+                                            </span>-->
+                                        </div>
+                                                </strong>
+                                            </div>
+                                            <input type="text" name="coding_program_title" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="heading_modal_statement">
+                                    <strong>Program Statement (<a href="#section-coding-add-compilable-question-Modal-Collapse" data-toggle="modal" onclick="code_edittesttemplate_Collapse()" >Expand</a>)  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  This is meant to contain a suitable title <br>
+                                                representing the program.<br>
+                                               Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
+                                               and also serve as a parameter for filters while searching through the library."> <i class="fa fa-info-circle"> </i></a></strong>
+                                </div>
+                                <textarea class="edit"></textarea>
+                                <br>
+                                <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Sample Input & Output
+                                        <div class="s_popup">
+                                           <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                               htmlTooltip.modalProgramSamples <br>
+
+                                            </span>-->
+                                        </div>
+                                    </strong>
+                                    <div class="heading_modal_statement heading_padding_bottom">
+
+                                    <div class="no-more-tables ">
+                                        <table class="table s_table" id="section_coding_table">
+                                            <thead>
+                                                <th></th>
+                                                <th>Input</th>
+                                                <th>Output</th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td valign="center">1.</td>
+                                                    <td valign="center">
+                                                        <textarea class="form-control" name="coding_input[]" required=""></textarea>
+                                                    </td>
+                                                    <td valign="center">
+                                                        <textarea class="form-control" name="coding_output[]" required=""></textarea>
+                                                    </td>
+                                                    <td valign="center">
+                                                        <a class="delete_row">
+                                                        <i class="fa fa-times-circle-o"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4" class="text-align-center">
+                                                        <button class="btn" onclick="addrow_section_codingquestion()">+ Add Sample Test Case</button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- Test Cases -->
+                        <div class="modal-content s_modal s_green_color_modal">
+                            <div class="modal-header s_modal_header s_green_color_header">
+                                <h4 class="modal-title s_font">Test Cases</h4>
+                            </div>
+                            <div class="modal-body s_modal_body">
+                                <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Test Cases
+                                         <div class="s_popup">
+                                           <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a>
+                                            <!--<i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                               htmlTooltip.modalProgramTestcases <br>
+
+                                            </span>-->
+                                        </div>
+                                    </strong>
+                                    <strong class="pull-right">
+                                      <input type="checkbox" name="weightage_status" id="weightage_status" value="1" checked>
+                                      Equalize Weightage,
+                                      <strong class="text-success weightage_blink_success">Total: 100%</strong>
+                                      <strong class="text-danger weightage_blink_error hidden">Total: 1001% (&gt; 100%)</strong>
+                                    </strong>
+                                    <!-- id="weightage_row" -->
+                                    <table class="table s_table" id="weightage_code_table">
+                                        <thead>
+                                            <th></th>
+                                            <th class="col-md-2">Name</th>
+                                            <th class="col-md-3">Input</th>
+                                            <th class="col-md-3">Output</th>
+                                            <th class="col-md-4 text-center">Weightage</th>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                   <button type="button" class="btn" id="weightage_code_add_row">+ Add Test Case as Text</button>
+                                   <div class="s_uplosd_btn f_upload_btn">
+                                     Upload Test Case Files
+                                     <input type="file" name="test_case_file" >
+                                   </div>
+                                    <a href="#">Test case file format</a>
+                                    <div class="checkbox s_margin_0">
+                                        <label>
+                                        <input type="checkbox" name="test_case_verify">Verify the Test Cases
+                                        </label>
+                                    </div>
+                                    <p>Test Cases should be added/uploaded</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- Default Codes -->
+                        <!-- <div class="modal-content s_modal s_yellow_color_modal">
+                            <div class="modal-header s_modal_header s_yellow_color_header">
+                                <h4 class="modal-title s_font">Default Codes</h4>
+                            </div>
+                            <div class="modal-body s_modal_body">
+                                <div class="heading_modal_statement heading_padding_bottom">
+                                    <div class="checkbox s_margin_0">
+                                        <label>
+                                        <input type="checkbox">
+                                        <strong>
+                                        Add Default Codes for the Question
+                                         <div class="s_popup">
+                                            <i class="fa fa-info-circle"> </i>
+                                            <span class="s_popuptext">
+                                              These codes will be provided to the candidate during the test will be the only allowed languages for which the code is provided. <br>
+
+                                            </span>
+                                        </div>
+                                        <a href="#"> Advanced</a>
+                                        </strong>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <br>
+                        <!--  Question Details -->
+                        <div class="modal-content s_modal s_gray_color_modal">
+                           <div class="modal-header s_modal_header s_gray_color_header">
+                              <h4 class="modal-title s_font"> Question Details</h4>
+                           </div>
+                           <div class="modal-body s_modal_body">
+                              <div class="form-group form-group-sm">
+                                 <strong>Marks for this Question <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                                 <input type="number" name="marks" min="1" class="form-control" required="required" style="">
+                              </div>
+                              <div class="form-group form-group-sm">
+                                 <strong>Allowed languages <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                                 <div class="row">
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label class="ng-binding">
+                                          <input type="checkbox" name="allowed_languages_id[]" value="1" checked="checked"> JAVA
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label class="ng-binding">
+                                          <input type="checkbox" name="allowed_languages_id[]" value="2" checked="checked"> C
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="3" checked="checked"> CPP
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="4" checked="checked"> PYTHON
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="5" checked="checked"> RUBY
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="6" checked="checked"> PHP
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="7" checked="checked"> JAVASCRIPT
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="8" checked="checked"> CSHARP
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                       <div class="checkbox no-margin">
+                                          <label>
+                                          <input type="checkbox" name="allowed_languages_id[]" value="9" checked="checked"> R
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="heading_modal_statement heading_padding_bottom">
+                                 <strong>Tags <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                              </div>
+                              <div class="form-group-sm">
+                                 <div class="row">
+                                    <div class="col-md-3">
+                                       <select name="tag_id" class="form-control">
+                                         <option value="add Tag" disabled="">Add Tag</option>
+                                          <option value="">Tag One</option>
+                                          <option value="">Tag One</option>
+                                          <option value="">Tag One</option>
+                                          <option value="">Tag One</option>
+                                          <option value="">Tag One</option>       
+                                       </select>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="heading_modal_statement heading_padding_bottom"><br>
+                                 <strong>Question Level <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                              </div>
+                              <div class="heading_padding_bottom">
+                                 <label class="container_radio border_radio_left">Easy
+                                 <input type="radio" checked="checked" value="1" name="question_level_id">
+                                 <span class="checkmark"></span>
+                                 </label>
+                                 <label class="container_radio">Medium
+                                 <input type="radio" name="question_level_id" value="2">
+                                 <span class="checkmark"></span>
+                                 </label>
+                                 <label class="container_radio border_radio_right">Hard
+                                 <input type="radio" name="question_level_id" value="3">
+                                 <span class="checkmark"></span>
+                                 </label>
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group form-group-sm">
+                                       <div class="heading_modal_statement heading_padding_bottom">
+                                          <strong>Provider <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                                       </div>
+                                       <input type="text" name="provider" class="form-control">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group form-group-sm">
+                                       <div class="heading_modal_statement heading_padding_bottom">
+                                          <strong>Author <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                                       </div>
+                                       <input type="text" name="author" class="form-control">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <!--  Solution Details (Optional) -->
+                          <div class="modal-content s_modal s_gray_color_modal">
+                       <div class="modal-header s_modal_header s_gray_color_header">
+                          <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                       </div>
+                       <div class="modal-body s_modal_body">
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Text <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="text" style=""></textarea>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>Code <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="code" style=""></textarea>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="row">
+                             <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                   <div class="heading_modal_statement heading_padding_bottom">
+                                      <strong>URL <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                                   </div>
+                                   <textarea min="0" class="form-control" name="url" style=""></textarea>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="heading_modal_statement heading_padding_bottom">
+                             <strong>Files <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                          </div>
+                          <!--<input type="file" name="solution_media">-->
+                           <div class="f_upload_btn">
+                                    Upload Files
+                                    <input type="file" name="">
+                                </div>
+                       </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </form>
+    </div>
+</div>
+<!-- Coding Full Edit Modal By Fareha -->
 @endsection

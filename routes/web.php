@@ -72,6 +72,7 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard');
+Route::post('update_password_recruiter', 'Recruiter\RecruiterController@update_password_recruiter')->name('update_password_recruiter');
 Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
 Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query');
 
@@ -160,3 +161,9 @@ Route::get('/report/{id}', 'Recruiter\HostController@can_report')->name('can_rep
 
 });
 /*Recruiter Routes Ended*/
+
+
+
+
+Route::post("ajax_tag_post", "Recruiter\TemplateSetting@ajax_tag_post");
+Route::post("delete_question_tag", "Recruiter\TemplateSetting@delete_question_tag")->name('delete_question_tag');
