@@ -174,6 +174,7 @@
 
                <!-- End basic_detail -->
                <!-- Start section_subject -->
+               @if(isset($sections_tabs))
                @foreach($sections_tabs as $key => $sec)
                <div id="section_subject-{{$key}}" class="tab-pane fade">
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
@@ -530,6 +531,7 @@
                   </div>
                </div>
                @endforeach()
+               @endif
                <div id="section_setting" class="tab-pane fade">
                   <div class="row">
                      <div class="col-md-2">
@@ -641,22 +643,23 @@
                                                 </span>
                                              </div>
                                           </label>
-                                          
+
                                           <div class="col-sm-9">
                                              <div class="checkbox">
                                                 <label>
                                                 <input type="checkbox" value="1"
 
-                                                @if($edit_test_settings->request_resume == 1)
+                                                @if(isset($edit_test_settings->request_resume) && $edit_test_settings->request_resume == 1)
                                                    checked="checked" name="request_resume" id="request_resume" checked> Request Resume
-                                                @endif 
+                                                @endif
                                                 </label>
                                              </div>
                                              <div class="checkbox">
                                                 <label id="mandate_resume_label">
-                                                <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) 
-                                                checked='checked' 
-                                                @endif   
+                                                <input type="checkbox" value="1"
+                                                @if(isset($edit_test_settings->request_resume) && $edit_test_settings->mandate_resume == 1)
+                                                checked='checked'
+                                                @endif
                                                 name="mandatory_resume" id="mandate_resume">
                                                 Mandate Resume
                                                 </label>
@@ -705,7 +708,7 @@
                                                 <input type="checkbox" value="1" @if(isset($edit_test_settings->email_verification) && $edit_test_settings->email_verification == 1) checked='checked' @endif  name="email_verification" id="enable_verification">
                                                 &nbsp;
                                                 </label>
-                                                <div @if($edit_test_settings->email_verification == 1) class="help-block hidden" @else class="help-block hidden" @endif id="enable_verification_bloc">(The candidate will not be able to resume the test in case of system failure)</div>
+                                                <div @if(isset($edit_test_settings->email_verification) && $edit_test_settings->email_verification == 1) class="help-block hidden" @else class="help-block hidden" @endif id="enable_verification_bloc">(The candidate will not be able to resume the test in case of system failure)</div>
                                                 <div class="help-block hidden">(Email-id will always be verified for the login or invite only test)</div>
                                              </div>
                                           </div>
@@ -727,50 +730,52 @@
                                  </strong>
                               </div>
                               <div class="panel-body s_questionnaire_body s_panelBodyHeight">
-                               <form>
+                               <section id="setting_questionnaire_tab">
                                  <div class="form-group">
                                    <div class="checkbox">
                                      <label>
-                                       <input type="checkbox"> Enable questionnaire
+                                       <input type="checkbox" class="enable_questionaire"> Enable questionnaire
                                      </label>
                                    </div>
                                  </div>
-                                 <div class="form-group">
-                                   <div class="checkbox">
-                                     <label>
-                                       <input type="checkbox"> Questionnaire to be filled before the test( candidate must fill the questionnaire to start attempting the test)
-                                     </label>
+                                 <div class="new_questionnaire hidden">
+                                   <div class="form-group">
+                                     <div class="checkbox">
+                                       <label>
+                                         <input type="checkbox"> Questionnaire to be filled before the test( candidate must fill the questionnaire to start attempting the test)
+                                       </label>
+                                     </div>
                                    </div>
-                                 </div>
-                                 <hr>
-                                 <div class="form-group form-group-sm">
+                                   <hr>
                                    <div class="form-group form-group-sm">
-                                     <div class="row">
-                                       <div class="col-sm-4">
-                                         <div class="dropdown">
-                                           <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" type="button" data-toggle="dropdown">
-                                             + New Question <span class="caret"></span>
-                                           </button>
-                                           <ul class="dropdown-menu s_drop_down btn-block">
-                                             <li><a href="#"><strong>Write own question</strong></a></li>
-                                             <li class="divider"></li>
-                                             <li class="dropdown-header">Professional</li>
-                                             <li><a href="#" onclick="addQuestionnaire('ctc')">What is your current CTC?</a></li>
-                                             <li><a href="#" onclick="addQuestionnaire('experience')">What is your total work experience?</a></li>
-                                             <li class="divider"></li>
-                                             <li class="dropdown-header">Academics</li>
-                                             <li><a href="#" onclick="addQuestionnaire('college_name')">What is your College name?</a></li>
-                                             <li><a href="#" onclick="addQuestionnaire('cgpa')">What is your CGPA?</a></li>
-                                           </ul>
+                                     <div class="form-group form-group-sm">
+                                       <div class="row">
+                                         <div class="col-sm-4">
+                                           <div class="dropdown">
+                                             <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" type="button" data-toggle="dropdown">
+                                               + New Question <span class="caret"></span>
+                                             </button>
+                                             <ul class="dropdown-menu s_drop_down btn-block new_question">
+                                               <li><a href="#" data-id="0" data-question="Write own question"><strong>Write own question</strong></a></li>
+                                               <li class="divider"></li>
+                                               <li class="dropdown-header">Professional</li>
+                                               <li><a href="#" data-id="1" data-question="What is your current CTC?">What is your current CTC?</a></li>
+                                               <li><a href="#" data-id="2" data-question="What is your total work experience?">What is your total work experience?</a></li>
+                                               <li class="divider"></li>
+                                               <li class="dropdown-header">Academics</li>
+                                               <li><a href="#" data-id="3" data-question="What is your College name?">What is your College name?</a></li>
+                                               <li><a href="#" data-id="4" data-question="What is your CGPA?">What is your CGPA?</a></li>
+                                             </ul>
+                                           </div>
                                          </div>
                                        </div>
                                      </div>
+                                     <h5><strong>Questions</strong></h5>
+                                     <ul class="unordered-list">
+                                     </ul>
                                    </div>
-                                   <h5><strong>Questions</strong></h5>
-                                   <ul class="unordered-list">
-                                   </ul>
                                  </div>
-                               </form>
+                               </section>
                               </div>
                               <div class="clearfix panel-footer borderTop">
                                  <div class="col-sm-2 s_margin_bottom">
@@ -4956,7 +4961,7 @@
 <div class="row">
 <div class="coding_provider col-md-8"></div>
 </div>
-           
+
 </div>
 
 <!-- Submission Edit  Partial Modal And Complete Modal -->

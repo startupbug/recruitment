@@ -350,116 +350,116 @@ $( document ).ready(function() {
     }
   });
 
-  $('.format_class').change(function() {
-    var item=$(this);
-    console.log(item.val());
-    var abc = $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").children().find( ".option_table" );
-
-    if (item.val() == 1) {
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-    }
-    else if (item.val() == 2) {
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
-
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-    }
-    else if (item.val() == 3) {
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
-
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-    }
-    else if (item.val() == 4) {
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-    }
-    else if (item.val() == 5) {
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
-    }
-    else if (item.val() == 6) {
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
-    }
-    else if (item.val() == 7) {
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-
-      $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
-    }
-  });
-
-  $('.add_option').click(function(){
-     var colCount = 1;
-     $(this).closest( "tfoot" ).siblings("tbody").find( "tr" ).each(function () {
-         colCount++;
-     });
-
-     $(this).closest( "tfoot" ).siblings("tbody").find( "tr:last" ).after('<tr>'+
-         '<td valign="center">Option '+colCount+'</td>'+
-         '<td class="s_weight" valign="center">'+
-          '<input type="text" class="form-control option_text" name="option[]">'+
-         '</td>'+
-         '<td valign="center">'+
-            '<a href="javascript:void(0)" class="delete_row_option">'+
-              '<i class="fa fa-times-circle-o"></i>'+
-            '</a>'+
-         '</td>'+
-     '</tr>');
-
-
-       $('.delete_row_option').on("click",function(){
-
-         var colCount_alert = 0;
-         $(this).closest( "tbody" ).find( "tr" ).each(function () {
-             colCount_alert++;
-         });
-         console.log(colCount_alert);
-         if (colCount_alert == 1) {
-           alert("Atleast One options are mandatory..");
-         }else {
-           $(this).closest('tr').remove();
-         }
-
-         var colCount = 0;
-         $(this).closest( "tbody" ).find( "tr" ).each(function () {
-             colCount++;
-             $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
-         });
-
-       });
-  });
-
-  $('.delete_row_option').on("click",function(){
-
-    var colCount_alert = 0;
-    $(this).closest( "tbody" ).find( "tr" ).each(function () {
-        colCount_alert++;
-    });
-    console.log(colCount_alert);
-    if (colCount_alert == 1) {
-      alert("Atleast One options are mandatory..");
-    }else {
-      $(this).closest('tr').remove();
-    }
-
-    var colCount = 0;
-    $(this).closest( "tbody" ).find( "tr" ).each(function () {
-        colCount++;
-        $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
-    });
-
-  });
+  // $('.format_class').change(function() {
+  //   var item=$(this);
+  //   console.log(item.val());
+  //   var abc = $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").children().find( ".option_table" );
+  //
+  //   if (item.val() == 1) {
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+  //
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+  //   }
+  //   else if (item.val() == 2) {
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
+  //
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+  //   }
+  //   else if (item.val() == 3) {
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
+  //
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+  //   }
+  //   else if (item.val() == 4) {
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+  //
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+  //   }
+  //   else if (item.val() == 5) {
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+  //
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+  //   }
+  //   else if (item.val() == 6) {
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+  //
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+  //   }
+  //   else if (item.val() == 7) {
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+  //
+  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+  //   }
+  // });
+  //
+  // $('.add_option').click(function(){
+  //    var colCount = 1;
+  //    $(this).closest( "tfoot" ).siblings("tbody").find( "tr" ).each(function () {
+  //        colCount++;
+  //    });
+  //
+  //    $(this).closest( "tfoot" ).siblings("tbody").find( "tr:last" ).after('<tr>'+
+  //        '<td valign="center">Option '+colCount+'</td>'+
+  //        '<td class="s_weight" valign="center">'+
+  //         '<input type="text" class="form-control option_text" name="option[]">'+
+  //        '</td>'+
+  //        '<td valign="center">'+
+  //           '<a href="javascript:void(0)" class="delete_row_option">'+
+  //             '<i class="fa fa-times-circle-o"></i>'+
+  //           '</a>'+
+  //        '</td>'+
+  //    '</tr>');
+  //
+  //
+  //      $('.delete_row_option').on("click",function(){
+  //
+  //        var colCount_alert = 0;
+  //        $(this).closest( "tbody" ).find( "tr" ).each(function () {
+  //            colCount_alert++;
+  //        });
+  //        console.log(colCount_alert);
+  //        if (colCount_alert == 1) {
+  //          alert("Atleast One options are mandatory..");
+  //        }else {
+  //          $(this).closest('tr').remove();
+  //        }
+  //
+  //        var colCount = 0;
+  //        $(this).closest( "tbody" ).find( "tr" ).each(function () {
+  //            colCount++;
+  //            $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
+  //        });
+  //
+  //      });
+  // });
+  //
+  // $('.delete_row_option').on("click",function(){
+  //
+  //   var colCount_alert = 0;
+  //   $(this).closest( "tbody" ).find( "tr" ).each(function () {
+  //       colCount_alert++;
+  //   });
+  //   console.log(colCount_alert);
+  //   if (colCount_alert == 1) {
+  //     alert("Atleast One options are mandatory..");
+  //   }else {
+  //     $(this).closest('tr').remove();
+  //   }
+  //
+  //   var colCount = 0;
+  //   $(this).closest( "tbody" ).find( "tr" ).each(function () {
+  //       colCount++;
+  //       $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
+  //   });
+  //
+  // });
 
   // $('.edit_question').click(function() {
   //   $( this ).closest( ".row" ).siblings('.capsule').toggleClass('hidden');
@@ -1264,125 +1264,125 @@ $(function(){
   loadJS();
 })
 
- function loadJS (){
+ // function loadJS (){
 
-   $('.format_class').change(function() {
-     var item=$(this);
-     console.log(item.val());
-     var abc = $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").children().find( ".option_table" );
-
-     if (item.val() == 1) {
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-     }
-     else if (item.val() == 2) {
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
-
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-     }
-     else if (item.val() == 3) {
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
-
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-     }
-     else if (item.val() == 4) {
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-     }
-     else if (item.val() == 5) {
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
-     }
-     else if (item.val() == 6) {
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
-     }
-     else if (item.val() == 7) {
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-
-       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
-     }
-   });
-
-   $('.add_option').click(function(){
-      var colCount = 1;
-      $(this).closest( "tfoot" ).siblings("tbody").find( "tr" ).each(function () {
-          colCount++;
-      });
-
-      $(this).closest( "tfoot" ).siblings("tbody").find( "tr:last" ).after('<tr>'+
-          '<td valign="center">Option '+colCount+'</td>'+
-          '<td class="s_weight" valign="center">'+
-           '<input type="text" class="form-control option_text" name="option[]">'+
-          '</td>'+
-          '<td valign="center">'+
-             '<a href="javascript:void(0)" class="delete_row_option">'+
-               '<i class="fa fa-times-circle-o"></i>'+
-             '</a>'+
-          '</td>'+
-      '</tr>');
-
-
-        $('.delete_row_option').on("click",function(){
-
-          var colCount_alert = 0;
-          $(this).closest( "tbody" ).find( "tr" ).each(function () {
-              colCount_alert++;
-          });
-          console.log(colCount_alert);
-          if (colCount_alert == 1) {
-            alert("Atleast One options are mandatory..");
-          }else {
-            $(this).closest('tr').remove();
-          }
-
-          var colCount = 0;
-          $(this).closest( "tbody" ).find( "tr" ).each(function () {
-              colCount++;
-              $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
-          });
-
-        });
-   });
-
-   $('.delete_row_option').on("click",function(){
-
-     var colCount_alert = 0;
-     $(this).closest( "tbody" ).find( "tr" ).each(function () {
-         colCount_alert++;
-     });
-     console.log(colCount_alert);
-     if (colCount_alert == 1) {
-       alert("Atleast One options are mandatory..");
-     }else {
-       $(this).closest('tr').remove();
-     }
-
-     var colCount = 0;
-     $(this).closest( "tbody" ).find( "tr" ).each(function () {
-         colCount++;
-         $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
-     });
-
-   });
-
-   $('.edit_question').click(function() {
-      console.log("sadsjadh");
-       $( this ).closest( ".row" ).siblings('.capsule').toggleClass('hidden');
-    });
-
- }
+ //   $('.format_class').change(function() {
+ //     var item=$(this);
+ //     console.log(item.val());
+ //     var abc = $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").children().find( ".option_table" );
+ //
+ //     if (item.val() == 1) {
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+ //
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+ //     }
+ //     else if (item.val() == 2) {
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
+ //
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+ //     }
+ //     else if (item.val() == 3) {
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
+ //
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+ //     }
+ //     else if (item.val() == 4) {
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+ //
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
+ //     }
+ //     else if (item.val() == 5) {
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+ //
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+ //     }
+ //     else if (item.val() == 6) {
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+ //
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+ //     }
+ //     else if (item.val() == 7) {
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
+ //
+ //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
+ //     }
+ //   });
+ //
+ //   $('.add_option').click(function(){
+ //      var colCount = 1;
+ //      $(this).closest( "tfoot" ).siblings("tbody").find( "tr" ).each(function () {
+ //          colCount++;
+ //      });
+ //
+ //      $(this).closest( "tfoot" ).siblings("tbody").find( "tr:last" ).after('<tr>'+
+ //          '<td valign="center">Option '+colCount+'</td>'+
+ //          '<td class="s_weight" valign="center">'+
+ //           '<input type="text" class="form-control option_text" name="option[]">'+
+ //          '</td>'+
+ //          '<td valign="center">'+
+ //             '<a href="javascript:void(0)" class="delete_row_option">'+
+ //               '<i class="fa fa-times-circle-o"></i>'+
+ //             '</a>'+
+ //          '</td>'+
+ //      '</tr>');
+ //
+ //
+ //        $('.delete_row_option').on("click",function(){
+ //
+ //          var colCount_alert = 0;
+ //          $(this).closest( "tbody" ).find( "tr" ).each(function () {
+ //              colCount_alert++;
+ //          });
+ //          console.log(colCount_alert);
+ //          if (colCount_alert == 1) {
+ //            alert("Atleast One options are mandatory..");
+ //          }else {
+ //            $(this).closest('tr').remove();
+ //          }
+ //
+ //          var colCount = 0;
+ //          $(this).closest( "tbody" ).find( "tr" ).each(function () {
+ //              colCount++;
+ //              $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
+ //          });
+ //
+ //        });
+ //   });
+ //
+ //   $('.delete_row_option').on("click",function(){
+ //
+ //     var colCount_alert = 0;
+ //     $(this).closest( "tbody" ).find( "tr" ).each(function () {
+ //         colCount_alert++;
+ //     });
+ //     console.log(colCount_alert);
+ //     if (colCount_alert == 1) {
+ //       alert("Atleast One options are mandatory..");
+ //     }else {
+ //       $(this).closest('tr').remove();
+ //     }
+ //
+ //     var colCount = 0;
+ //     $(this).closest( "tbody" ).find( "tr" ).each(function () {
+ //         colCount++;
+ //         $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
+ //     });
+ //
+ //   });
+ //
+ //   $('.edit_question').click(function() {
+ //      console.log("sadsjadh");
+ //       $( this ).closest( ".row" ).siblings('.capsule').toggleClass('hidden');
+ //    });
+ //
+ // }
 
 $(document).ready(function() {
 
