@@ -20,7 +20,7 @@
                      </a>
                   </li>
                   <li>
-                     <a href="{{route('library_public_questions')}}">
+                     <a href="{{route('lib_index')}}">
                         <div class="list-parent">
                            <div class="list-child">
                               <img src="{{ asset('public/assets/img/icon-library.png') }}">Library
