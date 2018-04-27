@@ -18,8 +18,11 @@ class HostController extends Controller
     public function host_test_page($id){
 
         $args['tags'] = DB::table('question_tags')->get();
-      	$args['edit'] = Test_template::find($id);  
+      	
+        $args['edit'] = Test_template::find($id);
+
       	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
+
         foreach ($args['sections'] as $key => $value) {
              $args['sections_tabs'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              $args['sections_tabs'][$value->id]['count'] = $value->section_questions;
