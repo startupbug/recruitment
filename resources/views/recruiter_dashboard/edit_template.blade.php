@@ -179,7 +179,10 @@
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
                      <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$key}}">Multiple Choice ({{ $sec['count'] }})</a></li>
-                        <li><a data-toggle="pill" href="#sections-coding-{{$key}}">Coding ({{ $sec['count2'] }})</a></li>
+                        <li><a data-toggle="pill" href="#sections-coding-{{$key}}">
+                        Coding ({{ $sec['count2'] }})
+
+                        </a></li>
                         <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission ({{ $sec['count3'] }})</a></li>
                         <li class="pull-right"></li>
                      </ul>
@@ -285,7 +288,7 @@
                                                 <div class="statement">
                                                    <div class="row">
                                                       <div class="single-line-ellipsis">
-                                                          <a href="#" data-id="{{$q->id}}" data-url="{{route('coding_question_modal_partial_data')}}" data-toggle="modal" data-target="#coding_modal" class="no-underline coding_question_id" >45454{{$q->question_statement}}</a>
+                                                          <a href="#" data-id="{{$q->id}}" data-url="{{route('coding_question_modal_partial_data')}}" data-toggle="modal" data-target="#coding_modal" class="no-underline coding_question_id" >{{$q->question_statement}}</a>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -305,7 +308,7 @@
                                                          </div>
                                                       </div>
                                                       <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
-                                                         <span class="text-muted">Tagstttt : </span>
+                                                         <span class="text-muted">Tags : </span>
                                                          <span class="question-tags">
                                                             @if(isset($q->question_detail->question_tag['tag_name']))
                                                                {{$q->question_detail->question_tag['tag_name']}}
@@ -646,17 +649,19 @@
                                              <div class="checkbox">
                                                 <label>
                                                 <input type="checkbox" value="1"
-
+                                                @if(isset($edit_test_settings))
                                                 @if($edit_test_settings->request_resume == 1)
                                                    checked="checked" name="request_resume" id="request_resume" checked> Request Resume
                                                 @endif 
+                                                @endif
                                                 </label>
                                              </div>
                                              <div class="checkbox">
                                                 <label id="mandate_resume_label">
-                                                <input type="checkbox" value="1" @if($edit_test_settings->mandate_resume == 1) 
+                                                <input type="checkbox" value="1" @if(isset($edit_test_settings))@if($edit_test_settings->mandate_resume == 1) 
                                                 checked='checked' 
-                                                @endif   
+                                                @endif
+                                                @endif  
                                                 name="mandatory_resume" id="mandate_resume">
                                                 Mandate Resume
                                                 </label>
@@ -702,10 +707,13 @@
                                           <div class="col-sm-9">
                                              <div class="checkbox">
                                                 <label>
-                                                <input type="checkbox" value="1" @if(isset($edit_test_settings->email_verification) && $edit_test_settings->email_verification == 1) checked='checked' @endif  name="email_verification" id="enable_verification">
+                                                <input type="checkbox" value="1"
+                                                   @if(isset($edit_test_settings))
+                                                 @if(isset($edit_test_settings->email_verification) && $edit_test_settings->email_verification == 1) checked='checked' @endif @endif  name="email_verification" id="enable_verification">
                                                 &nbsp;
                                                 </label>
-                                                <div @if($edit_test_settings->email_verification == 1) class="help-block hidden" @else class="help-block hidden" @endif id="enable_verification_bloc">(The candidate will not be able to resume the test in case of system failure)</div>
+                                                <div
+                                                @if(isset($edit_test_settings)) @if($edit_test_settings->email_verification == 1) class="help-block hidden" @else class="help-block hidden" @endif @endif id="enable_verification_bloc">(The candidate will not be able to resume the test in case of system failure)</div>
                                                 <div class="help-block hidden">(Email-id will always be verified for the login or invite only test)</div>
                                              </div>
                                           </div>
@@ -833,7 +841,9 @@
                                  Test Report Mail Settings <i class="fa fa-info-circle"></i>
                                  </strong>
                               </div>
-                              <form class="form-horizontal" name="tSettings">
+                               <form id="templatetestMailSetting" class="form-horizontal" name="tSettings" action="{{route('templatetestMailSetting')}}" method="POST">
+                                 {{csrf_field()}}  
+                                 <input type="hidden" name="template_id" value="{{$edit->id}}">                            
                                  <div class="panel-body s_panelBodyHeight">
                                     <div class="form-group form-group-sm">
                                        <label class="col-sm-3 control-label">
@@ -842,12 +852,13 @@
                                        <div class="col-sm-6">
                                           <div class="checkbox">
                                              <label>
-                                             <input type="checkbox" id="check_emailreport"> Receive mail whenever a candidate completes the test
+                                             <input type="checkbox" name="email_report_status" value="1"
+                                              @if(isset($edit_mail_settings->email_report_status) && $edit_mail_settings->email_report_status == 1) checked='checked' @endif
+                                              id="check_emailreport"> Receive mail whenever a candidate completes the test
                                              </label>
                                           </div>
                                        </div>
                                     </div>
-
                                     <div class="form-group form-group-sm rec_div" style="">
                                        <label class="col-sm-3 control-label">Receivers</label>
                                        <div class="col-sm-8">
@@ -856,42 +867,39 @@
                                        <button class="btn btn-info btn-sm" ng-init="showNewReciever = false" ng-hide="showNewReciever" ng-click="showNewReciever = true" style="" id="rev_button">+ Addz receiver</button>
                                        </div>
                                     </div>
-
-
-                                    <div class="panel-body rec_div2">
-                                          <form class="ng-invalid ng-invalid-required ng-valid-min ng-valid-max ng-valid-email ng-dirty ng-valid-parse" style="">
+                                    <div class="panel-body rec_div2">        
                                           <div class="form-group form-group-sm">
-                                          <label class="control-label col-sm-4">Receiver email</label>
-                                           <div class="col-sm-8">
-                                          <input type="email" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-touched" ng-model="newTestReportMailReciever.receiverEmail" required="" style="">
-                                          </div>
-                                          </div>
-                                          <div class="form-group form-group-sm" ng-hide="testData.isSubmissionOnlyTest">
-                                          <label class="control-label col-sm-4">Minimum percentage required</label>
-                                          <div class="col-sm-8">
-                                          <input type="number" class="form-control ng-pristine ng-valid ng-valid-min ng-valid-max ng-touched" ng-model="newTestReportMailReciever.minPercentageRequired" min="0" max="100" style="">
-                                          </div>
+                                             <label class="control-label col-sm-4">Receiver email</label>
+                                             <div class="col-sm-8">
+                                                <input type="email" @if(isset($edit_mail_settings)) value="{{$edit_mail_settings->receiver_email}}" @endif name="receiver_email" class="form-control required="" style="">
+                                             </div>
                                           </div>
                                           <div class="form-group form-group-sm" ng-hide="testData.isSubmissionOnlyTest">
-                                          <div class="col-sm-8 col-sm-offset-4">
-                                          <div class="checkbox">
-                                          <label>
-                                          <input type="checkbox" ng-model="newTestReportMailReciever.includeQuestionnaire" class="ng-valid ng-dirty ng-valid-parse ng-touched" style=""> Include questionnaire results
-                                          </label>
+                                             <label class="control-label col-sm-4">Minimum percentage required</label>
+                                             <div class="col-sm-8">
+                                                <input type="number" @if(isset($edit_mail_settings)) value="{{$edit_mail_settings->percentage_required}}" @endif name="percentage_required" class="form-control" min="0" max="100" style="">
+                                             </div>
                                           </div>
+                                          <div class="form-group form-group-sm" ng-hide="testData.isSubmissionOnlyTest">
+                                             <div class="col-sm-8 col-sm-offset-4">
+                                                <div class="checkbox">
+                                                   <label>
+                                                      <input type="checkbox" name="include_questionnaire" value="1" 
+                                                      @if(isset($edit_mail_settings->include_questionnaire) && $edit_mail_settings->include_questionnaire == 1) checked='checked' @endif
+                                                      > Include questionnaire results
+                                                   </label>
+                                                </div>
+                                             </div>
                                           </div>
-                                          </div>
-
                                           <div class="row">
-                                          <div class="col-sm-8 col-sm-offset-4">
-                                          <button class="btn btn-sm btn-info" type="submit" data-ng-disabled="newTestReportMailReciever.minPercentageRequired == undefined" data-ng-click="addNewTestReportMailReciever();showNewReciever = false">Done</button>
-                                          <button class="btn btn-sm btn-default" data-ng-click="showNewReciever = false" id="rev_cancel_button">Cancel</button>
-                                          </div>
-                                          </div>
-                                          </form>
+                                             <div class="col-sm-8 col-sm-offset-4">
+                                                <button class="btn btn-sm btn-info" type="submit" data-ng-disabled="newTestReportMailReciever.minPercentageRequired == undefined" data-ng-click="addNewTestReportMailReciever();showNewReciever = false">Done
+                                                </button>
+                                                <button class="btn btn-sm btn-default" data-ng-click="showNewReciever = false" id="rev_cancel_button">Cancel
+                                                </button>
+                                             </div>
+                                          </div>                                         
                                      </div>
-
-
                                     <div class="form-group form-group-sm">
                                        <label class="col-sm-3 control-label">
                                        Candidate Mail Setting
@@ -899,7 +907,9 @@
                                        <div class="col-sm-6">
                                           <div class="checkbox">
                                              <label>
-                                             <input type="checkbox"> Send Report to candidate whenever candidate finishes the test
+                                             <input type="checkbox"
+                                             @if(isset($edit_mail_settings->candidate_mail_setting) && $edit_mail_settings->candidate_mail_setting == 1) checked='checked' @endif
+                                              name="candidate_mail_setting" value="1"> Send Report to candidate whenever candidate finishes the test
                                              </label>
                                           </div>
                                        </div>
@@ -920,7 +930,8 @@
                                  Test Completion Mail Settings <i class="fa fa-info-circle"></i>
                                  </strong>
                               </div>
-                              <form class="form-horizontal" name="tSettings">
+                              <form id="templatetestMessageSetting" class="form-horizontal" name="tSettings" action="{{route('template_setting_message_post')}}" method="POST">
+                                 {{csrf_field()}}
                                  <div class="panel-body s_panelBodyHeight">
                                     <p class="s_modal_body_heading text-center">An email will be sent to the candidates after completing the test</p>
                                     <br>
@@ -929,10 +940,8 @@
                                        Message
                                        </label>
                                        <div class="col-sm-6">
-                                          <textarea class="form-control" rows="5" placeholder="Your message">Hi &lt;candidateName&gt;,
-                                             Your test - &lt;testTitle&gt; has been submitted successfully.
-                                             Thanks,
-                                          Codeground.</textarea>
+                                          <input type="hidden" name="template_id" value="{{$edit->id}}">
+                                          <textarea name="setting_message" class="form-control" rows="5" placeholder="Your message">@if(isset($edit_test_settings_message)){{$edit_test_settings_message->setting_message}}@endif</textarea>
                                           <div>
                                              You can use tags such as &lt;candidateName&gt; and &lt;testTitle&gt; to represent candidate name and test title respectively.<br>
                                              For example:Hi &lt;candidateName&gt;,Your test - &lt;testTitle&gt; has been submitted successfully.
@@ -1564,7 +1573,7 @@
          <div class="modal-footer">
             <div class="row">
                <div class="col-md-2 s_margin_bottom">
-                  <button type="submit" class="btn">Publish Test</button>
+                  <button type="submit" class="btn">Publish Host</button>
                </div>
             </div>
            </form>
@@ -4621,11 +4630,12 @@
 
 <!-- section-mcqs-Modal -->
 <script type="text/javascript">
-   $(document).ready(function(){
-      @if(isset($hostFlag) && $hostFlag)
-         $('#_first_model').modal('show');
-      @endif
-   });
+   // $(document).ready(function(){
+   //    @if(isset($hostFlag) && $hostFlag)
+   //       console.log({{$hostFlag}});
+   //       $('#_first_model').modal('show');
+   //    @endif
+   // });
 </script>
 
 <div class="modal fade" id="question_modal" role="dialog">
@@ -4636,7 +4646,7 @@
             <div class="pull-right">
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
-            <h3 class="modal-title s_font"></i>Multipleee Choice Question</h3>
+            <h3 class="modal-title s_font"></i>Multiple Choice Question</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div style="">
@@ -4644,7 +4654,7 @@
 
                   <form name="mcq" action="{{route('update_partial_question')}}" method="post">
                      {{csrf_field()}}
-                     <input type="text" name="question_id" id="question_id_id" value="">
+                     <input type="hidden" name="question_id" id="question_id_id" value="">
                      <?php
                      //$question_id =
                      ?>
@@ -4729,7 +4739,7 @@
             <div class="pull-right">
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
-            <h3 class="modal-title s_font"></i>Multiple Choice Question</h3>
+            <h3 class="modal-title s_font"></i>Submission Question</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div style="">
@@ -4746,7 +4756,7 @@
                            <div class="pull-right">
                               <a target="_blank" href="{{route('library_public_questions')}}?modal=submission_modal1" 
                                  class="btn-sm btn-link" data-toggle="tooltip" data-placement="top" title="Edit Question">
-                                 <input type="text" name="question_id" id="submissions_question_id" value="">
+                                 <input type="hidden" name="question_id" id="submissions_question_id" value="">
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
                            </div>
                         </div>
@@ -4878,7 +4888,7 @@
             <div class="pull-right">
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
-            <h3 class="modal-title s_font"></i>Coding Questionsssssss</h3>
+            <h3 class="modal-title s_font"></i>Coding Questions</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div style="">
@@ -4959,10 +4969,10 @@
 
 <!-- Submission Edit  Partial Modal And Complete Modal -->
 <script type="text/javascript">
-   $(document).ready(function(){
-      @if(isset($hostFlag) && $hostFlag)
-         $('#_first_model').modal('show');
-      @endif
-   });
+   // $(document).ready(function(){
+   //    @if(isset($hostFlag) && $hostFlag)
+   //       $('#_first_model').modal('show');
+   //    @endif
+   // });
 </script>
 @endsection

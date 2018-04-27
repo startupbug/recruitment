@@ -32,18 +32,18 @@
 				  
 				  	<form action="{{route('customer_support')}}" method="get">
 				  		<div class="input_field"><span class="glyphicon glyphicon-user"></span><input type="text"  class="form-control" id="email" name="query"></div>
-				  		<input type="submit" name="submit">	
+				  		<input type="submit" name="submit" class="f_btn">	
 				  	</form>
 				  	
-				  <p class="customer_bottom">e.g. :How to host test</p>
+				  <p class="customer_bottom">e.g. :How to host test <br>
 				 
 				  @foreach($searching as $search)
 				  	
-				  	{{($search->description)}}
+				 <strong> 	{{($search->description)}} </strong> <br>
 
 				  @endforeach
 				  
-				  
+				  </p>
 			</div>
 		</div>
 	</div>

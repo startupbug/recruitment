@@ -2832,3 +2832,23 @@ h4.f_des {
     z-index: 99999999999999;
 }
 
+table.table.s_table tbody tr td p {
+    display: initial;
+    text-align: center;
+}
+
+
+
+input.f_btn {
+    background-color: #262063;
+    border: 1px solid #262063;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: 'SourceSansPro-Regular';
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 6px;
+    margin-left: 20px;
+}

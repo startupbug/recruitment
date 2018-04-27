@@ -13,22 +13,68 @@ use App\Question;
 use App\Hosted_test;
 use App\Teststatus;
 
+
+
+use App\Templates_test_setting;
+use App\Templates_contact_setting;
+
+
+use App\Question_detail;
+use App\Question_solution;
+use App\Webcam;
+
+
+
+use App\Mulitple_choice;
+use App\Coding_question_language;
+use App\Question_submission_evaluation;
+use App\Templates_mail_setting;
+use App\Template_setting_message;
+use App\Questions_submission_resource;
+use App\Coding_entry;
+
+
 class HostController extends Controller
 {
     public function host_test_page($id){
 
         $args['tags'] = DB::table('question_tags')->get();
-      	$args['edit'] = Test_template::find($id);  
+      	
+        $args['edit'] = Test_template::find($id);
+
       	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
+
         foreach ($args['sections'] as $key => $value) {
              $args['sections_tabs'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              $args['sections_tabs'][$value->id]['count'] = $value->section_questions;
+        
+
+             $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
+
+             //$args['sections_tabs'][$value->id]['count'] = count($args['sections_tabs'][$value->id]['ques1']); //$value->section_questions;
+
+            $args['sections_tabs'][$value->id]['ques2'] = Question::where('question_type_id',2)->where('section_id', $value->id)->get();
+
+             $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']); 
+
+             $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',3)->where('section_id', $value->id)->get();
+
+             $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']); 
+
         }
+
+  $args['test_setting_types'] = Test_template_types::get();
+        $args['test_setting_webcam'] = Webcam::get();
+        $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
+        $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
+        $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
+        $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
+        $args['template_id'] = $id;        
 
         //Assinging Host Flag for Model
         $args['hostFlag'] = true;
         $args['template_id'] = $id;
-
+        //dd($args);
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 

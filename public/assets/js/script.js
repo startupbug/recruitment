@@ -1,11 +1,11 @@
 $(document).ready(function(){
 
-  $("#duplication_of_template").click(function () {
-    
+  $("#testemplate").on('click', 'section .duplication_of_template', function(){
     var abc = $(this).data("message");
     console.log(abc);
     $('#duplication_of_template_ki_id').val(abc);
   });
+
 
 });
 function confirmAlert(ques, action, id){
@@ -83,6 +83,7 @@ $("#update_test_template").on('submit', function(e){
 });
 //Update Test Template
 
+
 //Duplicate Test Template
 $("#create_duplicate_template_post").on('submit', function(e){
   e.preventDefault();
@@ -93,12 +94,18 @@ $("#create_duplicate_template_post").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
+    data: formData, 
+    beforeSend: function(){
+      $('#loader_image').show();
+    },                
     success: function (data) { 
       console.log(data);
       if(data.status == 200){
         alertify.success(data.msg);
-        $('#createtemplate').modal('hide');  
+        $('#createtemplate').modal('hide');
+         setTimeout(function(){
+           window.location.reload();
+         }, 1000);  
             // $('#close_modal_template').trigger('click');          
           }else if(data.status == 202){           
             alertify.warning(data.msg);
@@ -108,7 +115,10 @@ $("#create_duplicate_template_post").on('submit', function(e){
         },
         error: function (data) {
          alertify.warning("Oops. something went wrong. Please try again");
-       }
+       },
+      complete: function(){
+        $('#loader_image').hide();
+    }, 
      });
 });
 
@@ -211,6 +221,66 @@ $("#templatetestSetting").on('submit', function(e){
 
 //Create Test Template Contact Setting
 $("#templatetestContactSetting").on('submit', function(e){
+  e.preventDefault();
+  var formData = $(this).serialize();
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: formData,                  
+    success: function (data) { 
+      console.log(data);
+      if(data.status == 200){
+        alertify.success(data.msg);                
+        setTimeout(function(){
+         window.location.reload(1);
+       }, 1000);
+      }else if(data.status == 202){           
+        alertify.warning(data.msg);
+      }else{           
+        alertify.warning(data.array.errorInfo[2]);
+      }       
+    },
+    error: function (data) {
+      alertify.warning("Oops. something went wrong. Please try again");
+    }
+  });
+});
+
+//Create Test Template Message Setting
+$("#templatetestMessageSetting").on('submit', function(e){
+  e.preventDefault();
+  var formData = $(this).serialize();
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: formData,                  
+    success: function (data) { 
+      console.log(data);
+      if(data.status == 200){
+        alertify.success(data.msg);                
+        setTimeout(function(){
+         window.location.reload(1);
+       }, 1000);
+      }else if(data.status == 202){           
+        alertify.warning(data.msg);
+      }else{           
+        alertify.warning(data.array.errorInfo[2]);
+      }       
+    },
+    error: function (data) {
+      alertify.warning("Oops. something went wrong. Please try again");
+    }
+  });
+});
+
+//Create Test Template Mail Setting
+$("#templatetestMailSetting").on('submit', function(e){
   e.preventDefault();
   var formData = $(this).serialize();
   $.ajaxSetup({

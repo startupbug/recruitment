@@ -17,7 +17,7 @@
         <li class="active">
             <a data-toggle="pill" href="#home">
 
-                Test Hosted ({{count($hosted_tests)}})
+                Test Hosted ({{isset($hosted_tests) ? count($hosted_tests) : '' }})
                 <div class="s_click_popup">
                     <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
                     <span class="s_click_popuptext f_popup">
@@ -45,6 +45,7 @@
             <div class="view_filter_right">
                 <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
             </div>
+
         @foreach($hosted_tests as $key => $hosted_test)
             <section class="tab_nav accordion-toggle" data-toggle="collapse"
                  data-parent="#accordion" data-target="#collapse_livecode{{$key}}" aria-expanded="false">
@@ -278,7 +279,7 @@
                         <div class="col-md-6">
                             <div class="right_tab">
                                 <ul>
-                                  <li><a href="{{route('template_public_preview',['id'=>$value->id])}}" target="_blank">Public Preview</a></li>
+                                  <li><a href="{{route('preview_test',['id'=>$value->id])}}" target="_blank">Public Preview</a></li>
                                   <li><a href="{{route('edit_template',['id'=>$value->id])}}"  onclick="edit_template_text_editor()">Edit</a></li>
                                   <li class="host_content">
                                       <div class="host">
@@ -294,7 +295,7 @@
                                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                               <li><a href="" target="blank">Preview Templates</a></li>
                                               <li>
-                                                  <a href="#" class="duplicate_modal_id"  id="duplication_of_template" data-toggle="modal" data-message="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
+                                                  <a href="#" class="duplicate_modal_id duplication_of_template" data-toggle="modal" data-message="{{$value->id}}" data-target="#createtemplate">Create Duplicate Template</a>
                                               </li>
                                               <li>
                                                   <a href="{{route('delete_test_template',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Test Template?')">Delete</a>
@@ -394,7 +395,7 @@
             <div class="modal-body s_modal_form_body modal_top modal_duplicate">
                 <form action="{{route('create_duplicate_template_post')}}" id="create_duplicate_template_post" method="POST">
                     {{csrf_field()}}
-                    <input type="hidden" id="duplication_of_template_ki_id" value="" name="previous_template_id">
+                    <input type="text" id="duplication_of_template_ki_id" value="" name="previous_template_id">
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group title">
@@ -403,6 +404,7 @@
                                     <div class="template">
                                         <input id="name" name="title" value="" type="text" placeholder="Enter name of the new test template" class="form-control general">
                                     </div>
+                                    <img src="{{ asset('public/assets/img/loader.gif') }}" id="loader_image" style="display: none;">
                                 </div>
                             </div>
                         </div>
@@ -514,6 +516,7 @@
                                 <label class="col-md-3 control-label" for="name">Name:</label>
                                 <div class="col-md-9">
                                     <div class="template">
+                                        <input type="hidden" name="filter_hidden" value="1">
                                         <input id="name" name="name" type="text" placeholder="Enter the name of the test" class="form-control general" required="">
                                     </div>
                                 </div>

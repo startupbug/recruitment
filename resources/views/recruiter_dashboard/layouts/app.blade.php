@@ -45,87 +45,7 @@
         @yield('content')
     </div>
 <!-- Filter-Modal -->
-<div class="modal fade" id="mcqs-filter-Modal" role="dialog">
-    <div class="modal-dialog  modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header s_modal_form_header">
-                <div class="pull-right">
-                    <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Apply</button>
-                    <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
-                </div>
-                <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>  Filter Criteria</h3>
-            </div>
-            <div class="modal-body s_modal_form_body">
-                <form class="form-horizontal" action="#">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="id">Question id:</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" id="id" placeholder="Enter question id" name="id"  min="0" max="9999999999999">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="statement">Question Statement:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="statement" placeholder="Enter question statement" name="statement">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">Tags :</label>
-                        <div class="col-sm-9">
-                            <select id="tag_multi" multiple="multiple">
-                                <option value="1">Aptitude</option>
-                                <option value="2">Basic Algebra</option>
-                                <option value="3">HTML and CSS</option>
-                                <option value="4">JAVA</option>
-                                <option value="5">C#</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="statement">State :</label>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Staged
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Ready
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">All
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="statement">State :</label>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Easy
-                        </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox">EasyIntermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">All
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="provider">Provider:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="provider" placeholder="Enter provider of question" name="provider">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="author">Author:</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="author" placeholder="Enter author of question" name="author">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="modal fade" id="filter-programming-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
         <!-- Modal content-->
@@ -222,7 +142,7 @@
                 <div class="pull-right">
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
-                <h3 class="modal-title s_font">Multiple Choice Question <span>(Question Id : 1321023)</span></h3>
+                <h3 class="modal-title s_font"><span id="pub_mcq_type"></span> <span>(Question Id : <span id="pub_mcq_no"></span>)</span></h3>
             </div>
             <div class="modal-body s_modal_form_body">
                 <div class="row">
@@ -241,16 +161,17 @@
                                         <strong>Preview</strong>
                                     </div>
                                     <div class="panel-body">
-                                        <p>What does the following idiom/phrase mean?</p>
+                                  <!--       <p>What does the following idiom/phrase mean?</p>
                                         <pre>
-          &lt;&#63;php
-          $a = array("hi", "hello", "bye");
-          for (;count($a) < 5;) {
-          if (count($a) == 3)
-          print $a;
-        }
-        &#63;&gt;
-      </pre>
+                                              &lt;&#63;php
+                                              $a = array("hi", "hello", "bye");
+                                              for (;count($a) < 5;) {
+                                              if (count($a) == 3)
+                                              print $a;
+                                            }
+                                            &#63;&gt;
+                                          </pre> -->
+                                          <span id="pub_mcq_statement"></span>
                                     </div>
                                 </div>
                             </div>
@@ -265,42 +186,20 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Question State <i class="fa fa-info-circle"></i></strong>
                                     <strong class="pull-right">
-                                    <input type="checkbox" name="" value="">
+                                    <input type="checkbox" class="partialCheck" name="" value="">
                                     Partial marks
                                     </strong>
                                     <div class="no-more-tables ">
                                         <table class="table s_table">
-                                            <tbody>
-                                                <tr>
-                                                    <td valign="center">1.</td>
-                                                    <td class="s_weight" valign="center">
-                                                        <textarea class="form-control" name="option" required="" disabled>To meet with disaster</textarea>
-                                                    </td>
-                                                    <td valign="center">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="center">1.</td>
-                                                    <td class="s_weight" valign="center">
-                                                        <textarea class="form-control" name="option" required="" disabled>To deal with a person who is inferior to oneself</textarea>
-                                                    </td>
-                                                    <td valign="center">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="center">1.</td>
-                                                    <td class="s_weight" valign="center">
-                                                        <textarea class="form-control" name="option" required="" disabled>To deal with someone who proves formidable than one expected</textarea>
-                                                    </td>
-                                                    <td valign="center">
-                                                    </td>
-                                                </tr>
+                                            <tbody id="choiceTable_lib">
+
+                                               
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                        <input type="checkbox">Shuffle the options in the test
+                                        <input type="checkbox" class="shuffleCheck">Shuffle the options in the test
                                         </label>
                                     </div>
                                 </div>
@@ -316,7 +215,7 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Tags <i class="fa fa-info-circle"></i></strong>
                                 </div>
-                                <p>English Proficiency/Idioms</p>
+                                <p id="pub_mcq_tags">-</p>
                             </div>
                         </div>
                         <br>
@@ -335,7 +234,7 @@
                 <div class="pull-right">
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
-                <h3 class="modal-title s_font">Coding Question <span>(Question Id : 1321023)</span></h3>
+                <h3 class="modal-title s_font">Coding Question <span>(Question Id : <span class="pub_cod_no"></span>)</span></h3>
             </div>
             <div class="modal-body s_modal_form_body">
                 <div class="row">
@@ -353,7 +252,7 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Program Title <i class="fa fa-info-circle"></i></strong>
                                             </div>
-                                            <input type="text" class="form-control" value="Pass The Ball" disabled>
+                                            <input type="text" class="form-control pub_cod_title" value="Pass The Ball" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -365,20 +264,13 @@
                                         <strong>Preview</strong>
                                     </div>
                                     <div class="panel-body">
-                                        <p>What does the following idiom/phrase mean?</p>
-                                        <p class="s_modal_body_heading">
+                                       <!--  <p>What does the following idiom/phrase mean?</p> -->
+                                        <p class="s_modal_body_heading pub_cod_statement">
                                             The 'Miscria Champions League' (MCL) is coming soon, and its preparations have already started. ThunderCracker is busy practicing with his team, when suddenly he thinks of an interesting problem.
                                             ThunderCracker's team consists of 'N' players (including himself). All the players stand in a straight line (numbered from 1 to N), and pass the ball to each other. The maximum power with which any player can hit the ball on the i'th pass is given by an array Ai. This means that if a player at position 'j' (1<=j<=N) has the ball at the time of the i'th pass, he can pass it to any player with a position from (j-Ai) to (j-1), or from (j+1) to (j+Ai) (provided that the position exists).
                                             Now, ThunderCracker wants to find out the number of ways in which, after exactly M passes, the ball reaches his friend MunKee, given that the first pass is made by ThunderCracker. (Two ways are considered different if there exists atleast one pass which resulted in the ball being passed to a different player.)
                                         </p>
-                                        <h1>Input :</h1>
-                                        <p class="s_modal_body_heading">
-                                            A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
-                                        </p>
-                                        <h1>Input :</h1>
-                                        <p class="s_modal_body_heading">
-                                            A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
-                                        </p>
+                                       
                                     </div>
                                 </div>
                                 <br>
@@ -391,8 +283,9 @@
                                                 <th><b>Input</b></th>
                                                 <th><b>Output</b></th>
                                             </thead>
-                                            <tbody>
-                                                <tr>
+                                            <tbody id="pub_cod_inout">
+
+                                              <!--  <tr>
                                                     <td valign="center">1.</td>
                                                     <td valign="center">
                                                         <textarea class="form-control" name="option" rows="4" required="" disabled>3 3 2 1 1 1 1
@@ -401,7 +294,7 @@
                                                     <td valign="center">
                                                         <textarea class="form-control" name="option" rows="4" required="" disabled>2</textarea>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -426,8 +319,8 @@
                                                     <th><b>Name</b></th>
                                                     <th><b>Weightage</b></th>
                                             </thead>
-                                            <tbody>
-                                                <tr>
+                                            <tbody id="pub_cod_cases">
+<!--                                                 <tr>
                                                     <td valign="center">1.</td>
                                                     <td valign="center">
                                                         Test 0
@@ -435,7 +328,7 @@
                                                     <td valign="center">
                                                         <input type="number" name="" value="50" disabled>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -458,10 +351,10 @@
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Tags <i class="fa fa-info-circle"></i></strong>
                                 </div>
-                                <span class="s_modal_body_heading">Dynamic Programing</span>
+                                <span class="s_modal_body_heading"><span id="pub_cod_tags"></span>
                                 <br>
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Question Level <i class="fa fa-info-circle"></i></strong><span> :  intermediate</span>
+                                    <strong>Question Level <i class="fa fa-info-circle"></i></strong><span> :  <span id="pub_cod_level"></span></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12 col-xs-12">
@@ -469,7 +362,7 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Provider <i class="fa fa-info-circle"></i></strong>
                                             </div>
-                                            <input type="text" class="form-control" name="provider" disabled>
+                                            <input type="text" class="form-control pub_cod_provider" name="provider" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -479,7 +372,7 @@
                                             <div class="heading_modal_statement heading_padding_bottom">
                                                 <strong>Author <i class="fa fa-info-circle"></i></strong>
                                             </div>
-                                            <input type="text" class="form-control" name="author" disabled value="ajinkya1p3">
+                                            <input type="text" class="form-control pub_cod_author"  name="author" disabled value="">
                                         </div>
                                     </div>
                                 </div>
@@ -968,7 +861,9 @@
                                             <span class="s_popuptext">
                                                htmlTooltip.modalProgramSamples <br>
 
+
                                             </span>-->
+
                                         </div>
                                     </strong>
                                     <div class="no-more-tables ">
@@ -979,7 +874,7 @@
                                                 <th>Output</th>
                                                 <th></th>
                                             </thead>
-                                            <tbody>
+                                            <tbody >
                                                 <tr>
                                                     <td valign="center">1.</td>
                                                     <td valign="center">
@@ -2623,11 +2518,7 @@
             $('.dropdown-menu', this).toggleClass('open');
         });
     });
-    // $(document).ready(function(){
-    //   @if(isset($hostFlag) && $hostFlag)
-    //   $('#_first_model').modal('show');
-    //   @endif
-    // });
+
 </script>
 
 <script type="text/javascript">
@@ -2837,7 +2728,13 @@ $.ajaxSetup({
       });
     });
   
+  
 
+    $(document).ready(function(){
+      @if(isset($hostFlag) && $hostFlag)
+      $('#_first_model').modal('show');
+      @endif
+    });
 
 
 
