@@ -2500,6 +2500,7 @@
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 <script src="{{ asset('public/assets/js/f.js') }}"></script>
 <script src="{{ asset('public/assets/js/s_js.js') }}"></script>
+<script src="{{ asset('public/assets/js/i_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/fa_js.js') }}"></script>
 <script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
@@ -2539,9 +2540,10 @@ function modal_data(id){
       console.log(data.question_data.question_level_id);
       $("#questionmarks").val(data.question_data.marks);         
       $("#negativeMarks").val(data.question_data.negative_marks);         
-      $("#question_id_id").val(data.question_data.question_id);         
-      $(".ajax_route").attr("href","{{route('library_public_questions')}}/"+data.question_data.question_id+"?modal=modal_pencil");     
-      
+      $("#question_id_id").val(data.question_data.question_id); 
+
+      $(".ajax_route").attr("href","{{route('library_public_questions')}}/"+data.question_data.question_id+"?modal=modal_pencil"); 
+
 
       $("#question_statement_id").text(data.question_data.question_statement);         
       $("#state_name").text(data.question_data.state_name);         

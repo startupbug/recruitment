@@ -45,7 +45,7 @@
                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
                            </a>
                            @endif
-                           <a href="{{route('delete_section',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Test Template?')">
+                           <a href="{{route('delete_section',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Section?')">
                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                            </a>
                         </div>
@@ -312,7 +312,7 @@
                                                          <span class="question-tags">
                                                             @if(isset($q->question_detail->question_tag['tag_name']))
                                                                {{$q->question_detail->question_tag['tag_name']}}
-                              @endif
+                                                            @endif
 
                            </span>
                                                       </div>
@@ -644,24 +644,23 @@
                                                 </span>
                                              </div>
                                           </label>
-                                          
+
                                           <div class="col-sm-9">
                                              <div class="checkbox">
                                                 <label>
                                                 <input type="checkbox" value="1"
-                                                @if(isset($edit_test_settings))
-                                                @if($edit_test_settings->request_resume == 1)
-                                                   checked="checked" name="request_resume" id="request_resume" checked> Request Resume
-                                                @endif 
+                                                @if(isset($edit_test_settings->request_resume) && $edit_test_settings->request_resume == 1)
+                                                   checked="checked" name="request_resume" id="request_resume" > Request Resume
                                                 @endif
                                                 </label>
                                              </div>
                                              <div class="checkbox">
                                                 <label id="mandate_resume_label">
-                                                <input type="checkbox" value="1" @if(isset($edit_test_settings))@if($edit_test_settings->mandate_resume == 1) 
-                                                checked='checked' 
+                                                <input >
+                                                <input type="checkbox" value="1"
+                                                @if(isset($edit_test_settings->mandate_resume) && $edit_test_settings->mandate_resume == 1)
+                                                checked='checked'
                                                 @endif
-                                                @endif  
                                                 name="mandatory_resume" id="mandate_resume">
                                                 Mandate Resume
                                                 </label>
@@ -713,7 +712,7 @@
                                                 &nbsp;
                                                 </label>
                                                 <div
-                                                @if(isset($edit_test_settings)) @if($edit_test_settings->email_verification == 1) class="help-block hidden" @else class="help-block hidden" @endif @endif id="enable_verification_bloc">(The candidate will not be able to resume the test in case of system failure)</div>
+                                                 @if(isset($edit_test_settings->email_verification) && $edit_test_settings->email_verification == 1) class="help-block hidden" @else class="help-block hidden" @endif id="enable_verification_bloc">(The candidate will not be able to resume the test in case of system failure)</div>
                                                 <div class="help-block hidden">(Email-id will always be verified for the login or invite only test)</div>
                                              </div>
                                           </div>
@@ -735,23 +734,23 @@
                                  </strong>
                               </div>
                               <div class="panel-body s_questionnaire_body s_panelBodyHeight">
-                               <form>
+                               <section id="setting_questionnaire_tab">
                                  <div class="form-group">
                                    <div class="checkbox">
                                      <label>
-                                       <input type="checkbox"> Enable questionnaire
+                                       <input type="checkbox" class="enable_questionaire"> Enable questionnaire
                                      </label>
                                    </div>
                                  </div>
-                                 <div class="form-group">
-                                   <div class="checkbox">
-                                     <label>
-                                       <input type="checkbox"> Questionnaire to be filled before the test( candidate must fill the questionnaire to start attempting the test)
-                                     </label>
+                                 <div class="new_questionnaire hidden">
+                                   <div class="form-group">
+                                     <div class="checkbox">
+                                       <label>
+                                         <input type="checkbox"> Questionnaire to be filled before the test( candidate must fill the questionnaire to start attempting the test)
+                                       </label>
+                                     </div>
                                    </div>
-                                 </div>
-                                 <hr>
-                                 <div class="form-group form-group-sm">
+                                   <hr>
                                    <div class="form-group form-group-sm">
                                      <div class="row">
                                        <div class="col-sm-4">
@@ -767,17 +766,16 @@
 
                                              <li class="divider"></li>
                                              <li class="dropdown-header acaLiHeader">Academics</li>
-
                                            </ul>
                                          </div>
                                        </div>
                                      </div>
+                                     <h5><strong>Questions</strong></h5>
+                                     <ul class="unordered-list">
+                                     </ul>
                                    </div>
-                                   <h5><strong>Questions</strong></h5>
-                                   <ul class="unordered-list">
-                                   </ul>
                                  </div>
-                               </form>
+                               </section>
                               </div>
                               <div class="clearfix panel-footer borderTop">
                                  <div class="col-sm-2 s_margin_bottom">
@@ -842,8 +840,8 @@
                                  </strong>
                               </div>
                                <form id="templatetestMailSetting" class="form-horizontal" name="tSettings" action="{{route('templatetestMailSetting')}}" method="POST">
-                                 {{csrf_field()}}  
-                                 <input type="hidden" name="template_id" value="{{$edit->id}}">                            
+                                 {{csrf_field()}}
+                                 <input type="hidden" name="template_id" value="{{$edit->id}}">
                                  <div class="panel-body s_panelBodyHeight">
                                     <div class="form-group form-group-sm">
                                        <label class="col-sm-3 control-label">
@@ -867,7 +865,7 @@
                                        <button class="btn btn-info btn-sm" ng-init="showNewReciever = false" ng-hide="showNewReciever" ng-click="showNewReciever = true" style="" id="rev_button">+ Addz receiver</button>
                                        </div>
                                     </div>
-                                    <div class="panel-body rec_div2">        
+                                    <div class="panel-body rec_div2">
                                           <div class="form-group form-group-sm">
                                              <label class="control-label col-sm-4">Receiver email</label>
                                              <div class="col-sm-8">
@@ -884,7 +882,7 @@
                                              <div class="col-sm-8 col-sm-offset-4">
                                                 <div class="checkbox">
                                                    <label>
-                                                      <input type="checkbox" name="include_questionnaire" value="1" 
+                                                      <input type="checkbox" name="include_questionnaire" value="1"
                                                       @if(isset($edit_mail_settings->include_questionnaire) && $edit_mail_settings->include_questionnaire == 1) checked='checked' @endif
                                                       > Include questionnaire results
                                                    </label>
@@ -898,7 +896,7 @@
                                                 <button class="btn btn-sm btn-default" data-ng-click="showNewReciever = false" id="rev_cancel_button">Cancel
                                                 </button>
                                              </div>
-                                          </div>                                         
+                                          </div>
                                      </div>
                                     <div class="form-group form-group-sm">
                                        <label class="col-sm-3 control-label">
@@ -4729,7 +4727,6 @@
       </div>
    </div>
 </div>
-
 <!-- Submission Edit  Partial Modal And Complete Modal -->
 <div class="modal fade" id="submission_modal" role="dialog">
    <div class="modal-dialog  modal-lg">
@@ -4754,8 +4751,9 @@
                            <br>
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
-                              <a target="_blank" href="{{route('library_public_questions')}}?modal=submission_modal1" 
-                                 class="btn-sm btn-link" data-toggle="tooltip" data-placement="top" title="Edit Question">
+                  <a target="_blank" href="{{route('library_public_questions')}}?modal=submission_modal1"
+                                 class="btn-sm btn-link code_ajax_route" data-toggle="tooltip" data-placement="top" title="Edit Question">
+
                                  <input type="hidden" name="question_id" id="submissions_question_id" value="">
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
                            </div>
@@ -4900,19 +4898,17 @@
                         <div class="form-inline">
                            <label>program Title</label>
                            <span>(Current state of question : READY<span id="state_name"></span>)</span>
-                           <label>program Title</label>
-                           <span>(Current state of question : READY<span id="state_name"></span>)</span>
                            <br>
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
-                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link code_ajax_route" >
+                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_coding" class="btn-sm btn-link code_ajax_route" >
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
                            </div>
                         </div>
                      </div>
                      <div class="form-group ng-scope" data-ng-if="isTestQuestion">
 
-<label>Marks for this Questionnnn</label>
+<label>Marks for this Question</label>
 <input type="number" name="marks" min="0" id="coding_marks" class="form-control" required="required">
 </div>
 
@@ -4964,8 +4960,11 @@
 <div class="row">
 <div class="coding_provider col-md-8"></div>
 </div>
-           
+
 </div>
+
+
+
 
 <!-- Submission Edit  Partial Modal And Complete Modal -->
 <script type="text/javascript">

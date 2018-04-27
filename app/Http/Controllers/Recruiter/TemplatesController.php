@@ -162,7 +162,6 @@ class TemplatesController extends Controller
         ->get();
 
         foreach ($args['sections'] as $key => $value) {
-
              $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
 
              $args['sections_tabs'][$value->id]['count'] = count($args['sections_tabs'][$value->id]['ques1']); //$value->section_questions;
@@ -187,7 +186,7 @@ class TemplatesController extends Controller
         $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
         $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
-        $args['template_id'] = $id;
+        $args['template_id'] = $id;        
        // dd($args);
         return view('recruiter_dashboard.edit_template')->with($args);
     }

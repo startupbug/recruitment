@@ -8,14 +8,14 @@
         <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label">Question</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="question" value="{{($edit_task->question)}}">
+                <input type="text" class="form-control" name="question" value="{{($edit_task->question)}}" required>
             </div>
         </div>
 
         <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label">Support text</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="Supporttext" value="{{($edit_task->support_text)}}">
+                <input type="text" class="form-control" name="Supporttext" value="{{($edit_task->support_text)}}" required>
             </div>
         </div>
             <label class="col-sm-2 control-label">Knock out</label>
@@ -27,8 +27,8 @@
         <div class="form-group">
             <label for="inputCountry" class="col-sm-2 control-label">Format</label>
             <div class="col-sm-6">
-                <select name="format" class="form-control">
-                    <option selected disabled>Select a Type</option>
+                <select name="format" class="form-control" required>
+                    <option  disabled>Select a Type</option>
                    @foreach($items as $item)
                         <option value="{{($item->id)}}">{{($item->name)}}</option>
                     @endforeach
@@ -41,7 +41,7 @@
             <label for="inputCountry" class="col-sm-2 control-label">Question Type</label>
             <div class="col-sm-6">
                 <select name="question_type" class="form-control" required>
-                    <option selected disabled>Select a Type</option>
+                    <option  disabled>Select a Type</option>
                     @foreach($question_type as $value)
                     <option value="{{$value->id}}">{{$value->question_type}}</option>
                     @endforeach()

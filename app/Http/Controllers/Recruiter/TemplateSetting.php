@@ -7,6 +7,7 @@ use App\Templates_test_setting;
 use App\Templates_contact_setting;
 use App\Template_setting_message;
 use App\Templates_mail_setting;
+use App\Question_tag;
 use Auth;
 use DB;
 
@@ -153,4 +154,35 @@ class TemplateSetting extends Controller
     	}
 	}
 	//Creating Test Template Message Settings
+
+
+	public function ajax_tag_post(Request $request){
+
+		try {
+			if (isset($request->id)) {
+				DB::table('question_tags')
+		            ->where('id', $request->id)
+		            ->update(['tag_name' => $request->value]);
+		            return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated The Tag Name']);
+			}else{
+				$store = new Question_tag;
+				$store->tag_name = $request->value;
+				if ($store->save()){				
+					return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Created The Tag Name']);
+				}else{
+					return \Response()->Json([ 'status' => 200,'msg'=>'Something Went Wrong Please Try Again!']);	
+				}
+			}			
+		} catch (QueryException $e) {
+    		return \Response()->Json([ 'array' => $e]);
+    	}
+	}
+	public function delete_question_tag(Request $request){
+		$delete = Question_tag::find($request->id);
+		if ($delete->delete()){				
+		return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Successfully Deleted The Question Tag']);
+		}else{
+			return \Response()->Json([ 'status' => 200,'msg'=>'Something Went Wrong Please Try Again!']);	
+		}	
+	}
 }
