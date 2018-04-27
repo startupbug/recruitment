@@ -2713,6 +2713,134 @@ function modal_data(id){
   });        
 
 }
+
+
+//HASAN MEHDI  SENDING CODING QUESTION ID IN CONTROLLER FUNCTION coding_question_modal_partial_data()
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+  });
+  
+  $(document).ready(function(){
+
+        $('.coding_question_id').click(function(){
+            console.log($(this).data('id'));
+            // alert($(this).data('url'));
+            $("#codings_question_id").val($(this).data('id'));
+
+            var questionid = $(this).data('id');
+            var question_typeid = 2; 
+            $.ajax({
+                type: 'post',
+                url: $(this).data('url'),
+                data: {'id': questionid, 'quesType': question_typeid},
+                success: function (data) { 
+                console.log("success");
+                console.log(data);
+                if(question_typeid == 2)
+                {
+                    //console.log("has" + );
+                    $("#coding_marks").val(data.coding_question_data.marks);
+                    $('.coding_tags').text(data.coding_question_data.tag_name);
+                    $('.coding_question_level').text(data.coding_question_data.level_name);
+                    $('.coding_author').text(data.coding_question_data.author);
+                    $('.coding_provider').text(data.coding_question_data.provider);
+                    $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_pencil");
+                 
+
+               var inout_html = "";
+                   var i =1;
+                    $.each(data.coding_question_entries, function( index, value ) {
+                            //alert( index + ": " + value );
+                            //value.partial_marks = value.partial_marks ? value.partial_marks : '';
+                            inout_html += `<tr>
+                                         <td valign="center">`+i+`</td>
+                                         <td valign="center">
+                                             <textarea class="form-control" name="option" rows="4" required="" disabled> `+value.input+`
+                                             </textarea>
+                                         </td>
+                                         <td valign="center">
+                                             <textarea class="form-control" name="option" rows="4" required="" disabled> `+value.output+`</textarea>
+                                         </td>
+                                     </tr>`;
+                                     i = i +1;
+                     i++;              
+                   });
+
+                  $(".coding_question_table").html(inout_html);
+
+                }
+                }
+            });
+      });
+    });
+
+
+//HASAN MEHDI  SENDING CODING QUESTION ID IN CONTROLLER FUNCTION submission_question_modal_partial_data()
+
+$.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+  });
+  
+  $(document).ready(function(){
+
+        $('.submission_question_id').click(function(){
+            console.log($(this).data('id'));
+            // alert($(this).data('url'));
+            $("#submission_question_id").val($(this).data('id'));
+
+            var questionid = $(this).data('id');
+            var question_typeid = 3; 
+            $.ajax({
+                type: 'post',
+                url: $(this).data('url'),
+                data: {'id': questionid, 'quesType': question_typeid},
+                success: function (data) { 
+                console.log("success");
+                console.log(data);
+                if(question_typeid == 3)
+                {
+                    //console.log("has" + );
+                    $("#submissions_question_id").val(data.coding_question_data.id);
+                    $('#submission_questionmarks').val(data.coding_question_data.marks);
+                    $('.submission_tags').text(data.coding_question_data.tag_name);
+                    // $('.submission_level').text(data.coding_question_data.level_name);
+                    $('.submission_author').val(data.coding_question_data.author);
+                    $('.submission_provider').val(data.coding_question_data.provider);
+                    
+                    $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_pencil");
+                 
+
+               var inout_html = "";
+                   var i =1;
+                    $.each(data.coding_question_entries, function( index, value ) {
+                            //alert( index + ": " + value );
+                            //value.partial_marks = value.partial_marks ? value.partial_marks : '';
+                            inout_html += `<tr>
+                                         <td valign="center">`+i+`</td>
+                                         <td valign="center">
+                                             <textarea class="form-control" name="option" rows="4" required="" disabled> `+value.input+`
+                                             </textarea>
+                                         </td>
+                                         <td valign="center">
+                                             <textarea class="form-control" name="option" rows="4" required="" disabled> `+value.output+`</textarea>
+                                         </td>
+                                     </tr>`;
+                                     i = i +1;
+                     i++;              
+                   });
+
+                  $(".coding_question_table").html(inout_html);
+
+                }
+                }
+            });
+      });
+    });
+  
+
+
+
+
 </script>
 @yield('modal_content')
 </body>

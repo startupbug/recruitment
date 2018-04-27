@@ -17,6 +17,7 @@ use Auth;
 use DB;
 use App\Question_solution;
 use App\Question_detail;
+use App\Coding_entry;
 class QuestionsController extends Controller
 {
     public function create_question(Request $request){    	
@@ -160,13 +161,85 @@ class QuestionsController extends Controller
 								->where('questions.id',$request->question_id)
 								->first();
 	 	$question_modal_choices = Mulitple_choice::where('question_id',$request->question_id)->get();
+
 		if (isset($question_modal_partial_data)){			
 			return \Response()->Json([ 'status' => 200, 'question_data'=>$question_modal_partial_data, 'question_choices' => $question_modal_choices]);		
 		}else{
 			$this->set_session('Something Went Wrong, Please Try Again!', false);
 			return redirect()->back();		
 		}		
-	}	
+	}
+	public function coding_question_modal_partial_data(Request $request){
+		//HASAN MEHDI CODING QUESTIONS FROM JQUERY 
+
+	 	$q_type_id = $request->input('quesType');
+	 	$q_id = $request->input('id');
+
+	 	$coding_question_data = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
+								->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
+								->leftJoin('coding_entries','questions.id','=','coding_entries.question_id')
+								->leftJoin('question_types','question_types.id','=','questions.question_type_id')
+								->leftJoin('question_states','question_states.id','=','questions.question_state_id')
+								->leftJoin('question_levels','question_levels.id','=','questions.question_level_id')
+								->leftJoin('question_tags','question_tags.id','=','question_details.tag_id')
+								->select('questions.id', 'question_types.type_name', 'question_types.id as ques_type_id', 'question_details.coding_program_title', 'coding_entries.input', 'coding_entries.output', 'questions.question_statement', 'question_levels.level_name','question_details.provider','question_tags.tag_name','question_details.marks','question_details.provider','question_details.author')
+								->where('questions.id','=',$q_id)
+								->where('question_type_id','=',$q_type_id)
+								->first();
+								// return $coding_question_data;
+		$coding_question_entries = Coding_entry::where('question_id','=',$q_id)->get();
+
+		if (isset($coding_question_data)){			
+			return \Response()->Json([ 'status' => 200, 'coding_question_data'=>$coding_question_data, 'coding_question_entries'=>$coding_question_entries]);		
+		}else{
+			$this->set_session('Something Went Wrong, Please Try Again!', false);
+			return redirect()->back();		
+		}		
+	}
+
+
+	public function submission_question_modal_partial_data(Request $request){
+		//HASAN MEHDI CODING QUESTIONS FROM JQUERY 
+
+	 	$q_type_id = $request->input('quesType');
+	 	$q_id = $request->input('id');
+
+	 	$coding_question_data = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
+								->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
+								->leftJoin('question_types','question_types.id','=','questions.question_type_id')
+								->leftJoin('questions_submission_resources','questions.id','=','questions_submission_resources.question_id')
+								->leftJoin('question_submission_evaluations','questions.id','=','question_submission_evaluations.question_id')
+								->leftJoin('question_states','question_states.id','=','questions.question_state_id')
+								->leftJoin('question_levels','question_levels.id','=','questions.question_level_id')
+								->leftJoin('question_tags','question_tags.id','=','question_details.tag_id')
+								->select('questions.id', 'question_types.type_name', 'question_types.id as ques_type_id', 'question_details.coding_program_title', 'questions.question_statement', 'question_levels.level_name','question_details.provider','question_tags.tag_name','question_details.marks','question_details.provider','question_details.author','question_submission_evaluations.submission_evaluation_title','question_submission_evaluations.weightage','questions_submission_resources.candidate_help_material_tests_id')
+								->where('questions.id','=',$q_id)
+								->where('question_type_id','=',$q_type_id)
+								->first();
+								// return $coding_question_data;
+		$coding_question_entries = DB::table('candidate_help_material_tests')
+		->join('questions_submission_resources','candidate_help_material_tests.help_material_name','=','questions_submission_resources.candidate_help_material_tests_id')
+		->where('questions_submission_resources.question_id','=','$q_id')
+		->get();
+
+		if (isset($coding_question_data)){			
+			return \Response()->Json([ 'status' => 200, 'coding_question_data'=>$coding_question_data]);
+			if(isset($coding_question_entries))
+			{
+				return \Response()->Json([ 'status' => 200, 'coding_question_data'=>$coding_question_data ,'coding_question_entries'=>$coding_question_entries]);
+			}
+			else
+			{
+				$this->set_session('Something Went Wrong, Please Try Again!', false);
+				return redirect()->back();
+			}		
+		}else{
+			$this->set_session('Something Went Wrong, Please Try Again!', false);
+			return redirect()->back();		
+		}		
+	}
+
+
 	public function update_partial_question(Request $request){		
 		if (!empty($request->question_id)){
 			DB::table('question_details')

@@ -1023,11 +1023,7 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutiontext" style="" value="
-                                 @if(isset($solution->text))
-                                 {{$solution->text}}
-                                 @endif
-                                 "></textarea>
+                                 <textarea min="0" class="form-control" name="solutiontext" style="" value="{{isset($solution->text) ?  $solution->text : ''}}">{{isset($solution->text) ?  $solution->text : ''}}</textarea>
                               </div>
                            </div>
                         </div>
@@ -1045,15 +1041,7 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutioncode" style="" value="
-                                 @if(isset($solution->code))
-                                 {{$solution->code}}
-                                 @endif
-                                 " >
-                                 @if(isset($solution->code))
-                                 {{$solution->code}}
-                                 @endif
-                                 </textarea>
+                                 <textarea min="0" class="form-control" name="solutioncode" style="" value="{{isset($solution->code) ?  $solution->code: ''}}" >{{isset($solution->code) ?  $solution->code: ''}}</textarea>
                               </div>
                            </div>
                         </div>
@@ -1071,15 +1059,8 @@
                                        </div>
                                     </strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutionurl" style="" value="
-                                 @if(isset($solution->url))
-                                 {{$solution->url}}
-                                 @endif
-                                 " >
-                                 @if(isset($solution->url))
-                                 {{$solution->url}}
-                                 @endif
-                                 </textarea>
+
+                                 <textarea min="0" class="form-control" name="solutionurl" style="" value="{{isset($solution->url) ? $solution->url: ''}}" >{{isset($solution->url) ? $solution->url : ''}}</textarea>
                               </div>
                            </div>
                         </div>
@@ -1097,11 +1078,7 @@
                         <!--<button type="file" class="btn">Upload Files</button>-->
                         <div class="f_upload_btn">
                            Upload Media
-                           <input type="file" name="audio_video" value="
-                              @if(isset($solution->solution_media))
-                                 {{$solution->solution_media}}
-                              @endif
-                           " >
+                           <input type="file" name="audio_video" value="{{isset($solution->solution_media) ? $solution->solution_media : ''}}" >
                         </div>
                      </div>
                   </div>

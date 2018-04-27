@@ -125,7 +125,13 @@ Route::get('/delete_all_coding_questions', 'Recruiter\QuestionsController@delete
 Route::get('/delete_all_submission_questions', 'Recruiter\QuestionsController@delete_all_submission_questions')->name('delete_all_submission_questions');
 
 Route::post('/question_modal_partial_data', 'Recruiter\QuestionsController@question_modal_partial_data')->name('question_modal_partial_data');
-Route::post('/update_partial_question', 'Recruiter\QuestionsController@update_partial_question')->name('update_partial_question');
+
+Route::post('/coding_question_modal_partial_data', 'Recruiter\QuestionsController@coding_question_modal_partial_data')->name('coding_question_modal_partial_data');
+
+Route::post('submission_question_modal_partial_data','Recruiter\QuestionsController@submission_question_modal_partial_data')->name('submission_question_modal_partial_data');
+
+Route::post('/update_partial_question/{id?}', 'Recruiter\QuestionsController@update_partial_question')->name('update_partial_question');
+
 //Recruiter Questions Routes Ended
 
 //Recruiter Test Templates Setting Routes Started
