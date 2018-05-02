@@ -68,24 +68,24 @@
 var loaded = false;
 
 $('#newquestion').on('click', function(e) {
-  
+
        if(loaded) return;
 
-      $.ajax({
+       $.ajax({
                 type: 'GET',
                 url: $(this).data('url'),
                 //data: {'id': 0},
-                success: function (data) { 
+                success: function (data) {
                 console.log("success");
                 console.log(data);
 
                 var liHtml = "";
                 $.each(data.show_question, function( index, value ) {
-                  console.log(value.question);
+                  console.log(value.support_text);
                   if(value.admin_question_type_id == 1){
-                   liHtml += `<li><a href="#" data-id="`+value.id+`" data-question="`+value.question+`">`+value.question+`</a></li>`;
+                   liHtml += `<li><a href="#" data-id="`+value.id+`" data-question="`+value.question+`" data-support_text="`+value.support_text+`">`+value.question+`</a></li>`;
                   }
-                
+
                 });
 
                 $('li.proLiHeader').after(liHtml);
@@ -96,7 +96,7 @@ $('#newquestion').on('click', function(e) {
                 {
                   if(value.admin_question_type_id == 2)
                   {
-                    lihtml2 += `<li><a href="#" data-id="`+value.id+`" data-question="`+value.question+`">`+value.question+`</a></li>`; 
+                    lihtml2 += `<li><a href="#" data-id="`+value.id+`" data-question="`+value.question+`" data-support_text="`+value.support_text+`">`+value.question+`</a></li>`;
                   }
                 });
 
@@ -109,8 +109,8 @@ $('#newquestion').on('click', function(e) {
               }
 
        });
-      
-      loaded = true;      
+
+      loaded = true;
 });
 
   $(".adv_filButton").on("click", function(e){
@@ -122,7 +122,7 @@ $('#newquestion').on('click', function(e) {
       e.preventDefault();
       console.log("data" + $(this).data('id') + "questype" + $(this).data('questype'));
       var quesType = $(this).data('questype');
-      var questionid = $(this).data('id'); 
+      var questionid = $(this).data('id');
       $.ajaxSetup({
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
       });
@@ -131,11 +131,11 @@ $('#newquestion').on('click', function(e) {
         type: 'post',
         url: $(this).data('url'),
         data: {'id': questionid, 'quesType': quesType},
-        success: function (data) { 
+        success: function (data) {
            console.log("success");
            console.log(data);
            //console.log("data" + $(this).data('id') + "questype" + data.data.ques_type_id);
-            
+
             if(quesType == 1){
                $("#pub_mcq_type").text(data.data.type_name);
                $("#pub_mcq_no").text(data.data.id);
@@ -165,14 +165,14 @@ $('#newquestion').on('click', function(e) {
                                               <td>
                                               </td>
                                             </tr> `;
-                            //checking partial flag 
+                            //checking partial flag
                             if(value.partial_marks != null){
                                   partialFlag = 1;
                             }
                             if(value.shuffleFlag != 0){
                                   shuffleFlag = 1;
                             }
-                    i++;                     
+                    i++;
                   });
 
                   //Ticking Partial flag if required
@@ -211,9 +211,9 @@ $('#newquestion').on('click', function(e) {
                                             <input type="number" name="" value="`+value.weightage+`" disabled>
                                         </td>
                                     </tr> `;
-                    i++;              
+                    i++;
                   });
-                   
+
                    $("#pub_cod_cases").html(cases_html);
 
                    //pub input output
@@ -232,7 +232,7 @@ $('#newquestion').on('click', function(e) {
                                               <textarea class="form-control" name="option" rows="4" required="" disabled> `+value.output+`</textarea>
                                           </td>
                                       </tr>`;
-                      i++;              
+                      i++;
                     });
 
                    $("#pub_cod_inout").html(inout_html);
@@ -242,18 +242,18 @@ $('#newquestion').on('click', function(e) {
                    $("#pub_cod_level").text(data.data.level_name);
 
                    $(".pub_cod_provider").val(data.data.provider);
-                   
+
                    $(".pub_cod_author").val(data.data.user_name);
 
           //Assign model values
-          
+
          // if(data.status == 200){
          //    alertify.success(data.msg);
          //    setTimeout(function(){ $('#_first_model').modal('toggle'); }, 2500);
-            
-         //      }else if(data.status == 202){           
+
+         //      }else if(data.status == 202){
          //        alertify.warning(data.msg);
-         //      }    
+         //      }
             }
           },
             error: function (data) {
@@ -263,5 +263,3 @@ $('#newquestion').on('click', function(e) {
          });
 
   });
-
-

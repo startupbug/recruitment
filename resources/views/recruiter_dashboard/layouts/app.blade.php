@@ -193,7 +193,7 @@
                                         <table class="table s_table">
                                             <tbody id="choiceTable_lib">
 
-                                               
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -270,7 +270,7 @@
                                             ThunderCracker's team consists of 'N' players (including himself). All the players stand in a straight line (numbered from 1 to N), and pass the ball to each other. The maximum power with which any player can hit the ball on the i'th pass is given by an array Ai. This means that if a player at position 'j' (1<=j<=N) has the ball at the time of the i'th pass, he can pass it to any player with a position from (j-Ai) to (j-1), or from (j+1) to (j+Ai) (provided that the position exists).
                                             Now, ThunderCracker wants to find out the number of ways in which, after exactly M passes, the ball reaches his friend MunKee, given that the first pass is made by ThunderCracker. (Two ways are considered different if there exists atleast one pass which resulted in the ball being passed to a different player.)
                                         </p>
-                                       
+
                                     </div>
                                 </div>
                                 <br>
@@ -2499,6 +2499,9 @@
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 <script src="{{ asset('public/assets/js/f.js') }}"></script>
+<script>
+  var csrf = '{{csrf_field()}}';
+</script>
 <script src="{{ asset('public/assets/js/s_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/i_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/fa_js.js') }}"></script>
@@ -2524,7 +2527,7 @@
 
 <script type="text/javascript">
 
-function modal_data(id){ 
+function modal_data(id){
 
   $.ajaxSetup({
     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
@@ -2534,20 +2537,20 @@ function modal_data(id){
     type: 'post',
     data: {'question_id': id},
     'dataType' : 'json',
-    success: function (data) { 
+    success: function (data) {
       console.log("123");
       console.log(data.dataz);
       console.log(data.question_data.question_level_id);
-      $("#questionmarks").val(data.question_data.marks);         
-      $("#negativeMarks").val(data.question_data.negative_marks);         
-      $("#question_id_id").val(data.question_data.question_id); 
+      $("#questionmarks").val(data.question_data.marks);
+      $("#negativeMarks").val(data.question_data.negative_marks);
+      $("#question_id_id").val(data.question_data.question_id);
 
-      $(".ajax_route").attr("href","{{route('library_public_questions')}}/"+data.question_data.question_id+"?modal=modal_pencil"); 
+      $(".ajax_route").attr("href","{{route('library_public_questions')}}/"+data.question_data.question_id+"?modal=modal_pencil");
 
 
-      $("#question_statement_id").text(data.question_data.question_statement);         
-      $("#state_name").text(data.question_data.state_name);         
-      $("#level_name").text(data.question_data.level_name);         
+      $("#question_statement_id").text(data.question_data.question_statement);
+      $("#state_name").text(data.question_data.state_name);
+      $("#level_name").text(data.question_data.level_name);
       $("#tagName").text(data.question_data.tag_name);
       // $("#question_ki_id").text(id);
 
@@ -2577,14 +2580,14 @@ function modal_data(id){
                               <td>
                               </td>
                            </tr> `;
-              //checking partial flag 
+              //checking partial flag
               if(value.partial_marks != null){
                     partialFlag = 1;
               }
               if(value.shuffleFlag != 0){
                     shuffleFlag = 1;
               }
-      i++;                     
+      i++;
     });
 
     //Ticking Partial flag if required
@@ -2594,16 +2597,16 @@ function modal_data(id){
     if(shuffleFlag == 1){
       $('.shuffleCheck').prop('checked', true);
     }
-    
+
 
     $("#choiceTable").html($choices_html);
- 
+
 
     },
     error: function (data) {
       console.log(data);
     }
-  });        
+  });
 
 }
 
@@ -2612,7 +2615,7 @@ function modal_data(id){
   $.ajaxSetup({
     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
   });
-  
+
   $(document).ready(function(){
 
         $('.coding_question_id').click(function(){
@@ -2621,12 +2624,12 @@ function modal_data(id){
             $("#codings_question_id").val($(this).data('id'));
 
             var questionid = $(this).data('id');
-            var question_typeid = 2; 
+            var question_typeid = 2;
             $.ajax({
                 type: 'post',
                 url: $(this).data('url'),
                 data: {'id': questionid, 'quesType': question_typeid},
-                success: function (data) { 
+                success: function (data) {
                 console.log("success");
                 console.log(data);
                 if(question_typeid == 2)
@@ -2638,7 +2641,7 @@ function modal_data(id){
                     $('.coding_author').text(data.coding_question_data.author);
                     $('.coding_provider').text(data.coding_question_data.provider);
                     $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_pencil");
-                 
+
 
                var inout_html = "";
                    var i =1;
@@ -2656,7 +2659,7 @@ function modal_data(id){
                                          </td>
                                      </tr>`;
                                      i = i +1;
-                     i++;              
+                     i++;
                    });
 
                   $(".coding_question_table").html(inout_html);
@@ -2673,7 +2676,7 @@ function modal_data(id){
 $.ajaxSetup({
     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
   });
-  
+
   $(document).ready(function(){
 
         $('.submission_question_id').click(function(){
@@ -2682,12 +2685,12 @@ $.ajaxSetup({
             $("#submission_question_id").val($(this).data('id'));
 
             var questionid = $(this).data('id');
-            var question_typeid = 3; 
+            var question_typeid = 3;
             $.ajax({
                 type: 'post',
                 url: $(this).data('url'),
                 data: {'id': questionid, 'quesType': question_typeid},
-                success: function (data) { 
+                success: function (data) {
                 console.log("success");
                 console.log(data);
                 if(question_typeid == 3)
@@ -2699,9 +2702,9 @@ $.ajaxSetup({
                     // $('.submission_level').text(data.coding_question_data.level_name);
                     $('.submission_author').val(data.coding_question_data.author);
                     $('.submission_provider').val(data.coding_question_data.provider);
-                    
+
                     $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_pencil");
-                 
+
 
                var inout_html = "";
                    var i =1;
@@ -2719,7 +2722,7 @@ $.ajaxSetup({
                                          </td>
                                      </tr>`;
                                      i = i +1;
-                     i++;              
+                     i++;
                    });
 
                   $(".coding_question_table").html(inout_html);
@@ -2729,8 +2732,8 @@ $.ajaxSetup({
             });
       });
     });
-  
-  
+
+
 
     $(document).ready(function(){
       @if(isset($hostFlag) && $hostFlag)

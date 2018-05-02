@@ -156,17 +156,17 @@
                         <button type="submit" class="btn f_btn" name="save_button">Save</button>
                      </form>
                   </div>
-               <div class="col-md-6 col-sm-12 col-xs-12">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
                      <div class="panel panel-default">
                         <div class="panel-heading">Preview</div>
                         <div class="panel-body">
-                           <h3>Customer Service Test - Recruitment</h3>
-                           <h4 class="f_des">Description</h4>
-                           <p>This test is hosted via recruitment. Please read the instructions carefully before proceeding.</p>
-                           <h4 class="f_des">Instructions</h4>
-                           <p>(1) Make sure you have a proper internet connection.</p>
-                           <p>(2) If your computer is taking unexpected time to load, it is recommended to reboot the system before you start the test.</p>
-                           <p>(3) Once you start the test, it is recommended to pursue it in one go for the complete duration.</p>
+                          <h3 id="title_video"></h3>
+
+                          <h4>Description</h4>
+                          <div id="edit_template_text_editor_description_data"></div>
+
+                          <h4>Instructions</h4>
+                          <div id="edit_template_text_editor_instruction_data"></div>
                         </div>
                      </div>
                   </div>
@@ -342,9 +342,9 @@
                                              </span>
                                              <ul class="dropdown-menu s_addquestion_dropdown_menu">
                                                 <li>
-                                                <a data-toggle="modal" onclick="section_id({{$key}});" data-target="#section-coding-add-compilable-question-Modal">Add Compilable Question</a>
+                                                <a data-toggle="modal" onclick="section_id({{$key}}); code_edittesttemplate_Expand()" data-target="#section-coding-add-compilable-question-Modal">Add Compilable Question</a>
                                              </li>
-                                                <li><a data-toggle="modal" onclick="section_id({{$key}});" data-target="#section-coding-debug-Modal">Add Debug Question</a></li>
+                                                <li><a data-toggle="modal" onclick="section_id({{$key}}); code_debug_Expand()" data-target="#section-coding-debug-Modal">Add Debug Question</a></li>
                                              </ul>
                                           </span>
                                           <button type="button" class="btn" data-toggle="modal" data-target="#section-choice-debug-Modal">
@@ -752,26 +752,353 @@
                                    </div>
                                    <hr>
                                    <div class="form-group form-group-sm">
-                                     <div class="row">
-                                       <div class="col-sm-4">
-                                         <div class="dropdown">
-                                           <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" id="newquestion" type="button" data-toggle="dropdown" data-url="{{route('Questionnaire_newquestion')}}" >
-                                             + New Question <span class="caret"></span>
-                                           </button>
-                                           <ul class="dropdown-menu s_drop_down btn-block question_select">
-                                             <li><a href="#"><strong>Write own question</strong></a></li>
+                                     <div class="form-group form-group-sm">
+                                       <div class="row">
+                                         <div class="col-sm-4">
+                                           <div class="dropdown">
+                                             <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" type="button" data-toggle="dropdown" id="newquestion" data-urlquestion="{{route('new_user_question_create')}}" data-url="{{route('Questionnaire_newquestion')}}">
+                                               + New Question <span class="caret"></span>
+                                             </button>
+                                             <ul class="dropdown-menu s_drop_down btn-block new_question question_select" data-template_id="{{$edit->id}}">
+                                               <li><a href="#"  data-id="0" data-question="Write own question"><strong>Write own question</strong></a></li>
 
-                                             <li class="divider"></li>
-                                             <li class="dropdown-header proLiHeader">Professional</li>
+                                               <li class="divider"></li>
+                                               <li class="dropdown-header proLiHeader">Professional</li>
 
-                                             <li class="divider"></li>
-                                             <li class="dropdown-header acaLiHeader">Academics</li>
-                                           </ul>
+                                               <li class="divider"></li>
+                                               <li class="dropdown-header acaLiHeader">Academics</li>
+                                             </ul>
+                                           </div>
                                          </div>
                                        </div>
                                      </div>
                                      <h5><strong>Questions</strong></h5>
                                      <ul class="unordered-list">
+                                       <li></li>
+
+                                       @foreach ($template_question_setting as $t_q_s)
+                                       <li class="questionBorder">
+                                         <form action="{{route('new_user_question_create')}}" method="post">
+                                           {{csrf_field()}}
+
+                                           <div class="row" id="">
+                                             <div class="col-xs-6 title">
+                                               <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Mandatory Question (Edit to change)">
+                                                 <small class="text-primary">
+                                                   <i class="fa fa-star" aria-hidden="true"></i>
+                                                 </small>
+                                               </a>
+                                               <span class="separator transparent-border"></span>
+                                               <span title="Help Text">{{$t_q_s->question}}</span>
+                                             </div>
+                                             <div class="col-xs-3 title">
+                                               <span class="light-font">Text</span>
+                                             </div>
+                                             <div class="col-xs-3">
+                                               <div class="pull-right">
+                                                 <div class="btn-group">
+                                                   <button class="btn btn-sm btn-link">
+                                                       <span class="fa fa-arrow-up"></span>
+                                                   </button>
+                                                   <button class="btn btn-sm btn-link no-hover">
+                                                       <span class="fa fa-arrow-up transparent-font"></span>
+                                                   </button>
+                                                   <button type="button" class="btn btn-sm btn-link edit_question" >
+                                                       <span class="fa fa-pencil"></span>
+                                                   </button>
+                                                   <a href="{{route('delete_user_setting_question',['id'=>$t_q_s->id])}}" class="btn btn-sm btn-link text-danger">
+                                                       <span class="fa fa-trash"></span>
+                                                   </a>
+                                                 </div>
+                                               </div>
+                                             </div>
+                                           </div>
+                                           <div class="form-horizontal hidden capsule">
+                                             <div class="form-group form-group-sm">
+                                               <label class="control-label col-sm-2">Question</label>
+                                               <div class="col-sm-10">
+                                                 <input type="text" name="question" class="form-control" value="{{$t_q_s->question}}" placeholder=" Eg: Enter your University name">
+                                               </div>
+                                             </div>
+                                             <div class="form-group form-group-sm">
+                                               <label class="control-label col-sm-2">Support text</label>
+                                               <div class="col-sm-10">
+                                                 <input type="text" name="support_text" class="form-control" value="{{$t_q_s->support_text}}" placeholder="Eg: Give the full form of your University">
+                                               </div>
+                                             </div>
+                                             <div class="form-group form-group-sm">
+                                               <label class="control-label col-sm-2">
+                                                 Knock out
+                                                 <i class="fa fa-info-circle"></i>
+                                               </label>
+                                               <div class="col-sm-10">
+                                                 <div class="" >
+                                                   <label class="control-label">
+                                                     <input type="checkbox" name="knock_out" @if($t_q_s->knock_out == "1") checked @endif value="1" class="knockout_checkbox" style="top:4px">
+                                                      Dont allow the candidate to take the test if the criteria does not meet
+                                                   </label>
+                                                 </div>
+                                               </div>
+                                             </div>
+                                             <div class="dropdown_format_menu">
+                                               <div class="form-group form-group-sm">
+                                                 <label class="control-label col-sm-2">Format</label>
+                                                 <div class="col-sm-4">
+                                                   <select class="form-control format_class" name="format_setting_id">
+                                                     <option @if($t_q_s->format_setting_id == "1") selected @endif value="1">Number</option>
+                                                     <option @if($t_q_s->format_setting_id == "2") selected @endif value="2">Text</option>
+                                                     <option @if($t_q_s->format_setting_id == "3") selected @endif value="3">Text Area</option>
+                                                     <option @if($t_q_s->format_setting_id == "4") selected @endif value="4">Check box</option>
+                                                     <option @if($t_q_s->format_setting_id == "5") selected @endif value="5">Multiple choice</option>
+                                                     <option @if($t_q_s->format_setting_id == "6") selected @endif value="6">Radio group</option>
+                                                     <option @if($t_q_s->format_setting_id == "7") selected @endif value="7">Drop down</option>
+                                                   </select>
+                                                 </div>
+                                                 <div class="col-sm-4" style="padding: 0;">
+                                                   <div style="padding: 1px">
+                                                     <label class="control-label mandatory_checkbox_label">
+                                                       <input type="checkbox" name="mandatory" @if($t_q_s->mandatory == "1") checked @endif value="1" class="mandatory_checkbox" style="top:4px"> Mandatory
+                                                     </label>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div class="row @if($t_q_s->format_setting_id == '5' || $t_q_s->format_setting_id == '6' || $t_q_s->format_setting_id == '7') @else hidden @endif  option_text_data">
+                                                 <div class="col-sm-9 col-sm-offset-2">
+                                                   <div class="no-more-tables">
+                                                     <table class="table s_table option_table">
+                                                       <tbody>
+                                                         @if($t_q_s->format_setting_id == '5' || $t_q_s->format_setting_id == '6' || $t_q_s->format_setting_id == '7')
+                                                           @foreach ($t_q_s->detail as $key => $detail)
+                                                             <?php $key++; ?>
+                                                             <tr>
+                                                               <td valign="center">Option {{$key}}</td>
+                                                               <td class="s_weight" valign="center">
+                                                                 <input type="text" class="form-control option_text" data-message="{{$key}}" name="option[]" value="{{$detail->option}}">
+                                                               </td>
+                                                               <td valign="center">
+                                                                 <a class="delete_row_option">
+                                                                   <i class="fa fa-times-circle-o"></i>
+                                                                 </a>
+                                                               </td>
+                                                             </tr>
+                                                           @endforeach
+                                                         @else
+                                                           <tr>
+                                                             <td valign="center">Option 1</td>
+                                                             <td class="s_weight" valign="center">
+                                                               <input type="text" class="form-control option_text" data-message="1" name="option[]">
+                                                             </td>
+                                                             <td valign="center">
+                                                               <a class="delete_row_option">
+                                                                 <i class="fa fa-times-circle-o"></i>
+                                                               </a>
+                                                             </td>
+                                                           </tr>
+                                                         @endif
+                                                       </tbody>
+                                                       <tfoot>
+                                                          <tr>
+                                                            <td></td>
+                                                            <td colspan="2" class="text-align-center">
+                                                              <button type="button" class="btn btn-sm btn-warning add_option">+ Add Option</button>
+                                                            </td>
+                                                          </tr>
+                                                       </tfoot>
+                                                     </table>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div class="@if($t_q_s->format_setting_id == '2' || $t_q_s->format_setting_id == '3') @else hidden @endif form-group form-group-sm placeholder_text_data" style="">
+                                                 <label class="control-label col-sm-2">Placeholder</label>
+                                                 <div class="col-sm-10">
+                                                   @if($t_q_s->format_setting_id == '2' || $t_q_s->format_setting_id == '3')
+                                                     @foreach ($t_q_s->detail as $key => $placeholder)
+                                                     <input type="text" name="placeholder" class="form-control placeholder_text" value="{{$placeholder->placeholder}}" >
+                                                     @endforeach
+                                                   @else
+                                                     <input type="text" name="placeholder" class="form-control placeholder_text" value="Enter Something" disabled >
+                                                   @endif
+                                                 </div>
+                                               </div>
+                                             </div>
+                                             <div class="form-group form-group-sm knockout_criteria  @if($t_q_s->knock_out == '1') @else hidden @endif">
+                                                <label class="control-label col-sm-2">Knock out criteria</label>
+                                                <div class="col-sm-10">
+                                                  <div class="knockout_li_number @if($t_q_s->format_setting_id == '1') @else hidden @endif">
+                                                     <div class="row">
+                                                        <label class="control-label col-md-1">Range: </label>
+                                                        @if($t_q_s->format_setting_id == '1')
+                                                          @foreach ($t_q_s->detail as $key => $max_min)
+                                                            <div class="col-sm-4">
+                                                              <div class="input-group input-group-sm">
+                                                                <div class="input-group-addon">
+                                                                  Min
+                                                                </div>
+                                                                <input type="number" name="min" class="form-control number_min" value="{{$max_min->min}}">
+                                                              </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                              <div class="input-group input-group-sm">
+                                                                <div class="input-group-addon">
+                                                                  Max
+                                                                </div>
+                                                                <input type="number" name="max" class="form-control number_max" value="{{$max_min->max}}">
+                                                              </div>
+                                                            </div>
+                                                          @endforeach
+                                                        @else
+                                                          <div class="col-sm-4">
+                                                            <div class="input-group input-group-sm">
+                                                              <div class="input-group-addon">
+                                                                Min
+                                                              </div>
+                                                              <input type="number" name="min" class="form-control number_min" value="0">
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-sm-4">
+                                                            <div class="input-group input-group-sm">
+                                                              <div class="input-group-addon">
+                                                                Max
+                                                              </div>
+                                                              <input type="number" name="max" class="form-control number_max" value="0">
+                                                            </div>
+                                                          </div>
+                                                        @endif
+                                                     </div>
+                                                     <small class="help-block">Any number between the range will be considered as correct</small>
+                                                  </div>
+
+                                                  <div class="knockout_li_checkbox @if($t_q_s->format_setting_id == '4') @else hidden @endif">
+                                                     <label class="control-label">Expected Answer:</label>
+                                                     @if($t_q_s->format_setting_id == '1')
+                                                       @foreach ($t_q_s->detail as $key => $checked)
+                                                         <div class="radio no-padding">
+                                                           <label class="control-label">
+                                                             <input type="radio" @if($checked == '1') checked @endif  name="checkbox" value="1">
+                                                             Checked
+                                                           </label>
+                                                         </div>
+                                                         <div class="radio no-padding">
+                                                           <label class="control-label">
+                                                             <input type="radio"  @if($checked == '0') checked @endif name="checkbox" value="0">
+                                                             Unchecked
+                                                           </label>
+                                                         </div>
+                                                       @endforeach
+                                                     @else
+                                                       <div class="radio no-padding">
+                                                         <label class="control-label">
+                                                           <input type="radio" checked name="checkbox" value="1">
+                                                           Checked
+                                                         </label>
+                                                       </div>
+                                                       <div class="radio no-padding">
+                                                         <label class="control-label">
+                                                           <input type="radio" name="checkbox" value="0">
+                                                           Unchecked
+                                                         </label>
+                                                       </div>
+                                                     @endif
+                                                  </div>
+
+                                                  <div class="knockout_li_multiple_choice @if($t_q_s->format_setting_id == '5') @else hidden @endif">
+                                                    <label class="control-label">Expected Answer(s)</label>
+                                                    <ul style="padding:0;">
+                                                      @if($t_q_s->format_setting_id == '5' || $t_q_s->format_setting_id == '6' || $t_q_s->format_setting_id == '7')
+                                                        @foreach ($t_q_s->detail as $key => $answer_multiple_choice)
+                                                          <?php $key++; ?>
+                                                          <li>
+                                                            <div class="no-padding">
+                                                               <label class="control-label checkbox_{{$key}}">
+                                                                <input type="checkbox" @if($answer_multiple_choice->option == $answer_multiple_choice->answer ) checked @endif name="answer_multiple_choice[]">
+                                                                {{$answer_multiple_choice->option}}
+                                                               </label>
+                                                            </div>
+                                                          </li>
+                                                        @endforeach
+                                                      @else
+                                                        <li>
+                                                          <div class="no-padding">
+                                                             <label class="control-label checkbox_1">
+                                                              <input type="checkbox" checked name="answer_multiple_choice[]">
+                                                             </label>
+                                                          </div>
+                                                        </li>
+                                                      @endif
+                                                    </ul>
+                                                    <small class="help-block">Candidate should select the exact choices which are checked above to qualify for the test</small>
+                                                  </div>
+
+                                                  <div class="knockout_li_radio_group @if($t_q_s->format_setting_id == '6') @else hidden @endif">
+                                                    <label class="control-label">Expected Answer</label>
+                                                    <ul style="padding:0;">
+                                                      @if($t_q_s->format_setting_id == '5' || $t_q_s->format_setting_id == '6' || $t_q_s->format_setting_id == '7')
+                                                        @foreach ($t_q_s->detail as $key => $answer_multiple_choice)
+                                                          <?php $key++; ?>
+                                                          <li>
+                                                            <div class="radio no-padding">
+                                                               <label class="control-label radio_group_{{$key}}">
+                                                                <input type="radio" @if($answer_multiple_choice->option == $answer_multiple_choice->answer ) checked @endif name="answer_radio">
+                                                                {{$answer_multiple_choice->option}}
+                                                               </label>
+                                                            </div>
+                                                          </li>
+                                                        @endforeach
+                                                      @else
+                                                        <li>
+                                                          <div class="radio no-padding">
+                                                             <label class="control-label radio_group_1">
+                                                             <input type="radio" checked name="answer_radio">
+                                                             </label>
+                                                          </div>
+                                                        </li>
+                                                      @endif
+                                                    </ul>
+                                                    <small class="help-block">Candidate should select exact option that is selected above to qualify for the test</small>
+                                                  </div>
+
+                                                  <div class="knockout_li_drop_down @if($t_q_s->format_setting_id == '7') @else hidden @endif">
+                                                    <label class="control-label">Expected Answer</label>
+                                                    <ul style="padding:0;">
+                                                      @if($t_q_s->format_setting_id == '5' || $t_q_s->format_setting_id == '6' || $t_q_s->format_setting_id == '7')
+                                                        @foreach ($t_q_s->detail as $key => $answer_multiple_choice)
+                                                          <?php $key++; ?>
+                                                          <li>
+                                                            <div class="radio no-padding">
+                                                               <label class="control-label drop_down_{{$key}}">
+                                                                <input type="radio" @if($answer_multiple_choice->option == $answer_multiple_choice->answer ) checked @endif name="answer_drop_down">
+                                                                {{$answer_multiple_choice->option}}
+                                                               </label>
+                                                            </div>
+                                                          </li>
+                                                        @endforeach
+                                                      @else
+                                                        <li>
+                                                          <div class="radio no-padding">
+                                                             <label class="control-label drop_down_1">
+                                                             <input type="radio" checked name="answer_drop_down">
+                                                             </label>
+                                                          </div>
+                                                        </li>
+                                                      @endif
+                                                    </ul>
+                                                    <small class="help-block">Candidate should select exact option that is selected above to qualify for the test</small>
+                                                  </div>
+
+                                                </div>
+                                             </div>
+                                             <div class="row">
+                                               <div class="col-sm-10 col-sm-offset-2">
+                                                 <button type="submit" class="btn btn-sm btn-info">Done</button>
+                                                 <button type="button" class="btn btn-sm btn-default cancel_button_remove">Cancel</button>
+                                               </div>
+                                             </div>
+                                           </div>
+                                         </form>
+                                       </li>
+                                       @endforeach;
+
+
                                      </ul>
                                    </div>
                                  </div>
@@ -869,7 +1196,7 @@
                                           <div class="form-group form-group-sm">
                                              <label class="control-label col-sm-4">Receiver email</label>
                                              <div class="col-sm-8">
-                                                <input type="email" @if(isset($edit_mail_settings)) value="{{$edit_mail_settings->receiver_email}}" @endif name="receiver_email" class="form-control required="" style="">
+                                                <input type="email" @if(isset($edit_mail_settings)) value="{{$edit_mail_settings->receiver_email}}" @endif name="receiver_email" class="form-control" required="" style="">
                                              </div>
                                           </div>
                                           <div class="form-group form-group-sm" ng-hide="testData.isSubmissionOnlyTest">
@@ -1742,7 +2069,7 @@
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -1814,7 +2141,7 @@
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -1886,7 +2213,7 @@
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -1973,7 +2300,7 @@
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -2043,7 +2370,7 @@
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -2116,7 +2443,7 @@
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -2250,6 +2577,16 @@
                                 </div>
                                 <textarea class="edit"></textarea>
                                 <br>
+                                <div class="panel panel-pagedown-preview hidden" id="code_edittemp_panel">
+                                  <div class="panel-heading">
+                                    <strong>Preview</strong>
+                                  </div>
+                                  <div class="panel-body">
+                                    <p id="code_preview_data_section_expand"></p>
+                                  </div>
+                                </div>
+                                <br>
+
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Sample Input & Output
                                         <div class="s_popup">
@@ -2290,7 +2627,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="4" class="text-align-center">
-                                                        <button class="btn" onclick="addrow_section_codingquestion()">+ Add Sample Test Case</button>
+                                                        <button type="button" class="btn" onclick="addrow_section_codingquestion()">+ Add Sample Test Case</button>
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -2576,7 +2913,7 @@
        <div class="modal-body s_modal_form_body">
           <div class="row">
             <div class="col-md-12">
-              <strong>Question Statement (<a onclick="code_collapse_modal()" >Collapse</a>)</strong>
+              <strong>Question Statement (<span class="collapse_pointer" onclick="code_collapse_modal()" >Collapse</span>)</strong>
               <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
@@ -2658,9 +2995,18 @@
                               </div>
                            </div>
                            <div class="heading_modal_statement">
-                              <strong>Program Statement (<a href="#">Expand</a>) <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the organization name that serves as the provider of the question. "> <i class="fa fa-info-circle"> </i></a></strong>
+                              <strong>Program Statement (<a href="#section-coding-add-compilable-question-Modal-Collapse" data-toggle="modal" onclick="code_debug_Collapse()">Expand</a>) <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the organization name that serves as the provider of the question. "> <i class="fa fa-info-circle"> </i></a></strong>
                            </div>
                            <textarea name="question_statement" class="edit"></textarea>
+                           <br>
+                           <div class="panel panel-pagedown-preview hidden" id="code_debug_panel">
+                             <div class="panel-heading">
+                               <strong>Preview</strong>
+                             </div>
+                             <div class="panel-body">
+                               <p id="code_preview_data_debug_expand"></p>
+                             </div>
+                           </div>
                            <br>
                         </div>
                      </div>
@@ -2879,6 +3225,36 @@
    </form>
    </div>
 </div>
+<div class="modal fade" id="section-coding-debug-Modal-Collapse" role="dialog">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+       <div class="modal-body s_modal_form_body">
+          <div class="row">
+            <div class="col-md-12">
+              <strong>Question Statement (<span class="collapse_pointer" onclick="code_collapse_modal()" >Collapse</span>)</strong>
+              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <textarea class="edit"></textarea>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-pagedown-preview">
+                <div class="panel-heading">
+                  <strong>Preview</strong>
+                </div>
+                <div class="panel-body" style="height: 647px;">
+                  <p id="code_preview_data_debug"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
+
 <!-- Coding Modal Second Type-->
 
 <!-- section-debug-Modal -->
@@ -2888,10 +3264,13 @@
       <div class="modal-content">
          <div class="modal-header s_modal_form_header">
             <div class="pull-right">
-               <span>Select the question(s) and enter marks  </span>
-               <button type="button" class="btn s_save_button s_font" data-dismiss="modal"><i class="fa fa-list"></i> Add Selected Questions</button>
-               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Clear selection</button>
-               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+              <form class="pull-left">
+                <span id="add_selected_question_code_span">Select the question(s) and enter marks</span>
+                <input type="hidden" name="public_mcq_id" id="public_code_question_mcq_id" style="color: black;">
+                <button type="submit" class="btn s_save_button s_font hidden" id="add_selected_question_code_button" data-dismiss="modal"><i class="fa fa-list"></i> Add Selected Questions</button>
+              </form>
+              <button type="button" class="btn btn-default s_font" data-dismiss="modal">Clear selection</button>
+              <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
             <h3 class="modal-title s_font">MCQ Library <span>(section- 22318047)</span></h3>
          </div>
@@ -2914,31 +3293,60 @@
                                  </select>
                               </div>
                            </div>
-                           <label class="checkbox-inline">
-                           <input type="checkbox"> Easy
-                           </label>
-                           <label class="checkbox-inline">
-                           <input type="checkbox"> Medium
-                           </label>
-                           <label class="checkbox-inline">
-                           <input type="checkbox"> Hard
-                           </label>
-                           <br>
-                           <label class="checkbox">
-                           <input type="checkbox"> All
-                           </label>
                            <div class="form-group form-group-sm">
-                              <label class="control-label"><strong>Question Id</strong></label>
-                              <div class="">
-                                 <input type="text" class="form-control" name="" value="" placeholder="Enter question id">
-                              </div>
+                             <label class="control-label">Level</label>
+                             <div class="row">
+                                <div class="col-md-6">
+                                   <div class="checkbox no-margin">
+                                      <label>
+                                      <input type="checkbox" class="level_easy" checked>Easy
+                                      </label>
+                                   </div>
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="checkbox no-margin">
+                                      <label>
+                                      <input type="checkbox" class="level_medium">Medium
+                                      </label>
+                                   </div>
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="checkbox no-margin">
+                                      <label>
+                                      <input type="checkbox" class="level_hard">Hard
+                                      </label>
+                                   </div>
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="checkbox no-margin">
+                                      <label>
+                                      <input type="checkbox" class="level_all">All
+                                      </label>
+                                   </div>
+                                </div>
+                             </div>
                            </div>
-                           <div class="form-group form-group-sm">
-                              <label class="control-label"><strong>Question Statement</strong></label>
-                              <div class="">
-                                 <input type="text" class="form-control" name="" value="" placeholder="Enter question statement">
-                              </div>
+
+                           <div class="moreSettings_button_code" onclick="moreSettings_code()" style="margin-bottom:5px;">
+                             More
                            </div>
+                           <div class="moreSettings_code hidden">
+
+                             <div class="form-group form-group-sm">
+                                <label class="control-label"><strong>Question Id</strong></label>
+                                <div class="">
+                                   <input type="text" class="form-control" name="" value="" placeholder="Enter question id">
+                                </div>
+                             </div>
+                             <div class="form-group form-group-sm">
+                                <label class="control-label"><strong>Question Statement</strong></label>
+                                <div class="">
+                                   <input type="text" class="form-control" name="" value="" required="" placeholder="Enter question statement">
+                                </div>
+                             </div>
+
+                           </div>
+
                            <button class="btn btn-sm btn-success">Apply</button>
                            <button class="btn btn-sm btn-default">Reset</button>
                         </form>
@@ -2957,74 +3365,20 @@
                            <table class="table s_table">
                               <thead>
                                  <tr>
-                                    <th><input type="checkbox"></th>
+                                    <th><input type="checkbox" class="codeQuesCheck_public_code_question_mcq"></th>
                                     <th></th>
                                     <th style="text-align: left;"><b>Statement</b></th>
                                     <th>Positive Marks</th>
+                                    <th>Negative Marks</th>
                                  </tr>
                               </thead>
                               <tbody>
                                  <tr>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" class="public_code_question_mcq" value="1"></td>
                                     <td>
                                        <div class="statement">
-                                          <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_11"></i>
-                                          <div class="panel panel-default s_tooltip s_tooltip_large panel-collapse collapse" id="collapse_11">
-                                             <div class="panel-heading">Question Statement</div>
-                                             <div class="panel-body">
-                                                <div class="clearfix">
-                                                   <div class="row">
-                                                      <div class="col-xs-12">
-                                                         <small>How can you open a link in a new tab/browser window?</small>
-                                                      </div>
-                                                      <div class="col-xs-12">
-                                                         <h5>Choices</h5>
-                                                         <p class="s_modal_body_heading"> The first line of the input consists of 4 space separated integers - N (denoting the number of players), M (denoting the number of passes), and X and Y, denoting ThunderCracker's and MunKee's numbers respectively.
-                                                            The next line contains M space separated integers, denoting array A, the power with which passes can be made in the i'th pass (1<=i<=M).
-                                                         </p>
-                                                         </ul>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="col-md-10 col-sm-12 col-xs-12">
-                                       <div class="statement">
-                                          <div class="row">
-                                             <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="description text-muted">
-                                          <div class="row">
-                                             <div class="col-md-6 col-sm-12 col-xs-12">
-                                                <div class="row">
-                                                   <div class="col-xs-6">
-                                                      <span class="text-muted">Level</span>
-                                                      <span class="conjunction"> : </span>Medium
-                                                   </div>
-                                                   <div class="col-xs-6 no-padding-left">
-                                                      <span class="text-muted">Tag</span>
-                                                      <span class="conjunction"> : </span>PHP
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td>
-                                       <input type="number" value="10" class="form-control">
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>
-                                       <div class="statement">
-                                          <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_12"></i>
-                                          <div class="panel panel-default s_tooltip s_tooltip_large panel-collapse collapse" id="collapse_12">
+                                          <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_1"></i>
+                                          <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_1">
                                              <div class="panel-heading">Question Statement</div>
                                              <div class="panel-body">
                                                 <div class="clearfix">
@@ -3063,11 +3417,11 @@
                                           </div>
                                        </div>
                                     </td>
-                                    <td class="col-md-10 col-sm-12 col-xs-12">
+                                    <td class="col-md-8 col-sm-12 col-xs-12">
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -3089,15 +3443,18 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="number" value="10" class="form-control">
+                                       <input type="text" value="10" class="form-control allow_number" disabled>
+                                    </td>
+                                    <td>
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                                  <tr>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" class="public_code_question_mcq" value="2"></td>
                                     <td>
                                        <div class="statement">
-                                          <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_13"></i>
-                                          <div class="panel panel-default s_tooltip s_tooltip_large panel-collapse collapse" id="collapse_13">
+                                          <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_2"></i>
+                                          <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_2">
                                              <div class="panel-heading">Question Statement</div>
                                              <div class="panel-body">
                                                 <div class="clearfix">
@@ -3110,22 +3467,18 @@
                                                          <ul class="ng-scope">
                                                             <li>
                                                                <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                               &nbsp;&nbsp;
                                                                &lt;a href="url" new&gt;
                                                             </li>
                                                             <li>
                                                                <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                               &nbsp;&nbsp;
                                                                &lt;a href="url" target="_blank"&gt;
                                                             </li>
                                                             <li>
                                                                <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                               &nbsp;&nbsp;
                                                                &lt;a href="url" target="new"&gt;
                                                             </li>
                                                             <li>
                                                                <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                               &nbsp;&nbsp;
                                                                None of the above
                                                             </li>
                                                          </ul>
@@ -3140,7 +3493,7 @@
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -3162,7 +3515,82 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="number" value="10" class="form-control">
+                                       <input type="text" value="10" class="form-control allow_number" disabled>
+                                    </td>
+                                    <td>
+                                       <input type="text" class="form-control allow_number" disabled>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td><input type="checkbox" class="public_code_question_mcq" value="3"></td>
+                                    <td>
+                                       <div class="statement">
+                                          <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_3"></i>
+                                          <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_3">
+                                             <div class="panel-heading">Question Statement</div>
+                                             <div class="panel-body">
+                                                <div class="clearfix">
+                                                   <div class="row s_small">
+                                                      <div class="col-xs-12">
+                                                         <small>How can you open a link in a new tab/browser window?</small>
+                                                      </div>
+                                                      <div class="col-xs-12">
+                                                         <h5>Choices</h5>
+                                                         <ul class="ng-scope">
+                                                            <li>
+                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               &lt;a href="url" new&gt;
+                                                            </li>
+                                                            <li>
+                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               &lt;a href="url" target="_blank"&gt;
+                                                            </li>
+                                                            <li>
+                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               &lt;a href="url" target="new"&gt;
+                                                            </li>
+                                                            <li>
+                                                               <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                               None of the above
+                                                            </li>
+                                                         </ul>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </td>
+                                    <td class="col-md-10 col-sm-12 col-xs-12">
+                                       <div class="statement">
+                                          <div class="row">
+                                             <div class="single-line-ellipsis">
+                                                <span class="no-underline">What is PEAR in PHP?</span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="description text-muted">
+                                          <div class="row">
+                                             <div class="col-md-6 col-sm-12 col-xs-12">
+                                                <div class="row">
+                                                   <div class="col-xs-6">
+                                                      <span class="text-muted">Level</span>
+                                                      <span class="conjunction"> : </span>Medium
+                                                   </div>
+                                                   <div class="col-xs-6 no-padding-left">
+                                                      <span class="text-muted">Tag</span>
+                                                      <span class="conjunction"> : </span>PHP
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </td>
+                                    <td>
+                                       <input type="text" value="10" class="form-control allow_number" disabled>
+                                    </td>
+                                    <td>
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                               </tbody>
@@ -3174,18 +3602,19 @@
                            <table class="table s_table">
                               <thead>
                                  <tr>
-                                    <th><input type="checkbox"></th>
+                                    <th><input type="checkbox" class="codeQuesCheck_private_code_question_mcq"></th>
                                     <th></th>
                                     <th style="text-align: left;"><b>Statement</b></th>
                                     <th>Positive Marks</th>
+                                    <th>Negative Marks</th>
                                  </tr>
                               </thead>
                               <tbody>
                                  <tr>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" class="private_code_question_mcq" value="9"></td>
                                     <td>
-                                       <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_14"></i>
-                                       <div class="panel panel-default s_tooltip s_tooltip_large panel-collapse collapse" id="collapse_14">
+                                       <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_4"></i>
+                                       <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_4">
                                           <div class="panel-heading">Question Statement</div>
                                           <div class="panel-body">
                                              <div class="clearfix">
@@ -3198,22 +3627,18 @@
                                                       <ul class="ng-scope">
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
                                                             &lt;a href="url" new&gt;
                                                          </li>
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
                                                             &lt;a href="url" target="_blank"&gt;
                                                          </li>
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
                                                             &lt;a href="url" target="new"&gt;
                                                          </li>
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
                                                             None of the above
                                                          </li>
                                                       </ul>
@@ -3227,7 +3652,7 @@
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -3249,14 +3674,17 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="number" value="10" class="form-control">
+                                       <input type="text"  value="10" class="form-control allow_number" disabled>
+                                    </td>
+                                    <td>
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                                  <tr>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" class="private_code_question_mcq" value="256"></td>
                                     <td>
-                                       <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_15"></i>
-                                       <div class="panel panel-default s_tooltip s_tooltip_large panel-collapse collapse" id="collapse_15">
+                                       <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_5"></i>
+                                       <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_5">
                                           <div class="panel-heading">Question Statement</div>
                                           <div class="panel-body">
                                              <div class="clearfix">
@@ -3269,22 +3697,18 @@
                                                       <ul class="ng-scope">
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
                                                             &lt;a href="url" new&gt;
                                                          </li>
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
                                                             &lt;a href="url" target="_blank"&gt;
                                                          </li>
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
                                                             &lt;a href="url" target="new"&gt;
                                                          </li>
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
                                                             None of the above
                                                          </li>
                                                       </ul>
@@ -3298,7 +3722,7 @@
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -3320,14 +3744,17 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="number" value="10" class="form-control">
+                                       <input type="text" value="10" class="form-control allow_number" disabled>
+                                    </td>
+                                    <td>
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                                  <tr>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" class="private_code_question_mcq" value="23"></td>
                                     <td>
-                                       <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_16"></i>
-                                       <div class="panel panel-default s_tooltip s_tooltip_large panel-collapse collapse" id="collapse_16">
+                                       <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_6"></i>
+                                       <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_6">
                                           <div class="panel-heading">Question Statement</div>
                                           <div class="panel-body">
                                              <div class="clearfix">
@@ -3337,25 +3764,24 @@
                                                    </div>
                                                    <div class="col-xs-12">
                                                       <h5>Choices</h5>
-                                                      <ul class="ng-scope">
+                                                      <ul >
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
                                                             &lt;a href="url" new&gt;
                                                          </li>
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
+
                                                             &lt;a href="url" target="_blank"&gt;
                                                          </li>
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
+
                                                             &lt;a href="url" target="new"&gt;
                                                          </li>
                                                          <li>
                                                             <i class="fa fa-square-o" aria-hidden="true"></i>
-                                                            &nbsp;&nbsp;
+
                                                             None of the above
                                                          </li>
                                                       </ul>
@@ -3369,7 +3795,7 @@
                                        <div class="statement">
                                           <div class="row">
                                              <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
+                                                <span class="no-underline">What is PEAR in PHP?</span>
                                              </div>
                                           </div>
                                        </div>
@@ -3391,7 +3817,10 @@
                                        </div>
                                     </td>
                                     <td>
-                                       <input type="number" value="10" class="form-control">
+                                       <input type="text" value="10" class="form-control allow_number" disabled>
+                                    </td>
+                                    <td>
+                                       <input type="text" class="form-control allow_number" disabled>
                                     </td>
                                  </tr>
                               </tbody>
@@ -3700,7 +4129,7 @@
        <div class="modal-body s_modal_form_body">
           <div class="row">
             <div class="col-md-12">
-              <strong>Question Statement (<a onclick="submission_collapse_modal()" >Collapse</a>)</strong>
+              <strong>Question Statement (<span class="collapse_pointer" onclick="submission_collapse_modal()" >Collapse</span>)</strong>
               <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
@@ -3977,7 +4406,7 @@
        <div class="modal-body s_modal_form_body">
           <div class="row">
             <div class="col-md-12">
-              <strong>Question Statement (<a onclick="submission_fill_collapse_modal()" >Collapse</a>)</strong>
+              <strong>Question Statement (<span class="collapse_pointer" onclick="submission_fill_collapse_modal()" >Collapse</span>)</strong>
               <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
@@ -4005,148 +4434,337 @@
 <div class="modal fade" id="section-submission-fill-blanks-choice-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
+
       <div class="modal-content">
-         <div class="modal-header s_modal_form_header">
-            <div class="pull-right">
-               <span>Select the question(s) and enter marks  </span>
-               <button type="button" class="btn s_save_button s_font" data-dismiss="modal"><i class="fa fa-list"></i> Add Selected Questions</button>
-               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Clear selection</button>
-               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
-            </div>
-            <h3 class="modal-title s_font">Submission Questions Library <span>(section- 22318047)</span></h3>
-         </div>
-         <div class="modal-body s_modal_form_body">
-            <div class="row">
-               <div class="col-md-3 col-sm-12 col-xs-12">
-                  <div class="panel panel-default">
-                     <div class="panel-heading"><i class="fa fa-filter"></i> Filters</div>
-                     <div class="panel-body">
-                        <form action="">
-                           <div class="form-group form-group-sm">
-                              <label class="control-label"><strong>Tags</strong></label>
-                              <div class="">
-                                 <select id="tag_multi_choose_sub" multiple="multiple">
-                                    <option value="1">Aptitude</option>
-                                    <option value="2">Basic Algebra</option>
-                                    <option value="3">HTML and CSS</option>
-                                    <option value="4">JAVA</option>
-                                    <option value="5">C#</option>
-                                 </select>
-                              </div>
-                           </div>
-                           <label class="checkbox-inline">
-                           <input type="checkbox"> Easy
-                           </label>
-                           <label class="checkbox-inline">
-                           <input type="checkbox"> Medium
-                           </label>
-                           <label class="checkbox-inline">
-                           <input type="checkbox"> Hard
-                           </label>
-                           <br>
-                           <label class="checkbox">
-                           <input type="checkbox"> All
-                           </label>
-                           <div class="form-group form-group-sm">
-                              <label class="control-label"><strong>Question Id</strong></label>
-                              <div class="">
-                                 <input type="text" class="form-control" name="" value="" placeholder="Enter question id">
-                              </div>
-                           </div>
-                           <div class="form-group form-group-sm">
-                              <label class="control-label"><strong>Question Statement</strong></label>
-                              <div class="">
-                                 <input type="text" class="form-control" name="" value="" placeholder="Enter question statement">
-                              </div>
-                           </div>
-                           <button class="btn btn-sm btn-success">Apply</button>
-                           <button class="btn btn-sm btn-default">Reset</button>
-                        </form>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-9 col-sm-12 col-xs-12">
-                  <ul class="nav nav-tabs">
-                     <li class="active"><a>Public Question (10)</a></li>
-                     <li class="pull-right"></li>
-                  </ul>
-                  <div class="tab-content">
-                     <div class="tab-pane fade in active">
-                        <div class="no-more-tables">
-                           <table class="table s_table">
-                              <thead>
-                                 <tr>
-                                    <th><input type="checkbox"></th>
-                                    <th></th>
-                                    <th style="text-align: left;"><b>Statement</b></th>
-                                    <th>Positive Marks</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>
-                                       <div class="statement">
-                                          <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_21"></i>
-                                          <div class="panel panel-default s_tooltip s_tooltip_large panel-collapse collapse" id="collapse_21">
-                                             <div class="panel-heading">Question Statement</div>
-                                             <div class="panel-body">
-                                                <div class="clearfix">
-                                                   <div class="row">
-                                                      <div class="col-xs-12">
-                                                         <small>How can you open a link in a new tab/browser window?</small>
-                                                      </div>
-                                                      <div class="col-xs-12">
-                                                         <h5>Choices</h5>
-                                                         <p class="s_modal_body_heading"> The first line of the input consists of 4 space separated integers - N (denoting the number of players), M (denoting the number of passes), and X and Y, denoting ThunderCracker's and MunKee's numbers respectively.
-                                                            The next line contains M space separated integers, denoting array A, the power with which passes can be made in the i'th pass (1<=i<=M).
-                                                         </p>
-                                                         </ul>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="col-md-10 col-sm-12 col-xs-12">
-                                       <div class="statement">
-                                          <div class="row">
-                                             <div class="single-line-ellipsis">
-                                                <a href="" class="no-underline">What is PEAR in PHP?</a>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="description text-muted">
-                                          <div class="row">
-                                             <div class="col-md-6 col-sm-12 col-xs-12">
-                                                <div class="row">
-                                                   <div class="col-xs-6">
-                                                      <span class="text-muted">Level</span>
-                                                      <span class="conjunction"> : </span>Medium
-                                                   </div>
-                                                   <div class="col-xs-6 no-padding-left">
-                                                      <span class="text-muted">Tag</span>
-                                                      <span class="conjunction"> : </span>PHP
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td>
-                                       <input type="number" value="10" class="form-control" disabled>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+        <div class="modal-header s_modal_form_header">
+           <div class="pull-right">
+             <form class="pull-left">
+               <span id="add_submission_question_code_span">Select the question(s) and enter marks</span>
+               <input type="hidden" name="public_mcq_id" id="private_submission_question_mcq_id" style="color: black;">
+               <button type="submit" class="btn s_save_button s_font hidden" id="add_submission_question_code_button" data-dismiss="modal"><i class="fa fa-list"></i> Add Selected Questions</button>
+             </form>
+             <button type="button" class="btn btn-default s_font" data-dismiss="modal">Clear selection</button>
+             <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+           </div>
+           <h3 class="modal-title s_font">MCQ Library <span>(section- 22318047)</span></h3>
+        </div>
+        <div class="modal-body s_modal_form_body">
+           <div class="row">
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                 <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-filter"></i> Filters</div>
+                    <div class="panel-body">
+                       <form action="">
+                          <div class="form-group form-group-sm">
+                             <label class="control-label"><strong>Tags</strong></label>
+                             <div class="">
+                                <select id="tag_multi_choose_sub" multiple="multiple">
+                                   <option value="1">Aptitude</option>
+                                   <option value="2">Basic Algebra</option>
+                                   <option value="3">HTML and CSS</option>
+                                   <option value="4">JAVA</option>
+                                   <option value="5">C#</option>
+                                </select>
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="control-label">Level</label>
+                            <div class="row">
+                               <div class="col-md-6">
+                                  <div class="checkbox no-margin">
+                                     <label>
+                                     <input type="checkbox" class="level_easy" checked>Easy
+                                     </label>
+                                  </div>
+                               </div>
+                               <div class="col-md-6">
+                                  <div class="checkbox no-margin">
+                                     <label>
+                                     <input type="checkbox" class="level_medium">Medium
+                                     </label>
+                                  </div>
+                               </div>
+                               <div class="col-md-6">
+                                  <div class="checkbox no-margin">
+                                     <label>
+                                     <input type="checkbox" class="level_hard">Hard
+                                     </label>
+                                  </div>
+                               </div>
+                               <div class="col-md-6">
+                                  <div class="checkbox no-margin">
+                                     <label>
+                                     <input type="checkbox" class="level_all">All
+                                     </label>
+                                  </div>
+                               </div>
+                            </div>
+                          </div>
+
+                          <div class="moreSettings_button_submission" onclick="moreSettings_submission()" style="margin-bottom:5px;">
+                            More
+                          </div>
+                          <div class="moreSettings_submission hidden">
+
+                            <div class="form-group form-group-sm">
+                               <label class="control-label"><strong>Question Id</strong></label>
+                               <div class="">
+                                  <input type="text" class="form-control" name="" value="" placeholder="Enter question id">
+                               </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                               <label class="control-label"><strong>Question Statement</strong></label>
+                               <div class="">
+                                  <input type="text" class="form-control" name="" value="" required="" placeholder="Enter question statement">
+                               </div>
+                            </div>
+
+                          </div>
+
+                          <button class="btn btn-sm btn-success">Apply</button>
+                          <button class="btn btn-sm btn-default">Reset</button>
+                       </form>
+                    </div>
+                 </div>
+              </div>
+              <div class="col-md-9 col-sm-12 col-xs-12">
+                 <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="pill" href="#submission-debug-private-question">Private Question (10)</a></li>
+                    <li class="pull-right"></li>
+                 </ul>
+                 <div class="tab-content">
+                    <div id="submission-debug-private-question" class="tab-pane fade in active">
+                       <div class="no-more-tables">
+                          <table class="table s_table">
+                             <thead>
+                                <tr>
+                                   <th><input type="checkbox" class="codeQuesCheck_private_submission_question_mcq"></th>
+                                   <th></th>
+                                   <th style="text-align: left;"><b>Statement</b></th>
+                                   <th>Positive Marks</th>
+                                </tr>
+                             </thead>
+                             <tbody>
+                                <tr>
+                                   <td><input type="checkbox" class="private_submission_question_mcq" value="1"></td>
+                                   <td>
+                                      <div class="statement">
+                                         <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_1"></i>
+                                         <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_1">
+                                            <div class="panel-heading">Question Statement</div>
+                                            <div class="panel-body">
+                                               <div class="clearfix">
+                                                  <div class="row s_small">
+                                                     <div class="col-xs-12">
+                                                        <small>How can you open a link in a new tab/browser window?</small>
+                                                     </div>
+                                                     <div class="col-xs-12">
+                                                        <h5>Choices</h5>
+                                                        <ul class="ng-scope">
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              &nbsp;&nbsp;
+                                                              &lt;a href="url" new&gt;
+                                                           </li>
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              &nbsp;&nbsp;
+                                                              &lt;a href="url" target="_blank"&gt;
+                                                           </li>
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              &nbsp;&nbsp;
+                                                              &lt;a href="url" target="new"&gt;
+                                                           </li>
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              &nbsp;&nbsp;
+                                                              None of the above
+                                                           </li>
+                                                        </ul>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </td>
+                                   <td class="col-md-8 col-sm-12 col-xs-12">
+                                      <div class="statement">
+                                         <div class="row">
+                                            <div class="single-line-ellipsis">
+                                               <span class="no-underline">What is PEAR in PHP?</span>
+                                            </div>
+                                         </div>
+                                      </div>
+                                      <div class="description text-muted">
+                                         <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                               <div class="row">
+                                                  <div class="col-xs-6">
+                                                     <span class="text-muted">Level</span>
+                                                     <span class="conjunction"> : </span>Medium
+                                                  </div>
+                                                  <div class="col-xs-6 no-padding-left">
+                                                     <span class="text-muted">Tag</span>
+                                                     <span class="conjunction"> : </span>PHP
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </td>
+                                   <td>
+                                      <input type="text" value="10" class="form-control allow_number" disabled>
+                                   </td>
+                                </tr>
+                                <tr>
+                                   <td><input type="checkbox" class="private_submission_question_mcq" value="2"></td>
+                                   <td>
+                                      <div class="statement">
+                                         <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_2"></i>
+                                         <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_2">
+                                            <div class="panel-heading">Question Statement</div>
+                                            <div class="panel-body">
+                                               <div class="clearfix">
+                                                  <div class="row s_small">
+                                                     <div class="col-xs-12">
+                                                        <small>How can you open a link in a new tab/browser window?</small>
+                                                     </div>
+                                                     <div class="col-xs-12">
+                                                        <h5>Choices</h5>
+                                                        <ul class="ng-scope">
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              &lt;a href="url" new&gt;
+                                                           </li>
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              &lt;a href="url" target="_blank"&gt;
+                                                           </li>
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              &lt;a href="url" target="new"&gt;
+                                                           </li>
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              None of the above
+                                                           </li>
+                                                        </ul>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </td>
+                                   <td class="col-md-10 col-sm-12 col-xs-12">
+                                      <div class="statement">
+                                         <div class="row">
+                                            <div class="single-line-ellipsis">
+                                               <span class="no-underline">What is PEAR in PHP?</span>
+                                            </div>
+                                         </div>
+                                      </div>
+                                      <div class="description text-muted">
+                                         <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                               <div class="row">
+                                                  <div class="col-xs-6">
+                                                     <span class="text-muted">Level</span>
+                                                     <span class="conjunction"> : </span>Medium
+                                                  </div>
+                                                  <div class="col-xs-6 no-padding-left">
+                                                     <span class="text-muted">Tag</span>
+                                                     <span class="conjunction"> : </span>PHP
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </td>
+                                   <td>
+                                      <input type="text" value="10" class="form-control allow_number" disabled>
+                                   </td>
+                                </tr>
+                                <tr>
+                                   <td><input type="checkbox" class="private_submission_question_mcq" value="3"></td>
+                                   <td>
+                                      <div class="statement">
+                                         <i class="fa fa-eye" class="s_tooltip_modal" data-toggle="collapse" data-parent="#accordion" href="#collapse_3"></i>
+                                         <div class="panel panel-default s_tooltip panel-collapse collapse" id="collapse_3">
+                                            <div class="panel-heading">Question Statement</div>
+                                            <div class="panel-body">
+                                               <div class="clearfix">
+                                                  <div class="row s_small">
+                                                     <div class="col-xs-12">
+                                                        <small>How can you open a link in a new tab/browser window?</small>
+                                                     </div>
+                                                     <div class="col-xs-12">
+                                                        <h5>Choices</h5>
+                                                        <ul class="ng-scope">
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              &lt;a href="url" new&gt;
+                                                           </li>
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              &lt;a href="url" target="_blank"&gt;
+                                                           </li>
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              &lt;a href="url" target="new"&gt;
+                                                           </li>
+                                                           <li>
+                                                              <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                              None of the above
+                                                           </li>
+                                                        </ul>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </td>
+                                   <td class="col-md-10 col-sm-12 col-xs-12">
+                                      <div class="statement">
+                                         <div class="row">
+                                            <div class="single-line-ellipsis">
+                                               <span class="no-underline">What is PEAR in PHP?</span>
+                                            </div>
+                                         </div>
+                                      </div>
+                                      <div class="description text-muted">
+                                         <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                               <div class="row">
+                                                  <div class="col-xs-6">
+                                                     <span class="text-muted">Level</span>
+                                                     <span class="conjunction"> : </span>Medium
+                                                  </div>
+                                                  <div class="col-xs-6 no-padding-left">
+                                                     <span class="text-muted">Tag</span>
+                                                     <span class="conjunction"> : </span>PHP
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </td>
+                                   <td>
+                                      <input type="text" value="10" class="form-control allow_number" disabled>
+                                   </td>
+                                </tr>
+                             </tbody>
+                          </table>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
    </div>
 </div>
 <!-- add-public-page-Modal -->
@@ -4601,7 +5219,7 @@
        <div class="modal-body s_modal_form_body">
           <div class="row">
             <div class="col-md-12">
-              <strong>Question Statement (<a onclick="collapse_modal()" >Collapse</a>)</strong>
+              <strong>Question Statement (<span class="collapse_pointer" onclick="collapse_modal()" >Collapse</span>)</strong>
               <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>

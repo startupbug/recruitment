@@ -26,7 +26,7 @@ Route::post('/register', 'AuthenticationController@register_post')->name('regist
 
 
 /*Admin Routes Started*/
-Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {	
+Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {
 
 	Route::get('/', 'Admin\AdminController@index')->name('admin_index');
 	Route::get('admin_logout', 'Admin\AdminController@admin_logout')->name('admin_logout');
@@ -109,7 +109,9 @@ Route::post('/add_section', 'Recruiter\TemplatesController@add_section')->name('
 Route::get('/delete_section/{id}', 'Recruiter\TemplatesController@delete_section')->name('delete_section');
 Route::get('/move_up/{id}', 'Recruiter\TemplatesController@move_up')->name('move_up');
 Route::get('/move_down/{id}', 'Recruiter\TemplatesController@move_down')->name('move_down');
+Route::get('/delete_user_setting_question/{id}', 'Recruiter\TemplatesController@delete_user_setting_question')->name('delete_user_setting_question');
 //Recruiter Test Template Routes Ended
+Route::post('/new_user_question_create', 'Recruiter\TemplatesController@new_user_question_create')->name('new_user_question_create');
 
 //Recruiter Questions Routes Started
 Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
@@ -155,7 +157,7 @@ Route::post('/delete_host', 'Recruiter\HostController@host_test_del')->name('hos
 //Terminate host //host_terminate
 Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name('host_terminate');
 
-//Public preview of host 
+//Public preview of host
 Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
 
 //Library controller
