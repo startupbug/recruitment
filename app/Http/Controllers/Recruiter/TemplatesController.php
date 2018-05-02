@@ -200,15 +200,19 @@ class TemplatesController extends Controller
 			 		$args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
 			 }
 
-			 // return $args['template_question_setting'];
 
-			   return view('recruiter_dashboard.edit_template')->with($args);
+
+        return view('recruiter_dashboard.edit_template')->with($args);
+
     }
 	// Editing Test Template
 
     //Deleting Test Template
+
     public function delete_test_template($id){
+
         $delete = Test_template::find($id);
+
         $delete->delete();
         $this->set_session('Test Template Is Deleted', true);
         return redirect()->back();

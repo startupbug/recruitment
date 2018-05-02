@@ -214,7 +214,9 @@
                                                 <div class="row">
                                                    <!-- pass question id in modal -->
                                                    <div class="single-line-ellipsis">
-                                                      <a href="#" onclick="modal_data({{$q->id}})" data-toggle="modal" data-target="#question_modal" class="no-underline">{{$q->question_statement}}</a>
+                                                      <a href="#" onclick="modal_data({{$q->id}}, 'modal_pencil')" data-toggle="modal" data-target="#question_modal" class="no-underline">
+                                                         {!!$q->question_statement!!}
+                                                      </a>
                                                    </div>
                                                 </div>
                                              </div>
@@ -288,7 +290,7 @@
                                                 <div class="statement">
                                                    <div class="row">
                                                       <div class="single-line-ellipsis">
-                                                          <a href="#" data-id="{{$q->id}}" data-url="{{route('coding_question_modal_partial_data')}}" data-toggle="modal" data-target="#coding_modal" class="no-underline coding_question_id" >{{$q->question_statement}}</a>
+                                                          <a href="#" onclick="modal_data({{$q->id}}, 'modal_coding')" data-id="{{$q->id}}" data-url="{{route('coding_question_modal_partial_data')}}" data-toggle="modal" data-target="#coding_modal" class="no-underline coding_question_id" > {!!$q->question_statement!!}</a>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -380,7 +382,7 @@
                                           <div class="statement">
                                              <div class="row">
                                                 <div class="single-line-ellipsis">
-                                                   <a href="" data-id="{{$q->id}}" data-url="{{route('submission_question_modal_partial_data')}}" data-toggle="modal" data-target="#submission_modal" class="no-underline submission_question_id">{{$q->question_statement}}</a>
+                                                   <a href="" onclick="modal_data({{$q->id}}, 'submission_modal1')" data-id="{{$q->id}}" data-url="{{route('submission_question_modal_partial_data')}}" data-toggle="modal" data-target="#submission_modal" class="no-underline submission_question_id"> {!!$q->question_statement!!}</a>
                                                 </div>
                                              </div>
                                           </div>
@@ -5370,7 +5372,7 @@
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
                   <a target="_blank" href="{{route('library_public_questions')}}?modal=submission_modal1"
-                                 class="btn-sm btn-link code_ajax_route" data-toggle="tooltip" data-placement="top" title="Edit Question">
+                                 class="btn-sm btn-link submission_ajax_route" data-toggle="tooltip" data-placement="top" title="Edit Question">
 
                                  <input type="hidden" name="question_id" id="submissions_question_id" value="">
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
@@ -5496,6 +5498,9 @@
    </div>
 </div>
 
+
+<!-- coding modal start -->
+
 <div class="modal fade" id="coding_modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
@@ -5581,6 +5586,7 @@
 
 </div>
 
+<!-- coding modal end -->
 
 
 

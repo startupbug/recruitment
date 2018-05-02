@@ -30,17 +30,21 @@
 								    <div class="form-group col-md-3">
 	 										<select class="form-control radius-0" name="level">
 	 											<option value="">All Levels</option>
+	 											@if(isset($levels))
 	 											@foreach($levels as $level)
 	 											<option value="{{$level->id}}">{{$level->level_name}}</option>
 	 											@endforeach
+	 											@endif
 	 										</select>
 								    </div>
 										<div class="form-group col-md-3">
 	 										<select class="form-control radius-0" name="tag">
 	 										    <option value="">All Tag</option>
+	 										    @if(isset($tags))
 	 											@foreach($tags as $tag)
 	 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
 	 											@endforeach
+	 											@endif
 	 										</select>
 								    </div>
 									<div class="button_apply" >
@@ -125,17 +129,21 @@
 									<div class="form-group col-md-3">
  										<select class="form-control radius-0" name="123">
  											<option value="">All Levels</option>
+ 											@if(isset($levels))
  											@foreach($levels as $level)
  											<option value="{{$level->id}}">{{$level->level_name}}</option>
  											@endforeach
+ 											@endif
  										</select>
 									</div>
 									<div class="form-group col-md-3">
  										<select class="form-control radius-0" name="">
  										    <option value="">All Tag</option>
+ 										    @if(isset($tags))
  											@foreach($tags as $tag)
  											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
  											@endforeach
+ 											@endif
  										</select>
 									</div>
 									<div class="button_apply" >
@@ -229,17 +237,21 @@
 								    <div class="form-group col-md-3">
 	 										<select class="form-control radius-0" name="level">
 	 											<option value="">All Levels</option>
+	 											@if(isset($levels))
 	 											@foreach($levels as $level)
 	 											<option value="{{$level->id}}">{{$level->level_name}}</option>
 	 											@endforeach
+	 											@endif
 	 										</select>
 								    </div>
 										<div class="form-group col-md-3">
 	 										<select class="form-control radius-0" name="tag">
 	 										    <option value="">All Tag</option>
+	 										    @if(isset($tags))
 	 											@foreach($tags as $tag)
 	 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
 	 											@endforeach
+	 											@endif
 	 										</select>
 								    </div>
 									<div class="button_apply" >
@@ -250,30 +262,6 @@
 										<a data-toggle="modal" data-target="#mcqs-filter-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter</a>
 									</div>
 							    </form>
-
- 								<!-- <form>
- 							    <div class="form-group col-md-3">
- 										<select class="form-control radius-0" name="123">
- 											<option value="">All Levels</option>
- 											@foreach($levels as $level)
- 											<option value="{{$level->id}}">{{$level->level_name}}</option>
- 											@endforeach
- 										</select>
- 							    </div>
- 									<div class="form-group col-md-3">
- 										<select class="form-control radius-0" name="">
- 											@foreach($tags as $tag)
- 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
- 											@endforeach
- 										</select>
- 							    </div>
- 									<div class="button_apply" >
- 										<button type="button" class="btn">Apply</button>
-										<a data-toggle="modal" data-target="#mcqs-filter-Modal">Advanced Filter</a>
-
- 									</div>
- 							  </form> -->
-
 
  							</div>
  							<div class="no-more-tables">
@@ -365,17 +353,21 @@
 								    <div class="form-group col-md-3">
 	 										<select class="form-control radius-0" name="level">
 	 											<option value="">All Levels</option>
+	 											@if(isset($levels))
 	 											@foreach($levels as $level)
 	 											<option value="{{$level->id}}">{{$level->level_name}}</option>
 	 											@endforeach
+	 											@endif
 	 										</select>
 								    </div>
 										<div class="form-group col-md-3">
 	 										<select class="form-control radius-0" name="tag">
 	 										    <option value="">All Tag</option>
+	 										    @if(isset($tags))
 	 											@foreach($tags as $tag)
 	 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
 	 											@endforeach
+	 											@endif
 	 										</select>
 								    </div>
 									<div class="button_apply" >
@@ -471,18 +463,23 @@
 								<form id="libFilterMCQ" action="{{route('libFilter')}}" method="post">
 								    <div class="form-group col-md-3">
 	 										<select class="form-control radius-0" name="level">
+
 	 											<option value="">All Levels</option>
+	 											@if(isset($levels))
 	 											@foreach($levels as $level)
 	 											<option value="{{$level->id}}">{{$level->level_name}}</option>
 	 											@endforeach
+	 											@endif
 	 										</select>
 								    </div>
 										<div class="form-group col-md-3">
 	 										<select class="form-control radius-0" name="tag">
 	 										    <option value="">All Tag</option>
+	 										    @if(isset($tagss))
 	 											@foreach($tags as $tag)
 	 											<option value="{{$tag->id}}">{{$tag->tag_name}}</option>
 	 											@endforeach
+	 											@endif
 	 										</select>
 								    </div>
 									<div class="button_apply" >
@@ -1265,18 +1262,18 @@
                                     </strong>
                                 </div>
                                 <div>
-                                  <label class="container_radio border_radio_left">STAGE
-                                  <input type="radio" name="`" value="1" disabled>
-                                  <span class="checkmark"></span>
-                                  </label>
-                                  <label class="container_radio">READY
-                                  <input type="radio" checked="checked" name="question_state_id" value="2">
-                                  <span class="checkmark"></span>
-                                  </label>
-                                  <label class="container_radio border_radio_right">ABANDONED
-                                  <input type="radio" name="question_state_id" value="3" disabled>
-                                  <span class="checkmark"></span>
-                                  </label>
+                                   <label class="container_radio border_radio_left">STAGE
+		                           <input type="radio" @if(isset($coding_data))@if($coding_data->question_state_id == 1)  checked="checked" value="1" @endif @endif name="question_state_id" >
+		                           <span class="checkmark"></span>
+		                           </label>
+		                           <label class="container_radio">READY
+		                           <input type="radio" name="question_state_id" @if(isset($coding_data))@if($coding_data->question_state_id == 2)  checked="checked" value="2" @endif @endif >
+		                           <span class="checkmark"></span>
+		                           </label>
+		                           <label class="container_radio border_radio_right">ABANDONED
+		                           <input type="radio" name="question_state_id" @if(isset($coding_data))@if($coding_data->question_state_id == 3)  checked="checked" value="3" @endif  @endif >
+		                           <span class="checkmark"></span>
+		                           </label>
                                 </div>
                                 <hr>
                                 <div class="row">
@@ -1719,4 +1716,8 @@
         </div>
     </div>
 </div> 
+
+
+
+
 @endsection

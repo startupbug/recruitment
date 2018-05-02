@@ -270,7 +270,6 @@ class QuestionsController extends Controller
 	}
 	public function delete_all_mcqs_questions(Request $request){
 		$myArray = explode(',',$request->section_mc_id[0]);
-		dd($myArray);	
 		if (isset($myArray)) {			
 			foreach($myArray as $value) {				
 				$delete = Question::find($value);
@@ -285,7 +284,6 @@ class QuestionsController extends Controller
 	}
 	public function delete_all_coding_questions(Request $request){
 		$myArray = explode(',',$request->section_c_id[0]);
-		dd($myArray);	
 		if (isset($myArray)) {			
 			foreach($myArray as $value) {				
 				$delete = Question::find($value);
@@ -300,7 +298,6 @@ class QuestionsController extends Controller
 	}
 	public function delete_all_submission_questions(Request $request){
 		$myArray = explode(',',$request->section_s_id[0]);
-		dd($myArray);	
 		if (isset($myArray)) {			
 			foreach($myArray as $value) {				
 				$delete = Question::find($value);
@@ -315,31 +312,22 @@ class QuestionsController extends Controller
 	}
 
 	public function update_questions_modal(Request $request, $id)
-    {
-    	// $id = 0;
-    	
+    {    	
         $update_question =  Question::find($id);
-        // dd($update_question);
         $update_question->question_state_id = $request->get('question_state_id');
         $update_question->question_level_id = $request->get('question_level');
         $update_question->question_statement = $request->get('question_statement');
         $update_question->save();
-
-
         $update_details = DB::table('question_details')
             ->where('question_id',$id)
             ->update([
                 'marks' => $request->get('marks'),
                 'tag_id' => $request->get('tag_name'),
                 'provider' => $request->get('provider'),
-                'author' => $request->get('author')
- 
+                'author' => $request->get('author') 
         ]);
-      
-
         $get_choice_id = DB::table('mulitple_choices')->where('question_id','=',$id)->get(['id']);
         $request_choice =$request->input('choice');
-        
         foreach ($get_choice_id as $key => $value)
         {   
         	$abc = Mulitple_choice::updateOrCreate(
@@ -350,8 +338,6 @@ class QuestionsController extends Controller
         	//usnset is use to unset values that are not in key
         	//this unset function is taking that values that are not in db and then inserting them    
         }
-        // now what i have to do is unset value that are not in request but are in db
-
         foreach ($request_choice as $key => $value) {
         	$insert = new Mulitple_choice;
         	$insert->question_id = $id;
@@ -359,23 +345,15 @@ class QuestionsController extends Controller
         	$insert->partial_marks = $request->input('partial_marks')[$key];
         	$insert->save();
         }
-
-
-
-
         $abc = Question_solution::updateOrCreate(
         		['question_id' => $id], 
         		['text' => $request->solutiontext, 'code'=> $request->solutioncode, 'url'=>$request->solutionurl]
         	);
-    	
-    	
         return redirect()->back(); 
     }
 
     public function delete_choice($id)
     {
-    	
-
     	// $delete_choice = Mulitple_choice::where('id','=',$id)->get();
     	// return $delete_choice;
 			
