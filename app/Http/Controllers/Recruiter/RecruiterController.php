@@ -64,8 +64,11 @@ class RecruiterController extends Controller
         return view('recruiter_dashboard.invited_candidates');
     }
 
-    public function library_public_questions($id=NULL)
+    public function library_public_questions(Request $request, $id=NULL)
     {
+        // return $request->input('modal');
+      if($request->input('modal') == "modal_pencil")
+      {
         $args['get_data'] = Question::join('question_details','questions.id','=','question_details.question_id')
         ->join('question_states','questions.question_state_id','=','question_states.id')
         ->select('questions.id as  question_id','questions.section_id','questions.question_state_id','questions.question_type_id','questions.question_level_id','questions.question_statement','question_details.tag_id','question_details.media','question_details.test_case_file','question_details.test_case_verify','question_details.weightage_status','question_details.coding_program_title','question_details.marks','question_details.negative_marks','question_details.provider','question_details.author','question_states.state_name')
@@ -78,7 +81,21 @@ class RecruiterController extends Controller
 
         $args['levels'] = Question_level::all();
 
-        $args['tags'] = Question_tag::all();        
+        $args['tags'] = Question_tag::all();
+      }
+
+      if($request->input('modal') == "modal_coding")
+      {
+
+        $args['coding_data'] = Question::join('question_details','questions.id','=','question_details.question_id')
+        ->join('question_states','questions.question_state_id','=','question_states.id')
+        ->select('questions.id as  question_id','questions.section_id','questions.question_state_id','questions.question_type_id','questions.question_level_id','questions.question_statement','question_details.tag_id','question_details.media','question_details.test_case_file','question_details.test_case_verify','question_details.weightage_status','question_details.coding_program_title','question_details.marks','question_details.negative_marks','question_details.provider','question_details.author','question_states.state_name')
+        ->where('question_id','=',$id)
+        ->first();
+        
+      }
+
+                
 
         
         return view('recruiter_dashboard.library_public_questions')->with($args);
