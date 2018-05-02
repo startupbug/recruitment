@@ -395,7 +395,7 @@
             <div class="modal-body s_modal_form_body modal_top modal_duplicate">
                 <form action="{{route('create_duplicate_template_post')}}" id="create_duplicate_template_post" method="POST">
                     {{csrf_field()}}
-                    <input type="text" id="duplication_of_template_ki_id" value="" name="previous_template_id">
+                    <input type="hidden" id="duplication_of_template_ki_id" value="" name="previous_template_id">
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group title">

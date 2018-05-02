@@ -214,7 +214,9 @@
                                                 <div class="row">
                                                    <!-- pass question id in modal -->
                                                    <div class="single-line-ellipsis">
-                                                      <a href="#" onclick="modal_data({{$q->id}})" data-toggle="modal" data-target="#question_modal" class="no-underline">{{$q->question_statement}}</a>
+                                                      <a href="#" onclick="modal_data({{$q->id}}, 'modal_pencil')" data-toggle="modal" data-target="#question_modal" class="no-underline">
+                                                         {!!$q->question_statement!!}
+                                                      </a>
                                                    </div>
                                                 </div>
                                              </div>
@@ -288,7 +290,7 @@
                                                 <div class="statement">
                                                    <div class="row">
                                                       <div class="single-line-ellipsis">
-                                                          <a href="#" data-id="{{$q->id}}" data-url="{{route('coding_question_modal_partial_data')}}" data-toggle="modal" data-target="#coding_modal" class="no-underline coding_question_id" >{{$q->question_statement}}</a>
+                                                          <a href="#" onclick="modal_data({{$q->id}}, 'modal_coding')" data-id="{{$q->id}}" data-url="{{route('coding_question_modal_partial_data')}}" data-toggle="modal" data-target="#coding_modal" class="no-underline coding_question_id" > {!!$q->question_statement!!}</a>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -380,7 +382,7 @@
                                           <div class="statement">
                                              <div class="row">
                                                 <div class="single-line-ellipsis">
-                                                   <a href="" data-id="{{$q->id}}" data-url="{{route('submission_question_modal_partial_data')}}" data-toggle="modal" data-target="#submission_modal" class="no-underline submission_question_id">{{$q->question_statement}}</a>
+                                                   <a href="" onclick="modal_data({{$q->id}}, 'submission_modal1')" data-id="{{$q->id}}" data-url="{{route('submission_question_modal_partial_data')}}" data-toggle="modal" data-target="#submission_modal" class="no-underline submission_question_id"> {!!$q->question_statement!!}</a>
                                                 </div>
                                              </div>
                                           </div>
@@ -752,26 +754,41 @@
                                    </div>
                                    <hr>
                                    <div class="form-group form-group-sm">
-                                     <div class="row">
-                                       <div class="col-sm-4">
-                                         <div class="dropdown">
-                                           <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" id="newquestion" type="button" data-toggle="dropdown" data-url="{{route('Questionnaire_newquestion')}}" >
-                                             + New Question <span class="caret"></span>
-                                           </button>
-                                           <ul class="dropdown-menu s_drop_down btn-block question_select">
-                                             <li><a href="#"><strong>Write own question</strong></a></li>
+                                     <div class="form-group form-group-sm">
+                                       <div class="row">
+                                         <div class="col-sm-4">
+                                           <div class="dropdown">
+                                             <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" type="button" data-toggle="dropdown" id="newquestion" data-url="{{route('Questionnaire_newquestion')}}">
+                                               + New Question <span class="caret"></span>
+                                             </button>
+                                             <ul class="dropdown-menu s_drop_down btn-block new_question question_select">
+                                               <li><a href="#"  data-id="0" data-question="Write own question"><strong>Write own question</strong></a></li>
 
-                                             <li class="divider"></li>
-                                             <li class="dropdown-header proLiHeader">Professional</li>
+                                               <li class="divider"></li>
+                                               <li class="dropdown-header proLiHeader">Professional</li>
 
-                                             <li class="divider"></li>
-                                             <li class="dropdown-header acaLiHeader">Academics</li>
-                                           </ul>
+                                               <li class="divider"></li>
+                                               <li class="dropdown-header acaLiHeader">Academics</li>
+                                             </ul>
+                                             <!-- 
+                                             <ul class="dropdown-menu s_drop_down btn-block new_question">
+                                               <li><a href="#" data-id="0" data-question="Write own question"><strong>Write own question</strong></a></li>
+                                               <li class="divider"></li>
+                                               <li class="dropdown-header">Professional</li>
+                                               <li><a href="#" data-id="1" data-question="What is your current CTC?">What is your current CTC?</a></li>
+                                               <li><a href="#" data-id="2" data-question="What is your total work experience?">What is your total work experience?</a></li>
+                                               <li class="divider"></li>
+                                               <li class="dropdown-header">Academics</li>
+                                               <li><a href="#" data-id="3" data-question="What is your College name?">What is your College name?</a></li>
+                                               <li><a href="#" data-id="4" data-question="What is your CGPA?">What is your CGPA?</a></li>
+                                             </ul> -->
+                                           </div>
                                          </div>
                                        </div>
                                      </div>
                                      <h5><strong>Questions</strong></h5>
                                      <ul class="unordered-list">
+                                       <li></li>
                                      </ul>
                                    </div>
                                  </div>
@@ -4752,7 +4769,7 @@
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
                   <a target="_blank" href="{{route('library_public_questions')}}?modal=submission_modal1"
-                                 class="btn-sm btn-link code_ajax_route" data-toggle="tooltip" data-placement="top" title="Edit Question">
+                                 class="btn-sm btn-link submission_ajax_route" data-toggle="tooltip" data-placement="top" title="Edit Question">
 
                                  <input type="hidden" name="question_id" id="submissions_question_id" value="">
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
@@ -4878,6 +4895,9 @@
    </div>
 </div>
 
+
+<!-- coding modal start -->
+
 <div class="modal fade" id="coding_modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
@@ -4963,6 +4983,7 @@
 
 </div>
 
+<!-- coding modal end -->
 
 
 

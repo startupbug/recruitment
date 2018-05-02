@@ -185,15 +185,16 @@ class TemplatesController extends Controller
         $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
         $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
         $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
-        $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
-        $args['template_id'] = $id;        
-       // dd($args);
+        $args['edit_test_contact_settings']= Templates_contact_setting::where('test_templates_id',$id)->first();
+        $args['template_id'] = $id;
+       
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 	// Editing Test Template
 
     //Deleting Test Template
     public function delete_test_template($id){              
+        
         $delete = Test_template::find($id);                
         $delete->delete();
         $this->set_session('Test Template Is Deleted', true); 

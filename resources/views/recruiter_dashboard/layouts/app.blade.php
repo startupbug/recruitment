@@ -2524,7 +2524,20 @@
 
 <script type="text/javascript">
 
-function modal_data(id){ 
+function modal_data(id, tpye){ 
+    switch(tpye) {
+        case "modal_pencil":
+            text = ".ajax_route";
+            break;
+        case "modal_coding":
+            text = ".code_ajax_route";
+            break;
+        case "submission_modal":
+            text = ".submission_ajax_route";
+            break;
+        default:
+            text = ".ajax_route";
+    }
 
   $.ajaxSetup({
     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
@@ -2535,14 +2548,13 @@ function modal_data(id){
     data: {'question_id': id},
     'dataType' : 'json',
     success: function (data) { 
-      console.log("123");
       console.log(data.dataz);
       console.log(data.question_data.question_level_id);
       $("#questionmarks").val(data.question_data.marks);         
       $("#negativeMarks").val(data.question_data.negative_marks);         
       $("#question_id_id").val(data.question_data.question_id); 
 
-      $(".ajax_route").attr("href","{{route('library_public_questions')}}/"+data.question_data.question_id+"?modal=modal_pencil"); 
+      $(text).attr("href","{{route('library_public_questions')}}/"+id+"?modal="+tpye); 
 
 
       $("#question_statement_id").text(data.question_data.question_statement);         

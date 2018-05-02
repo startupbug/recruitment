@@ -72,15 +72,10 @@ class RecruiterController extends Controller
         ->where('question_id','=',$id)
         ->first();
         $args['choices'] = DB::table('mulitple_choices')->where('question_id','=',$id)->get();
-        // dd($args['choices']);
         $args['items'] = DB::table('question_tags')->get();
         $args['solution'] = DB::table('question_solutions')->where('question_id','=',$id)->first();
-
         $args['levels'] = Question_level::all();
-
         $args['tags'] = Question_tag::all();        
-
-        
         return view('recruiter_dashboard.library_public_questions')->with($args);
     }
 

@@ -1664,7 +1664,7 @@ $( document ).ready(function() {
       var question = $(this).data('question');
       if(id == "0")
       {
-        $(this).closest('section').find(".unordered-list").append('<li class="questionBorder">'+
+        $(this).closest('section').find(".unordered-list li:eq(0)").append('<li class="questionBorder">'+
           '<form action="#" method="post">'+
             '<div class="row hidden" id="">'+
               '<div class="col-xs-6 title">'+
@@ -2422,21 +2422,30 @@ $( document ).ready(function() {
           $(this).closest('tbody').addClass("temp-"+len);
           var data_message = $(this).closest( "tbody" ).find( "tr td:nth-child(2) input").data('message');
 
-          // $(this).closest('li').find(".knockout_li_multiple_choice ul li .checkbox_"+data_message).remove();
-          // $(this).closest('li').find(".knockout_li_radio_group ul li .radio_group_"+data_message).remove();
-          // $(this).closest('li').find(".knockout_li_drop_down ul li .drop_down_"+data_message).remove();
+          console.log(data_message);
+
+          $(this).closest('li').find(".knockout_li_multiple_choice ul li:last-child ").remove();
+          $(this).closest('li').find(".knockout_li_radio_group ul li:last-child ").remove();
+          $(this).closest('li').find(".knockout_li_drop_down ul li:last-child ").remove();
+
 
           $(this).closest('tr').remove();
           for(var i = 1; i<len; i++){
             $(".temp-"+len).find("tr:nth-child("+i+") td").first().text("Option "+i);
             $(".temp-"+len).find("tr:nth-child("+i+") td:nth-child(2) input").data('message', i);
 
-            console.log($(".temp-"+len).find("tr:nth-child("+i+") td:nth-child(2) input").data('message'));
+            var value = $(".temp-"+len).find("tr:nth-child("+i+") td:nth-child(2) input").val();
+
+
+            $(".temp-"+len).closest('li').find(".knockout_li_multiple_choice ul li .checkbox_"+i).html('<input type="checkbox" name="answer_multiple_choice[]" value="'+value+'"> '+value);
+            $(".temp-"+len).closest('li').find(".knockout_li_radio_group ul li .radio_group_"+i).html('<input type="radio" name="answer_radio" value="'+value+'"> '+value);
+            $(".temp-"+len).closest('li').find(".knockout_li_drop_down ul li .drop_down_"+i).html('<input type="radio" name="answer_drop_down" value="'+value+'"> '+value);
+
           }
+
           $(".temp-"+len).removeAttr('class');
         }
     });
-
     $("#setting_questionnaire_tab").on('keyup', '.option_table tbody tr td .option_text', function() {
       var id = $(this).data("message");
       var value = $(this).val();
