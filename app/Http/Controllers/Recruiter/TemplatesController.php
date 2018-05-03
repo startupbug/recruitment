@@ -722,4 +722,26 @@ class TemplatesController extends Controller
       return redirect()->back();
 
 		}
+
+		public function create_question_admin(Request $request){
+			$previous_question_data = DB::table('admin_setting_questions')
+																			->where('admin_setting_questions.id',$request->questionid)
+																			->first();
+			$User_setting_question = new User_question;
+			$User_setting_question->template_id = $request->template_id;
+			$User_setting_question->format_setting_id = $previous_question_data->format_setting_id;
+			$User_setting_question->question = $previous_question_data->question;
+			$User_setting_question->support_text = $previous_question_data->support_text;
+			$User_setting_question->knock_out = $previous_question_data->knock_out;
+			$User_setting_question->mandatory = $previous_question_data->mandatory;
+			$User_setting_question->user_id = Auth::user()->id;
+			if ($User_setting_question->save()) {
+				return \Response()->Json([ 'status' => 200,'msg'=>"You Have Successfully Created This Question"]);
+			}else{
+				return \Response()->Json([ 'status' => 201,'msg'=>$request->input()]);
+			}
+
+		}
+
+
 }

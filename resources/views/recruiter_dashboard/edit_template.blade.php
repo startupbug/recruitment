@@ -740,11 +740,11 @@
                                  <div class="form-group">
                                    <div class="checkbox">
                                      <label>
-                                       <input type="checkbox" class="enable_questionaire"> Enable questionnaire
+                                       <input type="checkbox" class="enable_questionaire" @if(isset($template_question_setting)) checked @endif> Enable questionnaire
                                      </label>
                                    </div>
                                  </div>
-                                 <div class="new_questionnaire hidden">
+                                 <div class="new_questionnaire @if(isset($template_question_setting))  @else hidden @endif ">
                                    <div class="form-group">
                                      <div class="checkbox">
                                        <label>
@@ -758,7 +758,7 @@
                                        <div class="row">
                                          <div class="col-sm-4">
                                            <div class="dropdown">
-                                             <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" type="button" data-toggle="dropdown" id="newquestion" data-urlquestion="{{route('new_user_question_create')}}" data-url="{{route('Questionnaire_newquestion')}}">
+                                             <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" type="button" data-toggle="dropdown" id="newquestion" data-urlnewquestion="{{route('create_question_admin')}}" data-urlquestion="{{route('new_user_question_create')}}" data-url="{{route('Questionnaire_newquestion')}}">
                                                + New Question <span class="caret"></span>
                                              </button>
                                              <span class="text text-sm text-danger hidden" id="button_error" >
@@ -4888,15 +4888,15 @@
                           </div>
                           <div>
                              <label class="container_radio border_radio_left">STAGE
-                             <input type="radio" checked="checked" name="question_state_id" value="1">
+                             <input type="radio" name="question_state_id" value="1" disabled>
                              <span class="checkmark"></span>
                              </label>
                              <label class="container_radio">READY
-                             <input type="radio" name="question_state_id" value="2">
+                             <input type="radio" name="question_state_id" value="2" checked="checked" >
                              <span class="checkmark"></span>
                              </label>
                              <label class="container_radio border_radio_right">ABANDONED
-                             <input type="radio" name="question_state_id" value="3">
+                             <input type="radio" name="question_state_id" value="3" disabled>
                              <span class="checkmark"></span>
                              </label>
                           </div>

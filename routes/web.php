@@ -113,6 +113,7 @@ Route::get('/delete_user_setting_question/{id}', 'Recruiter\TemplatesController@
 //Recruiter Test Template Routes Ended
 Route::post('/new_user_question_create', 'Recruiter\TemplatesController@new_user_question_create')->name('new_user_question_create');
 Route::post('/new_user_question_edit', 'Recruiter\TemplatesController@new_user_question_edit')->name('new_user_question_edit');
+Route::post('/create_question_admin', 'Recruiter\TemplatesController@create_question_admin')->name('create_question_admin');
 
 //Recruiter Questions Routes Started
 Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
