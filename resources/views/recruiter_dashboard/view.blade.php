@@ -58,7 +58,7 @@
                                     <span class="fa fa-caret-right"></span>
                                     </a>
                                 </li>
-                                <?php 
+                                <?php
                                     $todaydate = new DateTime();
                                     $todaydate = $todaydate->format('Y-m-d');
 
@@ -68,16 +68,16 @@
                                 @if($hosted_test->status == 2)
                                     <!-- Terminated -->
                                     <li>Expired (terminated)</li>
-                                   <?php $expired_status=true;  ?>  
+                                   <?php $expired_status=true;  ?>
                                 @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
                                  <li>Expired</li>
-                                 <?php $expired_status=true;   ?>                         
+                                 <?php $expired_status=true;   ?>
                                 @elseif(strtotime($todaydate) == strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
                                  <li>Live</li>
-                                 <?php $live_status=true;  ?>  
+                                 <?php $live_status=true;  ?>
                                 @elseif(strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
                                  <li>Live</li>
-                                 <?php $live_status=true;  ?>                                             
+                                 <?php $live_status=true;  ?>
                                 @endif
 
                                 <li>{{$hosted_test->host_name}}</li>
@@ -89,7 +89,7 @@
                             <ul>
                                  @if(!(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date)))))
                                     <li><a href="#">Invite Candidates</a></li>
-                                    <li><a href="{{route('edit_template',['id'=>$hosted_test->test_template_id])}}">Edit</a></li>                                                                 
+                                    <li><a href="{{route('edit_template',['id'=>$hosted_test->test_template_id])}}">Edit</a></li>
                                  @endif
                                <!--  <li>Report</li> -->
                                 <li>
@@ -103,7 +103,7 @@
 
                                             <li><a href="{{route('preview_public_testpage', ['id' => $hosted_test->host_id])}}" target="blank">Preview Public Test Page</a></li>
                                             <li><a href="#" target="blank">View subscribed candidates</a></li>
-                                           <li><a href="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" target="blank">Preview Test</a></li>                                            
+                                           <li><a href="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" target="blank">Preview Test</a></li>
                                             <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to delete this Host.', '{{route('host_test_del')}}', {{$hosted_test->host_id}} )" >Delete Test</a></li>
                                             @if($live_status)
                                                  <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to terminate this Host.', '{{route('host_terminate')}}', {{$hosted_test->host_id}} )" >Terminate</a></li>
@@ -191,10 +191,10 @@
                                     </tr>
                                     <tr>
                                         <td><span>Duration</span>
-                                        <?php 
+                                        <?php
                                         $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
                                         $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
-                                    
+
                                         $datetime1 = new DateTime($to_time." ".$hosted_test->test_open_time);
                                         $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
                                         $interval = $datetime1->diff($datetime2);
@@ -259,7 +259,7 @@
                 <div class="view_filter_right">
                     <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
                 </div>
-                
+
                 @foreach($listing as $key => $value)
 
                 <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template_{{$key}}" aria-expanded="false">
@@ -302,7 +302,7 @@
                                               </li>
                                           </ul>
                                       </div>
-                                  </li>                                
+                                  </li>
                                 </ul>
                             </div>
                         </div>
@@ -341,7 +341,7 @@
                                         @foreach($sections[$value->id] as $key => $section)
                                         <tr>
                                             <td>{{$section->section_name}}{{++$key}}
-                                                <?php 
+                                                <?php
                                                 $abc = App\Question::select('questions.id')->where('questions.question_type_id',1)
                                                 ->where('questions.section_id',$section->id)
                                                 ->count();
@@ -353,7 +353,7 @@
                                                 ->count();
                                                 ?>
 
-                                            <span class="pull-right">                     
+                                            <span class="pull-right">
                                                 {{$abc}} MCQ (15min)
                                                 /
                                                 {{$def}} Coding (15min)
@@ -362,15 +362,15 @@
                                             </span>
 
                                             </td>
-                                        </tr>    
-                                        @endforeach                                    
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </section>    
-                @endforeach() 
+                </section>
+                @endforeach()
                 @if($count == 0)
                 <h1>No template to found</h1>
                 @endif
@@ -442,7 +442,7 @@
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
 
-                                <div class="form-group title">
+                                <div class="form-group">
                                     <label class="col-md-3 control-label" for="name">Template Title
                                         <div class="s_popup">
                                                     <i class="fa fa-info-circle"> </i>
@@ -459,7 +459,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group title">
+                                <div class="form-group ">
                                     <label class="col-md-3 control-label" for="name">Type
                                         <div class="s_popup">
                                                     <i class="fa fa-info-circle"> </i>
@@ -476,7 +476,7 @@
 
                                     </label>
                                     <div class="col-md-9">
-                                        <div class="radio">
+                                        <div class="radio ss_radio">
                                             <label>
                                                 <input type="radio" name="template_type_id" value="1"  checked="checked">Public
                                             </label>
@@ -525,12 +525,12 @@
                                 <label class="col-md-3 control-label" for="name">Test type:</label>
                                 <div class="col-md-9">
                                     <div class="checkbox both ">
-                                        <label><input type="checkbox" name="search[]" value="1" checked="">Public</label>
-                                        <label><input type="checkbox" name="search[]" value="2">Private</label>
-                                        <label><input type="checkbox" name="search[]" value="3">Both</label>
+                                        <label><input type="checkbox" id="public_check" name="search[]" value="1" checked="">Public</label>
+                                        <label><input type="checkbox" id="private_check" name="search[]" value="2">Private</label>
+                                        <label><input type="checkbox" id="both_check" name="search[]" value="3">Both</label>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="button_filter">
                                 <button type="submit" class="btn">Apply</button>
                             </div>
@@ -542,4 +542,3 @@
     </div>
 </div>
 @endsection
-

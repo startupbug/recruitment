@@ -115,6 +115,7 @@ Route::post('/new_user_question_create', 'Recruiter\TemplatesController@new_user
 Route::get('/setting_question_move_up/{id}','Recruiter\TemplatesController@setting_question_move_up')->name('setting_question_move_up');
 Route::get('/setting_question_move_down/{id}','Recruiter\TemplatesController@setting_question_move_down')->name('setting_question_move_down');
 Route::post('/new_user_question_edit', 'Recruiter\TemplatesController@new_user_question_edit')->name('new_user_question_edit');
+Route::post('/create_question_admin', 'Recruiter\TemplatesController@create_question_admin')->name('create_question_admin');
 
 //Recruiter Questions Routes Started
 Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
