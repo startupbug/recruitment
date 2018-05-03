@@ -413,3 +413,11 @@ button.btn.btn-info.btn-sm.save_row {
 button.btn.btn-info.btn-sm.save_row i{
     color: #fff;
 }
+.collapse_pointer {
+    cursor: pointer;
+    color: #337ab7;
+    font-size: 16px !important;
+}
+button#newquestion {
+    background: #261f63;
+}
