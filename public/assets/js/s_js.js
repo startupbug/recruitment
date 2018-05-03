@@ -2119,11 +2119,12 @@ $( document ).ready(function() {
 
         }else {
 
-          $(this).closest('section').find(".unordered-list").append('<li class="questionBorder">'+
-            '<form class="questionRequest" action="'+url+'" method="post">'+
+           $(this).closest('section').find(".unordered-list").append('<li class="questionBorder">'+
+            '<form class="questionRequest">'+
               csrf+
               '<input type="hidden" name="template_id" value="'+template_id+'">'+
               '<input type="hidden" name="question_id" value="'+id+'" >'+
+              '<input type="hidden" name="question_url" value="'+url+'" >' +
               '<div class="row" id="">'+
                 '<div class="col-xs-6 title">'+
                   '<a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Mandatory Question (Edit to change)">'+
@@ -2132,7 +2133,7 @@ $( document ).ready(function() {
                     '</small>'+
                   '</a>'+
                   '<span class="separator transparent-border"></span>'+
-                  '<span title="Help Text">'+question+'<small class="text text-danger"><i>(Duplicate)</i></small></span>'+
+                  '<span title="Help Text">'+question+'</span>'+
                 '</div>'+
                 '<div class="col-xs-3 title">'+
                   '<span class="light-font">Text</span>'+

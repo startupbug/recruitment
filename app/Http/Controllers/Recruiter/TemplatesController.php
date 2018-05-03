@@ -194,7 +194,7 @@ class TemplatesController extends Controller
 
 			 $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
 			 ->select('user_setting_questions.*','format_settings.name as format_settings_name')
-			 ->where('template_id',$id)->get();
+			 ->where('template_id',$id)->orderBy('user_setting_questions.order_number','ASC')->get();
 			 //$args['template_question_setting'][0]['arr'] = array(123);
 			 //dd($args['template_question_setting']);
 			 //$user_setting_question_details = array();
@@ -436,8 +436,8 @@ class TemplatesController extends Controller
     }
     public function preview_test($id){
         //dd($id);
-//        $s =  DB::table('mulitple_choices')->get();
-// dd($s);
+        // $s =  DB::table('mulitple_choices')->get();
+        // dd($s);
         // $sections = DB::table('sections')->where('template_id','=',$id)->get();
         //$sections = Section::where('template_id','=',$id)->with('template')->get();
         $test_template = Test_template::find($id);
@@ -593,8 +593,11 @@ class TemplatesController extends Controller
 			}
 		}
     public function new_user_question_create(Request $request){
+        $largest_order_number = DB::table('user_setting_questions')
+                                    ->where('template_id',$request->template_id)
+                                    ->max('order_number');
+        $new_order_number = $largest_order_number+1;
 			  //return $request->input();
-
 				//Check for Duplicate question - Farhan
 				if($request->has('question') && $request->has('template_id')) {
 
@@ -608,14 +611,14 @@ class TemplatesController extends Controller
 			   }
 
 				try {
-
 							$User_setting_question = new User_question;
 							$User_setting_question->template_id = $request->template_id;
 							$User_setting_question->format_setting_id = $request->format_setting_id;
 							$User_setting_question->question = $request->question;
 							$User_setting_question->support_text = $request->support_text;
 							$User_setting_question->knock_out = $request->knock_out;
-							$User_setting_question->mandatory = $request->mandatory;
+                            $User_setting_question->mandatory = $request->mandatory;
+							$User_setting_question->order_number = $new_order_number;
 							$User_setting_question->user_id = Auth::user()->id;
 							$User_setting_question->save();
 // dd($User_setting_question->format_setting_id);
@@ -717,9 +720,46 @@ class TemplatesController extends Controller
 
 		public function delete_user_setting_question($id){
 			$delete = 	User_question::find($id);
-			$delete->delete();
+            $this_template_id = User_question::select('template_id')->where('id',$id)->first();
+            $delete->delete();            
+            $template_id = User_question::where('template_id',$this_template_id['template_id'])->orderBy('order_number','ASC')->get();           
+            foreach ($template_id as $key => $value) {
+                DB::table('user_setting_questions')->where('id',$value->id)->update(['order_number'=> ++$key]);
+            }
 			$this->set_session('You Have Successfully Deleted This Question', true);
-      return redirect()->back();
-
+            return redirect()->back();
 		}
+    public function setting_question_move_up(Request $request,$id){
+        //dd($id);
+        $move_up = User_question::find($id);
+        $order_number = $move_up->order_number;
+        $replacement = $order_number-1;
+        $template_id = User_question::select('template_id')->where('id',$id)->first();
+        $first_section_id = User_question::where('template_id','=',$template_id['template_id'])->where('order_number','=',$order_number)->first();
+        $second_section_id = User_question::where('template_id','=',$template_id['template_id'])->where('order_number','=',$replacement)->first();
+        DB::table('user_setting_questions')->where('id',$first_section_id['id'])->where('template_id',$template_id['template_id'])->update([
+            'order_number' => $replacement
+        ]);
+        DB::table('user_setting_questions')->where('id',$second_section_id['id'])->where('template_id',$template_id['template_id'])->update([
+            'order_number'=> $order_number
+        ]);
+        $this->set_session('Order Number Of This Question Has Been Successfully Swapped With The Upper One', true);
+        return redirect()->back();
+    }
+    public function setting_question_move_down(Request $request,$id){
+        $move_down = User_question::find($id);
+        $order_number = $move_down->order_number;
+        $replacement = $order_number+1;
+        $template_id = User_question::select('template_id')->where('id',$id)->first();
+        $first_section_id = User_question::where('template_id','=',$template_id['template_id'])->where('order_number','=',$order_number)->first();
+        $second_section_id = User_question::where('template_id','=',$template_id['template_id'])->where('order_number','=',$replacement)->first();
+        DB::table('user_setting_questions')->where('id',$first_section_id['id'])->where('template_id',$template_id['template_id'])->update([
+            'order_number' => $replacement
+        ]);
+        DB::table('user_setting_questions')->where('id',$second_section_id['id'])->where('template_id',$template_id['template_id'])->update([
+            'order_number'=> $order_number
+        ]);
+        $this->set_session('Order Number Of This Question Has Been Successfully Swapped With The Lower One', true);
+        return redirect()->back();
+    }
 }

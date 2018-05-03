@@ -780,7 +780,6 @@
                                      <h5><strong>Questions</strong></h5>
                                      <ul class="unordered-list">
                                        <li></li>
-
                                        @foreach ($template_question_setting as $t_q_s)
                                        <li class="questionBorder">
                                          <form action="{{route('new_user_question_edit')}}" method="post">
@@ -802,12 +801,17 @@
                                              <div class="col-xs-3">
                                                <div class="pull-right">
                                                  <div class="btn-group">
-                                                   <button class="btn btn-sm btn-link">
-                                                       <span class="fa fa-arrow-up"></span>
-                                                   </button>
-                                                   <button class="btn btn-sm btn-link no-hover">
-                                                       <span class="fa fa-arrow-up transparent-font"></span>
-                                                   </button>
+
+                                                   @if(!$loop->first)
+                                                      <a href="{{route('setting_question_move_up',['id'=>$t_q_s->id])}}" class="btn btn-sm btn-link">
+                                                          <span class="fa fa-arrow-up"></span>
+                                                      </a>
+                                                   @endif
+                                                   @if(!$loop->last)
+                                                      <a href="{{route('setting_question_move_down',['id'=>$t_q_s->id])}}" class="btn btn-sm btn-link no-hover">
+                                                          <span class="fa fa-arrow-down transparent-font"></span>
+                                                      </a>
+                                                   @endif
                                                    <button type="button" class="btn btn-sm btn-link edit_question" >
                                                        <span class="fa fa-pencil"></span>
                                                    </button>
