@@ -192,7 +192,9 @@ class TemplatesController extends Controller
        // dd($args);
 
 
-			 $args['template_question_setting'] = User_question::where('template_id',$id)->get();
+			 $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
+			 ->select('user_setting_questions.*','format_settings.name as format_settings_name')
+			 ->where('template_id',$id)->get();
 			 //$args['template_question_setting'][0]['arr'] = array(123);
 			 //dd($args['template_question_setting']);
 			 //$user_setting_question_details = array();
@@ -200,7 +202,7 @@ class TemplatesController extends Controller
 			 		$args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
 			 }
 
-
+			 // return $args['template_question_setting'];
 
         return view('recruiter_dashboard.edit_template')->with($args);
 
@@ -471,7 +473,139 @@ class TemplatesController extends Controller
     }
 
 
+    public function new_user_question_edit(Request $request){
+				if (isset($request->id)){
+
+						DB::table('user_format_details')->where('question_id', $request->id)->delete();
+
+				}
+
+			// dd($request->id);
+			try {
+
+				// DB::table('users')
+        //     ->where('id',$request->id)
+        //     ->update([
+				// 			'options->enabled' => true
+				// 		]);
+						$User_setting_question = User_question::find($request->id);
+						$User_setting_question->format_setting_id = $request->format_setting_id;
+						$User_setting_question->question = $request->question;
+						$User_setting_question->support_text = $request->support_text;
+						$User_setting_question->knock_out = $request->knock_out;
+						$User_setting_question->mandatory = $request->mandatory;
+						$User_setting_question->user_id = Auth::user()->id;
+						$User_setting_question->save();
+// dd($User_setting_question);
+						if ($request->format_setting_id == "1") {
+
+							$User_format_detail = new User_format_detail;
+							$User_format_detail->max = $request->max;
+							$User_format_detail->min = $request->min;
+							$User_format_detail->question_id = $request->id;
+							$User_format_detail->user_id = Auth::user()->id;
+							$User_format_detail->save();
+
+						}
+						elseif ($request->format_setting_id == "2") {
+
+							$User_format_detail = new User_format_detail;
+							$User_format_detail->placeholder = $request->placeholder;
+							$User_format_detail->question_id = $request->id;
+							$User_format_detail->user_id = Auth::user()->id;
+							$User_format_detail->save();
+
+						}
+						elseif ($request->format_setting_id == "3") {
+
+							$User_format_detail = new User_format_detail;
+							$User_format_detail->placeholder = $request->placeholder;
+							$User_format_detail->question_id = $request->id;
+							$User_format_detail->user_id = Auth::user()->id;
+							$User_format_detail->save();
+
+						}
+						elseif ($request->format_setting_id == "4") {
+
+							$User_format_detail = new User_format_detail;
+							$User_format_detail->checked = $request->checkbox;
+							$User_format_detail->question_id = $request->id;
+							$User_format_detail->user_id = Auth::user()->id;
+							$User_format_detail->save();
+
+						}
+						elseif ($request->format_setting_id == "5") {
+
+							$answer_array = $request->answer_multiple_choice;
+
+							foreach ($request->option as $key => $value) {
+								$User_format_detail = new User_format_detail;
+								$User_format_detail->option = $value;
+
+								if (in_array($value, $answer_array) ) {
+									$User_format_detail->answer = $value;
+								}
+								$User_format_detail->question_id = $request->id;
+								$User_format_detail->user_id = Auth::user()->id;
+								$User_format_detail->save();
+							}
+
+						}
+						elseif ($request->format_setting_id == "6") {
+
+							$answer_array = $request->answer_radio;
+
+							foreach ($request->option as $key => $value) {
+								$User_format_detail = new User_format_detail;
+								$User_format_detail->option = $value;
+
+								if ($value == $answer_array) {
+									$User_format_detail->answer = $value;
+								}
+								$User_format_detail->question_id = $request->id;
+								$User_format_detail->user_id = Auth::user()->id;
+								$User_format_detail->save();
+							}
+						}
+						elseif ($request->format_setting_id == "7") {
+							$answer_array = $request->answer_drop_down;
+
+							foreach ($request->option as $key => $value) {
+								$User_format_detail = new User_format_detail;
+								$User_format_detail->option = $value;
+
+								if ($value == $answer_array) {
+									$User_format_detail->answer = $value;
+								}
+								$User_format_detail->question_id = $request->id;
+								$User_format_detail->user_id = Auth::user()->id;
+								$User_format_detail->save();
+							}
+						}
+
+					\Session::flash('Success', "Record has been Submitted");
+					return redirect()->back();
+
+			} catch(QueryException $ex){
+					\Session::flash('QueryException', $ex->getMessage());
+					return  $ex->getMessage();
+					// return redirect()->back();
+			}
+		}
     public function new_user_question_create(Request $request){
+			  //return $request->input();
+
+				//Check for Duplicate question - Farhan
+				if($request->has('question') && $request->has('template_id')) {
+
+						$question_exists = User_question::where('question', $request->input('question'))
+													->where('template_id', $request->input('template_id'))
+													->exists();
+
+						if($question_exists){
+								return \Response()->Json([ 'status' => 204,'msg'=>'This Question is already Present']);
+						}
+			   }
 
 				try {
 
@@ -573,13 +707,11 @@ class TemplatesController extends Controller
 								}
 							}
 
-						\Session::flash('Success', "Record has been Submitted");
-						return redirect()->back();
+						return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully']);
 
 				} catch(QueryException $ex){
-						\Session::flash('QueryException', $ex->getMessage());
-						return  $ex->getMessage();
-						// return redirect()->back();
+
+						return \Response()->Json([ 'status' => 202,'msg'=>$ex->getMessage()]);
 				}
     }
 

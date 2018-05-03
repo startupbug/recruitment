@@ -418,3 +418,6 @@ button.btn.btn-info.btn-sm.save_row i{
     color: #337ab7;
     font-size: 16px !important;
 }
+button#newquestion {
+    background: #261f63;
+}

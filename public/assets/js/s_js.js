@@ -1892,13 +1892,13 @@ $( document ).ready(function() {
         if (length > 0) {
           console.log(length);
 
-        }else {
           $(this).closest('section').find(".unordered-list").append('<li class="questionBorder">'+
 
-            '<form action="'+url+'" method="post">'+
+            '<form class="questionRequest">'+
               csrf+
               '<input type="hidden" name="template_id" value="'+template_id+'">'+
               '<input type="hidden" name="question_id" value="'+id+'" >'+
+              '<input type="hidden" name="question_url" value="'+url+'" >' +
               '<div class="row" id="">'+
                 '<div class="col-xs-6 title">'+
                   '<a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Mandatory Question (Edit to change)">'+
@@ -1907,7 +1907,7 @@ $( document ).ready(function() {
                     '</small>'+
                   '</a>'+
                   '<span class="separator transparent-border"></span>'+
-                  '<span title="Help Text">'+question+'</span>'+
+                  '<span title="Help Text">'+question+'<small class="text text-danger"><i>(Duplicate)</i></small></span>'+
                 '</div>'+
                 '<div class="col-xs-3 title">'+
                   '<span class="light-font">Text</span>'+
@@ -1924,7 +1924,7 @@ $( document ).ready(function() {
                       '<button type="button" class="btn btn-sm btn-link edit_question" >'+
                           '<span class="fa fa-pencil"></span>'+
                       '</button>'+
-                      '<button class="btn btn-sm btn-link text-danger">'+
+                      '<button type="button" class="btn btn-sm btn-link text-danger delete_question">'+
                           '<span class="fa fa-trash"></span>'+
                       '</button>'+
                     '</div>'+
@@ -2113,8 +2113,278 @@ $( document ).ready(function() {
               '</div>'+
             '</form>'+
           '</li>');
+
+          $('#newquestion').attr("disabled", true);
+          $('#button_error').removeClass("hidden");
+
+        }else {
+
+          $(this).closest('section').find(".unordered-list").append('<li class="questionBorder">'+
+            '<form class="questionRequest" action="'+url+'" method="post">'+
+              csrf+
+              '<input type="hidden" name="template_id" value="'+template_id+'">'+
+              '<input type="hidden" name="question_id" value="'+id+'" >'+
+              '<div class="row" id="">'+
+                '<div class="col-xs-6 title">'+
+                  '<a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Mandatory Question (Edit to change)">'+
+                    '<small class="text-primary">'+
+                      '<i class="fa fa-star" aria-hidden="true"></i>'+
+                    '</small>'+
+                  '</a>'+
+                  '<span class="separator transparent-border"></span>'+
+                  '<span title="Help Text">'+question+'<small class="text text-danger"><i>(Duplicate)</i></small></span>'+
+                '</div>'+
+                '<div class="col-xs-3 title">'+
+                  '<span class="light-font">Text</span>'+
+                '</div>'+
+                '<div class="col-xs-3">'+
+                  '<div class="pull-right">'+
+                    '<div class="btn-group">'+
+                      '<button class="btn btn-sm btn-link">'+
+                          '<span class="fa fa-arrow-up"></span>'+
+                      '</button>'+
+                      '<button class="btn btn-sm btn-link no-hover">'+
+                          '<span class="fa fa-arrow-up transparent-font"></span>'+
+                      '</button>'+
+                      '<button type="button" class="btn btn-sm btn-link edit_question" >'+
+                          '<span class="fa fa-pencil"></span>'+
+                      '</button>'+
+                      '<button type="button" class="btn btn-sm btn-link text-danger delete_question">'+
+                          '<span class="fa fa-trash"></span>'+
+                      '</button>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+              '<div class="form-horizontal hidden capsule">'+
+                '<div class="form-group form-group-sm">'+
+                  '<label class="control-label col-sm-2">Question</label>'+
+                  '<div class="col-sm-10">'+
+                    '<input type="text" class="form-control" name="question" placeholder=" Eg: Enter your University name" value="'+question+'">'+
+                  '</div>'+
+                '</div>'+
+                '<div class="form-group form-group-sm">'+
+                  '<label class="control-label col-sm-2">Support text</label>'+
+                  '<div class="col-sm-10">'+
+                    '<input type="text" class="form-control" name="support_text" placeholder="Eg: Give the full form of your University" value="'+support_text+'">'+
+                  '</div>'+
+                '</div>'+
+                '<div class="form-group form-group-sm">'+
+                  '<label class="control-label col-sm-2">'+
+                    'Knock out  '+
+                    '<i class="fa fa-info-circle"></i>'+
+                  '</label>'+
+                  '<div class="col-sm-10">'+
+                    '<div class="" >'+
+                      '<label class="control-label">'+
+                        '<input type="checkbox" name="knock_out" class="knockout_checkbox" value="1" style="top:4px">'+
+                        ' Dont allow the candidate to take the test if the criteria does not meet'+
+                      '</label>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>'+
+                '<div class="dropdown_format_menu">'+
+                  '<div class="form-group form-group-sm">'+
+                    '<label class="control-label col-sm-2">Format</label>'+
+                    '<div class="col-sm-4">'+
+                      '<select class="form-control format_class" name="format_setting_id">'+
+                        '<option value="1">Number</option>'+
+                        '<option value="2">Text</option>'+
+                        '<option value="3">Text Area</option>'+
+                        '<option value="4">Check box</option>'+
+                        '<option value="5">Multiple choice</option>'+
+                        '<option value="6">Radio group</option>'+
+                        '<option value="7">Drop down</option>'+
+                      '</select>'+
+                    '</div>'+
+                    '<div class="col-sm-4" style="padding: 0;">'+
+                      '<div style="padding: 1px">'+
+                        '<label class="control-label mandatory_checkbox_label">'+
+                          '<input type="checkbox" name="mandatory" value="1" class="mandatory_checkbox" style="top:4px"> Mandatory'+
+                        '</label>'+
+                      '</div>'+
+                    '</div>'+
+                  '</div>'+
+                  '<div class="row hidden option_text_data">'+
+                    '<div class="col-sm-9 col-sm-offset-2">'+
+                      '<div class="no-more-tables">'+
+                        '<table class="table s_table option_table">'+
+                          '<tbody>'+
+                             '<tr>'+
+                                '<td valign="center">Option 1</td>'+
+                                '<td class="s_weight" valign="center">'+
+                                 '<input type="text" class="form-control option_text" data-message="1" name="option[]">'+
+                                '</td>'+
+                                '<td valign="center">'+
+                                   '<a class="delete_row_option">'+
+                                   '<i class="fa fa-times-circle-o"></i>'+
+                                   '</a>'+
+                                '</td>'+
+                             '</tr>'+
+                          '</tbody>'+
+                          '<tfoot>'+
+                             '<tr>'+
+                               '<td></td>'+
+                               '<td colspan="2" class="text-align-center">'+
+                                 '<button type="button" class="btn btn-sm btn-warning add_option">+ Add Option</button>'+
+                               '</td>'+
+                             '</tr>'+
+                          '</tfoot>'+
+                        '</table>'+
+                      '</div>'+
+                    '</div>'+
+                  '</div>'+
+                  '<div class="form-group form-group-sm hidden placeholder_text_data" style="">'+
+                    '<label class="control-label col-sm-2">Placeholder</label>'+
+                    '<div class="col-sm-10">'+
+                      '<input type="text" name="placeholder" class="form-control placeholder_text" value="Enter Something" disabled>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>'+
+                '<div class="form-group form-group-sm knockout_criteria hidden">'+
+                   '<label class="control-label col-sm-2">Knock out criteria</label>'+
+                   '<div class="col-sm-10">'+
+
+                     '<div class="knockout_li_number hidden">'+
+                        '<div class="row">'+
+                           '<label class="control-label col-md-1">Range: </label>'+
+                           '<div class="col-sm-4">'+
+                              '<div class="input-group input-group-sm">'+
+                                 '<div class="input-group-addon">'+
+                                    'Min'+
+                                 '</div>'+
+                                 '<input type="number" name="min" class="form-control number_min" value="0">'+
+                              '</div>'+
+                           '</div>'+
+                           '<div class="col-sm-4">'+
+                              '<div class="input-group input-group-sm">'+
+                                 '<div class="input-group-addon">'+
+                                    'Max'+
+                                 '</div>'+
+                                 '<input type="number" name="max" class="form-control number_max" value="0">'+
+                              '</div>'+
+                           '</div>'+
+                        '</div>'+
+                        '<small class="help-block">Any number between the range will be considered as correct</small>'+
+                     '</div>'+
+
+                     '<div class="knockout_li_checkbox hidden">'+
+                        '<label class="control-label">Expected Answer:</label>'+
+                        '<div class="radio no-padding">'+
+                          '<label class="control-label">'+
+                            '<input type="radio" checked name="checkbox" value="true">'+
+                            'Checked'+
+                          '</label>'+
+                        '</div>'+
+                        '<div class="radio no-padding">'+
+                          '<label class="control-label">'+
+                            '<input type="radio" name="checkbox" value="false">'+
+                            'Unchecked'+
+                          '</label>'+
+                        '</div>'+
+                     '</div>'+
+
+                     '<div class="knockout_li_multiple_choice hidden">'+
+                       '<label class="control-label">Expected Answer(s)</label>'+
+                       '<ul style="padding:0;">'+
+                        '<li>'+
+                          '<div class="no-padding">'+
+                             '<label class="control-label checkbox_1">'+
+                              '<input type="checkbox" checked name="answer_multiple_choice[]">'+
+                             '</label>'+
+                          '</div>'+
+                        '</li>'+
+                       '</ul>'+
+
+                       '<small class="help-block">Candidate should select the exact choices which are checked above to qualify for the test</small>'+
+                     '</div>'+
+
+                     '<div class="knockout_li_radio_group hidden">'+
+                       '<label class="control-label">Expected Answer</label>'+
+                       '<ul style="padding:0;">'+
+                         '<li>'+
+                           '<div class="radio no-padding">'+
+                              '<label class="control-label radio_group_1">'+
+                              '<input type="radio" checked name="answer_radio">'+
+                              '</label>'+
+                           '</div>'+
+                         '</li>'+
+                       '</ul>'+
+                       '<small class="help-block">Candidate should select exact option that is selected above to qualify for the test</small>'+
+                     '</div>'+
+
+                     '<div class="knockout_li_drop_down hidden">'+
+                       '<label class="control-label">Expected Answer</label>'+
+                       '<ul style="padding:0;">'+
+                         '<li>'+
+                           '<div class="radio no-padding">'+
+                              '<label class="control-label drop_down_1">'+
+                              '<input type="radio" checked name="answer_drop_down">'+
+                              '</label>'+
+                           '</div>'+
+                         '</li>'+
+                       '</ul>'+
+                       '<small class="help-block">Candidate should select exact option that is selected above to qualify for the test</small>'+
+                     '</div>'+
+
+                   '</div>'+
+                '</div>'+
+                '<div class="row">'+
+                  '<div class="col-sm-10 col-sm-offset-2">'+
+                    '<button type="submit" class="btn btn-sm btn-info">Done</button>'+
+                    '<button type="button" class="btn btn-sm btn-default cancel_button">Cancel</button>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+            '</form>'+
+          '</li>');
+
         }
 
+        $(".questionRequest").on('submit', function(e){
+            e.preventDefault();
+            //console.log("console" + $(this).find("input[name='template_id']").val());
+            var formData = $(this).serialize();
+
+            $.ajaxSetup({
+              headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+            });
+            $.ajax({
+              type: 'post',
+              url: $(this).find("input[name='question_url']").val(),
+              data: formData,
+              success: function (data) {
+                console.log(data);
+
+                //data inserted
+                    if(data.status == 200){
+                      location.reload(true);
+                      alertify.success(data.msg);
+                      // $('#newquestion').attr("disabled", true);
+                      // $('#button_error').removeClass("hidden");
+                      // $.getJSON($("#baseurl").val()+'/api/term/'+term+'/departments', function(data) {
+                      //      $('#department').empty();
+                      //      $('#department').append('<option disabled selected>Select Department</option>');
+                      //      $.each(data, function(key, value) {
+                      //        $('#department').append('<option value="'+value.id+'">'+value.department+'</option>');
+                      //      });
+                      //  });
+
+
+                     //data couldnot be inserted
+                    }else if(data.status == 202){
+                      alertify.warning(data.msg);
+
+                      //data duplicated
+                    }else if(data.status == 204){
+                      alertify.warning(data.msg);
+                    }
+                  },
+                  error: function (data) {
+                  alertify.warning("Oops. something went wrong. Please try again");
+                 }
+               });
+        });
       }
     });
     $("#setting_questionnaire_tab").on('click', 'form .capsule .row .cancel_button_remove', function() {
@@ -2126,6 +2396,13 @@ $( document ).ready(function() {
     $("#setting_questionnaire_tab").on('click', '.unordered-list li .edit_question', function() {
       $( this ).closest( ".row" ).siblings('.capsule').toggleClass('hidden');
     });
+
+    $("#setting_questionnaire_tab").on('click', '.unordered-list li .delete_question', function() {
+      $( this ).closest( "li" ).remove();
+      $('#newquestion').attr("disabled", false);
+      $('#button_error').addClass("hidden");
+    });
+
     $("#setting_questionnaire_tab").on('change', '.unordered-list li .format_class', function() {
       var item=$(this);
 
@@ -2468,6 +2745,8 @@ $( document ).ready(function() {
       $(this).closest('li').find(".knockout_li_radio_group ul li .radio_group_"+id).html('<input type="radio" name="answer_radio" value="'+value+'"> '+value);
       $(this).closest('li').find(".knockout_li_drop_down ul li .drop_down_"+id).html('<input type="radio" name="answer_drop_down" value="'+value+'"> '+value);
     });
+
+    //Quesiton request form submit
 
 
 });

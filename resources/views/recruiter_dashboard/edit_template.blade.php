@@ -761,6 +761,9 @@
                                              <button class="btn s_dropdown_ btn-default dropdown-toggle  btn-block" type="button" data-toggle="dropdown" id="newquestion" data-urlquestion="{{route('new_user_question_create')}}" data-url="{{route('Questionnaire_newquestion')}}">
                                                + New Question <span class="caret"></span>
                                              </button>
+                                             <span class="text text-sm text-danger hidden" id="button_error" >
+                                               Please resolve the following issues in the questionnaire
+                                             </span>
                                              <ul class="dropdown-menu s_drop_down btn-block new_question question_select" data-template_id="{{$edit->id}}">
                                                <li><a href="#"  data-id="0" data-question="Write own question"><strong>Write own question</strong></a></li>
 
@@ -780,9 +783,9 @@
 
                                        @foreach ($template_question_setting as $t_q_s)
                                        <li class="questionBorder">
-                                         <form action="{{route('new_user_question_create')}}" method="post">
+                                         <form action="{{route('new_user_question_edit')}}" method="post">
                                            {{csrf_field()}}
-
+                                           <input type="hidden" name="id" value="{{$t_q_s->id}}">
                                            <div class="row" id="">
                                              <div class="col-xs-6 title">
                                                <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Mandatory Question (Edit to change)">
@@ -794,7 +797,7 @@
                                                <span title="Help Text">{{$t_q_s->question}}</span>
                                              </div>
                                              <div class="col-xs-3 title">
-                                               <span class="light-font">Text</span>
+                                               <span class="light-font">{{$t_q_s->format_settings_name}}</span>
                                              </div>
                                              <div class="col-xs-3">
                                                <div class="pull-right">
