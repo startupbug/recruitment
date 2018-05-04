@@ -173,17 +173,17 @@ class HostController extends Controller
 		    	$hosted_test_del->status = 2;
 
 		    	if($hosted_test_del->save()){
-		    		return \Response()->Json([ 'status' => 200, 'msg'=>'Host Successfully Termibated']);
+		    		return \Response()->Json([ 'status' => 200, 'msg'=>'Host Successfully Terminated']);
 		    	}else{
-		    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Termibated']);
+		    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Terminated']);
 		    	}
 
     		}else{
-    			return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Termibated']);
+    			return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Terminated']);
     		}	    	
 
     	}catch(\Exception $e){
-    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Termibated'.$e->getMessage()]);
+    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Terminated'.$e->getMessage()]);
         }
     }
 

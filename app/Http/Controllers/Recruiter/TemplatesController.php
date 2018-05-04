@@ -33,7 +33,7 @@ class TemplatesController extends Controller
 	public function manage_test_view(){
 
         $value = Input::get('filter_hidden');
-        //dd($value);
+        // dd($value);
         $name = Input::get('name');
 
         $check_box = Input::get('search');
