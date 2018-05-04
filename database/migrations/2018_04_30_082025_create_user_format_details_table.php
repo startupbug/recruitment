@@ -18,9 +18,9 @@ class CreateUserFormatDetailsTable extends Migration
             $table->integer('user_id')->unsigned();            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('question_id')->unsigned();            
-            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('question_id')->references('id')->on('user_setting_questions')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('placeholder')->nullable();
-            $table->string('option')->nullable();
+            $table->longText('option')->nullable();
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMinMaxCheckedToUserFormatDetails extends Migration
+class AddAnswerToUserFormatDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,7 @@ class AddMinMaxCheckedToUserFormatDetails extends Migration
     public function up()
     {
         Schema::table('user_format_details', function (Blueprint $table) {
-        $table->integer('min')->nullable()->after('question_id');
-        $table->integer('max')->nullable()->after('question_id');
-        $table->integer('checked')->nullable()->after('question_id');
+            $table->longText('answer')->nullable()->after('option');
         });
     }
 
@@ -28,9 +26,7 @@ class AddMinMaxCheckedToUserFormatDetails extends Migration
     public function down()
     {
         Schema::table('user_format_details', function (Blueprint $table) {
-            $table->dropColumn('min');
-            $table->dropColumn('max');
-            $table->dropColumn('checked');
+             $table->dropColumn('answer');
         });
     }
 }

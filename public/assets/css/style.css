@@ -1506,7 +1506,7 @@ td button.btn.focus, td button.btn:focus, td button.btn:hover {
     height: 45px;
 }
 
-.title label.col-md-3.control-label {
+.title label.control-label {
     font-size: 15px;
     font-family: 'SourceSansPro-Regular';
     text-align: right;
@@ -2619,6 +2619,13 @@ li.active {
     height: 600px;
 }
 
+#section-coding-debug-Modal-Collapse{
+    background: rgba(0, 0, 0, 0.52);
+}
+#section-coding-debug-Modal-Collapse .fr-element {
+    height: 600px;
+}
+
 
 .submit_prog{
      display: none;
@@ -2780,7 +2787,29 @@ h4.f_des {
 #add_selected_question_span{
     margin-right: 8px;
 }
+#add_selected_question_code_button{
+    margin-right: 8px;
+}
+#add_selected_question_code_span{
+    margin-right: 8px;
+}
+#add_submission_question_code_button{
+    margin-right: 8px;
+}
+#add_submission_question_code_span{
+    margin-right: 8px;
+}
 .moreSettings_button {
+    color: #23527c;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.moreSettings_button_code {
+    color: #23527c;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.moreSettings_button_submission {
     color: #23527c;
     cursor: pointer;
     margin-bottom: 5px;
