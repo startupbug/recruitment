@@ -2508,7 +2508,6 @@
 <script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
 <script language="text/javascript">
-
     $(document).ready(function(){
         $('.duplicate_modal_id').click(function(){
             var a = $(this).attr('data-target-id');

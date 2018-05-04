@@ -2421,13 +2421,11 @@ $( document ).ready(function() {
     $("#setting_questionnaire_tab").on('click', '.unordered-list li .edit_question', function() {
       $( this ).closest( ".row" ).siblings('.capsule').toggleClass('hidden');
     });
-
     $("#setting_questionnaire_tab").on('click', '.unordered-list li .delete_question', function() {
       $( this ).closest( "li" ).remove();
       $('#newquestion').attr("disabled", false);
       $('#button_error').addClass("hidden");
     });
-
     $("#setting_questionnaire_tab").on('change', '.unordered-list li .format_class', function() {
       var item=$(this);
 
@@ -2819,5 +2817,262 @@ $( document ).ready(function() {
       }
     });
 
+    $('#multiple_choice_mcqs').on('change', '.level_easy', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('form').find('.level_medium').is(":checked") && $(this).closest('form').find('.level_hard').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', true);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('form').find('.level_medium').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', false);
+          }
+          else {
+            if ($(this).closest('form').find('.level_hard').is(":checked")) {
+              $(this).closest('form').find('.level_all').prop('checked', false);
+            }
+            else {
+              $(this).prop( "checked", true );
+            }
+          }
+        }
+    });
+    $('#multiple_choice_mcqs').on('change', '.level_medium', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked") && $(this).closest('form').find('.level_hard').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', true);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', false);
+          }
+          else {
+            if ($(this).closest('form').find('.level_hard').is(":checked")) {
+              $(this).closest('form').find('.level_all').prop('checked', false);
+            }
+            else {
+              $(this).closest('form').find('.level_easy').prop( "checked", true );
+            }
+          }
+        }
+    });
+    $('#multiple_choice_mcqs').on('change', '.level_hard', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked") && $(this).closest('form').find('.level_medium').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', true);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', false);
+          }
+          else {
+            if ($(this).closest('form').find('.level_medium').is(":checked")) {
+              $(this).closest('form').find('.level_all').prop('checked', false);
+            }
+            else {
+              $(this).closest('form').find('.level_easy').prop( "checked", true );
+            }
+          }
+        }
+    });
+    $('#multiple_choice_mcqs').on('change', '.level_all', function(){
+        if ($(this).is(":checked")) {
+
+          $(this).closest('form').find('.level_easy').prop('checked', true);
+          $(this).closest('form').find('.level_medium').prop('checked', true);
+          $(this).closest('form').find('.level_hard').prop('checked', true);
+
+        }
+        else {
+
+          $(this).closest('form').find('.level_easy').prop('checked', true);
+          $(this).closest('form').find('.level_medium').prop('checked', false);
+          $(this).closest('form').find('.level_hard').prop('checked', false);
+
+        }
+    });
+
+    $('#coding_choice_mcqs').on('change', '.level_easy', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('form').find('.level_medium').is(":checked") && $(this).closest('form').find('.level_hard').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', true);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('form').find('.level_medium').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', false);
+          }
+          else {
+            if ($(this).closest('form').find('.level_hard').is(":checked")) {
+              $(this).closest('form').find('.level_all').prop('checked', false);
+            }
+            else {
+              $(this).prop( "checked", true );
+            }
+          }
+        }
+    });
+    $('#coding_choice_mcqs').on('change', '.level_medium', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked") && $(this).closest('form').find('.level_hard').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', true);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', false);
+          }
+          else {
+            if ($(this).closest('form').find('.level_hard').is(":checked")) {
+              $(this).closest('form').find('.level_all').prop('checked', false);
+            }
+            else {
+              $(this).closest('form').find('.level_easy').prop( "checked", true );
+            }
+          }
+        }
+    });
+    $('#coding_choice_mcqs').on('change', '.level_hard', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked") && $(this).closest('form').find('.level_medium').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', true);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', false);
+          }
+          else {
+            if ($(this).closest('form').find('.level_medium').is(":checked")) {
+              $(this).closest('form').find('.level_all').prop('checked', false);
+            }
+            else {
+              $(this).closest('form').find('.level_easy').prop( "checked", true );
+            }
+          }
+        }
+    });
+    $('#coding_choice_mcqs').on('change', '.level_all', function(){
+        if ($(this).is(":checked")) {
+
+          $(this).closest('form').find('.level_easy').prop('checked', true);
+          $(this).closest('form').find('.level_medium').prop('checked', true);
+          $(this).closest('form').find('.level_hard').prop('checked', true);
+
+        }
+        else {
+
+          $(this).closest('form').find('.level_easy').prop('checked', true);
+          $(this).closest('form').find('.level_medium').prop('checked', false);
+          $(this).closest('form').find('.level_hard').prop('checked', false);
+
+        }
+    });
+
+    $('#submission_choice_mcqs').on('change', '.level_easy', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('form').find('.level_medium').is(":checked") && $(this).closest('form').find('.level_hard').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', true);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('form').find('.level_medium').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', false);
+          }
+          else {
+            if ($(this).closest('form').find('.level_hard').is(":checked")) {
+              $(this).closest('form').find('.level_all').prop('checked', false);
+            }
+            else {
+              $(this).prop( "checked", true );
+            }
+          }
+        }
+    });
+    $('#submission_choice_mcqs').on('change', '.level_medium', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked") && $(this).closest('form').find('.level_hard').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', true);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', false);
+          }
+          else {
+            if ($(this).closest('form').find('.level_hard').is(":checked")) {
+              $(this).closest('form').find('.level_all').prop('checked', false);
+            }
+            else {
+              $(this).closest('form').find('.level_easy').prop( "checked", true );
+            }
+          }
+        }
+    });
+    $('#submission_choice_mcqs').on('change', '.level_hard', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked") && $(this).closest('form').find('.level_medium').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', true);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('form').find('.level_easy').is(":checked")) {
+            $(this).closest('form').find('.level_all').prop('checked', false);
+          }
+          else {
+            if ($(this).closest('form').find('.level_medium').is(":checked")) {
+              $(this).closest('form').find('.level_all').prop('checked', false);
+            }
+            else {
+              $(this).closest('form').find('.level_easy').prop( "checked", true );
+            }
+          }
+        }
+    });
+    $('#submission_choice_mcqs').on('change', '.level_all', function(){
+        if ($(this).is(":checked")) {
+
+          $(this).closest('form').find('.level_easy').prop('checked', true);
+          $(this).closest('form').find('.level_medium').prop('checked', true);
+          $(this).closest('form').find('.level_hard').prop('checked', true);
+
+        }
+        else {
+
+          $(this).closest('form').find('.level_easy').prop('checked', true);
+          $(this).closest('form').find('.level_medium').prop('checked', false);
+          $(this).closest('form').find('.level_hard').prop('checked', false);
+
+        }
+    });
 
 });
