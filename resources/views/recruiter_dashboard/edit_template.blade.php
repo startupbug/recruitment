@@ -178,11 +178,11 @@
                <div id="section_subject-{{$key}}" class="tab-pane fade">
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
                      <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$key}}">Multiple Choice ({{ $sec['count'] }})</a></li>
+                        <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$key}}">Multiple Choice (<span id="count-{{$key}}">{{ $sec['count'] }}</span>)</a></li>
+                        
                         <li><a data-toggle="pill" href="#sections-coding-{{$key}}">
-                        Coding ({{ $sec['count2'] }})
+                        Coding (<span id="count2-{{$key}}">{{ $sec['count2'] }}</span>)</a></li>
 
-                        </a></li>
                         <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission ({{ $sec['count3'] }})</a></li>
                         <li class="pull-right"></li>
                      </ul>
@@ -202,7 +202,7 @@
                                        <th>Action</th>
                                     </tr>
                                  </thead>
-                                 <tbody>
+                                 <tbody id="mcqTable-{{$key}}">
                                     @foreach($sec['ques1'] as $serial_number => $q)
 
                                     <!-- q is question type id=1   -->
@@ -237,7 +237,10 @@
                                                    </div>
                                                    <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
                                                       <span class="text-muted">Tags : </span>
-                                                      <span class="question-tags">{{$q->question_detail->question_tag['tag_name']}}</span>
+                                                      <span class="question-tags">
+                                                         @if(isset($q->question_detail->question_tag['tag_name']))
+                                                   {{$q->question_detail->question_tag['tag_name']}}
+                                                @endif</span>
                                                    </div>
                                                 </div>
                                              </div>
@@ -280,7 +283,7 @@
                                        <th></th>
                                     </tr>
                                  </thead>
-                                 <tbody>
+                                 <tbody id="firstCodingTable-{{$key}}">
                                     @foreach($sec['ques2'] as $serial_number => $q)
                                     <!-- question type id = 2 -->
                                        <tr>
@@ -2496,7 +2499,7 @@
 <div class="modal fade" id="section-coding-add-compilable-question-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
         <!-- Modal content-->
-         <form action="{{route('create_question_coding')}}" method="POST" enctype="multipart/form-data">
+         <form action="{{route('create_question_coding')}}" id="AjaxCodingOneModal" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
          <input type="hidden" name="section_id" id="section_id_2" value="">
          <input type="hidden" name="question_type_id" value="2">
@@ -2584,7 +2587,7 @@
                                                Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
                                                and also serve as a parameter for filters while searching through the library."> <i class="fa fa-info-circle"> </i></a></strong>
                                 </div>
-                                <textarea class="edit"></textarea>
+                                <textarea class="edit" name="question_statement"></textarea>
                                 <br>
                                 <div class="panel panel-pagedown-preview hidden" id="code_edittemp_panel">
                                   <div class="panel-heading">
@@ -4864,7 +4867,7 @@
 <div class="modal fade" id="section-mcqs-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
-         <form action="{{route('create_question')}}" method="POST" enctype="multipart/form-data">
+         <form action="{{route('create_question')}}" id="AjaxMCQModal" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
         <input type="hidden" name="section_id" id="section_id_1" value="">
         <input type="hidden" name="question_sub_types_id" value="1">

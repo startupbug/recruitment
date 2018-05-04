@@ -152,6 +152,7 @@ return redirect()->back();
 
 	// Editing Test Template
 public function edit_template($id){
+
     $args['tags'] = DB::table('question_tags')->get();
     $args['edit'] = Test_template::find($id);
 
@@ -164,6 +165,7 @@ public function edit_template($id){
     ->get();
 
     foreach ($args['sections'] as $key => $value) {
+      
        $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
 
              $args['sections_tabs'][$value->id]['count'] = count($args['sections_tabs'][$value->id]['ques1']); //$value->section_questions;
