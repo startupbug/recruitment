@@ -24,7 +24,8 @@ use App\Admin_question;
 use App\Admin_question_type;
 class QuestionsController extends Controller
 {
-    public function create_question(Request $request){    	
+    public function create_question(Request $request){
+		 		
 		if (!empty($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
@@ -34,22 +35,50 @@ class QuestionsController extends Controller
 			$store->question_type_id = $request->question_type_id;
 			$store->question_level_id = $request->question_level_id;
 			$store->question_statement = $request->question_statement;
-			if ($store->save()){				
-				$this->set_session('You Have Successfully Saved The Question Data', true);
-			}else{
-				$this->set_session('Something Went Wrong, Please Try Again', false);	
-			}
-			$question_data =  array('store' => $store, 'request' =>$request->all());			
+			if ($store->save()){
+
+		 	$question_data =  array('store' => $store, 'request' =>$request->all());			
 			event(new  QuestionDetail($question_data));
 			event(new  QuestionChoice($question_data));
 			event(new  QuestionSolution($question_data));
+
+			//Updating MCQ Tableview 
+
+			$args['ques1'] = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
+			->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
+			->leftJoin('mulitple_choices','mulitple_choices.question_id','=','questions.id')
+			->leftJoin('question_types','question_types.id','=','questions.question_type_id')
+			->leftJoin('question_states','question_states.id','=','questions.question_state_id')
+			->leftJoin('question_levels','question_levels.id','=','questions.question_level_id')
+			->leftJoin('question_tags','question_tags.id','=','question_details.tag_id')
+			->where('questions.question_type_id',1)
+			->where('questions.question_sub_types_id',1)
+			->where('questions.user_id',Auth::user()->id)
+			->where('questions.section_id', $request->section_id)
+			->groupBy('questions.id')
+			->get();
+			
+			$quescount = count($args['ques1']);
+			//return $args['ques1'];
+			$li_html = view('recruiter_dashboard.ajax_views.ajax_mcq_table')->with($args)->render();
+
+			return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
+				'quescount' => $quescount]);			
+				// $this->set_session('You Have Successfully Saved The Question Data', true);
+			}else{
+				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
+				//$this->set_session('Something Went Wrong, Please Try Again', false);	
+			}
+			
 			return redirect()->back();	
 		}else{
-			$this->set_session('Please Give The Required Data', false);
-			return redirect()->back();
+			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);		
+
+			// $this->set_session('Please Give The Required Data', false);
+			// return redirect()->back();
 		}
 	}
-	public function create_question_coding(Request $request){		
+	public function create_question_coding(Request $request){
 		if (!empty($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
@@ -59,21 +88,48 @@ class QuestionsController extends Controller
 			$store->question_type_id = $request->question_type_id;
 			$store->question_level_id = $request->question_level_id;
 			$store->question_statement = $request->question_statement;
-			if ($store->save()){				
-				$this->set_session('You Have Successfully Saved The Coding Question Data', true);
+			if ($store->save()){	
+				$question_data =  array('store' => $store, 'request' =>$request->all());			
+				event(new  CodingQuestionDetail($question_data));
+				event(new  QuestionSolution($question_data));
+				event(new  CodingEntries($question_data));
+				event(new  CodingQuestionLanguage($question_data));
+				event(new  CodingTestCases($question_data));			
+				
+			//Updating MCQ Tableview 
+
+				$args['ques2'] = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
+				->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
+				->leftJoin('coding_entries','questions.id','=','coding_entries.question_id')
+				->leftJoin('question_types','question_types.id','=','questions.question_type_id')
+				->leftJoin('question_states','question_states.id','=','questions.question_state_id')
+				->leftJoin('question_levels','question_levels.id','=','questions.question_level_id')
+				->leftJoin('question_tags','question_tags.id','=','question_details.tag_id')
+				->where('questions.question_type_id',2)
+				->where('questions.question_sub_types_id',2)
+				->where('questions.user_id',Auth::user()->id)
+				->where('questions.section_id', $request->section_id)
+				->groupBy('questions.id')
+				->get();
+			
+			$quescount = count($args['ques2']);
+			//return $args['ques1'];
+			$li_html = view('recruiter_dashboard.ajax_views.ajax_first_coding_table')->with($args)->render();
+
+			return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
+				'quescount' => $quescount]);			
+				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
-				$this->set_session('Something Went Wrong, Please Try Again', false);	
+				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
+				//$this->set_session('Something Went Wrong, Please Try Again', false);	
 			}
-			$question_data =  array('store' => $store, 'request' =>$request->all());			
-			event(new  CodingQuestionDetail($question_data));
-			event(new  QuestionSolution($question_data));
-			event(new  CodingEntries($question_data));
-			event(new  CodingQuestionLanguage($question_data));
-			event(new  CodingTestCases($question_data));
+			
 			return redirect()->back();	
 		}else{
-			$this->set_session('Please Give The Required Data', false);
-			return redirect()->back();
+			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);		
+
+			// $this->set_session('Please Give The Required Data', false);
+			// return redirect()->back();
 		}
 	}	
 	public function create_question_coding_debug(Request $request){		

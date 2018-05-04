@@ -83,7 +83,6 @@ $("#update_test_template").on('submit', function(e){
 });
 //Update Test Template
 
-
 //Duplicate Test Template
 $("#create_duplicate_template_post").on('submit', function(e){
   e.preventDefault();
@@ -488,3 +487,67 @@ e.preventDefault();
     return false;
 });
 
+//Create MCQ Questions Modal With Ajax
+$("#AjaxMCQModal").on('submit', function(e){
+  e.preventDefault();
+  var formData = $(this).serialize();
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: formData,                  
+    success: function (data) { 
+      console.log(data);
+      if(data.status == 200){
+        alertify.success(data.msg);
+        //$(this).closest('tbody').html(data.li_html);
+        $("#mcqTable-"+data.section_id).html(data.li_html);
+        $("#count-"+data.section_id).html(data.quescount);
+        $('#section-mcqs-Modal').modal('hide');
+      }else if(data.status == 202){           
+        alertify.warning(data.msg);
+      }else{           
+        alertify.warning(data.array.errorInfo[2]);
+      }       
+    },
+    error: function (data) {
+     alertify.warning("Oops. something went wrong. Please try again");
+   }
+ });
+});
+//Create MCQ Questions Modal With Ajax
+
+
+//Create CODING FIRST Questions Modal With Ajax
+$("#AjaxCodingOneModal").on('submit', function(e){
+  e.preventDefault();
+  var formData = $(this).serialize();
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: formData,                  
+    success: function (data) { 
+      console.log(data);
+      if(data.status == 200){
+        alertify.success(data.msg);
+        //$(this).closest('tbody').html(data.li_html);
+        $("#firstCodingTable-"+data.section_id).html(data.li_html);
+        $("#count2-"+data.section_id).html(data.quescount);
+        $('#section-coding-add-compilable-question-Modal').modal('hide');
+      }else if(data.status == 202){           
+        alertify.warning(data.msg);
+      }else{           
+        alertify.warning(data.array.errorInfo[2]);
+      }       
+    },
+    error: function (data) {
+     alertify.warning("Oops. something went wrong. Please try again");
+   }
+ });
+});
+//Create CODING FIRST Questions Modal With Ajax
