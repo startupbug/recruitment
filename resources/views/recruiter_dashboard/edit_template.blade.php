@@ -179,7 +179,7 @@
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
                      <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$key}}">Multiple Choice (<span id="count-{{$key}}">{{ $sec['count'] }}</span>)</a></li>
-                        
+
                         <li><a data-toggle="pill" href="#sections-coding-{{$key}}">
                         Coding (<span id="count2-{{$key}}">{{ $sec['count2'] }}</span>)</a></li>
 
@@ -2498,8 +2498,8 @@
         <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
-                    <span>Please add the question title </span>
-                    <button type="submit" class="btn s_save_button s_font">Save</button>
+                    <span class="header_span_commint">Please add the question title </span>
+                    <button type="submit" class="btn s_save_button s_font submit_button" disabled>Save</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
                 <h3 class="modal-title s_font">Coding Question234</h3>
@@ -2568,7 +2568,9 @@
                                         </div>
                                                 </strong>
                                             </div>
-                                            <input type="text" name="coding_program_title" class="form-control">
+                                            <div data-tip="Please enter atleast two characters as title">
+                                              <input type="text" name="coding_program_title" class="form-control" required>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -4874,8 +4876,8 @@
         <div class="modal-content">
            <div class="modal-header s_modal_form_header">
               <div class="pull-right">
-                 <span>Please add atleast 3 characters in the question statement </span>
-                 <button type="submit" class="btn s_save_button s_font">Save</button>
+                 <span class="header_span_commint">Please add atleast 3 characters in the question statement </span>
+                 <button type="submit" class="btn s_save_button s_font submit_button">Save</button>
                  <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
               </div>
               <h3 class="modal-title s_font">Multiple Choice Question</h3>
@@ -4909,7 +4911,7 @@
                           <hr>
                           <div class="heading_modal_statement">
                              <strong>Question Statement (<a href="#section-mcqs-Modal-Collapse" data-toggle="modal" onclick="edittesttemplate_Collapse()" >Expand</a>)   <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
-                             <span>Please add atleast 3 characters in the statement</span>
+                             <span class="textarea_span_commint text-danger">Please add atleast 3 characters in the statement </span>
                           </div><br>
                           <textarea class="edit" name="question_statement"></textarea>
                           <br>
@@ -4938,7 +4940,7 @@
                        <div class="modal-body s_modal_body">
                           <div class="heading_modal_statement heading_padding_bottom">
                              <strong>
-                                Choices
+                                Choices <span class="text-danger choice_span_commint"></span>
                                 <div class="s_popup">
                                    <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Under this section, one can add the <br>
                                    Good to Know: <br>
@@ -4970,7 +4972,7 @@
                                             <input type="checkbox" name="answer[]" class="choices_table_checkbox">
                                          </td>
                                          <td class="s_weight" valign="center">
-                                            <textarea class="form-control" name="choice[]" required=""></textarea>
+                                            <textarea class="form-control choice" name="choice[]" required=""></textarea>
                                          </td>
                                          <td valign="center" class="hidden">
                                             <div class="input-group input-group-sm">
@@ -4990,7 +4992,7 @@
                                             <input type="checkbox" name="status"  class="choices_table_checkbox">
                                          </td>
                                          <td class="s_weight" valign="center">
-                                            <textarea class="form-control" name="choice[]" required=""></textarea>
+                                            <textarea class="form-control choice" name="choice[]" required=""></textarea>
                                          </td>
                                          <td valign="center" class="hidden">
                                             <div class="input-group input-group-sm">
@@ -5010,7 +5012,7 @@
                                             <input type="checkbox" name="status" class="choices_table_checkbox">
                                          </td>
                                          <td class="s_weight" valign="center">
-                                            <textarea class="form-control" name="choice[]" required=""></textarea>
+                                            <textarea class="form-control choice" name="choice[]" required=""></textarea>
                                          </td>
                                          <td valign="center" class="hidden">
                                             <div class="input-group input-group-sm">
