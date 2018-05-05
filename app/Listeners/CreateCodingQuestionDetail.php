@@ -38,8 +38,12 @@ class CreateCodingQuestionDetail
         if (isset($event->question_data['request']['weightage_status'])) {
             $section->weightage_status=$event->question_data['request']['weightage_status'];
         }
-        $section->weightage_status=$event->question_data['request']['weightage_status'];        
-        //$section->test_case_verify=$event->question_data['request']['test_case_verify'];
+
+        $section->weightage_status=$event->question_data['request']['weightage_status'];
+        if (isset($event->question_data['request']['test_case_verify'])) {
+            $section->test_case_verify=$event->question_data['request']['test_case_verify'];
+        }
+
         if(isset($event->question_data['request']['test_case_file']))
         {
             $section->test_case_file=$event->question_data['request']['test_case_file'];

@@ -394,7 +394,7 @@
                     <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
-                <h3 class="modal-title s_font">Multiple Choice Question <small> (Question Id : 5968649)</small> </h3>
+                <h3 class="modal-title s_font">Multiple Choice Question567 <small> (Question Id : 5968649)</small> </h3>
             </div>
             <div class="modal-body s_modal_form_body">
                 <div class="row">
@@ -2652,9 +2652,8 @@ function modal_data(id, tpye){
                     $('.coding_question_level').text(data.coding_question_data.level_name);
                     $('.coding_author').text(data.coding_question_data.author);
                     $('.coding_provider').text(data.coding_question_data.provider);
-                    $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_pencil");
-
-
+                    $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_coding");
+                
                var inout_html = "";
                    var i =1;
                     $.each(data.coding_question_entries, function( index, value ) {
@@ -2714,9 +2713,8 @@ $.ajaxSetup({
                     // $('.submission_level').text(data.coding_question_data.level_name);
                     $('.submission_author').val(data.coding_question_data.author);
                     $('.submission_provider').val(data.coding_question_data.provider);
-
-                    $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_pencil");
-
+                    
+                    $(".submission_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=submission_modal1");
 
                var inout_html = "";
                    var i =1;

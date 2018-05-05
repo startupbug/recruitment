@@ -203,6 +203,7 @@
                                     </tr>
                                  </thead>
                                  <tbody id="mcqTable-{{$key}}">
+
                                     @foreach($sec['ques1'] as $serial_number => $q)
 
                                     <!-- q is question type id=1   -->
@@ -235,12 +236,11 @@
                                                          </div>
                                                       </div>
                                                    </div>
+
                                                    <div class="single-line-ellipsis col-md-8 col-sm-12 col-xs-12">
                                                       <span class="text-muted">Tags : </span>
-                                                      <span class="question-tags">
-                                                         @if(isset($q->question_detail->question_tag['tag_name']))
-                                                   {{$q->question_detail->question_tag['tag_name']}}
-                                                @endif</span>
+
+                                                      <span class="question-tags">@if(isset($q->question_detail->question_tag)) {{$q->question_detail->question_tag['tag_name']}} @endif</span>
                                                    </div>
                                                 </div>
                                              </div>
@@ -2491,6 +2491,7 @@
     <div class="modal-dialog  modal-lg">
         <!-- Modal content-->
          <form action="{{route('create_question_coding')}}" id="AjaxCodingOneModal" method="POST" enctype="multipart/form-data">
+
         {{csrf_field()}}
          <input type="hidden" name="section_id" id="section_id_2" value="">
          <input type="hidden" name="question_type_id" value="2">
@@ -4255,7 +4256,7 @@
                          </div>
                          <div class="modal-body s_modal_body">
                             <div class="form-group form-group-sm" >
-                               <label>Marks for this Question  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in files if the question is required to use."> <i class="fa fa-info-circle"> </i></a></label>
+                               <label>Marks for this Question2222  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in files if the question is required to use."> <i class="fa fa-info-circle"> </i></a></label>
                                <input type="number" name="marks" min="1" class="form-control" required="required" style="">
                             </div>
                             <div class="heading_modal_statement heading_padding_bottom">
