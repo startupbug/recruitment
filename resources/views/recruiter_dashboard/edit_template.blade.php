@@ -81,7 +81,6 @@
                               Title
                               <div class="s_popup">
 
-
                                  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
                                  This is a markdown editor <br>
                                  Learning refrence:<br>
@@ -183,7 +182,7 @@
                         <li><a data-toggle="pill" href="#sections-coding-{{$key}}">
                         Coding (<span id="count2-{{$key}}">{{ $sec['count2'] }}</span>)</a></li>
 
-                        <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission ({{ $sec['count3'] }})</a></li>
+                        <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission (<span id="count3-{{$key}}">{{ $sec['count3'] }}</span>)</a></li>
                         <li class="pull-right"></li>
                      </ul>
                      <div class="tab-content">
@@ -376,7 +375,7 @@
                                        <th></th>
                                     </tr>
                                  </thead>
-                                 <tbody>
+                                 <tbody id="SubmissionFirstTable-{{$key}}">
                                     @foreach($sec['ques3'] as $serial_number => $q)
                                     <tr>
                                        <td><input type="checkbox" class="prog_s" value="{{$q->id}}"></td>
@@ -2955,7 +2954,7 @@
 <div class="modal fade" id="section-coding-debug-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
-      <form action="{{route('create_question_coding_debug')}}" method="POST" enctype="multipart/form-data">
+      <form action="{{route('create_question_coding_debug')}}" id="AjaxCodingTwoModal" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
          <input type="hidden" name="section_id" id="section_id_4" value="">
          <input type="hidden" name="question_type_id" value="2">
@@ -2967,7 +2966,7 @@
                   <button type="submit" class="btn s_save_button s_font">Save</button>
                   <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                </div>
-               <h3 class="modal-title s_font">Coding Question123</h3>
+               <h3 class="modal-title s_font">Coding Question</h3>
             </div>
             <div class="modal-body s_modal_form_body">
                <div class="row">
@@ -3851,7 +3850,7 @@
 <div class="modal fade" id="section-submission-question-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
-      <form action="{{route('create_first_submission_question')}}" method="POST" enctype="multipart/form-data">
+      <form action="{{route('create_first_submission_question')}}" id="AjaxSubmissionOneModal" method="POST" enctype="multipart/form-data">
            {{csrf_field()}}
         <input type="hidden" name="section_id" id="section_id_5" value="">
         <input type="hidden" name="question_sub_types_id" value="4">
@@ -4168,7 +4167,7 @@
 <div class="modal fade" id="section-submission-fill-blanks-question-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
-      <form action="{{route('create_second_submission_question')}}" method="POST" enctype="multipart/form-data">
+      <form action="{{route('create_second_submission_question')}}" id="AjaxSubmissionSecondModal" method="POST" enctype="multipart/form-data">
               {{csrf_field()}}
           <input type="hidden" name="section_id" id="section_id_6" value="">
           <input type="hidden" name="question_sub_types_id" value="5">
