@@ -26,6 +26,7 @@ use App\Questions_submission_resource;
 use App\Coding_entry;
 use App\User_question;
 use App\User_format_detail;
+use App\Public_view_page;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 
@@ -203,6 +204,8 @@ public function edit_template($id){
          foreach ($args['template_question_setting'] as $key => $value) {
           $args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
       }
+      //Public_view_page index method query 
+      $args['Public_view_page'] = Public_view_page::get();
 
 			 // return $args['template_question_setting'];
 

@@ -469,13 +469,6 @@ e.preventDefault();
 
             thisScope.closest("tr").hide();
             console.log(msg);
-
-            // if ( msg.status === 'success' ) {
-            //     toastr.success( msg.msg );
-            //     setInterval(function() {
-            //         window.location.reload();
-            //     }, 5900);
-            // }
         },
         error: function( data ) {
             if ( data.status === 422 ) {

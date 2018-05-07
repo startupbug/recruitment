@@ -176,7 +176,19 @@ Route::post('/library-filter', 'Recruiter\LibraryController@libFilter')->name('l
 
 //Library single detail data.
 Route::post('/library-question-detail', 'Recruiter\LibraryController@lib_ques_detail')->name('lib_ques_detail');
+
+Route::post('/create_public_page_view', 'Recruiter\Public_view_pageController@create')->name('Public_view_page');
+Route::post('/edit_public_page_view/{id?}','Recruiter\Public_view_pageController@edit')->name('edit_public_page_view');
+Route::post('/update_public_page_view','Recruiter\Public_view_pageController@update')->name('update_public_page_view');
+
+Route::get('/delete_public_page_view/{id?}','Recruiter\Public_view_pageController@delete')->name('delete_public_page_view');
+
+
+Route::post('/upload_cover_image/{id?}','Recruiter\Public_view_pageController@cover_image')->name('upload_cover_image');
+
 });
+
+
 
 /*Recruiter Routes Ended*/
 

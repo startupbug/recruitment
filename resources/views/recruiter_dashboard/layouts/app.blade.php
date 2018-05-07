@@ -2505,6 +2505,7 @@
 <script src="{{ asset('public/assets/js/s_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/i_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/fa_js.js') }}"></script>
+<script src="{{ asset('public/assets/js/h.js') }}"></script>
 <script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
 <script language="text/javascript">
