@@ -1538,6 +1538,11 @@ function code_edittesttemplate_Collapse() {
 function code_edittesttemplate_Expand() {
   code_testtemp_setInterval_Expand = setInterval(
     function(){
+      // 1. Title
+      var title = $( "#section-coding-add-compilable-question-Modal input[name='coding_program_title']" ).val();
+      // 2. Statement
+      var statement  = $( "#section-coding-add-compilable-question-Modal .fr-element.fr-view" ).text();
+      // 3. Sample Input or Output
       var input_output = 1;
       var count_input_output = 0;
       $('#section_coding_table tbody tr').each(function () {
@@ -1549,9 +1554,22 @@ function code_edittesttemplate_Expand() {
         }
         input_output++;
       });
+      // 4. Test Case
+      var test_case_Count = 0;
+      $('#weightage_code_table tbody tr').each(function (data) {
+           test_case_Count++;
+      });
+      var test_case_result_Count = 0;
+      $('#weightage_code_table tbody tr').each(function (data) {
+        var result = $(this).find('.weightage_save').hasClass( "hidden" ).toString();
+        if (result == "false") {
+          test_case_result_Count++;
+        }
+      });
+      // 5. Marks for this Question
+      var marks = $( "#section-coding-add-compilable-question-Modal input[name='marks']" ).val();
 
-      var title = $( "#section-coding-add-compilable-question-Modal input[name='coding_program_title']" ).val();
-      var statement  = $( "#section-coding-add-compilable-question-Modal .fr-element.fr-view" ).text();
+
       if (title.length <= 1 ) {
         $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please add the question title");
         $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
@@ -1559,13 +1577,29 @@ function code_edittesttemplate_Expand() {
       else if(statement.length <= 0){
         $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please add the question statement");
         $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
-      }else if(count_input_output > 0){
+      }
+      else if(count_input_output > 0){
         var count = parseInt(input_output)-1;
         $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please check Sample "+count+" for emptiness");
         $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
-      }else {
-        $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please add test cases");
-        $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        if (test_case_Count > 0) {
+          if (test_case_result_Count > 0) {
+            $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Some test cases are not saved. Please upload the testCases");
+            $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+          }else {
+            $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please enter the marks");
+            $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+            if (marks != "") {
+              $("#section-coding-add-compilable-question-Modal .header_span_commint").text("");
+              $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", false);
+            }
+          }
+        }else {
+          $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please add test cases");
+          $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+        }
       }
 
       var htmlString = $( "#section-coding-add-compilable-question-Modal .fr-element.fr-view" ).html();
@@ -1616,6 +1650,52 @@ function code_debug_Collapse() {
 function code_debug_Expand() {
   code_debug_setInterval_Expand = setInterval(
     function(){
+      // 1. Title
+      var title = $( "#section-coding-debug-Modal input[name='coding_program_title']" ).val();
+      // 2. Statement
+      var statement  = $( "#section-coding-debug-Modal .fr-element.fr-view" ).text();
+      // 3. Test Case
+      var test_case_Count = 0;
+      $('#weightage_edit_code_table tbody tr').each(function (data) {
+           test_case_Count++;
+      });
+      var test_case_result_Count = 0;
+      $('#weightage_edit_code_table tbody tr').each(function (data) {
+        var result = $(this).find('.weightage_save').hasClass( "hidden" ).toString();
+        if (result == "false") {
+          test_case_result_Count++;
+        }
+      });
+      // 4. Marks for this Question
+      var marks = $( "#section-coding-debug-Modal input[name='marks']" ).val();
+
+      if (title.length <= 1 ) {
+        $("#section-coding-debug-Modal .header_span_commint").text("Please add the question title");
+        $("#section-coding-debug-Modal .submit_button").attr("disabled", true);
+      }
+      else if(statement.length <= 0){
+        $("#section-coding-debug-Modal .header_span_commint").text("Please add the question statement");
+        $("#section-coding-debug-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        if (test_case_Count > 0) {
+          if (test_case_result_Count > 0) {
+            $("#section-coding-debug-Modal .header_span_commint").text("Some test cases are not saved. Please upload the testCases");
+            $("#section-coding-debug-Modal .submit_button").attr("disabled", true);
+          }else {
+            $("#section-coding-debug-Modal .header_span_commint").text("Please enter the marks");
+            $("#section-coding-debug-Modal .submit_button").attr("disabled", true);
+            if (marks != "") {
+              $("#section-coding-debug-Modal .header_span_commint").text("");
+              $("#section-coding-debug-Modal .submit_button").attr("disabled", false);
+            }
+          }
+        }else {
+          $("#section-coding-debug-Modal .header_span_commint").text("Please add test cases");
+          $("#section-coding-debug-Modal .submit_button").attr("disabled", true);
+        }
+      }
+
       var htmlString = $( "#section-coding-debug-Modal .fr-element.fr-view" ).html();
       $("#code_preview_data_debug").html(htmlString);
       $("#section-coding-debug-Modal-Collapse .fr-element.fr-view").html(htmlString);
@@ -1644,6 +1724,30 @@ function submission_edittesttemplate_Expand() {
   clearInterval(submission_testtemp_setInterval_Collapse);
   submission_testtemp_setInterval_Expand = setInterval(
     function(){
+      // 1. Question Statement
+      var text = $( "#section-submission-question-Modal .fr-element.fr-view" ).text();
+      // 2. Candidate can use
+      var checkbox_Count = 0;
+      $("#section-submission-question-Modal input[name='help_material_name[]']").each( function () {
+    		if ($(this).is(":checked")) {
+          checkbox_Count++;
+        }
+    	});
+
+      if (text.length <= 2 ) {
+        $("#section-submission-question-Modal .header_span_commint").text("Please add atleast 3 characters in the question statement ");
+        $("#section-submission-question-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        $("#section-submission-question-Modal .header_span_commint").text("Please select atleast one resource allowed by candidate to upload");
+        $("#section-submission-question-Modal .submit_button").attr("disabled", true);
+
+        if(checkbox_Count > 0){
+          $("#section-submission-question-Modal .header_span_commint").text("");
+          $("#section-submission-question-Modal .submit_button").attr("disabled", false);
+        }
+      }
+
       var htmlString = $( "#section-submission-question-Modal .fr-element.fr-view" ).html();
 
       if (htmlString == "<p><br></p>") {
@@ -1693,6 +1797,17 @@ function submission_fill_edittesttemplate_Expand() {
   clearInterval(submission_fill_testtemp_setInterval_Collapse);
   submission_fill_testtemp_setInterval_Expand = setInterval(
     function(){
+      // 1. Question Statement
+      var text = $( "#section-submission-fill-blanks-question-Modal .fr-element.fr-view" ).text();
+      if (text.length <= 2 ) {
+        $("#section-submission-fill-blanks-question-Modal .header_span_commint").text("Please add atleast 3 characters in the question statement ");
+        $("#section-submission-fill-blanks-question-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        $("#section-submission-fill-blanks-question-Modal .header_span_commint").text("");
+        $("#section-submission-fill-blanks-question-Modal .submit_button").attr("disabled", false);
+      }
+
       var htmlString = $( "#section-submission-fill-blanks-question-Modal .fr-element.fr-view" ).html();
 
       if (htmlString == "<p><br></p>") {
@@ -1970,4 +2085,116 @@ function publicpageview_start() {
 }
 function publicpageview_stop() {
   clearInterval(publicpageview_setInterval);
+}
+
+var pencilmodel_setInterval_Expand;
+var pencilmodel_setInterval_Collapse;
+function pencil_model_Collapse() {
+  clearInterval(pencilmodel_setInterval_Expand);
+  pencilmodel_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#modal-pencil-Collapse .fr-element.fr-view" ).html();
+      $("#code_preview_data_section").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#modal_pencil .fr-element.fr-view").html(htmlString);
+        $("#code_edittemp_panel").addClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        // console.log(htmlString);
+        $("#modal_pencil .fr-element.fr-view").html(htmlString);
+        $("#code_edittemp_panel").removeClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function code_edittesttemplate_Expand() {
+  pencilmodel_setInterval_Expand = setInterval(
+    function(){
+      // 1. Title
+      var title = $( "#modal_pencil input[name='coding_program_title']" ).val();
+      // 2. Statement
+      var statement  = $( "#modal_pencil .fr-element.fr-view" ).text();
+      // 3. Sample Input or Output
+      var input_output = 1;
+      var count_input_output = 0;
+      $('#section_coding_table tbody tr').each(function () {
+        var input = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(2) textarea').val();
+        var output = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(3) textarea').val();
+
+        if (input == "" || output == "") {
+          count_input_output++;
+        }
+        input_output++;
+      });
+      // 4. Test Case
+      var test_case_Count = 0;
+      $('#weightage_code_table tbody tr').each(function (data) {
+           test_case_Count++;
+      });
+      var test_case_result_Count = 0;
+      $('#weightage_code_table tbody tr').each(function (data) {
+        var result = $(this).find('.weightage_save').hasClass( "hidden" ).toString();
+        if (result == "false") {
+          test_case_result_Count++;
+        }
+      });
+      // 5. Marks for this Question
+      var marks = $( "#modal_pencil input[name='marks']" ).val();
+
+
+      if (title.length <= 1 ) {
+        $("#modal_pencil .header_span_commint").text("Please add the question title");
+        $("#modal_pencil .submit_button").attr("disabled", true);
+      }
+      else if(statement.length <= 0){
+        $("#modal_pencil .header_span_commint").text("Please add the question statement");
+        $("#modal_pencil .submit_button").attr("disabled", true);
+      }
+      else if(count_input_output > 0){
+        var count = parseInt(input_output)-1;
+        $("#modal_pencil .header_span_commint").text("Please check Sample "+count+" for emptiness");
+        $("#modal_pencil .submit_button").attr("disabled", true);
+      }
+      else {
+        if (test_case_Count > 0) {
+          if (test_case_result_Count > 0) {
+            $("#modal_pencil .header_span_commint").text("Some test cases are not saved. Please upload the testCases");
+            $("#modal_pencil .submit_button").attr("disabled", true);
+          }else {
+            $("#modal_pencil .header_span_commint").text("Please enter the marks");
+            $("#modal_pencil .submit_button").attr("disabled", true);
+            if (marks != "") {
+              $("#modal_pencil .header_span_commint").text("");
+              $("#modal_pencil .submit_button").attr("disabled", false);
+            }
+          }
+        }else {
+          $("#modal_pencil .header_span_commint").text("Please add test cases");
+          $("#modal_pencil .submit_button").attr("disabled", true);
+        }
+      }
+
+      var htmlString = $( "#modal_pencil .fr-element.fr-view" ).html();
+      $("#code_preview_data_section").html(htmlString);
+      $("#modal-pencil-Collapse .fr-element.fr-view").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#code_edittemp_panel").addClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#code_edittemp_panel").removeClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function code_collapse_modal() {
+  $("#modal-pencil-Collapse").modal('hide');
+  $("#modal_pencil").css('overflow','scroll');
+  clearInterval(pencilmodel_setInterval_Collapse);
+  code_edittesttemplate_Expand();
 }

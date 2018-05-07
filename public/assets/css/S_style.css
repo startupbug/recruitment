@@ -501,3 +501,25 @@ button#newquestion {
 [data-tip]:hover:after {
 	display:block;
 }
+.gray_upload_btn {
+    background-color: #cecbcb;
+    border: 1px solid #cecbcb;
+    color: #131313;
+    font-size: 13px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 7px;
+    height: 32px;
+    margin-bottom: 14px;
+}
+ul.add_resources_submission_ul {
+    padding: 0;
+}
+ul.add_resources_submission_ul li {
+    padding: 3px 0px;
+}
+ul.add_resources_submission_ul .s_close {
+    cursor: pointer;
+    color: #880b0b;
+    font-size: 16px;
+}

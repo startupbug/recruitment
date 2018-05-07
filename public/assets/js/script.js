@@ -9,25 +9,25 @@ $(document).ready(function(){
 
 });
 function confirmAlert(ques, action, id){
-	alertify.confirm(ques, function(){ 
-   
+	alertify.confirm(ques, function(){
+
     //alertify.success('Deleting..````````````')
 
   $.ajaxSetup({
     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
   });
-  
+
   console.log("action" + action);
 
   $.ajax({
     type: 'post',
     url: action,
-    data: {'id': id},                  
-    success: function (data) { 
+    data: {'id': id},
+    success: function (data) {
       console.log(data);
        if(data.status == 200){
           alertify.success(data.msg);
-       
+
          setTimeout(function(){
            window.location.reload();
          }, 2000);
@@ -41,7 +41,7 @@ function confirmAlert(ques, action, id){
     }
   });
 
- }, function(){ 
+ }, function(){
 
     alertify.error('Cancel')
 
@@ -49,8 +49,8 @@ function confirmAlert(ques, action, id){
 }
 
 function confirmAlert_test(){
-	alertify.confirm('Hello !! This is preview', function(){ 
-   //alertify.success('Ok') 
+	alertify.confirm('Hello !! This is preview', function(){
+   //alertify.success('Ok')
  }, );
 }
 
@@ -65,16 +65,16 @@ $("#update_test_template").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.array == 1){
-        alertify.success('Your Data Has Been Successfully Updated');            
-      }else if(data.array == 0){           
+        alertify.success('Your Data Has Been Successfully Updated');
+      }else if(data.array == 0){
         alertify.warning('Something Went Wrong, Please Try Again!');
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
       alertify.warning("Oops. something went wrong. Please try again");
@@ -93,37 +93,37 @@ $("#create_duplicate_template_post").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData, 
+    data: formData,
     beforeSend: function(){
       $('#loader_image').show();
-    },                
-    success: function (data) { 
+    },
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
         alertify.success(data.msg);
         $('#createtemplate').modal('hide');
          setTimeout(function(){
            window.location.reload();
-         }, 1000);  
-            // $('#close_modal_template').trigger('click');          
-          }else if(data.status == 202){           
+         }, 1000);
+            // $('#close_modal_template').trigger('click');
+          }else if(data.status == 202){
             alertify.warning(data.msg);
-          }else{           
+          }else{
             alertify.warning(data.array.errorInfo[2]);
-          }       
+          }
         },
         error: function (data) {
          alertify.warning("Oops. something went wrong. Please try again");
        },
       complete: function(){
         $('#loader_image').hide();
-    }, 
+    },
      });
 });
 
 
 //Adding Section
-$("#add_section").on('submit', function(e){  
+$("#add_section").on('submit', function(e){
   e.preventDefault();
   var formData = $(this).serialize();
   $.ajaxSetup({
@@ -132,19 +132,19 @@ $("#add_section").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
-        alertify.success(data.msg);                
+        alertify.success(data.msg);
         setTimeout(function(){
          window.location.reload(1);
        }, 1000);
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
      alertify.warning("Oops. something went wrong. Please try again");
@@ -154,7 +154,7 @@ $("#add_section").on('submit', function(e){
 //Adding Section
 
 //Deleting Question
-$("#delete_question").on('click', function(e){  
+$("#delete_question").on('click', function(e){
   e.preventDefault();
   var formData = $(this).serialize();
   $.ajaxSetup({
@@ -163,19 +163,19 @@ $("#delete_question").on('click', function(e){
   $.ajax({
     type: 'get',
     url: $(this).attr('href'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
-        alertify.success(data.msg);                
+        alertify.success(data.msg);
         setTimeout(function(){
          window.location.reload(1);
        }, 1000);
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
      alertify.warning("Oops. something went wrong. Please try again");
@@ -196,19 +196,19 @@ $("#templatetestSetting").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
-        alertify.success(data.msg);                
+        alertify.success(data.msg);
         setTimeout(function(){
          window.location.reload(1);
        }, 1000);
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
       alertify.warning("Oops. something went wrong. Please try again");
@@ -228,19 +228,19 @@ $("#templatetestContactSetting").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
-        alertify.success(data.msg);                
+        alertify.success(data.msg);
         setTimeout(function(){
          window.location.reload(1);
        }, 1000);
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
       alertify.warning("Oops. something went wrong. Please try again");
@@ -258,19 +258,19 @@ $("#templatetestMessageSetting").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
-        alertify.success(data.msg);                
+        alertify.success(data.msg);
         setTimeout(function(){
          window.location.reload(1);
        }, 1000);
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
       alertify.warning("Oops. something went wrong. Please try again");
@@ -288,19 +288,19 @@ $("#templatetestMailSetting").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
-        alertify.success(data.msg);                
+        alertify.success(data.msg);
         setTimeout(function(){
          window.location.reload(1);
        }, 1000);
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
       alertify.warning("Oops. something went wrong. Please try again");
@@ -531,8 +531,8 @@ $("#AjaxMCQModal").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
         alertify.success(data.msg);
@@ -540,11 +540,11 @@ $("#AjaxMCQModal").on('submit', function(e){
         $("#mcqTable-"+data.section_id).html(data.li_html);
         $("#count-"+data.section_id).html(data.quescount);
         $('#section-mcqs-Modal').modal('hide');
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
      alertify.warning("Oops. something went wrong. Please try again");
@@ -564,8 +564,8 @@ $("#AjaxCodingOneModal").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
         alertify.success(data.msg);
@@ -573,11 +573,11 @@ $("#AjaxCodingOneModal").on('submit', function(e){
         $("#firstCodingTable-"+data.section_id).html(data.li_html);
         $("#count2-"+data.section_id).html(data.quescount);
         $('#section-coding-add-compilable-question-Modal').modal('hide');
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
      alertify.warning("Oops. something went wrong. Please try again");
@@ -585,4 +585,3 @@ $("#AjaxCodingOneModal").on('submit', function(e){
  });
 });
 //Create CODING FIRST Questions Modal With Ajax
->>>>>>> e23a7b1987d58c1604fd08053b9cfc8e2a25e85d

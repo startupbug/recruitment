@@ -2920,7 +2920,6 @@
           <div class="row">
             <div class="col-md-12">
               <strong>Question Statement (<span class="collapse_pointer" onclick="code_collapse_modal()" >Collapse</span>)</strong>
-              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
           <div class="row">
@@ -2958,9 +2957,9 @@
          <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                <div class="pull-right">
-                  <span>Please add the question title </span>
-                  <button type="submit" class="btn s_save_button s_font">Save</button>
-                  <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+                 <span class="header_span_commint">Please add the question title </span>
+                 <button type="submit" class="btn s_save_button s_font submit_button" disabled>Save</button>
+                 <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                </div>
                <h3 class="modal-title s_font">Coding Question123</h3>
             </div>
@@ -2997,7 +2996,9 @@
                                     <div class="heading_modal_statement heading_padding_bottom">
                                        <strong>Program Title  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the organization name that serves as the provider of the question. "> <i class="fa fa-info-circle"> </i></a></strong>
                                     </div>
-                                    <input type="text" name="coding_program_title" class="form-control">
+                                    <div data-tip="Please enter atleast two characters as title">
+                                      <input type="text" name="coding_program_title" class="form-control" required>
+                                    </div>
                                  </div>
                               </div>
                            </div>
@@ -3239,7 +3240,6 @@
           <div class="row">
             <div class="col-md-12">
               <strong>Question Statement (<span class="collapse_pointer" onclick="code_debug_collapse_modal()" >Collapse</span>)</strong>
-              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
           <div class="row">
@@ -3854,9 +3854,9 @@
          <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                <div class="pull-right">
-                  <span>Please add atleast 3 characters in the question statement </span>
-                  <button type="submit" class="btn s_save_button s_font" >Save</button>
-                  <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+                 <span class="header_span_commint">Please add atleast 3 characters in the question statement </span>
+                 <button type="submit" class="btn s_save_button s_font submit_button">Save</button>
+                 <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                </div>
                <h3 class="modal-title s_font">Submission Question</h3>
             </div>
@@ -3874,15 +3874,15 @@
                            </div>
                               <div>
                                    <label class="container_radio border_radio_left">STAGE
-                                   <input type="radio" checked="checked" name="question_state_id" value="1">
+                                   <input type="radio" name="question_state_id" value="1" disabled>
                                    <span class="checkmark"></span>
                                    </label>
                                    <label class="container_radio">READY
-                                   <input type="radio" name="question_state_id" value="2">
+                                   <input type="radio" checked="checked" name="question_state_id" value="2">
                                    <span class="checkmark"></span>
                                    </label>
                                    <label class="container_radio border_radio_right">ABANDONED
-                                   <input type="radio" name="question_state_id" value="3">
+                                   <input type="radio" name="question_state_id" value="3" disabled>
                                    <span class="checkmark"></span>
                                    </label>
                                </div>
@@ -3921,25 +3921,39 @@
                         </div>
                          <div class="modal-body s_modal_body">
                            <div class="heading_modal_statement heading_padding_bottom">
-                              <div class="f_upload_btn">
-                                 Upload Media
-                                 <input type="file" name="media">
-                             </div>
-                              <br>
-                             <!--  <strong>
-                              Resources
-                              <i class="fa fa-info-circle"></i>
-                              </strong>
-                              <label class="control-label">
-                              (These resources will be available for the candidate to download during the test)
+
+                              <label for="">Media(Audio/Video)</label>
+                              <div class="upload">
+                                <div class="f_upload_btn gray_upload_btn">
+                                  Upload Media
+                                  <input type="file" name="media">
+                                </div>
+                              </div>
+
+                              <label>
+                                Resources
+                                <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="" data-original-title="htmlTooltip.modalSubmissionResources"> <i class="fa fa-info-circle"> </i></a>
                               </label>
-                              <div class="s_pur_body">
-                                 <button type="button" class="btn"> + Add resources</button>
-                              </div> -->
+                              <label class="control-label">
+                                (These resources will be available for the candidate to download during the test)
+                              </label>
+                              <ul class="add_resources_submission_ul">
+                                <li>
+                                  <div class="s_upload_name hidden">
+                                    <span></span> <i class="fa fa-times-circle-o s_close"></i>
+                                  </div>
+
+                                  <div class="f_upload_btn">
+                                    + Add resources
+                                    <input type="file" name="resources[]">
+                                  </div>
+                                </li>
+                              </ul>
+
                               <hr>
                               <strong>
-                              Candidate can use
-                              <i class="fa fa-info-circle"></i>
+                                Candidate can use
+                                <i class="fa fa-info-circle"></i>
                               </strong>
                               <div class="checkbox">
                                  <label><input type="checkbox" name="help_material_name[]" value="1"> Images</label>
@@ -3956,14 +3970,14 @@
                               <div class="checkbox">
                                  <label><input type="checkbox" name="help_material_name[]" value="5"> Code</label>
                               </div>
-                              <div class="checkbox">
+                              <div class="checkbox" style="display: inline-flex;">
                                  <label><input type="checkbox" name="help_material_name[]" value="6"> Audio</label>
+                                 <span class="input-group input-group-sm" style="margin-left:  13px;">
+                                   <span class="input-group-addon s_addon ">Limit</span>
+                                   <input type="number" name="submission_limit" disabled class="form-control" id="submission_limit" value="30" style="height:30px; width:70px;">
+                                   <span class="input-group-addon s_addon">seconds</span>
+                                 </span>
                               </div>
-                              <span class="input-group input-group-sm">
-                              <span class="input-group-addon s_addon ">Limit</span>
-                              <input type="number" name="submission_limit" class="form-control" min="1" style="height:30px; width:70px;">
-                              <span class="input-group-addon s_addon">seconds</span>
-                              </span>
                            </div>
                         </div>
                         <br>
@@ -4137,7 +4151,6 @@
           <div class="row">
             <div class="col-md-12">
               <strong>Question Statement (<span class="collapse_pointer" onclick="submission_collapse_modal()" >Collapse</span>)</strong>
-              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
           <div class="row">
@@ -4171,9 +4184,9 @@
           <div class="modal-content">
              <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
-                   <span>Please add atleast 3 characters in the question statement </span>
-                   <button type="submit" class="btn s_save_button s_font">Save</button>
-                   <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+                  <span class="header_span_commint">Please add atleast 3 characters in the question statement </span>
+                  <button type="submit" class="btn s_save_button s_font submit_button">Save</button>
+                  <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
                 <h3 class="modal-title s_font">Submission Question</h3>
              </div>
@@ -4256,7 +4269,7 @@
                          </div>
                          <div class="modal-body s_modal_body">
                             <div class="form-group form-group-sm" >
-                               <label>Marks for this Question2222  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in files if the question is required to use."> <i class="fa fa-info-circle"> </i></a></label>
+                               <label>Marks for this Question  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in files if the question is required to use."> <i class="fa fa-info-circle"> </i></a></label>
                                <input type="number" name="marks" min="1" class="form-control" required="required" style="">
                             </div>
                             <div class="heading_modal_statement heading_padding_bottom">
