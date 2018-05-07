@@ -584,5 +584,4 @@ $("#AjaxCodingOneModal").on('submit', function(e){
    }
  });
 });
-//Create CODING FIRST Questions Modal With Ajax
->>>>>>> e23a7b1987d58c1604fd08053b9cfc8e2a25e85d
+
