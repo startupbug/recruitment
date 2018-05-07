@@ -14,7 +14,11 @@ use App\Question_solution;
 use App\User;
 use App\Question_level;
 use App\Question_tag;
-
+use App\Coding_entry;
+use App\Test_case;
+use App\Coding_question_language;
+use App\Questions_submission_resource;
+use App\Allowed_language;
 
 class RecruiterController extends Controller
 {
@@ -66,6 +70,7 @@ class RecruiterController extends Controller
 
     public function library_public_questions(Request $request, $id=NULL)
     {
+
         // return $request->input('modal');
       if($request->input('modal') == "modal_pencil")
       {
@@ -85,9 +90,42 @@ class RecruiterController extends Controller
       {
         $args['coding_data'] = Question::join('question_details','questions.id','=','question_details.question_id')
         ->join('question_states','questions.question_state_id','=','question_states.id')
-        ->select('questions.id as  question_id','questions.section_id','questions.question_state_id','questions.question_type_id','questions.question_level_id','questions.question_statement','question_details.tag_id','question_details.media','question_details.test_case_file','question_details.test_case_verify','question_details.weightage_status','question_details.coding_program_title','question_details.marks','question_details.negative_marks','question_details.provider','question_details.author','question_states.state_name')
-        ->where('question_id','=',$id)
+        ->join('question_solutions','questions.id','=','question_solutions.question_id')
+        ->select('questions.id as  question_id','questions.section_id','questions.question_state_id','questions.question_type_id', 'questions.question_sub_types_id' ,'questions.question_level_id','questions.question_statement','question_details.tag_id','question_details.media','question_details.test_case_file','question_details.test_case_verify','question_details.weightage_status','question_details.coding_program_title','question_details.marks','question_details.negative_marks','question_details.provider','question_details.author','question_states.state_name','question_solutions.text','question_solutions.code','question_solutions.url','question_details.coding_program_title')
+        ->where('questions.id','=',$id)
         ->first();
+        $args['coding_entries'] = Coding_entry::where('question_id','=',$id)->get();
+        $args['test_cases'] = Test_case::where('question_id','=',$id)->get();
+        $args['allowed_languages'] = Allowed_language::get(); 
+        $args['coding_question_languages'] = Coding_question_language::where('question_id','=',$id)->get();
+        $temp_array = array();
+        foreach ($args['coding_question_languages'] as $args['question_language']) {
+          $temp_array[] = $args['question_language']->allowed_languages_id;
+        }
+        $args['coding_question_languages'] = $temp_array;
+        $args['tags'] = Question_tag::all();
+      }
+
+      if($request->input('modal') == "submission_modal1")
+      {
+        // dd($id);
+        // $args['q'] = Question::join('question_details','questions.id','=','question_details.question_id')
+        // ->where('questions.id','=',$id)->first();
+        $args['submission_data'] = Question::join('question_details','questions.id','=','question_details.question_id')
+        ->join('question_states','questions.question_state_id','=','question_states.id')
+        ->join('question_solutions','questions.id','=','question_solutions.question_id')
+        ->join('question_submission_evaluations','questions.id','=','question_submission_evaluations.question_id')
+        ->select('questions.id as  question_id','questions.section_id','questions.question_state_id','questions.question_type_id', 'questions.question_sub_types_id' ,'questions.question_level_id','questions.question_statement','question_details.tag_id','question_details.media','question_details.test_case_file','question_details.test_case_verify','question_details.weightage_status','question_details.coding_program_title','question_details.marks','question_details.negative_marks','question_details.provider','question_details.author','question_states.state_name','question_solutions.text','question_solutions.code','question_solutions.url','question_submission_evaluations.submission_evaluation_title','question_submission_evaluations.weightage')
+        ->where('questions.id','=',$id)
+        ->first();
+        $args['questions_submission_resources'] = Questions_submission_resource::where('question_id','=',$id)->get();
+        $temp_array = array();
+        foreach ($args['questions_submission_resources'] as $args['submission_resources']) {
+          $temp_array[] = $args['submission_resources']->candidate_help_material_tests_id;
+        }
+        $args['questions_submission_resources'] = $temp_array;
+        $args['tags'] = Question_tag::all();
+          
         
       }
         return view('recruiter_dashboard.library_public_questions')->with($args);

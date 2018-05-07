@@ -578,7 +578,7 @@
                <button type="submit" class="btn s_save_button s_font" >Save</button>
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
-            <h3 class="modal-title s_font">Multiple Choice Question</h3>
+            <h3 class="modal-title s_font">Multiple Choice Question444</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div class="row">
@@ -607,15 +607,15 @@
                         <div>
                         
                            <label class="container_radio border_radio_left">STAGE
-                           <input type="radio" @if($get_data->question_state_id == 1)  checked="checked" value="1" @endif name="question_state_id" >
+                           <input type="radio" name="question_state_id" value="1" @if($get_data->question_state_id == 1)  checked="checked" value="1" @endif name="question_state_id" >
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio">READY
-                           <input type="radio" name="question_state_id" @if($get_data->question_state_id == 2)  checked="checked" value="2" @endif >
+                           <input type="radio" name="question_state_id" value="2" @if($get_data->question_state_id == 2)  checked="checked" value="2" @endif >
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio border_radio_right">ABANDONED
-                           <input type="radio" name="question_state_id" @if($get_data->question_state_id == 3)  checked="checked" value="3" @endif >
+                           <input type="radio" name="question_state_id" value="3" @if($get_data->question_state_id == 3)  checked="checked" value="3" @endif >
                            <span class="checkmark"></span>
                            </label>
                        
@@ -938,17 +938,20 @@
    </div>
 </div>
 <div class="modal fade" id="submission_modal1" role="dialog">
-
+@if(isset($submission_data))
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
+      <form action="{{route('submission_update_questions_modal',['id'=>$submission_data->question_id])}}" method="post" enctype="multipart/form-data">
+      	{{csrf_field()}}
+
       <div class="modal-content">
          <div class="modal-header s_modal_form_header">
             <div class="pull-right">
                <span>Please add atleast 3 characters in the question statement </span>
-               <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
+               <button type="submit" class="btn s_save_button s_font" >Save</button>
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
-            <h3 class="modal-title s_font">Submission Question</h3>
+            <h3 class="modal-title s_font">Submission Question454</h3>
          </div>
          <div class="modal-body s_modal_form_body">
             <div class="row">
@@ -963,26 +966,26 @@
                            <strong>Question State <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                         </div>
                         <div>
-                           <label class="container_radio border_radio_left">STAGE
-                           <input type="radio" checked="checked" name="radio" disabled>
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio">READY
-                           <input type="radio" name="radio">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio border_radio_right">ABANDONED
-                           <input type="radio" name="radio" disabled>
-                           <span class="checkmark"></span>
-                           </label>
+							<label class="container_radio border_radio_left">STAGE
+							<input type="radio" name="question_state_id" value="1" @if(isset($submission_data))@if($submission_data->question_state_id == 1) checked="checked"  @endif @endif>
+							<span class="checkmark"></span>
+							</label>
+							<label class="container_radio">READY
+							<input type="radio" checked="checked" name="question_state_id" value="2" @if(isset($submission_data))@if($submission_data->question_state_id == 2) checked="checked"  @endif @endif>
+							<span class="checkmark"></span>
+							</label>
+							<label class="container_radio border_radio_right">ABANDONED
+							<input type="radio" name="question_state_id" value="3"  @if(isset($submission_data))@if($submission_data->question_state_id == 3) checked="checked" @endif @endif>
+							<span class="checkmark"></span>
+							</label>                           
                         </div>
                         <hr>
                         <hr>
                         <div class="heading_modal_statement">
                            <strong>Question Statement (<a href="#">Expand</a>) <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                         </div>
-                        <textarea class="edit"></textarea>
-                        <div class="checkbox">
+                        <textarea class="edit" name="question_statement">@if(isset($submission_data)){{$submission_data->question_statement}} @endif</textarea>
+                      <!--   <div class="checkbox">
                            <label>
                            <input type="checkbox"> Enable code modification and show difference
                            </label>
@@ -990,7 +993,7 @@
                            <label class="control-label" style="color: #999;">
                            (The candidate will be asked to modify the code and the differences will be shown in the report)
                            </label>
-                        </div>
+                        </div> -->
                      </div>
                   </div>
                   <br>
@@ -1006,52 +1009,53 @@
                               <!--<button type="button" class="btn">Upload Media</button>-->
                               <div class="f_upload_btn">
                                  Upload Media
-                                 <input type="file" name="">
+                                 <input type="file" name="media">
                               </div>
                            </div>
                            <br>
-                           <strong>
+                           <!-- <strong>
                            Resources
                            <i class="fa fa-info-circle"></i>
                            </strong>
                            <label class="control-label">
                            (These resources will be available for the candidate to download during the test)
-                           </label>
-                           <div class="s_pur_body">
-                              <!--<button type="button" class="btn"> + Add resources</button>-->
+                           </label> -->
+                          <!--  <div class="s_pur_body">                              
                               <div class="f_upload_btn">
                                  + Add resources
                                  <input type="file" name="">
                               </div>
-                           </div>
+                           </div> -->
                            <hr>
+                           @if($submission_data->question_sub_types_id == 4)
                            <strong>
                            Candidate can use
                            <i class="fa fa-info-circle"></i>
                            </strong>
                            <div class="checkbox">
-                              <label><input type="checkbox"> Images</label>
+                              <label><input type="checkbox" name="help_material_name[]"  value="1" @if(isset($questions_submission_resources)) @if(in_array(1 , $questions_submission_resources))  checked="checked" @endif @endif > Images</label>
                            </div>
                            <div class="checkbox">
-                              <label><input type="checkbox"> URLs</label>
+                              <label><input type="checkbox" value="2" name="help_material_name[]"  @if(isset($questions_submission_resources)) @if(in_array(2 , $questions_submission_resources))    checked="checked" @endif @endif > URLs</label>
                            </div>
                            <div class="checkbox">
-                              <label><input type="checkbox"> Files</label>
+                              <label><input type="checkbox" value="3" name="help_material_name[]"  @if(isset($questions_submission_resources)) @if(in_array(3 , $questions_submission_resources))    checked="checked" @endif @endif > Files</label>
                            </div>
                            <div class="checkbox">
-                              <label><input type="checkbox"> Text</label>
+                              <label><input type="checkbox" value="4" name="help_material_name[]"  @if(isset($questions_submission_resources)) @if(in_array(4 , $questions_submission_resources))  checked="checked" @endif @endif > Text</label>
                            </div>
                            <div class="checkbox">
-                              <label><input type="checkbox"> Code</label>
+                              <label><input type="checkbox" value="5" name="help_material_name[]" @if(isset($questions_submission_resources)) @if(in_array(5 , $questions_submission_resources))   checked="checked" @endif @endif > Code</label>
                            </div>
                            <div class="checkbox">
-                              <label><input type="checkbox"> Audio</label>
+                              <label><input type="checkbox" value="6" name="help_material_name[]" @if(isset($questions_submission_resources)) @if(in_array(6 , $questions_submission_resources))   checked="checked" @endif @endif > Audio</label>
                            </div>
                            <span class="input-group input-group-sm">
-                           <span class="input-group-addon s_addon ">Limit</span>
+                           <span class="input-group-addon s_addon">Limit</span>
                            <input type="number" class="form-control" min="1" style="height:30px; width:70px;">
                            <span class="input-group-addon s_addon">seconds</span>
                            </span>
+                           @endif
                         </div>
                      </div>
                   </div>
@@ -1064,22 +1068,22 @@
                      <div class="modal-body s_modal_body">
                         <div class="form-group form-group-sm" >
                            <label>Marks for this Question <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></label>
-                           <input type="number" name="marks" min="1" class="form-control" required="required" style="">
+                           <input type="number" name="marks" min="1" class="form-control" @if(isset($submission_data)) value="{{$submission_data->marks}}" @endif required="required" style="">
                         </div>
                         <div class="heading_modal_statement heading_padding_bottom">
                            <strong>Question Level <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                         </div>
                         <div class="heading_padding_bottom">
                            <label class="container_radio border_radio_left">Easy
-                           <input type="radio" checked="checked" name="radio">
+                           <input type="radio" value="1" name="question_level_id" @if(isset($submission_data))@if($submission_data->question_level_id == 1) checked="checked"  @endif @endif>
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio">Medium
-                           <input type="radio" name="radio">
+                           <input type="radio" value="2" name="question_level_id"  @if(isset($submission_data))@if($submission_data->question_level_id == 2) checked="checked"  @endif @endif>
                            <span class="checkmark"></span>
                            </label>
                            <label class="container_radio border_radio_right">Hard
-                           <input type="radio" name="radio">
+                           <input type="radio" value="3" name="question_level_id" @if(isset($submission_data))@if($submission_data->question_level_id == 3) checked="checked" @endif @endif>
                            <span class="checkmark"></span>
                            </label>
                         </div>
@@ -1089,16 +1093,12 @@
                         <div class="form-group-sm">
                            <div class="row">
                               <div class="col-md-3">
-                                 <select class="form-control">
+                                 <select class="form-control" name="tag_id">
                                     <option value="add Tag" disabled="">Select Tag</option>
-                                    <option>algo</option>
-                                    <option>basic-programming</option>
-                                    <option>database</option>
-                                    <option>design</option>
-                                    <option>iterative</option>
-                                    <option>maths</option>
-                                    <option>recursion</option>
-                                 </select>
+                                    @foreach($tags as $tag)
+                                          <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+                                    @endforeach
+                                </select>
                               </div>
                            </div>
                         </div>
@@ -1108,7 +1108,7 @@
                                  <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Provider <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                  </div>
-                                 <input type="text" class="form-control">
+                                 <input type="text" @if(isset($submission_data)) name="provider" value="{{$submission_data->provider}}" @endif class="form-control">
                               </div>
                            </div>
                         </div>
@@ -1118,7 +1118,7 @@
                                  <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Author <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                  </div>
-                                 <input type="text" class="form-control">
+                                 <input type="text" @if(isset($submission_data)) name="author" value="{{$submission_data->author}}" @endif class="form-control">
                               </div>
                            </div>
                         </div>
@@ -1134,7 +1134,7 @@
                         <div class="no-more-tables ">
                            <table class="table s_table">
                               <thead>
-                                 <th>Tile</th>
+                                 <th>Title</th>
                                  <th>Weightage (%)</th>
                                  <th></th>
                               </thead>
@@ -1142,12 +1142,12 @@
                                  <tr>
                                     <td class="s_weight" valign="center">
                                        <div >
-                                          <input type="text" class="form-control text-margin" name="title" value="">
+                                          <input type="text" class="form-control text-margin" name="submission_evaluation_title[]" @if(isset($submission_data)) value="{{$submission_data->submission_evaluation_title}}" @endif>
                                        </div>
                                     </td>
                                     <td valign="center">
                                        <div class="input-group input-group-sm">
-                                          <input type="number" class="form-control" width="30px" max="100" min="0">
+                                          <input type="number" class="form-control" width="30px" max="100" min="0" @if(isset($submission_data)) name="weightage[]" value="{{$submission_data->weightage}}" @endif>
                                           <span class="input-group-addon" id="basic-addon1">%</span>
                                        </div>
                                     </td>
@@ -1173,7 +1173,7 @@
                                  <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Text <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                                 <textarea min="0" class="form-control" name="text" style="">@if(isset($submission_data)){{$submission_data->text}} @endif</textarea>
                               </div>
                            </div>
                         </div>
@@ -1183,7 +1183,7 @@
                                  <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Code <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                                 <textarea min="0" class="form-control" name="code" style="">@if(isset($submission_data)){{$submission_data->code}} @endif</textarea>
                               </div>
                            </div>
                         </div>
@@ -1193,7 +1193,7 @@
                                  <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>URL <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                  </div>
-                                 <textarea min="0" class="form-control" name="solutionText" style=""></textarea>
+                                 <textarea min="0" class="form-control" name="url" style="">@if(isset($submission_data)){{$submission_data->url}} @endif</textarea>
                               </div>
                            </div>
                         </div>
@@ -1203,7 +1203,7 @@
                         <!--<button type="file" class="btn">Upload Files</button>-->
                         <div class="f_upload_btn">
                            Upload Files
-                           <input type="file" name="">
+                           <input type="file" name="solution_media">
                         </div>
                      </div>
                   </div>
@@ -1211,14 +1211,17 @@
             </div>
          </div>
       </div>
+      </form>
    </div>
+   @endif
 </div>
 
 <!-- Coding Full Edit Modal By Fareha -->
 <div class="modal fade" id="modal_coding" role="dialog">
     <div class="modal-dialog  modal-lg">
         <!-- Modal content-->
-         <form action="" method="POST" enctype="multipart/form-data">
+        @if(isset($coding_data))
+         <form action="{{route('coding_update_questions_modal',$coding_data->question_id)}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
          <input type="hidden" name="section_id" id="section_id_2" value="">
          <input type="hidden" name="question_type_id" value="">
@@ -1263,15 +1266,15 @@
                                 </div>
                                 <div>
                                    <label class="container_radio border_radio_left">STAGE
-		                           <input type="radio" @if(isset($coding_data))@if($coding_data->question_state_id == 1)  checked="checked" value="1" @endif @endif name="question_state_id" >
+		                           <input type="radio" value="1" @if(isset($coding_data))@if($coding_data->question_state_id == 1)  checked="checked" @endif @endif name="question_state_id" >
 		                           <span class="checkmark"></span>
 		                           </label>
 		                           <label class="container_radio">READY
-		                           <input type="radio" name="question_state_id" @if(isset($coding_data))@if($coding_data->question_state_id == 2)  checked="checked" value="2" @endif @endif >
+		                           <input type="radio"  value="2" name="question_state_id" @if(isset($coding_data))@if($coding_data->question_state_id == 2)  checked="checked" @endif @endif >
 		                           <span class="checkmark"></span>
 		                           </label>
 		                           <label class="container_radio border_radio_right">ABANDONED
-		                           <input type="radio" name="question_state_id" @if(isset($coding_data))@if($coding_data->question_state_id == 3)  checked="checked" value="3" @endif  @endif >
+		                           <input type="radio" value="3" name="question_state_id" @if(isset($coding_data))@if($coding_data->question_state_id == 3)  checked="checked"  @endif  @endif >
 		                           <span class="checkmark"></span>
 		                           </label>
                                 </div>
@@ -1296,7 +1299,7 @@
                                         </div>
                                                 </strong>
                                             </div>
-                                            <input type="text" name="coding_program_title" class="form-control">
+                                            <input type="text" name="coding_program_title" @if(isset($coding_data)) value="{{$coding_data->coding_program_title}}" @endif class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -1306,8 +1309,9 @@
                                                Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
                                                and also serve as a parameter for filters while searching through the library."> <i class="fa fa-info-circle"> </i></a></strong>
                                 </div>
-                                <textarea class="edit"></textarea>
+                                <textarea class="edit" name="question_statement">@if(isset($coding_data)){{$coding_data->question_statement}}@endif</textarea>
                                 <br>
+                                @if($coding_data->question_sub_types_id == 2)
                                 <div class="heading_modal_statement heading_padding_bottom">
                                     <strong>Sample Input & Output
                                         <div class="s_popup">
@@ -1330,13 +1334,16 @@
                                                 <th></th>
                                             </thead>
                                             <tbody>
+                                            	@php $k=1 @endphp
+                                            	@if(isset($coding_entries))
+                                            	@foreach($coding_entries as $entry)
                                                 <tr>
-                                                    <td valign="center">1.</td>
+                                                    <td valign="center">{{$k}}.</td>
                                                     <td valign="center">
-                                                        <textarea class="form-control" name="coding_input[]" required=""></textarea>
+                                                        <textarea class="form-control" name="coding_input[]" required="">{{$entry->input}}</textarea>
                                                     </td>
                                                     <td valign="center">
-                                                        <textarea class="form-control" name="coding_output[]" required=""></textarea>
+                                                        <textarea class="form-control" name="coding_output[]" required="">{{$entry->output}}</textarea>
                                                     </td>
                                                     <td valign="center">
                                                         <a class="delete_row">
@@ -1344,6 +1351,9 @@
                                                         </a>
                                                     </td>
                                                 </tr>
+                                                @php $k++ @endphp
+                                                @endforeach
+                                                @endif
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -1356,6 +1366,7 @@
                                     </div>
                                 </div>
                                 </div>
+                                @endif 
                             </div>
                         </div>
                         <br>
@@ -1366,7 +1377,7 @@
                             </div>
                             <div class="modal-body s_modal_body">
                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Test Cases
+                                    <strong>Test Cases444
                                          <div class="s_popup">
                                            <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a>
                                             <!--<i class="fa fa-info-circle"> </i>
@@ -1392,6 +1403,43 @@
                                             <th class="col-md-4 text-center">Weightage</th>
                                         </thead>
                                         <tbody>
+                                        	@php $k=1 @endphp
+                                        	@if(isset($test_cases))
+                                        	@foreach($test_cases as $test_case)
+                                    	<tr>
+									    <td valign="center">{{$k}}.</td>
+									    <td>
+									      <div class="weightage_save_test_case_name">
+									         <div class="text-center" style="margin-top: -11px"><small class="text-danger"><em>*Unsaved</em></small></div>
+									         <input type="text" class="form-control test_case_name" name="test_case_name[]" value="{{$test_case->test_case_name}}" required="">
+									      </div>
+									      <div class="weightage_edit_test_case_name hidden"></div>
+									   </td>
+									   <td valign="center">
+									      <div class="weightage_save_test_case_input"><textarea class="form-control test_case_input" name="test_case_input[]" required="">{{$test_case->test_case_input}}</textarea></div>
+									      <div class="weightage_edit_test_case_input hidden"></div>
+									   </td>
+									   <td valign="center">
+									      <div class="weightage_save_test_case_output"><textarea class="form-control test_case_output" name="test_case_output[]" required="">{{$test_case->test_case_output}}</textarea></div>
+									      <div class="weightage_edit_test_case_output hidden"></div>
+									   </td>
+									   <td valign="center">
+									      <div class="col-md-offset-1 col-md-4"><input type="hidden" name="weightage[]" class="form-control input-md weightage_value" value="100"><input type="number" class="form-control input-md weightage" value="{{$test_case->weightage}}" disabled=""></div>
+									      <div class="col-md-7">
+									         <div class="weightage_save">
+									         	<button type="button" class="btn btn-info btn-sm save_row" disabled=""><i class="fa fa-floppy-o"></i> Save</button>
+
+									         	<a href="{{route('delete_test_case',$test_case->id)}}" class="btn btn-default btn-sm delete_row_testcase" id="delete_test_case" data-id ="{{$test_case->id}}"> <i class="fa fa-times"></i></a></div>
+
+									         <div class="weightage_edit hidden">
+									         	<button type="button" class="btn btn-default btn-sm edit_row"><i class="fa fa-pencil"></i> Edit</button>
+									         	<button type="button" class="btn btn-danger btn-sm remove_row"><i class="fa fa-trash-o"></i></button></div>
+									      </div>
+									   </td>
+									</tr>
+									@php $k++ @endphp
+									@endforeach
+									@endif
                                         </tbody>
                                     </table>
                                     <hr>
@@ -1446,80 +1494,27 @@
                            <div class="modal-body s_modal_body">
                               <div class="form-group form-group-sm">
                                  <strong>Marks for this Question <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
-                                 <input type="number" name="marks" min="1" class="form-control" required="required" style="">
+                                 <input type="number" name="marks" min="1" class="form-control"@if(isset($coding_data)) value="{{$coding_data->marks}}" @endif required="required" style="">
                               </div>
+                              	 @if($coding_data->question_sub_types_id == 2)
                               <div class="form-group form-group-sm">
                                  <strong>Allowed languages <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
+                                	
                                  <div class="row">
                                     <div class="col-sm-2">
+                                    	@foreach($allowed_languages as $languages)
                                        <div class="checkbox no-margin">
                                           <label class="ng-binding">
-                                          <input type="checkbox" name="allowed_languages_id[]" value="1" checked="checked"> JAVA
+                                          <input type="checkbox" name="allowed_languages_id[]" @if(isset($coding_question_languages)) @if(in_array($languages->id , $coding_question_languages))  checked="checked" @endif @endif value="{{$languages->id}}"> {{$languages->name}}
                                           </label>
                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label class="ng-binding">
-                                          <input type="checkbox" name="allowed_languages_id[]" value="2" checked="checked"> C
-                                          </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" name="allowed_languages_id[]" value="3" checked="checked"> CPP
-                                          </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="row">
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" name="allowed_languages_id[]" value="4" checked="checked"> PYTHON
-                                          </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" name="allowed_languages_id[]" value="5" checked="checked"> RUBY
-                                          </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" name="allowed_languages_id[]" value="6" checked="checked"> PHP
-                                          </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="row">
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" name="allowed_languages_id[]" value="7" checked="checked"> JAVASCRIPT
-                                          </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" name="allowed_languages_id[]" value="8" checked="checked"> CSHARP
-                                          </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                       <div class="checkbox no-margin">
-                                          <label>
-                                          <input type="checkbox" name="allowed_languages_id[]" value="9" checked="checked"> R
-                                          </label>
-                                       </div>
+                                       @endforeach
                                     </div>
                                  </div>
                               </div>
+                              @endif
+                              
+                             
                               <div class="heading_modal_statement heading_padding_bottom">
                                  <strong>Tags <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                               </div>
@@ -1528,11 +1523,9 @@
                                     <div class="col-md-3">
                                        <select name="tag_id" class="form-control">
                                          <option value="add Tag" disabled="">Add Tag</option>
-                                          <option value="">Tag One</option>
-                                          <option value="">Tag One</option>
-                                          <option value="">Tag One</option>
-                                          <option value="">Tag One</option>
-                                          <option value="">Tag One</option>       
+                                         @foreach($tags as $tag)
+                                          <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+                                          @endforeach     
                                        </select>
                                     </div>
                                  </div>
@@ -1542,15 +1535,15 @@
                               </div>
                               <div class="heading_padding_bottom">
                                  <label class="container_radio border_radio_left">Easy
-                                 <input type="radio" checked="checked" value="1" name="question_level_id">
+                                 <input type="radio" @if(isset($coding_data))@if($coding_data->question_level_id == 1) checked="checked" value="1" @endif @endif name="question_level_id">
                                  <span class="checkmark"></span>
                                  </label>
                                  <label class="container_radio">Medium
-                                 <input type="radio" name="question_level_id" value="2">
+                                 <input type="radio" name="question_level_id" @if(isset($coding_data))@if($coding_data->question_level_id == 2) checked="checked" value="2" @endif @endif>
                                  <span class="checkmark"></span>
                                  </label>
                                  <label class="container_radio border_radio_right">Hard
-                                 <input type="radio" name="question_level_id" value="3">
+                                 <input type="radio" name="question_level_id" @if(isset($coding_data))@if($coding_data->question_level_id == 3) checked="checked" value="3" @endif @endif>
                                  <span class="checkmark"></span>
                                  </label>
                               </div>
@@ -1560,7 +1553,7 @@
                                        <div class="heading_modal_statement heading_padding_bottom">
                                           <strong>Provider <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                        </div>
-                                       <input type="text" name="provider" class="form-control">
+                                       <input type="text" name="provider" @if(isset($coding_data)) value="{{$coding_data->provider}}" @endif class="form-control">
                                     </div>
                                  </div>
                               </div>
@@ -1570,7 +1563,7 @@
                                        <div class="heading_modal_statement heading_padding_bottom">
                                           <strong>Author <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                        </div>
-                                       <input type="text" name="author" class="form-control">
+                                       <input type="text" name="author"  @if(isset($coding_data)) value="{{$coding_data->author}}" @endif class="form-control">
                                     </div>
                                  </div>
                               </div>
@@ -1589,7 +1582,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Text <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                    </div>
-                                   <textarea min="0" class="form-control" name="text" style=""></textarea>
+                                   <textarea min="0" class="form-control" name="text" style="">@if(isset($coding_data)) {{$coding_data->text}} @endif</textarea>
                                 </div>
                              </div>
                           </div>
@@ -1599,7 +1592,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Code <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                    </div>
-                                   <textarea min="0" class="form-control" name="code" style=""></textarea>
+                                   <textarea min="0" class="form-control" name="code" style="">@if(isset($coding_data)) {{$coding_data->code}} @endif</textarea>
                                 </div>
                              </div>
                           </div>
@@ -1609,7 +1602,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>URL <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                    </div>
-                                   <textarea min="0" class="form-control" name="url" style=""></textarea>
+                                   <textarea min="0" class="form-control" name="url" style=""> @if(isset($coding_data)) {{$coding_data->url}} @endif</textarea>
                                 </div>
                              </div>
                           </div>
@@ -1619,7 +1612,7 @@
                           <!--<input type="file" name="solution_media">-->
                            <div class="f_upload_btn">
                                     Upload Files
-                                    <input type="file" name="">
+                                    <input type="file" name="solution_media">
                                 </div>
                        </div>
                     </div>
@@ -1628,6 +1621,7 @@
             </div>
         </div>
       </form>
+      @endif
     </div>
 </div>
 <!-- Coding Full Edit Modal By Fareha -->

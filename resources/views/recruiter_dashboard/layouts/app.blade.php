@@ -394,7 +394,7 @@
                     <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Save</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
-                <h3 class="modal-title s_font">Multiple Choice Question <small> (Question Id : 5968649)</small> </h3>
+                <h3 class="modal-title s_font">Multiple Choice Question567 <small> (Question Id : 5968649)</small> </h3>
             </div>
             <div class="modal-body s_modal_form_body">
                 <div class="row">
@@ -2298,9 +2298,9 @@
                         </div>
                         <div id="assign_evaluater" class="tab-pane">
                             <h3 class="evaluater">In the Reports Page, you can select one or more candidate reports as shown below.</h3>
-                            <div class="img_evaluate"><img src="../assets/img/selectCandidates-min.png" class="img-responsive"></div>
+                            <div class="img_evaluate"><img src="{{ asset('public/assets/img/selectCandidates-min.png') }}" class="img-responsive"></div>
                             <h3 class="evaluater">You can then assign Evaluators to evaluate these selected reports as shown below.</h3>
-                            <div class="img_evaluate"><img src="../assets/img/assignjudge-min.png" class="img-responsive"></div>
+                            <div class="img_evaluate"><img src="{{ asset('public/assets/img/assignjudge-min.png') }}" class="img-responsive"></div>
                             <h3 class="evaluater"><a href="#">Click here</a>to open the Reports Page to assign Manual Evaluators.</h3>
                         </div>
                     </div>
@@ -2447,8 +2447,8 @@
                         <div class="chrome_fa"><i class="fa fa-chrome"></i></div>
                         <p class="num">Required</p>
                         <audio controls>
-                          <source src="horse.ogg" type="audio/ogg">
-                          <source src="horse.mp3" type="audio/mpeg">
+                          <source src="" type="audio/ogg">
+                          <source src="" type="audio/mpeg">
                         Your browser does not support the audio element.
                         </audio>
                         <p class="num">Play to test</p>
@@ -2508,7 +2508,6 @@
 <script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
 <script language="text/javascript">
-
     $(document).ready(function(){
         $('.duplicate_modal_id').click(function(){
             var a = $(this).attr('data-target-id');
@@ -2653,9 +2652,8 @@ function modal_data(id, tpye){
                     $('.coding_question_level').text(data.coding_question_data.level_name);
                     $('.coding_author').text(data.coding_question_data.author);
                     $('.coding_provider').text(data.coding_question_data.provider);
-                    $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_pencil");
-
-
+                    $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_coding");
+                
                var inout_html = "";
                    var i =1;
                     $.each(data.coding_question_entries, function( index, value ) {
@@ -2715,9 +2713,8 @@ $.ajaxSetup({
                     // $('.submission_level').text(data.coding_question_data.level_name);
                     $('.submission_author').val(data.coding_question_data.author);
                     $('.submission_provider').val(data.coding_question_data.provider);
-
-                    $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_pencil");
-
+                    
+                    $(".submission_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=submission_modal1");
 
                var inout_html = "";
                    var i =1;

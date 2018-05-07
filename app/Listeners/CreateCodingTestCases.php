@@ -29,7 +29,9 @@ class CreateCodingTestCases
     */
     public function handle(CodingTestCases $event)
     {     
-        foreach ($event->question_data['request']['test_case_name'] as $key => $value){ 
+        if(isset($event->question_data['request']['test_case_name']))
+        {
+            foreach ($event->question_data['request']['test_case_name'] as $key => $value){ 
             $section = new Test_case;           
             $section->question_id = $event->question_data['store']->id;
             $section->test_case_name = $value;      
@@ -37,7 +39,9 @@ class CreateCodingTestCases
             $section->weightage =$event->question_data['request']['weightage'][$key];      
             $section->test_case_output=$event->question_data['request']['test_case_output'][$key];
             $section->save();
+            }
         }
+        
             
     }
 }

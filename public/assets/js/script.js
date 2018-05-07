@@ -43,7 +43,7 @@ function confirmAlert(ques, action, id){
 
  }, function(){ 
 
-    alertify.error('Cancelz')
+    alertify.error('Cancel')
 
 });
 }
@@ -487,6 +487,40 @@ e.preventDefault();
     return false;
 });
 
+
+$('.delete_row_testcase').on('click', function(e) {
+e.preventDefault();
+    var dataId = $(this).attr('data-id');
+    var thisScope = $(this);
+    //alert(dataId);
+    $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+    $.ajax({
+        url: $(this).attr('href'),
+        type: 'get',
+        success: function( msg ) {
+
+            thisScope.closest("tr").hide();
+            console.log(msg);
+
+            // if ( msg.status === 'success' ) {
+            //     toastr.success( msg.msg );
+            //     setInterval(function() {
+            //         window.location.reload();
+            //     }, 5900);
+            // }
+        },
+        error: function( data ) {
+            if ( data.status === 422 ) {
+                toastr.error('Cannot delete the category');
+            }
+        }
+    });
+
+    return false;
+});
+
 //Create MCQ Questions Modal With Ajax
 $("#AjaxMCQModal").on('submit', function(e){
   e.preventDefault();
@@ -551,6 +585,7 @@ $("#AjaxCodingOneModal").on('submit', function(e){
  });
 });
 //Create CODING FIRST Questions Modal With Ajax
+<<<<<<< HEAD
 
 //Create CODING Second Questions Modal With Ajax
 $("#AjaxCodingTwoModal").on('submit', function(e){
@@ -645,3 +680,4 @@ $("#AjaxSubmissionSecondModal").on('submit', function(e){
  });
 });
 //Create Submission Second Questions Modal With Ajax
+

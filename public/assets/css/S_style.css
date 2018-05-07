@@ -54,9 +54,9 @@ table tbody tr td .description  {
   position: relative;
 }
 .select_combobox .s_addquestion_dropdown_menu{
-  top: 100%;
+  top: 150%;
   right: auto;
-  left: 18px;
+  left: 0px;
 }
 .triangle{
   width: 0;
@@ -420,4 +420,84 @@ button.btn.btn-info.btn-sm.save_row i{
 }
 button#newquestion {
     background: #261f63;
+}
+/* .s_popup .s_popuptext {
+
+    top: 110% !important;
+    left: 48% !important;
+} */
+#publicpageview_text_editor .fr-element {
+    height: 250px;
+}
+.s_popover {
+    position: absolute;
+    width: 28%;
+    bottom: 40px;
+    right: -3%;
+}
+.s_f_upload_btn {
+    color: #fff;
+    background-color: #204d74;
+    border-color: #122b40;
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+    background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
+}
+.s_f_upload_btn input{
+    cursor: pointer !important;
+}
+.s_f_upload_btn:focus, .s_f_upload_btn:hover {
+    background-color: #265a88;
+}
+.s_f_upload_btn:active:hover{
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+[data-tip] {
+	position:relative;
+
+}
+[data-tip]:before {
+	content:'';
+	/* hides the tooltip when not hovered */
+	display:none;
+	content:'';
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #1a1a1a;
+	position:absolute;
+	top:30px;
+	right:35px;
+	z-index:8;
+	font-size:0;
+	line-height:0;
+	width:0;
+	height:0;
+}
+[data-tip]:after {
+	display:none;
+  content: attr(data-tip);
+  position: absolute;
+  top: 35px;
+  right: 0;
+  padding: 5px 8px;
+  background: #1a1a1a;
+  color: #fff;
+  z-index: 9;
+  font-size: 12px;
+  height: 28px;
+  line-height: 18px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+[data-tip]:hover:before,
+[data-tip]:hover:after {
+	display:block;
 }
