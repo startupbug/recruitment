@@ -185,7 +185,7 @@ $( document ).ready(function() {
   });
 
   $(".s_tooltip_modal").click(function(){
-    console.log('add click event');
+    // console.log('add click event');
   });
 
   $(".accordion-toggle").click(function(){
@@ -287,7 +287,7 @@ $( document ).ready(function() {
           if($this.is(':checked')) {
             $count++;
             if ($count >= 2) {
-              console.log($count);
+              // console.log($count);
               $( "#section_partial_marks" ).attr("disabled", true);
             }
             else {
@@ -1083,7 +1083,7 @@ function addrow_choice() {
        '<td valign="center">'+colCount+'.</td>'+
        '<td> <input type="checkbox" name="status" value="1"> </td>'+
        '<td class="s_weight" valign="center">'+
-           '<textarea class="form-control" name="choice[]" required=""></textarea>'+
+           '<textarea class="form-control choice" name="choice[]" required=""></textarea>'+
        '</td>'+
        '<td valign="center" class="hidden">'+
            '<div class="input-group input-group-sm">'+
@@ -1104,7 +1104,7 @@ function addrow_choice() {
         '<td valign="center">'+colCount+'.</td>'+
         '<td class="hidden"> <input type="checkbox" name="status" value="1"> </td>'+
         '<td class="s_weight" valign="center">'+
-            '<textarea class="form-control" name="choice[]" required=""></textarea>'+
+            '<textarea class="form-control choice" name="choice[]" required=""></textarea>'+
         '</td>'+
         '<td valign="center">'+
             '<div class="input-group input-group-sm">'+
@@ -1324,7 +1324,7 @@ function edittesttemplate_Collapse() {
         $("#preview_data_section_expand").html(htmlString);
       }
       else {
-        console.log(htmlString);
+        // console.log(htmlString);
         $("#section-mcqs-Modal .fr-element.fr-view").html(htmlString);
         $("#edittemp_panel").removeClass('hidden');
         $("#preview_data_section_expand").html(htmlString);
@@ -1333,35 +1333,47 @@ function edittesttemplate_Collapse() {
   , 1000);
 }
 
+function duplicate_values(mcqs) {
+  for (var i = 0; i < mcqs.length; i++) {
+    for (var j = i+1 ; j < mcqs.length; j++) {
+      if (mcqs[i] == mcqs[j] && mcqs[i] != "") {
+        var a = parseInt(i)+1;
+        var b = parseInt(j)+1;
+
+        return a+"-"+b;
+      }
+    }
+  }
+}
+
 //Duplicate Test Template
 function section_id(id) {
-  console.log(id);
+  // console.log(id);
   $('#section_id_1').val(id);
   $('#section_id_2').val(id);
   $('#section_id_3').val(id);
   $('#section_id_4').val(id);
   $('#section_id_5').val(id);
   $('#section_id_6').val(id);
-  testtemp_setInterval_Expand = setInterval(
-    function(){
-      var htmlString = $( "#section-mcqs-Modal .fr-element.fr-view" ).html();
-      $("#preview_data_section").html(htmlString);
-      $("#section-mcqs-Modal-Collapse .fr-element.fr-view").html(htmlString);
-
-      if (htmlString == "<p><br></p>") {
-        $("#edittemp_panel").addClass('hidden');
-        $("#preview_data_section_expand").html(htmlString);
-      }
-      else {
-        $("#edittemp_panel").removeClass('hidden');
-        $("#preview_data_section_expand").html(htmlString);
-      }
-     }
-  , 1000);
+  // testtemp_setInterval_Expand = setInterval(
+  //   function(){
+  //     var htmlString = $( "#section-mcqs-Modal .fr-element.fr-view" ).html();
+  //     $("#preview_data_section").html(htmlString);
+  //     $("#section-mcqs-Modal-Collapse .fr-element.fr-view").html(htmlString);
+  //
+  //     if (htmlString == "<p><br></p>") {
+  //       $("#edittemp_panel").addClass('hidden');
+  //       $("#preview_data_section_expand").html(htmlString);
+  //     }
+  //     else {
+  //       $("#edittemp_panel").removeClass('hidden');
+  //       $("#preview_data_section_expand").html(htmlString);
+  //     }
+  //    }
+  // , 1000);
 }
 function edittesttemplate_Expand(id) {
 
-  console.log(id);
   $('#section_id_1').val(id);
   $('#section_id_2').val(id);
   $('#section_id_3').val(id);
@@ -1369,6 +1381,115 @@ function edittesttemplate_Expand(id) {
 
   testtemp_setInterval_Expand = setInterval(
     function(){
+
+      var text = $( "#section-mcqs-Modal .fr-element.fr-view" ).text();
+
+      var checkbox_Count = 0;
+      $('#section_choices_table tbody tr td :checkbox').each(function () {
+        if ($(this).is(":checked")) {
+          checkbox_Count++;
+        }
+      });
+
+      if (text.length <= 2 ) {
+        $("#section-mcqs-Modal .header_span_commint").text("Please add atleast 3 characters in the question statement ");
+        $("#section-mcqs-Modal .textarea_span_commint").text("Please add atleast 3 characters in the statement ");
+        $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        $("#section-mcqs-Modal .header_span_commint").text("");
+        $("#section-mcqs-Modal .textarea_span_commint").text("");
+
+        var weightage_colCount = 1;
+        var weightage = [];
+        var sum = 0;
+        $('#section_choices_table tbody tr').each(function () {
+          var value = $('#section_choices_table tbody tr:nth-child('+weightage_colCount+') td:nth-child(4) input').val();
+          weightage.push(value);
+          sum += parseInt(value);
+          weightage_colCount++;
+        });
+
+        var text_colCount = 1;
+        var mcqs = [];
+        $('#section_choices_table tbody tr').each(function () {
+          var value = $('#section_choices_table tbody tr:nth-child('+text_colCount+') td:nth-child(3) .choice').val();
+          mcqs.push(value);
+          text_colCount++;
+        });
+
+        for (var i = 0; i < mcqs.length; i++) {
+          if ($('#section_partial_marks:checked').length == 0) {
+
+            if (mcqs[i] == "") {
+              var j = parseInt(i)+1;
+              $("#section-mcqs-Modal .header_span_commint").text("The option #"+j+" is blank");
+              $("#section-mcqs-Modal .choice_span_commint").text("(The option #"+j+" is blank)");
+              $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+              break;
+            }else {
+
+              $("#section-mcqs-Modal .choice_span_commint").text("");
+
+              if (duplicate_values(mcqs)) {
+                var data = duplicate_values(mcqs);
+                var num = data.split('-');
+                $("#section-mcqs-Modal .header_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#section-mcqs-Modal .choice_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+              }
+
+              if (checkbox_Count >= 1 ){
+                $("#section-mcqs-Modal .header_span_commint").text("");
+                $("#section-mcqs-Modal .submit_button").attr("disabled", false);
+              }else {
+                $("#section-mcqs-Modal .header_span_commint").text("Please select at least one choice as correct answer for the question");
+                $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+              }
+            }
+
+          }
+          else {
+            if (mcqs[i] == "") {
+              var j = parseInt(i)+1;
+              $("#section-mcqs-Modal .header_span_commint").text("The option #"+j+" is blank");
+              $("#section-mcqs-Modal .choice_span_commint").text("(The option #"+j+" is blank)");
+              $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+              break;
+            }else{
+
+              $("#section-mcqs-Modal .choice_span_commint").text("");
+              $("#section-mcqs-Modal .header_span_commint").text("Please add atleast one option with 100 as partial marks weightage");
+
+              if (duplicate_values(mcqs)) {
+                var data = duplicate_values(mcqs);
+                var num = data.split('-');
+                $("#section-mcqs-Modal .header_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#section-mcqs-Modal .choice_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+              }
+
+              $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+
+              if (sum >= 1) {
+                for (var i = 0; i < weightage.length; i++) {
+                  if (weightage[i] == 100) {
+                    $("#section-mcqs-Modal .header_span_commint").text("");
+                    $("#section-mcqs-Modal .submit_button").attr("disabled", false);
+                  }else if(weightage[i] > 100){
+                    var j = parseInt(i)+1;
+                    $("#section-mcqs-Modal .header_span_commint").text("Please provide the partial marks weightage(0-100) for choice #"+j);
+                    $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+                    return false;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+
       var htmlString = $( "#section-mcqs-Modal .fr-element.fr-view" ).html();
       $("#preview_data_section").html(htmlString);
       $("#section-mcqs-Modal-Collapse .fr-element.fr-view").html(htmlString);
@@ -1406,7 +1527,7 @@ function code_edittesttemplate_Collapse() {
         $("#code_preview_data_section_expand").html(htmlString);
       }
       else {
-        console.log(htmlString);
+        // console.log(htmlString);
         $("#section-coding-add-compilable-question-Modal .fr-element.fr-view").html(htmlString);
         $("#code_edittemp_panel").removeClass('hidden');
         $("#code_preview_data_section_expand").html(htmlString);
@@ -1417,6 +1538,36 @@ function code_edittesttemplate_Collapse() {
 function code_edittesttemplate_Expand() {
   code_testtemp_setInterval_Expand = setInterval(
     function(){
+      var input_output = 1;
+      var count_input_output = 0;
+      $('#section_coding_table tbody tr').each(function () {
+        var input = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(2) textarea').val();
+        var output = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(3) textarea').val();
+
+        if (input == "" || output == "") {
+          count_input_output++;
+        }
+        input_output++;
+      });
+
+      var title = $( "#section-coding-add-compilable-question-Modal input[name='coding_program_title']" ).val();
+      var statement  = $( "#section-coding-add-compilable-question-Modal .fr-element.fr-view" ).text();
+      if (title.length <= 1 ) {
+        $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please add the question title");
+        $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+      }
+      else if(statement.length <= 0){
+        $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please add the question statement");
+        $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+      }else if(count_input_output > 0){
+        var count = parseInt(input_output)-1;
+        $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please check Sample "+count+" for emptiness");
+        $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+      }else {
+        $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please add test cases");
+        $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+      }
+
       var htmlString = $( "#section-coding-add-compilable-question-Modal .fr-element.fr-view" ).html();
       $("#code_preview_data_section").html(htmlString);
       $("#section-coding-add-compilable-question-Modal-Collapse .fr-element.fr-view").html(htmlString);
@@ -1454,7 +1605,7 @@ function code_debug_Collapse() {
         $("#code_preview_data_debug_expand").html(htmlString);
       }
       else {
-        console.log(htmlString);
+        // console.log(htmlString);
         $("#section-coding-debug-Modal .fr-element.fr-view").html(htmlString);
         $("#code_debug_panel").removeClass('hidden');
         $("#code_preview_data_debug_expand").html(htmlString);
@@ -1501,7 +1652,7 @@ function submission_edittesttemplate_Expand() {
         $("#submission_preview_data_section_expand").html(htmlString);
       }
       else {
-        console.log(htmlString);
+        // console.log(htmlString);
         $("#section-submission-question-Modal-collapse .fr-element.fr-view").html(htmlString);
         $("#submission_edittemp_panel").removeClass('hidden');
         $("#submission_preview_data_section_expand").html(htmlString);
@@ -1550,7 +1701,7 @@ function submission_fill_edittesttemplate_Expand() {
         $("#submission_fill_preview_data_section_expand").html(htmlString);
       }
       else {
-        console.log(htmlString);
+        // console.log(htmlString);
         $("#section-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view").html(htmlString);
         $("#submission_fill_edittemp_panel").removeClass('hidden');
         $("#submission_fill_preview_data_section_expand").html(htmlString);
@@ -1597,7 +1748,7 @@ function template_row_add_choice() {
        '<td valign="center">'+colCount+'.</td>'+
        '<td> <input type="checkbox" name="answer[]" class="choices_table_checkbox"> </td>'+
        '<td class="s_weight" valign="center">'+
-           '<textarea class="form-control" name="choice[]" required=""></textarea>'+
+           '<textarea class="form-control choice" name="choice[]" required=""></textarea>'+
        '</td>'+
        '<td valign="center" class="hidden">'+
            '<div class="input-group input-group-sm">'+
@@ -1618,7 +1769,7 @@ function template_row_add_choice() {
         '<td valign="center">'+colCount+'.</td>'+
         '<td class="hidden"> <input type="checkbox" name="answer[]" class="choices_table_checkbox"> </td>'+
         '<td class="s_weight" valign="center">'+
-            '<textarea class="form-control" name="choice[]" required=""></textarea>'+
+            '<textarea class="form-control choice" name="choice[]" required=""></textarea>'+
         '</td>'+
         '<td valign="center">'+
             '<div class="input-group input-group-sm">'+
@@ -1651,7 +1802,7 @@ function template_row_add_choice() {
            if($this.is(':checked')) {
              $count++;
              if ($count >= 2) {
-               console.log($count);
+               // console.log($count);
                $( "#section_partial_marks" ).attr("disabled", true);
              }
              else {

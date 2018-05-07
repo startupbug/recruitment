@@ -2298,9 +2298,9 @@
                         </div>
                         <div id="assign_evaluater" class="tab-pane">
                             <h3 class="evaluater">In the Reports Page, you can select one or more candidate reports as shown below.</h3>
-                            <div class="img_evaluate"><img src="../assets/img/selectCandidates-min.png" class="img-responsive"></div>
+                            <div class="img_evaluate"><img src="{{ asset('public/assets/img/selectCandidates-min.png') }}" class="img-responsive"></div>
                             <h3 class="evaluater">You can then assign Evaluators to evaluate these selected reports as shown below.</h3>
-                            <div class="img_evaluate"><img src="../assets/img/assignjudge-min.png" class="img-responsive"></div>
+                            <div class="img_evaluate"><img src="{{ asset('public/assets/img/assignjudge-min.png') }}" class="img-responsive"></div>
                             <h3 class="evaluater"><a href="#">Click here</a>to open the Reports Page to assign Manual Evaluators.</h3>
                         </div>
                     </div>
@@ -2447,8 +2447,8 @@
                         <div class="chrome_fa"><i class="fa fa-chrome"></i></div>
                         <p class="num">Required</p>
                         <audio controls>
-                          <source src="horse.ogg" type="audio/ogg">
-                          <source src="horse.mp3" type="audio/mpeg">
+                          <source src="" type="audio/ogg">
+                          <source src="" type="audio/mpeg">
                         Your browser does not support the audio element.
                         </audio>
                         <p class="num">Play to test</p>
@@ -2505,6 +2505,7 @@
 <script src="{{ asset('public/assets/js/s_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/i_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/fa_js.js') }}"></script>
+<script src="{{ asset('public/assets/js/h.js') }}"></script>
 <script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
 <script language="text/javascript">

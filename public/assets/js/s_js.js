@@ -10,7 +10,7 @@ $( document ).ready(function() {
       }
 
       if(parseInt($(this).val()) > 100){
-        console.log($(this).val());
+        // console.log($(this).val());
         $(this).closest('td').siblings().children('.save_button').attr("disabled", true);
       }
 
@@ -109,7 +109,7 @@ $( document ).ready(function() {
         }
       });
 
-      console.log(value);
+      // console.log(value);
       if (value > 100) {
         alertify.warning("Total weightage of the parameters cannot be grater than 100");
       }
@@ -180,7 +180,7 @@ $( document ).ready(function() {
       }
 
       if(parseInt($(this).val()) > 100){
-        console.log($(this).val());
+        // console.log($(this).val());
         $(this).closest('td').siblings().children('.save_button').attr("disabled", true);
       }
 
@@ -279,7 +279,7 @@ $( document ).ready(function() {
         }
       });
 
-      console.log(value);
+      // console.log(value);
       if (value > 100) {
         alertify.warning("Total weightage of the parameters cannot be grater than 100");
       }
@@ -1666,7 +1666,7 @@ $( document ).ready(function() {
       var template_id = $(this).closest('ul').data('template_id');
       var url = $('#newquestion').data('urlquestion');
       var urlnewquestion = $('#newquestion').data('urlnewquestion');
-      console.log(csrf);
+      // console.log(csrf);
       if(id == "0")
       {
         $(this).closest('section').find(".unordered-list li:eq(0)").append('<li class="questionBorder">'+
@@ -1891,7 +1891,7 @@ $( document ).ready(function() {
       else {
         var length = $(this).closest('section').find(".unordered-list li input[value='"+question+"']").length;
         if (length > 0) {
-          console.log(length);
+          // console.log(length);
 
           $(this).closest('section').find(".unordered-list").append('<li class="questionBorder">'+
 
@@ -2128,7 +2128,7 @@ $( document ).ready(function() {
             url: urlnewquestion,
             data: {'questionid':id, 'template_id':template_id},
             success: function (data) {
-              console.log(data);
+              // console.log(data);
                   if(data.status == 200){
                     alertify.success(data.msg);
                     location.reload(true);
@@ -2370,7 +2370,7 @@ $( document ).ready(function() {
             //console.log("console" + $(this).find("input[name='template_id']").val());
             var formData = $(this).serialize();
 
-            console.log(formData);
+            // console.log(formData);
             $.ajaxSetup({
               headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
             });
@@ -2379,7 +2379,7 @@ $( document ).ready(function() {
               url: $(this).find("input[name='question_url']").val(),
               data: formData,
               success: function (data) {
-                console.log(data);
+                // console.log(data);
 
                 //data inserted
                     if(data.status == 200){
@@ -2737,7 +2737,7 @@ $( document ).ready(function() {
           $(this).closest('tbody').addClass("temp-"+len);
           var data_message = $(this).closest( "tbody" ).find( "tr td:nth-child(2) input").data('message');
 
-          console.log(data_message);
+          // console.log(data_message);
 
           $(this).closest('li').find(".knockout_li_multiple_choice ul li:last-child ").remove();
           $(this).closest('li').find(".knockout_li_radio_group ul li:last-child ").remove();
@@ -3075,4 +3075,10 @@ $( document ).ready(function() {
         }
     });
 
+    $('#section-mcqs-Modal').on('keyup', '.fr-element.fr-view p', function() {
+
+      var abc = $(this).text();
+      console.log(abc);
+
+    });
 });

@@ -81,7 +81,6 @@
                               Title
                               <div class="s_popup">
 
-
                                  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
                                  This is a markdown editor <br>
                                  Learning refrence:<br>
@@ -179,11 +178,11 @@
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
                      <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="pill" href="#sections-multiplechoice-{{$key}}">Multiple Choice (<span id="count-{{$key}}">{{ $sec['count'] }}</span>)</a></li>
-                        
+
                         <li><a data-toggle="pill" href="#sections-coding-{{$key}}">
                         Coding (<span id="count2-{{$key}}">{{ $sec['count2'] }}</span>)</a></li>
 
-                        <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission ({{ $sec['count3'] }})</a></li>
+                        <li><a data-toggle="pill" href="#sections-submission-{{$key}}">Submission (<span id="count3-{{$key}}">{{ $sec['count3'] }}</span>)</a></li>
                         <li class="pull-right"></li>
                      </ul>
                      <div class="tab-content">
@@ -376,7 +375,7 @@
                                        <th></th>
                                     </tr>
                                  </thead>
-                                 <tbody>
+                                 <tbody id="SubmissionFirstTable-{{$key}}">
                                     @foreach($sec['ques3'] as $serial_number => $q)
                                     <tr>
                                        <td><input type="checkbox" class="prog_s" value="{{$q->id}}"></td>
@@ -1312,29 +1311,30 @@
                               <div class="ept_cover_image_bottom">
                                  <div class="clearfix">
                                     <div class="pull-right s_cover_image_btn_model">
-                                       <button class="btn btn-sm btn-default" id="cover_image_btn" >Change Cover Image <i class="fa fa-caret-up" aria-hidden="true"></i></button>
+                                       <button class="btn btn-sm btn-default" id="cover_image_btn" >Change Cover Imagessss <i class="fa fa-caret-up" aria-hidden="true"></i></button>
                                        <div class="s_popover">
                                          <div class="popover fade in top hidden" id="cover_image" tooltip-animation-class="fade" uib-tooltip-classes="" uib-popover-template-popup="" title="" content-exp="contentExp()" placement="top" popup-class="" animation="animation" is-open="isOpen" origin-scope="origScope" style="visibility: visible; display: block; position: relative;">
                                           <div class="arrow"></div>
                                           <div class="popover-inner">
                                              <div class="popover-content">
-                                                <form>
+                                                <form method="post" action="{{route('upload_cover_image', ['id' => $template_id])}}" enctype="multipart/form-data">
                                                    <div class="form-group form-group-sm">
                                                       <label class="control-label">
                                                       Cover Image URL
                                                       </label>
-                                                      <input class="form-control">
+                                                      <input class="form-control" name="imagez">
                                                    </div>
                                                    <div class="">
-                                                      <button class="btn btn-primary btn-sm small_font_size">
+                                                      <button type="submit" class="btn btn-primary btn-sm small_font_size">
                                                       <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
                                                       </button>
                                                       or
                                                       <div class="s_f_upload_btn f_upload_btn">
                                                         Upload Image
-                                                        <input type="file" name="media">
+                                                        <input type="file" name="image">
                                                       </div>
                                                    </div>
+                                                   <input type="hidden" name="_token" value="{{Session::token()}}">
                                                 </form>
                                              </div>
                                           </div>
@@ -1350,24 +1350,18 @@
                            <ul class="nav nav-tabs">
                               <li><a data-toggle="pill" href="#public_instructions">Instructions</a></li>
                               <li><a data-toggle="pill" href="#public_description">Description</a></li>
-                              <li><button class="btn btn-edit-tabs"  data-toggle="modal" data-target="#add-public-page-Modal"><i class="fa fa-plus f_plus" aria-hidden="true"></i></button></li>
+                              @foreach($Public_view_page as $key => $value)
+                              <li>
+                                 <a data-toggle="pill" href="#public_page_view{{$value->id}}" >
+                                    {{$value->page_name}}
+                                 </a>
+                              <li>
+                              @endforeach
+
+                              <button class="btn btn-edit-tabs"  data-toggle="modal" data-target="#add-public-page-Modal"><i class="fa fa-plus f_plus" aria-hidden="true"></i></button></li>
                            </ul>
                            <div class="panel panel-default navtab-body">
                               <div class="panel-body">
-                                 <div class="">
-                                    <div class="row">
-                                       <div class="col-sm-6">
-                                          <a href="#" data-toggle="modal" data-target="#edit-public-page-Modal" onclick="publicpageview_start()">
-                                          <i class="fa fa-pencil" aria-hidden="true"></i> Edit Page
-                                          </a>
-                                          <span class="separator"></span>
-                                          <a href="#" class="text-danger" data-toggle="modal"  data-target="#_first_model">
-                                          <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Page
-                                          </a>
-                                       </div>
-                                    </div>
-                                    <hr class="sm">
-                                 </div>
                                  <div class="tab-content sidebar-content">
                                     <div id="public_instructions" class="tab-pane fade in active">
                                        <p>(1) Make sure you have a proper internet connection.</p>
@@ -1377,6 +1371,28 @@
                                     <div id="public_description" class="tab-pane fade">
                                        <p>This test is hosted via Codeground. Please read the instructions carefully before proceeding.</p>
                                     </div>
+
+                                     @foreach($Public_view_page as $key => $value)
+                                       
+                                       <div id="public_page_view{{$value->id}}" class="tab-pane fade">
+                                          <div class="row">
+                                             <div class="col-sm-6">
+                                                <a href="#"  data-id="{{$value->id}}" data-url="{{route('edit_public_page_view')}}" data-toggle="modal" data-target="#edit-public-page-Modal" class="edit_public_page_view_data" onclick="publicpageview_start()" modal_data="{{$value->id}}" >
+                                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit Page
+                                                </a>
+                                                <span class="separator"></span>
+
+
+
+                                                <a href="{{route('delete_public_page_view',$value->id)}}" class="text-danger">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Page
+                                                </a>
+                                             </div>
+                                          </div>
+                                          <hr class="sm">
+                                          {{$value->page_detail}}
+                                       </div>
+                                     @endforeach
                                  </div>
                               </div>
                            </div>
@@ -2499,8 +2515,8 @@
         <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
-                    <span>Please add the question title </span>
-                    <button type="submit" class="btn s_save_button s_font">Save</button>
+                    <span class="header_span_commint">Please add the question title </span>
+                    <button type="submit" class="btn s_save_button s_font submit_button" disabled>Save</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
                 <h3 class="modal-title s_font">Coding Question234</h3>
@@ -2569,7 +2585,9 @@
                                         </div>
                                                 </strong>
                                             </div>
-                                            <input type="text" name="coding_program_title" class="form-control">
+                                            <div data-tip="Please enter atleast two characters as title">
+                                              <input type="text" name="coding_program_title" class="form-control" required>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -2948,7 +2966,7 @@
 <div class="modal fade" id="section-coding-debug-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
-      <form action="{{route('create_question_coding_debug')}}" method="POST" enctype="multipart/form-data">
+      <form action="{{route('create_question_coding_debug')}}" id="AjaxCodingTwoModal" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
          <input type="hidden" name="section_id" id="section_id_4" value="">
          <input type="hidden" name="question_type_id" value="2">
@@ -2960,7 +2978,7 @@
                   <button type="submit" class="btn s_save_button s_font">Save</button>
                   <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                </div>
-               <h3 class="modal-title s_font">Coding Question123</h3>
+               <h3 class="modal-title s_font">Coding Question</h3>
             </div>
             <div class="modal-body s_modal_form_body">
                <div class="row">
@@ -3844,7 +3862,7 @@
 <div class="modal fade" id="section-submission-question-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
-      <form action="{{route('create_first_submission_question')}}" method="POST" enctype="multipart/form-data">
+      <form action="{{route('create_first_submission_question')}}" id="AjaxSubmissionOneModal" method="POST" enctype="multipart/form-data">
            {{csrf_field()}}
         <input type="hidden" name="section_id" id="section_id_5" value="">
         <input type="hidden" name="question_sub_types_id" value="4">
@@ -4161,7 +4179,7 @@
 <div class="modal fade" id="section-submission-fill-blanks-question-Modal" role="dialog">
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
-      <form action="{{route('create_second_submission_question')}}" method="POST" enctype="multipart/form-data">
+      <form action="{{route('create_second_submission_question')}}" id="AjaxSubmissionSecondModal" method="POST" enctype="multipart/form-data">
               {{csrf_field()}}
           <input type="hidden" name="section_id" id="section_id_6" value="">
           <input type="hidden" name="question_sub_types_id" value="5">
@@ -4777,38 +4795,41 @@
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
       <div class="modal-content">
-         <div class="modal-body s_modal_form_body">
-            <div class="row">
-               <div class="col-md-6 col-sm-12 col-xs-12">
-                  <h3>Edit Page</h3>
-                  <form>
-                     <div class="form-group">
-                        <label>Page Title <i class="fa fa-info-circle"></i></label>
-                        <input type="text" class="form-control">
-                     </div>
-                     <div class="form-group">
-                        <label>Page Content <i class="fa fa-info-circle"></i></label>
-                        <textarea class="edit"></textarea>
-                     </div>
-                  </form>
-               </div>
-               <div class="col-md-6 col-sm-12 col-xs-12">
-                  <div class="panel panel-default">
-                     <div class="panel-heading">Page Preview -</div>
-                     <div class="panel-body public_s_heght">
+         <form action="{{route('Public_view_page')}}" method="POST">
+            {{csrf_field()}}
+            <input type="hidden" name="template_id" value="{{$template_id}}">
+            <div class="modal-body s_modal_form_body">
+               <div class="row">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
+                     <h3>Edit Page0000</h3>
+                        <div class="form-group">
+                           <label>Page Title <i class="fa fa-info-circle"></i></label>
+                           <input type="text" class="form-control" name="page_title">
+                        </div>
+                        <div class="form-group">
+                           <label>Page Content <i class="fa fa-info-circle"></i></label>
+                           <textarea class="edit" name="page_content"></textarea>
+                        </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-xs-12">
+                     <div class="panel panel-default">
+                        <div class="panel-heading">Page Preview -</div>
+                        <div class="panel-body public_s_heght">
+                        </div>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
-         <div class="modal-footer">
-            <div class="">
-               <button class="btn btn-primary btn-sm" type="button">
-               <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
-               </button>
-               <button class="btn btn-warning btn-sm" type="button" data-dismiss="modal">Cancel</button>
+            <div class="modal-footer">
+               <div class="">
+                  <button class="btn btn-primary btn-sm" type="submit">
+                  <i class="fa fa-floppy-o" aria-hidden="true" id="save_page_detail"></i> Save
+                  </button>
+                  <button class="btn btn-warning btn-sm" type="button" data-dismiss="modal">Cancel</button>
+               </div>
             </div>
-         </div>
+         </form>
+
       </div>
    </div>
 </div>
@@ -4820,22 +4841,26 @@
          <div class="modal-body s_modal_form_body">
             <div class="row">
                <div class="col-md-6 col-sm-12 col-xs-12">
-                  <h3>Edit Page</h3>
-                  <form>
+                  <h3>Edit Page1111</h3>
+                  <form action="{{route('update_public_page_view')}}" method="post">
+                     {{csrf_field()}}
                      <div class="form-group">
+                        <input type="hidden" name="public_page_view_id" id="public_page_view_id" value="">
                         <label>Page Title
                           <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="" data-original-title="htmltooltip.editPublicTestTitle">
                             <i class="fa fa-info-circle"> </i>
                           </a>
                         </label>
-                        <input type="text" class="form-control" id="publicpageview_title">
+                        <input type="text" name="publicpageview_title" class="form-control" id="publicpageview_title">
                      </div>
                      <div class="form-group" id="publicpageview_text_editor">
                         <label>Page Content
                           <i class="fa fa-info-circle"></i>
                         </label>
-                        <textarea class="edit" style="margin-top: 30px;"></textarea>
+                        <textarea name="publicpageview_content" class="edit" style="margin-top: 30px;"></textarea>
                      </div>
+                     <button class="btn btn-primary btn-sm" onclick="publicpageview_stop()" type="submit">
+                      <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Changes
                   </form>
                </div>
                <div class="col-md-6 col-sm-12 col-xs-12">
@@ -4850,8 +4875,7 @@
          </div>
          <div class="modal-footer">
             <div>
-               <button class="btn btn-primary btn-sm" onclick="publicpageview_stop()" type="button">
-               <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Changes
+               
                </button>
                <button class="btn btn-danger btn-sm" onclick="publicpageview_stop()" type="button">
                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Page
@@ -4875,8 +4899,8 @@
         <div class="modal-content">
            <div class="modal-header s_modal_form_header">
               <div class="pull-right">
-                 <span>Please add atleast 3 characters in the question statement </span>
-                 <button type="submit" class="btn s_save_button s_font">Save</button>
+                 <span class="header_span_commint">Please add atleast 3 characters in the question statement </span>
+                 <button type="submit" class="btn s_save_button s_font submit_button">Save</button>
                  <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
               </div>
               <h3 class="modal-title s_font">Multiple Choice Question</h3>
@@ -4910,7 +4934,7 @@
                           <hr>
                           <div class="heading_modal_statement">
                              <strong>Question Statement (<a href="#section-mcqs-Modal-Collapse" data-toggle="modal" onclick="edittesttemplate_Collapse()" >Expand</a>)   <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a></strong>
-                             <span>Please add atleast 3 characters in the statement</span>
+                             <span class="textarea_span_commint text-danger">Please add atleast 3 characters in the statement </span>
                           </div><br>
                           <textarea class="edit" name="question_statement"></textarea>
                           <br>
@@ -4939,7 +4963,7 @@
                        <div class="modal-body s_modal_body">
                           <div class="heading_modal_statement heading_padding_bottom">
                              <strong>
-                                Choices
+                                Choices <span class="text-danger choice_span_commint"></span>
                                 <div class="s_popup">
                                    <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Under this section, one can add the <br>
                                    Good to Know: <br>
@@ -4971,7 +4995,7 @@
                                             <input type="checkbox" name="answer[]" class="choices_table_checkbox">
                                          </td>
                                          <td class="s_weight" valign="center">
-                                            <textarea class="form-control" name="choice[]" required=""></textarea>
+                                            <textarea class="form-control choice" name="choice[]" required=""></textarea>
                                          </td>
                                          <td valign="center" class="hidden">
                                             <div class="input-group input-group-sm">
@@ -4991,7 +5015,7 @@
                                             <input type="checkbox" name="status"  class="choices_table_checkbox">
                                          </td>
                                          <td class="s_weight" valign="center">
-                                            <textarea class="form-control" name="choice[]" required=""></textarea>
+                                            <textarea class="form-control choice" name="choice[]" required=""></textarea>
                                          </td>
                                          <td valign="center" class="hidden">
                                             <div class="input-group input-group-sm">
@@ -5011,7 +5035,7 @@
                                             <input type="checkbox" name="status" class="choices_table_checkbox">
                                          </td>
                                          <td class="s_weight" valign="center">
-                                            <textarea class="form-control" name="choice[]" required=""></textarea>
+                                            <textarea class="form-control choice" name="choice[]" required=""></textarea>
                                          </td>
                                          <td valign="center" class="hidden">
                                             <div class="input-group input-group-sm">
