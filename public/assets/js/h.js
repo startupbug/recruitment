@@ -25,3 +25,22 @@ $(document).ready(function(){
 
 
 });
+
+$('.tag_textbox').keyup(function(e){
+    
+    var value = $(this).val();
+    var template_id = $(this).data('id');
+    if(e.keyCode == 13)
+    {
+    $.ajax({
+        type: 'post',
+        url: $(this).data('url'),
+        data: {'id': template_id,'value': value},
+        success: function (data) {
+                console.log("success");
+                console.log(data); 
+      console.log ( $(this).trigger("enterKey"));
+    }
+    });
+}
+});

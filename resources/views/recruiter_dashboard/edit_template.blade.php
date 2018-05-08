@@ -1296,13 +1296,16 @@
                      </div>
                      <div class="ept_body">
                         <div class="ept_container">
-                           <div class="ept_cover_image" style="background-image: url(&quot;https://storage.googleapis.com/codegrounds/PublicTestImages320419ea-36fb-455d-ae46-767c2aafa16d_USER-RecruiterCopy_ITEM-logo1.png') }}&quot;);">
+                           <div class="ept_cover_image" >
+                              @if(isset($public_page_view_details->image))
+                              <img src="{{asset('public/storage/public_view_covers/'.$public_page_view_details->image)}}">
+                              @endif
                               <div class="ept_cover_image_top">
                                  <div class="clearfix">
                                     <div class="pull-right">
                                        <div class="clearfix">
                                           <div class="form-group ">
-                                             <input type="text" placeholder="Add a tag and press Enter" class="form-control s_edit_btn">
+                                             <input type="text" name="cover_image_tag" value="" data-url="{{route('insert_image_tags',$public_page_view_details->template_id )}}" data-id="{{$public_page_view_details->template_id}}" placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">
                                           </div>
                                        </div>
                                     </div>

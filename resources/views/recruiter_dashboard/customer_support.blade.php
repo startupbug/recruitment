@@ -2,6 +2,7 @@
 @section('content')
 
 <section class="customer_support">
+			@include('general_partials.error_section')
 	<div class="container">
 		<div class="row">
 			 @if (Session::has('query'))
@@ -11,7 +12,7 @@
                     <div class="alert alert-danger">{{ Session::get('not_found') }}</div>
                 @endif
 			<div class="col-md-6">
-			<div class="customer_image"><img src="{{ asset('assets/img/customer_image.png') }}" class="img-responsive"></div>
+			<div class="customer_image"><img src="{{ asset('public/assets/img/customer_image.png') }}" class="img-responsive"></div>
 				<h3 class="content_customer">
 					Your customer support id is 49
 				</h3>
@@ -36,12 +37,12 @@
 				  	</form>
 				  	
 				  <p class="customer_bottom">e.g. :How to host test <br>
-				 
-				  @foreach($searching as $search)
+				 <!-- //data after submit search  -->
+				 <!--  @foreach($searching as $search)
 				  	
 				 <strong> 	{{($search->description)}} </strong> <br>
 
-				  @endforeach
+				  @endforeach -->
 				  
 				  </p>
 			</div>

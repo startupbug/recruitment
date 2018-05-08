@@ -51,8 +51,8 @@ class RecruiterController extends Controller
             ->where('description','LIKE','%'.$search_item.'%')->get();
             
             if (count($searching) == 0) {
-                
-                Session::flash('not_found','no query found with this text');
+                 $this->set_session('No query found with this text. Please try again.', false); 
+                // Session::flash('not_found','no query found with this text');
             }
      
         return view('recruiter_dashboard.customer_support', ['searching' => $searching]);

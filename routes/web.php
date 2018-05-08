@@ -186,6 +186,8 @@ Route::get('/delete_public_page_view/{id?}','Recruiter\Public_view_pageControlle
 
 Route::post('/upload_cover_image/{id?}','Recruiter\Public_view_pageController@cover_image')->name('upload_cover_image');
 
+Route::post('/insert_image_tags/{id?}','Recruiter\Public_view_pageController@insert_tags')->name('insert_image_tags');
+
 });
 
 

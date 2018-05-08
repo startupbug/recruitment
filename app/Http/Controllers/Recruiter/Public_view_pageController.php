@@ -8,6 +8,7 @@ use App\Public_view_page;
 use DB;
 use App\Public_page_view_details;
 use Illuminate\Support\Facades\Input;
+use App\Cover_image_tag;
 
 class Public_view_pageController extends Controller
 {
@@ -65,14 +66,25 @@ class Public_view_pageController extends Controller
         {
             $img_name = $this->UploadImage('image', Input::file('image'));
 
-            Public_page_view_details::insert([
-                'image' => $img_name,
-                'template_id' => $id,
-                'cover_tag_id' => 1,
-            ]);
+
+            if (Public_page_view_details::where('template_id', '=', $id)->count() > 0) {
+
+            	// Public_page_view_details::where('template_id', '=', $id)->update($request->all());
+
+            	Public_page_view_details::where('template_id', '=', $id)->update(array('image' => $img_name, 'template_id' => $id, 'cover_tag_id' => 1));
+				}
+			else
+			{
+					Public_page_view_details::insert([
+		                'image' => $img_name,
+		                'template_id' => $id,
+		                'cover_tag_id' => 1,
+            		]);
+			}
 
 
-            $path = asset('/public/assets/cover_images').'/'.$img_name;  
+            $path = asset('/public/storage/public_view_covers').'/'.$img_name;  
+            // dd($path);
           //  return \Response()->json(['success' => "Image update successfully", 'code' => 200, 'img' => $path]); 
         }
         //dd(123);
@@ -81,13 +93,29 @@ class Public_view_pageController extends Controller
     public function UploadImage($type, $file){
         if( $type == 'image')
         {
-            $path = base_path() . '/public/assets/cover_images/';
+            $path = base_path() . '/public/storage/public_view_covers';
         }
 
         $filename = md5($file->getClientOriginalName() . time()) . '.' . $file->getClientOriginalExtension();
         $file->move( $path , $filename);
         return $filename;
     }
+
+    public function insert_tags(Request $request)
+    {
+    	// return $request->input('id');
+
+    	$insert_tags = new Cover_image_tag();
+    	$insert_tags->template_id = $request->input('id');
+    	$insert_tags->tag_name = $request->input('value');
+    	$insert_tags->save();
+    	if ($insert_tags->save()){
+           return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Added The Section']);
+       }else{
+           return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);
+       }
+    }
+
 
 
 }
