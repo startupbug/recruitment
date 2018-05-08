@@ -3075,10 +3075,46 @@ $( document ).ready(function() {
         }
     });
 
-    $('#section-mcqs-Modal').on('keyup', '.fr-element.fr-view p', function() {
-
-      var abc = $(this).text();
-      console.log(abc);
+    $('#section-submission-question-Modal').on('change', 'input[name="help_material_name[]"]', function() {
+      console.log($(this).val());
+      if ($(this).val() == 6) {
+        if($(this).is(":checked")){
+          $('#submission_limit').attr('disabled', false);
+        }
+        else {
+          $('#submission_limit').attr('disabled', true);
+        }
+      }
 
     });
+
+    $("#section-submission-question-Modal").on('change', '.add_resources_submission_ul li input[name="resources[]"]', function() {
+
+      var path = $(this).val().split('\\');
+      var fileName = path[path.length-1];
+
+      $(this).closest('li').find('.s_upload_name').removeClass('hidden');
+      $(this).closest('li').find('.s_upload_name span').text(fileName);
+      $(this).closest('li').find('.f_upload_btn').addClass('hidden');
+
+      if(fileName)
+      {
+        alertify.success("uploaded resource");
+        $(this).closest(".add_resources_submission_ul").append('<li>'+
+          '<div class="s_upload_name hidden">'+
+            '<span>9a85bf01a4cb686355a00b5363b08e15.ogg</span> <i class="fa fa-times-circle-o s_close"></i>'+
+          '</div>'+
+          '<div class="f_upload_btn">'+
+            ' + Add resources'+
+            '<input type="file" name="resources[]">'+
+          '</div>'+
+        '</li>');
+      }
+
+    });
+
+    $("#section-submission-question-Modal").on('click', '.add_resources_submission_ul li .s_upload_name .s_close', function() {
+      $(this).closest('li').remove();
+    });
+
 });

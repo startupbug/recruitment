@@ -68,14 +68,14 @@
 							      </tr>
 							    </thead>
 							    <tbody>
-							@if(isset($public_questions_mcqs) && count($public_questions_mcqs) > 0)							    
+							@if(isset($public_questions_mcqs) && count($public_questions_mcqs) > 0)
 							    @foreach($public_questions_mcqs as $public_questions_mcq)
 
 							      <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_mcq->id}}" aria-expanded="false">
 							        <td>
 												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_mcq->id}}" aria-expanded="false">
 													<span class="fa fa-caret-right"></span>
-								          
+
 								          ({{$public_questions_mcq->id}}) {!! substr($public_questions_mcq->question_statement, 0, 35).'...'!!}
 								        </a>
 											</td>
@@ -89,7 +89,7 @@
 											<td> <a data-toggle="modal" data-url="{{route('lib_ques_detail')}}" data-id="{{$public_questions_mcq->id}}" class="quesDetail" data-questype="1" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
 							      </tr>
 
-						      
+
 										<tr id="collapse{{$public_questions_mcq->id}}" class="panel-collapse collapse">
 											<td colspan="5">
 												<div class="modal-content s_modal">
@@ -113,10 +113,10 @@
 							    @endforeach
 		  					  @else
  								<p>No Questions Found</p>
- 							  @endif							    
+ 							  @endif
 							    </tbody>
 							  </table>
-							 
+
 							</div>
 							@if(isset($private_questions_submissions))
 							 {{ $private_questions_submissions->links() }}
@@ -169,7 +169,7 @@
 										</tr>
 									</thead>
 									<tbody>
-							@if( isset($public_questions_codings) && count($public_questions_codings) > 0 )										
+							@if( isset($public_questions_codings) && count($public_questions_codings) > 0 )
 							    @foreach($public_questions_codings as $public_questions_coding)
 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_coding->id}}" aria-expanded="false">
 											<td>
@@ -198,7 +198,7 @@
 													<p>
 														{{$public_questions_coding->question_statement}}
 													</p>
-	
+
 												 </div>
 											 </div>
 											</td>
@@ -206,7 +206,7 @@
 							    @endforeach
 		  					  @else
  								<p>No Questions Found</p>
- 							  @endif							    									
+ 							  @endif
 									</tbody>
 								</table>
 							</div>
@@ -283,7 +283,7 @@
  							        <td>
 		 										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_mcq->id}}" aria-expanded="false">
 		 											<span class="fa fa-caret-right"></span>
-								({{$private_questions_mcq->id}}) {!! substr($private_questions_mcq->question_statement, 0, 35).'...'!!} 								          		
+								({{$private_questions_mcq->id}}) {!! substr($private_questions_mcq->question_statement, 0, 35).'...'!!}
  								        </a>
  											</td>
  							        <td>{{$private_questions_mcq->state_name}}</td>
@@ -320,7 +320,7 @@
  							      @endforeach
 		  					  @else
  								<p>No Questions Found</p>
- 							  @endif 								
+ 							  @endif
  							    </tbody>
  							  </table>
  							</div>
@@ -391,7 +391,7 @@
  										</tr>
  									</thead>
  									<tbody>
-							@if(isset($private_questions_codings) &&  count($private_questions_codings) > 0) 									
+							@if(isset($private_questions_codings) &&  count($private_questions_codings) > 0)
  									@foreach($private_questions_codings as $private_questions_coding)
 
  										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_coding->id}}" aria-expanded="false">
@@ -422,7 +422,7 @@
  													 <h4 class="modal-title s_font">Question Statement</h4>
  												 </div>
  												 <div class="modal-body s_modal_body">
- 														{!! $private_questions_coding->tag_name!!} 
+ 														{!! $private_questions_coding->tag_name!!}
  													<br>
  													<!-- <h2>Output :</h2>
  													<p class="s_modal_body_heading">
@@ -435,7 +435,7 @@
  									@endforeach
 		  					  @else
  								<p>No Questions Found</p>
- 							  @endif 									
+ 							  @endif
  									</tbody>
  								</table>
  							</div>
@@ -505,7 +505,7 @@
  									<tbody>
  									@if(isset($private_questions_submissions) && count($private_questions_submissions) > 0)
  									   @foreach($private_questions_submissions as $private_questions_submission)
-										 
+
 										 <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_submission->id}}" aria-expanded="false">
  											<td>
  												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$private_questions_submission->id}}" aria-expanded="false">
@@ -574,9 +574,9 @@
       <div class="modal-content">
          <div class="modal-header s_modal_form_header">
             <div class="pull-right">
-               <span>Please add atleast 3 characters in the question statement </span>
-               <button type="submit" class="btn s_save_button s_font" >Save</button>
-               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+							<span class="header_span_commint">Please add atleast 3 characters in the question statement </span>
+							<button type="submit" class="btn s_save_button s_font submit_button">Save</button>
+							<button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
             <h3 class="modal-title s_font">Multiple Choice Question444</h3>
          </div>
@@ -605,7 +605,7 @@
                            </strong>
                         </div>
                         <div>
-                        
+
                            <label class="container_radio border_radio_left">STAGE
                            <input type="radio" name="question_state_id" value="1" @if($get_data->question_state_id == 1)  checked="checked" value="1" @endif name="question_state_id" >
                            <span class="checkmark"></span>
@@ -618,13 +618,13 @@
                            <input type="radio" name="question_state_id" value="3" @if($get_data->question_state_id == 3)  checked="checked" value="3" @endif >
                            <span class="checkmark"></span>
                            </label>
-                       
+
                         </div>
                         <hr>
                         <hr>
                         <div class="heading_modal_statement">
                            <strong>
-                              Question Statement (<a href="#">Expand</a>)
+                              Question Statement (<a href="#modal-pencil-Collapse" data-toggle="modal" onclick="edittesttemplate_Collapse()" >Expand</a>)
                               <div class="s_popup">
                                  <i class="fa fa-info-circle"> </i>
                                  <span class="s_popuptext">
@@ -640,140 +640,14 @@
                            </strong>
                         </div>
                         <textarea id="s_txtEditor_submission_Add_section_fill_blanks" class="edit" name="question_statement" value="{{$get_data->question_statement}}" >{{$get_data->question_statement}}</textarea>
-                        <br>
-                     </div>
-                  </div>
-                  <br>
-                  <!-- Media and Resources -->
-                  <div class="modal-content s_modal s_green_color_modal">
-                     <div class="modal-header s_modal_header s_green_color_header">
-                        <h4 class="modal-title s_font">Media and Resources</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <div class="">
-                              <h5><b>Media(Audio/Video)</b></h5>
-                              <!--<button type="button" class="btn">Upload Media</button>-->
-                              <div class="f_upload_btn">
-                                 Upload Media
-                                 <input type="file" name="audio_video1" value="{{$get_data->media}}">
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <br>
-                  <!-- Fill In The Blanks Solution Details -->
-                  <div class="modal-content s_modal s_yellow_light_color_modal">
-                     <div class="modal-header s_modal_header s_yellow_light_green_color_header">
-                        <h4 class="modal-title s_font">Fill In The Blanks Solution Details</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <h4>Enter Solutions for the Blanks</h4>
-                     </div>
-                  </div>
-                  <br>
-                  <!--  Question Details -->
-                  <div class="modal-content s_modal s_gray_color_modal">
-                     <div class="modal-header s_modal_header s_gray_color_header">
-                        <h4 class="modal-title s_font"> Question Details</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="form-group form-group-sm" >
-                           <label>Marks for this Question <i class="fa fa-info-circle"></i></label>
-                           <input type="number" name="marks" min="1" class="form-control" required="required" style="" value="{{$get_data->marks}}">
-                        </div>
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>
-                              Question Level
-                              <div class="s_popup">
-                                 <i class="fa fa-info-circle"> </i>
-                                 <span class="s_popuptext">
-                                 Question level determines the standard of the question. supported classification are easy, intermediate and hard.
-                                 </span>
-                              </div>
-                           </strong>
-                        </div>
-                        <div class="heading_padding_bottom">
-                        
-                          <label class="container_radio border_radio_left">Easy
-                           <input type="radio" @if($get_data->question_level_id == 1) checked="checked"  value="1" @endif name="question_level">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio">Medium
-                           <input type="radio" @if($get_data->question_level_id == 2)  checked="checked" value="2" @endif name="question_level">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio border_radio_right">Hard
-                           <input type="radio" @if($get_data->question_level_id == 3) checked="checked"  value="3" @endif  name="question_level">
-                           <span class="checkmark"></span>
-                           </label>
-                        </div>
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>
-                              Tags
-                              <div class="s_popup">
-                                 <i class="fa fa-info-circle"> </i>
-                                 <span class="s_popuptext">
-                                 Each question can be associated with multiple tags. <br>
-                                 <br>
-                                 Why it matters:
-                                 <br>
-                                 (1) Tags are used in filters while searching through the library.<br>
-                                 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
-                                 </span>
-                              </div>
-                              No tags added
-                           </strong>
-                        </div>
-                        <div class="form-group-sm">
-                           <div class="row">
-                              <div class="col-md-3">
-                                 <select class="form-control"  name="tag_name" required>
-										<option disabled >choose a tag</option>
-				                    @foreach($items as $value)
-				                    <option value="{{$value->id}}" >{{$value->tag_name}}</option>
-				                    @endforeach
-                                 </select>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>
-                                       Provider
-                                       <div class="s_popup">
-                                          <i class="fa fa-info-circle"> </i>
-                                          <span class="s_popuptext">
-                                          This optional field is meant to contain the <br>
-                                          organization name that serves as the provider of the question.
-                                          </span>
-                                       </div>
-                                    </strong>
-                                 </div>
-                                 <input type="text" class="form-control" name="provider" value="{{$get_data->provider}}">
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Author </strong>
-                                    <div class="s_popup">
-                                       <i class="fa fa-info-circle"> </i>
-                                       <span class="s_popuptext">
-                                       This field is meant to contain the <br>
-                                       name of the author of the question.
-                                       </span>
-                                    </div>
-                                 </div>
-                                 <input type="text" class="form-control" name="author" value="{{$get_data->author}}">
-                              </div>
-                           </div>
-                        </div>
+                        <div class="">
+													<h5><b>Media(Audio/Video)</b></h5>
+													<!--<button type="button" class="btn">Upload Media</button>-->
+													<div class="f_upload_btn">
+														Upload Media
+														<input type="file" name="audio_video1" value="{{$get_data->media}}">
+													</div>
+												</div>
                      </div>
                   </div>
                   <br>
@@ -824,9 +698,9 @@
                                             </div>
                                          </td>
                                          <td valign="center">
-                                            <a href="{{route('delete_choice',$choice->id)}}" id="delete_choice" class="delete_row" data-id = "{{$choice->id}}" >
+                                            <!-- <a href="{{route('delete_choice',$choice->id)}}" id="delete_choice" class="delete_row" data-id = "{{$choice->id}}" >
                                             <i class="fa fa-times-circle-o"></i>
-                                            </a>
+                                            </a> -->
                                          </td>
                                       </tr>
                                       @php $k++ @endphp
@@ -850,9 +724,110 @@
                        </div>
                     </div>
                   <br>
+                  <!--  Question Details -->
+                  <div class="modal-content s_modal s_yellow_light_color_modal">
+                     <div class="modal-header s_modal_header s_yellow_light_green_color_header">
+                        <h4 class="modal-title s_font"> Question Details</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+											 <div class="heading_modal_statement heading_padding_bottom">
+											 	 <strong>
+											 			Tags
+											 			<div class="s_popup">
+											 				 <i class="fa fa-info-circle"> </i>
+											 				 <span class="s_popuptext">
+											 				 Each question can be associated with multiple tags. <br>
+											 				 <br>
+											 				 Why it matters:
+											 				 <br>
+											 				 (1) Tags are used in filters while searching through the library.<br>
+											 				 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
+											 				 </span>
+											 			</div>
+											 			No tags added
+											 	 </strong>
+											 </div>
+											 <div class="form-group-sm">
+											 	 <div class="row">
+											 			<div class="col-md-3">
+											 				 <select class="form-control"  name="tag_name" required>
+											 						<option disabled >choose a tag</option>
+											 						@foreach($items as $value)
+											 						<option value="{{$value->id}}" >{{$value->tag_name}}</option>
+											 						@endforeach
+											 				 </select>
+											 			</div>
+											 	 </div>
+											 </div>
+
+												<div class="heading_modal_statement heading_padding_bottom">
+                           <strong>
+                              Question Level
+                              <div class="s_popup">
+                                 <i class="fa fa-info-circle"> </i>
+                                 <span class="s_popuptext">
+                                 Question level determines the standard of the question. supported classification are easy, intermediate and hard.
+                                 </span>
+                              </div>
+                           </strong>
+                        </div>
+                        <div class="heading_padding_bottom">
+                          <label class="container_radio border_radio_left">Easy
+                           <input type="radio" @if($get_data->question_level_id == 1) checked="checked"  value="1" @endif name="question_level">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio">Medium
+                           <input type="radio" @if($get_data->question_level_id == 2)  checked="checked" value="2" @endif name="question_level">
+                           <span class="checkmark"></span>
+                           </label>
+                           <label class="container_radio border_radio_right">Hard
+                           <input type="radio" @if($get_data->question_level_id == 3) checked="checked"  value="3" @endif  name="question_level">
+                           <span class="checkmark"></span>
+                           </label>
+                        </div>
+
+                        <div class="row">
+                           <div class="col-md-6 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>
+                                       Provider
+                                       <div class="s_popup">
+                                          <i class="fa fa-info-circle"> </i>
+                                          <span class="s_popuptext">
+                                          This optional field is meant to contain the <br>
+                                          organization name that serves as the provider of the question.
+                                          </span>
+                                       </div>
+                                    </strong>
+                                 </div>
+                                 <input type="text" class="form-control" name="provider" value="{{$get_data->provider}}">
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Author </strong>
+                                    <div class="s_popup">
+                                       <i class="fa fa-info-circle"> </i>
+                                       <span class="s_popuptext">
+                                       This field is meant to contain the <br>
+                                       name of the author of the question.
+                                       </span>
+                                    </div>
+                                 </div>
+                                 <input type="text" class="form-control" name="author" value="{{$get_data->author}}">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
                   <!--   Evaluation Parameters (Optional) -->
-                  <div class="modal-content s_modal s_light_green_color_modal">
-                     <div class="modal-header s_modal_header s_light_green_color_header">
+                  <div class="modal-content s_modal s_gray_color_modal">
+                     <div class="modal-header s_modal_header s_gray_color_header">
                         <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
                      </div>
                      <div class="modal-body s_modal_body">
@@ -937,8 +912,40 @@
   	@endif
    </div>
 </div>
+
+<div class="modal fade" id="modal-pencil-Collapse" role="dialog">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+       <div class="modal-body s_modal_form_body">
+          <div class="row">
+            <div class="col-md-12">
+              <strong>Question Statement (<span class="collapse_pointer" onclick="collapse_modal()" >Collapse</span>)</strong>
+              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <textarea class="edit" id="edit_collapse" name="question_statement"></textarea>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-pagedown-preview">
+                <div class="panel-heading">
+                  <strong>Preview</strong>
+                </div>
+                <div class="panel-body" style="height: 647px;">
+                  <p id="preview_data_section"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="modal fade" id="submission_modal1" role="dialog">
-@if(isset($submission_data))
+	@if(isset($submission_data))
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
       <form action="{{route('submission_update_questions_modal',['id'=>$submission_data->question_id])}}" method="post" enctype="multipart/form-data">
@@ -977,7 +984,7 @@
 							<label class="container_radio border_radio_right">ABANDONED
 							<input type="radio" name="question_state_id" value="3"  @if(isset($submission_data))@if($submission_data->question_state_id == 3) checked="checked" @endif @endif>
 							<span class="checkmark"></span>
-							</label>                           
+							</label>
                         </div>
                         <hr>
                         <hr>
@@ -1020,7 +1027,7 @@
                            <label class="control-label">
                            (These resources will be available for the candidate to download during the test)
                            </label> -->
-                          <!--  <div class="s_pur_body">                              
+                          <!--  <div class="s_pur_body">
                               <div class="f_upload_btn">
                                  + Add resources
                                  <input type="file" name="">
@@ -1366,7 +1373,7 @@
                                     </div>
                                 </div>
                                 </div>
-                                @endif 
+                                @endif
                             </div>
                         </div>
                         <br>
@@ -1499,7 +1506,7 @@
                               	 @if($coding_data->question_sub_types_id == 2)
                               <div class="form-group form-group-sm">
                                  <strong>Allowed languages <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
-                                	
+
                                  <div class="row">
                                     <div class="col-sm-2">
                                     	@foreach($allowed_languages as $languages)
@@ -1513,8 +1520,8 @@
                                  </div>
                               </div>
                               @endif
-                              
-                             
+
+
                               <div class="heading_modal_statement heading_padding_bottom">
                                  <strong>Tags <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                               </div>
@@ -1525,7 +1532,7 @@
                                          <option value="add Tag" disabled="">Add Tag</option>
                                          @foreach($tags as $tag)
                                           <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
-                                          @endforeach     
+                                          @endforeach
                                        </select>
                                     </div>
                                  </div>
@@ -1703,13 +1710,13 @@
                         </div>
                         <div class="col-sm-9">
                     		<button type="submit" class="btn s_save_button s_font" data-dismiss="modal">Apply</button>
-                        </div>                        
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 
 
