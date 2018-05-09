@@ -1670,31 +1670,31 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Staged
+                            <input type="checkbox" class="staged" checked >Staged
                         </div>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Ready
+                            <input type="checkbox" class="ready" checked >Ready
                         </div>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">All
+                            <input type="checkbox" class="all" checked >All
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="statement">State :</label>
+                    <div class="form-group level">
+                        <label class="control-label col-sm-2" for="statement">Level :</label>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Easy
+                            <input type="checkbox" class="easy" checked >Easy
                         </div>
                         <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox">EasyIntermediate
+                            <input type="checkbox" class="intermediate" checked >Intermediate
                         </div>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Hard
+                            <input type="checkbox" class="hard" checked >Hard
                         </div>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">All
+                            <input type="checkbox" class="all" checked >All
                         </div>
                     </div>
                     <div class="form-group">
@@ -1708,9 +1708,7 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="author" placeholder="Enter author of question" name="author">
                         </div>
-                        <div class="col-sm-9">
-                    		<button type="submit" class="btn s_save_button s_font" data-dismiss="modal">Apply</button>
-                        </div>
+                        
                     </div>
                 </form>
             </div>
