@@ -37,11 +37,11 @@
 				  	
 				  <p class="customer_bottom">e.g. :How to host test <br>
 				 
-				  @foreach($searching as $search)
+				<!--   @foreach($searching as $search)
 				  	
 				 <strong> 	{{($search->description)}} </strong> <br>
 
-				  @endforeach
+				  @endforeach -->
 				  
 				  </p>
 			</div>

@@ -2527,6 +2527,7 @@
 <script type="text/javascript">
 
 function modal_data(id, tpye){
+    console.log(id);
     switch(tpye) {
         case "modal_pencil":
             text = ".ajax_route";

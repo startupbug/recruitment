@@ -585,7 +585,6 @@ $("#AjaxCodingOneModal").on('submit', function(e){
  });
 });
 //Create CODING FIRST Questions Modal With Ajax
-<<<<<<< HEAD
 
 //Create CODING Second Questions Modal With Ajax
 $("#AjaxCodingTwoModal").on('submit', function(e){
@@ -681,3 +680,31 @@ $("#AjaxSubmissionSecondModal").on('submit', function(e){
 });
 //Create Submission Second Questions Modal With Ajax
 
+
+//Post Setting Info Data Through Ajax
+$("#save_setting_info").on('submit', function(e){
+  e.preventDefault();
+  var formData = $(this).serialize();
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: formData,                  
+    success: function (data) { 
+      console.log(data);
+      if(data.status == 200){
+        alertify.success(data.msg);                       
+      }else if(data.status == 202){           
+        alertify.warning(data.msg);
+      }else{           
+        alertify.warning(data.array.errorInfo[2]);
+      }       
+    },
+    error: function (data) {
+      alertify.warning("Oops. something went wrong. Please try again");
+    }
+  });
+});
+//Post Setting Info Data Through Ajax

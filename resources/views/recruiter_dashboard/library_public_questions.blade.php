@@ -98,7 +98,7 @@
 												 </div>
 												 <div class="modal-body s_modal_body">
 													<p>
-													{{$public_questions_mcq->question_statement}}
+													{!!$public_questions_mcq->question_statement!!}
 													</p>
 
 									<!-- 				<br>
@@ -196,7 +196,7 @@
 												 </div>
 												 <div class="modal-body s_modal_body">
 													<p>
-														{{$public_questions_coding->question_statement}}
+														{!!$public_questions_coding->question_statement!!}
 													</p>
 	
 												 </div>
@@ -533,7 +533,7 @@
  													 <h4 class="modal-title s_font">Question Statement</h4>
  												 </div>
  												 <div class="modal-body s_modal_body">
- 													{{$private_questions_submission->question_statement}}
+ 													{!!$private_questions_submission->question_statement!!}
  													<br>
  												<!-- 	<h2>Output :</h2>
  													<p class="s_modal_body_heading">
@@ -639,7 +639,7 @@
                               </div>
                            </strong>
                         </div>
-                        <textarea id="s_txtEditor_submission_Add_section_fill_blanks" class="edit" name="question_statement" value="{{$get_data->question_statement}}" >{{$get_data->question_statement}}</textarea>
+                        <textarea id="s_txtEditor_submission_Add_section_fill_blanks" class="edit" name="question_statement" value="{!!$get_data->question_statement!!}" >{!!$get_data->question_statement!!}</textarea>
                         <br>
                      </div>
                   </div>
@@ -938,7 +938,7 @@
    </div>
 </div>
 <div class="modal fade" id="submission_modal1" role="dialog">
-@if(isset($submission_data))
+	@if(isset($submission_data))
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
       <form action="{{route('submission_update_questions_modal',['id'=>$submission_data->question_id])}}" method="post" enctype="multipart/form-data">
@@ -984,7 +984,7 @@
                         <div class="heading_modal_statement">
                            <strong>Question Statement (<a href="#">Expand</a>) <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                         </div>
-                        <textarea class="edit" name="question_statement">@if(isset($submission_data)){{$submission_data->question_statement}} @endif</textarea>
+                        <textarea class="edit" name="question_statement">@if(isset($submission_data)){!!$submission_data->question_statement!!} @endif</textarea>
                       <!--   <div class="checkbox">
                            <label>
                            <input type="checkbox"> Enable code modification and show difference
@@ -1309,7 +1309,7 @@
                                                Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
                                                and also serve as a parameter for filters while searching through the library."> <i class="fa fa-info-circle"> </i></a></strong>
                                 </div>
-                                <textarea class="edit" name="question_statement">@if(isset($coding_data)){{$coding_data->question_statement}}@endif</textarea>
+                                <textarea class="edit" name="question_statement">@if(isset($coding_data)){!!$coding_data->question_statement!!}@endif</textarea>
                                 <br>
                                 @if($coding_data->question_sub_types_id == 2)
                                 <div class="heading_modal_statement heading_padding_bottom">
@@ -1700,18 +1700,11 @@
                         <label class="control-label col-sm-2" for="author">Author:</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="author" placeholder="Enter author of question" name="author">
-                        </div>
-                        <div class="col-sm-9">
-                    		<button type="submit" class="btn s_save_button s_font" data-dismiss="modal">Apply</button>
-                        </div>                        
+                        </div>                                              
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div> 
-
-
-
-
+</div>
 @endsection

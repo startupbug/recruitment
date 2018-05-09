@@ -486,7 +486,6 @@ class QuestionsController extends Controller
 		$delete_choices = $delete_choice->delete();		
 		if ($delete_choices ) {
 
-			return 1234;
 			return response(['msg' => 'Product deleted', 'status' => 'success']);
 		}
 		return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
@@ -733,18 +732,7 @@ class QuestionsController extends Controller
         return $filename;
     }
 
-    public function delete_choice($id)
-    {		
-    	 $delete_choice = Mulitple_choice::findOrFail( $id );
-    	 
- 			$delete_choices = $delete_choice->delete();		
-    if ($delete_choices ) {
-
-       return 1234;
-        return response(['msg' => 'Product deleted', 'status' => 'success']);
-    }
-    return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
-    }
+   
 
     public function delete_test_case($id)
     {		
