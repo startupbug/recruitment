@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('public/assets/plugins/menu/css/jquery.mmenu.all.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/plugins/menu/css/jquery.mhead.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/select2.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="{{ asset('public/assets/css/editor.css') }}"/> -->
     <link rel="stylesheet" href="{{ asset('public/assets/css/froala_editor.css') }}"/>
     <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
@@ -2496,6 +2497,7 @@
 <script src="{{ asset('public/assets/js/jquery.scrollTo.js') }}"></script>
 <!-- <script src="{{ asset('public/assets/js/editor.js') }}"></script> -->
 <script src="{{ asset('public/assets/js/froala_editor.min.js') }}"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 <script src="{{ asset('public/assets/js/f.js') }}"></script>

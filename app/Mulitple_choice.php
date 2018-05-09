@@ -8,7 +8,7 @@ class Mulitple_choice extends Model
 {
     protected $table = 'mulitple_choices';
     protected $fillable = [
-        'id','question_id', 'choice', 'partial_marks', 'status'
+        'id','question_id', 'choice', 'partial_marks','answer','status'
     ];
 
      public function questions()

@@ -20,8 +20,8 @@
 				 <!-- Start Public Question -->
 				 <div id="public" class="tab-pane fade @if(isset($templateType_fil) && $templateType_fil==1) in active @elseif($temp_unset) in active @endif ">
 					<ul class="nav nav-tabs">
-			 			<li  class="active"><a data-toggle="pill" href="#public-mcqs">MCQs ({{isset($public_questions_mcqs) ? count($public_questions_mcqs) : ''}})</a></li>
-			 			<li><a data-toggle="pill" href="#public-programming-question">Programming Questions ({{isset($public_questions_codings) ? count($public_questions_codings) : ''}})</a></li>
+			 			<li @if(isset($questionType_fil) && $questionType_fil==1) class="active"@elseif(!isset($templateType_fil)) class="active"@endif><a data-toggle="pill" href="#public-mcqs">MCQs ({{isset($public_questions_mcqs) ? $public_questions_mcqs->total() : ''}})</a></li>
+			 			<li @if(isset($questionType_fil) && $questionType_fil==2) class="active" @endif><a data-toggle="pill" href="#public-programming-question">Programming Questions ({{isset($public_questions_codings) ? $public_questions_codings->total() : ''}})</a></li>
 		 			</ul>
 			 		<div class="tab-content">
 			 			<div id="public-mcqs" class="tab-pane fade in active">
@@ -57,20 +57,17 @@
 							    </form>
 							</div>
 							<div class="no-more-tables">
-								<table class="table s_table public_mcq_table">
+								<table class="table s_table">
 							    <thead>
 							      <tr>
 							        <th>Question Id & Statement</th>
 							        <th>State</th>
 							        <th>Level</th>
 							        <th>Tags</th>
-									<th></th>
-											
+											<th></th>
 							      </tr>
-							      
 							    </thead>
 							    <tbody>
-
 							@if(isset($public_questions_mcqs) && count($public_questions_mcqs) > 0)
 							    @foreach($public_questions_mcqs as $public_questions_mcq)
 
@@ -93,8 +90,8 @@
 							      </tr>
 
 
-				<!-- 						<tr id="collapse{{$public_questions_mcq->id}}" >
-											<td>
+										<tr id="collapse{{$public_questions_mcq->id}}" class="panel-collapse collapse">
+											<td colspan="5">
 												<div class="modal-content s_modal">
 												 <div class="modal-header s_modal_header">
 													 <h4 class="modal-title s_font">Question Statement</h4>
@@ -104,18 +101,14 @@
 													{{$public_questions_mcq->question_statement}}
 													</p>
 
-													<br>
+									<!-- 				<br>
 													<h2>Output :</h2>
 													<p class="s_modal_body_heading">
 														A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
-													</p>
+													</p> -->
 												 </div>
 											 </div>
 					           			 </td>
-					           			 <td></td>
-					           			 <td></td>
-					           			 <td></td>
-					           			 <td></td> -->
 										</tr>
 							    @endforeach
 		  					  @else
@@ -125,7 +118,9 @@
 							  </table>
 
 							</div>
-							
+							@if(isset($public_questions_mcqs))
+							 {{ $public_questions_mcqs->links() }}
+							 @endif
 						</div>
 
 			 			<div id="public-programming-question" class="tab-pane fade">
@@ -163,7 +158,7 @@
 								</form>
 							</div>
 							<div class="no-more-tables">
-								<table class="table s_table public_coding_table">
+								<table class="table s_table">
 									<thead>
 										<tr>
 											<th>Question Id & Statement</th>
@@ -194,7 +189,7 @@
 											<td><a data-toggle="modal" data-url="{{route('lib_ques_detail')}}" data-id="{{$public_questions_coding->id}}" class="quesDetail" data-questype="2" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
 
 										</tr>
-						<!-- 				<tr id="collapse{{$public_questions_coding->id}}" class="panel-collapse collapse">
+										<tr id="collapse{{$public_questions_coding->id}}" class="panel-collapse collapse">
 											<td colspan="5">
 												<div class="modal-content s_modal">
 												 <div class="modal-header s_modal_header">
@@ -208,7 +203,7 @@
 												 </div>
 											 </div>
 											</td>
-										</tr> -->
+										</tr>
 							    @endforeach
 		  					  @else
  								<p>No Questions Found</p>
@@ -216,11 +211,13 @@
 									</tbody>
 								</table>
 							</div>
-
+							@if(isset($public_questions_codings))
+							   {{ $public_questions_codings->links() }}
+							@endif
 						</div>
 			 		</div>
 				 </div>
- 			 	 <!-- End Public Question
+ 			 	 <!-- End Public Question -->
 
 				 <!-- Start Private Question -->
 				 <div id="private" class="tab-pane fade @if(isset($templateType_fil) && $templateType_fil==2)  active in @endif ">
@@ -269,10 +266,10 @@
 
  							</div>
  							<div class="no-more-tables">
- 								<table class="table s_table private_mcq_table">
+ 								<table class="table s_table">
  							    <thead>
  							      <tr>
- 							        <th>Question Id & Statement66</th>
+ 							        <th>Question Id & Statement</th>
  							        <th>State</th>
  							        <th>Level</th>
  							        <th>Tags</th>
@@ -328,7 +325,9 @@
  							    </tbody>
  							  </table>
  							</div>
- 							<!--  -->
+ 							@if(isset($private_questions_mcqs))
+ 							{{ $private_questions_mcqs->links() }}
+ 							@endif
  						</div>
 
  			 			<div id="private-programming-question" class="tab-pane fade">
@@ -382,10 +381,10 @@
 							    </form>
  							</div>
  							<div class="no-more-tables">
- 								<table class="table s_table private_coding_table">
+ 								<table class="table s_table">
  									<thead>
  										<tr>
- 											<th>Question Id & Statement77</th>
+ 											<th>Question Id & Statement</th>
  											<th>State</th>
  											<th>Level</th>
  											<th>Tags</th>
@@ -494,10 +493,10 @@
 							    </form>
  							</div>
  							<div class="no-more-tables">
- 								<table class="table s_table private_submission_table">
+ 								<table class="table s_table">
  									<thead>
  										<tr>
- 											<th>Question Id & Statement88</th>
+ 											<th>Question Id & Statement</th>
  											<th>State</th>
  											<th>Level</th>
  											<th>Tags</th>
@@ -553,7 +552,9 @@
  									</tbody>
  								</table>
  							</div>
- 						
+ 							@if(isset($private_questions_submissions))
+ 							 {{ $private_questions_submissions->links() }}
+                          	@endif
  						</div>
  			 		</div>
  				 </div>
@@ -1638,16 +1639,14 @@
         <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
+                    <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Apply</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
                 <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>Filter Criteria 676</h3>
             </div>
             <div class="modal-body s_modal_form_body">
-                <form class="form-horizontal" action="{{route('advance_filter')}}" method="post">
-                	{{csrf_field()}}
+                <form class="form-horizontal" action="#">
                     <div class="form-group">
-                    	<input type="hidden" name="templateType" value="1">
-                    	<input type="hidden" name="questionType" value="1">
                         <label class="control-label col-sm-2" for="id">Question id:</label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control" id="id" placeholder="Enter question id" name="id"  min="0" max="9999999999999">
@@ -1710,7 +1709,7 @@
                             <input type="text" class="form-control" id="author" placeholder="Enter author of question" name="author">
                         </div>
                         <div class="col-sm-9">
-                    		<button type="submit" class="btn s_save_button s_font" >Apply</button>
+                    		<button type="submit" class="btn s_save_button s_font" data-dismiss="modal">Apply</button>
                         </div>
                     </div>
                 </form>

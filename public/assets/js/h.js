@@ -24,6 +24,12 @@ $(document).ready(function(){
 		 });
 
 
+/* Datatable Callings */
+$(".public_mcq_table").DataTable(); 
+$(".public_coding_table").DataTable();
+$(".private_mcq_table").DataTable();
+$(".private_coding_table").DataTable();
+$(".private_submission_table").DataTable();
 });
 
 $('.tag_textbox').keyup(function(e){
@@ -43,4 +49,8 @@ $('.tag_textbox').keyup(function(e){
     }
     });
 }
+
 });
+
+
+

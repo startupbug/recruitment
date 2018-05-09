@@ -46,7 +46,7 @@ class LibraryController extends Controller
 	    	->where('test_template_types.id', 1) //public
 	    	->where('questions.question_type_id', 1)
 	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
-	    	->paginate(4);
+	    	->get();
 
  		 $args['public_questions_codings'] = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
 	    	->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
@@ -58,7 +58,7 @@ class LibraryController extends Controller
 	    	->where('test_template_types.id', 1) //public
 	    	->where('questions.question_type_id', 2)
 	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
-	    	->paginate(4);
+	    	->get();
 
  		 $args['private_questions_mcqs'] = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
 	    	->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
@@ -70,7 +70,7 @@ class LibraryController extends Controller
 	    	->where('test_template_types.id', 2) //private
 	    	->where('questions.question_type_id', 1) //mcq
 	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
-	    	->paginate(4);
+	    	->get();
 
 	    	//dd($args['private_questions_mcqs']);
 
@@ -84,7 +84,7 @@ class LibraryController extends Controller
 	    	->where('test_template_types.id', 2) //private
 	    	->where('questions.question_type_id', 2) //coding
 	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
-	    	->paginate(4);
+	    	->get();
 
  		 $args['private_questions_submissions'] = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
 	    	->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
@@ -96,7 +96,7 @@ class LibraryController extends Controller
 	    	->where('test_template_types.id', 2) //private
 	    	->where('questions.question_type_id', 3) //submission
 	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
-	    	->paginate(4);
+	    	->get();
 
 	    	//$args['public_questions'] = Question::with('question_detail')->get();
 	       //dd($args['public_questions']);
@@ -130,13 +130,15 @@ class LibraryController extends Controller
     }
 
     public function libFilter(Request $request){
-    		//dd($request->input());
+
+    		 // dd($request->input());
     	 $args['levels'] = Question_level::all();
     	 $args['tags'] = Question_tag::all();
+
     	 $args['templateType_fil'] = $request->input('templateType');
     	 $args['questionType_fil'] = $request->input('questionType');
 
-		 $temp = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
+		$temp = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
 	    	->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
 	    	->leftjoin('test_template_types', 'test_template_types.id', '=', 'test_templates.template_type_id')
 	    	->leftjoin('question_details', 'question_details.question_id', '=', 'questions.id')
@@ -166,44 +168,48 @@ class LibraryController extends Controller
 	    	//Filtering according to data
 	    	//On Public
 	    	if($request->input('templateType') == 1){
-
+	    		//dd(123);
+	    		//it must be public
  	    		$temp->where('test_template_types.id', 1);
 
 	    		if($request->input('questionType') == 1){
-	    			
+
 	    			//on public mcq
 	    			$temp = $temp->where('questions.question_type_id', 1);
-	    			$args['public_questions_mcqs'] = $temp->paginate(4);
+	    			$args['public_questions_mcqs'] = $temp->get();
 
 	    			//Get unfiltered Table data --public
 	    			 $temp3 = $temp2;
-			 		 $args['public_questions_codings'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 1)->paginate(4);
+			 		 $args['public_questions_codings'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 2)->get();
 
 			 		
 
 	    		}else if($request->input('questionType') == 2){
-
+	    			//dd('asdasd');
 	    			//on public coding
 	    			$temp = $temp->where('questions.question_type_id', 2);
 
-	    			$args['public_questions_codings']  = $temp->paginate(4);
+	    			$args['public_questions_codings']  = $temp->get();
+	    			//dd($args['public_questions_codings']);
 	    			$temp3 = $temp2;
-			 		 $args['public_questions_mcqs'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 2)->paginate(4);
+			 		$args['public_questions_mcqs'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 1)->get();
 
 	    			//Get mcq unfiltered Table data..	    			    
 	    		}
 
+	    		// dd($args);
+
 	    			$temp3 = $temp2;
 					//Get unfiltered Table data --private
 	    			$args['private_questions_codings'] = $temp3->where('test_template_types.id', 2) //private
-	    													->where('questions.question_type_id', 2)->paginate(4);
+	    													->where('questions.question_type_id', 2)->get();
 	    			$temp3 = $temp2;
 
 	    			$args['private_questions_mcqs'] = $temp3->where('test_template_types.id', 2) //private
-	    													->where('questions.question_type_id', 1)->paginate(4);
+	    													->where('questions.question_type_id', 1)->get();
 	    			$temp3 = $temp2;										
 	    			$args['private_questions_submissions'] = $temp3->where('test_template_types.id', 2) //private
-	    													->where('questions.question_type_id', 3)->paginate(4);	    		
+	    													->where('questions.question_type_id', 3)->get();	
 
 	    		// $args['public_questions_mcqs']->paginate(4);
 	    	}else if($request->input('templateType') == 2){
@@ -218,56 +224,56 @@ class LibraryController extends Controller
 	    			$temp3 = $temp2;
 					//Get unfiltered Table data -private..
 	    			$args['private_questions_codings'] = $temp3->where('test_template_types.id', 2) //private
-	    													->where('questions.question_type_id', 2)->paginate(4);
+	    													->where('questions.question_type_id', 2)->get();
 	    			$temp3 = $temp2;										
 	    			$args['private_questions_submissions'] = $temp3->where('test_template_types.id', 2) //private
-	    													->where('questions.question_type_id', 3)->paginate(4);
+	    													->where('questions.question_type_id', 3)->get();
 
 	    			//Get unfiltered Table data - public..
 	    						
 	    												//dd($temp2);
 	    			 $temp3 = $temp2;									
-			 		 $args['public_questions_mcqs'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 1)->paginate(4);
+			 		 $args['public_questions_mcqs'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 1)->get();
 			 		 
 			 		 //dd($args['public_questions_mcqs']);
 			 		 $temp3 = $temp2;
-			 		 $args['public_questions_codings'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 2)->paginate(4);
-			 		 dd($args);
+			 		 $args['public_questions_codings'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 2)->get();
+			 		// dd($args);
 	    		}else if($request->input('questionType') == 2){
 
-	    			$args['private_questions_codings'] = $temp->paginate(4);
+	    			$args['private_questions_codings'] = $temp->get();
 
 	    			$temp3 = $temp2;
 					//Get unfiltered Table data -private..
 	    			$args['private_questions_mcqs'] = $temp3->where('test_template_types.id', 2) //private
-	    													->where('questions.question_type_id', 1)->paginate(4);
+	    													->where('questions.question_type_id', 1)->get();
 
 	    			$args['private_questions_submissions'] = $temp2->where('test_template_types.id', 2) //private
-	    													->where('questions.question_type_id', 3)->paginate(4);
+	    													->where('questions.question_type_id', 3)->get();
 
 	    			//Get unfiltered Table data - public..
 	    			$temp3 = $temp2;											
-			 		 $args['public_questions_mcqs'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 1)->paginate(4);
+			 		 $args['public_questions_mcqs'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 1)->get();
                      
                      $temp3 = $temp2;	
-			 		 $args['public_questions_codings'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 2)->paginate(4);
+			 		 $args['public_questions_codings'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 2)->get();
 
 	    		}else if($request->input('questionType') == 3){
 
-	    			$args['private_questions_submissions'] = $temp->paginate(4);
+	    			$args['private_questions_submissions'] = $temp->get();
 
 	    			$temp3 = $temp2;	
 					//Get unfiltered Table data -private..
 	    			$args['private_questions_mcqs'] = $temp3->where('test_template_types.id', 2) //private
-	    													->where('questions.question_type_id', 1)->paginate(4);
+	    													->where('questions.question_type_id', 1)->get();
 	    			$temp3 = $temp2;										
 	    			$args['private_questions_codings'] = $temp3->where('test_template_types.id', 2) //private
-	    													->where('questions.question_type_id', 2)->paginate(4);
+	    													->where('questions.question_type_id', 2)->get();
 	    			$temp3 = $temp2;											
 	    			//Get unfiltered Table data - public..
-			 		 $args['public_questions_mcqs'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 1)->paginate(4);
+			 		 $args['public_questions_mcqs'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 1)->get();
                         $temp3 = $temp2;	
-			 		 $args['public_questions_codings'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 2)->paginate(4); 
+			 		 $args['public_questions_codings'] = $temp3->where('test_template_types.id', 1)->where('questions.question_type_id', 2)->get(); 
 	    		}
 	    	}
 
@@ -289,7 +295,8 @@ class LibraryController extends Controller
 
 	    	// 	$args['public_questions_mcqs']->paginate(4);
 	    	// }
-	    	//dd($args);
+	    	 // dd($args['public_questions_mcqs']->nextPageUrl());
+
     	return view('recruiter_dashboard.library_public_questions')->with($args);      	
     }
 
@@ -334,5 +341,63 @@ class LibraryController extends Controller
     	}
 
 
+    }
+
+    public function advance_filter(Request $request)
+    {
+    	 // dd($request->input());
+
+    	$args['levels'] = Question_level::all();
+    	$args['tags'] = Question_tag::all();
+
+    	$temp = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
+	    	->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
+	    	->leftjoin('test_template_types', 'test_template_types.id', '=', 'test_templates.template_type_id')
+	    	->leftjoin('question_details', 'question_details.question_id', '=', 'questions.id')
+	    	->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
+	    	->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
+	    	->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')
+	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id');
+
+
+	    	$temp2 = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
+	    	->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
+	    	->leftjoin('test_template_types', 'test_template_types.id', '=', 'test_templates.template_type_id')
+	    	->leftjoin('question_details', 'question_details.question_id', '=', 'questions.id')
+	    	->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
+	    	->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
+	    	->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')
+	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id');
+	    	
+
+	    	if($request->input('templateType') == 1 && $request->input('questionType') == 1){
+
+	    		$temp->where('test_template_types.id', 1)
+	    					->where('questions.question_type_id',1);
+
+
+	    		if(!is_null($request->input('id')))
+	    		{
+	    			$temp->where('questions.id',$request->input('id'))
+	    						->orwhere('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    					$args['public_questions_mcqs'] = $temp->get();
+	    		}
+	    		if(!is_null($request->input('statement')))
+	    		{
+	    			$temp->where('questions.question_statement','LIKE','%'.$request->input('statement').'%')
+	    				->orwhere('questions.id',$request->input('id'));
+
+	    					$args['public_questions_mcqs'] = $temp->get();
+	    					// dd($args['public_questions_mcqs']);
+
+	    					// ->where('title','LIKE','%'.$name.'%')
+	    		}
+	    	}
+	    	elseif($request->input('templateType') == 1 && $request->input('questionType') == 2)
+	    	{
+	    		dd('coding');
+	    	}
+
+	 return view('recruiter_dashboard.library_public_questions')->with($args);   	
     }
 }
