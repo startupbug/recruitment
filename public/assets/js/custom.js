@@ -1,7 +1,4 @@
-
-
 $( document ).ready(function() {
-
 
   $(".allow_number").on("keypress keyup blur",function (event) {
      $(this).val($(this).val().replace(/[^\d].+/, ""));
@@ -188,7 +185,7 @@ $( document ).ready(function() {
   });
 
   $(".s_tooltip_modal").click(function(){
-    console.log('add click event');
+    // console.log('add click event');
   });
 
   $(".accordion-toggle").click(function(){
@@ -204,7 +201,6 @@ $( document ).ready(function() {
     $(this).toggleClass("hidden");
   });
 
-  // $('.test_live').blink();
   $('.test_live').blink({
     delay: 300
   });
@@ -291,7 +287,7 @@ $( document ).ready(function() {
           if($this.is(':checked')) {
             $count++;
             if ($count >= 2) {
-              console.log($count);
+              // console.log($count);
               $( "#section_partial_marks" ).attr("disabled", true);
             }
             else {
@@ -350,122 +346,6 @@ $( document ).ready(function() {
     }
   });
 
-  // $('.format_class').change(function() {
-  //   var item=$(this);
-  //   console.log(item.val());
-  //   var abc = $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").children().find( ".option_table" );
-  //
-  //   if (item.val() == 1) {
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-  //
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-  //   }
-  //   else if (item.val() == 2) {
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
-  //
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-  //   }
-  //   else if (item.val() == 3) {
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
-  //
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-  //   }
-  //   else if (item.val() == 4) {
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-  //
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
-  //   }
-  //   else if (item.val() == 5) {
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-  //
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
-  //   }
-  //   else if (item.val() == 6) {
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-  //
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
-  //   }
-  //   else if (item.val() == 7) {
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
-  //
-  //     $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
-  //   }
-  // });
-  //
-  // $('.add_option').click(function(){
-  //    var colCount = 1;
-  //    $(this).closest( "tfoot" ).siblings("tbody").find( "tr" ).each(function () {
-  //        colCount++;
-  //    });
-  //
-  //    $(this).closest( "tfoot" ).siblings("tbody").find( "tr:last" ).after('<tr>'+
-  //        '<td valign="center">Option '+colCount+'</td>'+
-  //        '<td class="s_weight" valign="center">'+
-  //         '<input type="text" class="form-control option_text" name="option[]">'+
-  //        '</td>'+
-  //        '<td valign="center">'+
-  //           '<a href="javascript:void(0)" class="delete_row_option">'+
-  //             '<i class="fa fa-times-circle-o"></i>'+
-  //           '</a>'+
-  //        '</td>'+
-  //    '</tr>');
-  //
-  //
-  //      $('.delete_row_option').on("click",function(){
-  //
-  //        var colCount_alert = 0;
-  //        $(this).closest( "tbody" ).find( "tr" ).each(function () {
-  //            colCount_alert++;
-  //        });
-  //        console.log(colCount_alert);
-  //        if (colCount_alert == 1) {
-  //          alert("Atleast One options are mandatory..");
-  //        }else {
-  //          $(this).closest('tr').remove();
-  //        }
-  //
-  //        var colCount = 0;
-  //        $(this).closest( "tbody" ).find( "tr" ).each(function () {
-  //            colCount++;
-  //            $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
-  //        });
-  //
-  //      });
-  // });
-  //
-  // $('.delete_row_option').on("click",function(){
-  //
-  //   var colCount_alert = 0;
-  //   $(this).closest( "tbody" ).find( "tr" ).each(function () {
-  //       colCount_alert++;
-  //   });
-  //   console.log(colCount_alert);
-  //   if (colCount_alert == 1) {
-  //     alert("Atleast One options are mandatory..");
-  //   }else {
-  //     $(this).closest('tr').remove();
-  //   }
-  //
-  //   var colCount = 0;
-  //   $(this).closest( "tbody" ).find( "tr" ).each(function () {
-  //       colCount++;
-  //       $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
-  //   });
-  //
-  // });
-
-  // $('.edit_question').click(function() {
-  //   $( this ).closest( ".row" ).siblings('.capsule').toggleClass('hidden');
-  // });
-
-
   var edit_template_text_editor_setInterval;
   edit_template_text_editor_setInterval = setInterval(
     function(){
@@ -484,54 +364,701 @@ $( document ).ready(function() {
      }
   , 1000);
 
+  // Create Template Section
+  $( "#section_partial_marks" ).on( "click", function() {
+    if ($("#section_partial_marks:checked").length == 1) {
+      $('#section_choices_table > tbody tr > td:nth-child(2)').addClass("hidden");
+      $('#section_choices_table > tbody tr > td:nth-child(4)').removeClass("hidden");
 
-  $('.level_easy').change(function() {
-      if ($(this).is(":checked") && $('.level_medium').is(":checked") && $('.level_hard').is(":checked")) {
-        $('.level_all').attr('checked', true);
-        $('.level_easy').attr('checked', true);
-      }
-      else {
-        $('.level_all').attr('checked', false);
-        $('.level_easy').attr('checked', false);
-      }
-  });
-  $('.level_medium').change(function() {
-      if ($(this).is(":checked") && $('.level_easy').is(":checked") && $('.level_hard').is(":checked")) {
-        $('.level_all').attr('checked', true);
-        $('.level_medium').attr('checked', true);
-      }
-      else {
-        $('.level_all').attr('checked', false);
-        $('.level_medium').attr('checked', false);
-      }
-  });
-  $('.level_hard').change(function() {
-      if ($(this).is(":checked") && $('.level_easy').is(":checked") && $('.level_medium').is(":checked")) {
-        $('.level_all').attr('checked', true);
-        $('.level_hard').attr('checked', true);
-      }
-      else {
-        $('.level_all').attr('checked', false);
-        $('.level_hard').attr('checked', false);
-      }
+      $("#section_choices_table tbody tr").closest('tr').css('background-color', '#fff');
+      $("#section_choices_table > tbody tr > td:nth-child(5)").children('a').show();
+    }
+    else {
+      $('#section_choices_table > tbody tr > td:nth-child(2)').removeClass("hidden");
+      $('#section_choices_table > tbody tr > td:nth-child(4)').addClass("hidden");
+
+      $('#section_choices_table tbody tr  td :checkbox').each(function () {
+          var $this = $(this);
+          if($this.is(':checked')) {
+            $this.closest('tr').css('background-color', '#3fb618');
+            $this.closest('tr').children('td ').last().children('a').hide();
+          }
+          else {
+            $this.closest('tr').css('background-color', '#fff');
+            $this.closest('tr').children('td ').last().children('a').show();
+          }
+      });
+    }
   });
 
-  $('.level_all').change(function() {
-      if ($(this).is(":checked")) {
-        $('.level_easy').attr('checked', true);
-        $('.level_medium').attr('checked', true);
-        $('.level_hard').attr('checked', true);
+  $('.submit_prog').click(function(){
+    var target = $(this).attr('data-target');
+    var data = $('.prog-'+target).val();
+  });
+
+  var array_mc = [];
+  $('.prog_mc').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+      array_mc.push(value);
+
+      if (array_mc.length == 0)
+      {
+        $(".delete_section_mc").addClass('hidden');
+        $("#section_mc_id").val(array_mc);
+      }
+      else
+      {
+        $(".delete_section_mc").removeClass('hidden');
+        $("#section_mc_id").val(array_mc);
+      }
+    }
+    else{
+      removeItem = $(this).val();
+
+      array_mc = $.grep(array_mc, function(value) {
+        return value != removeItem;
+      });
+
+      $('.codeQuesCheck_prog_mc').prop('checked', false);
+
+      if (array_mc.length == 0)
+      {
+        $(".delete_section_mc").addClass('hidden');
+        $("#section_mc_id").val(array_mc);
+      }
+      else
+      {
+        $(".delete_section_mc").removeClass('hidden');
+        $("#section_mc_id").val(array_mc);
+      }
+    }
+  });
+  $('.codeQuesCheck_prog_mc').change(function() {
+    var check;
+    //$(this).closest('tbody');
+     var table= $(this).closest('table');
+     ($(this).is(":checked")) ?
+          (
+
+            $('td input:checkbox',table).prop('checked', true),
+            check = $('td input:checkbox',table).map(function() {
+              array_mc.push(this.value);
+              return this.value;
+            }).get(),
+
+            $(this).closest('.tab-pane').find('.input_c_id').val(check),
+            $(".delete_section_mc").removeClass('hidden')
+
+          ) :
+
+          ( $('td input:checkbox',table).prop('checked', false),
+            array_mc = [],
+            $(this).closest('.tab-pane').find('.input_c_id').val(''),
+            $(".delete_section_mc").addClass('hidden')
+          );
+
+  });
+
+
+  var array_c = [];
+  $('.prog_c').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+      array_c.push(value);
+
+      if (array_c.length == 0)
+      {
+        $(".delete_section_c").addClass('hidden');
+        $("#section_c_id").val(array_c);
+      }
+      else
+      {
+        $(".delete_section_c").removeClass('hidden');
+        $("#section_c_id").val(array_c);
+      }
+    }
+    else{
+      removeItem = $(this).val();
+
+      array_c = $.grep(array_c, function(value) {
+        return value != removeItem;
+      });
+
+      $('.codeQuesCheck_prog_c').prop('checked', false);
+
+      if (array_c.length == 0)
+      {
+        $(".delete_section_c").addClass('hidden');
+        $("#section_c_id").val(array_c);
+      }
+      else
+      {
+        $(".delete_section_c").removeClass('hidden');
+        $("#section_c_id").val(array_c);
+      }
+    }
+  });
+  $('.codeQuesCheck_prog_c').change(function() {
+    var check;
+    //$(this).closest('tbody');
+     var table= $(this).closest('table');
+     ($(this).is(":checked")) ?
+          (
+
+            $('td input:checkbox',table).prop('checked', true),
+            check = $('td input:checkbox',table).map(function() {
+              array_c.push(this.value);
+              return this.value;
+            }).get(),
+
+            $(this).closest('.tab-pane').find('.input_c_id').val(check),
+            $(".delete_section_c").removeClass('hidden')
+
+          ) :
+
+          ( $('td input:checkbox',table).prop('checked', false),
+            array_c = [],
+            $(this).closest('.tab-pane').find('.input_c_id').val(''),
+            $(".delete_section_c").addClass('hidden')
+          );
+  });
+
+
+  var array_s = [];
+  $('.prog_s').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+      array_s.push(value);
+
+      if (array_s.length == 0)
+      {
+        $(".delete_section_s").addClass('hidden');
+        $("#section_s_id").val(array_s);
+      }
+      else
+      {
+        $(".delete_section_s").removeClass('hidden');
+        $("#section_s_id").val(array_s);
+      }
+    }
+    else{
+      removeItem = $(this).val();
+
+      array_s = $.grep(array_s, function(value) {
+        return value != removeItem;
+      });
+
+      $('.codeQuesCheck_prog_s').prop('checked', false);
+
+      if (array_s.length == 0)
+      {
+        $(".delete_section_s").addClass('hidden');
+        $("#section_s_id").val(array_s);
+      }
+      else
+      {
+        $(".delete_section_s").removeClass('hidden');
+        $("#section_s_id").val(array_s);
+      }
+    }
+  });
+  $('.codeQuesCheck_prog_s').change(function() {
+    var check;
+    //$(this).closest('tbody');
+     var table= $(this).closest('table');
+     ($(this).is(":checked")) ?
+          (
+
+            $('td input:checkbox',table).prop('checked', true),
+            check = $('td input:checkbox',table).map(function() {
+              array_s.push(this.value);
+              return this.value;
+            }).get(),
+
+            $(this).closest('.tab-pane').find('.input_c_id').val(check),
+            $(".delete_section_s").removeClass('hidden')
+
+          ) :
+
+          ( $('td input:checkbox',table).prop('checked', false),
+            array_s = [],
+            $(this).closest('.tab-pane').find('.input_c_id').val(''),
+            $(".delete_section_s").addClass('hidden')
+          );
+  });
+
+
+  var public_question_mcq = [];
+  $('.public_question_mcq').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+
+      public_question_mcq.push(value);
+      $(this).closest('tr').css('background-color', '#fff9ae');
+      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", false);
+      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", false);
+      $("#public_question_mcq_id").val(public_question_mcq);
+
+      if (public_question_mcq.length >= 1) {
+        $('#add_selected_question_button').removeClass('hidden');
+        $('#add_selected_question_span').addClass('hidden');
       }
       else {
-        $('.level_easy').attr('checked', false);
-        $('.level_medium').attr('checked', false);
-        $('.level_hard').attr('checked', false);
+        $('#add_selected_question_button').addClass('hidden');
+        $('#add_selected_question_span').removeClass('hidden');
+      }
+    }
+    else{
+      removeItem = $(this).val();
+
+      public_question_mcq = $.grep(public_question_mcq, function(value) {
+        return value != removeItem;
+      });
+
+      $('.codeQuesCheck_public_question_mcq').prop('checked', false);
+
+      $(this).closest('tr').css('background-color', '#fff');
+      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", true);
+      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", true);
+      $("#public_question_mcq_id").val(public_question_mcq);
+
+
+      if (public_question_mcq.length >= 1) {
+        $('#add_selected_question_button').removeClass('hidden');
+        $('#add_selected_question_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_button').addClass('hidden');
+        $('#add_selected_question_span').removeClass('hidden');
+      }
+    }
+  });
+  $('.codeQuesCheck_public_question_mcq').change(function() {
+    var check;
+    var value;
+    //$(this).closest('tbody');
+     var table= $(this).closest('table');
+     ($(this).is(":checked")) ?
+          (
+            $(this).closest('table').find('tr').css('background-color', '#fff9ae'),
+            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", false),
+            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", false),
+            $('td input:checkbox',table).prop('checked', true),
+            check = $('td input:checkbox',table).map(function() {
+              var index = public_question_mcq.indexOf(this.value);
+              if (index > -1) {
+              }else {
+                public_question_mcq.push(this.value);
+              }
+              return this.value;
+            }).get(),
+            $('#public_question_mcq_id').val(public_question_mcq)
+          ) :
+
+          (
+            $(this).closest('table').find('tr').css('background-color', '#fff'),
+            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", true),
+            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", true),
+            $('td input:checkbox',table).prop('checked', false),
+            check = $('td input:checkbox',table).map(function(item) {
+               var index = public_question_mcq.indexOf(this.value);
+               if (index > -1) {
+                 public_question_mcq.splice(index, 1);
+               }
+            }).get(),
+            $('#public_question_mcq_id').val(public_question_mcq)
+          );
+
+      if (public_question_mcq.length >= 1) {
+        $('#add_selected_question_button').removeClass('hidden');
+        $('#add_selected_question_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_button').addClass('hidden');
+        $('#add_selected_question_span').removeClass('hidden');
       }
   });
 
+  $('.private_question_mcq').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+
+      public_question_mcq.push(value);
+      $(this).closest('tr').css('background-color', '#fff9ae');
+      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", false);
+      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", false);
+      $("#public_question_mcq_id").val(public_question_mcq);
+
+      if (public_question_mcq.length >= 1) {
+        $('#add_selected_question_button').removeClass('hidden');
+        $('#add_selected_question_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_button').addClass('hidden');
+        $('#add_selected_question_span').removeClass('hidden');
+      }
+
+    }
+    else{
+      removeItem = $(this).val();
+
+      public_question_mcq = $.grep(public_question_mcq, function(value) {
+        return value != removeItem;
+      });
+
+      $('.codeQuesCheck_private_question_mcq').prop('checked', false);
+
+      $(this).closest('tr').css('background-color', '#fff');
+      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", true);
+      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", true);
+      $("#public_question_mcq_id").val(public_question_mcq);
+
+      if (public_question_mcq.length >= 1) {
+        $('#add_selected_question_button').removeClass('hidden');
+        $('#add_selected_question_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_button').addClass('hidden');
+        $('#add_selected_question_span').removeClass('hidden');
+      }
+    }
+  });
+  $('.codeQuesCheck_private_question_mcq').change(function() {
+    var check;
+    var value;
+     var table= $(this).closest('table');
+     ($(this).is(":checked")) ?
+          (
+            $(this).closest('table').find('tr').css('background-color', '#fff9ae'),
+            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", false),
+            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", false),
+            $('td input:checkbox',table).prop('checked', true),
+            check = $('td input:checkbox',table).map(function() {
+              var index = public_question_mcq.indexOf(this.value);
+              if (index > -1) {
+              }else {
+                public_question_mcq.push(this.value);
+              }
+              return this.value;
+            }).get(),
+
+            $('#public_question_mcq_id').val(public_question_mcq)
+
+          ) :
+          (
+            $(this).closest('table').find('tr').css('background-color', '#fff'),
+            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", true),
+            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", true),
+            $('td input:checkbox',table).prop('checked', false),
+            check = $('td input:checkbox',table).map(function(item) {
+               var index = public_question_mcq.indexOf(this.value);
+               if (index > -1) {
+                 public_question_mcq.splice(index, 1);
+               }
+            }).get(),
+            $('#public_question_mcq_id').val(public_question_mcq)
+          );
+
+
+      if (public_question_mcq.length >= 1) {
+        $('#add_selected_question_button').removeClass('hidden');
+        $('#add_selected_question_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_button').addClass('hidden');
+        $('#add_selected_question_span').removeClass('hidden');
+      }
+  });
+
+
+  var public_code_question_mcq = [];
+  $('.public_code_question_mcq').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+
+      public_code_question_mcq.push(value);
+      $(this).closest('tr').css('background-color', '#fff9ae');
+      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", false);
+      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", false);
+      $("#public_code_question_mcq_id").val(public_code_question_mcq);
+
+      if (public_code_question_mcq.length >= 1) {
+        $('#add_selected_question_code_button').removeClass('hidden');
+        $('#add_selected_question_code_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_code_button').addClass('hidden');
+        $('#add_selected_question_code_span').removeClass('hidden');
+      }
+    }
+    else{
+      removeItem = $(this).val();
+
+      public_code_question_mcq = $.grep(public_code_question_mcq, function(value) {
+        return value != removeItem;
+      });
+
+      $('.codeQuesCheck_public_code_question_mcq').prop('checked', false);
+
+      $(this).closest('tr').css('background-color', '#fff');
+      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", true);
+      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", true);
+      $("#public_code_question_mcq_id").val(public_code_question_mcq);
+
+
+      if (public_code_question_mcq.length >= 1) {
+        $('#add_selected_question_code_button').removeClass('hidden');
+        $('#add_selected_question_code_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_code_button').addClass('hidden');
+        $('#add_selected_question_code_span').removeClass('hidden');
+      }
+    }
+  });
+  $('.codeQuesCheck_public_code_question_mcq').change(function() {
+    var check;
+    var value;
+    //$(this).closest('tbody');
+     var table= $(this).closest('table');
+     ($(this).is(":checked")) ?
+          (
+            $(this).closest('table').find('tr').css('background-color', '#fff9ae'),
+            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", false),
+            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", false),
+            $('td input:checkbox',table).prop('checked', true),
+            check = $('td input:checkbox',table).map(function() {
+              var index = public_code_question_mcq.indexOf(this.value);
+              if (index > -1) {
+              }else {
+                public_code_question_mcq.push(this.value);
+              }
+              return this.value;
+            }).get(),
+            $('#public_code_question_mcq_id').val(public_code_question_mcq)
+          ) :
+
+          (
+            $(this).closest('table').find('tr').css('background-color', '#fff'),
+            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", true),
+            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", true),
+            $('td input:checkbox',table).prop('checked', false),
+            check = $('td input:checkbox',table).map(function(item) {
+               var index = public_code_question_mcq.indexOf(this.value);
+               if (index > -1) {
+                 public_code_question_mcq.splice(index, 1);
+               }
+            }).get(),
+            $('#public_code_question_mcq_id').val(public_code_question_mcq)
+          );
+
+      if (public_code_question_mcq.length >= 1) {
+        $('#add_selected_question_code_button').removeClass('hidden');
+        $('#add_selected_question_code_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_code_button').addClass('hidden');
+        $('#add_selected_question_code_span').removeClass('hidden');
+      }
+  });
+
+  $('.private_code_question_mcq').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+
+      public_code_question_mcq.push(value);
+      $(this).closest('tr').css('background-color', '#fff9ae');
+      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", false);
+      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", false);
+      $("#public_code_question_mcq_id").val(public_code_question_mcq);
+
+      if (public_code_question_mcq.length >= 1) {
+        $('#add_selected_question_code_button').removeClass('hidden');
+        $('#add_selected_question_code_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_code_button').addClass('hidden');
+        $('#add_selected_question_code_span').removeClass('hidden');
+      }
+
+    }
+    else{
+      removeItem = $(this).val();
+
+      public_code_question_mcq = $.grep(public_code_question_mcq, function(value) {
+        return value != removeItem;
+      });
+
+      $('.codeQuesCheck_private_code_question_mcq').prop('checked', false);
+
+      $(this).closest('tr').css('background-color', '#fff');
+      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", true);
+      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", true);
+      $("#public_code_question_mcq_id").val(public_code_question_mcq);
+
+      if (public_code_question_mcq.length >= 1) {
+        $('#add_selected_question_code_button').removeClass('hidden');
+        $('#add_selected_question_code_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_code_button').addClass('hidden');
+        $('#add_selected_question_code_span').removeClass('hidden');
+      }
+    }
+  });
+  $('.codeQuesCheck_private_code_question_mcq').change(function() {
+    var check;
+    var value;
+     var table= $(this).closest('table');
+     ($(this).is(":checked")) ?
+          (
+            $(this).closest('table').find('tr').css('background-color', '#fff9ae'),
+            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", false),
+            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", false),
+            $('td input:checkbox',table).prop('checked', true),
+            check = $('td input:checkbox',table).map(function() {
+              var index = public_code_question_mcq.indexOf(this.value);
+              if (index > -1) {
+              }else {
+                public_code_question_mcq.push(this.value);
+              }
+              return this.value;
+            }).get(),
+
+            $('#public_code_question_mcq_id').val(public_code_question_mcq)
+
+          ) :
+          (
+            $(this).closest('table').find('tr').css('background-color', '#fff'),
+            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", true),
+            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", true),
+            $('td input:checkbox',table).prop('checked', false),
+            check = $('td input:checkbox',table).map(function(item) {
+               var index = public_code_question_mcq.indexOf(this.value);
+               if (index > -1) {
+                 public_code_question_mcq.splice(index, 1);
+               }
+            }).get(),
+            $('#public_code_question_mcq_id').val(public_code_question_mcq)
+          );
+
+
+      if (public_code_question_mcq.length >= 1) {
+        $('#add_selected_question_code_button').removeClass('hidden');
+        $('#add_selected_question_code_span').addClass('hidden');
+      }
+      else {
+        $('#add_selected_question_code_button').addClass('hidden');
+        $('#add_selected_question_code_span').removeClass('hidden');
+      }
+  });
+
+
+  var private_submission_question_mcq = [];
+  $('.private_submission_question_mcq').change(function(){
+    var value ;
+    if($(this).is(":checked")) {
+      value = $(this).val();
+
+      private_submission_question_mcq.push(value);
+      $(this).closest('tr').css('background-color', '#fff9ae');
+      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", false);
+      $("#private_submission_question_mcq_id").val(private_submission_question_mcq);
+
+      if (private_submission_question_mcq.length >= 1) {
+        $('#add_submission_question_code_button').removeClass('hidden');
+        $('#add_submission_question_code_span').addClass('hidden');
+      }
+      else {
+        $('#add_submission_question_code_button').addClass('hidden');
+        $('#add_submission_question_code_span').removeClass('hidden');
+      }
+
+    }
+    else{
+      removeItem = $(this).val();
+
+      private_submission_question_mcq = $.grep(private_submission_question_mcq, function(value) {
+        return value != removeItem;
+      });
+
+      $('.codeQuesCheck_private_submission_question_mcq').prop('checked', false);
+
+      $(this).closest('tr').css('background-color', '#fff');
+      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", true);
+      $("#private_submission_question_mcq_id").val(private_submission_question_mcq);
+
+      if (private_submission_question_mcq.length >= 1) {
+        $('#add_submission_question_code_button').removeClass('hidden');
+        $('#add_submission_question_code_span').addClass('hidden');
+      }
+      else {
+        $('#add_submission_question_code_button').addClass('hidden');
+        $('#add_submission_question_code_span').removeClass('hidden');
+      }
+    }
+  });
+  $('.codeQuesCheck_private_submission_question_mcq').change(function() {
+    var check;
+    var value;
+     var table= $(this).closest('table');
+     ($(this).is(":checked")) ?
+          (
+            $(this).closest('table').find('tr').css('background-color', '#fff9ae'),
+            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", false),
+            $('td input:checkbox',table).prop('checked', true),
+            check = $('td input:checkbox',table).map(function() {
+              var index = private_submission_question_mcq.indexOf(this.value);
+              if (index > -1) {
+              }else {
+                private_submission_question_mcq.push(this.value);
+              }
+              return this.value;
+            }).get(),
+
+            $('#private_submission_question_mcq_id').val(private_submission_question_mcq)
+
+          ) :
+          (
+            $(this).closest('table').find('tr').css('background-color', '#fff'),
+            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", true),
+            $('td input:checkbox',table).prop('checked', false),
+            check = $('td input:checkbox',table).map(function(item) {
+               var index = private_submission_question_mcq.indexOf(this.value);
+               if (index > -1) {
+                 private_submission_question_mcq.splice(index, 1);
+               }
+            }).get(),
+            $('#private_submission_question_mcq_id').val(private_submission_question_mcq)
+          );
+
+
+      if (private_submission_question_mcq.length >= 1) {
+        $('#add_submission_question_code_button').removeClass('hidden');
+        $('#add_submission_question_code_span').addClass('hidden');
+      }
+      else {
+        $('#add_submission_question_code_button').addClass('hidden');
+        $('#add_submission_question_code_span').removeClass('hidden');
+      }
+  });
 
 });
 
+$(function(){
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var c = url.searchParams.get("modal");
+  $('#'+c).modal('show');
+});
 
 function moreSettings() {
   $('.moreSettings').removeClass('hidden');
@@ -556,7 +1083,7 @@ function addrow_choice() {
        '<td valign="center">'+colCount+'.</td>'+
        '<td> <input type="checkbox" name="status" value="1"> </td>'+
        '<td class="s_weight" valign="center">'+
-           '<textarea class="form-control" name="choice[]" required=""></textarea>'+
+           '<textarea class="form-control choice" name="choice[]" required=""></textarea>'+
        '</td>'+
        '<td valign="center" class="hidden">'+
            '<div class="input-group input-group-sm">'+
@@ -577,7 +1104,7 @@ function addrow_choice() {
         '<td valign="center">'+colCount+'.</td>'+
         '<td class="hidden"> <input type="checkbox" name="status" value="1"> </td>'+
         '<td class="s_weight" valign="center">'+
-            '<textarea class="form-control" name="choice[]" required=""></textarea>'+
+            '<textarea class="form-control choice" name="choice[]" required=""></textarea>'+
         '</td>'+
         '<td valign="center">'+
             '<div class="input-group input-group-sm">'+
@@ -781,13 +1308,6 @@ function addrow_weightage() {
        count--;
    });
 }
-$(function(){
-  var url_string = window.location.href;
-  var url = new URL(url_string);
-  var c = url.searchParams.get("modal");
-  $('#'+c).modal('show');
-  console.log(c);
-});
 
 var testtemp_setInterval_Expand;
 var testtemp_setInterval_Collapse;
@@ -804,7 +1324,7 @@ function edittesttemplate_Collapse() {
         $("#preview_data_section_expand").html(htmlString);
       }
       else {
-        console.log(htmlString);
+        // console.log(htmlString);
         $("#section-mcqs-Modal .fr-element.fr-view").html(htmlString);
         $("#edittemp_panel").removeClass('hidden');
         $("#preview_data_section_expand").html(htmlString);
@@ -812,35 +1332,48 @@ function edittesttemplate_Collapse() {
      }
   , 1000);
 }
+
+function duplicate_values(mcqs) {
+  for (var i = 0; i < mcqs.length; i++) {
+    for (var j = i+1 ; j < mcqs.length; j++) {
+      if (mcqs[i] == mcqs[j] && mcqs[i] != "") {
+        var a = parseInt(i)+1;
+        var b = parseInt(j)+1;
+
+        return a+"-"+b;
+      }
+    }
+  }
+}
+
 //Duplicate Test Template
 function section_id(id) {
-  console.log(id);
+  // console.log(id);
   $('#section_id_1').val(id);
   $('#section_id_2').val(id);
   $('#section_id_3').val(id);
   $('#section_id_4').val(id);
   $('#section_id_5').val(id);
   $('#section_id_6').val(id);
-  testtemp_setInterval_Expand = setInterval(
-    function(){
-      var htmlString = $( "#section-mcqs-Modal .fr-element.fr-view" ).html();
-      $("#preview_data_section").html(htmlString);
-      $("#section-mcqs-Modal-Collapse .fr-element.fr-view").html(htmlString);
-
-      if (htmlString == "<p><br></p>") {
-        $("#edittemp_panel").addClass('hidden');
-        $("#preview_data_section_expand").html(htmlString);
-      }
-      else {
-        $("#edittemp_panel").removeClass('hidden');
-        $("#preview_data_section_expand").html(htmlString);
-      }
-     }
-  , 1000);
+  // testtemp_setInterval_Expand = setInterval(
+  //   function(){
+  //     var htmlString = $( "#section-mcqs-Modal .fr-element.fr-view" ).html();
+  //     $("#preview_data_section").html(htmlString);
+  //     $("#section-mcqs-Modal-Collapse .fr-element.fr-view").html(htmlString);
+  //
+  //     if (htmlString == "<p><br></p>") {
+  //       $("#edittemp_panel").addClass('hidden');
+  //       $("#preview_data_section_expand").html(htmlString);
+  //     }
+  //     else {
+  //       $("#edittemp_panel").removeClass('hidden');
+  //       $("#preview_data_section_expand").html(htmlString);
+  //     }
+  //    }
+  // , 1000);
 }
 function edittesttemplate_Expand(id) {
 
-  console.log(id);
   $('#section_id_1').val(id);
   $('#section_id_2').val(id);
   $('#section_id_3').val(id);
@@ -848,6 +1381,115 @@ function edittesttemplate_Expand(id) {
 
   testtemp_setInterval_Expand = setInterval(
     function(){
+
+      var text = $( "#section-mcqs-Modal .fr-element.fr-view" ).text();
+
+      var checkbox_Count = 0;
+      $('#section_choices_table tbody tr td :checkbox').each(function () {
+        if ($(this).is(":checked")) {
+          checkbox_Count++;
+        }
+      });
+
+      if (text.length <= 2 ) {
+        $("#section-mcqs-Modal .header_span_commint").text("Please add atleast 3 characters in the question statement ");
+        $("#section-mcqs-Modal .textarea_span_commint").text("Please add atleast 3 characters in the statement ");
+        $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        $("#section-mcqs-Modal .header_span_commint").text("");
+        $("#section-mcqs-Modal .textarea_span_commint").text("");
+
+        var weightage_colCount = 1;
+        var weightage = [];
+        var sum = 0;
+        $('#section_choices_table tbody tr').each(function () {
+          var value = $('#section_choices_table tbody tr:nth-child('+weightage_colCount+') td:nth-child(4) input').val();
+          weightage.push(value);
+          sum += parseInt(value);
+          weightage_colCount++;
+        });
+
+        var text_colCount = 1;
+        var mcqs = [];
+        $('#section_choices_table tbody tr').each(function () {
+          var value = $('#section_choices_table tbody tr:nth-child('+text_colCount+') td:nth-child(3) .choice').val();
+          mcqs.push(value);
+          text_colCount++;
+        });
+
+        for (var i = 0; i < mcqs.length; i++) {
+          if ($('#section_partial_marks:checked').length == 0) {
+
+            if (mcqs[i] == "") {
+              var j = parseInt(i)+1;
+              $("#section-mcqs-Modal .header_span_commint").text("The option #"+j+" is blank");
+              $("#section-mcqs-Modal .choice_span_commint").text("(The option #"+j+" is blank)");
+              $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+              break;
+            }else {
+
+              $("#section-mcqs-Modal .choice_span_commint").text("");
+
+              if (duplicate_values(mcqs)) {
+                var data = duplicate_values(mcqs);
+                var num = data.split('-');
+                $("#section-mcqs-Modal .header_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#section-mcqs-Modal .choice_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+              }
+
+              if (checkbox_Count >= 1 ){
+                $("#section-mcqs-Modal .header_span_commint").text("");
+                $("#section-mcqs-Modal .submit_button").attr("disabled", false);
+              }else {
+                $("#section-mcqs-Modal .header_span_commint").text("Please select at least one choice as correct answer for the question");
+                $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+              }
+            }
+
+          }
+          else {
+            if (mcqs[i] == "") {
+              var j = parseInt(i)+1;
+              $("#section-mcqs-Modal .header_span_commint").text("The option #"+j+" is blank");
+              $("#section-mcqs-Modal .choice_span_commint").text("(The option #"+j+" is blank)");
+              $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+              break;
+            }else{
+
+              $("#section-mcqs-Modal .choice_span_commint").text("");
+              $("#section-mcqs-Modal .header_span_commint").text("Please add atleast one option with 100 as partial marks weightage");
+
+              if (duplicate_values(mcqs)) {
+                var data = duplicate_values(mcqs);
+                var num = data.split('-');
+                $("#section-mcqs-Modal .header_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#section-mcqs-Modal .choice_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+              }
+
+              $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+
+              if (sum >= 1) {
+                for (var i = 0; i < weightage.length; i++) {
+                  if (weightage[i] == 100) {
+                    $("#section-mcqs-Modal .header_span_commint").text("");
+                    $("#section-mcqs-Modal .submit_button").attr("disabled", false);
+                  }else if(weightage[i] > 100){
+                    var j = parseInt(i)+1;
+                    $("#section-mcqs-Modal .header_span_commint").text("Please provide the partial marks weightage(0-100) for choice #"+j);
+                    $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+                    return false;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+
       var htmlString = $( "#section-mcqs-Modal .fr-element.fr-view" ).html();
       $("#preview_data_section").html(htmlString);
       $("#section-mcqs-Modal-Collapse .fr-element.fr-view").html(htmlString);
@@ -870,7 +1512,6 @@ function collapse_modal() {
   edittesttemplate_Expand();
 }
 
-
 var code_testtemp_setInterval_Expand;
 var code_testtemp_setInterval_Collapse;
 function code_edittesttemplate_Collapse() {
@@ -886,7 +1527,7 @@ function code_edittesttemplate_Collapse() {
         $("#code_preview_data_section_expand").html(htmlString);
       }
       else {
-        console.log(htmlString);
+        // console.log(htmlString);
         $("#section-coding-add-compilable-question-Modal .fr-element.fr-view").html(htmlString);
         $("#code_edittemp_panel").removeClass('hidden');
         $("#code_preview_data_section_expand").html(htmlString);
@@ -897,6 +1538,70 @@ function code_edittesttemplate_Collapse() {
 function code_edittesttemplate_Expand() {
   code_testtemp_setInterval_Expand = setInterval(
     function(){
+      // 1. Title
+      var title = $( "#section-coding-add-compilable-question-Modal input[name='coding_program_title']" ).val();
+      // 2. Statement
+      var statement  = $( "#section-coding-add-compilable-question-Modal .fr-element.fr-view" ).text();
+      // 3. Sample Input or Output
+      var input_output = 1;
+      var count_input_output = 0;
+      $('#section_coding_table tbody tr').each(function () {
+        var input = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(2) textarea').val();
+        var output = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(3) textarea').val();
+
+        if (input == "" || output == "") {
+          count_input_output++;
+        }
+        input_output++;
+      });
+      // 4. Test Case
+      var test_case_Count = 0;
+      $('#weightage_code_table tbody tr').each(function (data) {
+           test_case_Count++;
+      });
+      var test_case_result_Count = 0;
+      $('#weightage_code_table tbody tr').each(function (data) {
+        var result = $(this).find('.weightage_save').hasClass( "hidden" ).toString();
+        if (result == "false") {
+          test_case_result_Count++;
+        }
+      });
+      // 5. Marks for this Question
+      var marks = $( "#section-coding-add-compilable-question-Modal input[name='marks']" ).val();
+
+
+      if (title.length <= 1 ) {
+        $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please add the question title");
+        $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+      }
+      else if(statement.length <= 0){
+        $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please add the question statement");
+        $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+      }
+      else if(count_input_output > 0){
+        var count = parseInt(input_output)-1;
+        $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please check Sample "+count+" for emptiness");
+        $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        if (test_case_Count > 0) {
+          if (test_case_result_Count > 0) {
+            $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Some test cases are not saved. Please upload the testCases");
+            $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+          }else {
+            $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please enter the marks");
+            $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+            if (marks != "") {
+              $("#section-coding-add-compilable-question-Modal .header_span_commint").text("");
+              $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", false);
+            }
+          }
+        }else {
+          $("#section-coding-add-compilable-question-Modal .header_span_commint").text("Please add test cases");
+          $("#section-coding-add-compilable-question-Modal .submit_button").attr("disabled", true);
+        }
+      }
+
       var htmlString = $( "#section-coding-add-compilable-question-Modal .fr-element.fr-view" ).html();
       $("#code_preview_data_section").html(htmlString);
       $("#section-coding-add-compilable-question-Modal-Collapse .fr-element.fr-view").html(htmlString);
@@ -919,6 +1624,99 @@ function code_collapse_modal() {
   code_edittesttemplate_Expand();
 }
 
+var code_debug_setInterval_Expand;
+var code_debug_setInterval_Collapse;
+function code_debug_Collapse() {
+  clearInterval(code_debug_setInterval_Expand);
+  code_debug_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#section-coding-debug-Modal-Collapse .fr-element.fr-view" ).html();
+      $("#code_preview_data_debug").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#section-coding-debug-Modal .fr-element.fr-view").html(htmlString);
+        $("#code_debug_panel").addClass('hidden');
+        $("#code_preview_data_debug_expand").html(htmlString);
+      }
+      else {
+        // console.log(htmlString);
+        $("#section-coding-debug-Modal .fr-element.fr-view").html(htmlString);
+        $("#code_debug_panel").removeClass('hidden');
+        $("#code_preview_data_debug_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function code_debug_Expand() {
+  code_debug_setInterval_Expand = setInterval(
+    function(){
+      // 1. Title
+      var title = $( "#section-coding-debug-Modal input[name='coding_program_title']" ).val();
+      // 2. Statement
+      var statement  = $( "#section-coding-debug-Modal .fr-element.fr-view" ).text();
+      // 3. Test Case
+      var test_case_Count = 0;
+      $('#weightage_edit_code_table tbody tr').each(function (data) {
+           test_case_Count++;
+      });
+      var test_case_result_Count = 0;
+      $('#weightage_edit_code_table tbody tr').each(function (data) {
+        var result = $(this).find('.weightage_save').hasClass( "hidden" ).toString();
+        if (result == "false") {
+          test_case_result_Count++;
+        }
+      });
+      // 4. Marks for this Question
+      var marks = $( "#section-coding-debug-Modal input[name='marks']" ).val();
+
+      if (title.length <= 1 ) {
+        $("#section-coding-debug-Modal .header_span_commint").text("Please add the question title");
+        $("#section-coding-debug-Modal .submit_button").attr("disabled", true);
+      }
+      else if(statement.length <= 0){
+        $("#section-coding-debug-Modal .header_span_commint").text("Please add the question statement");
+        $("#section-coding-debug-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        if (test_case_Count > 0) {
+          if (test_case_result_Count > 0) {
+            $("#section-coding-debug-Modal .header_span_commint").text("Some test cases are not saved. Please upload the testCases");
+            $("#section-coding-debug-Modal .submit_button").attr("disabled", true);
+          }else {
+            $("#section-coding-debug-Modal .header_span_commint").text("Please enter the marks");
+            $("#section-coding-debug-Modal .submit_button").attr("disabled", true);
+            if (marks != "") {
+              $("#section-coding-debug-Modal .header_span_commint").text("");
+              $("#section-coding-debug-Modal .submit_button").attr("disabled", false);
+            }
+          }
+        }else {
+          $("#section-coding-debug-Modal .header_span_commint").text("Please add test cases");
+          $("#section-coding-debug-Modal .submit_button").attr("disabled", true);
+        }
+      }
+
+      var htmlString = $( "#section-coding-debug-Modal .fr-element.fr-view" ).html();
+      $("#code_preview_data_debug").html(htmlString);
+      $("#section-coding-debug-Modal-Collapse .fr-element.fr-view").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#code_debug_panel").addClass('hidden');
+        $("#code_preview_data_debug_expand").html(htmlString);
+      }
+      else {
+        $("#code_debug_panel").removeClass('hidden');
+        $("#code_preview_data_debug_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function code_debug_collapse_modal() {
+  $("#section-coding-debug-Modal-Collapse").modal('hide');
+  $("#section-coding-debug-Modal").css('overflow','scroll');
+  clearInterval(code_debug_setInterval_Collapse);
+  code_debug_Expand();
+}
 
 var submission_testtemp_setInterval_Expand;
 var submission_testtemp_setInterval_Collapse;
@@ -926,6 +1724,30 @@ function submission_edittesttemplate_Expand() {
   clearInterval(submission_testtemp_setInterval_Collapse);
   submission_testtemp_setInterval_Expand = setInterval(
     function(){
+      // 1. Question Statement
+      var text = $( "#section-submission-question-Modal .fr-element.fr-view" ).text();
+      // 2. Candidate can use
+      var checkbox_Count = 0;
+      $("#section-submission-question-Modal input[name='help_material_name[]']").each( function () {
+    		if ($(this).is(":checked")) {
+          checkbox_Count++;
+        }
+    	});
+
+      if (text.length <= 2 ) {
+        $("#section-submission-question-Modal .header_span_commint").text("Please add atleast 3 characters in the question statement ");
+        $("#section-submission-question-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        $("#section-submission-question-Modal .header_span_commint").text("Please select atleast one resource allowed by candidate to upload");
+        $("#section-submission-question-Modal .submit_button").attr("disabled", true);
+
+        if(checkbox_Count > 0){
+          $("#section-submission-question-Modal .header_span_commint").text("");
+          $("#section-submission-question-Modal .submit_button").attr("disabled", false);
+        }
+      }
+
       var htmlString = $( "#section-submission-question-Modal .fr-element.fr-view" ).html();
 
       if (htmlString == "<p><br></p>") {
@@ -934,7 +1756,7 @@ function submission_edittesttemplate_Expand() {
         $("#submission_preview_data_section_expand").html(htmlString);
       }
       else {
-        console.log(htmlString);
+        // console.log(htmlString);
         $("#section-submission-question-Modal-collapse .fr-element.fr-view").html(htmlString);
         $("#submission_edittemp_panel").removeClass('hidden');
         $("#submission_preview_data_section_expand").html(htmlString);
@@ -969,13 +1791,23 @@ function submission_collapse_modal() {
   submission_edittesttemplate_Expand();
 }
 
-
 var submission_fill_testtemp_setInterval_Expand;
 var submission_fill_testtemp_setInterval_Collapse;
 function submission_fill_edittesttemplate_Expand() {
   clearInterval(submission_fill_testtemp_setInterval_Collapse);
   submission_fill_testtemp_setInterval_Expand = setInterval(
     function(){
+      // 1. Question Statement
+      var text = $( "#section-submission-fill-blanks-question-Modal .fr-element.fr-view" ).text();
+      if (text.length <= 2 ) {
+        $("#section-submission-fill-blanks-question-Modal .header_span_commint").text("Please add atleast 3 characters in the question statement ");
+        $("#section-submission-fill-blanks-question-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        $("#section-submission-fill-blanks-question-Modal .header_span_commint").text("");
+        $("#section-submission-fill-blanks-question-Modal .submit_button").attr("disabled", false);
+      }
+
       var htmlString = $( "#section-submission-fill-blanks-question-Modal .fr-element.fr-view" ).html();
 
       if (htmlString == "<p><br></p>") {
@@ -984,7 +1816,7 @@ function submission_fill_edittesttemplate_Expand() {
         $("#submission_fill_preview_data_section_expand").html(htmlString);
       }
       else {
-        console.log(htmlString);
+        // console.log(htmlString);
         $("#section-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view").html(htmlString);
         $("#submission_fill_edittemp_panel").removeClass('hidden');
         $("#submission_fill_preview_data_section_expand").html(htmlString);
@@ -1019,40 +1851,6 @@ function submission_fill_collapse_modal() {
   submission_fill_edittesttemplate_Expand();
 }
 
-
-
-function edit_template_text_editor() {
-  // clearInterval(code_testtemp_setInterval_Expand);
-
-}
-
-// Create Template Section
-$( "#section_partial_marks" ).on( "click", function() {
-  if ($("#section_partial_marks:checked").length == 1) {
-    $('#section_choices_table > tbody tr > td:nth-child(2)').addClass("hidden");
-    $('#section_choices_table > tbody tr > td:nth-child(4)').removeClass("hidden");
-
-    $("#section_choices_table tbody tr").closest('tr').css('background-color', '#fff');
-    $("#section_choices_table > tbody tr > td:nth-child(5)").children('a').show();
-  }
-  else {
-    $('#section_choices_table > tbody tr > td:nth-child(2)').removeClass("hidden");
-    $('#section_choices_table > tbody tr > td:nth-child(4)').addClass("hidden");
-
-    $('#section_choices_table tbody tr  td :checkbox').each(function () {
-        var $this = $(this);
-        if($this.is(':checked')) {
-          $this.closest('tr').css('background-color', '#3fb618');
-          $this.closest('tr').children('td ').last().children('a').hide();
-        }
-        else {
-          $this.closest('tr').css('background-color', '#fff');
-          $this.closest('tr').children('td ').last().children('a').show();
-        }
-    });
-  }
-});
-
 function template_row_add_choice() {
    var colCount = 1;
    $('#section_choices_table tbody tr').each(function () {
@@ -1065,7 +1863,7 @@ function template_row_add_choice() {
        '<td valign="center">'+colCount+'.</td>'+
        '<td> <input type="checkbox" name="answer[]" class="choices_table_checkbox"> </td>'+
        '<td class="s_weight" valign="center">'+
-           '<textarea class="form-control" name="choice[]" required=""></textarea>'+
+           '<textarea class="form-control choice" name="choice[]" required=""></textarea>'+
        '</td>'+
        '<td valign="center" class="hidden">'+
            '<div class="input-group input-group-sm">'+
@@ -1086,7 +1884,7 @@ function template_row_add_choice() {
         '<td valign="center">'+colCount+'.</td>'+
         '<td class="hidden"> <input type="checkbox" name="answer[]" class="choices_table_checkbox"> </td>'+
         '<td class="s_weight" valign="center">'+
-            '<textarea class="form-control" name="choice[]" required=""></textarea>'+
+            '<textarea class="form-control choice" name="choice[]" required=""></textarea>'+
         '</td>'+
         '<td valign="center">'+
             '<div class="input-group input-group-sm">'+
@@ -1119,7 +1917,7 @@ function template_row_add_choice() {
            if($this.is(':checked')) {
              $count++;
              if ($count >= 2) {
-               console.log($count);
+               // console.log($count);
                $( "#section_partial_marks" ).attr("disabled", true);
              }
              else {
@@ -1256,512 +2054,147 @@ function addQuestionnaire(id) {
     '</div>'+
   '</li>');
 
-  loadJS();
 
 }
 
-$(function(){
-  loadJS();
-})
+function moreSettings_code() {
+  $('.moreSettings_code').removeClass('hidden');
+  $('.moreSettings_button_code').addClass('hidden');
+}
+function moreSettings_submission() {
+  $('.moreSettings_submission').removeClass('hidden');
+  $('.moreSettings_button_submission').addClass('hidden');
+}
 
- // function loadJS (){
+var publicpageview_setInterval;
+function publicpageview_start() {
+  publicpageview_setInterval = setInterval(
+    function(){
 
- //   $('.format_class').change(function() {
- //     var item=$(this);
- //     console.log(item.val());
- //     var abc = $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").children().find( ".option_table" );
- //
- //     if (item.val() == 1) {
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
- //
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
- //     }
- //     else if (item.val() == 2) {
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
- //
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
- //     }
- //     else if (item.val() == 3) {
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").removeClass('hidden');
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", false);
- //
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
- //     }
- //     else if (item.val() == 4) {
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
- //
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").addClass('hidden');
- //     }
- //     else if (item.val() == 5) {
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
- //
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
- //     }
- //     else if (item.val() == 6) {
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
- //
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
- //     }
- //     else if (item.val() == 7) {
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").addClass('hidden');
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".placeholder_text_data").children().find( ".placeholder_text" ).attr("disabled", true);
- //
- //       $( this ).parentsUntil( ".dropdown_format_menu" ).siblings(".option_text_data").removeClass('hidden');
- //     }
- //   });
- //
- //   $('.add_option').click(function(){
- //      var colCount = 1;
- //      $(this).closest( "tfoot" ).siblings("tbody").find( "tr" ).each(function () {
- //          colCount++;
- //      });
- //
- //      $(this).closest( "tfoot" ).siblings("tbody").find( "tr:last" ).after('<tr>'+
- //          '<td valign="center">Option '+colCount+'</td>'+
- //          '<td class="s_weight" valign="center">'+
- //           '<input type="text" class="form-control option_text" name="option[]">'+
- //          '</td>'+
- //          '<td valign="center">'+
- //             '<a href="javascript:void(0)" class="delete_row_option">'+
- //               '<i class="fa fa-times-circle-o"></i>'+
- //             '</a>'+
- //          '</td>'+
- //      '</tr>');
- //
- //
- //        $('.delete_row_option').on("click",function(){
- //
- //          var colCount_alert = 0;
- //          $(this).closest( "tbody" ).find( "tr" ).each(function () {
- //              colCount_alert++;
- //          });
- //          console.log(colCount_alert);
- //          if (colCount_alert == 1) {
- //            alert("Atleast One options are mandatory..");
- //          }else {
- //            $(this).closest('tr').remove();
- //          }
- //
- //          var colCount = 0;
- //          $(this).closest( "tbody" ).find( "tr" ).each(function () {
- //              colCount++;
- //              $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
- //          });
- //
- //        });
- //   });
- //
- //   $('.delete_row_option').on("click",function(){
- //
- //     var colCount_alert = 0;
- //     $(this).closest( "tbody" ).find( "tr" ).each(function () {
- //         colCount_alert++;
- //     });
- //     console.log(colCount_alert);
- //     if (colCount_alert == 1) {
- //       alert("Atleast One options are mandatory..");
- //     }else {
- //       $(this).closest('tr').remove();
- //     }
- //
- //     var colCount = 0;
- //     $(this).closest( "tbody" ).find( "tr" ).each(function () {
- //         colCount++;
- //         $(this).closest( "tbody" ).find( "tr:nth-child("+colCount+") td:nth-child(1)").html('Option '+colCount);
- //     });
- //
- //   });
- //
- //   $('.edit_question').click(function() {
- //      console.log("sadsjadh");
- //       $( this ).closest( ".row" ).siblings('.capsule').toggleClass('hidden');
- //    });
- //
- // }
-
-$(document).ready(function() {
-
-  $('.submit_prog').click(function(){
-    var target = $(this).attr('data-target');
-    var data = $('.prog-'+target).val();
-  });
-
-
-  var array_mc = [];
-  $('.prog_mc').change(function(){
-    var value ;
-    if($(this).is(":checked")) {
-      value = $(this).val();
-      array_mc.push(value);
-
-      if (array_mc.length == 0)
-      {
-        $(".delete_section_mc").addClass('hidden');
-        $("#section_mc_id").val(array_mc);
+      var objVal = $('#publicpageview_title').val();
+      if(objVal != ''){
+        $('#publicpageview_title_data').html(objVal);
       }
-      else
-      {
-        $(".delete_section_mc").removeClass('hidden');
-        $("#section_mc_id").val(array_mc);
-      }
-    }
-    else{
-      removeItem = $(this).val();
 
-      array_mc = $.grep(array_mc, function(value) {
-        return value != removeItem;
+
+      var description = $( "#publicpageview_text_editor .fr-element.fr-view" ).html();
+      $("#publicpageview_description_data").html(description);
+
+     }
+  , 1000);
+}
+function publicpageview_stop() {
+  clearInterval(publicpageview_setInterval);
+}
+
+var pencilmodel_setInterval_Expand;
+var pencilmodel_setInterval_Collapse;
+function pencil_model_Collapse() {
+  clearInterval(pencilmodel_setInterval_Expand);
+  pencilmodel_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#modal-pencil-Collapse .fr-element.fr-view" ).html();
+      $("#code_preview_data_section").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#modal_pencil .fr-element.fr-view").html(htmlString);
+        $("#code_edittemp_panel").addClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        // console.log(htmlString);
+        $("#modal_pencil .fr-element.fr-view").html(htmlString);
+        $("#code_edittemp_panel").removeClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function code_edittesttemplate_Expand() {
+  pencilmodel_setInterval_Expand = setInterval(
+    function(){
+      // 1. Title
+      var title = $( "#modal_pencil input[name='coding_program_title']" ).val();
+      // 2. Statement
+      var statement  = $( "#modal_pencil .fr-element.fr-view" ).text();
+      // 3. Sample Input or Output
+      var input_output = 1;
+      var count_input_output = 0;
+      $('#section_coding_table tbody tr').each(function () {
+        var input = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(2) textarea').val();
+        var output = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(3) textarea').val();
+
+        if (input == "" || output == "") {
+          count_input_output++;
+        }
+        input_output++;
       });
-
-      $('.codeQuesCheck_prog_mc').prop('checked', false);
-
-      if (array_mc.length == 0)
-      {
-        $(".delete_section_mc").addClass('hidden');
-        $("#section_mc_id").val(array_mc);
-      }
-      else
-      {
-        $(".delete_section_mc").removeClass('hidden');
-        $("#section_mc_id").val(array_mc);
-      }
-    }
-  });
-  $('.codeQuesCheck_prog_mc').change(function() {
-    var check;
-    //$(this).closest('tbody');
-     var table= $(this).closest('table');
-     ($(this).is(":checked")) ?
-          (
-
-            $('td input:checkbox',table).prop('checked', true),
-            check = $('td input:checkbox',table).map(function() {
-              array_mc.push(this.value);
-              return this.value;
-            }).get(),
-
-            $(this).closest('.tab-pane').find('.input_c_id').val(check),
-            $(".delete_section_mc").removeClass('hidden')
-
-          ) :
-
-          ( $('td input:checkbox',table).prop('checked', false),
-            array_mc = [],
-            $(this).closest('.tab-pane').find('.input_c_id').val(''),
-            $(".delete_section_mc").addClass('hidden')
-          );
-
-  });
-
-
-  var array_c = [];
-  $('.prog_c').change(function(){
-    var value ;
-    if($(this).is(":checked")) {
-      value = $(this).val();
-      array_c.push(value);
-
-      if (array_c.length == 0)
-      {
-        $(".delete_section_c").addClass('hidden');
-        $("#section_c_id").val(array_c);
-      }
-      else
-      {
-        $(".delete_section_c").removeClass('hidden');
-        $("#section_c_id").val(array_c);
-      }
-    }
-    else{
-      removeItem = $(this).val();
-
-      array_c = $.grep(array_c, function(value) {
-        return value != removeItem;
+      // 4. Test Case
+      var test_case_Count = 0;
+      $('#weightage_code_table tbody tr').each(function (data) {
+           test_case_Count++;
       });
-
-      $('.codeQuesCheck_prog_c').prop('checked', false);
-
-      if (array_c.length == 0)
-      {
-        $(".delete_section_c").addClass('hidden');
-        $("#section_c_id").val(array_c);
-      }
-      else
-      {
-        $(".delete_section_c").removeClass('hidden');
-        $("#section_c_id").val(array_c);
-      }
-    }
-  });
-  $('.codeQuesCheck_prog_c').change(function() {
-    var check;
-    //$(this).closest('tbody');
-     var table= $(this).closest('table');
-     ($(this).is(":checked")) ?
-          (
-
-            $('td input:checkbox',table).prop('checked', true),
-            check = $('td input:checkbox',table).map(function() {
-              array_c.push(this.value);
-              return this.value;
-            }).get(),
-
-            $(this).closest('.tab-pane').find('.input_c_id').val(check),
-            $(".delete_section_c").removeClass('hidden')
-
-          ) :
-
-          ( $('td input:checkbox',table).prop('checked', false),
-            array_c = [],
-            $(this).closest('.tab-pane').find('.input_c_id').val(''),
-            $(".delete_section_c").addClass('hidden')
-          );
-  });
-
-
-  var array_s = [];
-  $('.prog_s').change(function(){
-    var value ;
-    if($(this).is(":checked")) {
-      value = $(this).val();
-      array_s.push(value);
-
-      if (array_s.length == 0)
-      {
-        $(".delete_section_s").addClass('hidden');
-        $("#section_s_id").val(array_s);
-      }
-      else
-      {
-        $(".delete_section_s").removeClass('hidden');
-        $("#section_s_id").val(array_s);
-      }
-    }
-    else{
-      removeItem = $(this).val();
-
-      array_s = $.grep(array_s, function(value) {
-        return value != removeItem;
+      var test_case_result_Count = 0;
+      $('#weightage_code_table tbody tr').each(function (data) {
+        var result = $(this).find('.weightage_save').hasClass( "hidden" ).toString();
+        if (result == "false") {
+          test_case_result_Count++;
+        }
       });
+      // 5. Marks for this Question
+      var marks = $( "#modal_pencil input[name='marks']" ).val();
 
-      $('.codeQuesCheck_prog_s').prop('checked', false);
 
-      if (array_s.length == 0)
-      {
-        $(".delete_section_s").addClass('hidden');
-        $("#section_s_id").val(array_s);
+      if (title.length <= 1 ) {
+        $("#modal_pencil .header_span_commint").text("Please add the question title");
+        $("#modal_pencil .submit_button").attr("disabled", true);
       }
-      else
-      {
-        $(".delete_section_s").removeClass('hidden');
-        $("#section_s_id").val(array_s);
+      else if(statement.length <= 0){
+        $("#modal_pencil .header_span_commint").text("Please add the question statement");
+        $("#modal_pencil .submit_button").attr("disabled", true);
       }
-    }
-  });
-  $('.codeQuesCheck_prog_s').change(function() {
-    var check;
-    //$(this).closest('tbody');
-     var table= $(this).closest('table');
-     ($(this).is(":checked")) ?
-          (
-
-            $('td input:checkbox',table).prop('checked', true),
-            check = $('td input:checkbox',table).map(function() {
-              array_s.push(this.value);
-              return this.value;
-            }).get(),
-
-            $(this).closest('.tab-pane').find('.input_c_id').val(check),
-            $(".delete_section_s").removeClass('hidden')
-
-          ) :
-
-          ( $('td input:checkbox',table).prop('checked', false),
-            array_s = [],
-            $(this).closest('.tab-pane').find('.input_c_id').val(''),
-            $(".delete_section_s").addClass('hidden')
-          );
-  });
-
-
-
-  var public_question_mcq = [];
-  $('.public_question_mcq').change(function(){
-    var value ;
-    if($(this).is(":checked")) {
-      value = $(this).val();
-
-      public_question_mcq.push(value);
-      $(this).closest('tr').css('background-color', '#fff9ae');
-      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", false);
-      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", false);
-      $("#public_question_mcq_id").val(public_question_mcq);
-
-      if (public_question_mcq.length >= 1) {
-        $('#add_selected_question_button').removeClass('hidden');
-        $('#add_selected_question_span').addClass('hidden');
+      else if(count_input_output > 0){
+        var count = parseInt(input_output)-1;
+        $("#modal_pencil .header_span_commint").text("Please check Sample "+count+" for emptiness");
+        $("#modal_pencil .submit_button").attr("disabled", true);
       }
       else {
-        $('#add_selected_question_button').addClass('hidden');
-        $('#add_selected_question_span').removeClass('hidden');
+        if (test_case_Count > 0) {
+          if (test_case_result_Count > 0) {
+            $("#modal_pencil .header_span_commint").text("Some test cases are not saved. Please upload the testCases");
+            $("#modal_pencil .submit_button").attr("disabled", true);
+          }else {
+            $("#modal_pencil .header_span_commint").text("Please enter the marks");
+            $("#modal_pencil .submit_button").attr("disabled", true);
+            if (marks != "") {
+              $("#modal_pencil .header_span_commint").text("");
+              $("#modal_pencil .submit_button").attr("disabled", false);
+            }
+          }
+        }else {
+          $("#modal_pencil .header_span_commint").text("Please add test cases");
+          $("#modal_pencil .submit_button").attr("disabled", true);
+        }
       }
-    }
-    else{
-      removeItem = $(this).val();
-      $("#public_question_mcq_id").val(public_question_mcq);
 
-      if (public_question_mcq.length >= 1) {
-        $('#add_selected_question_button').removeClass('hidden');
-        $('#add_selected_question_span').addClass('hidden');
-      }
-      else {
-        $('#add_selected_question_button').addClass('hidden');
-        $('#add_selected_question_span').removeClass('hidden');
-      }
-    }
-  });
-  $('.codeQuesCheck_public_question_mcq').change(function() {
-    var check;
-    var value;
-    //$(this).closest('tbody');
-     var table= $(this).closest('table');
-     ($(this).is(":checked")) ?
-          (
-            $(this).closest('table').find('tr').css('background-color', '#fff9ae'),
-            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", false),
-            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", false),
-            $('td input:checkbox',table).prop('checked', true),
-            check = $('td input:checkbox',table).map(function() {
-              var index = public_question_mcq.indexOf(this.value);
-              if (index > -1) {
-              }else {
-                public_question_mcq.push(this.value);
-              }
-              return this.value;
-            }).get(),
-            $('#public_question_mcq_id').val(public_question_mcq)
-          ) :
+      var htmlString = $( "#modal_pencil .fr-element.fr-view" ).html();
+      $("#code_preview_data_section").html(htmlString);
+      $("#modal-pencil-Collapse .fr-element.fr-view").html(htmlString);
 
-          (
-            $(this).closest('table').find('tr').css('background-color', '#fff'),
-            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", true),
-            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", true),
-            $('td input:checkbox',table).prop('checked', false),
-            check = $('td input:checkbox',table).map(function(item) {
-               var index = public_question_mcq.indexOf(this.value);
-               if (index > -1) {
-                 public_question_mcq.splice(index, 1);
-               }
-            }).get(),
-            $('#public_question_mcq_id').val(public_question_mcq)
-          );
-
-      if (public_question_mcq.length >= 1) {
-        $('#add_selected_question_button').removeClass('hidden');
-        $('#add_selected_question_span').addClass('hidden');
+      if (htmlString == "<p><br></p>") {
+        $("#code_edittemp_panel").addClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
       }
       else {
-        $('#add_selected_question_button').addClass('hidden');
-        $('#add_selected_question_span').removeClass('hidden');
+        $("#code_edittemp_panel").removeClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
       }
-  });
-
-  $('.private_question_mcq').change(function(){
-    var value ;
-    if($(this).is(":checked")) {
-      value = $(this).val();
-
-      public_question_mcq.push(value);
-      $(this).closest('tr').css('background-color', '#fff9ae');
-      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", false);
-      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", false);
-      $("#public_question_mcq_id").val(public_question_mcq);
-
-      if (public_question_mcq.length >= 1) {
-        $('#add_selected_question_button').removeClass('hidden');
-        $('#add_selected_question_span').addClass('hidden');
-      }
-      else {
-        $('#add_selected_question_button').addClass('hidden');
-        $('#add_selected_question_span').removeClass('hidden');
-      }
-
-    }
-    else{
-      removeItem = $(this).val();
-
-      public_question_mcq = $.grep(public_question_mcq, function(value) {
-        return value != removeItem;
-      });
-
-      $('.codeQuesCheck_private_question_mcq').prop('checked', false);
-
-      $(this).closest('tr').css('background-color', '#fff');
-      $(this).closest('tr').children('td:nth-child(4)').children('input').attr("disabled", true);
-      $(this).closest('tr').children('td:nth-child(5)').children('input').attr("disabled", true);
-      $("#public_question_mcq_id").val(public_question_mcq);
-
-      if (public_question_mcq.length >= 1) {
-        $('#add_selected_question_button').removeClass('hidden');
-        $('#add_selected_question_span').addClass('hidden');
-      }
-      else {
-        $('#add_selected_question_button').addClass('hidden');
-        $('#add_selected_question_span').removeClass('hidden');
-      }
-    }
-  });
-  $('.codeQuesCheck_private_question_mcq').change(function() {
-    var check;
-    var value;
-     var table= $(this).closest('table');
-     ($(this).is(":checked")) ?
-          (
-            $(this).closest('table').find('tr').css('background-color', '#fff9ae'),
-            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", false),
-            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", false),
-            $('td input:checkbox',table).prop('checked', true),
-            check = $('td input:checkbox',table).map(function() {
-              var index = public_question_mcq.indexOf(this.value);
-              if (index > -1) {
-              }else {
-                public_question_mcq.push(this.value);
-              }
-              return this.value;
-            }).get(),
-
-            $('#public_question_mcq_id').val(public_question_mcq)
-
-          ) :
-          (
-            $(this).closest('table').find('tr').css('background-color', '#fff'),
-            $(this).closest('table').find('tr > td:nth-child(4) input').attr("disabled", true),
-            $(this).closest('table').find('tr > td:nth-child(5) input').attr("disabled", true),
-            $('td input:checkbox',table).prop('checked', false),
-            check = $('td input:checkbox',table).map(function(item) {
-               var index = public_question_mcq.indexOf(this.value);
-               if (index > -1) {
-                 public_question_mcq.splice(index, 1);
-               }
-            }).get(),
-            $('#public_question_mcq_id').val(public_question_mcq)
-          );
-
-
-      if (public_question_mcq.length >= 1) {
-        $('#add_selected_question_button').removeClass('hidden');
-        $('#add_selected_question_span').addClass('hidden');
-      }
-      else {
-        $('#add_selected_question_button').addClass('hidden');
-        $('#add_selected_question_span').removeClass('hidden');
-      }
-  });
-
-
-
-});
+     }
+  , 1000);
+}
+function code_collapse_modal() {
+  $("#modal-pencil-Collapse").modal('hide');
+  $("#modal_pencil").css('overflow','scroll');
+  clearInterval(pencilmodel_setInterval_Collapse);
+  code_edittesttemplate_Expand();
+}

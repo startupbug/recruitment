@@ -26,7 +26,7 @@ Route::post('/register', 'AuthenticationController@register_post')->name('regist
 
 
 /*Admin Routes Started*/
-Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {	
+Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {
 
 	Route::get('/', 'Admin\AdminController@index')->name('admin_index');
 	Route::get('admin_logout', 'Admin\AdminController@admin_logout')->name('admin_logout');
@@ -82,12 +82,17 @@ Route::get('/invited_candidates', 'Recruiter\RecruiterController@invited_candida
 Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
 
 Route::post('/update_questions_modal/{id}','Recruiter\QuestionsController@update_questions_modal')->name('update_questions_modal');
+Route::post('/submission_update_questions_modal/{id}','Recruiter\QuestionsController@submission_update_questions_modal')->name('submission_update_questions_modal');
+Route::post('/coding_update_questions_modal/{id}','Recruiter\QuestionsController@coding_update_questions_modal')->name('coding_update_questions_modal');
 Route::get('/delete_question_choice/{id?}','Recruiter\QuestionsController@delete_choice')->name('delete_choice');
+Route::get('/delete_question_test_case/{id?}','Recruiter\QuestionsController@delete_test_case')->name('delete_test_case');
+
 
 Route::get('/preview_test_questions', 'Recruiter\RecruiterController@preview_test_questions')->name('preview_test_questions');
 Route::get('/change_password', 'Recruiter\RecruiterController@change_password')->name('change_password');
 Route::get('/general_setting', 'Recruiter\RecruiterController@general_setting')->name('general_setting');
 Route::get('/setting_info', 'Recruiter\RecruiterController@setting_info')->name('setting_info');
+Route::post('/post_setting_info', 'Recruiter\RecruiterController@post_setting_info')->name('post_setting_info');
 
 //Recruiter Company Routes Started
 Route::post('/post_general_setting','Recruiter\CompanyController@post_general_setting')->name('post_general_setting');
@@ -109,7 +114,13 @@ Route::post('/add_section', 'Recruiter\TemplatesController@add_section')->name('
 Route::get('/delete_section/{id}', 'Recruiter\TemplatesController@delete_section')->name('delete_section');
 Route::get('/move_up/{id}', 'Recruiter\TemplatesController@move_up')->name('move_up');
 Route::get('/move_down/{id}', 'Recruiter\TemplatesController@move_down')->name('move_down');
+Route::get('/delete_user_setting_question/{id}', 'Recruiter\TemplatesController@delete_user_setting_question')->name('delete_user_setting_question');
 //Recruiter Test Template Routes Ended
+Route::post('/new_user_question_create', 'Recruiter\TemplatesController@new_user_question_create')->name('new_user_question_create');
+Route::get('/setting_question_move_up/{id}','Recruiter\TemplatesController@setting_question_move_up')->name('setting_question_move_up');
+Route::get('/setting_question_move_down/{id}','Recruiter\TemplatesController@setting_question_move_down')->name('setting_question_move_down');
+Route::post('/new_user_question_edit', 'Recruiter\TemplatesController@new_user_question_edit')->name('new_user_question_edit');
+Route::post('/create_question_admin', 'Recruiter\TemplatesController@create_question_admin')->name('create_question_admin');
 
 //Recruiter Questions Routes Started
 Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
@@ -155,7 +166,7 @@ Route::post('/delete_host', 'Recruiter\HostController@host_test_del')->name('hos
 //Terminate host //host_terminate
 Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name('host_terminate');
 
-//Public preview of host 
+//Public preview of host
 Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
 
 //Library controller
@@ -166,7 +177,21 @@ Route::post('/library-filter', 'Recruiter\LibraryController@libFilter')->name('l
 
 //Library single detail data.
 Route::post('/library-question-detail', 'Recruiter\LibraryController@lib_ques_detail')->name('lib_ques_detail');
+
+Route::post('/create_public_page_view', 'Recruiter\Public_view_pageController@create')->name('Public_view_page');
+Route::post('/edit_public_page_view/{id?}','Recruiter\Public_view_pageController@edit')->name('edit_public_page_view');
+Route::post('/update_public_page_view','Recruiter\Public_view_pageController@update')->name('update_public_page_view');
+
+Route::get('/delete_public_page_view/{id?}','Recruiter\Public_view_pageController@delete')->name('delete_public_page_view');
+
+
+Route::post('/upload_cover_image/{id?}','Recruiter\Public_view_pageController@cover_image')->name('upload_cover_image');
+
+Route::post('/insert_image_tags/{id?}','Recruiter\Public_view_pageController@insert_tags')->name('insert_image_tags');
+
 });
+
+
 
 /*Recruiter Routes Ended*/
 

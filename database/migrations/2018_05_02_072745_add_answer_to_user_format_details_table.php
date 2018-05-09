@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionnaireFormatsTable extends Migration
+class AddAnswerToUserFormatDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateQuestionnaireFormatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questionnaire_formats', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('format_name')->nullable();
-            $table->timestamps();
+        Schema::table('user_format_details', function (Blueprint $table) {
+            $table->longText('answer')->nullable()->after('option');
         });
     }
 
@@ -27,6 +25,8 @@ class CreateQuestionnaireFormatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questionnaire_formats');
+        Schema::table('user_format_details', function (Blueprint $table) {
+             $table->dropColumn('answer');
+        });
     }
 }

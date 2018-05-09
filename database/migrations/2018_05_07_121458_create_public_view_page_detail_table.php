@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFormatTypesTable extends Migration
+class CreatePublicViewPageDetailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateFormatTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('format_types', function (Blueprint $table) {
+        Schema::create('public_view_page_detail', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('min');
-            $table->integer('max');
-            $table->integer('checked');
-            $table->string('option');
             $table->timestamps();
         });
+
+
+
     }
 
     /**
@@ -30,6 +29,6 @@ class CreateFormatTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('format_types');
+        Schema::dropIfExists('public_view_page_detail');
     }
 }

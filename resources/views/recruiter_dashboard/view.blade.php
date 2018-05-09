@@ -30,7 +30,8 @@
         </li>
         <li>
             <a data-toggle="pill" href="#testemplate">
-                Test Templates ({{$count}})
+                
+                Test Templates @if(isset($count)) ({{$count}}) @endif
                 <div class="s_click_popup">
                     <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
                     <span class="s_click_popuptext f_popup">
@@ -43,7 +44,7 @@
     <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
             <div class="view_filter_right">
-                <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
+                <i class="fa fa-filter" data-toggle="modal" name="hosted_test" data-target="#filter_view123"></i>
             </div>
 
         @foreach($hosted_tests as $key => $hosted_test)
@@ -58,7 +59,7 @@
                                     <span class="fa fa-caret-right"></span>
                                     </a>
                                 </li>
-                                <?php 
+                                <?php
                                     $todaydate = new DateTime();
                                     $todaydate = $todaydate->format('Y-m-d');
 
@@ -68,16 +69,16 @@
                                 @if($hosted_test->status == 2)
                                     <!-- Terminated -->
                                     <li>Expired (terminated)</li>
-                                   <?php $expired_status=true;  ?>  
+                                   <?php $expired_status=true;  ?>
                                 @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
                                  <li>Expired</li>
-                                 <?php $expired_status=true;   ?>                         
+                                 <?php $expired_status=true;   ?>
                                 @elseif(strtotime($todaydate) == strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
                                  <li>Live</li>
-                                 <?php $live_status=true;  ?>  
+                                 <?php $live_status=true;  ?>
                                 @elseif(strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
                                  <li>Live</li>
-                                 <?php $live_status=true;  ?>                                             
+                                 <?php $live_status=true;  ?>
                                 @endif
 
                                 <li>{{$hosted_test->host_name}}</li>
@@ -89,7 +90,7 @@
                             <ul>
                                  @if(!(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date)))))
                                     <li><a href="#">Invite Candidates</a></li>
-                                    <li><a href="{{route('edit_template',['id'=>$hosted_test->test_template_id])}}">Edit</a></li>                                                                 
+                                    <li><a href="{{route('edit_template',['id'=>$hosted_test->test_template_id])}}">Edit</a></li>
                                  @endif
                                <!--  <li>Report</li> -->
                                 <li>
@@ -103,15 +104,15 @@
 
                                             <li><a href="{{route('preview_public_testpage', ['id' => $hosted_test->host_id])}}" target="blank">Preview Public Test Page</a></li>
                                             <li><a href="#" target="blank">View subscribed candidates</a></li>
-                                           <li><a href="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" target="blank">Preview Test</a></li>                                            
+                                           <li><a href="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" target="blank">Preview Test</a></li>
                                             <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to delete this Host.', '{{route('host_test_del')}}', {{$hosted_test->host_id}} )" >Delete Test</a></li>
                                             @if($live_status)
                                                  <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to terminate this Host.', '{{route('host_terminate')}}', {{$hosted_test->host_id}} )" >Terminate</a></li>
                                             @endif
 
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="#" data-toggle="modal" data-target="#setup_manual
-                                                ">Setup Manual Evaluation</a></li>
+                                            <!-- <li role="separator" class="divider"></li> -->
+                                            <!-- <li><a href="#" data-toggle="modal" data-target="#setup_manual
+                                                ">Setup Manual Evaluation</a></li> -->
                                         </ul>
                                     </div>
                                 </li>
@@ -191,10 +192,10 @@
                                     </tr>
                                     <tr>
                                         <td><span>Duration</span>
-                                        <?php 
+                                        <?php
                                         $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
                                         $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
-                                    
+
                                         $datetime1 = new DateTime($to_time." ".$hosted_test->test_open_time);
                                         $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
                                         $interval = $datetime1->diff($datetime2);
@@ -257,9 +258,10 @@
         <div id="testemplate" class="tab-pane fade">
             <div class="col-md-12 s_testtemplate_border">
                 <div class="view_filter_right">
-                    <i class="fa fa-filter" data-toggle="modal" data-target="#filter_view"></i>
+                    <i class="fa fa-filter" data-toggle="modal" name="test_template" data-target="#filter_view"></i>
                 </div>
                 
+                @if(isset($listing))
                 @foreach($listing as $key => $value)
 
                 <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template_{{$key}}" aria-expanded="false">
@@ -302,7 +304,7 @@
                                               </li>
                                           </ul>
                                       </div>
-                                  </li>                                
+                                  </li>
                                 </ul>
                             </div>
                         </div>
@@ -338,10 +340,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @if(isset($sections))
                                         @foreach($sections[$value->id] as $key => $section)
                                         <tr>
                                             <td>{{$section->section_name}}{{++$key}}
-                                                <?php 
+                                                <?php
                                                 $abc = App\Question::select('questions.id')->where('questions.question_type_id',1)
                                                 ->where('questions.section_id',$section->id)
                                                 ->count();
@@ -353,7 +356,7 @@
                                                 ->count();
                                                 ?>
 
-                                            <span class="pull-right">                     
+                                            <span class="pull-right">
                                                 {{$abc}} MCQ (15min)
                                                 /
                                                 {{$def}} Coding (15min)
@@ -362,17 +365,21 @@
                                             </span>
 
                                             </td>
-                                        </tr>    
-                                        @endforeach                                    
+                                        </tr>
+                                        @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </section>    
-                @endforeach() 
+                </section>
+                @endforeach()
+                @endif
+                @if(isset($count))
                 @if($count == 0)
                 <h1>No template to found</h1>
+                @endif
                 @endif
             </div>
         </div>
@@ -395,7 +402,7 @@
             <div class="modal-body s_modal_form_body modal_top modal_duplicate">
                 <form action="{{route('create_duplicate_template_post')}}" id="create_duplicate_template_post" method="POST">
                     {{csrf_field()}}
-                    <input type="text" id="duplication_of_template_ki_id" value="" name="previous_template_id">
+                    <input type="hidden" id="duplication_of_template_ki_id" value="" name="previous_template_id">
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group title">
@@ -442,7 +449,7 @@
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
 
-                                <div class="form-group title">
+                                <div class="form-group">
                                     <label class="col-md-3 control-label" for="name">Template Title
                                         <div class="s_popup">
                                                     <i class="fa fa-info-circle"> </i>
@@ -459,7 +466,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group title">
+                                <div class="form-group ">
                                     <label class="col-md-3 control-label" for="name">Type
                                         <div class="s_popup">
                                                     <i class="fa fa-info-circle"> </i>
@@ -476,7 +483,7 @@
 
                                     </label>
                                     <div class="col-md-9">
-                                        <div class="radio">
+                                        <div class="radio ss_radio">
                                             <label>
                                                 <input type="radio" name="template_type_id" value="1"  checked="checked">Public
                                             </label>
@@ -505,7 +512,7 @@
                     <!--<button type="button" class="btn s_save_button s_font" data-dismiss="modal">Create</button>-->
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>
                 </div>
-                <h3 class="modal-title s_font f_font"><i class="fa fa-filter">Filter Criteria</i></h3>
+                <h3 class="modal-title s_font f_font"><i class="fa fa-filter">Filter Criteria 12</i></h3>
             </div>
             <div class="modal-body s_modal_form_body">
                 <form action="{{route('manage_test_view')}}" method="get">
@@ -525,12 +532,59 @@
                                 <label class="col-md-3 control-label" for="name">Test type:</label>
                                 <div class="col-md-9">
                                     <div class="checkbox both ">
-                                        <label><input type="checkbox" name="search[]" value="1" checked="">Public</label>
-                                        <label><input type="checkbox" name="search[]" value="2">Private</label>
-                                        <label><input type="checkbox" name="search[]" value="3">Both</label>
+                                        <label><input type="checkbox" id="public_check" name="search[]" value="1" checked="">Public</label>
+                                        <label><input type="checkbox" id="private_check" name="search[]" value="2">Private</label>
+                                        <label><input type="checkbox" id="both_check" name="search[]" value="3">Both</label>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
+                            <div class="button_filter">
+                                <button type="submit" class="btn">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="filter_view123" role="dialog">
+    <div class="modal-dialog  modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content filter">
+            <div class="modal-header s_modal_form_header">
+                <div class="pull-right">
+                    <!--<button type="button" class="btn s_save_button s_font" data-dismiss="modal">Create</button>-->
+                    <button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>
+                </div>
+                <h3 class="modal-title s_font f_font"><i class="fa fa-filter">Filter Criteria 123</i></h3>
+            </div>
+            <div class="modal-body s_modal_form_body">
+                <form action="{{route('manage_test_view')}}" method="get">
+                    {{csrf_field()}}
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="form-group title">
+                                <label class="col-md-3 control-label" for="name">Name:</label>
+                                <div class="col-md-9">
+                                    <div class="template">
+                                        <input type="hidden" name="filter_hidden" value="2">
+                                        <input id="name" name="name2" type="text" placeholder="Enter the name of the test" class="form-control general" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group title">
+                                <label class="col-md-3 control-label" for="name">Test type:</label>
+                                <div class="col-md-9">
+                                    <div class="checkbox both ">
+                                        <label><input type="checkbox" id="public_check" name="search[]" value="1" checked="">Public</label>
+                                        <label><input type="checkbox" id="private_check" name="search[]" value="2">Private</label>
+                                        <label><input type="checkbox" id="both_check" name="search[]" value="3">Both</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="button_filter">
                                 <button type="submit" class="btn">Apply</button>
                             </div>
@@ -542,4 +596,3 @@
     </div>
 </div>
 @endsection
-

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Recruiter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,20 +10,14 @@ use App\Test_template;
 use App\Section;
 use App\Question;
 use App\Hosted_test;
+use App\User_question;
+use App\User_format_detail;
 use App\Teststatus;
-
-
-
 use App\Templates_test_setting;
 use App\Templates_contact_setting;
-
-
 use App\Question_detail;
 use App\Question_solution;
 use App\Webcam;
-
-
-
 use App\Mulitple_choice;
 use App\Coding_question_language;
 use App\Question_submission_evaluation;
@@ -71,10 +64,20 @@ class HostController extends Controller
         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
         $args['template_id'] = $id;        
 
+          $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
+         ->select('user_setting_questions.*','format_settings.name as format_settings_name')
+         ->where('template_id',$id)->orderBy('user_setting_questions.order_number','ASC')->get();
+             //$args['template_question_setting'][0]['arr'] = array(123);
+             //dd($args['template_question_setting']);
+             //$user_setting_question_details = array();
+         foreach ($args['template_question_setting'] as $key => $value) {
+          $args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
+      }
+
         //Assinging Host Flag for Model
-        $args['hostFlag'] = true;
-        $args['template_id'] = $id;
-        //dd($args);
+        $args['hostFlag'] = true;      
+        
+
         return view('recruiter_dashboard.edit_template')->with($args);
     }
 
@@ -173,17 +176,17 @@ class HostController extends Controller
 		    	$hosted_test_del->status = 2;
 
 		    	if($hosted_test_del->save()){
-		    		return \Response()->Json([ 'status' => 200, 'msg'=>'Host Successfully Termibated']);
+		    		return \Response()->Json([ 'status' => 200, 'msg'=>'Host Successfully Terminated']);
 		    	}else{
-		    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Termibated']);
+		    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Terminated']);
 		    	}
 
     		}else{
-    			return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Termibated']);
+    			return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Terminated']);
     		}	    	
 
     	}catch(\Exception $e){
-    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Termibated'.$e->getMessage()]);
+    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Terminated'.$e->getMessage()]);
         }
     }
 
