@@ -263,9 +263,12 @@ class QuestionsController extends Controller
 	public function delete_question($id){		  	
 		$delete = Question::find($id);
 		if ($delete->delete()){
-			return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted The Question']);					
+			$this->set_session('You Have Successfully Deleted The Question', true);
+			return redirect()->back();
+			// return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted The Question']);					
 		}else{
-			return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);					
+			$this->set_session('Question Not Deleted, Something Went Wrong!', false);
+			return redirect()->back();
 		}
 	}
 	public function delete_all_mcqs_questions(Request $request){
