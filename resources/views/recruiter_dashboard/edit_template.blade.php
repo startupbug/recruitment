@@ -1295,13 +1295,16 @@
                      </div>
                      <div class="ept_body">
                         <div class="ept_container">
-                           <div class="ept_cover_image" style="background-image: url(&quot;https://storage.googleapis.com/codegrounds/PublicTestImages320419ea-36fb-455d-ae46-767c2aafa16d_USER-RecruiterCopy_ITEM-logo1.png') }}&quot;);">
+                           <div class="ept_cover_image" >
+                              @if(isset($public_page_view_details->image))
+                              <img src="{{asset('public/storage/public_view_covers/'.$public_page_view_details->image)}}">
+                              @endif
                               <div class="ept_cover_image_top">
                                  <div class="clearfix">
                                     <div class="pull-right">
                                        <div class="clearfix">
                                           <div class="form-group ">
-                                             <input type="text" placeholder="Add a tag and press Enter" class="form-control s_edit_btn">
+                                             <input type="text" name="cover_image_tag" value="" data-url="{{route('insert_image_tags',$public_page_view_details->template_id )}}" data-id="{{$public_page_view_details->template_id}}" placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">
                                           </div>
                                        </div>
                                     </div>
@@ -1310,29 +1313,30 @@
                               <div class="ept_cover_image_bottom">
                                  <div class="clearfix">
                                     <div class="pull-right s_cover_image_btn_model">
-                                       <button class="btn btn-sm btn-default" id="cover_image_btn" >Change Cover Image <i class="fa fa-caret-up" aria-hidden="true"></i></button>
+                                       <button class="btn btn-sm btn-default" id="cover_image_btn" >Change Cover Imagessss <i class="fa fa-caret-up" aria-hidden="true"></i></button>
                                        <div class="s_popover">
                                          <div class="popover fade in top hidden" id="cover_image" tooltip-animation-class="fade" uib-tooltip-classes="" uib-popover-template-popup="" title="" content-exp="contentExp()" placement="top" popup-class="" animation="animation" is-open="isOpen" origin-scope="origScope" style="visibility: visible; display: block; position: relative;">
                                           <div class="arrow"></div>
                                           <div class="popover-inner">
                                              <div class="popover-content">
-                                                <form>
+                                                <form method="post" action="{{route('upload_cover_image', ['id' => $template_id])}}" enctype="multipart/form-data">
                                                    <div class="form-group form-group-sm">
                                                       <label class="control-label">
                                                       Cover Image URL
                                                       </label>
-                                                      <input class="form-control">
+                                                      <input class="form-control" name="imagez">
                                                    </div>
                                                    <div class="">
-                                                      <button class="btn btn-primary btn-sm small_font_size">
+                                                      <button type="submit" class="btn btn-primary btn-sm small_font_size">
                                                       <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
                                                       </button>
                                                       or
                                                       <div class="s_f_upload_btn f_upload_btn">
                                                         Upload Image
-                                                        <input type="file" name="media">
+                                                        <input type="file" name="image">
                                                       </div>
                                                    </div>
+                                                   <input type="hidden" name="_token" value="{{Session::token()}}">
                                                 </form>
                                              </div>
                                           </div>
@@ -1348,24 +1352,18 @@
                            <ul class="nav nav-tabs">
                               <li><a data-toggle="pill" href="#public_instructions">Instructions</a></li>
                               <li><a data-toggle="pill" href="#public_description">Description</a></li>
-                              <li><button class="btn btn-edit-tabs"  data-toggle="modal" data-target="#add-public-page-Modal"><i class="fa fa-plus f_plus" aria-hidden="true"></i></button></li>
+                              @foreach($Public_view_page as $key => $value)
+                              <li>
+                                 <a data-toggle="pill" href="#public_page_view{{$value->id}}" >
+                                    {{$value->page_name}}
+                                 </a>
+                              <li>
+                              @endforeach
+
+                              <button class="btn btn-edit-tabs"  data-toggle="modal" data-target="#add-public-page-Modal"><i class="fa fa-plus f_plus" aria-hidden="true"></i></button></li>
                            </ul>
                            <div class="panel panel-default navtab-body">
                               <div class="panel-body">
-                                 <div class="">
-                                    <div class="row">
-                                       <div class="col-sm-6">
-                                          <a href="#" data-toggle="modal" data-target="#edit-public-page-Modal" onclick="publicpageview_start()">
-                                          <i class="fa fa-pencil" aria-hidden="true"></i> Edit Page
-                                          </a>
-                                          <span class="separator"></span>
-                                          <a href="#" class="text-danger" data-toggle="modal"  data-target="#_first_model">
-                                          <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Page
-                                          </a>
-                                       </div>
-                                    </div>
-                                    <hr class="sm">
-                                 </div>
                                  <div class="tab-content sidebar-content">
                                     <div id="public_instructions" class="tab-pane fade in active">
                                        <p>(1) Make sure you have a proper internet connection.</p>
@@ -1375,6 +1373,28 @@
                                     <div id="public_description" class="tab-pane fade">
                                        <p>This test is hosted via Codeground. Please read the instructions carefully before proceeding.</p>
                                     </div>
+
+                                     @foreach($Public_view_page as $key => $value)
+                                       
+                                       <div id="public_page_view{{$value->id}}" class="tab-pane fade">
+                                          <div class="row">
+                                             <div class="col-sm-6">
+                                                <a href="#"  data-id="{{$value->id}}" data-url="{{route('edit_public_page_view')}}" data-toggle="modal" data-target="#edit-public-page-Modal" class="edit_public_page_view_data" onclick="publicpageview_start()" modal_data="{{$value->id}}" >
+                                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit Page
+                                                </a>
+                                                <span class="separator"></span>
+
+
+
+                                                <a href="{{route('delete_public_page_view',$value->id)}}" class="text-danger">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Page
+                                                </a>
+                                             </div>
+                                          </div>
+                                          <hr class="sm">
+                                          {{$value->page_detail}}
+                                       </div>
+                                     @endforeach
                                  </div>
                               </div>
                            </div>
@@ -2918,7 +2938,6 @@
           <div class="row">
             <div class="col-md-12">
               <strong>Question Statement (<span class="collapse_pointer" onclick="code_collapse_modal()" >Collapse</span>)</strong>
-              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
           <div class="row">
@@ -2956,9 +2975,9 @@
          <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                <div class="pull-right">
-                  <span>Please add the question title </span>
-                  <button type="submit" class="btn s_save_button s_font">Save</button>
-                  <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+                 <span class="header_span_commint">Please add the question title </span>
+                 <button type="submit" class="btn s_save_button s_font submit_button" disabled>Save</button>
+                 <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                </div>
                <h3 class="modal-title s_font">Coding Question</h3>
             </div>
@@ -2995,7 +3014,9 @@
                                     <div class="heading_modal_statement heading_padding_bottom">
                                        <strong>Program Title  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" This optional field is meant to contain the organization name that serves as the provider of the question. "> <i class="fa fa-info-circle"> </i></a></strong>
                                     </div>
-                                    <input type="text" name="coding_program_title" class="form-control">
+                                    <div data-tip="Please enter atleast two characters as title">
+                                      <input type="text" name="coding_program_title" class="form-control" required>
+                                    </div>
                                  </div>
                               </div>
                            </div>
@@ -3237,7 +3258,6 @@
           <div class="row">
             <div class="col-md-12">
               <strong>Question Statement (<span class="collapse_pointer" onclick="code_debug_collapse_modal()" >Collapse</span>)</strong>
-              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
           <div class="row">
@@ -3852,9 +3872,9 @@
          <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                <div class="pull-right">
-                  <span>Please add atleast 3 characters in the question statement </span>
-                  <button type="submit" class="btn s_save_button s_font" >Save</button>
-                  <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+                 <span class="header_span_commint">Please add atleast 3 characters in the question statement </span>
+                 <button type="submit" class="btn s_save_button s_font submit_button">Save</button>
+                 <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                </div>
                <h3 class="modal-title s_font">Submission Question</h3>
             </div>
@@ -3872,15 +3892,15 @@
                            </div>
                               <div>
                                    <label class="container_radio border_radio_left">STAGE
-                                   <input type="radio" checked="checked" name="question_state_id" value="1">
+                                   <input type="radio" name="question_state_id" value="1" disabled>
                                    <span class="checkmark"></span>
                                    </label>
                                    <label class="container_radio">READY
-                                   <input type="radio" name="question_state_id" value="2">
+                                   <input type="radio" checked="checked" name="question_state_id" value="2">
                                    <span class="checkmark"></span>
                                    </label>
                                    <label class="container_radio border_radio_right">ABANDONED
-                                   <input type="radio" name="question_state_id" value="3">
+                                   <input type="radio" name="question_state_id" value="3" disabled>
                                    <span class="checkmark"></span>
                                    </label>
                                </div>
@@ -3919,25 +3939,39 @@
                         </div>
                          <div class="modal-body s_modal_body">
                            <div class="heading_modal_statement heading_padding_bottom">
-                              <div class="f_upload_btn">
-                                 Upload Media
-                                 <input type="file" name="media">
-                             </div>
-                              <br>
-                             <!--  <strong>
-                              Resources
-                              <i class="fa fa-info-circle"></i>
-                              </strong>
-                              <label class="control-label">
-                              (These resources will be available for the candidate to download during the test)
+
+                              <label for="">Media(Audio/Video)</label>
+                              <div class="upload">
+                                <div class="f_upload_btn gray_upload_btn">
+                                  Upload Media
+                                  <input type="file" name="media">
+                                </div>
+                              </div>
+
+                              <label>
+                                Resources
+                                <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="" data-original-title="htmlTooltip.modalSubmissionResources"> <i class="fa fa-info-circle"> </i></a>
                               </label>
-                              <div class="s_pur_body">
-                                 <button type="button" class="btn"> + Add resources</button>
-                              </div> -->
+                              <label class="control-label">
+                                (These resources will be available for the candidate to download during the test)
+                              </label>
+                              <ul class="add_resources_submission_ul">
+                                <li>
+                                  <div class="s_upload_name hidden">
+                                    <span></span> <i class="fa fa-times-circle-o s_close"></i>
+                                  </div>
+
+                                  <div class="f_upload_btn">
+                                    + Add resources
+                                    <input type="file" name="resources[]">
+                                  </div>
+                                </li>
+                              </ul>
+
                               <hr>
                               <strong>
-                              Candidate can use
-                              <i class="fa fa-info-circle"></i>
+                                Candidate can use
+                                <i class="fa fa-info-circle"></i>
                               </strong>
                               <div class="checkbox">
                                  <label><input type="checkbox" name="help_material_name[]" value="1"> Images</label>
@@ -3954,14 +3988,14 @@
                               <div class="checkbox">
                                  <label><input type="checkbox" name="help_material_name[]" value="5"> Code</label>
                               </div>
-                              <div class="checkbox">
+                              <div class="checkbox" style="display: inline-flex;">
                                  <label><input type="checkbox" name="help_material_name[]" value="6"> Audio</label>
+                                 <span class="input-group input-group-sm" style="margin-left:  13px;">
+                                   <span class="input-group-addon s_addon ">Limit</span>
+                                   <input type="number" name="submission_limit" disabled class="form-control" id="submission_limit" value="30" style="height:30px; width:70px;">
+                                   <span class="input-group-addon s_addon">seconds</span>
+                                 </span>
                               </div>
-                              <span class="input-group input-group-sm">
-                              <span class="input-group-addon s_addon ">Limit</span>
-                              <input type="number" name="submission_limit" class="form-control" min="1" style="height:30px; width:70px;">
-                              <span class="input-group-addon s_addon">seconds</span>
-                              </span>
                            </div>
                         </div>
                         <br>
@@ -4135,7 +4169,6 @@
           <div class="row">
             <div class="col-md-12">
               <strong>Question Statement (<span class="collapse_pointer" onclick="submission_collapse_modal()" >Collapse</span>)</strong>
-              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
             </div>
           </div>
           <div class="row">
@@ -4169,9 +4202,9 @@
           <div class="modal-content">
              <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
-                   <span>Please add atleast 3 characters in the question statement </span>
-                   <button type="submit" class="btn s_save_button s_font">Save</button>
-                   <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
+                  <span class="header_span_commint">Please add atleast 3 characters in the question statement </span>
+                  <button type="submit" class="btn s_save_button s_font submit_button">Save</button>
+                  <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
                 <h3 class="modal-title s_font">Submission Question</h3>
              </div>
@@ -4254,7 +4287,7 @@
                          </div>
                          <div class="modal-body s_modal_body">
                             <div class="form-group form-group-sm" >
-                               <label>Marks for this Question2222  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in files if the question is required to use."> <i class="fa fa-info-circle"> </i></a></label>
+                               <label>Marks for this Question  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in files if the question is required to use."> <i class="fa fa-info-circle"> </i></a></label>
                                <input type="number" name="marks" min="1" class="form-control" required="required" style="">
                             </div>
                             <div class="heading_modal_statement heading_padding_bottom">
@@ -4777,38 +4810,41 @@
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
       <div class="modal-content">
-         <div class="modal-body s_modal_form_body">
-            <div class="row">
-               <div class="col-md-6 col-sm-12 col-xs-12">
-                  <h3>Edit Page</h3>
-                  <form>
-                     <div class="form-group">
-                        <label>Page Title <i class="fa fa-info-circle"></i></label>
-                        <input type="text" class="form-control">
-                     </div>
-                     <div class="form-group">
-                        <label>Page Content <i class="fa fa-info-circle"></i></label>
-                        <textarea class="edit"></textarea>
-                     </div>
-                  </form>
-               </div>
-               <div class="col-md-6 col-sm-12 col-xs-12">
-                  <div class="panel panel-default">
-                     <div class="panel-heading">Page Preview -</div>
-                     <div class="panel-body public_s_heght">
+         <form action="{{route('Public_view_page')}}" method="POST">
+            {{csrf_field()}}
+            <input type="hidden" name="template_id" value="{{$template_id}}">
+            <div class="modal-body s_modal_form_body">
+               <div class="row">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
+                     <h3>Edit Page0000</h3>
+                        <div class="form-group">
+                           <label>Page Title <i class="fa fa-info-circle"></i></label>
+                           <input type="text" class="form-control" name="page_title">
+                        </div>
+                        <div class="form-group">
+                           <label>Page Content <i class="fa fa-info-circle"></i></label>
+                           <textarea class="edit" name="page_content"></textarea>
+                        </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-xs-12">
+                     <div class="panel panel-default">
+                        <div class="panel-heading">Page Preview -</div>
+                        <div class="panel-body public_s_heght">
+                        </div>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
-         <div class="modal-footer">
-            <div class="">
-               <button class="btn btn-primary btn-sm" type="button">
-               <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
-               </button>
-               <button class="btn btn-warning btn-sm" type="button" data-dismiss="modal">Cancel</button>
+            <div class="modal-footer">
+               <div class="">
+                  <button class="btn btn-primary btn-sm" type="submit">
+                  <i class="fa fa-floppy-o" aria-hidden="true" id="save_page_detail"></i> Save
+                  </button>
+                  <button class="btn btn-warning btn-sm" type="button" data-dismiss="modal">Cancel</button>
+               </div>
             </div>
-         </div>
+         </form>
+
       </div>
    </div>
 </div>
@@ -4820,22 +4856,26 @@
          <div class="modal-body s_modal_form_body">
             <div class="row">
                <div class="col-md-6 col-sm-12 col-xs-12">
-                  <h3>Edit Page</h3>
-                  <form>
+                  <h3>Edit Page1111</h3>
+                  <form action="{{route('update_public_page_view')}}" method="post">
+                     {{csrf_field()}}
                      <div class="form-group">
+                        <input type="hidden" name="public_page_view_id" id="public_page_view_id" value="">
                         <label>Page Title
                           <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="" data-original-title="htmltooltip.editPublicTestTitle">
                             <i class="fa fa-info-circle"> </i>
                           </a>
                         </label>
-                        <input type="text" class="form-control" id="publicpageview_title">
+                        <input type="text" name="publicpageview_title" class="form-control" id="publicpageview_title">
                      </div>
                      <div class="form-group" id="publicpageview_text_editor">
                         <label>Page Content
                           <i class="fa fa-info-circle"></i>
                         </label>
-                        <textarea class="edit" style="margin-top: 30px;"></textarea>
+                        <textarea name="publicpageview_content" class="edit" style="margin-top: 30px;"></textarea>
                      </div>
+                     <button class="btn btn-primary btn-sm" onclick="publicpageview_stop()" type="submit">
+                      <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Changes
                   </form>
                </div>
                <div class="col-md-6 col-sm-12 col-xs-12">
@@ -4850,8 +4890,7 @@
          </div>
          <div class="modal-footer">
             <div>
-               <button class="btn btn-primary btn-sm" onclick="publicpageview_stop()" type="button">
-               <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Changes
+               
                </button>
                <button class="btn btn-danger btn-sm" onclick="publicpageview_stop()" type="button">
                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Page

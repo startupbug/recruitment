@@ -26,6 +26,9 @@ use App\Questions_submission_resource;
 use App\Coding_entry;
 use App\User_question;
 use App\User_format_detail;
+use App\Public_view_page;
+use App\Public_page_view_details;
+use App\User;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 
@@ -34,11 +37,16 @@ class TemplatesController extends Controller
 	// Manage Test View Index
 	public function manage_test_view(){
 
+    // $template_id = Test_template::where('user_id',Auth::user()->id)->get();
+    // dd($template_id);
+
         $value = Input::get('filter_hidden');
         // dd($value);
         $name = Input::get('name');
+        $name2 = Input::get('name2');
 
         $check_box = Input::get('search');
+         $check_box2 = Input::get('search2');
         //dd($check_box);
 
         if(isset($name))
@@ -83,12 +91,10 @@ class TemplatesController extends Controller
                 // dd($args['listing']);
             }
 
-        }
+        }else{
+           //For Loading Test templates without
 
-
-        if(is_null(Input::get('filter_hidden')) ){
-
-        	$args['count'] = Test_template::count();
+          $args['count'] = Test_template::count();
             $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
 
             foreach ($args['listing'] as $value) {
@@ -104,9 +110,54 @@ class TemplatesController extends Controller
 
         }
 
+        if(isset($name2))
+        {
+            if(in_array(1, $check_box))
+            {
+              // $args['host_list'] = Hosted_test::where('host_name','LIKE','%'.$name2.'%')->get();
+              $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+              ->where('test_templates.user_id', Auth::user()->id)
+              ->where('host_name','LIKE','%'.$name2.'%')
+              ->get();
+
+             // $args['count'] = Hosted_test::where('host_name','LIKE','%'.$name2.'%')->count();
+
+            }
+            elseif(in_array(2, $check_box))
+            {
+              $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+              ->where('test_templates.user_id', Auth::user()->id)
+              ->where('host_name','LIKE','%'.$name2.'%')
+              ->get();
+              //$args['count'] = Hosted_test::where('host_name','LIKE','%'.$name2.'%')->count(); 
+            }
+            else
+            {
+              $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+              ->where('test_templates.user_id', Auth::user()->id)
+              ->where('host_name','LIKE','%'.$name2.'%')
+              ->get();
+
+               
+            }
+        
+        }else{
+
+                //For Fetching all Hosts
+              $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+              ->where('test_templates.user_id', Auth::user()->id)->get();
+
+        }
+
+        //For Loading Test templates without
+        // if(is_null(Input::get('filter_hidden')) ){
+
+
+
+        //   }
+
         // dd($args['sections']);
-        $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
-        ->where('test_templates.user_id', Auth::user()->id)->get();
+
                         // dd(count($args['hosted_tests']));
         // dd($args);
         return view('recruiter_dashboard.view')->with($args);
@@ -203,7 +254,13 @@ public function edit_template($id){
          foreach ($args['template_question_setting'] as $key => $value) {
           $args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
       }
+      //Public_view_page index method query 
+      $args['Public_view_page'] = Public_view_page::get();
 
+      $args['public_page_view_details'] = Public_page_view_details::where('template_id',$id)
+      ->orderBy('image','Desc')
+      ->first();
+      // dd($args['public_page_view_details']);
 			 // return $args['template_question_setting'];
 
       return view('recruiter_dashboard.edit_template')->with($args);

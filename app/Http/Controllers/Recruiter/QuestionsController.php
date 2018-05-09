@@ -436,6 +436,8 @@ class QuestionsController extends Controller
 
 	public function update_questions_modal(Request $request, $id)
 	{    	
+
+		dd($request->input());
 		$update_question =  Question::find($id);
 		$update_question->question_state_id = $request->get('question_state_id');
 		$update_question->question_level_id = $request->get('question_level');
@@ -732,19 +734,14 @@ class QuestionsController extends Controller
         return $filename;
     }
 
-   
-
     public function delete_test_case($id)
     {		
-    	 $delete_test_case = Test_case::findOrFail( $id );
-    	 
- 			$delete_test_cases = $delete_test_case->delete();		
-    if ($delete_test_case ) {
-
-       return 1234;
-        return response(['msg' => 'Product deleted', 'status' => 'success']);
-    }
-    return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
+    	$delete_test_case = Test_case::findOrFail( $id );    	
+    	$delete_test_cases = $delete_test_case->delete();		
+    	if ($delete_test_case ) {
+    		return response(['msg' => 'Product deleted', 'status' => 'success']);
+    	}
+    	return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
     }
 
     public function show_setting_newquestion()
