@@ -8,6 +8,7 @@ use DB;
 use Hash;
 use Auth;
 use Session;
+use Mail;
 use App\Question;
 use App\Question_detail;
 use App\Question_solution;
@@ -15,6 +16,7 @@ use App\User;
 use App\Question_level;
 use App\Question_tag;
 use App\Coding_entry;
+use App\Setting_info;
 use App\Test_case;
 use App\Coding_question_language;
 use App\Questions_submission_resource;
@@ -177,8 +179,29 @@ class RecruiterController extends Controller
          return view('recruiter_dashboard.setting.general_setting')->with($args);
     }
 
-    public function setting_info(){
+    public function setting_info(){      
          return view('recruiter_dashboard.setting.info');
     }
-
+    public function post_setting_info(Request $request){  
+      try {
+       if (Auth::check()) {        
+         $store = new Setting_info;
+         $store->user_id =Auth::user()->id;
+         $store->title =$request->title;
+         $store->info_description =$request->info_description;                 
+         if ($store->save()){          
+          $user = User::where('id',Auth::user()->id)->first(); 
+          Mail::send('emails.info_email',['user_data'=>$user,'stored_info'=>$store] , function ($message) use($user){
+              $message->from($user['email'], 'Info Email - Recruitment');
+              $message->to(env('MAIL_USERNAME'))->subject('Recruitment - Info Email');
+          });
+          return \Response()->Json([ 'status' => 200,'msg'=>'Thank you for your valuable time. we will get back to you as soon as possible.']);
+         }else{
+           return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);
+         }       
+        }
+      } catch (QueryException $e) {
+        return \Response()->Json([ 'array' => $e]);
+      }
+    }
 }

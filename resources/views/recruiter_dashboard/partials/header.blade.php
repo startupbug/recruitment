@@ -71,7 +71,7 @@
                         </ul>
                      </div>
                   </li>
-                  <li><a href="/dashboard/setting/info.php"><i class="fa fa-info-circle"></i></a></li>
+                  <li><a href="{{route('setting_info')}}"><i class="fa fa-info-circle"></i></a></li>
                   <li class="dropdown">
                      <div>
                         <button class="dropdown-toggle profileDropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

@@ -98,7 +98,7 @@
 												 </div>
 												 <div class="modal-body s_modal_body">
 													<p>
-													{{$public_questions_mcq->question_statement}}
+													{!!$public_questions_mcq->question_statement!!}
 													</p>
 
 									<!-- 				<br>
@@ -196,7 +196,7 @@
 												 </div>
 												 <div class="modal-body s_modal_body">
 													<p>
-														{{$public_questions_coding->question_statement}}
+														{!!$public_questions_coding->question_statement!!}
 													</p>
 
 												 </div>
@@ -533,7 +533,7 @@
  													 <h4 class="modal-title s_font">Question Statement</h4>
  												 </div>
  												 <div class="modal-body s_modal_body">
- 													{{$private_questions_submission->question_statement}}
+ 													{!!$private_questions_submission->question_statement!!}
  													<br>
  												<!-- 	<h2>Output :</h2>
  													<p class="s_modal_body_heading">
@@ -564,7 +564,6 @@
 </section>
 
 <div class="modal fade" id="modal_pencil" role="dialog">
-
    <div class="modal-dialog  modal-lg">
       <!-- Modal content-->
     @if(isset($get_data))
@@ -589,65 +588,191 @@
                         <h4 class="modal-title s_font">Question Statement</h4>
                      </div>
                      <div class="modal-body s_modal_body">
+	                        <div class="heading_modal_statement heading_padding_bottom">
+	                           <strong>
+	                              Question State
+	                              <div class="s_popup">
+	                                 <i class="fa fa-info-circle"> </i>
+	                                 <span class="s_popuptext">
+	                                 There are three possible states for a question. <br>
+	                                 (1) Stage (2) Ready (3) Abondoned<br>
+	                                 Why is it needed: The purpose of the states is to manage the question development cycle.
+	                                 <br>
+	                                 Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented.
+	                                 </span>
+	                              </div>
+	                           </strong>
+	                        </div>
+	                        <div>
+
+	                           <label class="container_radio border_radio_left">STAGE
+	                           <input type="radio" name="question_state_id" value="1" @if($get_data->question_state_id == 1)  checked="checked" value="1" @endif name="question_state_id" >
+	                           <span class="checkmark"></span>
+	                           </label>
+	                           <label class="container_radio">READY
+	                           <input type="radio" name="question_state_id" value="2" @if($get_data->question_state_id == 2)  checked="checked" value="2" @endif >
+	                           <span class="checkmark"></span>
+	                           </label>
+	                           <label class="container_radio border_radio_right">ABANDONED
+	                           <input type="radio" name="question_state_id" value="3" @if($get_data->question_state_id == 3)  checked="checked" value="3" @endif >
+	                           <span class="checkmark"></span>
+	                           </label>
+
+	                        </div>
+	                        <hr>
+	                        <hr>
+	                        <div class="heading_modal_statement">
+	                           <strong>
+	                              Question Statement (<a href="#modal-pencil-Collapse" data-toggle="modal" onclick="edittesttemplate_Collapse()" >Expand</a>)
+	                              <div class="s_popup">
+	                                 <i class="fa fa-info-circle"> </i>
+	                                 <span class="s_popuptext">
+	                                 This section provides a markdown editor to write a program statement. <br>
+	                                 What does it mean: Markdown is a lightweight markup language with plain text formatting syntax:<br>
+	                                 Learning Refrence:
+	                                 <br>
+	                                 http://markdowntutorial.com
+	                                 <br>
+	                                 Good to know: The expends link open an expanded view of the editor for a better view of the text while typing/editing.
+	                                 </span>
+	                              </div>
+	                           </strong>
+	                        </div>
+	                        <textarea id="s_txtEditor_submission_Add_section_fill_blanks" class="edit" name="question_statement" value="{!!$get_data->question_statement!!}" >{!!$get_data->question_statement!!}</textarea>
+	                        <br>
+                     </div>
+                  </div>
+                  <br>
+                  <!-- Media and Resources -->
+                  <div class="modal-content s_modal s_green_color_modal">
+                     <div class="modal-header s_modal_header s_green_color_header">
+                        <h4 class="modal-title s_font">Media and Resources</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="heading_modal_statement heading_padding_bottom">
+                           <div class="">
+                              <h5><b>Media(Audio/Video)</b></h5>
+                              <!--<button type="button" class="btn">Upload Media</button>-->
+                              <div class="f_upload_btn">
+                                 Upload Media
+                                 <input type="file" name="audio_video1" value="{{$get_data->media}}">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <!-- Fill In The Blanks Solution Details -->
+                  <div class="modal-content s_modal s_yellow_light_color_modal">
+                     <div class="modal-header s_modal_header s_yellow_light_green_color_header">
+                        <h4 class="modal-title s_font">Fill In The Blanks Solution Details</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <h4>Enter Solutions for the Blanks</h4>
+                     </div>
+                  </div>
+                  <br>
+                  <!--  Question Details -->
+                  <div class="modal-content s_modal s_gray_color_modal">
+                     <div class="modal-header s_modal_header s_gray_color_header">
+                        <h4 class="modal-title s_font"> Question Details</h4>
+                     </div>
+                     <div class="modal-body s_modal_body">
+                        <div class="form-group form-group-sm" >
+                           <label>Marks for this Question <i class="fa fa-info-circle"></i></label>
+                           <input type="number" name="marks" min="1" class="form-control" required="required" style="" value="{{$get_data->marks}}">
+                        </div>
                         <div class="heading_modal_statement heading_padding_bottom">
                            <strong>
-                              Question State
+                              Question Level
                               <div class="s_popup">
                                  <i class="fa fa-info-circle"> </i>
                                  <span class="s_popuptext">
-                                 There are three possible states for a question. <br>
-                                 (1) Stage (2) Ready (3) Abondoned<br>
-                                 Why is it needed: The purpose of the states is to manage the question development cycle.
-                                 <br>
-                                 Question in the Stage state represents the question which is added partially or completely. Question in the ready state represents a question that has been reviewed and is ready to be used. Question in the abandoned state represents a question which is represented.
+                                 Question level determines the standard of the question. supported classification are easy, intermediate and hard.
                                  </span>
                               </div>
                            </strong>
                         </div>
-                        <div>
+                        <div class="heading_padding_bottom">
 
-                           <label class="container_radio border_radio_left">STAGE
-                           <input type="radio" name="question_state_id" value="1" @if($get_data->question_state_id == 1)  checked="checked" value="1" @endif name="question_state_id" >
+                          <label class="container_radio border_radio_left">Easy
+                           <input type="radio" @if($get_data->question_level_id == 1) checked="checked"  value="1" @endif name="question_level">
                            <span class="checkmark"></span>
                            </label>
-                           <label class="container_radio">READY
-                           <input type="radio" name="question_state_id" value="2" @if($get_data->question_state_id == 2)  checked="checked" value="2" @endif >
+                           <label class="container_radio">Medium
+                           <input type="radio" @if($get_data->question_level_id == 2)  checked="checked" value="2" @endif name="question_level">
                            <span class="checkmark"></span>
                            </label>
-                           <label class="container_radio border_radio_right">ABANDONED
-                           <input type="radio" name="question_state_id" value="3" @if($get_data->question_state_id == 3)  checked="checked" value="3" @endif >
+                           <label class="container_radio border_radio_right">Hard
+                           <input type="radio" @if($get_data->question_level_id == 3) checked="checked"  value="3" @endif  name="question_level">
                            <span class="checkmark"></span>
                            </label>
-
                         </div>
-                        <hr>
-                        <hr>
-                        <div class="heading_modal_statement">
+                        <div class="heading_modal_statement heading_padding_bottom">
                            <strong>
-                              Question Statement (<a href="#modal-pencil-Collapse" data-toggle="modal" onclick="edittesttemplate_Collapse()" >Expand</a>)
+                              Tags
                               <div class="s_popup">
                                  <i class="fa fa-info-circle"> </i>
                                  <span class="s_popuptext">
-                                 This section provides a markdown editor to write a program statement. <br>
-                                 What does it mean: Markdown is a lightweight markup language with plain text formatting syntax:<br>
-                                 Learning Refrence:
+                                 Each question can be associated with multiple tags. <br>
                                  <br>
-                                 http://markdowntutorial.com
+                                 Why it matters:
                                  <br>
-                                 Good to know: The expends link open an expanded view of the editor for a better view of the text while typing/editing.
+                                 (1) Tags are used in filters while searching through the library.<br>
+                                 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
                                  </span>
                               </div>
+                              No tags added
                            </strong>
                         </div>
-                        <textarea id="s_txtEditor_submission_Add_section_fill_blanks" class="edit" name="question_statement" value="{{$get_data->question_statement}}" >{{$get_data->question_statement}}</textarea>
-                        <div class="">
-													<h5><b>Media(Audio/Video)</b></h5>
-													<!--<button type="button" class="btn">Upload Media</button>-->
-													<div class="f_upload_btn">
-														Upload Media
-														<input type="file" name="audio_video1" value="{{$get_data->media}}">
-													</div>
-												</div>
+                        <div class="form-group-sm">
+                           <div class="row">
+                              <div class="col-md-3">
+                                 <select class="form-control"  name="tag_name" required>
+										<option disabled >choose a tag</option>
+				                    @foreach($items as $value)
+				                    <option value="{{$value->id}}" >{{$value->tag_name}}</option>
+				                    @endforeach
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>
+                                       Provider
+                                       <div class="s_popup">
+                                          <i class="fa fa-info-circle"> </i>
+                                          <span class="s_popuptext">
+                                          This optional field is meant to contain the <br>
+                                          organization name that serves as the provider of the question.
+                                          </span>
+                                       </div>
+                                    </strong>
+                                 </div>
+                                 <input type="text" class="form-control" name="provider" value="{{$get_data->provider}}">
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6 col-sm-12 col-xs-12">
+                              <div class="form-group form-group-sm">
+                                 <div class="heading_modal_statement heading_padding_bottom">
+                                    <strong>Author </strong>
+                                    <div class="s_popup">
+                                       <i class="fa fa-info-circle"> </i>
+                                       <span class="s_popuptext">
+                                       This field is meant to contain the <br>
+                                       name of the author of the question.
+                                       </span>
+                                    </div>
+                                 </div>
+                                 <input type="text" class="form-control" name="author" value="{{$get_data->author}}">
+                              </div>
+                           </div>
+                        </div>
                      </div>
                   </div>
                   <br>
@@ -725,105 +850,103 @@
                     </div>
                   <br>
                   <!--  Question Details -->
-                  <div class="modal-content s_modal s_yellow_light_color_modal">
-                     <div class="modal-header s_modal_header s_yellow_light_green_color_header">
-                        <h4 class="modal-title s_font"> Question Details</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-											 <div class="heading_modal_statement heading_padding_bottom">
-											 	 <strong>
-											 			Tags
-											 			<div class="s_popup">
-											 				 <i class="fa fa-info-circle"> </i>
-											 				 <span class="s_popuptext">
-											 				 Each question can be associated with multiple tags. <br>
-											 				 <br>
-											 				 Why it matters:
-											 				 <br>
-											 				 (1) Tags are used in filters while searching through the library.<br>
-											 				 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
-											 				 </span>
-											 			</div>
-											 			No tags added
-											 	 </strong>
-											 </div>
-											 <div class="form-group-sm">
-											 	 <div class="row">
-											 			<div class="col-md-3">
-											 				 <select class="form-control"  name="tag_name" required>
-											 						<option disabled >choose a tag</option>
-											 						@foreach($items as $value)
-											 						<option value="{{$value->id}}" >{{$value->tag_name}}</option>
-											 						@endforeach
-											 				 </select>
-											 			</div>
-											 	 </div>
-											 </div>
-
-												<div class="heading_modal_statement heading_padding_bottom">
-                           <strong>
-                              Question Level
-                              <div class="s_popup">
-                                 <i class="fa fa-info-circle"> </i>
-                                 <span class="s_popuptext">
-                                 Question level determines the standard of the question. supported classification are easy, intermediate and hard.
-                                 </span>
-                              </div>
-                           </strong>
-                        </div>
-                        <div class="heading_padding_bottom">
-                          <label class="container_radio border_radio_left">Easy
-                           <input type="radio" @if($get_data->question_level_id == 1) checked="checked"  value="1" @endif name="question_level">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio">Medium
-                           <input type="radio" @if($get_data->question_level_id == 2)  checked="checked" value="2" @endif name="question_level">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio border_radio_right">Hard
-                           <input type="radio" @if($get_data->question_level_id == 3) checked="checked"  value="3" @endif  name="question_level">
-                           <span class="checkmark"></span>
-                           </label>
-                        </div>
-
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>
-                                       Provider
-                                       <div class="s_popup">
-                                          <i class="fa fa-info-circle"> </i>
-                                          <span class="s_popuptext">
-                                          This optional field is meant to contain the <br>
-                                          organization name that serves as the provider of the question.
-                                          </span>
-                                       </div>
-                                    </strong>
-                                 </div>
-                                 <input type="text" class="form-control" name="provider" value="{{$get_data->provider}}">
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Author </strong>
-                                    <div class="s_popup">
-                                       <i class="fa fa-info-circle"> </i>
-                                       <span class="s_popuptext">
-                                       This field is meant to contain the <br>
-                                       name of the author of the question.
-                                       </span>
-                                    </div>
-                                 </div>
-                                 <input type="text" class="form-control" name="author" value="{{$get_data->author}}">
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                  	<div class="modal-content s_modal s_yellow_light_color_modal">
+						<div class="modal-header s_modal_header s_yellow_light_green_color_header">
+							<h4 class="modal-title s_font"> Question Details</h4>
+						</div>
+						<div class="modal-body s_modal_body">
+						<div class="heading_modal_statement heading_padding_bottom">
+							 <strong>
+									Tags
+									<div class="s_popup">
+										 <i class="fa fa-info-circle"> </i>
+										 <span class="s_popuptext">
+										 Each question can be associated with multiple tags. <br>
+										 <br>
+										 Why it matters:
+										 <br>
+										 (1) Tags are used in filters while searching through the library.<br>
+										 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
+										 </span>
+									</div>
+									No tags added
+							 </strong>
+						</div>
+						<div class="form-group-sm">
+							 <div class="row">
+									<div class="col-md-3">
+										 <select class="form-control"  name="tag_name" required>
+												<option disabled >choose a tag</option>
+												@foreach($items as $value)
+												<option value="{{$value->id}}" >{{$value->tag_name}}</option>
+												@endforeach
+										 </select>
+									</div>
+							 </div>
+						</div>
+							<div class="heading_modal_statement heading_padding_bottom">
+							   <strong>
+							      Question Level
+							      <div class="s_popup">
+							         <i class="fa fa-info-circle"> </i>
+							         <span class="s_popuptext">
+							         Question level determines the standard of the question. supported classification are easy, intermediate and hard.
+							         </span>
+							      </div>
+							   </strong>
+							</div>
+							<div class="heading_padding_bottom">
+							  <label class="container_radio border_radio_left">Easy
+							   <input type="radio" @if($get_data->question_level_id == 1) checked="checked"  value="1" @endif name="question_level">
+							   <span class="checkmark"></span>
+							   </label>
+							   <label class="container_radio">Medium
+							   <input type="radio" @if($get_data->question_level_id == 2)  checked="checked" value="2" @endif name="question_level">
+							   <span class="checkmark"></span>
+							   </label>
+							   <label class="container_radio border_radio_right">Hard
+							   <input type="radio" @if($get_data->question_level_id == 3) checked="checked"  value="3" @endif  name="question_level">
+							   <span class="checkmark"></span>
+							   </label>
+							</div>
+							<div class="row">
+							   <div class="col-md-6 col-sm-12 col-xs-12">
+							      <div class="form-group form-group-sm">
+							         <div class="heading_modal_statement heading_padding_bottom">
+							            <strong>
+							               Provider
+							               <div class="s_popup">
+							                  <i class="fa fa-info-circle"> </i>
+							                  <span class="s_popuptext">
+							                  This optional field is meant to contain the <br>
+							                  organization name that serves as the provider of the question.
+							                  </span>
+							               </div>
+							            </strong>
+							         </div>
+							         <input type="text" class="form-control" name="provider" value="{{$get_data->provider}}">
+							      </div>
+							   </div>
+							</div>
+							<div class="row">
+							   <div class="col-md-6 col-sm-12 col-xs-12">
+							      <div class="form-group form-group-sm">
+							         <div class="heading_modal_statement heading_padding_bottom">
+							            <strong>Author </strong>
+							            <div class="s_popup">
+							               <i class="fa fa-info-circle"> </i>
+							               <span class="s_popuptext">
+							               This field is meant to contain the <br>
+							               name of the author of the question.
+							               </span>
+							            </div>
+							         </div>
+							         <input type="text" class="form-control" name="author" value="{{$get_data->author}}">
+							      </div>
+							   </div>
+							</div>
+						</div>
+                  	</div>
                   <br>
                   <!--   Evaluation Parameters (Optional) -->
                   <div class="modal-content s_modal s_gray_color_modal">
@@ -991,7 +1114,7 @@
                         <div class="heading_modal_statement">
                            <strong>Question Statement (<a href="#">Expand</a>) <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                         </div>
-                        <textarea class="edit" name="question_statement">@if(isset($submission_data)){{$submission_data->question_statement}} @endif</textarea>
+                        <textarea class="edit" name="question_statement">@if(isset($submission_data)){!!$submission_data->question_statement!!} @endif</textarea>
                       <!--   <div class="checkbox">
                            <label>
                            <input type="checkbox"> Enable code modification and show difference
@@ -1316,7 +1439,7 @@
                                                Why it matters: Program title is used for better representation of a coding question to the test taker. <br>
                                                and also serve as a parameter for filters while searching through the library."> <i class="fa fa-info-circle"> </i></a></strong>
                                 </div>
-                                <textarea class="edit" name="question_statement">@if(isset($coding_data)){{$coding_data->question_statement}}@endif</textarea>
+                                <textarea class="edit" name="question_statement">@if(isset($coding_data)){!!$coding_data->question_statement!!}@endif</textarea>
                                 <br>
                                 @if($coding_data->question_sub_types_id == 2)
                                 <div class="heading_modal_statement heading_padding_bottom">
@@ -1708,15 +1831,11 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="author" placeholder="Enter author of question" name="author">
                         </div>
-                        
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
 @endsection

@@ -455,7 +455,7 @@ function addrow_weightage_edit() {
 // Hasan Mehdi Delete choice Question
 
 $('.delete_row').on('click', function(e) {
-e.preventDefault();
+  e.preventDefault();
     var dataId = $(this).attr('data-id');
     var thisScope = $(this);
     //alert(dataId);
@@ -482,7 +482,7 @@ e.preventDefault();
 
 
 $('.delete_row_testcase').on('click', function(e) {
-e.preventDefault();
+  e.preventDefault();
     var dataId = $(this).attr('data-id');
     var thisScope = $(this);
     //alert(dataId);
@@ -578,3 +578,127 @@ $("#AjaxCodingOneModal").on('submit', function(e){
  });
 });
 //Create CODING FIRST Questions Modal With Ajax
+
+
+//Create CODING Second Questions Modal With Ajax
+$("#AjaxCodingTwoModal").on('submit', function(e){
+  e.preventDefault();
+  var formData = $(this).serialize();
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: formData,                  
+    success: function (data) { 
+      console.log(data);
+      if(data.status == 200){
+        alertify.success(data.msg);
+        //$(this).closest('tbody').html(data.li_html);
+        $("#firstCodingTable-"+data.section_id).html(data.li_html);
+        $("#count2-"+data.section_id).html(data.quescount);
+        $('#section-coding-debug-Modal').modal('hide');
+      }else if(data.status == 202){           
+        alertify.warning(data.msg);
+      }else{           
+        alertify.warning(data.array.errorInfo[2]);
+      }       
+    },
+    error: function (data) {
+     alertify.warning("Oops. something went wrong. Please try again");
+   }
+ });
+});
+//Create CODING Second Questions Modal With Ajax
+
+//Create Submission First Questions Modal With Ajax
+$("#AjaxSubmissionOneModal").on('submit', function(e){
+  e.preventDefault();
+  var formData = $(this).serialize();
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: formData,                  
+    success: function (data) { 
+      console.log(data);
+      if(data.status == 200){
+        alertify.success(data.msg);
+        $("#SubmissionFirstTable-"+data.section_id).html(data.li_html);
+        $("#count3-"+data.section_id).html(data.quescount);
+        $('#section-submission-question-Modal').modal('hide');
+      }else if(data.status == 202){           
+        alertify.warning(data.msg);
+      }else{           
+        alertify.warning(data.array.errorInfo[2]);
+      }       
+    },
+    error: function (data) {
+     alertify.warning("Oops. something went wrong. Please try again");
+   }
+ });
+});
+//Create Submission First Questions Modal With Ajax
+
+//Create Submission Second Questions Modal With Ajax
+$("#AjaxSubmissionSecondModal").on('submit', function(e){
+  e.preventDefault();
+  var formData = $(this).serialize();
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: formData,                  
+    success: function (data) { 
+      console.log(data);
+      if(data.status == 200){
+        alertify.success(data.msg);
+        $("#SubmissionFirstTable-"+data.section_id).html(data.li_html);
+        $("#count3-"+data.section_id).html(data.quescount);
+        $('#section-submission-fill-blanks-question-Modal').modal('hide');
+      }else if(data.status == 202){           
+        alertify.warning(data.msg);
+      }else{           
+        alertify.warning(data.array.errorInfo[2]);
+      }       
+    },
+    error: function (data) {
+     alertify.warning("Oops. something went wrong. Please try again");
+   }
+ });
+});
+//Create Submission Second Questions Modal With Ajax
+
+
+//Post Setting Info Data Through Ajax
+$("#save_setting_info").on('submit', function(e){
+  e.preventDefault();
+  var formData = $(this).serialize();
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: formData,                  
+    success: function (data) { 
+      console.log(data);
+      if(data.status == 200){
+        alertify.success(data.msg);                       
+      }else if(data.status == 202){           
+        alertify.warning(data.msg);
+      }else{           
+        alertify.warning(data.array.errorInfo[2]);
+      }       
+    },
+    error: function (data) {
+      alertify.warning("Oops. something went wrong. Please try again");
+    }
+  });
+});
+//Post Setting Info Data Through Ajax
