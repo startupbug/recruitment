@@ -1798,27 +1798,23 @@
                     </div>
                     <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
+                        @if(isset($question_states))
+                        @foreach($question_states as $question_state)
+                        <div class="checkbox col-sm-2 col-xs-4">
+                            <input type="checkbox" class="staged" name="state[]" value="{{$question_state->id}}">{{$question_state->state_name}}
+                        </div>
+                        @endforeach
+                        @endif
+                    </div>
+                    <div class="form-group level">
+                        <label class="control-label col-sm-2" for="statement">Level :</label>
+                        @if(isset($levels))
                         @foreach($levels as $level)
                         <div class="checkbox col-sm-2 col-xs-4">
                             <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
                         @endforeach
-                        
-                    </div>
-                    <div class="form-group level">
-                        <label class="control-label col-sm-2" for="statement">Level :</label>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="easy" checked >Easy
-                        </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox" class="intermediate" checked >Intermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="hard" checked >Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="provider">Provider:</label>
@@ -1892,30 +1888,23 @@
                     </div>
                     <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
+                        @if(isset($question_states))
+                        @foreach($question_states as $question_state)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="staged" checked >Staged
+                            <input type="checkbox" class="staged" name="state[]" value="{{$question_state->id}}">{{$question_state->state_name}}
                         </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="ready" checked >Ready
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group level">
                         <label class="control-label col-sm-2" for="statement">Level :</label>
+                        @if(isset($levels))
+                        @foreach($levels as $level)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="easy" checked >Easy
+                            <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox" class="intermediate" checked >Intermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="hard" checked >Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="provider">Provider:</label>
@@ -1982,30 +1971,23 @@
                     </div>
                     <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
+                        @if(isset($question_states))
+                        @foreach($question_states as $question_state)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="staged" checked >Staged
+                            <input type="checkbox" class="staged" name="state[]" value="{{$question_state->id}}">{{$question_state->state_name}}
                         </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="ready" checked >Ready
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group level">
                         <label class="control-label col-sm-2" for="statement">Level :</label>
+                        @if(isset($levels))
+                        @foreach($levels as $level)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="easy" checked >Easy
+                            <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox" class="intermediate" checked >Intermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="hard" checked >Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="provider">Provider:</label>
@@ -2078,30 +2060,23 @@
                     </div>
                     <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
+                        @if(isset($question_states))
+                        @foreach($question_states as $question_state)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="staged" checked >Staged
+                            <input type="checkbox" class="staged" name="state[]" value="{{$question_state->id}}">{{$question_state->state_name}}
                         </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="ready" checked >Ready
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group level">
                         <label class="control-label col-sm-2" for="statement">Level :</label>
+                        @if(isset($levels))
+                        @foreach($levels as $level)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="easy" checked >Easy
+                            <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox" class="intermediate" checked >Intermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="hard" checked >Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="provider">Provider:</label>
@@ -2168,30 +2143,23 @@
                     </div>
                     <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
+                        @if(isset($question_states))
+                        @foreach($question_states as $question_state)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="staged" checked >Staged
+                            <input type="checkbox" class="staged" name="state[]" value="{{$question_state->id}}">{{$question_state->state_name}}
                         </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="ready" checked >Ready
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group level">
                         <label class="control-label col-sm-2" for="statement">Level :</label>
+                        @if(isset($levels))
+                        @foreach($levels as $level)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="easy" checked >Easy
+                            <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox" class="intermediate" checked >Intermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="hard" checked >Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="provider">Provider:</label>
