@@ -256,6 +256,7 @@ $( document ).ready(function() {
       $('#section_choices_table tbody tr').each(function () {
           colCount_alert++;
       });
+      console.log(colCount_alert);
 
       if (colCount_alert == 2) {
         alert("Atleast two options are mandatory..");
@@ -1518,6 +1519,7 @@ function code_edittesttemplate_Collapse() {
   clearInterval(code_testtemp_setInterval_Expand);
   code_testtemp_setInterval_Collapse = setInterval(
     function(){
+      console.log("grfhg");
       var htmlString = $( "#section-coding-add-compilable-question-Modal-Collapse .fr-element.fr-view" ).html();
       $("#code_preview_data_section").html(htmlString);
 
@@ -2087,6 +2089,27 @@ function publicpageview_stop() {
   clearInterval(publicpageview_setInterval);
 }
 
+var add_publicpageview_setInterval;
+function add_publicpageview_start() {
+  add_publicpageview_setInterval = setInterval(
+    function(){
+
+      var objVal = $('#add_publicpageview_title').val();
+      if(objVal != ''){
+        $('#add_publicpageview_title_data').html(objVal);
+      }
+
+
+      var description = $( "#add_publicpageview_text_editor .fr-element.fr-view" ).html();
+      $("#add_publicpageview_description_data").html(description);
+
+     }
+  , 1000);
+}
+function add_publicpageview_stop() {
+  clearInterval(add_publicpageview_setInterval);
+}
+
 var pencilmodel_setInterval_Expand;
 var pencilmodel_setInterval_Collapse;
 function pencil_model_Collapse() {
@@ -2192,7 +2215,7 @@ function code_pencil_edittesttemplate_Expand() {
      }
   , 1000);
 }
-function code_collapse_modal() {
+function code_pencil_collapse_modal() {
   $("#modal-pencil-Collapse").modal('hide');
   $("#modal_pencil").css('overflow','scroll');
   clearInterval(pencilmodel_setInterval_Collapse);

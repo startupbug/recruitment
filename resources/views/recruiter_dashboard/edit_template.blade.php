@@ -483,7 +483,7 @@
                         <div class="panel-body">
                            <form class="form-horizontal text-left">
                               <div class="form-group form-group-sm">
-                                 <label class="control-label f_label1 col-md-8 col-sm-8 col-xs-8">
+                                 <label class="control-label f_label1 col-md-9 col-sm-9 col-xs-9" style="text-align: left;">
                                     Window Proctoring
 
 
@@ -506,21 +506,21 @@
                                        </span>-->
 
                                  </label>
-                                 <div class="checkbox no-margin col-md-2 col-sm-2 col-xs-2">
+                                 <div class="checkbox no-margin col-md-1 col-sm-1 col-xs-1">
                                     <input type="checkbox">
                                  </div>
                               </div>
                               <div class="form-group form-group-sm">
-                                 <label class="control-label col-md-8 col-sm-8 col-xs-8">
+                                 <label class="control-label col-md-9 col-sm-9 col-xs-9" style="text-align: left;">
                                  Question Shuffling
                                  </label>
-                                 <div class="checkbox no-margin col-md-2 col-sm-2 col-xs-2">
+                                 <div class="checkbox no-margin col-md-1 col-sm-1 col-xs-1">
                                     <input type="checkbox">
                                  </div>
                               </div>
                               <div class="form-group form-group-sm">
-                                 <label class="control-label col-md-8 col-sm-8 col-xs-8">Duration (mins)</label>
-                                 <div class="col-md-4 col-sm-4 col-xs-4">
+                                 <label class="control-label col-md-7 col-sm-7 col-xs-7" style="text-align: left;">Duration (mins)</label>
+                                 <div class="col-md-5 col-sm-5 col-xs-5">
                                     <input type="number" min="0" class="form-control">
                                  </div>
                               </div>
@@ -1301,7 +1301,38 @@
                               @endif
                               <div class="ept_cover_image_top">
                                  <div class="clearfix">
-                                    <div class="pull-right">
+                                    <div class="pull-right public_page_tag">
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
                                        <div class="clearfix">
                                           <div class="form-group ">
                                              <input type="text" name="cover_image_tag" value="" data-url="{{route('insert_image_tags',$public_page_view_details->template_id )}}" data-id="{{$public_page_view_details->template_id}}" placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">
@@ -1360,7 +1391,7 @@
                               <li>
                               @endforeach
 
-                              <button class="btn btn-edit-tabs"  data-toggle="modal" data-target="#add-public-page-Modal"><i class="fa fa-plus f_plus" aria-hidden="true"></i></button></li>
+                              <button class="btn btn-edit-tabs"  data-toggle="modal" data-target="#add-public-page-Modal" onclick="add_publicpageview_start()"><i class="fa fa-plus f_plus" aria-hidden="true"></i></button></li>
                            </ul>
                            <div class="panel panel-default navtab-body">
                               <div class="panel-body">
@@ -1375,7 +1406,7 @@
                                     </div>
 
                                      @foreach($Public_view_page as $key => $value)
-                                       
+
                                        <div id="public_page_view{{$value->id}}" class="tab-pane fade">
                                           <div class="row">
                                              <div class="col-sm-6">
@@ -1919,7 +1950,7 @@
          <div class="modal-footer">
             <div class="row">
                <div class="col-md-2 s_margin_bottom">
-                  <button type="submit" class="btn">Publish Host</button>
+                  <button type="submit" class="btn" onsubmit="hosting_confirm()">Publish Host</button>
                </div>
             </div>
            </form>
@@ -2703,7 +2734,7 @@
                                      Upload Test Case Files
                                      <input type="file" name="test_case_file" >
                                    </div>
-                                    <a href="#">Test case file format</a>
+                                    <a href="#" onclick="testcase_fileformat()">Test case file format</a>
                                     <div class="checkbox s_margin_0">
                                         <label>
                                         <input type="checkbox" name="test_case_verify">Verify the Test Cases
@@ -2910,7 +2941,9 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>URL <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramSamples <br>"> <i class="fa fa-info-circle"> </i></a></strong>
                                    </div>
-                                   <textarea min="0" class="form-control" name="url" style=""></textarea>
+                                   <div data-tip-error="please enter a proper url" class="url_tooltip hidden">
+                                   </div>
+                                   <textarea min="0" class="form-control url_textarea" name="url" style=""></textarea>
                                 </div>
                              </div>
                           </div>
@@ -3076,7 +3109,7 @@
                                         Upload Test Case Files
                                         <input type="file" name="test_case_file" >
                                       </div>
-                                       <a href="#">Test case file format</a>
+                                       <a href="#" onclick="testcase_fileformat()">Test case file format</a>
                                        <div class="checkbox s_margin_0">
                                            <label>
                                            <input type="checkbox" name="test_case_verify" value="1">Verify the Test Cases
@@ -3199,7 +3232,7 @@
                      </div>
                      <br>
                      <!--  Solution Details (Optional) -->
-                                   <div class="modal-content s_modal s_gray_color_modal">
+                      <div class="modal-content s_modal s_gray_color_modal">
                             <div class="modal-header s_modal_header s_gray_color_header">
                                <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
                             </div>
@@ -3230,8 +3263,10 @@
                                       <div class="heading_modal_statement heading_padding_bottom">
                                          <strong>URL  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" htmlTooltip.modalProgramTestcases <br> "> <i class="fa fa-info-circle"> </i></a></strong>
                                       </div>
-                                      <textarea min="0" class="form-control" name="url" style=""></textarea>
-                                   </div>
+                                      <div data-tip-error="please enter a proper url" class="url_tooltip hidden">
+                                      </div>
+                                      <textarea min="0" class="form-control url_textarea" name="url" style=""></textarea>
+                                  </div>
                                 </div>
                              </div>
                              <div class="heading_modal_statement heading_padding_bottom">
@@ -4140,7 +4175,9 @@
                                        <div class="heading_modal_statement heading_padding_bottom">
                                           <strong>URL <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title=" Provide the solution to the question in text if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                        </div>
-                                       <textarea min="0" class="form-control" name="url" style=""></textarea>
+                                       <div data-tip-error="please enter a proper url" class="url_tooltip hidden">
+                                       </div>
+                                       <textarea min="0" class="form-control url_textarea" name="url" style=""></textarea>
                                     </div>
                                  </div>
                               </div>
@@ -4421,7 +4458,9 @@
                                      <div class="heading_modal_statement heading_padding_bottom">
                                         <strong>URL  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Provide the solution to the question in files if the question is required to use."> <i class="fa fa-info-circle"> </i></a></strong>
                                      </div>
-                                     <textarea min="0" class="form-control" name="url" style=""></textarea>
+                                     <div data-tip-error="please enter a proper url" class="url_tooltip hidden">
+                                     </div>
+                                     <textarea min="0" class="form-control url_textarea" name="url" style=""></textarea>
                                   </div>
                                </div>
                             </div>
@@ -4819,17 +4858,18 @@
                      <h3>Edit Page0000</h3>
                         <div class="form-group">
                            <label>Page Title <i class="fa fa-info-circle"></i></label>
-                           <input type="text" class="form-control" name="page_title">
+                           <input type="text" class="form-control" name="page_title"  id="add_publicpageview_title">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="add_publicpageview_text_editor">
                            <label>Page Content <i class="fa fa-info-circle"></i></label>
-                           <textarea class="edit" name="page_content"></textarea>
+                           <textarea class="edit" name="page_content" ></textarea>
                         </div>
                   </div>
                   <div class="col-md-6 col-sm-12 col-xs-12">
                      <div class="panel panel-default">
-                        <div class="panel-heading">Page Preview -</div>
+                        <div class="panel-heading">Page Preview - <span id="add_publicpageview_title_data"></span></div>
                         <div class="panel-body public_s_heght">
+                          <div id="add_publicpageview_description_data"></div>
                         </div>
                      </div>
                   </div>
@@ -4837,10 +4877,10 @@
             </div>
             <div class="modal-footer">
                <div class="">
-                  <button class="btn btn-primary btn-sm" type="submit">
+                  <button class="btn btn-primary btn-sm" type="submit" onclick="add_publicpageview_stop()">
                   <i class="fa fa-floppy-o" aria-hidden="true" id="save_page_detail"></i> Save
                   </button>
-                  <button class="btn btn-warning btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                  <button class="btn btn-warning btn-sm" type="button" data-dismiss="modal" onclick="add_publicpageview_stop()">Cancel</button>
                </div>
             </div>
          </form>
@@ -4890,7 +4930,7 @@
          </div>
          <div class="modal-footer">
             <div>
-               
+
                </button>
                <button class="btn btn-danger btn-sm" onclick="publicpageview_stop()" type="button">
                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Page
@@ -5236,7 +5276,9 @@
                                    <br>
                                    (2) Choice field's value cannot be empty or a duplicate."> <i class="fa fa-info-circle"> </i></a></strong>
                                    </div>
-                                   <textarea min="0" class="form-control" name="url" style=""></textarea>
+                                   <div data-tip-error="please enter a proper url" class="url_tooltip hidden">
+                                   </div>
+                                   <textarea min="0" class="form-control url_textarea" name="url" style=""></textarea>
                                 </div>
                              </div>
                           </div>
