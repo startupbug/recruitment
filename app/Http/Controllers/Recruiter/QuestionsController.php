@@ -386,9 +386,12 @@ class QuestionsController extends Controller
 	public function delete_question($id){		  	
 		$delete = Question::find($id);
 		if ($delete->delete()){
-			return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted The Question']);					
+			$this->set_session('You Have Successfully Deleted The Question', true);
+			return redirect()->back();
+			// return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted The Question']);					
 		}else{
-			return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);					
+			$this->set_session('Question Not Deleted, Something Went Wrong!', false);
+			return redirect()->back();
 		}
 	}
 	public function delete_all_mcqs_questions(Request $request){
@@ -754,18 +757,14 @@ class QuestionsController extends Controller
         return $filename;
     }
 
-
     public function delete_test_case($id)
     {		
-    	 $delete_test_case = Test_case::findOrFail( $id );
-    	 
- 			$delete_test_cases = $delete_test_case->delete();		
-    if ($delete_test_case ) {
-
-       return 1234;
-        return response(['msg' => 'Product deleted', 'status' => 'success']);
-    }
-    return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
+    	$delete_test_case = Test_case::findOrFail( $id );    	
+    	$delete_test_cases = $delete_test_case->delete();		
+    	if ($delete_test_case ) {
+    		return response(['msg' => 'Product deleted', 'status' => 'success']);
+    	}
+    	return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
     }
 
     public function show_setting_newquestion()

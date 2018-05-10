@@ -2110,7 +2110,7 @@ function pencil_model_Collapse() {
      }
   , 1000);
 }
-function code_edittesttemplate_Expand() {
+function code_pencil_edittesttemplate_Expand() {
   pencilmodel_setInterval_Expand = setInterval(
     function(){
       // 1. Title

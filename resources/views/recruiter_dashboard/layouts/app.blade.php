@@ -47,16 +47,17 @@
     </div>
 <!-- Filter-Modal -->
 
-<div class="modal fade" id="filter-programming-Modal" role="dialog">
+
+
+<!-- <div class="modal fade" id="filter-programming-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
                     <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Apply</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
-                <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>  Filter Criteria</h3>
+                <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>  Filter Criteria909</h3>
             </div>
             <div class="modal-body s_modal_form_body">
                 <form class="form-horizontal" action="#">
@@ -90,31 +91,31 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Staged
+                            <input type="checkbox" class="staged" checked >Staged
                         </div>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Ready
+                            <input type="checkbox" class="ready" checked >Ready
                         </div>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">All
+                            <input type="checkbox" class="all" checked >All
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="statement">State :</label>
+                    <div class="form-group level">
+                        <label class="control-label col-sm-2" for="statement">Level :</label>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Easy
+                            <input type="checkbox" class="easy" checked >Easy
+                        </div>
+                        <div class="checkbox col-md-2 col-xs-4">
+                            <input type="checkbox" class="intermediate" checked >Intermediate
                         </div>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">EasyIntermediate
+                            <input type="checkbox" class="hard" checked >Hard
                         </div>
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox">All
+                            <input type="checkbox" class="all" checked >All
                         </div>
                     </div>
                     <div class="form-group">
@@ -133,7 +134,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+
+
 <!-- public-mcqs-Modal -->
 <div class="modal fade" id="public-mcqs-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -2530,6 +2534,7 @@
 <script type="text/javascript">
 
 function modal_data(id, tpye){
+    console.log(id);
     switch(tpye) {
         case "modal_pencil":
             text = ".ajax_route";
@@ -2656,7 +2661,7 @@ function modal_data(id, tpye){
                     $('.coding_author').text(data.coding_question_data.author);
                     $('.coding_provider').text(data.coding_question_data.provider);
                     $(".code_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=modal_coding");
-                
+
                var inout_html = "";
                    var i =1;
                     $.each(data.coding_question_entries, function( index, value ) {
@@ -2716,7 +2721,7 @@ $.ajaxSetup({
                     // $('.submission_level').text(data.coding_question_data.level_name);
                     $('.submission_author').val(data.coding_question_data.author);
                     $('.submission_provider').val(data.coding_question_data.provider);
-                    
+
                     $(".submission_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=submission_modal1");
 
                var inout_html = "";

@@ -357,7 +357,7 @@ class LibraryController extends Controller
 	    	->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
 	    	->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
 	    	->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')
-	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id');
+	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id','question_details.provider','question_details.author');
 
 
 	    	$temp2 = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
@@ -376,26 +376,235 @@ class LibraryController extends Controller
 	    					->where('questions.question_type_id',1);
 
 
-	    		if(!is_null($request->input('id')))
-	    		{
-	    			$temp->where('questions.id',$request->input('id'))
-	    						->orwhere('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    		 if(!is_null($request->input('id')))
+	    		 {
+	    			$temp->where('questions.id',$request->input('id'));
+	    						//->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
 	    					$args['public_questions_mcqs'] = $temp->get();
-	    		}
+	    					dd($args['public_questions_mcqs']);
+	    		 }
+
 	    		if(!is_null($request->input('statement')))
 	    		{
-	    			$temp->where('questions.question_statement','LIKE','%'.$request->input('statement').'%')
-	    				->orwhere('questions.id',$request->input('id'));
+	    			$temp->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    				//->orwhere('questions.id',$request->input('id'));
 
 	    					$args['public_questions_mcqs'] = $temp->get();
-	    					// dd($args['public_questions_mcqs']);
+	    					 dd($args['public_questions_mcqs']);
 
 	    					// ->where('title','LIKE','%'.$name.'%')
 	    		}
+	    		if(!is_null($request->input('tag')))
+	    		{
+	    			// dd($request->input('tag'));
+			    		$temp->where('question_details.tag_id', $request->input('tag'));
+			    		$args['public_questions_mcqs'] = $temp->get();
+	    				dd($args['public_questions_mcqs']);
+	    		}
+	    		if(!is_null($request->input('provider')))
+	    		{
+	    			$temp->where('question_details.provider','LIKE','%'.$request->input('provider').'%');
+	    			$args['public_questions_mcqs'] = $temp->get();
+	    			dd($args['public_questions_mcqs']);	
+	    		}
+	    		if(!is_null($request->input('author')))
+	    		{
+	    			$temp->where('question_details.author','LIKE','%'.$request->input('author').'%');
+	    			$args['public_questions_mcqs'] = $temp->get();
+	    			dd($args['public_questions_mcqs']);	
+	    		}
+
 	    	}
 	    	elseif($request->input('templateType') == 1 && $request->input('questionType') == 2)
 	    	{
-	    		dd('coding');
+	    		// dd('coding');
+	    		$temp->where('test_template_types.id', 1)
+	    					->where('questions.question_type_id',2);
+
+	    		if(!is_null($request->input('id')))
+	    		{
+	    			// dd($request->input('id'));
+	    			$temp->where('questions.id',$request->input('id'));
+	    						//->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    					$args['public_questions_codings'] = $temp->get();
+	    					dd($args['public_questions_codings']);
+	    		}
+	    		if(!is_null($request->input('statement')))
+	    		{
+	    			$temp->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    				//->orwhere('questions.id',$request->input('id'));
+
+	    					$args['public_questions_codings'] = $temp->get();
+	    					dd($args['public_questions_codings']);
+
+	    					// ->where('title','LIKE','%'.$name.'%')
+	    		}
+
+	    		if(!is_null($request->input('tag')))
+	    		{
+	    			
+		    		$temp->where('question_details.tag_id', $request->input('tag'));
+		    		$args['public_questions_codings'] = $temp->get();
+	    			dd($args['public_questions_codings']);
+	    		}
+	    		if(!is_null($request->input('provider')))
+	    		{
+	    			$temp->where('question_details.provider','LIKE','%'.$request->input('provider').'%');
+	    			$args['public_questions_codings'] = $temp->get();
+	    			dd($args['public_questions_codings']);	
+	    		}
+	    		if(!is_null($request->input('author')))
+	    		{
+	    			$temp->where('question_details.author','LIKE','%'.$request->input('author').'%');
+	    			$args['public_questions_codings'] = $temp->get();
+	    			dd($args['public_questions_codings']);	
+	    		}
+
+	    	}
+
+
+	    	// PRIVATE QUESTIONS SECTION 
+
+
+
+	    	if($request->input('templateType') == 2 && $request->input('questionType') == 1){
+	    		// dd('private template 2 question 1');
+
+	    		$temp->where('test_template_types.id', 2)
+	    					->where('questions.question_type_id',1);
+
+
+	    		 if(!is_null($request->input('id')))
+	    		 {
+	    			$temp->where('questions.id',$request->input('id'));
+	    						//->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    					$args['public_questions_mcqs'] = $temp->get();
+	    					dd($args['public_questions_mcqs']);
+	    		 }
+
+	    		if(!is_null($request->input('statement')))
+	    		{
+	    			$temp->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    				//->orwhere('questions.id',$request->input('id'));
+
+	    					$args['public_questions_mcqs'] = $temp->get();
+	    					 dd($args['public_questions_mcqs']);
+
+	    					// ->where('title','LIKE','%'.$name.'%')
+	    		}
+	    		if(!is_null($request->input('tag')))
+	    		{
+	    			// dd($request->input('tag'));
+			    		$temp->where('question_details.tag_id', $request->input('tag'));
+			    		$args['public_questions_mcqs'] = $temp->get();
+	    				dd($args['public_questions_mcqs']);
+	    		}
+	    		if(!is_null($request->input('provider')))
+	    		{
+	    			$temp->where('question_details.provider','LIKE','%'.$request->input('provider').'%');
+	    			$args['public_questions_mcqs'] = $temp->get();
+	    			dd($args['public_questions_mcqs']);	
+	    		}
+	    		if(!is_null($request->input('author')))
+	    		{
+	    			$temp->where('question_details.author','LIKE','%'.$request->input('author').'%');
+	    			$args['public_questions_mcqs'] = $temp->get();
+	    			dd($args['public_questions_mcqs']);	
+	    		}
+
+	    	}
+	    	elseif($request->input('templateType') == 2 && $request->input('questionType') == 2)
+	    	{
+	    		// dd('private template 2 question 2');
+	    		// dd('coding');
+	    		$temp->where('test_template_types.id', 2)
+	    					->where('questions.question_type_id',2);
+
+	    		if(!is_null($request->input('id')))
+	    		{
+	    			// dd($request->input('id'));
+	    			$temp->where('questions.id',$request->input('id'));
+	    						//->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    					$args['public_questions_codings'] = $temp->get();
+	    					dd($args['public_questions_codings']);
+	    		}
+	    		if(!is_null($request->input('statement')))
+	    		{
+	    			$temp->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    				//->orwhere('questions.id',$request->input('id'));
+
+	    					$args['public_questions_codings'] = $temp->get();
+	    					dd($args['public_questions_codings']);
+
+	    					// ->where('title','LIKE','%'.$name.'%')
+	    		}
+
+	    		if(!is_null($request->input('tag')))
+	    		{
+	    			
+		    		$temp->where('question_details.tag_id', $request->input('tag'));
+		    		$args['public_questions_codings'] = $temp->get();
+	    			dd($args['public_questions_codings']);
+	    		}
+	    		if(!is_null($request->input('provider')))
+	    		{
+	    			$temp->where('question_details.provider','LIKE','%'.$request->input('provider').'%');
+	    			$args['public_questions_codings'] = $temp->get();
+	    			dd($args['public_questions_codings']);	
+	    		}
+	    		if(!is_null($request->input('author')))
+	    		{
+	    			$temp->where('question_details.author','LIKE','%'.$request->input('author').'%');
+	    			$args['public_questions_codings'] = $temp->get();
+	    			dd($args['public_questions_codings']);	
+	    		}
+
+	    	}
+	    	elseif($request->input('templateType') == 2 && $request->input('questionType') == 3){
+	    		// dd('private template 2 question 1');
+
+	    		$temp->where('test_template_types.id', 2)
+	    					->where('questions.question_type_id',3);
+
+
+	    		 if(!is_null($request->input('id')))
+	    		 {
+	    			$temp->where('questions.id',$request->input('id'));
+	    						//->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    					$args['private_questions_submissions'] = $temp->get();
+	    					dd($args['private_questions_submissions']);
+	    		 }
+
+	    		if(!is_null($request->input('statement')))
+	    		{
+	    			$temp->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
+	    				//->orwhere('questions.id',$request->input('id'));
+
+	    					$args['private_questions_submissions'] = $temp->get();
+	    					 dd($args['private_questions_submissions']);
+
+	    					// ->where('title','LIKE','%'.$name.'%')
+	    		}
+	    		if(!is_null($request->input('tag')))
+	    		{
+	    			// dd($request->input('tag'));
+		    		$temp->where('question_details.tag_id', $request->input('tag'));
+		    		$args['private_questions_submissions'] = $temp->get();
+    				dd($args['private_questions_submissions']);
+	    		}
+	    		if(!is_null($request->input('provider')))
+	    		{
+	    			$temp->where('question_details.provider','LIKE','%'.$request->input('provider').'%');
+	    			$args['private_questions_submissions'] = $temp->get();
+	    			dd($args['private_questions_submissions']);	
+	    		}
+	    		if(!is_null($request->input('author')))
+	    		{
+	    			$temp->where('question_details.author','LIKE','%'.$request->input('author').'%');
+	    			$args['private_questions_submissions'] = $temp->get();
+	    			dd($args['private_questions_submissions']);	
+	    		}
+
 	    	}
 
 	 return view('recruiter_dashboard.library_public_questions')->with($args);   	

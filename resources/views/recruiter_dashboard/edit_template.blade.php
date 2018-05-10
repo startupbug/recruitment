@@ -202,9 +202,7 @@
                                     </tr>
                                  </thead>
                                  <tbody id="mcqTable-{{$key}}">
-
                                     @foreach($sec['ques1'] as $serial_number => $q)
-
                                     <!-- q is question type id=1   -->
                                      <tr>
                                           <td><input type="checkbox" name="prog" class="prog_mc" value="{{$q->id}}"></td>
@@ -214,6 +212,7 @@
                                                 <div class="row">
                                                    <!-- pass question id in modal -->
                                                    <div class="single-line-ellipsis">
+
                                                       <a href="#" onclick="modal_data({{$q->id}}, 'modal_pencil')" data-toggle="modal" data-target="#question_modal" class="no-underline">
                                                          {!!$q->question_statement!!}
                                                       </a>

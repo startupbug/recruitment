@@ -110,9 +110,9 @@
                                                  <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to terminate this Host.', '{{route('host_terminate')}}', {{$hosted_test->host_id}} )" >Terminate</a></li>
                                             @endif
 
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="#" data-toggle="modal" data-target="#setup_manual
-                                                ">Setup Manual Evaluation</a></li>
+                                            <!-- <li role="separator" class="divider"></li> -->
+                                            <!-- <li><a href="#" data-toggle="modal" data-target="#setup_manual
+                                                ">Setup Manual Evaluation</a></li> -->
                                         </ul>
                                     </div>
                                 </li>

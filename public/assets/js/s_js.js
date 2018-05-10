@@ -2931,6 +2931,8 @@ $( document ).ready(function() {
 
           if ($(this).closest('form').find('.level_easy').is(":checked") && $(this).closest('form').find('.level_hard').is(":checked")) {
             $(this).closest('form').find('.level_all').prop('checked', true);
+          }else {
+            $(this).closest('form').find('.level_all').prop('checked', false);
           }
 
         }
@@ -3115,6 +3117,136 @@ $( document ).ready(function() {
 
     $("#section-submission-question-Modal").on('click', '.add_resources_submission_ul li .s_upload_name .s_close', function() {
       $(this).closest('li').remove();
+    });
+
+    $('.state').on('change', '.staged', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('.state').find('.ready').is(":checked")) {
+            $(this).closest('.state').find('.all').prop('checked', true);
+          }
+          else {
+            $(this).closest('.state').find('.all').prop('checked', false);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('.state').find('.ready').is(":checked")) {
+            $(this).closest('.state').find('.all').prop('checked', false);
+          }
+          else {
+            $(this).closest('.state').find('.all').prop('checked', false);
+            $(this).prop( "checked", true );
+          }
+
+        }
+    });
+    $('.state').on('change', '.ready', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('.state').find('.staged').is(":checked")) {
+            $(this).closest('.state').find('.all').prop('checked', true);
+          }
+          else {
+            $(this).closest('.state').find('.all').prop('checked', false);
+          }
+
+        }
+        else {
+
+            $(this).closest('.state').find('.all').prop('checked', false);
+            $(this).closest('.state').find('.staged').prop('checked', true);
+
+        }
+    });
+    $('.state').on('change', '.all', function(){
+      if ($(this).is(":checked")) {
+        $(this).closest('.state').find('.staged').prop('checked', true);
+        $(this).closest('.state').find('.ready').prop('checked', true);
+      }
+      else {
+        $(this).closest('.state').find('.staged').prop('checked', true);
+        $(this).closest('.state').find('.ready').prop('checked', false);
+      }
+    });
+
+    $('.level').on('change', '.easy', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('.level').find('.intermediate').is(":checked") && $(this).closest('.level').find('.hard').is(":checked")) {
+            $(this).closest('.level').find('.all').prop('checked', true);
+          }
+          else {
+            $(this).closest('.level').find('.all').prop('checked', false);
+          }
+
+        }
+        else {
+
+          if ($(this).closest('.level').find('.intermediate').is(":checked") || $(this).closest('.level').find('.hard').is(":checked")) {
+            $(this).closest('.level').find('.all').prop('checked', false);
+          }
+          else {
+            $(this).closest('.level').find('.all').prop('checked', false);
+            $(this).prop( "checked", true );
+          }
+
+        }
+    });
+    $('.level').on('change', '.intermediate', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('.level').find('.easy').is(":checked") && $(this).closest('.level').find('.hard').is(":checked")) {
+            $(this).closest('.level').find('.all').prop('checked', true);
+          }
+          else {
+            $(this).closest('.level').find('.all').prop('checked', false);
+          }
+
+        }
+        else {
+          if ($(this).closest('.level').find('.easy').is(":checked") || $(this).closest('.level').find('.hard').is(":checked")){
+            $(this).closest('.level').find('.all').prop('checked', false);
+          }else {
+            $(this).closest('.level').find('.easy').prop('checked', true);
+            $(this).closest('.level').find('.all').prop('checked', false);
+          }
+
+        }
+    });
+    $('.level').on('change', '.hard', function(){
+        if ($(this).is(":checked")) {
+
+          if ($(this).closest('.level').find('.easy').is(":checked") && $(this).closest('.level').find('.intermediate').is(":checked")) {
+            $(this).closest('.level').find('.all').prop('checked', true);
+          }
+          else {
+            $(this).closest('.level').find('.all').prop('checked', false);
+          }
+
+        }
+        else {
+          if ($(this).closest('.level').find('.easy').is(":checked") || $(this).closest('.level').find('.intermediate').is(":checked")){
+            $(this).closest('.level').find('.all').prop('checked', false);
+          }else {
+            $(this).closest('.level').find('.easy').prop('checked', true);
+            $(this).closest('.level').find('.all').prop('checked', false);
+          }
+
+        }
+    });
+    $('.level').on('change', '.all', function(){
+      if ($(this).is(":checked")) {
+        $(this).closest('.level').find('.easy').prop('checked', true);
+        $(this).closest('.level').find('.intermediate').prop('checked', true);
+        $(this).closest('.level').find('.hard').prop('checked', true);
+      }
+      else {
+        $(this).closest('.level').find('.easy').prop('checked', true);
+        $(this).closest('.level').find('.intermediate').prop('checked', false);
+        $(this).closest('.level').find('.hard').prop('checked', false);
+      }
     });
 
 });

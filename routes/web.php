@@ -92,6 +92,7 @@ Route::get('/preview_test_questions', 'Recruiter\RecruiterController@preview_tes
 Route::get('/change_password', 'Recruiter\RecruiterController@change_password')->name('change_password');
 Route::get('/general_setting', 'Recruiter\RecruiterController@general_setting')->name('general_setting');
 Route::get('/setting_info', 'Recruiter\RecruiterController@setting_info')->name('setting_info');
+Route::post('/post_setting_info', 'Recruiter\RecruiterController@post_setting_info')->name('post_setting_info');
 
 //Recruiter Company Routes Started
 Route::post('/post_general_setting','Recruiter\CompanyController@post_general_setting')->name('post_general_setting');
