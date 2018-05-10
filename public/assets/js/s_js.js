@@ -3249,4 +3249,62 @@ $( document ).ready(function() {
       }
     });
 
+    $('.url_textarea').on('keyup', function(){
+      var regex = /https?:\/\/[\-A-Za-z0-9+&@#\/%?=~_|$!:,.;]*/g;
+      if($(this).val().match(regex))
+      {
+        $(this).siblings('.url_tooltip').addClass('hidden');
+      }else {
+        $(this).siblings('.url_tooltip').removeClass('hidden');
+      }
+    });
+
 });
+
+function testcase_fileformat(){
+  swal({
+    title: 'Pattern of Test Cases',
+    type: 'info',
+    html:
+      "<p>"+
+        "<p>There should be a delimiter </p>"+
+        "<p>'-----CodeGrounds-----'</p>"+
+        "<p>after input and a delimiter</p>"+
+        "<p>'-----EndCodeGrounds-----'</p>"+
+        "<p>at the end of test case</p>"+
+        "<p><b>Example:</b>If your input is 5 &amp; output is 10,your file should be as</p>"+
+        "<pre>5<br>-----CodeGrounds-----<br>10<br>-----EndCodeGrounds-----</pre>"+
+        "<p></p>"+
+      "</p>" ,
+    confirmButtonClass: 'btn-info',
+    confirmButtonText: 'Got It!',
+  });
+}
+function hosting_confirm(){
+  console.log("asdas");
+  // swal({
+  //   title: 'Pattern of Test Cases',
+  //   type: 'info',
+  //   html:
+  //     "<p>"+
+  //       "<p>There should be a delimiter </p>"+
+  //       "<p>'-----CodeGrounds-----'</p>"+
+  //       "<p>after input and a delimiter</p>"+
+  //       "<p>'-----EndCodeGrounds-----'</p>"+
+  //       "<p>at the end of test case</p>"+
+  //       "<p><b>Example:</b>If your input is 5 &amp; output is 10,your file should be as</p>"+
+  //       "<pre>5<br>-----CodeGrounds-----<br>10<br>-----EndCodeGrounds-----</pre>"+
+  //       "<p></p>"+
+  //     "</p>" ,
+  //   confirmButtonClass: 'btn-info',
+  //   confirmButtonText: 'Got It!',
+  // });
+  swal({
+    title: "Pattern of Test Cases",
+    text: "There should be a delimiter",
+    type: "info",
+    showCancelButton: true,
+    confirmButtonClass: 'btn-info',
+    confirmButtonText: 'Got It!'
+    });
+}

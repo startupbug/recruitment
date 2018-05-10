@@ -4,29 +4,70 @@
   /* Adding Test Host */
   $("#hostTestAdd").on('submit', function(e){
         e.preventDefault();
-        var formData = $(this).serialize();
-        $.ajaxSetup({
-          headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-        });
-        $.ajax({
-          type: $(this).attr('method'),
-          url: $(this).attr('action'),
-          data: formData,
-          success: function (data) {
-            console.log(data);
-           if(data.status == 200){
-              alertify.success(data.msg);
-              setTimeout(function(){ $('#_first_model').modal('toggle'); }, 2500);
 
-                }else if(data.status == 202){
-                  alertify.warning(data.msg);
+        swal({
+          title: "Are you sure?",
+          text: "Once the test is hosted, questions cannot be added or removed, Continue?",
+          type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+          dangerMode: true,
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+
+              var formData = $("#hostTestAdd").serialize();
+              $.ajaxSetup({
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+              });
+              $.ajax({
+                type: $("#hostTestAdd").attr('method'),
+                url: $("#hostTestAdd").attr('action'),
+                data: formData,
+                success: function (data) {
+                  console.log(data);
+                  if(data.status == 200){
+
+                    alertify.success(data.msg);
+                    setTimeout(function(){ $('#_first_model').modal('toggle'); }, 2500);
+
+                  }else if(data.status == 202){
+                    alertify.warning(data.msg);
+                  }
+                },
+                error: function (data) {
+                  alertify.warning("Oops. something went wrong. Please try again");
                 }
-              },
-              error: function (data) {
-               alertify.warning("Oops. something went wrong. Please try again");
-             }
-           });
+              });
+
+
+          } else {
+            // swal("Cancelled", "Your imaginary file is safe :)", "error");
+          }
+        });
+
+
+        // swal({
+        //   title: "Are you sure?",
+        //   text: "Your will not be able to recover this imaginary file!",
+        //   type: "warning",
+        //   showCancelButton: true,
+        //   confirmButtonClass: "btn-danger",
+        //   confirmButtonText: "Yes, delete it!",
+        //   closeOnConfirm: false
+        // }).then(function(isConfirm) {
+        //
+        //   if (isConfirm) {
+        //
+        //   }
+        //
+        //   // swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        // });
+
+
+
   });
+  ($('#check_emailreport').is(":checked")) ? ( $(".rec_div").show() ) : ( $(".rec_div").hide() );
   //Email report checbox handling
   $('#check_emailreport').change(function() {
     ($(this).is(":checked")) ? ( $(".rec_div").show() ) : ( $(".rec_div").hide() );

@@ -454,7 +454,7 @@ function addrow_weightage_edit() {
 
 // Hasan Mehdi Delete choice Question
 
-$('.delete_row').on('click', function(e) {
+$('.delete_row_mqcs_choice').on('click', function(e) {
   e.preventDefault();
     var dataId = $(this).attr('data-id');
     var thisScope = $(this);
@@ -590,8 +590,8 @@ $("#AjaxCodingTwoModal").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
         alertify.success(data.msg);
@@ -599,11 +599,11 @@ $("#AjaxCodingTwoModal").on('submit', function(e){
         $("#firstCodingTable-"+data.section_id).html(data.li_html);
         $("#count2-"+data.section_id).html(data.quescount);
         $('#section-coding-debug-Modal').modal('hide');
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
      alertify.warning("Oops. something went wrong. Please try again");
@@ -622,19 +622,19 @@ $("#AjaxSubmissionOneModal").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
         alertify.success(data.msg);
         $("#SubmissionFirstTable-"+data.section_id).html(data.li_html);
         $("#count3-"+data.section_id).html(data.quescount);
         $('#section-submission-question-Modal').modal('hide');
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
      alertify.warning("Oops. something went wrong. Please try again");
@@ -653,19 +653,19 @@ $("#AjaxSubmissionSecondModal").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
         alertify.success(data.msg);
         $("#SubmissionFirstTable-"+data.section_id).html(data.li_html);
         $("#count3-"+data.section_id).html(data.quescount);
         $('#section-submission-fill-blanks-question-Modal').modal('hide');
-      }else if(data.status == 202){           
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
      alertify.warning("Oops. something went wrong. Please try again");
@@ -685,16 +685,16 @@ $("#save_setting_info").on('submit', function(e){
   $.ajax({
     type: $(this).attr('method'),
     url: $(this).attr('action'),
-    data: formData,                  
-    success: function (data) { 
+    data: formData,
+    success: function (data) {
       console.log(data);
       if(data.status == 200){
-        alertify.success(data.msg);                       
-      }else if(data.status == 202){           
+        alertify.success(data.msg);
+      }else if(data.status == 202){
         alertify.warning(data.msg);
-      }else{           
+      }else{
         alertify.warning(data.array.errorInfo[2]);
-      }       
+      }
     },
     error: function (data) {
       alertify.warning("Oops. something went wrong. Please try again");

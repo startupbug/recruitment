@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('public/assets/css/select2.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="{{ asset('public/assets/css/editor.css') }}"/> -->
+    <link rel="stylesheet" href="{{ asset('public/assets/css/sweetalert.css') }}"/>
     <link rel="stylesheet" href="{{ asset('public/assets/css/froala_editor.css') }}"/>
     <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
@@ -2500,6 +2501,8 @@
 <script src="{{ asset('public/assets/js/jquery.localscroll.js') }}"></script>
 <script src="{{ asset('public/assets/js/jquery.scrollTo.js') }}"></script>
 <!-- <script src="{{ asset('public/assets/js/editor.js') }}"></script> -->
+<!-- <script src="{{ asset('public/assets/js/sweetalert.min.js') }}"></script> -->
+<script src="{{ asset('public/assets/js/sweetalert2.all.js') }}"></script>
 <script src="{{ asset('public/assets/js/froala_editor.min.js') }}"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
@@ -2512,6 +2515,7 @@
 <script src="{{ asset('public/assets/js/i_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/fa_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/h.js') }}"></script>
+
 <script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
 
 <script language="text/javascript">
