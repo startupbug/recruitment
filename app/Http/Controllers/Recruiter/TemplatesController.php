@@ -229,6 +229,30 @@ public function edit_template($id){
 
              $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']);
 
+             //counting easy questions from each section
+              $args['sections_tabs'][$value->id]['easy_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->where('sections.id',$value->id)
+               ->where('questions.question_level_id',1)
+               ->count();
+
+               //counting medium questions from each section
+              $args['sections_tabs'][$value->id]['medium_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->where('sections.id',$value->id)
+               ->where('questions.question_level_id',2)
+               ->count();
+
+              //counting hard questions from each section
+               $args['sections_tabs'][$value->id]['hard_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->where('sections.id',$value->id)
+               ->where('questions.question_level_id',3)
+               ->count();
+
+              //counting total marks questions from each section
+               $args['sections_tabs'][$value->id]['marks_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->leftJoin('question_details','question_details.question_id','=','questions.id')
+               ->select('question_details.marks')
+               ->where('sections.id',$value->id)               
+               ->sum('marks');
 
              // $args['sections_tabs2'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              // $args['sections_tabs'][$value->id]['count2'] = $value->section_questions;
