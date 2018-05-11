@@ -65,9 +65,9 @@
 							        <th>Level</th>
 							        <th>Tags</th>
 									<th></th>
-											
+
 							      </tr>
-							      
+
 							    </thead>
 							    <tbody>
 
@@ -125,7 +125,7 @@
 							  </table>
 
 							</div>
-							
+
 						</div>
 
 			 			<div id="public-programming-question" class="tab-pane fade">
@@ -174,7 +174,7 @@
 										</tr>
 									</thead>
 									<tbody>
-									
+
 							@if( isset($public_questions_codings) && count($public_questions_codings) > 0 )
 							    @foreach($public_questions_codings as $public_questions_coding)
 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_coding->id}}" aria-expanded="false">
@@ -553,7 +553,7 @@
  									</tbody>
  								</table>
  							</div>
- 						
+
  						</div>
  			 		</div>
  				 </div>
@@ -623,7 +623,8 @@
 	                        <hr>
 	                        <div class="heading_modal_statement">
 	                           <strong>
-	                              Question Statement (<a href="#modal-pencil-Collapse" data-toggle="modal" onclick="edittesttemplate_Collapse()" >Expand</a>)
+	                              Question Statement (<a href="#modal_pencil_Collapse" data-toggle="modal" onclick="pencil_edittesttemplate_Collapse()" >Expand</a>)
+																<span class="textarea_span_commint text-danger">Please add atleast 3 characters in the statement </span>
 	                              <div class="s_popup">
 	                                 <i class="fa fa-info-circle"> </i>
 	                                 <span class="s_popuptext">
@@ -640,6 +641,14 @@
 	                        </div>
 	                        <textarea id="s_txtEditor_submission_Add_section_fill_blanks" class="edit" name="question_statement" value="{!!$get_data->question_statement!!}" >{!!$get_data->question_statement!!}</textarea>
 	                        <br>
+													<div class="panel panel-pagedown-preview hidden" id="edittemp_pencil_panel">
+                            <div class="panel-heading">
+                              <strong>Preview</strong>
+                            </div>
+                            <div class="panel-body">
+                              <p id="pencil_preview_data_section_expand"></p>
+                            </div>
+                          </div>
                      </div>
                   </div>
                   <br>
@@ -656,120 +665,6 @@
                               <div class="f_upload_btn">
                                  Upload Media
                                  <input type="file" name="audio_video1" value="{{$get_data->media}}">
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <br>
-                  <!-- Fill In The Blanks Solution Details -->
-                  <div class="modal-content s_modal s_yellow_light_color_modal">
-                     <div class="modal-header s_modal_header s_yellow_light_green_color_header">
-                        <h4 class="modal-title s_font">Fill In The Blanks Solution Details</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <h4>Enter Solutions for the Blanks</h4>
-                     </div>
-                  </div>
-                  <br>
-                  <!--  Question Details -->
-                  <div class="modal-content s_modal s_gray_color_modal">
-                     <div class="modal-header s_modal_header s_gray_color_header">
-                        <h4 class="modal-title s_font"> Question Details</h4>
-                     </div>
-                     <div class="modal-body s_modal_body">
-                        <div class="form-group form-group-sm" >
-                           <label>Marks for this Question <i class="fa fa-info-circle"></i></label>
-                           <input type="number" name="marks" min="1" class="form-control" required="required" style="" value="{{$get_data->marks}}">
-                        </div>
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>
-                              Question Level
-                              <div class="s_popup">
-                                 <i class="fa fa-info-circle"> </i>
-                                 <span class="s_popuptext">
-                                 Question level determines the standard of the question. supported classification are easy, intermediate and hard.
-                                 </span>
-                              </div>
-                           </strong>
-                        </div>
-                        <div class="heading_padding_bottom">
-
-                          <label class="container_radio border_radio_left">Easy
-                           <input type="radio" @if($get_data->question_level_id == 1) checked="checked"  value="1" @endif name="question_level">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio">Medium
-                           <input type="radio" @if($get_data->question_level_id == 2)  checked="checked" value="2" @endif name="question_level">
-                           <span class="checkmark"></span>
-                           </label>
-                           <label class="container_radio border_radio_right">Hard
-                           <input type="radio" @if($get_data->question_level_id == 3) checked="checked"  value="3" @endif  name="question_level">
-                           <span class="checkmark"></span>
-                           </label>
-                        </div>
-                        <div class="heading_modal_statement heading_padding_bottom">
-                           <strong>
-                              Tags
-                              <div class="s_popup">
-                                 <i class="fa fa-info-circle"> </i>
-                                 <span class="s_popuptext">
-                                 Each question can be associated with multiple tags. <br>
-                                 <br>
-                                 Why it matters:
-                                 <br>
-                                 (1) Tags are used in filters while searching through the library.<br>
-                                 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
-                                 </span>
-                              </div>
-                              No tags added
-                           </strong>
-                        </div>
-                        <div class="form-group-sm">
-                           <div class="row">
-                              <div class="col-md-3">
-                                 <select class="form-control"  name="tag_name" required>
-										<option disabled >choose a tag</option>
-				                    @foreach($items as $value)
-				                    <option value="{{$value->id}}" >{{$value->tag_name}}</option>
-				                    @endforeach
-                                 </select>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>
-                                       Provider
-                                       <div class="s_popup">
-                                          <i class="fa fa-info-circle"> </i>
-                                          <span class="s_popuptext">
-                                          This optional field is meant to contain the <br>
-                                          organization name that serves as the provider of the question.
-                                          </span>
-                                       </div>
-                                    </strong>
-                                 </div>
-                                 <input type="text" class="form-control" name="provider" value="{{$get_data->provider}}">
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group form-group-sm">
-                                 <div class="heading_modal_statement heading_padding_bottom">
-                                    <strong>Author </strong>
-                                    <div class="s_popup">
-                                       <i class="fa fa-info-circle"> </i>
-                                       <span class="s_popuptext">
-                                       This field is meant to contain the <br>
-                                       name of the author of the question.
-                                       </span>
-                                    </div>
-                                 </div>
-                                 <input type="text" class="form-control" name="author" value="{{$get_data->author}}">
                               </div>
                            </div>
                         </div>
@@ -849,103 +744,103 @@
                     </div>
                   <br>
                   <!--  Question Details -->
-                  	<div class="modal-content s_modal s_yellow_light_color_modal">
-						<div class="modal-header s_modal_header s_yellow_light_green_color_header">
-							<h4 class="modal-title s_font"> Question Details</h4>
-						</div>
-						<div class="modal-body s_modal_body">
-						<div class="heading_modal_statement heading_padding_bottom">
-							 <strong>
-									Tags
-									<div class="s_popup">
-										 <i class="fa fa-info-circle"> </i>
-										 <span class="s_popuptext">
-										 Each question can be associated with multiple tags. <br>
-										 <br>
-										 Why it matters:
-										 <br>
-										 (1) Tags are used in filters while searching through the library.<br>
-										 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
-										 </span>
-									</div>
-									No tags added
-							 </strong>
-						</div>
-						<div class="form-group-sm">
-							 <div class="row">
-									<div class="col-md-3">
-										 <select class="form-control"  name="tag_name" required>
-												<option disabled >choose a tag</option>
-												@foreach($items as $value)
-												<option value="{{$value->id}}" >{{$value->tag_name}}</option>
-												@endforeach
-										 </select>
-									</div>
-							 </div>
-						</div>
-							<div class="heading_modal_statement heading_padding_bottom">
-							   <strong>
-							      Question Level
-							      <div class="s_popup">
-							         <i class="fa fa-info-circle"> </i>
-							         <span class="s_popuptext">
-							         Question level determines the standard of the question. supported classification are easy, intermediate and hard.
-							         </span>
-							      </div>
-							   </strong>
-							</div>
-							<div class="heading_padding_bottom">
-							  <label class="container_radio border_radio_left">Easy
-							   <input type="radio" @if($get_data->question_level_id == 1) checked="checked"  value="1" @endif name="question_level">
-							   <span class="checkmark"></span>
-							   </label>
-							   <label class="container_radio">Medium
-							   <input type="radio" @if($get_data->question_level_id == 2)  checked="checked" value="2" @endif name="question_level">
-							   <span class="checkmark"></span>
-							   </label>
-							   <label class="container_radio border_radio_right">Hard
-							   <input type="radio" @if($get_data->question_level_id == 3) checked="checked"  value="3" @endif  name="question_level">
-							   <span class="checkmark"></span>
-							   </label>
-							</div>
-							<div class="row">
-							   <div class="col-md-6 col-sm-12 col-xs-12">
-							      <div class="form-group form-group-sm">
-							         <div class="heading_modal_statement heading_padding_bottom">
-							            <strong>
-							               Provider
-							               <div class="s_popup">
-							                  <i class="fa fa-info-circle"> </i>
-							                  <span class="s_popuptext">
-							                  This optional field is meant to contain the <br>
-							                  organization name that serves as the provider of the question.
-							                  </span>
-							               </div>
-							            </strong>
-							         </div>
-							         <input type="text" class="form-control" name="provider" value="{{$get_data->provider}}">
-							      </div>
-							   </div>
-							</div>
-							<div class="row">
-							   <div class="col-md-6 col-sm-12 col-xs-12">
-							      <div class="form-group form-group-sm">
-							         <div class="heading_modal_statement heading_padding_bottom">
-							            <strong>Author </strong>
-							            <div class="s_popup">
-							               <i class="fa fa-info-circle"> </i>
-							               <span class="s_popuptext">
-							               This field is meant to contain the <br>
-							               name of the author of the question.
-							               </span>
-							            </div>
-							         </div>
-							         <input type="text" class="form-control" name="author" value="{{$get_data->author}}">
-							      </div>
-							   </div>
-							</div>
-						</div>
-                  	</div>
+                  <div class="modal-content s_modal s_yellow_light_color_modal">
+										<div class="modal-header s_modal_header s_yellow_light_green_color_header">
+											<h4 class="modal-title s_font"> Question Details</h4>
+										</div>
+										<div class="modal-body s_modal_body">
+											<div class="heading_modal_statement heading_padding_bottom">
+												 <strong>
+														Tags
+														<div class="s_popup">
+															 <i class="fa fa-info-circle"> </i>
+															 <span class="s_popuptext">
+															 Each question can be associated with multiple tags. <br>
+															 <br>
+															 Why it matters:
+															 <br>
+															 (1) Tags are used in filters while searching through the library.<br>
+															 (2) Tagging is an efficient way of management of library spanning multiple conceptual categories and classification.
+															 </span>
+														</div>
+														No tags added
+												 </strong>
+											</div>
+											<div class="form-group-sm">
+												 <div class="row">
+														<div class="col-md-3">
+															 <select class="form-control"  name="tag_name" required>
+																	<option disabled >choose a tag</option>
+																	@foreach($items as $value)
+																	<option value="{{$value->id}}" >{{$value->tag_name}}</option>
+																	@endforeach
+															 </select>
+														</div>
+												 </div>
+											</div>
+											<div class="heading_modal_statement heading_padding_bottom">
+											   <strong>
+											      Question Level
+											      <div class="s_popup">
+											         <i class="fa fa-info-circle"> </i>
+											         <span class="s_popuptext">
+											         Question level determines the standard of the question. supported classification are easy, intermediate and hard.
+											         </span>
+											      </div>
+											   </strong>
+											</div>
+											<div class="heading_padding_bottom">
+											  <label class="container_radio border_radio_left">Easy
+											   <input type="radio" @if($get_data->question_level_id == 1) checked="checked"  value="1" @endif name="question_level">
+											   <span class="checkmark"></span>
+											   </label>
+											   <label class="container_radio">Medium
+											   <input type="radio" @if($get_data->question_level_id == 2)  checked="checked" value="2" @endif name="question_level">
+											   <span class="checkmark"></span>
+											   </label>
+											   <label class="container_radio border_radio_right">Hard
+											   <input type="radio" @if($get_data->question_level_id == 3) checked="checked"  value="3" @endif  name="question_level">
+											   <span class="checkmark"></span>
+											   </label>
+											</div>
+											<div class="row">
+											   <div class="col-md-6 col-sm-12 col-xs-12">
+											      <div class="form-group form-group-sm">
+											         <div class="heading_modal_statement heading_padding_bottom">
+											            <strong>
+											               Provider
+											               <div class="s_popup">
+											                  <i class="fa fa-info-circle"> </i>
+											                  <span class="s_popuptext">
+											                  This optional field is meant to contain the <br>
+											                  organization name that serves as the provider of the question.
+											                  </span>
+											               </div>
+											            </strong>
+											         </div>
+											         <input type="text" class="form-control" name="provider" value="{{$get_data->provider}}">
+											      </div>
+											   </div>
+											</div>
+											<div class="row">
+											   <div class="col-md-6 col-sm-12 col-xs-12">
+											      <div class="form-group form-group-sm">
+											         <div class="heading_modal_statement heading_padding_bottom">
+											            <strong>Author </strong>
+											            <div class="s_popup">
+											               <i class="fa fa-info-circle"> </i>
+											               <span class="s_popuptext">
+											               This field is meant to contain the <br>
+											               name of the author of the question.
+											               </span>
+											            </div>
+											         </div>
+											         <input type="text" class="form-control" name="author" value="{{$get_data->author}}">
+											      </div>
+											   </div>
+											</div>
+										</div>
+                  </div>
                   <br>
                   <!--   Evaluation Parameters (Optional) -->
                   <div class="modal-content s_modal s_gray_color_modal">
@@ -1035,14 +930,13 @@
    </div>
 </div>
 
-<div class="modal fade" id="modal-pencil-Collapse" role="dialog">
+<div class="modal fade" id="modal_pencil_Collapse" role="dialog">
   <div class="modal-dialog  modal-lg">
     <div class="modal-content">
        <div class="modal-body s_modal_form_body">
           <div class="row">
             <div class="col-md-12">
-              <strong>Question Statement (<span class="collapse_pointer" onclick="collapse_modal()" >Collapse</span>)</strong>
-              <span class="text-danger"> Please add atleast 3 characters in the statement</span><br>
+              <strong>Question Statement (<span class="collapse_pointer" onclick="pencil_collapse_modal()" >Collapse</span>)</strong>
             </div>
           </div>
           <div class="row">
@@ -1055,7 +949,7 @@
                   <strong>Preview</strong>
                 </div>
                 <div class="panel-body" style="height: 647px;">
-                  <p id="preview_data_section"></p>
+                  <p id="pencil_preview_data_section"></p>
                 </div>
               </div>
             </div>
@@ -1803,7 +1697,7 @@
                             <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
                         @endforeach
-                        
+
                     </div>
                     <div class="form-group level">
                         <label class="control-label col-sm-2" for="statement">Level :</label>
@@ -1932,7 +1826,7 @@
                     		<button type="submit" class="btn s_save_button s_font" >Apply</button>
                     </div>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
@@ -2118,7 +2012,7 @@
                     		<button type="submit" class="btn s_save_button s_font" >Apply</button>
                     </div>
                     </div>
-                    
+
                 </form>
             </div>
         </div>

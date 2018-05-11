@@ -1439,6 +1439,9 @@
    </div>
 </section>
 <!-- Edit-public-page-Modal -->
+s_orange_color_header
+s_orange_color_modal
+
 <div class="modal fade" id="_first_model" role="dialog" style="">
    <div class="modal-dialog  modal-lg s-modal-lg ">
       <!-- Modal content-->
@@ -2912,9 +2915,9 @@
                         <!--  Solution Details (Optional) -->
                           <div class="modal-content s_modal s_gray_color_modal">
                        <div class="modal-header s_modal_header s_gray_color_header">
-                          <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                          <h4 class="modal-title-icon modal-title s_font"> <i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
                        </div>
-                       <div class="modal-body s_modal_body">
+                       <div class="modal-body hidden s_modal_body">
                           <div class="row">
                              <div class="col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group form-group-sm">
@@ -3234,9 +3237,9 @@
                      <!--  Solution Details (Optional) -->
                       <div class="modal-content s_modal s_gray_color_modal">
                             <div class="modal-header s_modal_header s_gray_color_header">
-                               <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                               <h4 class="modal-title-icon modal-title s_font"> <i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
                             </div>
-                            <div class="modal-body s_modal_body">
+                            <div class="modal-body hidden s_modal_body">
                              <div class="row">
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                    <div class="form-group form-group-sm">
@@ -4146,9 +4149,9 @@
                         <!--   Evaluation Parameters (Optional) -->
                         <div class="modal-content s_modal s_light_green_color_modal">
                            <div class="modal-header s_modal_header s_light_green_color_header">
-                              <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                              <h4 class="modal-title-icon modal-title s_font"> <i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
                            </div>
-                           <div class="modal-body s_modal_body">
+                           <div class="modal-body hidden s_modal_body">
                               <div class="row">
                                  <div class="col-md-3 col-sm-12 col-xs-12">
                                     <div class="form-group form-group-sm">
@@ -4429,7 +4432,7 @@
                       <!--   Evaluation Parameters (Optional) -->
                       <div class="modal-content s_modal s_light_green_color_modal">
                          <div class="modal-header s_modal_header s_light_green_color_header">
-                            <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                            <h4 class="modal-title-icon modal-title s_font"> <i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
                          </div>
                          <div class="modal-body s_modal_body">
                             <div class="row">
@@ -5232,9 +5235,9 @@
                     <!--  Solution Details (Optional) -->
                     <div class="modal-content s_modal s_gray_color_modal">
                        <div class="modal-header s_modal_header s_gray_color_header">
-                          <h4 class="modal-title s_font"> Solution Details (Optional)</h4>
+                          <h4 class="modal-title-icon modal-title s_font"> <i class="fa fa-caret-right"></i> Solution Details (Optional)</h4>
                        </div>
-                       <div class="modal-body s_modal_body">
+                       <div class="modal-body hidden s_modal_body">
                           <div class="row">
                              <div class="col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group form-group-sm">
@@ -5362,7 +5365,7 @@
                            <br>
                            <span id="question_statement_id"></span>
                            <div class="pull-right">
-                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" class="btn-sm btn-link ajax_route">
+                              <a target="_blank" href="{{route('library_public_questions')}}?modal=modal_pencil" onclick="pencil_edittesttemplate_Expand()" class="btn-sm btn-link ajax_route">
                               <span uib-tooltip="Edit Question" class="glyphicon glyphicon-pencil f_pencil"></span></a>
                            </div>
                         </div>

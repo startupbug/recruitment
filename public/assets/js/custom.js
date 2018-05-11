@@ -2110,114 +2110,166 @@ function add_publicpageview_stop() {
   clearInterval(add_publicpageview_setInterval);
 }
 
-var pencilmodel_setInterval_Expand;
-var pencilmodel_setInterval_Collapse;
-function pencil_model_Collapse() {
-  clearInterval(pencilmodel_setInterval_Expand);
-  pencilmodel_setInterval_Collapse = setInterval(
+var pencil_testtemp_setInterval_Expand;
+var pencil_testtemp_setInterval_Collapse;
+var count_method = 0;
+function pencil_edittesttemplate_Expand() {
+  pencil_testtemp_setInterval_Expand = setInterval(
     function(){
-      var htmlString = $( "#modal-pencil-Collapse .fr-element.fr-view" ).html();
-      $("#code_preview_data_section").html(htmlString);
+      console.log("asdasdas");
+      var text = $( "#modal_pencil .fr-element.fr-view" ).text();
+
+      var checkbox_Count = 0;
+
+      $('#modal_pencil #section_choices_table tbody tr td :checkbox').each(function () {
+        if ($(this).is(":checked")) {
+          checkbox_Count++;
+        }
+      });
+
+      if (text.length <= 2 ) {
+        $("#modal_pencil .header_span_commint").text("Please add atleast 3 characters in the question statement ");
+        $("#modal_pencil .textarea_span_commint").text("Please add atleast 3 characters in the statement ");
+        $("#modal_pencil .submit_button").attr("disabled", true);
+      }
+      else {
+        $("#modal_pencil .header_span_commint").text("");
+        $("#modal_pencil .textarea_span_commint").text("");
+
+        var weightage_colCount = 1;
+        var weightage = [];
+        var sum = 0;
+        $('#modal_pencil #section_choices_table tbody tr').each(function () {
+          var value = $('#modal_pencil #section_choices_table tbody tr:nth-child('+weightage_colCount+') td:nth-child(4) input').val();
+          weightage.push(value);
+          sum += parseInt(value);
+          weightage_colCount++;
+        });
+
+        var text_colCount = 1;
+        var mcqs = [];
+        $('#modal_pencil #section_choices_table tbody tr').each(function () {
+          var value = $('#modal_pencil #section_choices_table tbody tr:nth-child('+text_colCount+') td:nth-child(3) .choice').val();
+          mcqs.push(value);
+          text_colCount++;
+        });
+
+        for (var i = 0; i < mcqs.length; i++) {
+          if ($('#section_partial_marks:checked').length == 0) {
+
+            if (mcqs[i] == "") {
+              var j = parseInt(i)+1;
+              $("#modal_pencil .header_span_commint").text("The option #"+j+" is blank");
+              $("#modal_pencil .choice_span_commint").text("(The option #"+j+" is blank)");
+              $("#modal_pencil .submit_button").attr("disabled", true);
+              break;
+            }else {
+
+              $("#modal_pencil .choice_span_commint").text("");
+
+              if (duplicate_values(mcqs)) {
+                var data = duplicate_values(mcqs);
+                var num = data.split('-');
+                $("#modal_pencil .header_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#modal_pencil .choice_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#modal_pencil .submit_button").attr("disabled", true);
+              }
+
+              if (checkbox_Count >= 1 ){
+                $("#modal_pencil .header_span_commint").text("");
+                $("#modal_pencil .submit_button").attr("disabled", false);
+              }else {
+                $("#modal_pencil .header_span_commint").text("Please select at least one choice as correct answer for the question");
+                $("#modal_pencil .submit_button").attr("disabled", true);
+              }
+            }
+
+          }
+          else {
+            if (mcqs[i] == "") {
+              var j = parseInt(i)+1;
+              $("#modal_pencil .header_span_commint").text("The option #"+j+" is blank");
+              $("#modal_pencil .choice_span_commint").text("(The option #"+j+" is blank)");
+              $("#modal_pencil .submit_button").attr("disabled", true);
+              break;
+            }else{
+
+              $("#modal_pencil .choice_span_commint").text("");
+              $("#modal_pencil .header_span_commint").text("Please add atleast one option with 100 as partial marks weightage");
+
+              if (duplicate_values(mcqs)) {
+                var data = duplicate_values(mcqs);
+                var num = data.split('-');
+                $("#modal_pencil .header_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#modal_pencil .choice_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#modal_pencil .submit_button").attr("disabled", true);
+              }
+
+              $("#modal_pencil .submit_button").attr("disabled", true);
+
+              if (sum >= 1) {
+                for (var i = 0; i < weightage.length; i++) {
+                  if (weightage[i] == 100) {
+                    $("#modal_pencil .header_span_commint").text("");
+                    $("#modal_pencil .submit_button").attr("disabled", false);
+                  }else if(weightage[i] > 100){
+                    var j = parseInt(i)+1;
+                    $("#modal_pencil .header_span_commint").text("Please provide the partial marks weightage(0-100) for choice #"+j);
+                    $("#modal_pencil .submit_button").attr("disabled", true);
+                    return false;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+
+      var htmlString = $( "#modal_pencil .fr-element.fr-view" ).html();
+      $("#pencil_preview_data_section").html(htmlString);
+      $("#modal_pencil_Collapse .fr-element.fr-view").html(htmlString);
 
       if (htmlString == "<p><br></p>") {
+        $("#edittemp_pencil_panel").addClass('hidden');
+        $("#pencil_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#edittemp_pencil_panel").removeClass('hidden');
+        $("#pencil_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function pencil_edittesttemplate_Collapse() {
+  count_method++;
+  clearInterval(pencil_testtemp_setInterval_Expand);
+  pencil_testtemp_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#modal_pencil_Collapse .fr-element.fr-view" ).html();
+      $("#pencil_preview_data_section").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#edittemp_pencil_panel").addClass('hidden');
         $("#modal_pencil .fr-element.fr-view").html(htmlString);
-        $("#code_edittemp_panel").addClass('hidden');
-        $("#code_preview_data_section_expand").html(htmlString);
+        $("#pencil_preview_data_section_expand").html(htmlString);
       }
       else {
         // console.log(htmlString);
         $("#modal_pencil .fr-element.fr-view").html(htmlString);
-        $("#code_edittemp_panel").removeClass('hidden');
-        $("#code_preview_data_section_expand").html(htmlString);
+        $("#edittemp_pencil_panel").removeClass('hidden');
+        $("#pencil_preview_data_section_expand").html(htmlString);
       }
      }
   , 1000);
 }
-function code_pencil_edittesttemplate_Expand() {
-  pencilmodel_setInterval_Expand = setInterval(
-    function(){
-      // 1. Title
-      var title = $( "#modal_pencil input[name='coding_program_title']" ).val();
-      // 2. Statement
-      var statement  = $( "#modal_pencil .fr-element.fr-view" ).text();
-      // 3. Sample Input or Output
-      var input_output = 1;
-      var count_input_output = 0;
-      $('#section_coding_table tbody tr').each(function () {
-        var input = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(2) textarea').val();
-        var output = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(3) textarea').val();
-
-        if (input == "" || output == "") {
-          count_input_output++;
-        }
-        input_output++;
-      });
-      // 4. Test Case
-      var test_case_Count = 0;
-      $('#weightage_code_table tbody tr').each(function (data) {
-           test_case_Count++;
-      });
-      var test_case_result_Count = 0;
-      $('#weightage_code_table tbody tr').each(function (data) {
-        var result = $(this).find('.weightage_save').hasClass( "hidden" ).toString();
-        if (result == "false") {
-          test_case_result_Count++;
-        }
-      });
-      // 5. Marks for this Question
-      var marks = $( "#modal_pencil input[name='marks']" ).val();
-
-
-      if (title.length <= 1 ) {
-        $("#modal_pencil .header_span_commint").text("Please add the question title");
-        $("#modal_pencil .submit_button").attr("disabled", true);
-      }
-      else if(statement.length <= 0){
-        $("#modal_pencil .header_span_commint").text("Please add the question statement");
-        $("#modal_pencil .submit_button").attr("disabled", true);
-      }
-      else if(count_input_output > 0){
-        var count = parseInt(input_output)-1;
-        $("#modal_pencil .header_span_commint").text("Please check Sample "+count+" for emptiness");
-        $("#modal_pencil .submit_button").attr("disabled", true);
-      }
-      else {
-        if (test_case_Count > 0) {
-          if (test_case_result_Count > 0) {
-            $("#modal_pencil .header_span_commint").text("Some test cases are not saved. Please upload the testCases");
-            $("#modal_pencil .submit_button").attr("disabled", true);
-          }else {
-            $("#modal_pencil .header_span_commint").text("Please enter the marks");
-            $("#modal_pencil .submit_button").attr("disabled", true);
-            if (marks != "") {
-              $("#modal_pencil .header_span_commint").text("");
-              $("#modal_pencil .submit_button").attr("disabled", false);
-            }
-          }
-        }else {
-          $("#modal_pencil .header_span_commint").text("Please add test cases");
-          $("#modal_pencil .submit_button").attr("disabled", true);
-        }
-      }
-
-      var htmlString = $( "#modal_pencil .fr-element.fr-view" ).html();
-      $("#code_preview_data_section").html(htmlString);
-      $("#modal-pencil-Collapse .fr-element.fr-view").html(htmlString);
-
-      if (htmlString == "<p><br></p>") {
-        $("#code_edittemp_panel").addClass('hidden');
-        $("#code_preview_data_section_expand").html(htmlString);
-      }
-      else {
-        $("#code_edittemp_panel").removeClass('hidden');
-        $("#code_preview_data_section_expand").html(htmlString);
-      }
-     }
-  , 1000);
-}
-function code_pencil_collapse_modal() {
-  $("#modal-pencil-Collapse").modal('hide');
+function pencil_collapse_modal() {
+  $("#modal_pencil_Collapse").modal('hide');
   $("#modal_pencil").css('overflow','scroll');
-  clearInterval(pencilmodel_setInterval_Collapse);
-  code_edittesttemplate_Expand();
+  clearInterval(pencil_testtemp_setInterval_Collapse);
+  pencil_edittesttemplate_Expand();
+}
+
+if (count_method == 0) {
+  pencil_edittesttemplate_Expand();
 }
