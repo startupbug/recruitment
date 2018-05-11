@@ -172,7 +172,7 @@ Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_publi
 //Library controller
 Route::get('/library', 'Recruiter\LibraryController@lib_index')->name('lib_index');
 
-//Library ini filter
+//Library ini filter 
 Route::post('/library-filter', 'Recruiter\LibraryController@libFilter')->name('libFilter');
 
 //Library single detail data.
@@ -188,6 +188,8 @@ Route::get('/delete_public_page_view/{id?}','Recruiter\Public_view_pageControlle
 Route::post('/upload_cover_image/{id?}','Recruiter\Public_view_pageController@cover_image')->name('upload_cover_image');
 
 Route::post('/insert_image_tags/{id?}','Recruiter\Public_view_pageController@insert_tags')->name('insert_image_tags');
+
+Route::post('/advance_filter','Recruiter\LibraryController@advance_filter')->name('advance_filter');
 
 });
 

@@ -440,7 +440,7 @@ class QuestionsController extends Controller
 	public function update_questions_modal(Request $request, $id)
 	{    	
 
-		dd($request->input());
+		// dd($request->input());
 		$update_question =  Question::find($id);
 		$update_question->question_state_id = $request->get('question_state_id');
 		$update_question->question_level_id = $request->get('question_level');
@@ -455,18 +455,38 @@ class QuestionsController extends Controller
 			'author' => $request->get('author') 
 		]);
 		$get_choice_id = DB::table('mulitple_choices')->where('question_id','=',$id)->get(['id']);
+		//dd($get_choice_id);
 		$request_choice =$request->input('choice');
+		$request_answer = $request->input('answer');
+		 // dd($request->input());
+		//dd(in_array("dsfs", $request_answer));
+
+		// foreach ($request_choice as $key => $value) {
+		// 		Mulitple_choice::find();
+		// }
+
+		  $answer=0;
 		foreach ($get_choice_id as $key => $value)
 		{   
+			if(in_array($request_choice[$key], $request_answer)){
+				$answer = 1;
+			}
+
 			$abc = Mulitple_choice::updateOrCreate(
 				['id' => $value->id], 
-				['choice' => $request_choice[$key], 'partial_marks'=> $request->input('partial_marks')[$key]]
+				['choice' => $request_choice[$key], 
+				'partial_marks'=> $request->input('partial_marks')[$key],
+				'status' => 1,  'answer' => $answer, 'shuffle_status' => 0, ]
 			);
+
+			$answer = 0;
+
 			unset($request_choice[$key]);
         	//usnset is use to unset values that are not in key
         	//this unset function is taking that values that are not in db and then inserting them    
 
 		}
+
 		foreach ($request_choice as $key => $value) {
 			$insert = new Mulitple_choice;
 			$insert->question_id = $id;

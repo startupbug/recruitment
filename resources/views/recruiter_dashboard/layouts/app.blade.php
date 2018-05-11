@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('public/assets/plugins/menu/css/jquery.mmenu.all.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/plugins/menu/css/jquery.mhead.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/select2.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="{{ asset('public/assets/css/editor.css') }}"/> -->
     <link rel="stylesheet" href="{{ asset('public/assets/css/sweetalert.css') }}"/>
     <link rel="stylesheet" href="{{ asset('public/assets/css/froala_editor.css') }}"/>
@@ -47,16 +48,17 @@
     </div>
 <!-- Filter-Modal -->
 
-<div class="modal fade" id="filter-programming-Modal" role="dialog">
+
+
+<!-- <div class="modal fade" id="filter-programming-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
                     <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Apply</button>
                     <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
                 </div>
-                <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>  Filter Criteria</h3>
+                <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>  Filter Criteria909</h3>
             </div>
             <div class="modal-body s_modal_form_body">
                 <form class="form-horizontal" action="#">
@@ -133,7 +135,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+
+
 <!-- public-mcqs-Modal -->
 <div class="modal fade" id="public-mcqs-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -2499,6 +2504,7 @@
 <!-- <script src="{{ asset('public/assets/js/sweetalert.min.js') }}"></script> -->
 <script src="{{ asset('public/assets/js/sweetalert2.all.js') }}"></script>
 <script src="{{ asset('public/assets/js/froala_editor.min.js') }}"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 <script src="{{ asset('public/assets/js/f.js') }}"></script>
