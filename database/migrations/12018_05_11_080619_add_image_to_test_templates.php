@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePublicViewPageDetailTable extends Migration
+class AddImageToTestTemplates extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreatePublicViewPageDetailTable extends Migration
      */
     public function up()
     {
-        Schema::create('public_view_page_detail', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema::table('test_templates', function (Blueprint $table) {
+            $table->string('image')->after('instruction');
         });
-
-
-
     }
 
     /**
@@ -29,6 +25,8 @@ class CreatePublicViewPageDetailTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('public_view_page_detail');
+        Schema::table('test_templates', function (Blueprint $table) {
+             $table->dropColumn('image');
+        });
     }
 }

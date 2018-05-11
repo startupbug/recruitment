@@ -2505,6 +2505,7 @@
 <script src="{{ asset('public/assets/js/sweetalert2.all.js') }}"></script>
 <script src="{{ asset('public/assets/js/froala_editor.min.js') }}"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('public/assets/js/paginathing.js') }}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 <script src="{{ asset('public/assets/js/f.js') }}"></script>

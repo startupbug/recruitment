@@ -316,8 +316,7 @@
                                                             @if(isset($q->question_detail->question_tag['tag_name']))
                                                                {{$q->question_detail->question_tag['tag_name']}}
                                                             @endif
-
-                           </span>
+                                                         </span>
                                                       </div>
                                                       </div>
                                                 </div>
@@ -452,7 +451,7 @@
                         </div>
                      </div>
                   </div>
-                  <div class="col-md-3 col-sm-12 col-xs-12 ">
+                  <div class="col-md-3 col-sm-12 col-xs-12" id="section_count-{{$key}}">
                      <div class="panel panel-default">
                         <div class="panel-heading"><i class="fa fa-th-large"></i> Section Summary</div>
                         <div class="panel-body">
@@ -460,19 +459,21 @@
                               <div class="row text-center s_small">
                                  <div class="col-xs-3">
                                     <small>Easy</small>
-                                    <h4 class="no-margin strong ">6</h4>
+                                    <h4 class="no-margin strong ">{{$sec['easy_question_count']}}</h4>
                                  </div>
                                  <div class="col-xs-3 no-padding">
                                     <small>Medium</small>
-                                    <h4 class="no-margin strong">5</h4>
+                                    <h4 class="no-margin strong">{{$sec['medium_question_count']}}</h4>
                                  </div>
                                  <div class="col-xs-3">
                                     <small>Hard</small>
-                                    <h4 class="no-margin strong">2</h4>
+                                    <h4 class="no-margin strong">{{$sec['hard_question_count']}}</h4>
                                  </div>
                                  <div class="col-md-3 no-padding" style="border-left: 1px solid #ddd;">
                                     <small>Total Marks</small>
-                                    <h4 class="no-margin strong">89</h4>
+                                    <h4 class="no-margin strong">
+                                       {{ $sec['marks_question_count'] }}
+                                    </h4>
                                  </div>
                               </div>
                            </div>
@@ -1289,50 +1290,23 @@
                               <small><i>This is a preview of the page that appears when candidate opens the public test link </i></small>
                            </div>
                            <div class="col-sm-3">
-                              <button class="btn btn-sm btn-block btn-default">Preview in Full Screen</button>
+                              <a href="{{route('preview_public_testpage',$template_id)}}" class="btn btn-sm btn-block btn-default">Preview in Full Screen</a>
                            </div>
                         </div>
                      </div>
                      <div class="ept_body">
                         <div class="ept_container">
-                           <div class="ept_cover_image" >
-                              @if(isset($public_page_view_details->image))
+                           <div class="ept_cover_image" @if(isset($public_page_view_details->image)) style="
+    background-image: url({{asset('public/storage/public_view_covers/'.$public_page_view_details->image)}})" @endif>
+                              <!-- @if(isset($public_page_view_details->image))
                               <img src="{{asset('public/storage/public_view_covers/'.$public_page_view_details->image)}}">
-                              @endif
+                              @endif -->
                               <div class="ept_cover_image_top">
                                  <div class="clearfix">
                                     <div class="pull-right public_page_tag">
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
-                                       <label>asdasd <a href="#" class="btn delete_public_tag">x</a> </label>
+                                       <div class="label-public-page" data-delete="{{route('delete_image_tags')}}" data-url="{{route('data_image_tags',$public_page_view_details->template_id )}}" data-id="{{$public_page_view_details->template_id}}">
+                                       </div>
+
                                        <div class="clearfix">
                                           <div class="form-group ">
                                              <input type="text" name="cover_image_tag" value="" data-url="{{route('insert_image_tags',$public_page_view_details->template_id )}}" data-id="{{$public_page_view_details->template_id}}" placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">

@@ -57,7 +57,8 @@
 							    </form>
 							</div>
 							<div class="no-more-tables">
-								<table class="table s_table public_mcq_table">
+								<!-- public_mcq_table -->
+								<table class="table s_table paginathing_table">
 							    <thead>
 							      <tr>
 							        <th>Question Id & Statement</th>
@@ -92,9 +93,8 @@
 											<td> <a data-toggle="modal" data-url="{{route('lib_ques_detail')}}" data-id="{{$public_questions_mcq->id}}" class="quesDetail" data-questype="1" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
 							      </tr>
 
-
-				<!-- 						<tr id="collapse{{$public_questions_mcq->id}}" >
-											<td>
+										<tr id="collapse{{$public_questions_mcq->id}}" class="panel-collapse collapse" >
+											<td colspan="5">
 												<div class="modal-content s_modal">
 												 <div class="modal-header s_modal_header">
 													 <h4 class="modal-title s_font">Question Statement</h4>
@@ -105,17 +105,13 @@
 													</p>
 
 													<br>
-													<h2>Output :</h2>
+													<!-- <h2>Output :</h2>
 													<p class="s_modal_body_heading">
 														A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
-													</p>
+													</p> -->
 												 </div>
 											 </div>
 					           			 </td>
-					           			 <td></td>
-					           			 <td></td>
-					           			 <td></td>
-					           			 <td></td> -->
 										</tr>
 							    @endforeach
 		  					  @else
@@ -163,7 +159,8 @@
 								</form>
 							</div>
 							<div class="no-more-tables">
-								<table class="table s_table public_coding_table">
+								<!-- public_coding_table data table class  -->
+								<table class="table s_table paginathing_table">
 									<thead>
 										<tr>
 											<th>Question Id & Statement</th>
@@ -194,7 +191,7 @@
 											<td><a data-toggle="modal" data-url="{{route('lib_ques_detail')}}" data-id="{{$public_questions_coding->id}}" class="quesDetail" data-questype="2" data-target="#public-programming-question-Modal"><i class="fa fa-eye"></i></a></td>
 
 										</tr>
-						<!-- 				<tr id="collapse{{$public_questions_coding->id}}" class="panel-collapse collapse">
+										<tr id="collapse{{$public_questions_coding->id}}" class="panel-collapse collapse">
 											<td colspan="5">
 												<div class="modal-content s_modal">
 												 <div class="modal-header s_modal_header">
@@ -208,7 +205,7 @@
 												 </div>
 											 </div>
 											</td>
-										</tr> -->
+										</tr>
 							    @endforeach
 		  					  @else
  								<p>No Questions Found</p>
@@ -269,7 +266,8 @@
 
  							</div>
  							<div class="no-more-tables">
- 								<table class="table s_table private_mcq_table">
+ 								<!-- private_mcq_table datatable class -->
+ 								<table class="table s_table paginathing_table">
  							    <thead>
  							      <tr>
  							        <th>Question Id & Statement66</th>
@@ -382,7 +380,8 @@
 							    </form>
  							</div>
  							<div class="no-more-tables">
- 								<table class="table s_table private_coding_table">
+ 								<!-- private_coding_table data table class  -->
+ 								<table class="table s_table paginathing_table">
  									<thead>
  										<tr>
  											<th>Question Id & Statement77</th>
@@ -425,11 +424,6 @@
  												 </div>
  												 <div class="modal-body s_modal_body">
  														{!! $private_questions_coding->tag_name!!}
- 													<br>
- 													<!-- <h2>Output :</h2>
- 													<p class="s_modal_body_heading">
- 														A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
- 													</p> -->
  												 </div>
  											 </div>
  											</td>
@@ -494,7 +488,8 @@
 							    </form>
  							</div>
  							<div class="no-more-tables">
- 								<table class="table s_table private_submission_table">
+ 								<!-- private_submission_table data table class -->
+ 								<table class="table s_table paginathing_table">
  									<thead>
  										<tr>
  											<th>Question Id & Statement88</th>
@@ -529,22 +524,27 @@
 											</td>
  										</tr>
  										<tr id="collapse{{$private_questions_submission->id}}" class="panel-collapse collapse">
- 											<td colspan="5">
- 												<div class="modal-content s_modal">
- 												 <div class="modal-header s_modal_header">
- 													 <h4 class="modal-title s_font">Question Statement</h4>
- 												 </div>
- 												 <div class="modal-body s_modal_body">
- 													{!!$private_questions_submission->question_statement!!}
- 													<br>
- 												<!-- 	<h2>Output :</h2>
- 													<p class="s_modal_body_heading">
- 														A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
- 													</p> -->
- 												 </div>
- 											 </div>
- 											</td>
- 										</tr>
+											<td colspan="5">
+												<div class="modal-content s_modal">
+												 <div class="modal-header s_modal_header">
+													 <h4 class="modal-title s_font">Question Statement</h4>
+												 </div>
+												 <div class="modal-body s_modal_body">
+													<p>
+													{!!$private_questions_submission->question_statement!!}
+													</p>
+
+									<!-- 				<br>
+													<h2>Output :</h2>
+													<p class="s_modal_body_heading">
+														A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
+													</p> -->
+												 </div>
+											 </div>
+					           			 </td>
+										</tr>
+
+
 
  									   @endforeach
  									  @else
@@ -1692,27 +1692,23 @@
                     </div>
                     <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
+                        @if(isset($question_states))
+                        @foreach($question_states as $question_state)
+                        <div class="checkbox col-sm-2 col-xs-4">
+                            <input type="checkbox" class="staged" name="state[]" value="{{$question_state->id}}">{{$question_state->state_name}}
+                        </div>
+                        @endforeach
+                        @endif
+                    </div>
+                    <div class="form-group level">
+                        <label class="control-label col-sm-2" for="statement">Level :</label>
+                        @if(isset($levels))
                         @foreach($levels as $level)
                         <div class="checkbox col-sm-2 col-xs-4">
                             <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
                         @endforeach
-
-                    </div>
-                    <div class="form-group level">
-                        <label class="control-label col-sm-2" for="statement">Level :</label>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="easy" checked >Easy
-                        </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox" class="intermediate" checked >Intermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="hard" checked >Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="provider">Provider:</label>
@@ -1786,30 +1782,23 @@
                     </div>
                     <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
+                        @if(isset($question_states))
+                        @foreach($question_states as $question_state)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="staged" checked >Staged
+                            <input type="checkbox" class="staged" name="state[]" value="{{$question_state->id}}">{{$question_state->state_name}}
                         </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="ready" checked >Ready
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group level">
                         <label class="control-label col-sm-2" for="statement">Level :</label>
+                        @if(isset($levels))
+                        @foreach($levels as $level)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="easy" checked >Easy
+                            <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox" class="intermediate" checked >Intermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="hard" checked >Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="provider">Provider:</label>
@@ -1876,30 +1865,23 @@
                     </div>
                     <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
+                        @if(isset($question_states))
+                        @foreach($question_states as $question_state)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="staged" checked >Staged
+                            <input type="checkbox" class="staged" name="state[]" value="{{$question_state->id}}">{{$question_state->state_name}}
                         </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="ready" checked >Ready
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group level">
                         <label class="control-label col-sm-2" for="statement">Level :</label>
+                        @if(isset($levels))
+                        @foreach($levels as $level)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="easy" checked >Easy
+                            <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox" class="intermediate" checked >Intermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="hard" checked >Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="provider">Provider:</label>
@@ -1972,30 +1954,23 @@
                     </div>
                     <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
+                        @if(isset($question_states))
+                        @foreach($question_states as $question_state)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="staged" checked >Staged
+                            <input type="checkbox" class="staged" name="state[]" value="{{$question_state->id}}">{{$question_state->state_name}}
                         </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="ready" checked >Ready
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group level">
                         <label class="control-label col-sm-2" for="statement">Level :</label>
+                        @if(isset($levels))
+                        @foreach($levels as $level)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="easy" checked >Easy
+                            <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox" class="intermediate" checked >Intermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="hard" checked >Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="provider">Provider:</label>
@@ -2062,30 +2037,23 @@
                     </div>
                     <div class="form-group state">
                         <label class="control-label col-sm-2" for="statement">State :</label>
+                        @if(isset($question_states))
+                        @foreach($question_states as $question_state)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="staged" checked >Staged
+                            <input type="checkbox" class="staged" name="state[]" value="{{$question_state->id}}">{{$question_state->state_name}}
                         </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="ready" checked >Ready
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group level">
                         <label class="control-label col-sm-2" for="statement">Level :</label>
+                        @if(isset($levels))
+                        @foreach($levels as $level)
                         <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="easy" checked >Easy
+                            <input type="checkbox" class="staged" name="level[]" value="{{$level->id}}" >{{$level->level_name}}
                         </div>
-                        <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox" class="intermediate" checked >Intermediate
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="hard" checked >Hard
-                        </div>
-                        <div class="checkbox col-sm-2 col-xs-4">
-                            <input type="checkbox" class="all" checked >All
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="provider">Provider:</label>

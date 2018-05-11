@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Public_view_page;
 use DB;
-use App\Public_page_view_details;
 use Illuminate\Support\Facades\Input;
 use App\Cover_image_tag;
+use App\Test_template;
 
 class Public_view_pageController extends Controller
 {
@@ -59,6 +59,7 @@ class Public_view_pageController extends Controller
 
 	public function cover_image(Request $request, $id)
     {
+       // dd($request->input()); 
     	//dd($id);
         $img_name = '';
         //dd(Input::hasFile('image'));
@@ -67,18 +68,16 @@ class Public_view_pageController extends Controller
             $img_name = $this->UploadImage('image', Input::file('image'));
 
 
-            if (Public_page_view_details::where('template_id', '=', $id)->count() > 0) {
+            if (Test_template::where('id', '=', $id)->count() > 0) {
 
             	// Public_page_view_details::where('template_id', '=', $id)->update($request->all());
 
-            	Public_page_view_details::where('template_id', '=', $id)->update(array('image' => $img_name, 'template_id' => $id, 'cover_tag_id' => 1));
+            	Test_template::where('id', '=', $id)->update(array('image' => $img_name));
 				}
 			else
 			{
-					Public_page_view_details::insert([
-		                'image' => $img_name,
-		                'template_id' => $id,
-		                'cover_tag_id' => 1,
+					Test_template::insert([
+		                'image' => $img_name
             		]);
 			}
 
@@ -101,19 +100,70 @@ class Public_view_pageController extends Controller
         return $filename;
     }
 
-    public function insert_tags(Request $request)
+    public function data_tags(Request $request)
     {
-    	// return $request->input('id');
+        $retrive_tags = Cover_image_tag::where('template_id' , $request->input('id'))->get();
+        return $retrive_tags;   
+    
+    }
 
-    	$insert_tags = new Cover_image_tag();
-    	$insert_tags->template_id = $request->input('id');
-    	$insert_tags->tag_name = $request->input('value');
-    	$insert_tags->save();
-    	if ($insert_tags->save()){
-           return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Added The Section']);
-       }else{
-           return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);
-       }
+     public function insert_tags(Request $request)
+    {
+        $value = $request->input('value');
+        $check_tag = Cover_image_tag::where('tag_name','=',$value)->exists();
+        
+        if($check_tag)
+        {
+            return ('alredy inserted');
+        }
+        else
+        {
+            $insert_tags = new Cover_image_tag();
+            $insert_tags->template_id = $request->input('id');
+            $insert_tags->tag_name = $request->input('value');
+            $insert_tags->save();
+            if ($insert_tags->save())
+            {
+                $retrive_tags = Cover_image_tag::where('template_id' , $request->input('id'))->get();
+                // foreach($retrive_tags as $tags)
+                // {
+                    // return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Added The Section', 'cover_tags'=>$retrive_tags);
+                    return $retrive_tags;   
+                // }
+            }
+            else
+            {
+                return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);
+            }
+        }
+    }
+
+     public function delete_tags(Request $request)
+    {
+
+        $delete_tag = Cover_image_tag::findOrFail( $request->input('id') );
+
+        $delete_tag = $delete_tag->delete();     
+        if ($delete_tag ) {
+
+            $retrive_tags = Cover_image_tag::where('template_id' , $request->input('template_id'))->get();
+            return $retrive_tags;       
+        }
+
+        // return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
+
+
+            // $tags = Cover_image_tag::where('id','=',$request->input('id'))->delete();
+            // if ($tags)
+            // {
+            //     $retrive_tags = Cover_image_tag::where('template_id' , $request->input('template_id'))->get();
+            //     return $retrive_tags;       
+            // }
+            // else
+            // {
+            //     return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);
+            // }
+        
     }
 
 
