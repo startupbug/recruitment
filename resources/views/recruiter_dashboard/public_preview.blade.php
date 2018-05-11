@@ -6,8 +6,8 @@
 			<div class="col-md-10 col-md-offset-1">
 				<div class="banner_public">
 
-					<h3 class="public_content">Hosted By : {{$hosted_test->username}}</h3>
-					<h3 class="testname">Name : {{$hosted_test->host_name}}</h3>
+					<h3 class="public_content">Hosted By : @if(isset($hosted_test)){{$hosted_test->username}}@endif</h3>
+					<h3 class="testname">Name : @if(isset($hosted_test)){{$hosted_test->host_name}}@endif</h3>
 					<div class="test_proceed"><button type="button" class="btn test" class="deleteConfirm" onclick='confirmAlert_test()'>Proceed To Test</button></div>
 
 				</div>
@@ -26,12 +26,13 @@
 	                    $todaydate = $todaydate->format('Y-m-d');
 	                    //dd( );
 					?>
-
+					@if(isset($hosted_test))
 					@if( (strtotime($todaydate) == strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) )  
 					 || ( strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) ) )
 							<h3 class="test_live">LIVE!</h3>
 					@else
 							<h3 class="test_live">EXPIRED!</h3>
+					@endif
 					@endif
 
 
@@ -49,6 +50,7 @@
 						</tr>
 					</thead>
 					<tbody>
+						@if(isset($hosted_test))
                         <?php 
 	                        $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
 	                        $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
@@ -57,10 +59,11 @@
 	                        $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
 	                        $interval = $datetime1->diff($datetime2);
                         ?>
+                        @endif
 						<tr>
-						<td>{{ date("F jS, Y H:i", strtotime($hosted_test->test_open_date)) }}</td>
-						<td>{{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}</td>
-						<td><?php echo $interval->format('%hh %im');?></td>
+						<td>@if(isset($hosted)){{ date("F jS, Y H:i", strtotime($hosted_test->test_open_date)) }}@endif</td>
+						<td>@if(isset($hosted)){{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}@endif</td>
+						<td>@if(isset($interval))<?php echo $interval->format('%hh %im');?>@endif</td>
 						</tr>						
 						</tr>
 					</tbody>
@@ -90,13 +93,15 @@
 						<div class="fa_tab_content">
 				<!-- 			<p>(1) Make sure you have a proper internet connection.</p>
 							<p>(2) If your computer is taking unexpected time to load, it is recommended to reboot the system before you start the test.</p>
-							<p>(3) Once you start the test, it is recommended to pursue it in one go for the complete duration.</p> -->- 
+							<p>(3) Once you start the test, it is recommended to pursue it in one go for the complete duration.</p> -->-
+							@if(isset($hosted)) 
 							{!! $hosted_test->instruction !!}
+							@endif
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="description">
 						<div class="fa_tab_content">
-						<p>{{$hosted_test->description}}</p>
+						<p>@if(isset($hosted)){{$hosted_test->description}}@endif</p>
 					
 						</div>
 					</div>
