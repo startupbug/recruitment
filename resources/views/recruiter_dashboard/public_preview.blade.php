@@ -7,7 +7,7 @@
 				<div class="banner_public">
 
 					<h3 class="public_content">Hosted By : @if(isset($hosted_test)){{$hosted_test->username}}@endif</h3>
-					<h3 class="testname">Name : @if(isset($hosted_test)){{$hosted_test->host_name}}@endif</h3>
+					<h3 class="testname">Name : @if(isset($hosted_test->host_name)){{$hosted_test->host_name}}@elseif(isset($hosted_test->title)){{$hosted_test->title}}@endif</h3>
 					<div class="test_proceed"><button type="button" class="btn test" class="deleteConfirm" onclick='confirmAlert_test()'>Proceed To Test</button></div>
 
 				</div>
@@ -42,17 +42,20 @@
 				</div>
 
 			</div>
+
 			<div class="col-md-6 f_border_left">
 				<table class="table table-bordered f_test_right">
 					<thead>
 						<tr>
+							@if(isset($hosted_test->host_name)))
 							<th>Starts at</th>
-							<th>Ends at</th>													
+							<th>Ends at</th>
+							@endif													
 							<th>Duration</th>
 						</tr>
 					</thead>
 					<tbody>
-						@if(isset($hosted_test))
+						@if(isset($hosted_test->host_name))
                         <?php 
                         // dd($hosted_test->test_open_date);
 	                        $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
@@ -69,9 +72,9 @@
                         @endif
 
 						<tr>
-						<td>{{ date("F jS, Y H:i", strtotime($hosted_test->test_open_date)) }}</td>
-						<td>{{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}</td>
-						<td>@if(isset($interval))<?php echo $interval->format('%hh %im');?>@endif</td>
+						<td>@if(isset($hosted_test->host_name)){{ date("F jS, Y H:i", strtotime($hosted_test->test_open_date)) }}@endif</td>
+						<td>@if(isset($hosted_test->host_name)){{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}@endif</td>
+						<td>@if(isset($interval) && isset($hosted_test->host_name))<?php echo $interval->format('%hh %im');?>@elseif(isset($hosted_test->title)){{$hosted_test->duration}}@endif</td>
 						</tr>						
 						</tr>
 					</tbody>

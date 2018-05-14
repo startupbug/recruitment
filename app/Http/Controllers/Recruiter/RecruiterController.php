@@ -135,11 +135,8 @@ class RecruiterController extends Controller
       }
       if(isset($args))
       {
+        
         return view('recruiter_dashboard.library_public_questions')->with($args);
-      }
-      else
-      {
-        return view('recruiter_dashboard.library_public_questions'); 
       }
 
     }

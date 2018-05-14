@@ -167,7 +167,7 @@ Route::post('/delete_host', 'Recruiter\HostController@host_test_del')->name('hos
 Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name('host_terminate');
 
 //Public preview of host
-Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
+Route::get('/publicpreview-test-page/{id}/{flag}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
 
 //Library controller
 Route::get('/library', 'Recruiter\LibraryController@lib_index')->name('lib_index');

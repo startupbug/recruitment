@@ -27,7 +27,6 @@ use App\Questions_submission_resource;
 use App\Coding_entry;
 use App\Public_view_page;
 
-
 class HostController extends Controller
 {
     public function host_test_page($id){
@@ -191,15 +190,23 @@ class HostController extends Controller
         }
     }
 
-    public function host_public_preview($id){
+    public function host_public_preview($id, $flag){
 // dd($id);
+      if($flag == "host")
+      {
         $args['hosted_test'] = Hosted_test::leftjoin('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
-        ->leftjoin('users', 'test_templates.user_id', '=', 'users.id')->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status', 'users.name as username', 'test_templates.instruction', 'test_templates.description')->where('test_templates.id', $id)->
-        //leftjoin('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
-        		// ->leftjoin('users', 'test_templates.user_id', '=', 'users.id')
-          //       ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status', 'users.name as username', 'test_templates.instruction', 'test_templates.description')->where('hosted_tests.id', $id)->
-        first();
-        $args['Public_view_page'] = Public_view_page::where('template_id',$id)->get();
+            ->leftjoin('users', 'test_templates.user_id', '=', 'users.id')
+                ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status', 'users.name as username', 'test_templates.instruction', 'test_templates.description')->where('hosted_tests.id', $id)->first();
+      }
+
+      else
+      {
+        $args['hosted_test'] = Hosted_test::leftjoin('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+        ->leftjoin('users', 'test_templates.user_id', '=', 'users.id')->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id','users.name as username', 'test_templates.title' ,'test_templates.instruction', 'test_templates.description','test_templates.duration')->where('test_templates.id', $id)->first();
+      }
+        
+       // dd($args);
+      $args['Public_view_page'] = Public_view_page::where('template_id',$id)->get();
     	return view('recruiter_dashboard.public_preview')->with($args);
     }
 
