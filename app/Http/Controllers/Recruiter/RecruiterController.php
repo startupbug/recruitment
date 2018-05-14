@@ -120,7 +120,10 @@ class RecruiterController extends Controller
         ->select('questions.id as  question_id','questions.section_id','questions.question_state_id','questions.question_type_id', 'questions.question_sub_types_id' ,'questions.question_level_id','questions.question_statement','question_details.tag_id','question_details.media','question_details.test_case_file','question_details.test_case_verify','question_details.weightage_status','question_details.coding_program_title','question_details.marks','question_details.negative_marks','question_details.provider','question_details.author','question_states.state_name','question_solutions.text','question_solutions.code','question_solutions.url','question_submission_evaluations.submission_evaluation_title','question_submission_evaluations.weightage')
         ->where('questions.id','=',$id)
         ->first();
-        $args['questions_submission_resources'] = Questions_submission_resource::where('question_id','=',$id)->get();
+        if(isset($args['submission_data']))
+        {
+          $args['questions_submission_resources'] = Questions_submission_resource::where('question_id','=',$id)->get();  
+        }
         $temp_array = array();
         foreach ($args['questions_submission_resources'] as $args['submission_resources']) {
           $temp_array[] = $args['submission_resources']->candidate_help_material_tests_id;
@@ -130,7 +133,15 @@ class RecruiterController extends Controller
           
         
       }
+      if(isset($args))
+      {
         return view('recruiter_dashboard.library_public_questions')->with($args);
+      }
+      else
+      {
+        return view('recruiter_dashboard.library_public_questions'); 
+      }
+
     }
 
 

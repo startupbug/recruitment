@@ -24,6 +24,8 @@
 					<?php 
 	                    $todaydate = new DateTime();
 	                    $todaydate = $todaydate->format('Y-m-d');
+	                    // .0
+
 	                    //dd( );
 					?>
 					@if(isset($hosted_test))
@@ -52,17 +54,23 @@
 					<tbody>
 						@if(isset($hosted_test))
                         <?php 
+                        // dd($hosted_test->test_open_date);
 	                        $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
+	                        
 	                        $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
 	                    
 	                        $datetime1 = new DateTime($to_time." ".$hosted_test->test_open_time);
+	                        // dd($datetime1);
 	                        $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
+	                        // dd($datetime2);
 	                        $interval = $datetime1->diff($datetime2);
+	                        // dd($interval);
                         ?>
                         @endif
+
 						<tr>
-						<td>@if(isset($hosted)){{ date("F jS, Y H:i", strtotime($hosted_test->test_open_date)) }}@endif</td>
-						<td>@if(isset($hosted)){{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}@endif</td>
+						<td>{{ date("F jS, Y H:i", strtotime($hosted_test->test_open_date)) }}</td>
+						<td>{{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}</td>
 						<td>@if(isset($interval))<?php echo $interval->format('%hh %im');?>@endif</td>
 						</tr>						
 						</tr>
@@ -83,9 +91,27 @@
 				<ul class="nav nav-tabs tabs_public" role="tablist">
 					<li role="presentation" class="active"><a href="#instruction" aria-controls="home" role="tab" data-toggle="tab">Instructions</a></li>
 					<li role="presentation"><a href="#description" aria-controls="profile" role="tab" data-toggle="tab">Description</a></li>
-					
-					
+					@foreach($Public_view_page as $key => $value)
+                              <li>
+                                 <a data-toggle="pill" href="#public_page_view{{$value->id}}" >
+                                    {{$value->page_name}}
+                                 </a>
+                              <li>
+                    @endforeach
 				</ul>
+
+				@foreach($Public_view_page as $key => $value)
+	                <div id="public_page_view{{$value->id}}" class="tab-pane fade">
+		                    <div class="row">
+		                    	<div class="col-sm-6">
+		                        <a href="#"  data-id="{{$value->id}}" data-url="{{route('edit_public_page_view')}}" data-toggle="modal" data-target="#edit-public-page-Modal" class="edit_public_page_view_data" onclick="publicpageview_start()" modal_data="{{$value->id}}" >
+		                        <span class="separator"></span>
+		                    	</div>
+		                    </div>
+		                <hr class="sm">
+	                    {{$value->page_detail}}
+	                </div>
+             	@endforeach
 
 				<!-- Tab panes -->
 				<div class="tab-content fa_tab">

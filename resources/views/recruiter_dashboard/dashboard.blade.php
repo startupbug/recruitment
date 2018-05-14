@@ -15,7 +15,7 @@
 				</a>
 			</div>
 			<div class="col-md-4">
-				<a href="{{route('library_public_questions')}}">
+				<a href="{{route('lib_index')}}">
 					<div class="border">
 						<div class="image_left"><img src="{{ asset('public/assets/img/book.png') }}" class="img-responsive">
 							<p class="content_bottom">Create and manage questions for the tests</p>
