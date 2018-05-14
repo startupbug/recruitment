@@ -3259,6 +3259,9 @@ $( document ).ready(function() {
       }
     });
 
+    $('.modal-title-icon').on('click', function(){
+      $(this).parent().next().toggleClass("hidden");
+    });
 });
 
 function testcase_fileformat(){

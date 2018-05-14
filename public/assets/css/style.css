@@ -2627,6 +2627,13 @@ li.active {
 }
 
 
+#modal_pencil_Collapse{
+    background: rgba(0, 0, 0, 0.52);
+}
+#modal_pencil_Collapse .fr-element {
+    height: 600px;
+}
+
 .submit_prog{
      display: none;
 }
@@ -2880,4 +2887,7 @@ input.f_btn {
     padding-bottom: 10px;
     border-radius: 6px;
     margin-left: 20px;
+}
+.modal-title-icon{
+  cursor: pointer;
 }
