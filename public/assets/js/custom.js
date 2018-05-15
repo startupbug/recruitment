@@ -1384,6 +1384,7 @@ function edittesttemplate_Expand(id) {
     function(){
 
       var text = $( "#section-mcqs-Modal .fr-element.fr-view" ).text();
+      var marks = $( "#section-mcqs-Modal input[name='marks']" ).val();
 
       var checkbox_Count = 0;
       $('#section_choices_table tbody tr td :checkbox').each(function () {
@@ -1449,6 +1450,13 @@ function edittesttemplate_Expand(id) {
               }
             }
 
+            if (marks != "") {
+              $("#section-mcqs-Modal .header_span_commint").text("");
+              $("#section-mcqs-Modal .submit_button").attr("disabled", false);
+            }else {
+              $("#section-mcqs-Modal .header_span_commint").text("Please enter the marks");
+              $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+            }
           }
           else {
             if (mcqs[i] == "") {
@@ -1486,6 +1494,15 @@ function edittesttemplate_Expand(id) {
                 }
               }
             }
+
+            if (marks != "") {
+              $("#section-mcqs-Modal .header_span_commint").text("");
+              $("#section-mcqs-Modal .submit_button").attr("disabled", false);
+            }else {
+              $("#section-mcqs-Modal .header_span_commint").text("Please enter the marks");
+              $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+            }
+
           }
         }
       }
@@ -2116,7 +2133,7 @@ var count_method = 0;
 function pencil_edittesttemplate_Expand() {
   pencil_testtemp_setInterval_Expand = setInterval(
     function(){
-      console.log("asdasdas");
+      // console.log("asdasdas");
       var text = $( "#modal_pencil .fr-element.fr-view" ).text();
 
       var checkbox_Count = 0;

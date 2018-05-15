@@ -32,7 +32,7 @@ class HostController extends Controller
     public function host_test_page($id){
 
         $args['tags'] = DB::table('question_tags')->get();
-      	
+
         $args['edit'] = Test_template::find($id);
 
       	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
@@ -40,7 +40,7 @@ class HostController extends Controller
         foreach ($args['sections'] as $key => $value) {
              $args['sections_tabs'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              $args['sections_tabs'][$value->id]['count'] = $value->section_questions;
-        
+
 
              $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
 
@@ -48,11 +48,11 @@ class HostController extends Controller
 
             $args['sections_tabs'][$value->id]['ques2'] = Question::where('question_type_id',2)->where('section_id', $value->id)->get();
 
-             $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']); 
+             $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']);
 
              $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',3)->where('section_id', $value->id)->get();
 
-             $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']); 
+             $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']);
 
         }
 
@@ -62,7 +62,7 @@ class HostController extends Controller
         $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
         $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
-        $args['template_id'] = $id;        
+        $args['template_id'] = $id;
 
           $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
          ->select('user_setting_questions.*','format_settings.name as format_settings_name')
@@ -75,8 +75,8 @@ class HostController extends Controller
       }
 
         //Assinging Host Flag for Model
-        $args['hostFlag'] = true;      
-        
+        $args['hostFlag'] = true;
+
 
         return view('recruiter_dashboard.edit_template')->with($args);
     }
@@ -92,7 +92,7 @@ class HostController extends Controller
 	      	$hosted_test = new Hosted_test();
 	      	$hosted_test->host_name = $request->input('host_name');
 	      	$hosted_test->cut_off_marks = $request->input('cut_off_marks');
-	      	
+
 	      	$temp1 =  $request->input('op_t_y').'-'.$request->input('op_t_m').'-'.$request->input('op_t_d');
 	      	$temp2 = $request->input('op_time_hrs').':'.$request->input('op_time_min').':'.'00';
 	      	$my_date = date($temp1. " ".$temp2);
@@ -116,12 +116,12 @@ class HostController extends Controller
 	    		return "not inserted";
 	    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Added']);
 	    	}
-	    	
-	    	return redirect()->route('profile');  
+
+	    	return redirect()->route('profile');
 
         }catch(\Exception $e){
             $this->set_session('Profile Couldnot be updated.'.$e->getMessage(), false);
-            return redirect()->route('profile');                
+            return redirect()->route('profile');
         }
 
     }
@@ -131,16 +131,16 @@ class HostController extends Controller
 
     	try{
     		if($request->has('id')){
-    			
+
     			//Can you Delete this Host?
 		    	$hosted_test_del = Hosted_test::find($request->input('id'));
-		    	
+
 		    	$test_temp = Test_template::where('id', $hosted_test_del->test_template_id)->first(['user_id']);
 
 		    	if($test_temp->user_id != Auth::user()->id){
 		    		return \Response()->Json([ 'status' => 202,'msg'=>'You cannot delete this Host']);
 		    	}
-		    	
+
 		    	$hosted_test_del = $hosted_test_del->delete();
 
 		    	if($hosted_test_del){
@@ -151,7 +151,7 @@ class HostController extends Controller
 
     		}else{
     			return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be deleted']);
-    		}	    	
+    		}
 
     	}catch(\Exception $e){
     		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be deleted'.$e->getMessage()]);
@@ -163,16 +163,16 @@ class HostController extends Controller
 
     	try{
     		if($request->has('id')){
-    			
+
     			//Can you Delete this Host?
 		    	$hosted_test_del = Hosted_test::find($request->input('id'));
-		    	
+
 		    	$test_temp = Test_template::where('id', $hosted_test_del->test_template_id)->first(['user_id']);
 
 		    	if($test_temp->user_id != Auth::user()->id){
 		    		return \Response()->Json([ 'status' => 202,'msg'=>'You cannot delete this Host']);
 		    	}
-		    	
+
 		    	$hosted_test_del->status = 2;
 
 		    	if($hosted_test_del->save()){
@@ -183,7 +183,7 @@ class HostController extends Controller
 
     		}else{
     			return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Terminated']);
-    		}	    	
+    		}
 
     	}catch(\Exception $e){
     		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Terminated'.$e->getMessage()]);
@@ -195,7 +195,7 @@ class HostController extends Controller
         $args['hosted_test'] = Hosted_test::leftjoin('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
         		->leftjoin('users', 'test_templates.user_id', '=', 'users.id')
                 ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status', 'users.name as username', 'test_templates.instruction', 'test_templates.description')->where('hosted_tests.id', $id)->first();
-       dd($args);
+       // dd($args);
     	return view('recruiter_dashboard.public_preview')->with($args);
     }
 
