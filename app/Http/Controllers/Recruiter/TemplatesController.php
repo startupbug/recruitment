@@ -145,6 +145,7 @@ class TemplatesController extends Controller
 
                 //For Fetching all Hosts
               $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+              ->select('test_templates.id as test_template_id','hosted_tests.host_name','hosted_tests.cut_off_marks','hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time','hosted_tests.time_zone','hosted_tests.status','test_templates.user_id','test_templates.template_type_id','test_templates.title','test_templates.description','test_templates.instruction','test_templates.image','hosted_tests.id as host_id')
               ->where('test_templates.user_id', Auth::user()->id)->get();
 
         }

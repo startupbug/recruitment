@@ -88,50 +88,54 @@
 	</div>
 
 	<div class="container">
-	   <div class="row">
-	      <div class="col-md-12">
-	      	<div class="tabs_public">
-	        	<ul class="nav nav-tabs">
-	            	<li><a data-toggle="pill" href="#public_instructions">Instructions</a></li>
-	            	<li><a data-toggle="pill" href="#public_description">Description</a></li>
-
-	            			@foreach($Public_view_page as $key => $value)
-                        <li>
-                            <a data-toggle="pill" href="#public_page_view{{$value->id}}" >
-                                {{$value->page_name}}
-                            </a>
-                        <li>
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-tabs tabs_public" role="tablist">
+					<li role="presentation" class="active"><a href="#instruction" aria-controls="home" role="tab" data-toggle="tab">Instructions</a></li>
+					<li role="presentation"><a href="#description" aria-controls="profile" role="tab" data-toggle="tab">Description</a></li>
+					@foreach($Public_view_page as $key => $value)
+                              <li>
+                                 <a data-toggle="pill" href="#public_page_view{{$value->id}}" >
+                                    {{$value->page_name}}
+                                 </a>
+                              <li>
                     @endforeach
-	        	</ul>
-	        	<div class="panel panel-default navtab-body">
-	            	<div class="panel-body">
-	               		<div class="tab-content sidebar-content">
-	                  		<div id="public_instructions" class="tab-pane fade in active">
-	                     		<p>
-	                     			@if(isset($hosted))
-										{!! $hosted_test->instruction !!}
-									@endif
-	                     		</p>
-	                  		</div>
-	                  		<div id="public_description" class="tab-pane fade">
-								<p>
-									@if(isset($hosted))
-										{{$hosted_test->description}}
-									@endif
-								</p>
-	                  		</div>
+				</ul>
 
-	                  		@foreach($Public_view_page as $key => $value)
-	                			<div id="public_page_view{{$value->id}}" class="tab-pane fade">
-	                    			{{$value->page_detail}}
-	                			</div>
-             				@endforeach
-	               		</div>
-	            	</div>
-	         	</div>
-	     	</div>
-	      </div>
-	   </div>
+				@foreach($Public_view_page as $key => $value)
+	                <div id="public_page_view{{$value->id}}" class="tab-pane fade">
+		                    <div class="row">
+		                    	<div class="col-sm-6">
+		                        <a href="#"  data-id="{{$value->id}}" data-url="{{route('edit_public_page_view')}}" data-toggle="modal" data-target="#edit-public-page-Modal" class="edit_public_page_view_data" onclick="publicpageview_start()" modal_data="{{$value->id}}" >
+		                        <span class="separator"></span>
+		                    	</div>
+		                    </div>
+		                <hr class="sm">
+	                    {{$value->page_detail}}
+	                </div>
+             	@endforeach
+
+				<!-- Tab panes -->
+				<div class="tab-content fa_tab">
+					<div role="tabpanel" class="tab-pane active" id="instruction">
+						<div class="fa_tab_content">
+				<!-- 			<p>(1) Make sure you have a proper internet connection.</p>
+							<p>(2) If your computer is taking unexpected time to load, it is recommended to reboot the system before you start the test.</p>
+							<p>(3) Once you start the test, it is recommended to pursue it in one go for the complete duration.</p> -->-
+							@if(isset($hosted))
+							{!! $hosted_test->instruction !!}
+							@endif
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="description">
+						<div class="fa_tab_content">
+						<p>@if(isset($hosted)){{$hosted_test->description}}@endif</p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
 @endsection

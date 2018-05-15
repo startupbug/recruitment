@@ -1290,7 +1290,7 @@
                               <small><i>This is a preview of the page that appears when candidate opens the public test link </i></small>
                            </div>
                            <div class="col-sm-3">
-                              <a href="{{route('preview_public_testpage',$template_id)}}" class="btn btn-sm btn-block btn-default">Preview in Full Screen</a>
+                              <a href="{{route('preview_public_testpage', ['id' => $template_id , 'flag' => 'test'] )}}" class="btn btn-sm btn-block btn-default">Preview in Full Screen</a>
                            </div>
                         </div>
                      </div>
