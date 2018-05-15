@@ -12,8 +12,8 @@
 
 				</div>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 
@@ -21,7 +21,7 @@
 		<div class="row f_border_row">
 			<div class="col-md-7">
 				<div class="blink_me">
-					<?php 
+					<?php
 	                    $todaydate = new DateTime();
 	                    $todaydate = $todaydate->format('Y-m-d');
 	                    // .0
@@ -29,7 +29,7 @@
 	                    //dd( );
 					?>
 					@if(isset($hosted_test))
-					@if( (strtotime($todaydate) == strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) )  
+					@if( (strtotime($todaydate) == strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) )
 					 || ( strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) ) )
 							<h3 class="test_live">LIVE!</h3>
 					@else
@@ -49,9 +49,9 @@
                         <?php 
                         // dd($hosted_test->test_open_date);
 	                        $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
-	                        
+
 	                        $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
-	                    
+
 	                        $datetime1 = new DateTime($to_time." ".$hosted_test->test_open_time);
 	                        // dd($datetime1);
 	                        $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
@@ -69,6 +69,7 @@
 		                  <th>Ends at</th>
 		                  <td>{{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}</td>
 		               </tr>
+
 		               @endif	
 		               <tr>
 		                  <th>Duration</th>
@@ -120,7 +121,6 @@
 									@endif
 								</p>
 	                  		</div>
-
 	                  		@foreach($Public_view_page as $key => $value)
 	                			<div id="public_page_view{{$value->id}}" class="tab-pane fade">
 	                    			{{$value->page_detail}}

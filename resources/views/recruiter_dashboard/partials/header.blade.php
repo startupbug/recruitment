@@ -3,9 +3,9 @@
       <div class="row">
          @if(Auth::check())
          <div class="col-md-9">
-            <div class="top_left">         
+            <div class="top_left">
                <ul>
-                  <li>
+                  <li class="logo_image">
                      <a href="{{route('dashboard')}}">
                      <div class="logo_left"><img src="{{ asset('public/assets/img/logo.png') }}"></div>
                      </a>
@@ -75,7 +75,7 @@
                   <li class="dropdown">
                      <div>
                         <button class="dropdown-toggle profileDropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                       
+
                         {{Auth::user()->name}}
                         <span class="caret"></span>
                         </button>

@@ -58,68 +58,68 @@
 							</div>
 							<div class="no-more-tables">
 								<!-- public_mcq_table -->
-								<table class="table s_table paginathing_table">
+								<table id="my_pagination_table" class="table s_table pagination_table">
 							    <thead>
 							      <tr>
 							        <th>Question Id & Statement</th>
 							        <th>State</th>
 							        <th>Level</th>
 							        <th>Tags</th>
-									<th></th>
-
+											<th></th>
 							      </tr>
-
 							    </thead>
 							    <tbody>
+										@if(isset($public_questions_mcqs) && count($public_questions_mcqs) > 0)
+									    @foreach($public_questions_mcqs as $public_questions_mcq)
+									      <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_mcq->id}}" aria-expanded="false">
+									        <td>
+														<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_mcq->id}}" aria-expanded="false">
+															<span class="fa fa-caret-right"></span>
 
-							@if(isset($public_questions_mcqs) && count($public_questions_mcqs) > 0)
-							    @foreach($public_questions_mcqs as $public_questions_mcq)
+										          ({{$public_questions_mcq->id}}) {!! substr($public_questions_mcq->question_statement, 0, 35).'...'!!}
+										        </a>
+													</td>
+									        <td>{{$public_questions_mcq->state_name}}</td>
+									        <td>{{$public_questions_mcq->level_name}}</td>
+									        <td>
+													<span class="badge">
+														<span>{{$public_questions_mcq->tag_name}} </span>
+													</span>
+													</td>
+													<td> <a data-toggle="modal" data-url="{{route('lib_ques_detail')}}" data-id="{{$public_questions_mcq->id}}" class="quesDetail" data-questype="1" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
+									      </tr>
+												<tr id="collapse{{$public_questions_mcq->id}}" class="panel-collapse collapse" >
+													<td colspan="5">
+														<div class="modal-content s_modal">
+														 <div class="modal-header s_modal_header">
+															 <h4 class="modal-title s_font">Question Statement</h4>
+														 </div>
+														 <div class="modal-body s_modal_body">
+															<p>
+															{!!$public_questions_mcq->question_statement!!}
+															</p>
 
-							      <tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_mcq->id}}" aria-expanded="false">
-							        <td>
-												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_mcq->id}}" aria-expanded="false">
-													<span class="fa fa-caret-right"></span>
-
-								          ({{$public_questions_mcq->id}}) {!! substr($public_questions_mcq->question_statement, 0, 35).'...'!!}
-								        </a>
-											</td>
-							        <td>{{$public_questions_mcq->state_name}}</td>
-							        <td>{{$public_questions_mcq->level_name}}</td>
-							        <td>
-											<span class="badge">
-												<span>{{$public_questions_mcq->tag_name}} </span>
-											</span>
-											</td>
-											<td> <a data-toggle="modal" data-url="{{route('lib_ques_detail')}}" data-id="{{$public_questions_mcq->id}}" class="quesDetail" data-questype="1" data-target="#public-mcqs-Modal"><i class="fa fa-eye"></i></a></td>
-							      </tr>
-
-										<tr id="collapse{{$public_questions_mcq->id}}" class="panel-collapse collapse" >
-											<td colspan="5">
-												<div class="modal-content s_modal">
-												 <div class="modal-header s_modal_header">
-													 <h4 class="modal-title s_font">Question Statement</h4>
-												 </div>
-												 <div class="modal-body s_modal_body">
-													<p>
-													{!!$public_questions_mcq->question_statement!!}
-													</p>
-
-													<br>
-													<!-- <h2>Output :</h2>
-													<p class="s_modal_body_heading">
-														A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
-													</p> -->
-												 </div>
-											 </div>
-					           			 </td>
-										</tr>
-							    @endforeach
-		  					  @else
- 								<p>No Questions Found</p>
- 							  @endif
+															<br>
+															<!-- <h2>Output :</h2>
+															<p class="s_modal_body_heading">
+																A single integer, that is the number of ways in which the ball can be passed such that the first pass is made by ThunderCracker, and the ball reaches MunKee after M passes. As the answer can be very large, output it modulo 1000000007.
+															</p> -->
+														 </div>
+													 </div>
+							           </td>
+												</tr>
+									    @endforeach
+				  					  @else
+		 								<p>No Questions Found</p>
+		 							  @endif
 							    </tbody>
 							  </table>
-
+								<div class="pagination-container">
+									<nav>
+										<ul id="pagination_number" class="pagination">
+										</ul>
+									</nav>
+								</div>
 							</div>
 
 						</div>
@@ -160,7 +160,7 @@
 							</div>
 							<div class="no-more-tables">
 								<!-- public_coding_table data table class  -->
-								<table class="table s_table paginathing_table">
+								<table id="my_pagination_table_2" class="table s_table paginathing_table">
 									<thead>
 										<tr>
 											<th>Question Id & Statement</th>
@@ -172,7 +172,7 @@
 									</thead>
 									<tbody>
 
-							@if( isset($public_questions_codings) && count($public_questions_codings) > 0 )
+								@if( isset($public_questions_codings) && count($public_questions_codings) > 0 )
 							    @foreach($public_questions_codings as $public_questions_coding)
 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_coding->id}}" aria-expanded="false">
 											<td>
@@ -212,6 +212,12 @@
  							  @endif
 									</tbody>
 								</table>
+								<div class="pagination-container">
+									<nav>
+										<ul id="pagination_number_2" class="pagination">
+										</ul>
+									</nav>
+								</div>
 							</div>
 
 						</div>
@@ -267,7 +273,7 @@
  							</div>
  							<div class="no-more-tables">
  								<!-- private_mcq_table datatable class -->
- 								<table class="table s_table paginathing_table">
+ 								<table id="my_pagination_table_3" class="table s_table paginathing_table">
  							    <thead>
  							      <tr>
  							        <th>Question Id & Statement66</th>
@@ -325,6 +331,12 @@
  							  @endif
  							    </tbody>
  							  </table>
+								<div class="pagination-container">
+									<nav>
+										<ul id="pagination_number_3" class="pagination">
+										</ul>
+									</nav>
+								</div>
  							</div>
  							<!--  -->
  						</div>
@@ -381,7 +393,7 @@
  							</div>
  							<div class="no-more-tables">
  								<!-- private_coding_table data table class  -->
- 								<table class="table s_table paginathing_table">
+ 								<table  id="my_pagination_table_4" class="table s_table paginathing_table">
  									<thead>
  										<tr>
  											<th>Question Id & Statement77</th>
@@ -434,6 +446,12 @@
  							  @endif
  									</tbody>
  								</table>
+								<div class="pagination-container">
+									<nav>
+										<ul id="pagination_number_4" class="pagination">
+										</ul>
+									</nav>
+								</div>
  							</div>
  						</div>
 
@@ -489,7 +507,7 @@
  							</div>
  							<div class="no-more-tables">
  								<!-- private_submission_table data table class -->
- 								<table class="table s_table paginathing_table">
+ 								<table  id="my_pagination_table_5" class="table s_table paginathing_table">
  									<thead>
  										<tr>
  											<th>Question Id & Statement88</th>
@@ -552,6 +570,12 @@
  									  @endif
  									</tbody>
  								</table>
+								<div class="pagination-container">
+									<nav>
+										<ul id="pagination_number_5" class="pagination">
+										</ul>
+									</nav>
+								</div>
  							</div>
 
  						</div>

@@ -106,7 +106,7 @@
      font-size: 14px;
      color: #ffffff;
      font-family: 'SourceSansPro-Regular';
-     padding: 15px;
+     padding: 18px 15px;
      border-right: 3px solid #302e64;
 
 }
@@ -978,8 +978,11 @@
      background-color: #6a3484;
      border-color: #522967;
 }
- .top_left li:hover {
-     background-color: #444969;
+.top_left li:hover {
+    background-color: #444969;
+}
+ .logo_image:hover {
+     background-color: #261f63 !important;
 }
 
 
@@ -1950,7 +1953,7 @@ h3.side_caution {
     margin-top: 23px;
 }
 
-.pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+.pagination>li>a, .pagination>li>span { cursor: default !important; border-radius: 50% !important;margin: 0 5px;}
 
 .question {
     padding-left: 132px;
@@ -2893,4 +2896,7 @@ input.f_btn {
 }
 .modal-title-icon{
   cursor: pointer;
+}
+.pagination-container {
+    padding-left: 20px;
 }
