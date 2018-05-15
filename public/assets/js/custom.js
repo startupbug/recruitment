@@ -2116,7 +2116,6 @@ var count_method = 0;
 function pencil_edittesttemplate_Expand() {
   pencil_testtemp_setInterval_Expand = setInterval(
     function(){
-      console.log("asdasdas");
       var text = $( "#modal_pencil .fr-element.fr-view" ).text();
 
       var checkbox_Count = 0;

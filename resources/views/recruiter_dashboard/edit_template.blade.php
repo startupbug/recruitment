@@ -173,6 +173,7 @@
 
                <!-- End basic_detail -->
                <!-- Start section_subject -->
+
                @foreach($sections_tabs as $key => $sec)
                <div id="section_subject-{{$key}}" class="tab-pane fade">
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
@@ -456,10 +457,11 @@
                         <div class="panel-heading"><i class="fa fa-th-large"></i> Section Summary</div>
                         <div class="panel-body">
                            <div class="clearfix">
+                             
                               <div class="row text-center s_small">
                                  <div class="col-xs-3">
                                     <small>Easy</small>
-                                    <h4 class="no-margin strong ">{{$sec['easy_question_count']}}</h4>
+                                    <h4 class="no-margin strong ">{{isset($sec['easy_question_count']) ? $sec['easy_question_count'] : '' }}</h4>
                                  </div>
                                  <div class="col-xs-3 no-padding">
                                     <small>Medium</small>

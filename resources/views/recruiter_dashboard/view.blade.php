@@ -62,29 +62,34 @@
                                 <?php
                                     $todaydate = new DateTime();
                                     $todaydate = $todaydate->format('Y-m-d');
-
                                     $expired_status=false;
                                     $live_status=false;
                                 ?>
+<!-- expire
+agr status 2 hai toh expire
+test opening date  and closing date end hoschuki hai
+
+live
+agr open hai r close nh toh -->
+
+
+
                                 @if($hosted_test->status == 2)
-                                    <!-- Terminated -->
                                     <li>Expired (terminated)</li>
-                                   <?php $expired_status=true;  ?>
-                                @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
-                                 <li>Expired</li>
-                                 <?php $expired_status=true;   ?>
-                                @elseif(strtotime($todaydate) == strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
-                                 <li>Live</li>
-                                 <?php $live_status=true;  ?>
-                                @elseif(strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
-                                 <li>Live</li>
-                                 <?php $live_status=true;  ?>
+                                    <?php $expired_status=true;  ?>
+                                @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
+                                    <li>Expired</li>
+                                    <?php $expired_status=true;   ?>
+                                @elseif(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
+                                    <li>Live</li>
+                                    <?php $live_status=true;  ?>                               
                                 @endif
 
                                 <li>{{$hosted_test->host_name}}</li>
                             </ul>
                         </div>
                     </div>
+                    
                     <div class="col-md-6">
                         <div class="right_tab">
                             <ul>

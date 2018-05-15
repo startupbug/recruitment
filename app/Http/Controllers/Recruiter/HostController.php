@@ -54,6 +54,32 @@ class HostController extends Controller
 
              $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']); 
 
+ //counting easy questions from each section
+              $args['sections_tabs'][$value->id]['easy_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->where('sections.id',$value->id)
+               ->where('questions.question_level_id',1)
+               ->count();
+              // dd($args['sections_tabs']);
+
+               //counting medium questions from each section
+              $args['sections_tabs'][$value->id]['medium_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->where('sections.id',$value->id)
+               ->where('questions.question_level_id',2)
+               ->count();
+
+              //counting hard questions from each section
+               $args['sections_tabs'][$value->id]['hard_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->where('sections.id',$value->id)
+               ->where('questions.question_level_id',3)
+               ->count();
+
+              //counting total marks questions from each section
+               $args['sections_tabs'][$value->id]['marks_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->leftJoin('question_details','question_details.question_id','=','questions.id')
+               ->select('question_details.marks')
+               ->where('sections.id',$value->id)               
+               ->sum('marks');
+
         }
 
   $args['test_setting_types'] = Test_template_types::get();
@@ -67,6 +93,15 @@ class HostController extends Controller
           $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
          ->select('user_setting_questions.*','format_settings.name as format_settings_name')
          ->where('template_id',$id)->orderBy('user_setting_questions.order_number','ASC')->get();
+
+      //Public_view_page index method query 
+      $args['Public_view_page'] = Public_view_page::get();
+      
+
+    $args['public_page_view_details'] = Test_template::where('id',$id)
+      ->orderBy('image','Desc')
+      ->first();
+
              //$args['template_question_setting'][0]['arr'] = array(123);
              //dd($args['template_question_setting']);
              //$user_setting_question_details = array();
