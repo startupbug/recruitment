@@ -206,7 +206,7 @@ public function edit_template($id){
 
     $args['tags'] = DB::table('question_tags')->get();
     $args['edit'] = Test_template::find($id);
-
+    // dd($args['edit']->template_type_id);
     $args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
     ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))
     ->where('template_id',$id)
@@ -265,6 +265,7 @@ public function edit_template($id){
          $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
          $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
          $args['template_id'] = $id;
+         $args['test_template_type_id'] = $id;
        // dd($args);
 
 

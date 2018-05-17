@@ -69,8 +69,9 @@ class LibraryController extends Controller
 	    	->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
 	    	->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
 	    	->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')    	
-	    	->where('test_template_types.id', 2) //private
+	    	//->where('test_template_types.id', 2) //private
 	    	->where('questions.question_type_id', 1) //mcq
+	    	->where('questions.lib_private_question', 1) //mcq
 	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
 	    	->get();
 
@@ -83,7 +84,7 @@ class LibraryController extends Controller
 	    	->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
 	    	->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
 	    	->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')    	
-	    	->where('test_template_types.id', 2) //private
+	    	//->where('test_template_types.id', 2) //private
 	    	->where('questions.question_type_id', 2) //coding
 	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
 	    	->get();
@@ -95,7 +96,7 @@ class LibraryController extends Controller
 	    	->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
 	    	->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
 	    	->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')    	
-	    	->where('test_template_types.id', 2) //private
+	    	//->where('test_template_types.id', 2) //private
 	    	->where('questions.question_type_id', 3) //submission
 	    	->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
 	    	->get();
@@ -126,7 +127,7 @@ class LibraryController extends Controller
 		//$args['public_questions_coding'] = ;
 	   //$args['public_questions_submission'] = ;
 
-    	//dd($args['public_questions']);
+ 
 
     	return view('recruiter_dashboard.library_public_questions')->with($args);
     }
@@ -137,7 +138,6 @@ class LibraryController extends Controller
     	 $args['levels'] = Question_level::all();
     	 $args['tags'] = Question_tag::all();
     	 $args['question_states'] = Question_state::all();
-
     	 $args['templateType_fil'] = $request->input('templateType');
     	 $args['questionType_fil'] = $request->input('questionType');
 
