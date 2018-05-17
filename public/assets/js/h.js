@@ -80,6 +80,50 @@ $('.tag_textbox').keyup(function(e){
 });
 
 
+
+
+
+$(document).ready(function(){
+   $("#email_query").keyup(function(){
+    console.log(43434);
+
+       var str=  $("#email_query").val(); //value from textbox
+
+       var url= $(this).data('url')+''; //getting url
+        console.log("url" + url);
+
+        setTimeout(function(){ 
+
+            $.ajax({
+                type: 'post',
+                url: $(this).data('url'),
+                data: {'str': str},
+                success: function (data) {
+                    console.log(data);
+                    $search ="";
+                    $.each(data.searching, function( index, value ) {
+                        $search += "<li>"+ value.description+"</li>";
+                        $("#searching_ul").html($search);
+                  });
+                },
+
+                error: function(data){
+                    console.log(data);
+                }
+            });
+
+        }, 1500);
+
+
+   });  
+}); 
+
+
+
+
+
+
+
 $( ".label-public-page" ).on('click', '.delete_public_tag', function() {
     var id = $(this).data('id');
     var template_id = $('.label-public-page').data('id');

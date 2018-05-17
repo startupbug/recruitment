@@ -27,14 +27,16 @@
 				<h3 class="customer_right">
 					Need help? Say it here
 				</h3>				  
-				<form action="{{route('customer_support')}}" method="get">
-					<div class="input_field"><span class="glyphicon glyphicon-user"></span><input type="text"  class="form-control" id="email" name="query"></div>
-					<input type="submit" name="submit" class="f_btn">	
-				</form>				  	
+				<!-- <form action="{{route('customer_support')}}" method="get"> -->
+					<div class="input_field"><span class="glyphicon glyphicon-user"></span><input type="text" data-url="{{route('customer_support')}}"  class="form-control" id="email_query" name="query"></div>
+					<!-- <input type="submit" name="submit" class="f_btn"> -->	
+				<!-- </form>	 -->			  	
 				<p class="customer_bottom">e.g. :How to host test <br>
-					@foreach($searching as $search)
-					<strong> 	{{($search->description)}} </strong> <br>
-					@endforeach
+					<div class="search_result">
+						<ul id="searching_ul">
+							
+						</ul>
+					</div>
 				</p>
 			</div>
 		</div>

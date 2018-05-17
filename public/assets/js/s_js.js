@@ -3291,7 +3291,62 @@ $( document ).ready(function() {
     $('.modal-title-icon').on('click', function(){
       $(this).parent().next().toggleClass("hidden");
     });
+
+    pagination_table('my_pagination_table','pagination_number');
+    pagination_table('my_pagination_table_2','pagination_number_2');
+    pagination_table('my_pagination_table_3','pagination_number_3');
+    pagination_table('my_pagination_table_4','pagination_number_4');
+    pagination_table('my_pagination_table_5','pagination_number_5');
 });
+
+function pagination_table($table_id , $pagination_id) {
+  console.log($pagination_id);
+  var trnum = 0;
+  var maxRows = parseInt("20");
+  var totalRows = $("#"+$table_id+" tbody tr").length;
+  $("#"+$table_id+" tr:gt(0)").each(function(){
+    trnum++;
+    if (trnum > maxRows) {
+      if (trnum % 2 === 0){}
+      else {
+        $(this).hide();
+      }
+    }
+    if (trnum <= maxRows) {
+        if (trnum % 2 === 0){}
+        else {
+          $(this).show();
+        }
+    }
+  });
+
+  if (totalRows > maxRows) {
+    var pagenum = Math.ceil(totalRows/maxRows);
+    for (var i = 1; i <= pagenum;) {
+      $("#"+$pagination_id).append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(Current)</span></span>\</li>').show();
+    }
+  }
+  $("#"+$pagination_id+" li:first-child").addClass('active');
+  $("#"+$pagination_id+" li").on('click', function() {
+    var pageNum = $(this).attr('data-page');
+    var trIndex = 0;
+    $("#"+$pagination_id+" li").removeClass('active');
+    $(this).addClass('active');
+    $("#"+$table_id+" tr:gt(0)").each(function(){
+      trIndex++;
+      if ( trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows) ) {
+        if (trIndex % 2 === 0) {}else {
+          $(this).hide();
+        }
+      }else{
+        if (trIndex % 2 === 0) {}
+        else {
+           $(this).show();
+        }
+      }
+    });
+  });
+}
 
 function testcase_fileformat(){
   swal({

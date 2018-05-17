@@ -44,20 +44,31 @@ class RecruiterController extends Controller
         return view('recruiter_dashboard.dashboard');
     }
 
-    public function customer_support()
-    {
-    
-         $search_item = Input::get('query');
+   public function customer_support_view()
+   {
+      return view('recruiter_dashboard.customer_support'); 
+   }
+
+    public function customer_support(Request $request)
+    { 
+         $search_item =  $request->input('str');
+         //$search_item = Input::get('query');
           $data[] = "";
             $searching= DB::table('supports')
             ->where('description','LIKE','%'.$search_item.'%')->get();
             
-            if (count($searching) == 0) {
-                 $this->set_session('No query found with this text. Please try again.', false); 
+            if (count($searching) > 0) {
+                 //$this->set_session('No query found with this text. Please try again.', false); 
                 // Session::flash('not_found','no query found with this text');
+              return \Response()->Json([ 'status' => 200,'searching'=>$searching]);
+
+            }
+            else
+            {
+              return \Response()->Json([ 'status' => 202,'searching'=> 'no result found']);
             }
      
-        return view('recruiter_dashboard.customer_support', ['searching' => $searching]);
+        // return view('recruiter_dashboard.customer_support', ['searching' => $searching , 'request' => Input::get('query')]);
     }
 
     public function history()
@@ -135,11 +146,8 @@ class RecruiterController extends Controller
       }
       if(isset($args))
       {
+        
         return view('recruiter_dashboard.library_public_questions')->with($args);
-      }
-      else
-      {
-        return view('recruiter_dashboard.library_public_questions'); 
       }
 
     }

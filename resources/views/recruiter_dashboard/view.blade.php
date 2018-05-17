@@ -62,29 +62,34 @@
                                 <?php
                                     $todaydate = new DateTime();
                                     $todaydate = $todaydate->format('Y-m-d');
-
                                     $expired_status=false;
                                     $live_status=false;
                                 ?>
+<!-- expire
+agr status 2 hai toh expire
+test opening date  and closing date end hoschuki hai
+
+live
+agr open hai r close nh toh -->
+
+
+
                                 @if($hosted_test->status == 2)
-                                    <!-- Terminated -->
                                     <li>Expired (terminated)</li>
-                                   <?php $expired_status=true;  ?>
-                                @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
-                                 <li>Expired</li>
-                                 <?php $expired_status=true;   ?>
-                                @elseif(strtotime($todaydate) == strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
-                                 <li>Live</li>
-                                 <?php $live_status=true;  ?>
-                                @elseif(strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))))
-                                 <li>Live</li>
-                                 <?php $live_status=true;  ?>
+                                    <?php $expired_status=true;  ?>
+                                @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
+                                    <li>Expired</li>
+                                    <?php $expired_status=true;   ?>
+                                @elseif(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
+                                    <li>Live</li>
+                                    <?php $live_status=true;  ?>                               
                                 @endif
 
                                 <li>{{$hosted_test->host_name}}</li>
                             </ul>
                         </div>
                     </div>
+                    
                     <div class="col-md-6">
                         <div class="right_tab">
                             <ul>
@@ -93,6 +98,7 @@
                                     <li><a href="{{route('edit_template',['id'=>$hosted_test->test_template_id])}}">Edit</a></li>
                                  @endif
                                <!--  <li>Report</li> -->
+
                                 <li>
                                     <div class="dropdown">
                                         <button type="button" id="dropdownMenu2" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -102,7 +108,7 @@
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                             <li><a href="invited_candidates.php">View Invited Candidates</a></li>
 
-                                            <li><a href="{{route('preview_public_testpage', ['id' => $hosted_test->host_id])}}" target="blank">Preview Public Test Page</a></li>
+                                            <li><a href="{{route('preview_public_testpage', ['id' => $hosted_test->host_id , 'flag' => 'host'])}}" target="blank">Preview Public Test Page</a></li>
                                             <li><a href="#" target="blank">View subscribed candidates</a></li>
                                            <li><a href="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" target="blank">Preview Test</a></li>
                                             <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to delete this Host.', '{{route('host_test_del')}}', {{$hosted_test->host_id}} )" >Delete Test</a></li>

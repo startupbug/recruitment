@@ -145,6 +145,7 @@ class TemplatesController extends Controller
 
                 //For Fetching all Hosts
               $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+              ->select('test_templates.id as test_template_id','hosted_tests.host_name','hosted_tests.cut_off_marks','hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time','hosted_tests.time_zone','hosted_tests.status','test_templates.user_id','test_templates.template_type_id','test_templates.title','test_templates.description','test_templates.instruction','test_templates.image','hosted_tests.id as host_id','test_templates.duration')
               ->where('test_templates.user_id', Auth::user()->id)->get();
 
         }
@@ -203,7 +204,7 @@ return redirect()->back();
 
 	// Editing Test Template
 public function edit_template($id){
-
+  //dd(123);
     $args['tags'] = DB::table('question_tags')->get();
     $args['edit'] = Test_template::find($id);
     // dd($args['edit']->template_type_id);
@@ -233,6 +234,7 @@ public function edit_template($id){
                ->where('sections.id',$value->id)
                ->where('questions.question_level_id',1)
                ->count();
+              // dd($args['sections_tabs']);
 
                //counting medium questions from each section
               $args['sections_tabs'][$value->id]['medium_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
@@ -284,6 +286,12 @@ public function edit_template($id){
       $args['public_page_view_details'] = Test_template::where('id',$id)
       ->orderBy('image','Desc')
       ->first();
+      $args['hosted_test'] = Hosted_test::leftjoin('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+            ->leftjoin('users', 'test_templates.user_id', '=', 'users.id')
+                ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status', 'users.name as username', 'test_templates.instruction', 'test_templates.description')->where('hosted_tests.id', $id)->first();
+
+
+
       // dd($args['public_page_view_details']);
 			 // return $args['template_question_setting'];
 

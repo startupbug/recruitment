@@ -73,7 +73,12 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard');
 Route::post('update_password_recruiter', 'Recruiter\RecruiterController@update_password_recruiter')->name('update_password_recruiter');
-Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
+
+//Customer support
+Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support_view')->name('customer_support_view');
+Route::post('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
+
+
 Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query');
 
 Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
@@ -167,7 +172,7 @@ Route::post('/delete_host', 'Recruiter\HostController@host_test_del')->name('hos
 Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name('host_terminate');
 
 //Public preview of host
-Route::get('/publicpreview-test-page/{id}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
+Route::get('/publicpreview-test-page/{id}/{flag}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
 
 //Library controller
 Route::get('/library', 'Recruiter\LibraryController@lib_index')->name('lib_index');
