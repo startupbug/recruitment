@@ -28,18 +28,23 @@ use App\Coding_question_language;
 class QuestionsController extends Controller
 {
 	public function create_question(Request $request){
-
-		if (!empty($request->section_id)){
+		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			$store->section_id = $request->section_id;
+			if ($request->lib_private_question == 0) {				
+				$store->section_id = $request->section_id;
+			}else{
+				$store->section_id = NULL;
+
+			}
 			$store->question_state_id = $request->question_state_id;
 			$store->question_sub_types_id = $request->question_sub_types_id;
 			$store->question_type_id = $request->question_type_id;
-			$store->question_level_id = $request->question_level_id;
+			$store->question_level_id = $request->question_level_id;			
+			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
+			// dd($store);
 			if ($store->save()){
-
 				$question_data =  array('store' => $store, 'request' =>$request->all());			
 				event(new  QuestionDetail($question_data));
 				event(new  QuestionChoice($question_data));
@@ -60,13 +65,17 @@ class QuestionsController extends Controller
 				->where('questions.section_id', $request->section_id)
 				->groupBy('questions.id')
 				->get();
-
+	
 				$quescount = count($args['ques1']);
 			//return $args['ques1'];
 				$li_html = view('recruiter_dashboard.ajax_views.ajax_mcq_table')->with($args)->render();
-
-				return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
-					'quescount' => $quescount]);			
+				if ($request->section_id != NULL) {
+					return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
+					'quescount' => $quescount]);	
+				}else{					
+				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);					
+				}
+						
 				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
 				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
@@ -82,14 +91,19 @@ class QuestionsController extends Controller
 		}
 	}
 	public function create_question_coding(Request $request){
-		if (!empty($request->section_id)){
+		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			$store->section_id = $request->section_id;
+			if ($request->lib_private_question == 0) {				
+				$store->section_id = $request->section_id;
+			}else{
+				$store->section_id = NULL;
+			}
 			$store->question_state_id = $request->question_state_id;
 			$store->question_sub_types_id = $request->question_sub_types_id;
 			$store->question_type_id = $request->question_type_id;
 			$store->question_level_id = $request->question_level_id;
+			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
 			if ($store->save()){	
 				$question_data =  array('store' => $store, 'request' =>$request->all());			
@@ -117,9 +131,13 @@ class QuestionsController extends Controller
 				$quescount = count($args['ques2']);
 			//return $args['ques1'];
 				$li_html = view('recruiter_dashboard.ajax_views.ajax_first_coding_table')->with($args)->render();
-
-				return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
-					'quescount' => $quescount]);			
+					if ($request->section_id != NULL) {
+						return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
+					'quescount' => $quescount]);		
+				}else{					
+				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);					
+				}
+					
 				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
 				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
@@ -135,14 +153,19 @@ class QuestionsController extends Controller
 		}
 	}	
 	public function create_question_coding_debug(Request $request){		
-		if (!empty($request->section_id)){
+		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			$store->section_id = $request->section_id;
+			if ($request->lib_private_question == 0) {				
+				$store->section_id = $request->section_id;
+			}else{
+				$store->section_id = NULL;
+			}
 			$store->question_state_id = $request->question_state_id;
 			$store->question_sub_types_id = $request->question_sub_types_id;
 			$store->question_type_id = $request->question_type_id;
 			$store->question_level_id = $request->question_level_id;
+			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
 			if ($store->save()){	
 				$question_data =  array('store' => $store, 'request' =>$request->all());			
@@ -165,9 +188,12 @@ class QuestionsController extends Controller
 				$quescount = count($args['ques2']);
 			//return $args['ques1'];
 				$li_html = view('recruiter_dashboard.ajax_views.ajax_second_coding_table')->with($args)->render();
-
-				return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
-					'quescount' => $quescount]);			
+				if ($request->section_id != NULL) {
+						return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
+					'quescount' => $quescount]);	
+				}else{					
+				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);					
+				}						
 				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
 				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
@@ -183,14 +209,20 @@ class QuestionsController extends Controller
 		}
 	}
 	public function create_first_submission_question(Request $request){	
-		if (!empty($request->section_id)){
+
+		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			$store->section_id = $request->section_id;
+			if ($request->lib_private_question == 0) {				
+				$store->section_id = $request->section_id;
+			}else{
+				$store->section_id = NULL;
+			}
 			$store->question_state_id = $request->question_state_id;
 			$store->question_sub_types_id = $request->question_sub_types_id;
 			$store->question_type_id = $request->question_type_id;
 			$store->question_level_id = $request->question_level_id;
+			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
 			if ($store->save()){	
 				$question_data =  array('store' => $store, 'request' =>$request->all());			
@@ -214,9 +246,13 @@ class QuestionsController extends Controller
 				$quescount = count($args['ques3']);
 			//return $args['ques1'];
 				$li_html = view('recruiter_dashboard.ajax_views.ajax_first_submission_table')->with($args)->render();
-
-				return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
-					'quescount' => $quescount]);			
+				if ($request->section_id != NULL) {
+						return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
+					'quescount' => $quescount]);	
+				}else{					
+				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);					
+				}	
+							
 				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
 				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
@@ -232,14 +268,19 @@ class QuestionsController extends Controller
 		}
 	}
 	public function create_second_submission_question(Request $request){
-		if (!empty($request->section_id)){
+		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			$store->section_id = $request->section_id;
+			if ($request->lib_private_question == 0) {				
+				$store->section_id = $request->section_id;
+			}else{
+				$store->section_id = NULL;
+			}
 			$store->question_state_id = $request->question_state_id;
 			$store->question_sub_types_id = $request->question_sub_types_id;
 			$store->question_type_id = $request->question_type_id;
 			$store->question_level_id = $request->question_level_id;
+			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
 			if ($store->save()){	
 				$question_data =  array('store' => $store, 'request' =>$request->all());	
@@ -262,9 +303,13 @@ class QuestionsController extends Controller
 				$quescount = count($args['ques3']);
 			//return $args['ques1'];
 				$li_html = view('recruiter_dashboard.ajax_views.ajax_first_submission_table')->with($args)->render();
-
-				return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
-					'quescount' => $quescount]);			
+				if ($request->section_id != NULL) {
+						return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
+					'quescount' => $quescount]);	
+				}else{					
+				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);					
+				}	
+						
 				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
 				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);

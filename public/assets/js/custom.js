@@ -1333,7 +1333,6 @@ function edittesttemplate_Collapse() {
      }
   , 1000);
 }
-
 function duplicate_values(mcqs) {
   for (var i = 0; i < mcqs.length; i++) {
     for (var j = i+1 ; j < mcqs.length; j++) {
@@ -1349,29 +1348,12 @@ function duplicate_values(mcqs) {
 
 //Duplicate Test Template
 function section_id(id) {
-  // console.log(id);
   $('#section_id_1').val(id);
   $('#section_id_2').val(id);
   $('#section_id_3').val(id);
   $('#section_id_4').val(id);
   $('#section_id_5').val(id);
   $('#section_id_6').val(id);
-  // testtemp_setInterval_Expand = setInterval(
-  //   function(){
-  //     var htmlString = $( "#section-mcqs-Modal .fr-element.fr-view" ).html();
-  //     $("#preview_data_section").html(htmlString);
-  //     $("#section-mcqs-Modal-Collapse .fr-element.fr-view").html(htmlString);
-  //
-  //     if (htmlString == "<p><br></p>") {
-  //       $("#edittemp_panel").addClass('hidden');
-  //       $("#preview_data_section_expand").html(htmlString);
-  //     }
-  //     else {
-  //       $("#edittemp_panel").removeClass('hidden');
-  //       $("#preview_data_section_expand").html(htmlString);
-  //     }
-  //    }
-  // , 1000);
 }
 function edittesttemplate_Expand(id) {
 
@@ -1806,7 +1788,7 @@ function submission_edittesttemplate_Collapse() {
 function submission_collapse_modal() {
   $("#section-submission-question-Modal-collapse").modal('hide');
   $("#section-submission-question-Modal").css('overflow','scroll');
-  clearInterval(submission_edittesttemplate_Expand);
+  clearInterval(submission_testtemp_setInterval_Collapse);
   submission_edittesttemplate_Expand();
 }
 
@@ -1866,7 +1848,7 @@ function submission_fill_edittesttemplate_Collapse() {
 function submission_fill_collapse_modal() {
   $("#section-submission-fill-blanks-question-Modal-collapse").modal('hide');
   $("#section-submission-fill-blanks-question-Modal").css('overflow','scroll');
-  clearInterval(submission_fill_edittesttemplate_Expand);
+  clearInterval(submission_fill_testtemp_setInterval_Collapse);
   submission_fill_edittesttemplate_Expand();
 }
 
@@ -2290,3 +2272,502 @@ function pencil_collapse_modal() {
 if (count_method == 0) {
   pencil_edittesttemplate_Expand();
 }
+
+
+var private_mcqs_Modal_setInterval_Expand;
+var private_mcqs_Modal_setInterval_Collapse;
+function private_mcqs_Modal_Collapse() {
+  clearInterval(private_mcqs_Modal_setInterval_Expand);
+  private_mcqs_Modal_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#private-mcqs-Modal-Collapse .fr-element.fr-view" ).html();
+      $("#preview_data_section").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#edittemp_panel").addClass('hidden');
+        $("#private-mcqs-Modal .fr-element.fr-view").html(htmlString);
+        $("#preview_data_section_expand").html(htmlString);
+      }
+      else {
+        // console.log(htmlString);
+        $("#private-mcqs-Modal .fr-element.fr-view").html(htmlString);
+        $("#edittemp_panel").removeClass('hidden');
+        $("#preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function private_mcqs_Modal_Expand() {
+  private_mcqs_Modal_setInterval_Expand = setInterval(
+    function(){
+
+      var text = $( "#private-mcqs-Modal .fr-element.fr-view" ).text();
+
+      var checkbox_Count = 0;
+      $('#section_choices_table tbody tr td :checkbox').each(function () {
+        if ($(this).is(":checked")) {
+          checkbox_Count++;
+        }
+      });
+
+      if (text.length <= 2 ) {
+        $("#private-mcqs-Modal .header_span_commint").text("Please add atleast 3 characters in the question statement ");
+        $("#private-mcqs-Modal .textarea_span_commint").text("Please add atleast 3 characters in the statement ");
+        $("#private-mcqs-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        $("#private-mcqs-Modal .header_span_commint").text("");
+        $("#private-mcqs-Modal .textarea_span_commint").text("");
+
+        var weightage_colCount = 1;
+        var weightage = [];
+        var sum = 0;
+        $('#section_choices_table tbody tr').each(function () {
+          var value = $('#section_choices_table tbody tr:nth-child('+weightage_colCount+') td:nth-child(4) input').val();
+          weightage.push(value);
+          sum += parseInt(value);
+          weightage_colCount++;
+        });
+
+        var text_colCount = 1;
+        var mcqs = [];
+        $('#section_choices_table tbody tr').each(function () {
+          var value = $('#section_choices_table tbody tr:nth-child('+text_colCount+') td:nth-child(3) .choice').val();
+          mcqs.push(value);
+          text_colCount++;
+        });
+
+        for (var i = 0; i < mcqs.length; i++) {
+          if ($('#section_partial_marks:checked').length == 0) {
+
+            if (mcqs[i] == "") {
+              var j = parseInt(i)+1;
+              $("#private-mcqs-Modal .header_span_commint").text("The option #"+j+" is blank");
+              $("#private-mcqs-Modal .choice_span_commint").text("(The option #"+j+" is blank)");
+              $("#private-mcqs-Modal .submit_button").attr("disabled", true);
+              break;
+            }else {
+
+              $("#private-mcqs-Modal .choice_span_commint").text("");
+
+              if (duplicate_values(mcqs)) {
+                var data = duplicate_values(mcqs);
+                var num = data.split('-');
+                $("#private-mcqs-Modal .header_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#private-mcqs-Modal .choice_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#private-mcqs-Modal .submit_button").attr("disabled", true);
+              }
+
+              if (checkbox_Count >= 1 ){
+                $("#private-mcqs-Modal .header_span_commint").text("");
+                $("#private-mcqs-Modal .submit_button").attr("disabled", false);
+              }else {
+                $("#private-mcqs-Modal .header_span_commint").text("Please select at least one choice as correct answer for the question");
+                $("#private-mcqs-Modal .submit_button").attr("disabled", true);
+              }
+            }
+
+          }
+          else {
+            if (mcqs[i] == "") {
+              var j = parseInt(i)+1;
+              $("#private-mcqs-Modal .header_span_commint").text("The option #"+j+" is blank");
+              $("#private-mcqs-Modal .choice_span_commint").text("(The option #"+j+" is blank)");
+              $("#private-mcqs-Modal .submit_button").attr("disabled", true);
+              break;
+            }else{
+
+              $("#private-mcqs-Modal .choice_span_commint").text("");
+              $("#private-mcqs-Modal .header_span_commint").text("Please add atleast one option with 100 as partial marks weightage");
+
+              if (duplicate_values(mcqs)) {
+                var data = duplicate_values(mcqs);
+                var num = data.split('-');
+                $("#private-mcqs-Modal .header_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#private-mcqs-Modal .choice_span_commint").text("The options #"+num[0]+" and #"+num[1]+" are same");
+                $("#private-mcqs-Modal .submit_button").attr("disabled", true);
+              }
+
+              $("#private-mcqs-Modal .submit_button").attr("disabled", true);
+
+              if (sum >= 1) {
+                for (var i = 0; i < weightage.length; i++) {
+                  if (weightage[i] == 100) {
+                    $("#private-mcqs-Modal .header_span_commint").text("");
+                    $("#private-mcqs-Modal .submit_button").attr("disabled", false);
+                  }else if(weightage[i] > 100){
+                    var j = parseInt(i)+1;
+                    $("#private-mcqs-Modal .header_span_commint").text("Please provide the partial marks weightage(0-100) for choice #"+j);
+                    $("#private-mcqs-Modal .submit_button").attr("disabled", true);
+                    return false;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+
+      var htmlString = $( "#private-mcqs-Modal .fr-element.fr-view" ).html();
+      $("#preview_data_section").html(htmlString);
+      $("#private-mcqs-Modal-Collapse .fr-element.fr-view").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#edittemp_panel").addClass('hidden');
+        $("#preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#edittemp_panel").removeClass('hidden');
+        $("#preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function private_mcqs_Modal_collapse_modal() {
+  $("#private-mcqs-Modal-Collapse").modal('hide');
+  $("#private-mcqs-Modal").css('overflow','scroll');
+  clearInterval(private_mcqs_Modal_setInterval_Collapse);
+  private_mcqs_Modal_Expand();
+}
+
+var private_programming_question_setInterval_Expand;
+var private_programming_question_setInterval_Collapse;
+function private_programming_question_Collapse() {
+  clearInterval(private_programming_question_setInterval_Expand);
+  private_programming_question_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#private-programming-question-Modal-Collapse .fr-element.fr-view" ).html();
+      $("#code_preview_data_section").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#private-programming-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#code_edittemp_panel").addClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        // console.log(htmlString);
+        $("#private-programming-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#code_edittemp_panel").removeClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function private_programming_question_Expand() {
+  private_programming_question_setInterval_Expand = setInterval(
+    function(){
+      // 1. Title
+      var title = $( "#private-programming-question-Modal input[name='coding_program_title']" ).val();
+      // 2. Statement
+      var statement  = $( "#private-programming-question-Modal .fr-element.fr-view" ).text();
+      // 3. Sample Input or Output
+      var input_output = 1;
+      var count_input_output = 0;
+      $('#section_coding_table tbody tr').each(function () {
+        var input = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(2) textarea').val();
+        var output = $('#section_coding_table tbody tr:nth-child('+input_output+') td:nth-child(3) textarea').val();
+
+        if (input == "" || output == "") {
+          count_input_output++;
+        }
+        input_output++;
+      });
+      // 4. Test Case
+      var test_case_Count = 0;
+      $('#weightage_code_table tbody tr').each(function (data) {
+           test_case_Count++;
+      });
+      var test_case_result_Count = 0;
+      $('#weightage_code_table tbody tr').each(function (data) {
+        var result = $(this).find('.weightage_save').hasClass( "hidden" ).toString();
+        if (result == "false") {
+          test_case_result_Count++;
+        }
+      });
+      // 5. Marks for this Question
+      var marks = $( "#private-programming-question-Modal input[name='marks']" ).val();
+
+
+      if (title.length <= 1 ) {
+        $("#private-programming-question-Modal .header_span_commint").text("Please add the question title");
+        $("#private-programming-question-Modal .submit_button").attr("disabled", true);
+      }
+      else if(statement.length <= 0){
+        $("#private-programming-question-Modal .header_span_commint").text("Please add the question statement");
+        $("#private-programming-question-Modal .submit_button").attr("disabled", true);
+      }
+      else if(count_input_output > 0){
+        var count = parseInt(input_output)-1;
+        $("#private-programming-question-Modal .header_span_commint").text("Please check Sample "+count+" for emptiness");
+        $("#private-programming-question-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        if (test_case_Count > 0) {
+          if (test_case_result_Count > 0) {
+            $("#private-programming-question-Modal .header_span_commint").text("Some test cases are not saved. Please upload the testCases");
+            $("#private-programming-question-Modal .submit_button").attr("disabled", true);
+          }else {
+            $("#private-programming-question-Modal .header_span_commint").text("Please enter the marks");
+            $("#private-programming-question-Modal .submit_button").attr("disabled", true);
+            if (marks != "") {
+              $("#private-programming-question-Modal .header_span_commint").text("");
+              $("#private-programming-question-Modal .submit_button").attr("disabled", false);
+            }
+          }
+        }else {
+          $("#private-programming-question-Modal .header_span_commint").text("Please add test cases");
+          $("#private-programming-question-Modal .submit_button").attr("disabled", true);
+        }
+      }
+
+      var htmlString = $( "#private-programming-question-Modal .fr-element.fr-view" ).html();
+      $("#code_preview_data_section").html(htmlString);
+      $("#private-programming-question-Modal-Collapse .fr-element.fr-view").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#code_edittemp_panel").addClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#code_edittemp_panel").removeClass('hidden');
+        $("#code_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function private_programming_question_collapse_modal() {
+  $("#private-programming-question-Modal-Collapse").modal('hide');
+  $("#private-programming-question-Modal").css('overflow','scroll');
+  clearInterval(private_programming_question_setInterval_Collapse);
+  private_programming_question_Expand();
+}
+
+var private_programming_debug_setInterval_Expand;
+var private_programming_debug_setInterval_Collapse;
+function private_programming_debug_Collapse() {
+  clearInterval(private_programming_debug_setInterval_Expand);
+  private_programming_debug_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#private-programming-debug-Modal-Collapse .fr-element.fr-view" ).html();
+      $("#code_preview_data_debug").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#private-programming-debug-Modal .fr-element.fr-view").html(htmlString);
+        $("#code_debug_panel").addClass('hidden');
+        $("#code_preview_data_debug_expand").html(htmlString);
+      }
+      else {
+        // console.log(htmlString);
+        $("#private-programming-debug-Modal .fr-element.fr-view").html(htmlString);
+        $("#code_debug_panel").removeClass('hidden');
+        $("#code_preview_data_debug_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function private_programming_debug_Expand() {
+  private_programming_debug_setInterval_Expand = setInterval(
+    function(){
+      // 1. Title
+      var title = $( "#private-programming-debug-Modal input[name='coding_program_title']" ).val();
+      // 2. Statement
+      var statement  = $( "#private-programming-debug-Modal .fr-element.fr-view" ).text();
+      // 3. Test Case
+      var test_case_Count = 0;
+      $('#weightage_edit_code_table tbody tr').each(function (data) {
+           test_case_Count++;
+      });
+      var test_case_result_Count = 0;
+      $('#weightage_edit_code_table tbody tr').each(function (data) {
+        var result = $(this).find('.weightage_save').hasClass( "hidden" ).toString();
+        if (result == "false") {
+          test_case_result_Count++;
+        }
+      });
+      // 4. Marks for this Question
+      var marks = $( "#private-programming-debug-Modal input[name='marks']" ).val();
+
+      if (title.length <= 1 ) {
+        $("#private-programming-debug-Modal .header_span_commint").text("Please add the question title");
+        $("#private-programming-debug-Modal .submit_button").attr("disabled", true);
+      }
+      else if(statement.length <= 0){
+        $("#private-programming-debug-Modal .header_span_commint").text("Please add the question statement");
+        $("#private-programming-debug-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        if (test_case_Count > 0) {
+          if (test_case_result_Count > 0) {
+            $("#private-programming-debug-Modal .header_span_commint").text("Some test cases are not saved. Please upload the testCases");
+            $("#private-programming-debug-Modal .submit_button").attr("disabled", true);
+          }else {
+            $("#private-programming-debug-Modal .header_span_commint").text("Please enter the marks");
+            $("#private-programming-debug-Modal .submit_button").attr("disabled", true);
+            if (marks != "") {
+              $("#private-programming-debug-Modal .header_span_commint").text("");
+              $("#private-programming-debug-Modal .submit_button").attr("disabled", false);
+            }
+          }
+        }else {
+          $("#private-programming-debug-Modal .header_span_commint").text("Please add test cases");
+          $("#private-programming-debug-Modal .submit_button").attr("disabled", true);
+        }
+      }
+
+      var htmlString = $( "#private-programming-debug-Modal .fr-element.fr-view" ).html();
+      $("#code_preview_data_debug").html(htmlString);
+      $("#private-programming-debug-Modal-Collapse .fr-element.fr-view").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#code_debug_panel").addClass('hidden');
+        $("#code_preview_data_debug_expand").html(htmlString);
+      }
+      else {
+        $("#code_debug_panel").removeClass('hidden');
+        $("#code_preview_data_debug_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function private_programming_debug_collapse_modal() {
+  $("#private-programming-debug-Modal-Collapse").modal('hide');
+  $("#private-programming-debug-Modal").css('overflow','scroll');
+  clearInterval(private_programming_debug_setInterval_Collapse);
+  private_programming_debug_Expand();
+}
+
+var private_submission_question_setInterval_Expand;
+var private_submission_question_setInterval_Collapse;
+function private_submission_question_Expand() {
+  clearInterval(private_submission_question_setInterval_Collapse);
+  private_submission_question_setInterval_Expand = setInterval(
+    function(){
+      // 1. Question Statement
+      var text = $( "#private-submission-question-Modal .fr-element.fr-view" ).text();
+      // 2. Candidate can use
+      var checkbox_Count = 0;
+      $("#private-submission-question-Modal input[name='help_material_name[]']").each( function () {
+        if ($(this).is(":checked")) {
+          checkbox_Count++;
+        }
+      });
+
+      if (text.length <= 2 ) {
+        $("#private-submission-question-Modal .header_span_commint").text("Please add atleast 3 characters in the question statement ");
+        $("#private-submission-question-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        $("#private-submission-question-Modal .header_span_commint").text("Please select atleast one resource allowed by candidate to upload");
+        $("#private-submission-question-Modal .submit_button").attr("disabled", true);
+
+        if(checkbox_Count > 0){
+          $("#private-submission-question-Modal .header_span_commint").text("");
+          $("#private-submission-question-Modal .submit_button").attr("disabled", false);
+        }
+      }
+
+      var htmlString = $( "#private-submission-question-Modal .fr-element.fr-view" ).html();
+
+      if (htmlString == "<p><br></p>") {
+        $("#private-submission-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").addClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        // console.log(htmlString);
+        $("#private-submission-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").removeClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function private_submission_question_Collapse() {
+  clearInterval(private_submission_question_setInterval_Expand);
+  private_submission_question_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#private-submission-question-Modal-collapse .fr-element.fr-view" ).html();
+      $("#submission_preview_data_section_collapse").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#private-submission-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").addClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#private-submission-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_edittemp_panel").removeClass('hidden');
+        $("#submission_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function private_submission_question_collapse_modal() {
+  $("#private-submission-question-Modal-collapse").modal('hide');
+  $("#private-submission-question-Modal").css('overflow','scroll');
+  clearInterval(private_submission_question_setInterval_Collapse);
+  private_submission_question_Expand();
+}
+
+var private_submission_fill_blanks_question_setInterval_Expand;
+var private_submission_fill_blanks_question_setInterval_Collapse;
+function private_submission_fill_blanks_question_Expand() {
+  clearInterval(private_submission_fill_blanks_question_setInterval_Collapse);
+  private_submission_fill_blanks_question_setInterval_Expand = setInterval(
+    function(){
+      // 1. Question Statement
+      var text = $( "#private-submission-fill-blanks-question-Modal .fr-element.fr-view" ).text();
+      if (text.length <= 2 ) {
+        $("#private-submission-fill-blanks-question-Modal .header_span_commint").text("Please add atleast 3 characters in the question statement ");
+        $("#private-submission-fill-blanks-question-Modal .submit_button").attr("disabled", true);
+      }
+      else {
+        $("#private-submission-fill-blanks-question-Modal .header_span_commint").text("");
+        $("#private-submission-fill-blanks-question-Modal .submit_button").attr("disabled", false);
+      }
+
+      var htmlString = $( "#private-submission-fill-blanks-question-Modal .fr-element.fr-view" ).html();
+
+      if (htmlString == "<p><br></p>") {
+        $("#private-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").addClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        // console.log(htmlString);
+        $("#private-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").removeClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function private_submission_fill_blanks_question_Collapse() {
+  clearInterval(private_submission_fill_blanks_question_setInterval_Expand);
+  private_submission_fill_blanks_question_setInterval_Collapse = setInterval(
+    function(){
+      var htmlString = $( "#private-submission-fill-blanks-question-Modal-collapse .fr-element.fr-view" ).html();
+      $("#submission_fill_preview_data_section_collapse").html(htmlString);
+
+      if (htmlString == "<p><br></p>") {
+        $("#private-submission-fill-blanks-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").addClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+      else {
+        $("#private-submission-fill-blanks-question-Modal .fr-element.fr-view").html(htmlString);
+        $("#submission_fill_edittemp_panel").removeClass('hidden');
+        $("#submission_fill_preview_data_section_expand").html(htmlString);
+      }
+     }
+  , 1000);
+}
+function private_submission_fill_blanks_question_collapse_modal() {
+  $("#private-submission-fill-blanks-question-Modal-collapse").modal('hide');
+  $("#private-submission-fill-blanks-question-Modal").css('overflow','scroll');
+  clearInterval(private_submission_fill_blanks_question_setInterval_Collapse);
+  private_submission_fill_blanks_question_Expand();
+}
+
+

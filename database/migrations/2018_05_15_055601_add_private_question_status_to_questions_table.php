@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSectionIdToQuestionsTable extends Migration
+class AddPrivateQuestionStatusToQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddSectionIdToQuestionsTable extends Migration
      */
     public function up()
     {
-         Schema::table('questions', function (Blueprint $table) {
-            $table->integer('section_id')->unsigned()->nullable()->after('user_id');
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade')->onUpdate('cascade'); 
+        Schema::table('questions', function (Blueprint $table) {
+            $table->tinyInteger('lib_private_question')->nullable()->default('0')->after('question_statement'); 
         });
     }
 
@@ -27,7 +26,7 @@ class AddSectionIdToQuestionsTable extends Migration
     public function down()
     {
         Schema::table('questions', function (Blueprint $table) {
-             $table->dropColumn('section_id');
+            $table->dropColumn('lib_private_question');
         });
     }
 }

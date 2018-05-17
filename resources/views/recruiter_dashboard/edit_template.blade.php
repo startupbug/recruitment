@@ -1905,8 +1905,7 @@
    </div>
 </section>
 <!-- Edit-public-page-Modal -->
-s_orange_color_header
-s_orange_color_modal
+
 
 <div class="modal fade" id="_first_model" role="dialog" style="">
    <div class="modal-dialog  modal-lg s-modal-lg ">
@@ -3014,6 +3013,7 @@ s_orange_color_modal
          <input type="hidden" name="section_id" id="section_id_2" value="">
          <input type="hidden" name="question_type_id" value="2">
          <input type="hidden" name="question_sub_types_id" value="2">
+          <input type="hidden" name="lib_private_question" value="0">
         <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
@@ -3474,6 +3474,7 @@ s_orange_color_modal
          <input type="hidden" name="section_id" id="section_id_4" value="">
          <input type="hidden" name="question_type_id" value="2">
          <input type="hidden" name="question_sub_types_id" value="3">
+          <input type="hidden" name="lib_private_question" value="0">
          <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                <div class="pull-right">
@@ -4373,6 +4374,7 @@ s_orange_color_modal
         <input type="hidden" name="section_id" id="section_id_5" value="">
         <input type="hidden" name="question_sub_types_id" value="4">
         <input type="hidden" name="question_type_id" value="3">
+         <input type="hidden" name="lib_private_question" value="0">
          <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                <div class="pull-right">
@@ -4705,6 +4707,7 @@ s_orange_color_modal
           <input type="hidden" name="section_id" id="section_id_6" value="">
           <input type="hidden" name="question_sub_types_id" value="5">
           <input type="hidden" name="question_type_id" value="3">
+           <input type="hidden" name="lib_private_question" value="0">
           <div class="modal-content">
              <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
@@ -5420,6 +5423,7 @@ s_orange_color_modal
         <input type="hidden" name="section_id" id="section_id_1" value="">
         <input type="hidden" name="question_sub_types_id" value="1">
         <input type="hidden" name="question_type_id" value="1">
+        <input type="hidden" name="lib_private_question" value="0">
         <div class="modal-content">
            <div class="modal-header s_modal_form_header">
               <div class="pull-right">
@@ -5762,7 +5766,7 @@ s_orange_color_modal
                           <!--<input type="file" name="solution_media">-->
                            <div class="f_upload_btn">
                                     Upload Files
-                                    <input type="file" name="">
+                                    <input type="file" name="solution_media">
                                 </div>
                        </div>
                     </div>

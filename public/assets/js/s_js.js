@@ -3119,6 +3119,35 @@ $( document ).ready(function() {
       $(this).closest('li').remove();
     });
 
+    $("#private-submission-question-Modal").on('change', '.add_resources_submission_ul li input[name="resources[]"]', function() {
+
+      var path = $(this).val().split('\\');
+      var fileName = path[path.length-1];
+
+      $(this).closest('li').find('.s_upload_name').removeClass('hidden');
+      $(this).closest('li').find('.s_upload_name span').text(fileName);
+      $(this).closest('li').find('.f_upload_btn').addClass('hidden');
+
+      if(fileName)
+      {
+        alertify.success("uploaded resource");
+        $(this).closest(".add_resources_submission_ul").append('<li>'+
+          '<div class="s_upload_name hidden">'+
+            '<span>9a85bf01a4cb686355a00b5363b08e15.ogg</span> <i class="fa fa-times-circle-o s_close"></i>'+
+          '</div>'+
+          '<div class="f_upload_btn">'+
+            ' + Add resources'+
+            '<input type="file" name="resources[]">'+
+          '</div>'+
+        '</li>');
+      }
+
+    });
+
+    $("#private-submission-question-Modal").on('click', '.add_resources_submission_ul li .s_upload_name .s_close', function() {
+      $(this).closest('li').remove();
+    });
+
     $('.state').on('change', '.staged', function(){
         if ($(this).is(":checked")) {
 

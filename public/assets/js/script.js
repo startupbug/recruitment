@@ -535,6 +535,12 @@ $("#AjaxMCQModal").on('submit', function(e){
         $('#section-mcqs-Modal').modal('hide');
       }else if(data.status == 202){
         alertify.warning(data.msg);
+      }else if(data.status == 300){
+        $('#private-mcqs-Modal').modal('hide');
+        alertify.success(data.msg);
+          setInterval(function() {
+                    window.location.reload();
+          }, 1000);
       }else{
         alertify.warning(data.array.errorInfo[2]);
       }
@@ -568,6 +574,12 @@ $("#AjaxCodingOneModal").on('submit', function(e){
         $('#section-coding-add-compilable-question-Modal').modal('hide');
       }else if(data.status == 202){
         alertify.warning(data.msg);
+      }else if(data.status == 300){
+        $('#private-programming-question-Modal').modal('hide');
+        alertify.success(data.msg);
+          setInterval(function() {
+                    window.location.reload();
+          }, 1000);
       }else{
         alertify.warning(data.array.errorInfo[2]);
       }
@@ -601,6 +613,12 @@ $("#AjaxCodingTwoModal").on('submit', function(e){
         $('#section-coding-debug-Modal').modal('hide');
       }else if(data.status == 202){
         alertify.warning(data.msg);
+      }else if(data.status == 300){
+        $('#private-programming-debug-Modal').modal('hide');
+        alertify.success(data.msg);
+          setInterval(function() {
+                    window.location.reload();
+          }, 1000);
       }else{
         alertify.warning(data.array.errorInfo[2]);
       }
@@ -632,6 +650,12 @@ $("#AjaxSubmissionOneModal").on('submit', function(e){
         $('#section-submission-question-Modal').modal('hide');
       }else if(data.status == 202){
         alertify.warning(data.msg);
+      }else if(data.status == 300){
+        $('#private-submission-question-Modal').modal('hide');
+        alertify.success(data.msg);
+          setInterval(function() {
+                    window.location.reload();
+          }, 1000);
       }else{
         alertify.warning(data.array.errorInfo[2]);
       }
@@ -663,6 +687,12 @@ $("#AjaxSubmissionSecondModal").on('submit', function(e){
         $('#section-submission-fill-blanks-question-Modal').modal('hide');
       }else if(data.status == 202){
         alertify.warning(data.msg);
+      }else if(data.status == 300){
+        $('#private-submission-fill-blanks-question-Modal').modal('hide');
+        alertify.success(data.msg);
+          setInterval(function() {
+                    window.location.reload();
+          }, 1000);
       }else{
         alertify.warning(data.array.errorInfo[2]);
       }
