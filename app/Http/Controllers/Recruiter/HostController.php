@@ -117,13 +117,20 @@ class HostController extends Controller
     }
 
     public function host_test_post(Request $request){
-    	//return $request->input();
-
+    	// return $request->input();
+      
+      // $test_template_data->description
+      // $test_template_data->instruction
+      // return  $test_template_data;
     	try{
 	    	/* Validation and Checks */
 	    	// section mcq questions vali
 	    	// input fields, date.
 
+          $template_id = $request->input('template_id');
+
+          $test_template_data = Test_template::where('id','=',$template_id)->first();
+          // return $test_template_data;
 	      	$hosted_test = new Hosted_test();
 	      	$hosted_test->host_name = $request->input('host_name');
 	      	$hosted_test->cut_off_marks = $request->input('cut_off_marks');
@@ -144,19 +151,37 @@ class HostController extends Controller
 
 	        $hosted_test->test_template_id = $request->input('template_id');
 	        $hosted_test->time_zone = $request->input('time_zone');
+          $hosted_test->description = $test_template_data->description;
+          $hosted_test->instruction = $test_template_data->instruction;
+          $hosted_test->save();
+          
 
-	    	if($hosted_test->save()){;
+          $get_new_host = Hosted_test::where('id',$hosted_test->id)->first();
+          // return $get_new_host->id;
+          $insert_host_id = new Test_template;
+          $insert_host_id->user_id = Auth::user()->id;
+          $insert_host_id->title = $request->input('host_name');
+          $insert_host_id->template_type_id = $test_template_data->template_type_id; 
+          $insert_host_id->description = $test_template_data->description;
+          $insert_host_id->instruction = $test_template_data->instruction;
+          $insert_host_id->image = $test_template_data->image;
+          $insert_host_id->duration = $test_template_data->duration;
+          $insert_host_id->host_id = $get_new_host->id;
+          $insert_host_id->hosted = 1;
+          $insert_host_id->save();
+          
+	    	if($insert_host_id->save()){
             	return \Response()->Json([ 'status' => 200,'msg'=>'Host Successfully Added']);
 	    	}else{
 	    		return "not inserted";
 	    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Added']);
 	    	}
 
-	    	return redirect()->route('profile');
+	    	// return redirect()->route('profile');
 
         }catch(\Exception $e){
             $this->set_session('Profile Couldnot be updated.'.$e->getMessage(), false);
-            return redirect()->route('profile');
+            // return redirect()->route('profile');
         }
 
     }

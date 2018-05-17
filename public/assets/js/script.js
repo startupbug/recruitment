@@ -202,7 +202,7 @@ $("#templatetestSetting").on('submit', function(e){
       if(data.status == 200){
         alertify.success(data.msg);
         setTimeout(function(){
-         window.location.reload(1);
+         // window.location.reload(1);
        }, 1000);
       }else if(data.status == 202){
         alertify.warning(data.msg);

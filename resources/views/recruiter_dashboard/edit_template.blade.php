@@ -9,13 +9,17 @@
             <a href="{{route('manage_test_view')}}">
             <button type="submit" class="btn">Back</button>
             </a>
-            <strong>Template: BPO Test - Recruitment</strong>
+            
+            <strong>Template: @if(isset($edit_host)){{$edit_host->host_name}}@elseif(isset($edit)){{$edit->title}}@endif</strong>
+            @if(isset($edit_host) && $edit_host->status == 1) live @endif
          </div>
          <div class="col-xs-2 col-xs-offset-2">
             <h4>
+               @if(isset($edit))
                <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#_first_model">
-               <i class="fa fa-check" aria-hidden="true"></i> Host this Test
+               <i class="fa fa-check" aria-hidden="true"></i> Host this Test 
                </button>
+               @endif
             </h4>
          </div>
       </div>
@@ -51,6 +55,7 @@
                         </div>
                      </li>
                      @endforeach
+                     @if(isset($edit))
                      <form action="{{route('add_section')}}" id="add_section" method="post">
                         {{csrf_field()}}
                         <input type="hidden" name="order_value" value="
@@ -62,6 +67,7 @@
                         <button type="submit" class="btn btn-default" name="button"> + Add   Section
                         </button>
                      </form>
+                     @endif
                   </ul>
                </li>
                <li><a data-toggle="pill" href="#section_setting"><i class="fa fa-cog nav-icon" aria-hidden="true"></i> Settings</a></li>
@@ -73,9 +79,15 @@
                <!-- Start basic_detail -->
                <div id="basic_detail" class="tab-pane fade in active">
                   <div class="col-md-6 col-sm-12 col-xs-12 padding-0">
-                     <form class="form-vertical" id="update_test_template" action="{{route('update_test_template',['id'=>$edit->id])}}" method="post">
+                     <form class="form-vertical" id="update_test_template" @if(isset($edit))  action="{{route('update_test_template',['id'=>$edit->id])}}" @elseif(isset($edit_host)) action="{{route('update_test_template',['id'=>$edit_host->id])}}" @endif method="post">
                         {{csrf_field()}}
+                        @if(isset($edit))
                         <input type="hidden" name="template_type_id" value="{{$edit->template_type_id}}">
+                        <input type="hidden" name="template_id" value="{{$edit->id}}">
+                        @endif
+                        @if(isset($edit_host))
+                        <input type="hidden" name="host_id" value="{{$edit_host->id}}">
+                        @endif
                         <div class="form-group">
                            <label class="control-label" for="title">
                               Title
@@ -94,7 +106,7 @@
                               </div>
                            </label>
                            <div>
-                              <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title" value="{{$edit->title}}">
+                              <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title" @if(isset($edit)) value="{{$edit->title}}" @elseif(isset($edit_host)) value="{{$edit_host->host_name}}" @endif>
                            </div>
                         </div>
                         <div class="form-group">
@@ -120,7 +132,7 @@
                            </label>
                            <div id="edit_template_text_editor_description">
                               <textarea name="description" class='edit' style="margin-top: 30px;"placeholder="Type some text">
-                                 @if(isset($edit->description)) {{$edit->description}} @endif
+                                 @if(isset($edit->description)) {{$edit->description}} @elseif(isset($edit_host)) {{$edit_host->description}} @endif
                               </textarea>
                            </div>
                         </div>
@@ -148,7 +160,7 @@
                            </label>
                            <div id="edit_template_text_editor_instruction">
                               <textarea class='edit' rows="8" cols="80" name="instruction">
-                              @if(isset($edit->instruction)) {{$edit->instruction}}@endif
+                              @if(isset($edit->instruction)) {{$edit->instruction}} @elseif(isset($edit_host)) {{$edit_host->instruction}} @endif
                               </textarea>
                            </div>
                         </div>
@@ -173,7 +185,7 @@
 
                <!-- End basic_detail -->
                <!-- Start section_subject -->
-
+               @if(isset($sections_tabs))
                @foreach($sections_tabs as $key => $sec)
                <div id="section_subject-{{$key}}" class="tab-pane fade">
                   <div class="col-md-9 col-sm-12 col-xs-12 padding-0">
@@ -255,12 +267,14 @@
                                  <tfoot>
                                     <tr>
                                        <td colspan="4">
+                                          @if(isset($edit))
                                           <button type="button" class="btn" data-toggle="modal" data-target="#section-mcqs-Modal" onclick="edittesttemplate_Expand({{$key}}); ">
                                           <i class="fa fa-plus"></i> Add MCQ
                                           </button>
                                           <button type="button" class="btn" data-toggle="modal" data-target="#section-choice-mcqs-Modal">
                                           <i class="fa fa-book"></i> Choose MCQ From Library
                                           </button>
+                                          @endif
                                        </td>
                                     </tr>
                                  </tfoot>
@@ -539,6 +553,7 @@
                   </div>
                </div>
                @endforeach()
+               @endif
                <div id="section_setting" class="tab-pane fade">
                   <div class="row">
                      <div class="col-md-2">
@@ -580,13 +595,19 @@
                            <div class="panel panel-default s_margin_10">
                               <div class="panel-heading">
                                  <strong>
-                                 Test Timings and Minimum Pass Percentage
+                                 Test Timings and Minimum Pass Percentage88
                                  </strong>
                               </div>
                               <form class="form-horizontal" name="tSettings" id="templatetestSetting" action="{{route('templatetestSetting')}}" method="POST">
                                  {{csrf_field()}}
-                                 <input type="hidden" name="template_id" value="{{$edit->id}}">
+                                 @if(isset($edit))
+                                 <input type="hidden" name="template_id"  value="{{$edit->id}}">
+                                 @endif
+                                 @if(isset($edit_host))
+                                 <input type="hidden" name="host_id"  value="{{$edit_host->id}}">
+                                 @endif
                                  <div class="panel-body s_panelBodyHeight">
+                                    @if(isset($edit))
                                        <div class="form-group form-group-sm">
                                           <label class="col-sm-3 control-label">
                                              Type of the test &nbsp;
@@ -607,6 +628,7 @@
                                              <p id="test_template_types_id_help" class="help-block">This test will be open for all interested candidates</p>
                                           </div>
                                        </div>
+                                       @endif
                                        <div class="form-group form-group-sm">
                                           <label class="col-sm-3 control-label">
                                              Webcam &nbsp;
@@ -627,6 +649,478 @@
                                              <p id="webcam_id_help" class="help-block">(If webcam is not found, then candidate will not be able to give the test. The candidate will be prompted to check for webcam)</p>
                                           </div>
                                        </div>
+                                       @if(isset($edit_host))
+                                       <div class="form-horizontal">
+                                          <div class="form-group form-group-sm">
+                                             <div class="">
+                                                <label class="control-label col-sm-3 col-sm-offset-1">
+                                                Test Opening Time   <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="" data-original-title="  Question level determines the standard of the question."> <i class="fa fa-info-circle"> </i></a>
+                                                </label>
+                                                <div class="col-sm-8">
+                                                   <div>
+                                                      <div class="form-horizontal">
+                                                         <div class="clearfix">
+                                                            <div class="form-group s_form_control_group">
+                                                               <div class="form-field">
+                                                                  <select class="form-control" name="op_t_d">
+                                                                     <option value="1" label="1">1</option>
+                                                                     <option value="2" label="2">2</option>
+                                                                     <option value="3" label="3">3</option>
+                                                                     <option value="4" label="4">4</option>
+                                                                     <option value="5" label="5" selected="selected">5</option>
+                                                                     <option value="6" label="6">6</option>
+                                                                     <option value="7" label="7">7</option>
+                                                                     <option value="8" label="8">8</option>
+                                                                     <option value="9" label="9">9</option>
+                                                                     <option value="10" label="10">10</option>
+                                                                     <option value="11" label="11">11</option>
+                                                                     <option value="12" label="12">12</option>
+                                                                     <option value="13" label="13">13</option>
+                                                                     <option value="14" label="14">14</option>
+                                                                     <option value="15" label="15">15</option>
+                                                                     <option value="16" label="16">16</option>
+                                                                     <option value="17" label="17">17</option>
+                                                                     <option value="18" label="18">18</option>
+                                                                     <option value="19" label="19">19</option>
+                                                                     <option value="20" label="20">20</option>
+                                                                     <option value="21" label="21">21</option>
+                                                                     <option value="22" label="22">22</option>
+                                                                     <option value="23" label="23">23</option>
+                                                                     <option value="24" label="24">24</option>
+                                                                     <option value="25" label="25">25</option>
+                                                                     <option value="26" label="26">26</option>
+                                                                     <option value="27" label="27">27</option>
+                                                                     <option value="28" label="28">28</option>
+                                                                     <option value="29" label="29">29</option>
+                                                                     <option value="30" label="30">30</option>
+                                                                     <option value="31" label="31">31</option>
+                                                                  </select>
+                                                               </div>
+                                                               <div class="form-field">
+                                                                  <select class="form-control" name="op_t_m">
+                                                                     <option value="1" label="Jan">Jan</option>
+                                                                     <option value="2" label="Feb">Feb</option>
+                                                                     <option value="3" label="Mar" selected="selected">Mar</option>
+                                                                     <option value="4" label="Apr">Apr</option>
+                                                                     <option value="5" label="May">May</option>
+                                                                     <option value="6" label="Jun">Jun</option>
+                                                                     <option value="7" label="Jul">Jul</option>
+                                                                     <option value="8" label="Aug">Aug</option>
+                                                                     <option value="8" label="Sep">Sep</option>
+                                                                     <option value="10" label="Oct">Oct</option>
+                                                                     <option value="11" label="Nov">Nov</option>
+                                                                     <option value="12" label="Dec">Dec</option>
+                                                                  </select>
+                                                               </div>
+                                                               <div class="form-field">
+                                                                  <select class="form-control" name="op_t_y">
+                                                                     <option value="2011" label="2011">2011</option>
+                                                                     <option value="2012" label="2012">2012</option>
+                                                                     <option value="2013" label="2013">2013</option>
+                                                                     <option value="2014" label="2014">2014</option>
+                                                                     <option value="2015" label="2015">2015</option>
+                                                                     <option value="2016" label="2016">2016</option>
+                                                                     <option value="2017" label="2017">2017</option>
+                                                                     <option value="2018" label="2018" selected="selected">2018</option>
+                                                                     <option value="2019" label="2019">2019</option>
+                                                                     <option value="2020" label="2020">2020</option>
+                                                                  </select>
+                                                               </div>
+                                                            </div>
+                                                            <span>
+                                                               <a class="btn btn-link link-show-time click_time hidden">
+                                                               <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Set Time
+                                                               </a>
+                                                               <div class="time-box">
+                                                                  <div class="form-group s_form_control_group">
+                                                                     <div class="form-field">
+                                                                        <select class="form-control" name="op_time_hrs">
+                                                                           <option value="12">12</option>
+                                                                           <option value="01">01</option>
+                                                                           <option value="02">02</option>
+                                                                           <option value="03">03</option>
+                                                                           <option value="04">04</option>
+                                                                           <option value="05">05</option>
+                                                                           <option value="06">06</option>
+                                                                           <option value="07">07</option>
+                                                                           <option value="08">08</option>
+                                                                           <option value="09">09</option>
+                                                                           <option value="10">10</option>
+                                                                           <option value="11">11</option>
+                                                                        </select>
+                                                                     </div>
+                                                                     <div class="form-field">
+                                                                        <select class="form-control" name="op_time_min">
+                                                                           <option value="00">00</option>
+                                                                           <option value="01">01</option>
+                                                                           <option value="02">02</option>
+                                                                           <option value="03">03</option>
+                                                                           <option value="04">04</option>
+                                                                           <option value="05">05</option>
+                                                                           <option value="06">06</option>
+                                                                           <option value="07">07</option>
+                                                                           <option value="08">08</option>
+                                                                           <option value="09">09</option>
+                                                                           <option value="10">10</option>
+                                                                           <option value="11">11</option>
+                                                                           <option value="12">12</option>
+                                                                           <option value="13">13</option>
+                                                                           <option value="14">14</option>
+                                                                           <option value="15">15</option>
+                                                                           <option value="16">16</option>
+                                                                           <option value="17">17</option>
+                                                                           <option value="18">18</option>
+                                                                           <option value="19">19</option>
+                                                                           <option value="20">20</option>
+                                                                           <option value="21">21</option>
+                                                                           <option value="22">22</option>
+                                                                           <option value="23">23</option>
+                                                                           <option value="24">24</option>
+                                                                           <option value="25">25</option>
+                                                                           <option value="26">26</option>
+                                                                           <option value="27">27</option>
+                                                                           <option value="28">28</option>
+                                                                           <option value="29">29</option>
+                                                                           <option value="30">30</option>
+                                                                           <option value="31">31</option>
+                                                                           <option value="32">32</option>
+                                                                           <option value="33">33</option>
+                                                                           <option value="34">34</option>
+                                                                           <option value="35">35</option>
+                                                                           <option value="36">36</option>
+                                                                           <option value="37">37</option>
+                                                                           <option value="38">38</option>
+                                                                           <option value="39">39</option>
+                                                                           <option value="40">40</option>
+                                                                           <option value="41">41</option>
+                                                                           <option value="42">42</option>
+                                                                           <option value="43">43</option>
+                                                                           <option value="44">44</option>
+                                                                           <option value="45">45</option>
+                                                                           <option value="46">46</option>
+                                                                           <option value="47">47</option>
+                                                                           <option value="48">48</option>
+                                                                           <option value="49">49</option>
+                                                                           <option value="50">50</option>
+                                                                           <option value="51">51</option>
+                                                                           <option value="52">52</option>
+                                                                           <option value="53">53</option>
+                                                                           <option value="54">54</option>
+                                                                           <option value="55">55</option>
+                                                                           <option value="56">56</option>
+                                                                           <option value="57">57</option>
+                                                                           <option value="58">58</option>
+                                                                           <option value="59">59</option>
+                                                                        </select>
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="radio-inline form-control-group-radio">
+                                                                     <label><input type="radio" name="op_time_format" value="AM" checked="">AM </label>
+                                                                  </div>
+                                                                  <div class="radio-inline form-control-group-radio">
+                                                                     <label><input type="radio" name="op_time_format" value="PM">PM </label>
+                                                                  </div>
+                                                               </div>
+                                                            </span>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="form-group form-group-sm">
+                                             <div class="">
+                                                <label class="control-label col-sm-3 col-sm-offset-1">
+                                                Test Closing Time   <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="" data-original-title="  Question level determines the standard of the question."> <i class="fa fa-info-circle"> </i></a>
+                                                </label>
+                                                <div class="col-sm-8">
+                                                   <div>
+                                                      <div class="form-horizontal">
+                                                         <div class="clearfix">
+                                                            <div class="form-group s_form_control_group">
+                                                               <div class="form-field">
+                                                                  <select class="form-control" name="cl_t_d">
+                                                                     <option value="1" label="1">1</option>
+                                                                     <option value="2" label="2">2</option>
+                                                                     <option value="3" label="3">3</option>
+                                                                     <option value="4" label="4">4</option>
+                                                                     <option value="5" label="5" selected="selected">5</option>
+                                                                     <option value="6" label="6">6</option>
+                                                                     <option value="7" label="7">7</option>
+                                                                     <option value="8" label="8">8</option>
+                                                                     <option value="9" label="9">9</option>
+                                                                     <option value="10" label="10">10</option>
+                                                                     <option value="11" label="11">11</option>
+                                                                     <option value="12" label="12">12</option>
+                                                                     <option value="13" label="13">13</option>
+                                                                     <option value="14" label="14">14</option>
+                                                                     <option value="15" label="15">15</option>
+                                                                     <option value="16" label="16">16</option>
+                                                                     <option value="17" label="17">17</option>
+                                                                     <option value="18" label="18">18</option>
+                                                                     <option value="19" label="19">19</option>
+                                                                     <option value="20" label="20">20</option>
+                                                                     <option value="21" label="21">21</option>
+                                                                     <option value="22" label="22">22</option>
+                                                                     <option value="23" label="23">23</option>
+                                                                     <option value="24" label="24">24</option>
+                                                                     <option value="25" label="25">25</option>
+                                                                     <option value="26" label="26">26</option>
+                                                                     <option value="27" label="27">27</option>
+                                                                     <option value="28" label="28">28</option>
+                                                                     <option value="29" label="29">29</option>
+                                                                     <option value="30" label="30">30</option>
+                                                                     <option value="31" label="31">31</option>
+                                                                  </select>
+                                                               </div>
+                                                               <div class="form-field">
+                                                                  <select class="form-control" name="cl_t_m">
+                                                                     <option value="1" label="Jan">Jan</option>
+                                                                     <option value="2" label="Feb">Feb</option>
+                                                                     <option value="3" label="Mar" selected="selected">Mar</option>
+                                                                     <option value="4" label="Apr">Apr</option>
+                                                                     <option value="5" label="May">May</option>
+                                                                     <option value="6" label="Jun">Jun</option>
+                                                                     <option value="7" label="Jul">Jul</option>
+                                                                     <option value="8" label="Aug">Aug</option>
+                                                                     <option value="9" label="Sep">Sep</option>
+                                                                     <option value="10" label="Oct">Oct</option>
+                                                                     <option value="11" label="Nov">Nov</option>
+                                                                     <option value="12" label="Dec">Dec</option>
+                                                                  </select>
+                                                               </div>
+                                                               <div class="form-field">
+                                                                  <select class="form-control" name="cl_t_y">
+                                                                     <option value="2011" label="2011">2011</option>
+                                                                     <option value="2012" label="2012">2012</option>
+                                                                     <option value="2013" label="2013">2013</option>
+                                                                     <option value="2014" label="2014">2014</option>
+                                                                     <option value="2015" label="2015">2015</option>
+                                                                     <option value="2016" label="2016">2016</option>
+                                                                     <option value="2017" label="2017">2017</option>
+                                                                     <option value="2018" label="2018" selected="selected">2018</option>
+                                                                     <option value="2019" label="2019">2019</option>
+                                                                     <option value="2020" label="2020">2020</option>
+                                                                  </select>
+                                                               </div>
+                                                            </div>
+                                                            <span>
+                                                               <a class="btn btn-link link-show-time click_time hidden">
+                                                               <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Set Time
+                                                               </a>
+                                                               <div class="time-box">
+                                                                  <div class="form-group s_form_control_group">
+                                                                     <div class="form-field">
+                                                                        <select class="form-control" name="cl_time_hrs">
+                                                                           <option value="12">12</option>
+                                                                           <option value="01">01</option>
+                                                                           <option value="02">02</option>
+                                                                           <option value="03">03</option>
+                                                                           <option value="04">04</option>
+                                                                           <option value="05">05</option>
+                                                                           <option value="06">06</option>
+                                                                           <option value="07">07</option>
+                                                                           <option value="08">08</option>
+                                                                           <option value="09">09</option>
+                                                                           <option value="10">10</option>
+                                                                           <option value="11">11</option>
+                                                                        </select>
+                                                                     </div>
+                                                                     <div class="form-field">
+                                                                        <select class="form-control" name="cl_time_min">
+                                                                           <option value="00">00</option>
+                                                                           <option value="01">01</option>
+                                                                           <option value="02">02</option>
+                                                                           <option value="03">03</option>
+                                                                           <option value="04">04</option>
+                                                                           <option value="05">05</option>
+                                                                           <option value="06">06</option>
+                                                                           <option value="07">07</option>
+                                                                           <option value="08">08</option>
+                                                                           <option value="09">09</option>
+                                                                           <option value="10">10</option>
+                                                                           <option value="11">11</option>
+                                                                           <option value="12">12</option>
+                                                                           <option value="13">13</option>
+                                                                           <option value="14">14</option>
+                                                                           <option value="15">15</option>
+                                                                           <option value="16">16</option>
+                                                                           <option value="17">17</option>
+                                                                           <option value="18">18</option>
+                                                                           <option value="19">19</option>
+                                                                           <option value="20">20</option>
+                                                                           <option value="21">21</option>
+                                                                           <option value="22">22</option>
+                                                                           <option value="23">23</option>
+                                                                           <option value="24">24</option>
+                                                                           <option value="25">25</option>
+                                                                           <option value="26">26</option>
+                                                                           <option value="27">27</option>
+                                                                           <option value="28">28</option>
+                                                                           <option value="29">29</option>
+                                                                           <option value="30">30</option>
+                                                                           <option value="31">31</option>
+                                                                           <option value="32">32</option>
+                                                                           <option value="33">33</option>
+                                                                           <option value="34">34</option>
+                                                                           <option value="35">35</option>
+                                                                           <option value="36">36</option>
+                                                                           <option value="37">37</option>
+                                                                           <option value="38">38</option>
+                                                                           <option value="39">39</option>
+                                                                           <option value="40">40</option>
+                                                                           <option value="41">41</option>
+                                                                           <option value="42">42</option>
+                                                                           <option value="43">43</option>
+                                                                           <option value="44">44</option>
+                                                                           <option value="45">45</option>
+                                                                           <option value="46">46</option>
+                                                                           <option value="47">47</option>
+                                                                           <option value="48">48</option>
+                                                                           <option value="49">49</option>
+                                                                           <option value="50">50</option>
+                                                                           <option value="51">51</option>
+                                                                           <option value="52">52</option>
+                                                                           <option value="53">53</option>
+                                                                           <option value="54">54</option>
+                                                                           <option value="55">55</option>
+                                                                           <option value="56">56</option>
+                                                                           <option value="57">57</option>
+                                                                           <option value="58">58</option>
+                                                                           <option value="59">59</option>
+                                                                        </select>
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="radio-inline form-control-group-radio">
+                                                                     <label><input type="radio" name="cl_time_format" value="AM" checked="">AM </label>
+                                                                  </div>
+                                                                  <div class="radio-inline form-control-group-radio">
+                                                                     <label><input type="radio" name="cl_time_format" value="PM">PM </label>
+                                                                  </div>
+                                                               </div>
+                                                            </span>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="form-group form-group-sm">
+                                             <label class="control-label col-sm-3 col-sm-offset-1 text-left">
+                                             Time Zone
+                                             </label>
+                                             <span>
+                                                <a class="btn btn-link btn-sm click_time">(UTC+04:00) Baku</a>
+                                                <div class="col-sm-6 hidden">
+                                                   <select class="form-control" name="time_zone">
+                                                      <option value="(UTC-12:00) International Date Line West" label="(UTC-12:00) International Date Line West">(UTC-12:00) International Date Line West</option>
+                                                      <option value="(UTC-11:00) Coordinated Universal Time-11" label="(UTC-11:00) Coordinated Universal Time-11">(UTC-11:00) Coordinated Universal Time-11</option>
+                                                      <option value="(UTC-10:00) Hawaii" label="(UTC-10:00) Hawaii">(UTC-10:00) Hawaii</option>
+                                                      <option value="(UTC-09:00) Alaska" label="(UTC-09:00) Alaska">(UTC-09:00) Alaska</option>
+                                                      <option value="(UTC-08:00) Baja California" label="(UTC-08:00) Baja California">(UTC-08:00) Baja California</option>
+                                                      <option value="(UTC-08:00) Pacific Time (US &amp; Canada)" label="(UTC-08:00) Pacific Time (US &amp; Canada)">(UTC-08:00) Pacific Time (US &amp; Canada)</option>
+                                                      <option value="(UTC-07:00) Arizona" label="(UTC-07:00) Arizona">(UTC-07:00) Arizona</option>
+                                                      <option value="(UTC-07:00) Chihuahua, La Paz, Mazatlan" label="(UTC-07:00) Chihuahua, La Paz, Mazatlan">(UTC-07:00) Chihuahua, La Paz, Mazatlan</option>
+                                                      <option value="(UTC-07:00) Mountain Time (US &amp; Canada)" label="(UTC-07:00) Mountain Time (US &amp; Canada)">(UTC-07:00) Mountain Time (US &amp; Canada)</option>
+                                                      <option value="(UTC-06:00) Central America" label="(UTC-06:00) Central America">(UTC-06:00) Central America</option>
+                                                      <option value="(UTC-06:00) Central Time (US &amp; Canada)" label="(UTC-06:00) Central Time (US &amp; Canada)">(UTC-06:00) Central Time (US &amp; Canada)</option>
+                                                      <option value="(UTC-06:00) Guadalajara, Mexico City, Monterrey" label="(UTC-06:00) Guadalajara, Mexico City, Monterrey">(UTC-06:00) Guadalajara, Mexico City, Monterrey</option>
+                                                      <option value="(UTC-06:00) Saskatchewan" label="(UTC-06:00) Saskatchewan">(UTC-06:00) Saskatchewan</option>
+                                                      <option value="(UTC-05:00) Bogota, Lima, Quito" label="(UTC-05:00) Bogota, Lima, Quito">(UTC-05:00) Bogota, Lima, Quito</option>
+                                                      <option value="(UTC-05:00) Eastern Time (US &amp; Canada)" label="(UTC-05:00) Eastern Time (US &amp; Canada)">(UTC-05:00) Eastern Time (US &amp; Canada)</option>
+                                                      <option value="(UTC-05:00) Indiana (East)" label="(UTC-05:00) Indiana (East)">(UTC-05:00) Indiana (East)</option>
+                                                      <option value="(UTC-04:30) Caracas" label="(UTC-04:30) Caracas">(UTC-04:30) Caracas</option>
+                                                      <option value="(UTC-04:00) Asuncion" label="(UTC-04:00) Asuncion">(UTC-04:00) Asuncion</option>
+                                                      <option value="(UTC-04:00) Atlantic Time (Canada)" label="(UTC-04:00) Atlantic Time (Canada)">(UTC-04:00) Atlantic Time (Canada)</option>
+                                                      <option value="20" label="(UTC-04:00) Cuiaba">(UTC-04:00) Cuiaba</option>
+                                                      <option value="21" label="(UTC-04:00) Georgetown, La Paz, Manaus, San Juan">(UTC-04:00) Georgetown, La Paz, Manaus, San Juan</option>
+                                                      <option value="(UTC-04:00) Cuiaba" label="(UTC-04:00) Santiago">(UTC-04:00) Santiago</option>
+                                                      <option value="(UTC-03:30) Newfoundland" label="(UTC-03:30) Newfoundland">(UTC-03:30) Newfoundland</option>
+                                                      <option value="(UTC-03:00) Brasilia" label="(UTC-03:00) Brasilia">(UTC-03:00) Brasilia</option>
+                                                      <option value="(UTC-03:00) Buenos Aires" label="(UTC-03:00) Buenos Aires">(UTC-03:00) Buenos Aires</option>
+                                                      <option value="(UTC-03:00) Cayenne, Fortaleza" label="(UTC-03:00) Cayenne, Fortaleza">(UTC-03:00) Cayenne, Fortaleza</option>
+                                                      <option value="(UTC-03:00) Greenland" label="(UTC-03:00) Greenland">(UTC-03:00) Greenland</option>
+                                                      <option value="(UTC-03:00) Montevideo" label="(UTC-03:00) Montevideo">(UTC-03:00) Montevideo</option>
+                                                      <option value="(UTC-03:00) Salvador" label="(UTC-03:00) Salvador">(UTC-03:00) Salvador</option>
+                                                      <option value="(UTC-02:00) Coordinated Universal Time-02" label="(UTC-02:00) Coordinated Universal Time-02">(UTC-02:00) Coordinated Universal Time-02</option>
+                                                      <option value="(UTC-02:00) Mid-Atlantic - Old" label="(UTC-02:00) Mid-Atlantic - Old">(UTC-02:00) Mid-Atlantic - Old</option>
+                                                      <option value="(UTC-01:00) Azores" label="(UTC-01:00) Azores">(UTC-01:00) Azores</option>
+                                                      <option value="(UTC-01:00) Cape Verde Is." label="(UTC-01:00) Cape Verde Is.">(UTC-01:00) Cape Verde Is.</option>
+                                                      <option value="(UTC) Casablanca" label="(UTC) Casablanca">(UTC) Casablanca</option>
+                                                      <option value="(UTC) Coordinated Universal Time" label="(UTC) Coordinated Universal Time">(UTC) Coordinated Universal Time</option>
+                                                      <option value="(UTC) Dublin, Edinburgh, Lisbon, London" label="(UTC) Dublin, Edinburgh, Lisbon, London">(UTC) Dublin, Edinburgh, Lisbon, London</option>
+                                                      <option value="(UTC) Monrovia, Reykjavik" label="(UTC) Monrovia, Reykjavik">(UTC) Monrovia, Reykjavik</option>
+                                                      <option value="(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna" label="(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna">(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+                                                      <option value="(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague" label="(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague">(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+                                                      <option value="(UTC+01:00) Brussels, Copenhagen, Madrid, Paris" label="(UTC+01:00) Brussels, Copenhagen, Madrid, Paris">(UTC+01:00) Brussels, Copenhagen, Madrid, Paris</option>
+                                                      <option value="(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb" label="(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb">(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
+                                                      <option value="(UTC+01:00) West Central Africa" label="(UTC+01:00) West Central Africa">(UTC+01:00) West Central Africa</option>
+                                                      <option value="(UTC+01:00) Windhoek" label="(UTC+01:00) Windhoek">(UTC+01:00) Windhoek</option>
+                                                      <option value="(UTC+02:00) Athens, Bucharest" label="(UTC+02:00) Athens, Bucharest">(UTC+02:00) Athens, Bucharest</option>
+                                                      <option value="(UTC+02:00) Beirut" label="(UTC+02:00) Beirut">(UTC+02:00) Beirut</option>
+                                                      <option value="(UTC+02:00) Cairo" label="(UTC+02:00) Cairo">(UTC+02:00) Cairo</option>
+                                                      <option value="(UTC+02:00) Damascus" label="(UTC+02:00) Damascus">(UTC+02:00) Damascus</option>
+                                                      <option value="(UTC+02:00) E. Europe" label="(UTC+02:00) E. Europe">(UTC+02:00) E. Europe</option>
+                                                      <option value="(UTC+02:00) Harare, Pretoria" label="(UTC+02:00) Harare, Pretoria">(UTC+02:00) Harare, Pretoria</option>
+                                                      <option value="(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius" label="(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius">(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
+                                                      <option value="(UTC+02:00) Istanbul" label="(UTC+02:00) Istanbul">(UTC+02:00) Istanbul</option>
+                                                      <option value="(UTC+02:00) Jerusalem" label="(UTC+02:00) Jerusalem">(UTC+02:00) Jerusalem</option>
+                                                      <option value="(UTC+02:00) Tripoli" label="(UTC+02:00) Tripoli">(UTC+02:00) Tripoli</option>
+                                                      <option value="(UTC+03:00) Amman" label="(UTC+03:00) Amman">(UTC+03:00) Amman</option>
+                                                      <option value="(UTC+03:00) Baghdad" label="(UTC+03:00) Baghdad">(UTC+03:00) Baghdad</option>
+                                                      <option value="(UTC+03:00) Kaliningrad, Minsk" label="(UTC+03:00) Kaliningrad, Minsk">(UTC+03:00) Kaliningrad, Minsk</option>
+                                                      <option value="(UTC+03:00) Kuwait, Riyadh" label="(UTC+03:00) Kuwait, Riyadh">(UTC+03:00) Kuwait, Riyadh</option>
+                                                      <option value="(UTC+03:00) Nairobi" label="(UTC+03:00) Nairobi">(UTC+03:00) Nairobi</option>
+                                                      <option value="(UTC+03:30) Tehran" label="(UTC+03:30) Tehran">(UTC+03:30) Tehran</option>
+                                                      <option value="(UTC+04:00) Abu Dhabi, Muscat" label="(UTC+04:00) Abu Dhabi, Muscat">(UTC+04:00) Abu Dhabi, Muscat</option>
+                                                      <option value="(UTC+04:00) Baku" label="(UTC+04:00) Baku" selected="selected">(UTC+04:00) Baku</option>
+                                                      <option value="(UTC+04:00) Moscow, St. Petersburg, Volgograd" label="(UTC+04:00) Moscow, St. Petersburg, Volgograd">(UTC+04:00) Moscow, St. Petersburg, Volgograd</option>
+                                                      <option value="(UTC+04:00) Port Louis" label="(UTC+04:00) Port Louis">(UTC+04:00) Port Louis</option>
+                                                      <option value="(UTC+04:00) Tbilisi" label="(UTC+04:00) Tbilisi">(UTC+04:00) Tbilisi</option>
+                                                      <option value="(UTC+04:00) Yerevan" label="(UTC+04:00) Yerevan">(UTC+04:00) Yerevan</option>
+                                                      <option value="(UTC+04:30) Kabul" label="(UTC+04:30) Kabul">(UTC+04:30) Kabul</option>
+                                                      <option value="(UTC+05:00) Ashgabat, Tashkent" label="(UTC+05:00) Ashgabat, Tashkent">(UTC+05:00) Ashgabat, Tashkent</option>
+                                                      <option value="(UTC+05:00) Islamabad, Karachi" label="(UTC+05:00) Islamabad, Karachi">(UTC+05:00) Islamabad, Karachi</option>
+                                                      <option value="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi" label="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi">(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
+                                                      <option value="(UTC+05:30) Sri Jayawardenepura" label="(UTC+05:30) Sri Jayawardenepura">(UTC+05:30) Sri Jayawardenepura</option>
+                                                      <option value="(UTC+05:45) Kathmandu" label="(UTC+05:45) Kathmandu">(UTC+05:45) Kathmandu</option>
+                                                      <option value="(UTC+06:00) Astana" label="(UTC+06:00) Astana">(UTC+06:00) Astana</option>
+                                                      <option value="(UTC+06:00) Dhaka" label="(UTC+06:00) Dhaka">(UTC+06:00) Dhaka</option>
+                                                      <option value="(UTC+06:00) Ekaterinburg" label="(UTC+06:00) Ekaterinburg">(UTC+06:00) Ekaterinburg</option>
+                                                      <option value="(UTC+06:30) Yangon (Rangoon)" label="(UTC+06:30) Yangon (Rangoon)">(UTC+06:30) Yangon (Rangoon)</option>
+                                                      <option value="(UTC+07:00) Bangkok, Hanoi, Jakarta" label="(UTC+07:00) Bangkok, Hanoi, Jakarta">(UTC+07:00) Bangkok, Hanoi, Jakarta</option>
+                                                      <option value="(UTC+07:00) Novosibirsk" label="(UTC+07:00) Novosibirsk">(UTC+07:00) Novosibirsk</option>
+                                                      <option value="(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi" label="(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi">(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
+                                                      <option value="(UTC+08:00) Krasnoyarsk" label="(UTC+08:00) Krasnoyarsk">(UTC+08:00) Krasnoyarsk</option>
+                                                      <option value="(UTC+08:00) Kuala Lumpur, Singapore" label="(UTC+08:00) Kuala Lumpur, Singapore">(UTC+08:00) Kuala Lumpur, Singapore</option>
+                                                      <option value="(UTC+08:00) Perth" label="(UTC+08:00) Perth">(UTC+08:00) Perth</option>
+                                                      <option value="(UTC+08:00) Taipei" label="(UTC+08:00) Taipei">(UTC+08:00) Taipei</option>
+                                                      <option value="(UTC+08:00) Ulaanbaatar" label="(UTC+08:00) Ulaanbaatar">(UTC+08:00) Ulaanbaatar</option>
+                                                      <option value="(UTC+09:00) Irkutsk" label="(UTC+09:00) Irkutsk">(UTC+09:00) Irkutsk</option>
+                                                      <option value="(UTC+09:00) Osaka, Sapporo, Tokyo" label="(UTC+09:00) Osaka, Sapporo, Tokyo">(UTC+09:00) Osaka, Sapporo, Tokyo</option>
+                                                      <option value="(UTC+09:00) Seoul" label="(UTC+09:00) Seoul">(UTC+09:00) Seoul</option>
+                                                      <option value="(UTC+09:30) Adelaide" label="(UTC+09:30) Adelaide">(UTC+09:30) Adelaide</option>
+                                                      <option value="(UTC+09:30) Darwin" label="(UTC+09:30) Darwin">(UTC+09:30) Darwin</option>
+                                                      <option value="(UTC+10:00) Brisbane" label="(UTC+10:00) Brisbane">(UTC+10:00) Brisbane</option>
+                                                      <option value="(UTC+10:00) Canberra, Melbourne, Sydney" label="(UTC+10:00) Canberra, Melbourne, Sydney">(UTC+10:00) Canberra, Melbourne, Sydney</option>
+                                                      <option value="(UTC+10:00) Guam, Port Moresby" label="(UTC+10:00) Guam, Port Moresby">(UTC+10:00) Guam, Port Moresby</option>
+                                                      <option value="(UTC+10:00) Hobart" label="(UTC+10:00) Hobart">(UTC+10:00) Hobart</option>
+                                                      <option value="(UTC+10:00) Yakutsk" label="(UTC+10:00) Yakutsk">(UTC+10:00) Yakutsk</option>
+                                                      <option value="(UTC+11:00) Solomon Is., New Caledonia" label="(UTC+11:00) Solomon Is., New Caledonia">(UTC+11:00) Solomon Is., New Caledonia</option>
+                                                      <option value="(UTC+11:00) Vladivostok" label="(UTC+11:00) Vladivostok">(UTC+11:00) Vladivostok</option>
+                                                      <option value="(UTC+12:00) Auckland, Wellington" label="(UTC+12:00) Auckland, Wellington">(UTC+12:00) Auckland, Wellington</option>
+                                                      <option value="(UTC+12:00) Coordinated Universal Time+12" label="(UTC+12:00) Coordinated Universal Time+12">(UTC+12:00) Coordinated Universal Time+12</option>
+                                                      <option value="(UTC+12:00) Fiji" label="(UTC+12:00) Fiji">(UTC+12:00) Fiji</option>
+                                                      <option value="(UTC+12:00) Magadan" label="(UTC+12:00) Magadan">(UTC+12:00) Magadan</option>
+                                                      <option value="(UTC+12:00) Petropavlovsk-Kamchatsky - Old" label="(UTC+12:00) Petropavlovsk-Kamchatsky - Old">(UTC+12:00) Petropavlovsk-Kamchatsky - Old</option>
+                                                      <option value="(UTC+13:00) Nuku'alofa" label="(UTC+13:00) Nuku'alofa">(UTC+13:00) Nuku'alofa</option>
+                                                      <option value="(UTC+13:00) Samoa" label="(UTC+13:00) Samoa">(UTC+13:00) Samoa</option>
+                                                   </select>
+                                                </div>
+                                             </span>
+                                          </div>
+                                       </div>
+                                       @endif
                                        <div class="form-group form-group-sm">
                                           <label class="col-sm-3 control-label">
                                              Candidate Resume &nbsp;
@@ -640,8 +1134,10 @@
                                                 <label>
                                                 <input type="checkbox" value="1"
                                                 @if(isset($edit_test_settings->request_resume) && $edit_test_settings->request_resume == 1)
-                                                   checked="checked" name="request_resume" id="request_resume" > Request Resume
-                                                @endif
+                                                   checked="checked"
+                                                   @endif
+                                                   name="request_resume" id="request_resume" > Request Resume
+                                                
                                                 </label>
                                              </div>
                                              <div class="checkbox">
@@ -657,27 +1153,6 @@
                                           </div>
                                        </div>
                                        <div>
-                                       <!--    <div class="form-group form-group-sm">
-                                             <label class="col-sm-3 control-label">
-                                                Disable Finish Test Button &nbsp;
-                                                <div class="s_popup">
-                                                   <i class="fa fa-info-circle"> </i>
-                                                   <span class="s_popuptext">
-                                                   This allows you to ask for a candidate's resume.<br>
-                                                   during the registration
-                                                   Good to know: you can <br>
-                                                   choose to make the resume submission mandatory
-                                                   </span>
-                                                </div>
-                                             </label>
-                                             <div class="col-sm-9">
-                                                <div class="checkbox no-padding">
-                                                   <label>
-                                                   <input type="checkbox">
-                                                   </label>
-                                                </div>
-                                             </div>
-                                          </div> -->
                                        </div>
                                        <div class="form-group form-group-sm">
                                           <label class="col-sm-3 control-label">
@@ -745,7 +1220,7 @@
                                              <span class="text text-sm text-danger hidden" id="button_error" >
                                                Please resolve the following issues in the questionnaire
                                              </span>
-                                             <ul class="dropdown-menu s_drop_down btn-block new_question question_select" data-template_id="{{$edit->id}}">
+                                             <ul class="dropdown-menu s_drop_down btn-block new_question question_select" @if(isset($edit)) data-template_id="{{$edit->id}}" @elseif(isset($edit_host)) data-template_id="{{$edit_host->id}}" @endif >
                                                <li><a href="#"  data-id="0" data-question="Write own question"><strong>Write own question</strong></a></li>
 
                                                <li class="divider"></li>
@@ -1113,7 +1588,12 @@
                               </div>
                               <form class="form-horizontal" name="tSettings" id="templatetestContactSetting" action="{{route('templatetestContactSetting')}}" method="POST">
                                  {{csrf_field()}}
+                                 @if(isset($edit))
                                  <input type="hidden" name="template_id" value="{{$edit->id}}">
+                                 @endif
+                                 @if(isset($edit_host))
+                                 <input type="hidden" name="host_id" value="{{$edit_host->id}}">
+                                 @endif
                                  <div class="panel-body s_panelBodyHeight">
                                     <p class="s_modal_body_heading text-center">These are the contact details for the candidate’s reference incase of any query.</p>
                                     <br>
@@ -1164,7 +1644,12 @@
                               </div>
                                <form id="templatetestMailSetting" class="form-horizontal" name="tSettings" action="{{route('templatetestMailSetting')}}" method="POST">
                                  {{csrf_field()}}
+                                 @if(isset($edit))
                                  <input type="hidden" name="template_id" value="{{$edit->id}}">
+                                 @endif
+                                 @if(isset($edit_host))
+                                 <input type="hidden" name="host_id" value="{{$edit_host->id}}">
+                                 @endif
                                  <div class="panel-body s_panelBodyHeight">
                                     <div class="form-group form-group-sm">
                                        <label class="col-sm-3 control-label">
@@ -1264,7 +1749,12 @@
                                        Message
                                        </label>
                                        <div class="col-sm-6">
+                                          @if(isset($edit))
                                           <input type="hidden" name="template_id" value="{{$edit->id}}">
+                                          @endif
+                                          @if(isset($edit_host))
+                                          <input type="hidden" name="host_id" value="{{$edit_host->id}}">
+                                          @endif
                                           <textarea name="setting_message" class="form-control" rows="5" placeholder="Your message">@if(isset($edit_test_settings_message)){{$edit_test_settings_message->setting_message}}@endif</textarea>
                                           <div>
                                              You can use tags such as &lt;candidateName&gt; and &lt;testTitle&gt; to represent candidate name and test title respectively.<br>
@@ -1306,12 +1796,12 @@
                               <div class="ept_cover_image_top">
                                  <div class="clearfix">
                                     <div class="pull-right public_page_tag">
-                                       <div class="label-public-page" data-delete="{{route('delete_image_tags')}}" data-url="{{route('data_image_tags',$public_page_view_details->template_id )}}" data-id="{{$public_page_view_details->template_id}}">
+                                       <div class="label-public-page" data-delete="{{route('delete_image_tags')}}" @if(isset($edit)) data-url="{{route('data_image_tags',$public_page_view_details->template_id )}}" @endif @if(isset($edit)) data-id="{{$public_page_view_details->template_id}}" @endif >
                                        </div>
 
                                        <div class="clearfix">
                                           <div class="form-group ">
-                                             <input type="text" name="cover_image_tag" value="" data-url="{{route('insert_image_tags',$public_page_view_details->template_id )}}" data-id="{{$public_page_view_details->template_id}}" placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">
+                                             <input type="text" name="cover_image_tag" value="" @if(isset($edit)) data-url="{{route('insert_image_tags',$public_page_view_details->template_id )}}" @endif @if(isset($edit)) data-id="{{$public_page_view_details->template_id}}" @endif placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">
                                           </div>
                                        </div>
                                     </div>
@@ -1423,7 +1913,7 @@ s_orange_color_modal
       <!-- Modal content-->
       <div class="modal-content s_content_radius">
          <div class="modal-header s_modal_header_first">
-            <h3 class="modal-title h3-old">Hosting: <i class="">English</i>
+            <h3 class="modal-title h3-old">Hosting: <i class="">@if(isset($edit)) {{$edit->title}} @endif</i>
                <button type="button" class="btn btn-sm btn-default pull-right" data-dismiss="modal">Close</button>
             </h3>
          </div>
@@ -1432,12 +1922,12 @@ s_orange_color_modal
             <div class="row">
                <div class="col-md-12" style="border-right: 0px solid #ddd">
                   <div class="form-group form-group-sm">
-                     <div class="">
+                     <div class="">0
                         <label class="control-label">
                         Hosting Test Title   <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="  Question level determines the standard of the question. Supported classification are easy, intermediate and hard."> <i class="fa fa-info-circle"> </i></a>
                         </label>
                         <input type="hidden" name="template_id" value="{{$template_id}}">
-                        <input type="text" class="form-control" name="host_name" required="">
+                        <input type="text" class="form-control" name="host_name" @if(isset($edit)) value="{{$edit->title}}" @elseif($edit_host) value="{{$edit_host->host_name}}" @endif required="">
                      </div>
                   </div>
                   <div class="form-group form-group-sm" data-ng-init="modalObject.settings.cutOff = 0">

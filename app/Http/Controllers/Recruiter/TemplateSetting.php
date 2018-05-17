@@ -10,12 +10,12 @@ use App\Templates_mail_setting;
 use App\Question_tag;
 use Auth;
 use DB;
+use App\Host_Templates_Test_Settings;
 
 class TemplateSetting extends Controller
 {
 	//Creating Test Template Settings
     public function templatetestSetting(Request $request){
-    	//dd($request->input());
     	try {
 			if (isset($request->template_id)){				
 				$store = Templates_test_setting::firstOrNew(array('test_templates_id' => $request->template_id));
@@ -42,10 +42,66 @@ class TemplateSetting extends Controller
 				}else{
 					return \Response()->Json([ 'status' => 200,'msg'=>'Something Went Wrong Please Try Again!']);	
 				}			
-			}else{
-				$this->set_session('Please Give The Required Data', false);
-				return redirect()->back();
 			}
+			elseif ($request->host_id)
+			{
+				$store = Host_Templates_Test_Settings::firstOrNew(array('host_id' => $request->host_id));
+				$store->host_id = $request->host_id;
+				$store->webcam_id = $request->webcam_id;
+				if ($request->mandatory_resume == 1) {
+				$store->mandatory_resume = 1;
+				$store->request_resume = 1;				
+				}elseif($store->request_resume == 1 && $request->mandatory_resume != 1){
+				$store->mandatory_resume = 0;
+				$store->request_resume = 1;
+				}elseif($store->request_resume != 1){
+					$store->mandatory_resume = 0;					
+					$store->request_resume = 0;					
+				}
+				if ($request->email_verification == 1) {
+				$store->email_verification = 1;			
+				}else{
+				$store->email_verification = 0;
+				}
+
+				// date and time update function
+				// $hosted_test = new Hosted_test();
+				$temp1 =  $request->input('op_t_y').'-'.$request->input('op_t_m').'-'.$request->input('op_t_d');
+		      	$temp2 = $request->input('op_time_hrs').':'.$request->input('op_time_min').':'.'00';
+		      	$my_date1 = date($temp1. " ".$temp2);
+		        // $hosted_test->test_open_date = $my_date1;
+		        // $hosted_test->test_open_time = $request->input('cl_time_format');
+
+		      	$temp1 =  $request->input('cl_t_y').'-'.$request->input('cl_t_m').'-'.$request->input('cl_t_d');
+		      	$temp2 = $request->input('cl_time_hrs').':'.$request->input('cl_time_min').':'.'00';
+		      	$my_date2 = date($temp1. " ".$temp2);
+		        // $hosted_test->test_close_date = $my_date2;
+		        // $hosted_test->test_close_time = $request->input('cl_time_format');
+
+		        // $hosted_test->time_zone = $request->input('time_zone');
+
+		        // $hosted_test->test_template_id = $request->input('template_id');
+		        // $hosted_test->time_zone = $request->input('time_zone');
+
+		        $array = DB::table('hosted_tests')
+		           ->where('id',$request->host_id)
+		           ->update([
+		            'test_open_date' => $my_date1,
+		            'test_open_time' => $request->input('cl_time_format'),
+		            'test_close_date' => $my_date2,
+		            'test_close_time' => $request->input('cl_time_format'),
+		            'time_zone' =>  $request->input('time_zone') 
+		          ]);
+
+		           
+		           return $array;
+				if ($store->save()){				
+					return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Created Test Template Settings', 'array' => $array]);
+				}else{
+					return \Response()->Json([ 'status' => 200,'msg'=>'Something Went Wrong Please Try Again!']);	
+				}		
+			}
+
 		} catch (QueryException $e) {
     		return \Response()->Json([ 'array' => $e]);
     	}

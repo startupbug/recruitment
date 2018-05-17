@@ -93,9 +93,11 @@ agr open hai r close nh toh -->
                     <div class="col-md-6">
                         <div class="right_tab">
                             <ul>
-                                 @if(!(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date)))))
+
+                                
+                                 @if(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
                                     <li><a href="#">Invite Candidates</a></li>
-                                    <li><a href="{{route('edit_template',['id'=>$hosted_test->test_template_id])}}">Edit</a></li>
+                                    <li><a href="{{route('edit_template',['id'=>$hosted_test->host_id, 'flag' => 'host'])}}">Edit</a></li>
                                  @endif
                                <!--  <li>Report</li> -->
 
@@ -288,7 +290,7 @@ agr open hai r close nh toh -->
                             <div class="right_tab">
                                 <ul>
                                   <li><a href="{{route('preview_test',['id'=>$value->id])}}" target="_blank">Public Preview</a></li>
-                                  <li><a href="{{route('edit_template',['id'=>$value->id])}}"  onclick="edit_template_text_editor()">Edit</a></li>
+                                  <li><a href="{{route('edit_template',['id'=>$value->id, 'flag' => 'test'])}}"  onclick="edit_template_text_editor()">Edit</a></li>
                                   <li class="host_content">
                                       <div class="host">
                                           <a href="{{route('host_test_page',['id'=>$value->id])}}">Host this test</a>

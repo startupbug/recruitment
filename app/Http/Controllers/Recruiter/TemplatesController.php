@@ -203,8 +203,100 @@ return redirect()->back();
 	// Creating Test Templates
 
 	// Editing Test Template
-public function edit_template($id){
+public function edit_template($id, $flag){
   //dd(123);
+  // dd($flag);
+  if($flag == "host")
+  {
+    $args['tags'] = DB::table('question_tags')->get();
+    // $args['edit'] = Test_template::find($id);
+    $args['edit_host'] = Hosted_test::leftjoin('test_templates','hosted_tests.test_template_id','=','test_templates.id')
+    ->select('hosted_tests.id','hosted_tests.host_name','hosted_tests.test_template_id','hosted_tests.description','hosted_tests.instruction','hosted_tests.cut_off_marks','hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time','hosted_tests.time_zone','hosted_tests.status','hosted_tests.created_at','hosted_tests.updated_at','test_templates.user_id','test_templates.template_type_id','test_templates.title','test_templates.image','test_templates.duration')
+    ->where('hosted_tests.id',$id)->first();
+    $args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
+    ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))
+    ->where('template_id',$id)
+    ->groupBy('sections.id')
+    ->orderBy('order_number','ASC')
+    ->get();
+
+    foreach ($args['sections'] as $key => $value) {
+      
+       $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
+
+             $args['sections_tabs'][$value->id]['count'] = count($args['sections_tabs'][$value->id]['ques1']); //$value->section_questions;
+
+             $args['sections_tabs'][$value->id]['ques2'] = Question::where('question_type_id',2)->where('section_id', $value->id)->get();
+
+             $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']);
+
+             $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',3)->where('section_id', $value->id)->get();
+
+             $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']);
+
+             //counting easy questions from each section
+              $args['sections_tabs'][$value->id]['easy_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->where('sections.id',$value->id)
+               ->where('questions.question_level_id',1)
+               ->count();
+              // dd($args['sections_tabs']);
+
+               //counting medium questions from each section
+              $args['sections_tabs'][$value->id]['medium_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->where('sections.id',$value->id)
+               ->where('questions.question_level_id',2)
+               ->count();
+
+              //counting hard questions from each section
+               $args['sections_tabs'][$value->id]['hard_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->where('sections.id',$value->id)
+               ->where('questions.question_level_id',3)
+               ->count();
+
+              //counting total marks questions from each section
+               $args['sections_tabs'][$value->id]['marks_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               ->leftJoin('question_details','question_details.question_id','=','questions.id')
+               ->select('question_details.marks')
+               ->where('sections.id',$value->id)               
+               ->sum('marks');
+
+             // $args['sections_tabs2'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
+             // $args['sections_tabs'][$value->id]['count2'] = $value->section_questions;
+         }
+        //dd($args['sections_tabs']);
+
+         $args['test_setting_types'] = Test_template_types::get();
+         $args['test_setting_webcam'] = Webcam::get();
+         $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
+         $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
+         $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
+         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
+         $args['template_id'] = $id;
+       // dd($args);
+
+
+         $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
+         ->select('user_setting_questions.*','format_settings.name as format_settings_name')
+         ->where('template_id',$id)->orderBy('user_setting_questions.order_number','ASC')->get();
+       //$args['template_question_setting'][0]['arr'] = array(123);
+       //dd($args['template_question_setting']);
+       //$user_setting_question_details = array();
+         foreach ($args['template_question_setting'] as $key => $value) {
+          $args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
+      }
+      //Public_view_page index method query 
+      $args['Public_view_page'] = Public_view_page::get();
+
+      $args['public_page_view_details'] = Test_template::where('id',$id)
+      ->orderBy('image','Desc')
+      ->first();
+      $args['hosted_test'] = Hosted_test::leftjoin('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+            ->leftjoin('users', 'test_templates.user_id', '=', 'users.id')
+                ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status', 'users.name as username', 'test_templates.instruction', 'test_templates.description')->where('hosted_tests.id', $id)->first();
+
+  }
+  else
+  {
     $args['tags'] = DB::table('question_tags')->get();
     $args['edit'] = Test_template::find($id);
 
@@ -273,9 +365,9 @@ public function edit_template($id){
          $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
          ->select('user_setting_questions.*','format_settings.name as format_settings_name')
          ->where('template_id',$id)->orderBy('user_setting_questions.order_number','ASC')->get();
-			 //$args['template_question_setting'][0]['arr'] = array(123);
-			 //dd($args['template_question_setting']);
-			 //$user_setting_question_details = array();
+       //$args['template_question_setting'][0]['arr'] = array(123);
+       //dd($args['template_question_setting']);
+       //$user_setting_question_details = array();
          foreach ($args['template_question_setting'] as $key => $value) {
           $args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
       }
@@ -288,6 +380,8 @@ public function edit_template($id){
       $args['hosted_test'] = Hosted_test::leftjoin('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
             ->leftjoin('users', 'test_templates.user_id', '=', 'users.id')
                 ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status', 'users.name as username', 'test_templates.instruction', 'test_templates.description')->where('hosted_tests.id', $id)->first();
+  }
+    
 
 
 
@@ -312,18 +406,34 @@ public function edit_template($id){
     //Deleting Test Template
 
     //Updating Test Template
-public function update_test_template(Request $request,$id){
+  public function update_test_template(Request $request,$id){
+    // return $request->input();  
    try {
-      if (isset($id)){
-         $array = DB::table('test_templates')
-         ->where('id',$id)
-         ->update([
-          'user_id' => Auth::user()->id,
-          'template_type_id' => $request->template_type_id,
-          'title' => $request->title,
-          'description' => $request->description,
-          'instruction' =>  $request->instruction
-      ]);
+      if (isset($id))
+      {
+        if($request->input('host_id'))
+        {
+            $array = DB::table('hosted_tests')
+           ->where('id',$id)
+           ->update([
+            'host_name' => $request->title,
+            'description' => $request->description,
+            'instruction' =>  $request->instruction
+          ]);
+        }
+        elseif($request->input('template_id'))
+        {
+            $array = DB::table('test_templates')
+           ->where('id',$id)
+           ->update([
+            'user_id' => Auth::user()->id,
+            'template_type_id' => $request->template_type_id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'instruction' =>  $request->instruction
+          ]);
+        }
+         
          return \Response()->Json([ 'array' => $array]);
      }
  } catch (QueryException $e) {
