@@ -109,7 +109,7 @@ Route::post('/test_completion_mail','Recruiter\CompanyController@test_completion
 //Recruiter Test Template Routes Started
 Route::get('/view', 'Recruiter\TemplatesController@manage_test_view')->name('manage_test_view');
 Route::post('/create_test_template','Recruiter\TemplatesController@create_test_template')->name('create_test_template');
-Route::get('/edit_template/{id}', 'Recruiter\TemplatesController@edit_template')->name('edit_template');
+Route::get('/edit_template/{id}/{flag?}', 'Recruiter\TemplatesController@edit_template')->name('edit_template');
 Route::post('/update_test_template/{id}','Recruiter\TemplatesController@update_test_template')->name('update_test_template');
 Route::get('/delete_test_template/{id}', 'Recruiter\TemplatesController@delete_test_template')->name('delete_test_template');
 Route::get('/template_public_preview/{id}', 'Recruiter\TemplatesController@template_public_preview')->name('template_public_preview');

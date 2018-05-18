@@ -93,9 +93,11 @@ agr open hai r close nh toh -->
                     <div class="col-md-6">
                         <div class="right_tab">
                             <ul>
-                                 @if(!(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date)))))
+
+                                
+                                 @if(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
                                     <li><a href="#">Invite Candidates</a></li>
-                                    <li><a href="{{route('edit_template',['id'=>$hosted_test->test_template_id])}}">Edit</a></li>
+                                    <li><a href="{{route('edit_template',['id'=>$hosted_test->host_id, 'flag' => 'host'])}}">Edit</a></li>
                                  @endif
                                <!--  <li>Report</li> -->
 
@@ -288,7 +290,7 @@ agr open hai r close nh toh -->
                             <div class="right_tab">
                                 <ul>
                                   <li><a href="{{route('preview_test',['id'=>$value->id])}}" target="_blank">Public Preview</a></li>
-                                  <li><a href="{{route('edit_template',['id'=>$value->id])}}"  onclick="edit_template_text_editor()">Edit</a></li>
+                                  <li><a href="{{route('edit_template',['id'=>$value->id, 'flag' => 'test'])}}"  onclick="edit_template_text_editor()">Edit</a></li>
                                   <li class="host_content">
                                       <div class="host">
                                           <a href="{{route('host_test_page',['id'=>$value->id])}}">Host this test</a>
@@ -406,7 +408,7 @@ agr open hai r close nh toh -->
                 <h3 class="modal-title s_font f_font"><i class="fa fa-copy duplicate_copy"></i>Create Duplicate Test Template</h3>
             </div>
             <div class="modal-body s_modal_form_body modal_top modal_duplicate">
-                <form action="{{route('create_duplicate_template_post')}}" id="create_duplicate_template_post" method="POST">
+                <form onSubmit="return test_template_name_check()" action="{{route('create_duplicate_template_post')}}"  id="create_duplicate_template_post" method="POST">
                     {{csrf_field()}}
                     <input type="hidden" id="duplication_of_template_ki_id" value="" name="previous_template_id">
                     <div class="row">
@@ -415,7 +417,7 @@ agr open hai r close nh toh -->
                                 <label class="col-md-3 control-label" for="name">Test-template Name:</label>
                                 <div class="col-md-9">
                                     <div class="template">
-                                        <input id="name" name="title" value="" type="text" placeholder="Enter name of the new test template" class="form-control general">
+                                        <input id="name" name="title" value="" type="text" placeholder="Enter name of the new test template" class="form-control general test_template_name">
                                     </div>
                                     <img src="{{ asset('public/assets/img/loader.gif') }}" id="loader_image" style="display: none;">
                                 </div>

@@ -86,39 +86,46 @@ $("#update_test_template").on('submit', function(e){
 //Duplicate Test Template
 $("#create_duplicate_template_post").on('submit', function(e){
   e.preventDefault();
-  var formData = $(this).serialize();
-  $.ajaxSetup({
-    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
-  });
-  $.ajax({
-    type: $(this).attr('method'),
-    url: $(this).attr('action'),
-    data: formData,
-    beforeSend: function(){
-      $('#loader_image').show();
-    },
-    success: function (data) {
-      console.log(data);
-      if(data.status == 200){
-        alertify.success(data.msg);
-        $('#createtemplate').modal('hide');
-         setTimeout(function(){
-           window.location.reload();
-         }, 1000);
-            // $('#close_modal_template').trigger('click');
-          }else if(data.status == 202){
-            alertify.warning(data.msg);
-          }else{
-            alertify.warning(data.array.errorInfo[2]);
-          }
+  if ($('.test_template_name').val().length < 4 || $('.test_template_name').val().length > 200 ){
+        alertify.error('test template`s title should be between 4 and 200 characters');
+  }
+  else{
+      var formData = $(this).serialize();
+      $.ajaxSetup({
+        headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+      });
+      $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: formData,
+        beforeSend: function(){
+          $('#loader_image').show();
         },
-        error: function (data) {
-         alertify.warning("Oops. something went wrong. Please try again");
-       },
-      complete: function(){
-        $('#loader_image').hide();
-    },
-     });
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            alertify.success(data.msg);
+            $('#createtemplate').modal('hide');
+             setTimeout(function(){
+               window.location.reload();
+             }, 1000);
+                // $('#close_modal_template').trigger('click');
+              }else if(data.status == 202){
+                alertify.warning(data.msg);
+              }else{
+                alertify.warning(data.array.errorInfo[2]);
+              }
+            },
+            error: function (data) {
+             alertify.warning("Oops. something went wrong. Please try again");
+           },
+          complete: function(){
+            $('#loader_image').hide();
+        },
+         });
+  }
+
+
 });
 
 
@@ -202,7 +209,7 @@ $("#templatetestSetting").on('submit', function(e){
       if(data.status == 200){
         alertify.success(data.msg);
         setTimeout(function(){
-         window.location.reload(1);
+         // window.location.reload(1);
        }, 1000);
       }else if(data.status == 202){
         alertify.warning(data.msg);
