@@ -408,7 +408,7 @@ agr open hai r close nh toh -->
                 <h3 class="modal-title s_font f_font"><i class="fa fa-copy duplicate_copy"></i>Create Duplicate Test Template</h3>
             </div>
             <div class="modal-body s_modal_form_body modal_top modal_duplicate">
-                <form action="{{route('create_duplicate_template_post')}}" id="create_duplicate_template_post" method="POST">
+                <form onSubmit="return test_template_name_check()" action="{{route('create_duplicate_template_post')}}"  id="create_duplicate_template_post" method="POST">
                     {{csrf_field()}}
                     <input type="hidden" id="duplication_of_template_ki_id" value="" name="previous_template_id">
                     <div class="row">
@@ -417,7 +417,7 @@ agr open hai r close nh toh -->
                                 <label class="col-md-3 control-label" for="name">Test-template Name:</label>
                                 <div class="col-md-9">
                                     <div class="template">
-                                        <input id="name" name="title" value="" type="text" placeholder="Enter name of the new test template" class="form-control general">
+                                        <input id="name" name="title" value="" type="text" placeholder="Enter name of the new test template" class="form-control general test_template_name">
                                     </div>
                                     <img src="{{ asset('public/assets/img/loader.gif') }}" id="loader_image" style="display: none;">
                                 </div>

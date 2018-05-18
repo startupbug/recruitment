@@ -1708,7 +1708,7 @@
                                                 </button>
                                              </div>
                                           </div>
-                                     </div>
+                                    </div>
                                     <div class="form-group form-group-sm">
                                        <label class="col-sm-3 control-label">
                                        Candidate Mail Setting

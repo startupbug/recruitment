@@ -3297,7 +3297,9 @@ $( document ).ready(function() {
     pagination_table('my_pagination_table_3','pagination_number_3');
     pagination_table('my_pagination_table_4','pagination_number_4');
     pagination_table('my_pagination_table_5','pagination_number_5');
+
 });
+
 
 function pagination_table($table_id , $pagination_id) {
   console.log($pagination_id);
