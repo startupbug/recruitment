@@ -30,7 +30,7 @@
         </li>
         <li>
             <a data-toggle="pill" href="#testemplate">
-                
+
                 Test Templates @if(isset($count)) ({{$count}}) @endif
                 <div class="s_click_popup">
                     <i class="fa fa-info-circle" data-toggle="tooltip" title="Click Me" tooltip-trigger="outsideClick"> </i>
@@ -82,19 +82,19 @@ agr open hai r close nh toh -->
                                     <?php $expired_status=true;   ?>
                                 @elseif(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
                                     <li>Live</li>
-                                    <?php $live_status=true;  ?>                               
+                                    <?php $live_status=true;  ?>
                                 @endif
 
                                 <li>{{$hosted_test->host_name}}</li>
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-6">
                         <div class="right_tab">
                             <ul>
 
-                                
+
                                  @if(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
                                     <li><a href="#">Invite Candidates</a></li>
                                     <li><a href="{{route('edit_template',['id'=>$hosted_test->host_id, 'flag' => 'host'])}}">Edit</a></li>
@@ -268,7 +268,7 @@ agr open hai r close nh toh -->
                 <div class="view_filter_right">
                     <i class="fa fa-filter" data-toggle="modal" name="test_template" data-target="#filter_view"></i>
                 </div>
-                
+
                 @if(isset($listing))
                 @foreach($listing as $key => $value)
 
@@ -397,9 +397,9 @@ agr open hai r close nh toh -->
 @section('createtemplate')
 <!--create duplicate template on view page-->
 <div class="modal fade" id="createtemplate" role="dialog">
-    <div class="modal-dialog  modal-lg">
+    <div class="modal-dialog  modal-lg" style="width: 50%; height: 50%;">
         <!-- Modal content-->
-        <div class="modal-content filter fa_evaluate">
+        <div class="modal-content filter">
             <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
                     <!--<button type="button" class="btn s_save_button s_font" data-dismiss="modal">Create</button>-->
@@ -412,22 +412,22 @@ agr open hai r close nh toh -->
                     {{csrf_field()}}
                     <input type="hidden" id="duplication_of_template_ki_id" value="" name="previous_template_id">
                     <div class="row">
-                        <div class="col-md-10">
-                            <div class="form-group title">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">Test-template Name:</label>
                                 <div class="col-md-9">
-                                    <div class="template">
-                                        <input id="name" name="title" value="" type="text" placeholder="Enter name of the new test template" class="form-control general">
-                                    </div>
-                                    <img src="{{ asset('public/assets/img/loader.gif') }}" id="loader_image" style="display: none;">
+                                  <input id="name" name="title" value="" type="text" placeholder="Enter name of the new test template" class="form-control general">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div class="button_duplicate">
+                        <div class="col-md-4 col-md-offset-7">
+                            <div class="button_duplicate_s">
                                 <button type="submit" class="btn">Create</button>
                                 <button type="button" id="close_modal_template" class="btn btn-default s_font f_font" data-dismiss="modal">Cancel</button>
                             </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-4">
+                            <img src="{{ asset('public/assets/img/loader.gif') }}" id="loader_image" style="display: none;">
                         </div>
                         </div>
                     </div>

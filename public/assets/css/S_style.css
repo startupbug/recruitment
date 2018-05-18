@@ -619,3 +619,19 @@ ul.add_resources_submission_ul .s_close {
     font-weight: 600;
     font-size: 11px;
 }
+.button_duplicate_s button.btn {
+    color: #ffffff;
+    background: #323754!important;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.button_duplicate_s button.btn.btn-default.f_font {
+    color: black;
+    background: #cccccc!important;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
