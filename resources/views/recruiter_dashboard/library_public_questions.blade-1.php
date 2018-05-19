@@ -1688,7 +1688,7 @@
                             <input type="checkbox">Easy
                         </div>
                         <div class="checkbox col-md-2 col-xs-4">
-                            <input type="checkbox">EasyIntermediate
+                            <input type="checkbox">Intermediate
                         </div>
                         <div class="checkbox col-sm-2 col-xs-4">
                             <input type="checkbox">Hard
