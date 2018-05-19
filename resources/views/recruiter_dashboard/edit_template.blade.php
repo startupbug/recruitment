@@ -1255,7 +1255,6 @@
                                              <div class="col-xs-3">
                                                <div class="pull-right">
                                                  <div class="btn-group">
-
                                                    @if(!$loop->first)
                                                       <a href="{{route('setting_question_move_up',['id'=>$t_q_s->id])}}" class="btn btn-sm btn-link">
                                                           <span class="fa fa-arrow-up"></span>
@@ -1669,7 +1668,7 @@
                                        <div class="col-sm-8">
                                        <ul class="unordered-list">
                                        </ul>
-                                       <button class="btn btn-info btn-sm" ng-init="showNewReciever = false" ng-hide="showNewReciever" ng-click="showNewReciever = true" style="" id="rev_button">+ Addz receiver</button>
+                                       <button class="btn btn-info btn-sm" ng-init="showNewReciever = false" ng-hide="showNewReciever" ng-click="showNewReciever = true" style="" id="rev_button">+ Add receiver</button>
                                        </div>
                                     </div>
                                     <div class="panel-body rec_div2">
@@ -1806,7 +1805,7 @@
                               <div class="ept_cover_image_bottom">
                                  <div class="clearfix">
                                     <div class="pull-right s_cover_image_btn_model">
-                                       <button class="btn btn-sm btn-default" id="cover_image_btn" >Change Cover Imagessss <i class="fa fa-caret-up" aria-hidden="true"></i></button>
+                                       <button class="btn btn-sm btn-default" id="cover_image_btn" >Change Cover Image <i class="fa fa-caret-up" aria-hidden="true"></i></button>
                                        <div class="s_popover">
                                          <div class="popover fade in top hidden" id="cover_image" tooltip-animation-class="fade" uib-tooltip-classes="" uib-popover-template-popup="" title="" content-exp="contentExp()" placement="top" popup-class="" animation="animation" is-open="isOpen" origin-scope="origScope" style="visibility: visible; display: block; position: relative;">
                                           <div class="arrow"></div>
@@ -3009,7 +3008,7 @@
          <input type="hidden" name="section_id" id="section_id_2" value="">
          <input type="hidden" name="question_type_id" value="2">
          <input type="hidden" name="question_sub_types_id" value="2">
-          <input type="hidden" name="lib_private_question" value="0">
+          <input type="hidden" name="lib_private_question" value="1">
         <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
@@ -3470,7 +3469,7 @@
          <input type="hidden" name="section_id" id="section_id_4" value="">
          <input type="hidden" name="question_type_id" value="2">
          <input type="hidden" name="question_sub_types_id" value="3">
-          <input type="hidden" name="lib_private_question" value="0">
+          <input type="hidden" name="lib_private_question" value="1">
          <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                <div class="pull-right">
@@ -4370,7 +4369,7 @@
         <input type="hidden" name="section_id" id="section_id_5" value="">
         <input type="hidden" name="question_sub_types_id" value="4">
         <input type="hidden" name="question_type_id" value="3">
-         <input type="hidden" name="lib_private_question" value="0">
+         <input type="hidden" name="lib_private_question" value="1">
          <div class="modal-content">
             <div class="modal-header s_modal_form_header">
                <div class="pull-right">
@@ -4703,7 +4702,7 @@
           <input type="hidden" name="section_id" id="section_id_6" value="">
           <input type="hidden" name="question_sub_types_id" value="5">
           <input type="hidden" name="question_type_id" value="3">
-           <input type="hidden" name="lib_private_question" value="0">
+           <input type="hidden" name="lib_private_question" value="1">
           <div class="modal-content">
              <div class="modal-header s_modal_form_header">
                 <div class="pull-right">
@@ -5323,7 +5322,7 @@
             <div class="modal-body s_modal_form_body">
                <div class="row">
                   <div class="col-md-6 col-sm-12 col-xs-12">
-                     <h3>Edit Page0000</h3>
+                     <h3>Edit Page</h3>
                         <div class="form-group">
                            <label>Page Title <i class="fa fa-info-circle"></i></label>
                            <input type="text" class="form-control" name="page_title"  id="add_publicpageview_title">
@@ -5419,7 +5418,7 @@
         <input type="hidden" name="section_id" id="section_id_1" value="">
         <input type="hidden" name="question_sub_types_id" value="1">
         <input type="hidden" name="question_type_id" value="1">
-        <input type="hidden" name="lib_private_question" value="0">
+        <input type="hidden" name="lib_private_question" value="1">
         <div class="modal-content">
            <div class="modal-header s_modal_form_header">
               <div class="pull-right">

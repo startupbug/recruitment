@@ -203,9 +203,7 @@ return redirect()->back();
 	// Creating Test Templates
 
 	// Editing Test Template
-public function edit_template($id, $flag){
-  //dd(123);
-  // dd($flag);
+public function edit_template($id = NULL, $flag = NULL){
   if($flag == "host")
   {
     $args['tags'] = DB::table('question_tags')->get();
@@ -213,7 +211,6 @@ public function edit_template($id, $flag){
     $args['edit_host'] = Hosted_test::leftjoin('test_templates','hosted_tests.test_template_id','=','test_templates.id')
     ->select('hosted_tests.id','hosted_tests.host_name','hosted_tests.test_template_id','hosted_tests.description','hosted_tests.instruction','hosted_tests.cut_off_marks','hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time','hosted_tests.time_zone','hosted_tests.status','hosted_tests.created_at','hosted_tests.updated_at','test_templates.user_id','test_templates.template_type_id','test_templates.title','test_templates.image','test_templates.duration','test_templates.hosted')
     ->where('hosted_tests.id',$id)->first();
-    // dd($args['edit_host']->test_template_id);
     $args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
     ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))
     ->where('template_id',$args['edit_host']->test_template_id)
