@@ -29,12 +29,13 @@
     <link rel="stylesheet" href="{{ asset('public/assets/css/select2.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="{{ asset('public/assets/css/editor.css') }}"/> -->
-    <link rel="stylesheet" href="{{ asset('public/assets/css/sweetalert.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('public/assets/css/froala_editor.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('public/bower_components/alertify/themes/alertify.default.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/froala_editor.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/assets/css/sweetalert.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/assets/css/loading.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/S_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
 
     <script type="text/javascript">
 
@@ -959,6 +960,7 @@
 <script>
   var csrf = '{{csrf_field()}}';
 </script>
+<script src="{{ asset('public/assets/js/loading.js') }}"></script>
 <script src="{{ asset('public/assets/js/s_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/i_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/fa_js.js') }}"></script>

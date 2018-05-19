@@ -9,7 +9,6 @@
             <a href="{{route('manage_test_view')}}">
             <button type="submit" class="btn">Back</button>
             </a>
-            
             <strong>Template: @if(isset($edit_host)){{$edit_host->host_name}}@elseif(isset($edit)){{$edit->title}}@endif</strong>
             @if(isset($edit_host) && $edit_host->status == 1) live @endif
          </div>
@@ -17,7 +16,7 @@
             <h4>
                @if(isset($edit))
                <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#_first_model">
-               <i class="fa fa-check" aria-hidden="true"></i> Host this Test 
+               <i class="fa fa-check" aria-hidden="true"></i> Host this Test
                </button>
                @endif
             </h4>
@@ -49,7 +48,7 @@
                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
                            </a>
                            @endif
-                           <a href="{{route('delete_section',['id'=>$value->id])}}" class="deleteConfirm" onclick="return confirm('Are You Sure To Delete This Section?')">
+                             <a href="{{route('delete_section',['id'=>$value->id])}}" class="deleteConfirm deleteConfirm_section">
                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                            </a>
                         </div>
@@ -471,21 +470,21 @@
                         <div class="panel-heading"><i class="fa fa-th-large"></i> Section Summary</div>
                         <div class="panel-body">
                            <div class="clearfix">
-                             
+
                               <div class="row text-center s_small">
-                                 <div class="col-xs-3">
+                                 <div class="col-xs-3 width_set">
                                     <small>Easy</small>
                                     <h4 class="no-margin strong ">{{isset($sec['easy_question_count']) ? $sec['easy_question_count'] : '' }}</h4>
                                  </div>
-                                 <div class="col-xs-3 no-padding">
+                                 <div class="col-xs-3 width_set">
                                     <small>Medium</small>
                                     <h4 class="no-margin strong">{{$sec['medium_question_count']}}</h4>
                                  </div>
-                                 <div class="col-xs-3">
+                                 <div class="col-xs-3 width_set">
                                     <small>Hard</small>
                                     <h4 class="no-margin strong">{{$sec['hard_question_count']}}</h4>
                                  </div>
-                                 <div class="col-md-3 no-padding" style="border-left: 1px solid #ddd;">
+                                 <div class="col-md-3 width_set_2" style="border-left: 1px solid #ddd;">
                                     <small>Total Marks</small>
                                     <h4 class="no-margin strong">
                                        {{ $sec['marks_question_count'] }}
@@ -1137,7 +1136,7 @@
                                                    checked="checked"
                                                    @endif
                                                    name="request_resume" id="request_resume" > Request Resume
-                                                
+
                                                 </label>
                                              </div>
                                              <div class="checkbox">
@@ -1220,8 +1219,7 @@
                                              <span class="text text-sm text-danger hidden" id="button_error" >
                                                Please resolve the following issues in the questionnaire
                                              </span>
-                                             <ul class="dropdown-menu s_drop_down btn-block new_question question_select" @if(isset($edit)) data-template_id="{{$edit->id}}" @elseif(isset($edit_host)) data-template_id="{{$edit_host->id}}" @endif >
-                                               <li><a href="#"  data-id="0" data-question="Write own question"><strong>Write own question</strong></a></li>
+                                             <ul class="dropdown-menu s_drop_down btn-block new_question question_select question_custom" @if(isset($edit)) data-template_id="{{$edit->id}}" @elseif(isset($edit_host)) data-template_id="{{$edit_host->id}}" @endif >
 
                                                <li class="divider"></li>
                                                <li class="dropdown-header proLiHeader">Professional</li>
@@ -1562,8 +1560,6 @@
                                          </form>
                                        </li>
                                        @endforeach;
-
-
                                      </ul>
                                    </div>
                                  </div>
@@ -1708,7 +1704,7 @@
                                                 </button>
                                              </div>
                                           </div>
-                                     </div>
+                                    </div>
                                     <div class="form-group form-group-sm">
                                        <label class="col-sm-3 control-label">
                                        Candidate Mail Setting
@@ -1789,19 +1785,19 @@
                      <div class="ept_body">
                         <div class="ept_container">
                            <div class="ept_cover_image" @if(isset($public_page_view_details->image)) style="
-    background-image: url({{asset('public/storage/public_view_covers/'.$public_page_view_details->image)}})" @endif>
+                              background-image: url({{asset('public/storage/public_view_covers/'.$public_page_view_details->image)}})" @endif>
                               <!-- @if(isset($public_page_view_details->image))
                               <img src="{{asset('public/storage/public_view_covers/'.$public_page_view_details->image)}}">
                               @endif -->
                               <div class="ept_cover_image_top">
                                  <div class="clearfix">
                                     <div class="pull-right public_page_tag">
-                                       <div class="label-public-page" data-delete="{{route('delete_image_tags')}}" @if(isset($edit)) data-url="{{route('data_image_tags',$public_page_view_details->template_id )}}" @endif @if(isset($edit)) data-id="{{$public_page_view_details->template_id}}" @endif >
+                                       <div class="label-public-page" data-delete="{{route('delete_image_tags')}}" @if(isset($edit)) data-url="{{route('data_image_tags',$template_id )}}" @endif @if(isset($edit)) data-id="{$template_id}}" @endif >
                                        </div>
 
                                        <div class="clearfix">
                                           <div class="form-group ">
-                                             <input type="text" name="cover_image_tag" value="" @if(isset($edit)) data-url="{{route('insert_image_tags',$public_page_view_details->template_id )}}" @endif @if(isset($edit)) data-id="{{$public_page_view_details->template_id}}" @endif placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">
+                                             <input type="text" name="cover_image_tag" value="" @if(isset($edit)) data-url="{{route('insert_image_tags',$template_id )}}" @endif @if(isset($edit)) data-id="{{$template_id}}" @endif placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">
                                           </div>
                                        </div>
                                     </div>
@@ -2418,7 +2414,7 @@
          <div class="modal-footer">
             <div class="row">
                <div class="col-md-2 s_margin_bottom">
-                  <button type="submit" class="btn" onsubmit="hosting_confirm()">Publish Host</button>
+                  <button type="submit" class="btn" >Publish Host</button>
                </div>
             </div>
            </form>
@@ -2437,7 +2433,7 @@
                  <input type="hidden" name="public_mcq_id" id="public_question_mcq_id" style="color: black;">
                  <button type="submit" class="btn s_save_button s_font hidden" id="add_selected_question_button" data-dismiss="modal"><i class="fa fa-list"></i> Add Selected Questions</button>
                </form>
-               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Clear selection</button>
+               <button type="button" class="btn btn-default s_font mcqs_clear_selection">Clear selection</button>
                <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
             <h3 class="modal-title s_font">MCQ Library <span>(section- 22318047)</span></h3>
@@ -3799,7 +3795,7 @@
                 <input type="hidden" name="public_mcq_id" id="public_code_question_mcq_id" style="color: black;">
                 <button type="submit" class="btn s_save_button s_font hidden" id="add_selected_question_code_button" data-dismiss="modal"><i class="fa fa-list"></i> Add Selected Questions</button>
               </form>
-              <button type="button" class="btn btn-default s_font" data-dismiss="modal">Clear selection</button>
+              <button type="button" class="btn btn-default s_font choice_debug_clear_selection">Clear selection</button>
               <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
             </div>
             <h3 class="modal-title s_font">MCQ Library <span>(section- 22318047)</span></h3>
@@ -4992,7 +4988,7 @@
                <input type="hidden" name="public_mcq_id" id="private_submission_question_mcq_id" style="color: black;">
                <button type="submit" class="btn s_save_button s_font hidden" id="add_submission_question_code_button" data-dismiss="modal"><i class="fa fa-list"></i> Add Selected Questions</button>
              </form>
-             <button type="button" class="btn btn-default s_font" data-dismiss="modal">Clear selection</button>
+             <button type="button" class="btn btn-default s_font private_submission_clear_selection">Clear selection</button>
              <button type="button" class="btn btn-default s_font" data-dismiss="modal">Close</button>
            </div>
            <h3 class="modal-title s_font">MCQ Library <span>(section- 22318047)</span></h3>
@@ -6137,13 +6133,4 @@
 <!-- coding modal end -->
 
 
-
-<!-- Submission Edit  Partial Modal And Complete Modal -->
-<script type="text/javascript">
-   // $(document).ready(function(){
-   //    @if(isset($hostFlag) && $hostFlag)
-   //       $('#_first_model').modal('show');
-   //    @endif
-   // });
-</script>
 @endsection

@@ -1661,18 +1661,21 @@ $( document ).ready(function() {
     });
     $("#setting_questionnaire_tab").on('click', '.new_question li a', function() {
       var id = $(this).data('id');
+      var idli = $(this).data('idli');
       var question = $(this).data('question');
       var support_text = $(this).data('support_text');
       var template_id = $(this).closest('ul').data('template_id');
       var url = $('#newquestion').data('urlquestion');
       var urlnewquestion = $('#newquestion').data('urlnewquestion');
       // console.log(csrf);
-      if(id == "0")
+      if(idli == "0")
       {
         $(this).closest('section').find(".unordered-list li:eq(0)").append('<li class="questionBorder">'+
-          '<form action="'+url+'" method="post">'+
+          '<form class="questionRequest">'+
             csrf+
             '<input type="hidden" name="template_id" value="'+template_id+'">'+
+            '<input type="hidden" name="question_id" value="'+id+'" >'+
+            '<input type="hidden" name="question_url" value="'+url+'" >' +
             '<div class="row hidden" id="">'+
               '<div class="col-xs-6 title">'+
                 '<a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Mandatory Question (Edit to change)">'+
@@ -2379,7 +2382,7 @@ $( document ).ready(function() {
               url: $(this).find("input[name='question_url']").val(),
               data: formData,
               success: function (data) {
-                // console.log(data);
+                console.log(data);
 
                 //data inserted
                     if(data.status == 200){
@@ -3297,7 +3300,9 @@ $( document ).ready(function() {
     pagination_table('my_pagination_table_3','pagination_number_3');
     pagination_table('my_pagination_table_4','pagination_number_4');
     pagination_table('my_pagination_table_5','pagination_number_5');
+
 });
+
 
 function pagination_table($table_id , $pagination_id) {
   console.log($pagination_id);
@@ -3367,31 +3372,51 @@ function testcase_fileformat(){
     confirmButtonText: 'Got It!',
   });
 }
-function hosting_confirm(){
-  console.log("asdas");
-  // swal({
-  //   title: 'Pattern of Test Cases',
-  //   type: 'info',
-  //   html:
-  //     "<p>"+
-  //       "<p>There should be a delimiter </p>"+
-  //       "<p>'-----CodeGrounds-----'</p>"+
-  //       "<p>after input and a delimiter</p>"+
-  //       "<p>'-----EndCodeGrounds-----'</p>"+
-  //       "<p>at the end of test case</p>"+
-  //       "<p><b>Example:</b>If your input is 5 &amp; output is 10,your file should be as</p>"+
-  //       "<pre>5<br>-----CodeGrounds-----<br>10<br>-----EndCodeGrounds-----</pre>"+
-  //       "<p></p>"+
-  //     "</p>" ,
-  //   confirmButtonClass: 'btn-info',
-  //   confirmButtonText: 'Got It!',
-  // });
-  swal({
-    title: "Pattern of Test Cases",
-    text: "There should be a delimiter",
-    type: "info",
-    showCancelButton: true,
-    confirmButtonClass: 'btn-info',
-    confirmButtonText: 'Got It!'
-    });
-}
+
+$('.deleteConfirm_section').on('click' , function(e) {
+      e.preventDefault();
+        console.log(123);
+
+        const swalWithBootstrapButtons = swal.mixin({
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          buttonsStyling: false,
+        })
+
+        swalWithBootstrapButtons({
+          title: 'Are you sure?',
+          text: "You are about to delete a section. You will loose all the questions added in this section. But the questions will continue to exist in you question library for further use.",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Delete Section',
+          cancelButtonText: 'Cancel',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.value) {
+            $.ajaxSetup({
+              headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+            });
+            $.ajax({
+              type: 'get',
+              url: $(this).attr('href'),
+              success: function (data) {
+                 console.log(data);
+                 if(data.status == 200){
+                    alertify.success(data.msg);
+                    location.reload();
+                 }
+                },
+                error: function (data) {
+                  console.log(data);
+                alertify.warning("Oops. something went wrong. Please try again");
+               }
+           });
+
+          }
+          else if (result.dismiss === swal.DismissReason.cancel)
+          {
+          }
+        })
+
+        return false;
+});

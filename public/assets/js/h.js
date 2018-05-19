@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 
 /* Datatable Callings */
-// $(".public_mcq_table").DataTable(); 
+// $(".public_mcq_table").DataTable();
 // $(".public_coding_table").DataTable();
 // $(".private_mcq_table").DataTable();
 // $(".private_coding_table").DataTable();
@@ -49,14 +49,14 @@ $(document).ready(function() {
 });
 
 
-$('.tag_textbox').keyup(function(e){
-    
+$('.tag_textbox').change(function(e){
+
     var value = $(this).val();
     var deleteurl = $('.label-public-page').data('delete');
     console.log(deleteurl);
     var template_id = $(this).data('id');
-    if(e.keyCode == 13)
-    {
+    // if(e.keyCode == 13)
+    // {
         $.ajax({
             type: 'post',
             url: $(this).data('url'),
@@ -71,12 +71,12 @@ $('.tag_textbox').keyup(function(e){
                          alertify.success("page view updated successfully");
                     }
                     else{
-                        
+
                          alertify.error(data);
                     }
             }
         });
-    }    
+    // }
 });
 
 
@@ -92,7 +92,7 @@ $(document).ready(function(){
        var url= $(this).data('url')+''; //getting url
         console.log("url" + url);
 
-        setTimeout(function(){ 
+        setTimeout(function(){
 
             $.ajax({
                 type: 'post',
@@ -115,8 +115,8 @@ $(document).ready(function(){
         }, 1500);
 
 
-   });  
-}); 
+   });
+});
 
 
 
@@ -140,7 +140,7 @@ $( ".label-public-page" ).on('click', '.delete_public_tag', function() {
                         $('.label-public-page').append('<label> '+data[i].tag_name+' <span data-url="'+deleteurl+'" data-template_id="'+data[i].template_id+'" data-id="'+data[i].id+'" class="btn delete_public_tag">x</span> </label> ')
                     }
                      alertify.success("page view updated successfully");
-                
+
         }
     });
 });
@@ -152,4 +152,4 @@ $( ".label-public-page" ).on('click', '.delete_public_tag', function() {
 //       perPage: 10,
 //       insertAfter: '.table',
 //       pageNumbers: true
-// }); 
+// });
