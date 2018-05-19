@@ -289,7 +289,7 @@ agr open hai r close nh toh -->
                         <div class="col-md-6">
                             <div class="right_tab">
                                 <ul>
-                                  <li><a href="{{route('preview_test',['id'=>$value->id])}}" target="_blank">Public Preview</a></li>
+                                  <li><a href="{{route('preview_public_testpage',['id'=>$value->id , 'flag'=>'test'])}}" target="_blank">Public Preview</a></li>
                                   <li><a href="{{route('edit_template',['id'=>$value->id, 'flag' => 'test'])}}"  onclick="edit_template_text_editor()">Edit</a></li>
                                   <li class="host_content">
                                       <div class="host">
@@ -587,9 +587,9 @@ agr open hai r close nh toh -->
                                 <label class="col-md-3 control-label" for="name">Test type:</label>
                                 <div class="col-md-9">
                                     <div class="checkbox both ">
-                                        <label><input type="checkbox" id="public_check" name="search[]" value="1" checked="">Public</label>
-                                        <label><input type="checkbox" id="private_check" name="search[]" value="2">Private</label>
-                                        <label><input type="checkbox" id="both_check" name="search[]" value="3">Both</label>
+                                        <label><input type="checkbox" id="public_check_1" name="search[]" value="1" checked="">Public</label>
+                                        <label><input type="checkbox" id="private_check_1" name="search[]" value="2">Private</label>
+                                        <label><input type="checkbox" id="both_check_1" name="search[]" value="3">Both</label>
                                     </div>
                                 </div>
                             </div>

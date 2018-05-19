@@ -688,32 +688,6 @@ class QuestionsController extends Controller
     }
     public function submission_update_questions_modal(Request $request,$id){
 
-
-  // "help_material_name" => array:4 [▼
-  //   0 => "1"
-  //   1 => "2"
-  //   2 => "4"
-  //   3 => "5"
-  // ]
-    	// questions_submission_resources
-
-
-
-  // "submission_evaluation_title" => array:1 [▼
-  //   0 => "321"
-  // ]
-  // "weightage" => array:1 [▼
-  //   0 => "2"
-  // ]
-    	// dd($request->help_material_name);
-
- 
-// dd('123');
-
-
-
-
-
 		$update_question =  Question::find($id);
     	$update_question->question_statement = $request->get('question_statement');
     	$update_question->question_state_id = $request->get('question_state_id');
@@ -721,23 +695,27 @@ class QuestionsController extends Controller
     	$update_question->save();
 
 
-// foreach ($request->help_material_name as $key => $value) {
-//     		dd($value);
-//     	}
+
 
     	$update_help = DB::table('questions_submission_resources')->where('question_id',$id)->get();
     	foreach ($update_help as $key => $value_new) {
-    		dd($value_new->id);
+    		// dd($value_new->id);
     		DB::table('questions_submission_resources')->where('id',$value_new->id)->delete();
     	}
-    	foreach ($request->help_material_name as $key => $value) {
-    		DB::table('questions_submission_resources')            
-            ->insert([
-            	'question_id'=>$id,
-                'candidate_help_material_tests_id' => $value             
-                        
-   			]); 
+    	// dd($request->input());
+    	$help_material = $request->input('help_material_name');
+    	if(!empty($help_material))
+    	{
+    		foreach ($request->help_material_name as $key => $value) {
+	    		DB::table('questions_submission_resources')            
+	            ->insert([
+	            	'question_id'=>$id,
+	                'candidate_help_material_tests_id' => $value             
+	                        
+	   			]); 
+    		}	
     	}
+    	
 
     	$update_evaluation_title = DB::table('question_submission_evaluations')->where('question_id',$id)->get();
     	foreach ($request->submission_evaluation_title as $key => $value) {

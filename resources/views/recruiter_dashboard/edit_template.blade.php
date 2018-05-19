@@ -1236,6 +1236,7 @@
                                      <h5><strong>Questions</strong></h5>
                                      <ul class="unordered-list">
                                        <li></li>
+
                                        @foreach ($template_question_setting as $t_q_s)
                                        <li class="questionBorder">
                                          <form action="{{route('new_user_question_edit')}}" method="post">
@@ -1561,7 +1562,7 @@
                                            </div>
                                          </form>
                                        </li>
-                                       @endforeach;
+                                       @endforeach
 
 
                                      </ul>
@@ -1796,12 +1797,12 @@
                               <div class="ept_cover_image_top">
                                  <div class="clearfix">
                                     <div class="pull-right public_page_tag">
-                                       <div class="label-public-page" data-delete="{{route('delete_image_tags')}}" @if(isset($edit)) data-url="{{route('data_image_tags',$public_page_view_details->template_id )}}" @endif @if(isset($edit)) data-id="{{$public_page_view_details->template_id}}" @endif >
+                                       <div class="label-public-page" data-delete="{{route('delete_image_tags')}}" @if(isset($edit)) data-url="{{route('data_image_tags',$template_id )}}" @endif @if(isset($edit)) data-id="{{$template_id}}" @endif >
                                        </div>
 
                                        <div class="clearfix">
                                           <div class="form-group ">
-                                             <input type="text" name="cover_image_tag" value="" @if(isset($edit)) data-url="{{route('insert_image_tags',$public_page_view_details->template_id )}}" @endif @if(isset($edit)) data-id="{{$public_page_view_details->template_id}}" @endif placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">
+                                             <input type="text" name="cover_image_tag" value="" @if(isset($edit)) data-url="{{route('insert_image_tags')}}" @endif @if(isset($edit)) data-id="{{$template_id}}" @endif placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">
                                           </div>
                                        </div>
                                     </div>
@@ -1821,7 +1822,7 @@
                                                       <label class="control-label">
                                                       Cover Image URL
                                                       </label>
-                                                      <input class="form-control" name="imagez">
+                                                      <input class="form-control" name="imagez" value="{{asset('public/storage/public_view_covers/'.$edit->image)}}">
                                                    </div>
                                                    <div class="">
                                                       <button type="submit" class="btn btn-primary btn-sm small_font_size">
@@ -1847,8 +1848,6 @@
                         <br>
                         <div class="ept_container">
                            <ul class="nav nav-tabs">
-                              <li><a data-toggle="pill" href="#public_instructions">Instructions</a></li>
-                              <li><a data-toggle="pill" href="#public_description">Description</a></li>
                               @foreach($Public_view_page as $key => $value)
                               <li>
                                  <a data-toggle="pill" href="#public_page_view{{$value->id}}" >
@@ -1862,15 +1861,6 @@
                            <div class="panel panel-default navtab-body">
                               <div class="panel-body">
                                  <div class="tab-content sidebar-content">
-                                    <div id="public_instructions" class="tab-pane fade in active">
-                                       <p>(1) Make sure you have a proper internet connection.</p>
-                                       <p>(2) If your computer is taking unexpected time to load, it is recommended to reboot the system before you start the test.</p>
-                                       <p>(3) Once you start the test, it is recommended to pursue it in one go for the complete duration.</p>
-                                    </div>
-                                    <div id="public_description" class="tab-pane fade">
-                                       <p>This test is hosted via Codeground. Please read the instructions carefully before proceeding.</p>
-                                    </div>
-
                                      @foreach($Public_view_page as $key => $value)
 
                                        <div id="public_page_view{{$value->id}}" class="tab-pane fade">
@@ -1889,7 +1879,7 @@
                                              </div>
                                           </div>
                                           <hr class="sm">
-                                          {{$value->page_detail}}
+                                          {!!$value->page_detail!!}
                                        </div>
                                      @endforeach
                                  </div>
@@ -5327,14 +5317,14 @@
             <div class="modal-body s_modal_form_body">
                <div class="row">
                   <div class="col-md-6 col-sm-12 col-xs-12">
-                     <h3>Edit Page0000</h3>
+                     <h3>Edit Page</h3>
                         <div class="form-group">
                            <label>Page Title <i class="fa fa-info-circle"></i></label>
-                           <input type="text" class="form-control" name="page_title"  id="add_publicpageview_title">
+                           <input type="text" class="form-control" name="page_title"  id="add_publicpageview_title" required="">
                         </div>
                         <div class="form-group" id="add_publicpageview_text_editor">
                            <label>Page Content <i class="fa fa-info-circle"></i></label>
-                           <textarea class="edit" name="page_content" ></textarea>
+                           <textarea class="edit" name="page_content" required=""></textarea>
                         </div>
                   </div>
                   <div class="col-md-6 col-sm-12 col-xs-12">
