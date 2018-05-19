@@ -14,7 +14,6 @@
 				 <li @if(isset($templateType_fil) && $templateType_fil==2) class="active" @endif ><a data-toggle="pill" href="#private">Private Questions <i class=""></i></a></li>
 			 	</ul>
 			</div>
-
 			<div class="col-md-9 col-sm-12 col-xs-12 display-table-cell padding-col">
 			 <div class="tab-content sidebar-content">
 				 <!-- Start Public Question -->
@@ -275,7 +274,7 @@
  								<table id="my_pagination_table_3" class="table s_table paginathing_table">
  							    <thead>
  							      <tr>
- 							        <th>Question Id & Statement66</th>
+ 							        <th>Question Id & Statement</th>
  							        <th>State</th>
  							        <th>Level</th>
  							        <th>Tags</th>
@@ -982,7 +981,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="modal fade" id="submission_modal1" role="dialog">
 	@if(isset($submission_data))
@@ -1755,7 +1753,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- coding full modal -->
 <div class="modal fade" id="filter-programming-Modal" role="dialog">
@@ -2900,7 +2897,6 @@
 <!-- private-programming-question-Modal -->
 <!-- Create Modal For Library First Coding Questions  Ended -->
 
-
 <!-- Create Modal For Library Second Coding Questions Started -->
 <!-- private-programming-question-Modal -->
 <div class="modal fade" id="private-programming-debug-Modal" role="dialog">
@@ -3195,7 +3191,6 @@
 </div>
 <!-- private-programming-question-Modal -->
 <!-- Create Modal For Library Second Coding Questions  Ended -->
-
 
 <!-- Create Modal For Library First Submission Questions Started -->
 <!-- private-submission-question-Modal -->
@@ -3505,7 +3500,6 @@
 </div>
 <!-- private-submission-question-Modal -->
 <!-- Create Modal For Library First Submission Questions  Ended -->
-
 
 <!-- Create Modal For Library Second Submission Questions Started -->
 <!-- private-submission-question-Modal -->

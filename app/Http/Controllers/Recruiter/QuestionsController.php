@@ -35,7 +35,6 @@ class QuestionsController extends Controller
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
-
 			}
 			$store->question_state_id = $request->question_state_id;
 			$store->question_sub_types_id = $request->question_sub_types_id;

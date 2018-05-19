@@ -14,7 +14,7 @@ class AddTemplateIdToAdminSettingQuestions extends Migration
     public function up()
     {
         Schema::table('admin_setting_questions', function (Blueprint $table) {
-            $table->integer('template_id')->unsigned()->after('id');            
+            $table->integer('template_id')->unsigned()->after('id')->nullable();            
             $table->foreign('template_id')->references('id')->on('test_templates')->onDelete('cascade')->onUpdate('cascade');
         });
     }
