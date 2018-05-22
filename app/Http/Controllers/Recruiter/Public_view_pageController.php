@@ -109,6 +109,7 @@ class Public_view_pageController extends Controller
 
      public function insert_tags(Request $request)
     {
+        
         $value = $request->input('value');
         $check_tag = Cover_image_tag::where('tag_name','=',$value)->exists();
         

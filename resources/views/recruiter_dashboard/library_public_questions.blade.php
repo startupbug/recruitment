@@ -300,7 +300,7 @@
 												</span>
  							        </td>
  											<td>
-												<a data-toggle="modal" data-target="#private-mcqs-Modal" onclick="">
+												<a data-toggle="modal" href="{{route('library_public_questions',$private_questions_mcq->id)}}?modal=modal_pencil" onclick="pencil_edittesttemplate_Expand()" class="btn-sm btn-link ajax_route" onclick="">
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
@@ -421,7 +421,7 @@
 												</span>
  											</td>
  											<td>
-												<a data-toggle="modal" data-target="#private-programming-question-Modal">
+												<a data-toggle="modal" href="{{route('library_public_questions',$private_questions_coding->id)}}?modal=modal_coding" class="btn-sm btn-link code_ajax_route">
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
@@ -534,7 +534,8 @@
 												</span>
  											</td>
  											<td>
-												<a data-toggle="modal" onclick="private_submission_question_Expand();" data-target="#private-submission-question-Modal">
+												<a data-toggle="modal" onclick="private_submission_question_Expand();" href="{{route('library_public_questions',$private_questions_submission->id)}}?modal=submission_modal1"
+                                 					class="btn-sm btn-link submission_ajax_route">
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>

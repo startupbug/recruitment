@@ -76,7 +76,7 @@ $('.tag_textbox').change(function(e){
                     }
             }
         });
-    // }
+
 });
 
 
@@ -145,6 +145,55 @@ $( ".label-public-page" ).on('click', '.delete_public_tag', function() {
     });
 });
 
+
+
+//Quesiton request form submit
+$("#public_check_1").on('change', function () {
+  if($(this).is(":checked")){
+
+    if ($('#private_check_1').is(":checked")) {
+      $( "#both_check_1" ).prop( "checked", true );
+    }
+
+  }
+  else {
+    if ($('#private_check_1').is(":checked")) {
+      $( "#both_check_1" ).prop( "checked", false );
+    }
+    else {
+      $(this).prop( "checked", true );
+    }
+  }
+});
+$("#private_check_1").on('change', function () {
+  if($(this).is(":checked")){
+
+    if ($('#public_check_1').is(":checked")) {
+      $( "#both_check_1" ).prop( "checked", true );
+    }
+
+  }
+  else {
+    if ($('#public_check_1').is(":checked")) {
+      $( "#both_check_1" ).prop( "checked", false );
+    }
+    else {
+      $(this).prop( "checked", true );
+    }
+  }
+});
+$("#both_check_1").on('change', function () {
+  if($(this).is(":checked")){
+
+    $( "#public_check_1" ).prop( "checked", true );
+    $( "#private_check_1" ).prop( "checked", true );
+
+  }
+  else {
+    $( "#public_check_1" ).prop( "checked", true );
+    $( "#private_check_1" ).prop( "checked", false );
+  }
+});
 
 
 

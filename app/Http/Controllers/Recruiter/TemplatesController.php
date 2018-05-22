@@ -208,9 +208,13 @@ public function edit_template($id = NULL, $flag = NULL){
   {
     $args['tags'] = DB::table('question_tags')->get();
     // $args['edit'] = Test_template::find($id);
-    $args['edit_host'] = Hosted_test::leftjoin('test_templates','hosted_tests.test_template_id','=','test_templates.id')
-    ->select('hosted_tests.id','hosted_tests.host_name','hosted_tests.test_template_id','hosted_tests.description','hosted_tests.instruction','hosted_tests.cut_off_marks','hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time','hosted_tests.time_zone','hosted_tests.status','hosted_tests.created_at','hosted_tests.updated_at','test_templates.user_id','test_templates.template_type_id','test_templates.title','test_templates.image','test_templates.duration','test_templates.hosted')
-    ->where('hosted_tests.id',$id)->first();
+    $args['edit_host'] = Hosted_test::leftjoin('test_templates','hosted_tests.id','=','test_templates.host_id')
+    ->select('hosted_tests.id','hosted_tests.host_name','hosted_tests.test_template_id','hosted_tests.description','hosted_tests.instruction','hosted_tests.cut_off_marks','hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time','hosted_tests.time_zone','hosted_tests.status','hosted_tests.created_at','hosted_tests.updated_at','test_templates.user_id','test_templates.template_type_id','test_templates.title','test_templates.image','test_templates.duration','test_templates.hosted','test_templates.id as template_id')
+    ->where('test_templates.host_id',$id)->first();
+    // $args['edit_host'] = Hosted_test::leftjoin('test_templates','hosted_tests.id','=','test_templates.host_id')->where('test_templates.host_id',$id)->first();
+    // dd($args['edit_host']);
+    $host_template_id = $args['edit_host']->template_id;
+
     $args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
     ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))
     ->where('template_id',$args['edit_host']->test_template_id)
@@ -265,20 +269,18 @@ public function edit_template($id = NULL, $flag = NULL){
 
          $args['test_setting_types'] = Test_template_types::get();
          $args['test_setting_webcam'] = Webcam::get();
-         $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
-         $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
-         $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
-         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
-         $args['template_id'] = $id;
+         $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$host_template_id)->first();
+         $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$host_template_id)->first();
+         $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$host_template_id)->first();
+         $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$host_template_id)->first();
+         $args['template_id'] = $host_template_id;
        // dd($args);
 
 
          $args['template_question_setting'] = User_question::
 				 join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
          ->select('user_setting_questions.*','format_settings.name as format_settings_name')
-         ->where('template_id',$id)->orderBy('user_setting_questions.order_number','ASC')->get();
-
-
+         ->where('template_id',$host_template_id)->orderBy('user_setting_questions.order_number','ASC')->get();
 
        //$args['template_question_setting'][0]['arr'] = array(123);
        //dd($args['template_question_setting']);
@@ -805,129 +807,130 @@ return redirect()->back();
 					// return redirect()->back();
 }
 }
+
 public function new_user_question_create(Request $request){
     $largest_order_number = DB::table('user_setting_questions')
     ->where('template_id',$request->template_id)
     ->max('order_number');
     $new_order_number = $largest_order_number+1;
-			  //return $request->input();
-				//Check for Duplicate question - Farhan
+        //return $request->input();
+        //Check for Duplicate question - Farhan
     if($request->has('question') && $request->has('template_id')) {
 
-		      $question_exists = User_question::where('question', $request->input('question'))
-		      ->where('template_id', $request->input('template_id'))
-		      ->exists();
+          $question_exists = User_question::where('question', $request->input('question'))
+          ->where('template_id', $request->input('template_id'))
+          ->exists();
 
-		      if($question_exists){
-		        return \Response()->Json([ 'status' => 204,'msg'=>'This Question is already Present']);
-		    }
-		}
+          if($question_exists){
+            return \Response()->Json([ 'status' => 204,'msg'=>'This Question is already Present']);
+        }
+    }
 
-		try {
-		 $User_setting_question = new User_question;
-		 $User_setting_question->template_id = $request->template_id;
-		 $User_setting_question->format_setting_id = $request->format_setting_id;
-		 $User_setting_question->question = $request->question;
-		 $User_setting_question->support_text = $request->support_text;
-		 $User_setting_question->knock_out = $request->knock_out;
-		 $User_setting_question->mandatory = $request->mandatory;
-		 $User_setting_question->order_number = $new_order_number;
-		 $User_setting_question->user_id = Auth::user()->id;
-		 $User_setting_question->save();
-		// dd($User_setting_question->format_setting_id);
+    try {
+     $User_setting_question = new User_question;
+     $User_setting_question->template_id = $request->template_id;
+     $User_setting_question->format_setting_id = $request->format_setting_id;
+     $User_setting_question->question = $request->question;
+     $User_setting_question->support_text = $request->support_text;
+     $User_setting_question->knock_out = $request->knock_out;
+     $User_setting_question->mandatory = $request->mandatory;
+     $User_setting_question->order_number = $new_order_number;
+     $User_setting_question->user_id = Auth::user()->id;
+     $User_setting_question->save();
+    // dd($User_setting_question->format_setting_id);
 
 
-		 if ($User_setting_question->format_setting_id == "1") {
+     if ($User_setting_question->format_setting_id == "1") {
 
-		    $User_format_detail = new User_format_detail;
-		    $User_format_detail->max = $request->max;
-		    $User_format_detail->min = $request->min;
-		    $User_format_detail->question_id = $User_setting_question->id;
-		    $User_format_detail->user_id = Auth::user()->id;
-		    $User_format_detail->save();
-		}
-		elseif ($User_setting_question->format_setting_id == "2") {
+        $User_format_detail = new User_format_detail;
+        $User_format_detail->max = $request->max;
+        $User_format_detail->min = $request->min;
+        $User_format_detail->question_id = $User_setting_question->id;
+        $User_format_detail->user_id = Auth::user()->id;
+        $User_format_detail->save();
+    }
+    elseif ($User_setting_question->format_setting_id == "2") {
 
-		    $User_format_detail = new User_format_detail;
-		    $User_format_detail->placeholder = $request->placeholder;
-		    $User_format_detail->question_id = $User_setting_question->id;
-		    $User_format_detail->user_id = Auth::user()->id;
-		    $User_format_detail->save();
+        $User_format_detail = new User_format_detail;
+        $User_format_detail->placeholder = $request->placeholder;
+        $User_format_detail->question_id = $User_setting_question->id;
+        $User_format_detail->user_id = Auth::user()->id;
+        $User_format_detail->save();
 
-		}
-		elseif ($User_setting_question->format_setting_id == "3") {
+    }
+    elseif ($User_setting_question->format_setting_id == "3") {
 
-		    $User_format_detail = new User_format_detail;
-		    $User_format_detail->placeholder = $request->placeholder;
-		    $User_format_detail->question_id = $User_setting_question->id;
-		    $User_format_detail->user_id = Auth::user()->id;
-		    $User_format_detail->save();
+        $User_format_detail = new User_format_detail;
+        $User_format_detail->placeholder = $request->placeholder;
+        $User_format_detail->question_id = $User_setting_question->id;
+        $User_format_detail->user_id = Auth::user()->id;
+        $User_format_detail->save();
 
-		}
-		elseif ($User_setting_question->format_setting_id == "4") {
+    }
+    elseif ($User_setting_question->format_setting_id == "4") {
 
-		    $User_format_detail = new User_format_detail;
-		    $User_format_detail->checked = $request->checkbox;
-		    $User_format_detail->question_id = $User_setting_question->id;
-		    $User_format_detail->user_id = Auth::user()->id;
-		    $User_format_detail->save();
+        $User_format_detail = new User_format_detail;
+        $User_format_detail->checked = $request->checkbox;
+        $User_format_detail->question_id = $User_setting_question->id;
+        $User_format_detail->user_id = Auth::user()->id;
+        $User_format_detail->save();
 
-		}
-		elseif ($User_setting_question->format_setting_id == "5") {
+    }
+    elseif ($User_setting_question->format_setting_id == "5") {
 
-		    $answer_array = $request->answer_multiple_choice;
+        $answer_array = $request->answer_multiple_choice;
 
-		    foreach ($request->option as $key => $value) {
-		       $User_format_detail = new User_format_detail;
-		       $User_format_detail->option = $value;
+        foreach ($request->option as $key => $value) {
+           $User_format_detail = new User_format_detail;
+           $User_format_detail->option = $value;
 
-		       if (in_array($value, $answer_array) ) {
-		          $User_format_detail->answer = $value;
-		      }
-		      $User_format_detail->question_id = $User_setting_question->id;
-		      $User_format_detail->user_id = Auth::user()->id;
-		      $User_format_detail->save();
-		  }
+           if (in_array($value, $answer_array) ) {
+              $User_format_detail->answer = $value;
+          }
+          $User_format_detail->question_id = $User_setting_question->id;
+          $User_format_detail->user_id = Auth::user()->id;
+          $User_format_detail->save();
+      }
 
-		}
-		elseif ($User_setting_question->format_setting_id == "6") {
+    }
+    elseif ($User_setting_question->format_setting_id == "6") {
 
-		    $answer_array = $request->answer_radio;
+        $answer_array = $request->answer_radio;
 
-		    foreach ($request->option as $key => $value) {
-		       $User_format_detail = new User_format_detail;
-		       $User_format_detail->option = $value;
+        foreach ($request->option as $key => $value) {
+           $User_format_detail = new User_format_detail;
+           $User_format_detail->option = $value;
 
-		       if ($value == $answer_array) {
-		          $User_format_detail->answer = $value;
-		      }
-		      $User_format_detail->question_id = $User_setting_question->id;
-		      $User_format_detail->user_id = Auth::user()->id;
-		      $User_format_detail->save();
-		  }
-		}
-		elseif ($User_setting_question->format_setting_id == "7") {
-		    $answer_array = $request->answer_drop_down;
+           if ($value == $answer_array) {
+              $User_format_detail->answer = $value;
+          }
+          $User_format_detail->question_id = $User_setting_question->id;
+          $User_format_detail->user_id = Auth::user()->id;
+          $User_format_detail->save();
+      }
+    }
+    elseif ($User_setting_question->format_setting_id == "7") {
+        $answer_array = $request->answer_drop_down;
 
-		    foreach ($request->option as $key => $value) {
-		       $User_format_detail = new User_format_detail;
-		       $User_format_detail->option = $value;
+        foreach ($request->option as $key => $value) {
+           $User_format_detail = new User_format_detail;
+           $User_format_detail->option = $value;
 
-		       if ($value == $answer_array) {
-		          $User_format_detail->answer = $value;
-		      }
-		      $User_format_detail->question_id = $User_setting_question->id;
-		      $User_format_detail->user_id = Auth::user()->id;
-		      $User_format_detail->save();
-		  }
-		}
+           if ($value == $answer_array) {
+              $User_format_detail->answer = $value;
+          }
+          $User_format_detail->question_id = $User_setting_question->id;
+          $User_format_detail->user_id = Auth::user()->id;
+          $User_format_detail->save();
+      }
+    }
 
-		return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully']);
+    return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully']);
 
-		} catch(QueryException $ex){
+    } catch(QueryException $ex){
 
-		  return \Response()->Json([ 'status' => 202,'msg'=>$ex->getMessage()]);
-		}
+      return \Response()->Json([ 'status' => 202,'msg'=>$ex->getMessage()]);
+    }
 }
 
 public function delete_user_setting_question($id){
