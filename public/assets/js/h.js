@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 
 /* Datatable Callings */
-// $(".public_mcq_table").DataTable();
+// $("#my_pagination_table").DataTable();
 // $(".public_coding_table").DataTable();
 // $(".private_mcq_table").DataTable();
 // $(".private_coding_table").DataTable();

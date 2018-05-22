@@ -113,7 +113,7 @@
 		 							  @endif
 							    </tbody>
 							  </table>
-								<div class="pagination-container">
+								<div class="pagination-container" style="position: relative;">
 									<nav>
 										<ul id="pagination_number" class="pagination">
 										</ul>
