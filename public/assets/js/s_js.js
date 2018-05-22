@@ -3295,14 +3295,88 @@ $( document ).ready(function() {
       $(this).parent().next().toggleClass("hidden");
     });
 
+    $('.deleteConfirm_section').on('click' , function(e) {
+      e.preventDefault();
+      console.log(123);
+
+      const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        buttonsStyling: false,
+      })
+
+      swalWithBootstrapButtons({
+        title: 'Are you sure?',
+        text: "You are about to delete a section. You will loose all the questions added in this section. But the questions will continue to exist in you question library for further use.",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Delete Section',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+          $.ajaxSetup({
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+          });
+          $.ajax({
+            type: 'get',
+            url: $(this).attr('href'),
+            success: function (data) {
+              console.log(data);
+              if(data.status == 200){
+                alertify.success(data.msg);
+                location.reload();
+              }
+            },
+            error: function (data) {
+              console.log(data);
+              alertify.warning("Oops. something went wrong. Please try again");
+            }
+          });
+
+        }
+        else if (result.dismiss === swal.DismissReason.cancel)
+        {
+        }
+      })
+
+      return false;
+    });
+
+    $('#myCarouse2').carousel({
+     interval: 1000000
+    })
+
     pagination_table('my_pagination_table','pagination_number');
     pagination_table('my_pagination_table_2','pagination_number_2');
     pagination_table('my_pagination_table_3','pagination_number_3');
     pagination_table('my_pagination_table_4','pagination_number_4');
     pagination_table('my_pagination_table_5','pagination_number_5');
 
-});
+    $('.s_radio_border').on('change', '.radio_button', function() {
+      $('.s_radio_border .radio_button').closest('label').css('background', '#fff');
+      if ($(this).is(":checked")) {
+        $(this).closest('label').css('background', '#fff9ae');
+      }
+      else {
+        $(this).closest('label').css('background', '#fff');
+      }
+    });
+    // $('#my_pagination_table tbody').paginathing({
+    //   perPage: 10,
+    //   insertAfter: '#my_pagination_table',
+    //   pageNumbers: true
+    // });
 
+    $('#m_timer').countdowntimer({
+        hours : 0,
+        minutes :1,
+        seconds :0,
+        size : "lg"
+    });
+
+
+});
 
 function pagination_table($table_id , $pagination_id) {
   console.log($pagination_id);
@@ -3327,7 +3401,7 @@ function pagination_table($table_id , $pagination_id) {
 
   if (totalRows > maxRows) {
     var pagenum = Math.ceil(totalRows/maxRows);
-    for (var i = 1; i <= pagenum;) {
+    for (var i = 1; i <= 10;) {
       $("#"+$pagination_id).append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(Current)</span></span>\</li>').show();
     }
   }
@@ -3351,6 +3425,8 @@ function pagination_table($table_id , $pagination_id) {
       }
     });
   });
+
+
 }
 
 function testcase_fileformat(){
@@ -3372,51 +3448,3 @@ function testcase_fileformat(){
     confirmButtonText: 'Got It!',
   });
 }
-
-$('.deleteConfirm_section').on('click' , function(e) {
-      e.preventDefault();
-        console.log(123);
-
-        const swalWithBootstrapButtons = swal.mixin({
-          confirmButtonClass: 'btn btn-success',
-          cancelButtonClass: 'btn btn-danger',
-          buttonsStyling: false,
-        })
-
-        swalWithBootstrapButtons({
-          title: 'Are you sure?',
-          text: "You are about to delete a section. You will loose all the questions added in this section. But the questions will continue to exist in you question library for further use.",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Delete Section',
-          cancelButtonText: 'Cancel',
-          reverseButtons: true
-        }).then((result) => {
-          if (result.value) {
-            $.ajaxSetup({
-              headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-            });
-            $.ajax({
-              type: 'get',
-              url: $(this).attr('href'),
-              success: function (data) {
-                 console.log(data);
-                 if(data.status == 200){
-                    alertify.success(data.msg);
-                    location.reload();
-                 }
-                },
-                error: function (data) {
-                  console.log(data);
-                alertify.warning("Oops. something went wrong. Please try again");
-               }
-           });
-
-          }
-          else if (result.dismiss === swal.DismissReason.cancel)
-          {
-          }
-        })
-
-        return false;
-});

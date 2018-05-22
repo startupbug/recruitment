@@ -1944,13 +1944,12 @@ p.caution {
 }
 
 h3.side_caution {
-    font-size: 16px;
-    font-family: 'SourceSansPro-Bold';
-    color: #333333 !important;
-    border-right: 1px solid #ddd;
-    padding: 13px;
-    margin-right: 92px;
-    margin-top: 23px;
+  display: -webkit-inline-box;
+  font-size: 17px;
+  font-family: 'SourceSansPro-Bold';
+  color: #333333 !important;
+  border-right: 1px solid #ddd;
+  padding: 0px 11px 11px 11px;
 }
 
 .pagination>li>a, .pagination>li>span { cursor: default !important; border-radius: 50% !important;margin: 0 5px;}
@@ -1980,7 +1979,8 @@ h3.side_caution {
 }
 
 .border_question {
-    border: 1px solid #ddd;
+  border: 1px solid #ddd;
+  margin-bottom: 25px;
 }
 
 .border_content {
@@ -1993,7 +1993,6 @@ h3.side_caution {
 h3.question_mark {
     font-weight: bold;
     font-size: 14px;
-    line-height: 41px;
 }
 
 .button_mark button.btn {
@@ -2244,7 +2243,7 @@ h3.test_live {
 .tabs_public {
     margin-top: 15px;
     margin-bottom: 30px !important;
-    padding-left: 21px;    
+    padding-left: 21px;
     padding-right: 22px;
     border-bottom: none;
 }
@@ -2263,7 +2262,7 @@ h3.test_live {
     text-align: center;
 }
 .button_mark button.btn {
-    margin-top: 16px;
+    margin-top: 2px;
 }
 
 .cancel_btn_fa {
@@ -2899,4 +2898,50 @@ input.f_btn {
 }
 .pagination-container {
     padding-left: 20px;
+}
+.extended-coding-question {
+    height: calc(100vh - 189px);
+    overflow: auto;
+    padding: 15px;
+    padding-top: 0;
+}
+.extended-coding-question.border_custom {
+    border-left: 1px solid #ddd;
+}
+
+.s_radio_border label{
+    border: 1px solid #ccc2c2;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: inherit;
+    padding-left: 25px;
+    margin-bottom: 10px;
+}
+.s_radio_border input[type=radio]{
+    margin-left: -17px;
+}
+
+.s_radio_border input[type=radio]:checked + label {
+  color: #f00;
+  font-style: normal;
+}
+
+
+section.preview_test_f {
+    background-color: grey;
+}
+
+button.f_finish {
+    color: white;
+    background-color: #3fb618;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+button.f_finish:hover,button.f_finish:focus,button.f_finish:active {
+    color: white;
+}
+
+.col-padding{
+  padding: 10px 0px;
 }
