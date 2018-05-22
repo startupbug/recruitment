@@ -1716,14 +1716,14 @@ $( document ).ready(function() {
                 '</div>'+
               '</div>'+
               '<div class="form-group form-group-sm">'+
-                '<label class="control-label col-sm-2">Support text</label>'+
+                '<label class="control-label col-sm-2">Support textsss</label>'+
                 '<div class="col-sm-10">'+
                   '<input type="text" name="support_text" class="form-control" placeholder="Eg: Give the full form of your University">'+
                 '</div>'+
               '</div>'+
               '<div class="form-group form-group-sm">'+
                 '<label class="control-label col-sm-2">'+
-                  'Knock out  '+
+                  'Knock outing  '+
                   '<i class="fa fa-info-circle"></i>'+
                 '</label>'+
                 '<div class="col-sm-10">'+
@@ -2386,7 +2386,7 @@ $( document ).ready(function() {
 
                 //data inserted
                     if(data.status == 200){
-                      location.reload(true);
+                      // location.reload(true);
                       alertify.success(data.msg);
                       // $('#newquestion').attr("disabled", true);
                       // $('#button_error').removeClass("hidden");

@@ -1234,7 +1234,7 @@
                                      <h5><strong>Questions</strong></h5>
                                      <ul class="unordered-list">
                                        <li></li>
-
+                                      
                                        @foreach ($template_question_setting as $t_q_s)
                                        <li class="questionBorder">
                                          <form action="{{route('new_user_question_edit')}}" method="post">
@@ -1792,7 +1792,7 @@
                               <div class="ept_cover_image_top">
                                  <div class="clearfix">
                                     <div class="pull-right public_page_tag">
-                                       <div class="label-public-page" data-delete="{{route('delete_image_tags')}}" @if(isset($edit)) data-url="{{route('data_image_tags',$template_id )}}" @endif @if(isset($edit)) data-id="{$template_id}}" @endif >
+                                       <div class="label-public-page" data-delete="{{route('delete_image_tags')}}" @if(isset($edit)) data-url="{{route('data_image_tags',$template_id )}}" @endif @if(isset($edit)) data-id="{{$template_id}}" @endif >
                                        </div>
                                        <div class="clearfix">
                                           <div class="form-group ">  

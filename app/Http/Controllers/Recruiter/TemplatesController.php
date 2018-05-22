@@ -809,6 +809,9 @@ return redirect()->back();
 }
 
 public function new_user_question_create(Request $request){
+  // return $request->input();
+   return 3333;
+
     $largest_order_number = DB::table('user_setting_questions')
     ->where('template_id',$request->template_id)
     ->max('order_number');
@@ -820,13 +823,14 @@ public function new_user_question_create(Request $request){
           $question_exists = User_question::where('question', $request->input('question'))
           ->where('template_id', $request->input('template_id'))
           ->exists();
-
+          // return (4444);
           if($question_exists){
             return \Response()->Json([ 'status' => 204,'msg'=>'This Question is already Present']);
         }
     }
 
     try {
+      // return (5555);
      $User_setting_question = new User_question;
      $User_setting_question->template_id = $request->template_id;
      $User_setting_question->format_setting_id = $request->format_setting_id;

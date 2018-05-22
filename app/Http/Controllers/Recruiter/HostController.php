@@ -37,31 +37,32 @@ class HostController extends Controller
 
       	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
 
-        foreach ($args['sections'] as $key => $value) {
-             $args['sections_tabs'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
-             $args['sections_tabs'][$value->id]['count'] = $value->section_questions;
+        foreach ($args['sections'] as $key => $value)
+         {
+              $args['sections_tabs'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
+              $args['sections_tabs'][$value->id]['count'] = $value->section_questions;
 
 
-             $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
+              $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
 
              //$args['sections_tabs'][$value->id]['count'] = count($args['sections_tabs'][$value->id]['ques1']); //$value->section_questions;
 
-            $args['sections_tabs'][$value->id]['ques2'] = Question::where('question_type_id',2)->where('section_id', $value->id)->get();
+              $args['sections_tabs'][$value->id]['ques2'] = Question::where('question_type_id',2)->where('section_id', $value->id)->get();
 
-             $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']);
+              $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']);
 
-             $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',3)->where('section_id', $value->id)->get();
+              $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',3)->where('section_id', $value->id)->get();
 
-             $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']);
+              $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']);
 
- //counting easy questions from each section
+              //counting easy questions from each section
               $args['sections_tabs'][$value->id]['easy_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
                ->where('sections.id',$value->id)
                ->where('questions.question_level_id',1)
                ->count();
               // dd($args['sections_tabs']);
 
-               //counting medium questions from each section
+              //counting medium questions from each section
               $args['sections_tabs'][$value->id]['medium_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
                ->where('sections.id',$value->id)
                ->where('questions.question_level_id',2)
@@ -82,32 +83,33 @@ class HostController extends Controller
 
         }
 
-  $args['test_setting_types'] = Test_template_types::get();
-        $args['test_setting_webcam'] = Webcam::get();
-        $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
-        $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
-        $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
-        $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
-        $args['template_id'] = $id;
+          $args['test_setting_types'] = Test_template_types::get();
+                $args['test_setting_webcam'] = Webcam::get();
+                $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
+                $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
+                $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
+                $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
+                $args['template_id'] = $id;
 
-          $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
-         ->select('user_setting_questions.*','format_settings.name as format_settings_name')
-         ->where('template_id',$id)->orderBy('user_setting_questions.order_number','ASC')->get();
+                  $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
+                 ->select('user_setting_questions.*','format_settings.name as format_settings_name')
+                 ->where('template_id',$id)->orderBy('user_setting_questions.order_number','ASC')->get();
 
-      //Public_view_page index method query 
-      $args['Public_view_page'] = Public_view_page::get();
+          //Public_view_page index method query 
+          $args['Public_view_page'] = Public_view_page::get();
       
 
-    $args['public_page_view_details'] = Test_template::where('id',$id)
-      ->orderBy('image','Desc')
-      ->first();
+          $args['public_page_view_details'] = Test_template::where('id',$id)
+          ->orderBy('image','Desc')
+          ->first();
 
              //$args['template_question_setting'][0]['arr'] = array(123);
              //dd($args['template_question_setting']);
              //$user_setting_question_details = array();
-         foreach ($args['template_question_setting'] as $key => $value) {
-          $args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
-      }
+          foreach ($args['template_question_setting'] as $key => $value)
+          {
+            $args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
+          }
 
         //Assinging Host Flag for Model
         $args['hostFlag'] = true;
