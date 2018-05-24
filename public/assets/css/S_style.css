@@ -655,3 +655,37 @@ ul.add_resources_submission_ul .s_close {
     margin-right: 5px;
     font-size: 18px;
 }
+
+.pagination_custom>li>a, .pagination_custom>li.separator {
+    position: relative;
+    float: left;
+    padding: 3px 3px;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #ddd;
+    border: 1px solid #ddd;
+}
+
+.pagination_custom>li>a, .pagination_custom>li {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.pagination_custom>li>a, .pagination_custom>li {
+    cursor: default !important;
+    border-radius: 50% !important;
+    margin: 0 5px;
+}
+.pagination_custom>.active>a, .pagination_custom>.active>a:focus, .pagination_custom>.active>a:hover, .pagination_custom>.active, .pagination_custom>.active:focus, .pagination_custom>.active:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}

@@ -1795,8 +1795,8 @@
                                        <div class="label-public-page" data-delete="{{route('delete_image_tags')}}" @if(isset($edit)) data-url="{{route('data_image_tags',$template_id )}}" @endif @if(isset($edit)) data-id="{$template_id}}" @endif >
                                        </div>
                                        <div class="clearfix">
-                                          <div class="form-group ">  
-                                             <input type="text" name="cover_image_tag" value="" @if(isset($edit)) data-url="{{route('insert_image_tags')}}" @endif @if(isset($edit)) data-id="{{$template_id}}" @endif placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox"> 
+                                          <div class="form-group ">
+                                             <input type="text" name="cover_image_tag" value="" @if(isset($edit)) data-url="{{route('insert_image_tags')}}" @endif @if(isset($edit)) data-id="{{$template_id}}" @endif placeholder="Add a tag and press Enter" class="form-control s_edit_btn tag_textbox">
                                           </div>
                                        </div>
                                     </div>

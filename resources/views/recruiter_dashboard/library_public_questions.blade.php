@@ -113,9 +113,10 @@
 		 							  @endif
 							    </tbody>
 							  </table>
+
 								<div class="pagination-container" style="position: relative;">
 									<nav>
-										<ul id="pagination_number" class="pagination">
+										<ul id="pagination_number" class="pagination pagination_custom">
 										</ul>
 									</nav>
 								</div>
@@ -213,7 +214,7 @@
 								</table>
 								<div class="pagination-container">
 									<nav>
-										<ul id="pagination_number_2" class="pagination">
+										<ul id="pagination_number_2" class="pagination pagination_custom">
 										</ul>
 									</nav>
 								</div>
@@ -331,7 +332,7 @@
  							  </table>
 								<div class="pagination-container">
 									<nav>
-										<ul id="pagination_number_3" class="pagination">
+										<ul id="pagination_number_3" class="pagination pagination_custom">
 										</ul>
 									</nav>
 								</div>
@@ -446,7 +447,7 @@
  								</table>
 								<div class="pagination-container">
 									<nav>
-										<ul id="pagination_number_4" class="pagination">
+										<ul id="pagination_number_4" class="pagination pagination_custom">
 										</ul>
 									</nav>
 								</div>
@@ -571,7 +572,7 @@
  								</table>
 								<div class="pagination-container">
 									<nav>
-										<ul id="pagination_number_5" class="pagination">
+										<ul id="pagination_number_5" class="pagination pagination_custom">
 										</ul>
 									</nav>
 								</div>

@@ -1890,6 +1890,44 @@ $( document ).ready(function() {
             '</div>'+
           '</form>'+
         '</li>');
+
+
+        $(".questionRequest").on('submit', function(e){
+            e.preventDefault();
+            //console.log("console" + $(this).find("input[name='template_id']").val());
+            var formData = $(this).serialize();
+
+            // console.log(formData);
+            $.ajaxSetup({
+              headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+            });
+            $.ajax({
+              type: 'post',
+              url: $(this).find("input[name='question_url']").val(),
+              data: formData,
+              success: function (data) {
+                console.log(data);
+
+                //data inserted
+                    if(data.status == 200){
+                      location.reload(true);
+                      alertify.success(data.msg);
+
+                     //data couldnot be inserted
+                    }else if(data.status == 202){
+                      alertify.warning(data.msg);
+
+                      //data duplicated
+                    }else if(data.status == 204){
+                      alertify.warning(data.msg);
+                    }
+                  },
+                  error: function (data) {
+                  alertify.warning("Oops. something went wrong. Please try again");
+                 }
+               });
+        });
+
       }
       else {
         var length = $(this).closest('section').find(".unordered-list li input[value='"+question+"']").length;
@@ -3297,7 +3335,6 @@ $( document ).ready(function() {
 
     $('.deleteConfirm_section').on('click' , function(e) {
       e.preventDefault();
-      console.log(123);
 
       const swalWithBootstrapButtons = swal.mixin({
         confirmButtonClass: 'btn btn-success',
@@ -3362,11 +3399,6 @@ $( document ).ready(function() {
         $(this).closest('label').css('background', '#fff');
       }
     });
-    // $('#my_pagination_table tbody').paginathing({
-    //   perPage: 10,
-    //   insertAfter: '#my_pagination_table',
-    //   pageNumbers: true
-    // });
 
     $('#m_timer').countdowntimer({
         hours : 0,
@@ -3375,11 +3407,11 @@ $( document ).ready(function() {
         size : "lg"
     });
 
-
 });
 
+
 function pagination_table($table_id , $pagination_id) {
-  console.log($pagination_id);
+
   var trnum = 0;
   var maxRows = parseInt("20");
   var totalRows = $("#"+$table_id+" tbody tr").length;
@@ -3399,33 +3431,107 @@ function pagination_table($table_id , $pagination_id) {
     }
   });
 
+
+
   if (totalRows > maxRows) {
-    var pagenum = Math.ceil(totalRows/maxRows);
-    for (var i = 1; i <= 10;) {
-      $("#"+$pagination_id).append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(Current)</span></span>\</li>').show();
+
+    var pageLen = Math.ceil(totalRows/maxRows);
+    var curPage = 1;
+    var item = [];
+    for(var i = 1; i<=pageLen;i++){
+      item.push(i);
     }
-  }
-  $("#"+$pagination_id+" li:first-child").addClass('active');
-  $("#"+$pagination_id+" li").on('click', function() {
-    var pageNum = $(this).attr('data-page');
-    var trIndex = 0;
-    $("#"+$pagination_id+" li").removeClass('active');
-    $(this).addClass('active');
-    $("#"+$table_id+" tr:gt(0)").each(function(){
-      trIndex++;
-      if ( trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows) ) {
-        if (trIndex % 2 === 0) {}else {
-          $(this).hide();
-        }
-      }else{
-        if (trIndex % 2 === 0) {}
-        else {
-           $(this).show();
+
+    function isPageInRange( curPage, index, maxPages, pageBefore, pageAfter ) {
+      if (index <= 1) {
+        // first 2 pages
+        return true;
+      }
+      if (index >= maxPages - 2) {
+        // last 2 pages
+        return true;
+      }
+      if (index >= curPage - pageBefore && index <= curPage + pageAfter) {
+        return true;
+      }
+    }
+    function render( curPage, item, first ) {
+      var html = '', separatorAdded = false;
+      for(var i in item){
+        if ( isPageInRange( curPage, i, pageLen, 2, 2 ) ) {
+          html += '<li data-page="' + item[i] + '">' + item[i] + '</li>';
+          // as we added a page, we reset the separatorAdded
+          separatorAdded = false;
+        } else {
+          if (!separatorAdded) {
+            // only add a separator when it wasn't added before
+            html += '<li class="separator" />';
+            separatorAdded = true;
+          }
         }
       }
-    });
-  });
 
+      var holder = document.querySelector("#"+$pagination_id);
+      holder.innerHTML = html;
+      $('#'+$pagination_id+'>li[data-page="' + curPage + '"]').addClass('active')
+      // document.querySelector('#'+$pagination_id+'>li[data-page="' + curPage + '"]').classList.add('active');
+      if ( first ) {
+        holder.addEventListener('click', function(e) {
+          if (!e.target.getAttribute('data-page')) {
+            return;
+          }
+
+          var pageNum = e.target.getAttribute('data-page');
+          var trIndex = 0;
+          var maxRows = parseInt("20");
+          $("#"+$table_id+" tr:gt(0)").each(function(){
+            trIndex++;
+            if ( trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows) ) {
+              if (trIndex % 2 === 0) {}else {
+                $(this).hide();
+              }
+            }else{
+              if (trIndex % 2 === 0) {}
+              else {
+                 $(this).show();
+              }
+            }
+          });
+
+          curPage = parseInt( e.target.getAttribute('data-page') );
+          render( curPage, item );
+        });
+      }
+    }
+    render( 1, item, true );
+
+    // var pagenum = Math.ceil(totalRows/maxRows);
+    // for (var i = 1; i <= 10;) {
+    //   $("#"+$pagination_id).append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(Current)</span></span>\</li>').show();
+    // }
+  }
+
+  // $("#"+$pagination_id+" li:first-child").addClass('active');
+  //
+  // $("#"+$pagination_id+" li").on('click', function() {
+  //   var pageNum = $(this).attr('data-page');
+  //   var trIndex = 0;
+  //   $("#"+$pagination_id+" li").removeClass('active');
+  //   $(this).addClass('active');
+  //   $("#"+$table_id+" tr:gt(0)").each(function(){
+  //     trIndex++;
+  //     if ( trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows) ) {
+  //       if (trIndex % 2 === 0) {}else {
+  //         $(this).hide();
+  //       }
+  //     }else{
+  //       if (trIndex % 2 === 0) {}
+  //       else {
+  //          $(this).show();
+  //       }
+  //     }
+  //   });
+  // });
 
 }
 
