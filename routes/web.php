@@ -181,7 +181,7 @@ Route::get('/publicpreview-test-page/{id}/{flag}', 'Recruiter\HostController@hos
 //Library controller
 Route::get('/library/{id?}', 'Recruiter\LibraryController@lib_index')->name('lib_index');
 
-//Library ini filter 
+//Library ini filter
 Route::post('/library-filter', 'Recruiter\LibraryController@libFilter')->name('libFilter');
 
 //Library single detail data.
