@@ -1219,7 +1219,7 @@
                                              <span class="text text-sm text-danger hidden" id="button_error" >
                                                Please resolve the following issues in the questionnaire
                                              </span>
-                                             <ul class="dropdown-menu s_drop_down btn-block new_question question_select question_custom" @if(isset($edit)) data-template_id="{{$edit->id}}" @elseif(isset($edit_host)) data-template_id="{{$edit_host->id}}" @endif >
+                                             <ul class="dropdown-menu s_drop_down btn-block new_question question_select question_custom" @if(isset($edit)) data-template_id="{{$edit->id}}"@endif >
 
                                                <li class="divider"></li>
                                                <li class="dropdown-header proLiHeader">Professional</li>

@@ -114,7 +114,11 @@ Route::post('/update_test_template/{id}','Recruiter\TemplatesController@update_t
 Route::get('/delete_test_template/{id}', 'Recruiter\TemplatesController@delete_test_template')->name('delete_test_template');
 Route::get('/template_public_preview/{id}', 'Recruiter\TemplatesController@template_public_preview')->name('template_public_preview');
 Route::post('/create_duplicate_template_post','Recruiter\TemplatesController@create_duplicate_template_post')->name('create_duplicate_template_post');
-Route::get('/preview_test/{id}','Recruiter\TemplatesController@preview_test')->name('preview_test');
+Route::get('/preview_test/{id}/{page?}','Recruiter\TemplatesController@preview_test')->name('preview_test');
+
+//Load Section
+Route::get('/preview_testz/{sectionid}/{templateid}','Recruiter\TemplatesController@load_section')->name('load_section');
+
 Route::post('/add_section', 'Recruiter\TemplatesController@add_section')->name('add_section');
 Route::get('/delete_section/{id}', 'Recruiter\TemplatesController@delete_section')->name('delete_section');
 Route::get('/move_up/{id}', 'Recruiter\TemplatesController@move_up')->name('move_up');

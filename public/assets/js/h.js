@@ -145,6 +145,50 @@ $( ".label-public-page" ).on('click', '.delete_public_tag', function() {
     });
 });
 
+// var counter = 0;
+//   $(document).ready(function() {
+    
+//             $(".finish_section_btn").on('click',function(){
+//               var data = $(this).serialize();
+//               var id = $(this).data('id');
+//               var url = $(this).data('url');
+//                 console.log(data);
+//                 counter++;
+    
+//                 $(".thecount").text(counter);
+//             });
+    
+//         });
+var loaded = false;
+
+  $(document).ready(function() {    
+            $("#preview_test_page_btn").on('click',function(){
+              if(loaded) return;
+              var id = $(this).data('id');
+              var url = $(this).data('url');
+              $.ajax({
+              type: 'get',
+              url: $(this).data('url'),
+              data: {'id': id,'template_id': id},
+              success: function (data) {
+
+                    console.log(data);
+        }
+    });
+            });
+        });
+
+
+  $('.pagination_preview a').on('click', function(e){
+    e.preventDefault();
+    var url = $(this).attr('href');
+    alert(url);
+    $.post(url, $('#search').serialize(), function(data){
+        $('#posts').html(data);
+    });
+});
+
+
 
 
 //Quesiton request form submit
@@ -195,6 +239,7 @@ $("#both_check_1").on('change', function () {
   }
 });
 
+  
 
 
 // $('.paginathing_table tbody').paginathing({

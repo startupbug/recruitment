@@ -112,7 +112,8 @@ agr open hai r close nh toh -->
 
                                             <li><a href="{{route('preview_public_testpage', ['id' => $hosted_test->host_id , 'flag' => 'host'])}}" target="blank">Preview Public Test Page</a></li>
                                             <li><a href="#" target="blank">View subscribed candidates</a></li>
-                                           <li><a href="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" target="blank">Preview Test</a></li>
+                                           <li><a href="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" id="preview_test_page_btn" data-url="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" data-id="$hosted_test->test_template_id" target="blank">Preview Test</a></li>
+
                                             <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to delete this Host.', '{{route('host_test_del')}}', {{$hosted_test->host_id}} )" >Delete Test</a></li>
                                             @if($live_status)
                                                  <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to terminate this Host.', '{{route('host_terminate')}}', {{$hosted_test->host_id}} )" >Terminate</a></li>

@@ -649,44 +649,117 @@ public function move_down(Request $request,$id){
    $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Lower One', true);
    return redirect()->back();
 }
-public function preview_test($id){
-        //dd($id);
+
+
+public function preview_test(Request $request,$id){
+  
+        // dd($request->input('page'));
         // $s =  DB::table('mulitple_choices')->get();
         // dd($s);
         // $sections = DB::table('sections')->where('template_id','=',$id)->get();
         //$sections = Section::where('template_id','=',$id)->with('template')->get();
-    $test_template = Test_template::find($id);
-    $sections = $test_template->template_section()->paginate(1);
+    $args['test_template'] = Test_template::find($id);
+    // dd($args['test_template']);
+    // $args['section_questions'] = array();
+    $args['sections'] = $args['test_template']->template_section()->orderBy('order_number', 'ASC')->get();
+    //dd($args['sections']);
+    
+     $section_id_arr = array();
+    // dd($section_id_arr);
+    // foreach(){
 
+    // }
 
-        // $section_question  = $sections[0]->questions()->paginate(1);
+     foreach ($args['sections'] as $sec) {
+       # code...
+      $section_id_arr[] = $sec->id;
+      //dd($sec->id);
+     }
 
-        // $choices = $section_question[0]->multiple_choice()->paginate(1);
+    $args['sec_param'] = $section_id_arr[1];
+    $args['sec_template_id'] = $id;
 
-       // dd($choices);
-        //$choice_count = count($choices);
-        //dd($sections[0]->questions()->get());
+    //get first single section
 
-        // dd($sections);
+    //foreach ($args['sections'] as $key => $value) {
+      $args['sections'] = $args['test_template']->template_section()->where('id', $args['sections'][0]->id)->first();
 
-            // $section_question = array();
+      //dd($args['single_sections']);
 
-            // foreach ($sections as $key => $value)
-            // {
-            //     // dd($value);
-            //     $section_question[$value->id] = Question::Join('mulitple_choices','questions.id','=','mulitple_choices.question_id')
-            //     ->select('mulitple_choices.id as mulitple_choices_id','mulitple_choices.question_id as m_q_id','mulitple_choices.choice','mulitple_choices.partial_marks','mulitple_choices.status','mulitple_choices.shuffle_status','questions.id as q_id','questions.question_statement')
-            //     ->with('section')
-            //     ->where('section_id','=',$value->id)
+    //}
 
-            //     ->get();
-            //      dd($section_question);
-            // }
+    $args['section_questions'] = $args['sections']->each(function ($item, $key) {
+    // You can modify $item here
+      //dd($item->id);
+       // $section_id_arr[] = $item->id;
+        
+     
+      });
 
-
-    return view('recruiter_dashboard.preview_test',['sections'=>$sections]);
+      $args['sections']['questions'] = Question::where('section_id',$args['sections']->id)->get();
+    //dd($args['sections']->questions);
+    
+    $preview_li_html = view('recruiter_dashboard.preview_test')->with($args)->render();
+    return $preview_li_html;
+    //if($id != null)
+    // {
+    //       return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $preview_li_html, 'args' =>  $args]);  
+    //     }else{          
+    //     return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);          
+    //     }
+    //dd($args);
+    return view('recruiter_dashboard.preview_test')->with($args);
 }
 
+
+public function load_section($section_id, $template_id){
+  //dd($template_id);
+
+    $args['test_template'] = Test_template::find($template_id);
+    // $args['section_questions'] = array();
+    $args['sections'] = $args['test_template']->template_section()->orderBy('order_number', 'ASC')->get();
+    //dd($args['sections']);
+    $section_id_arr = array();
+     // dd($section_id_arr);
+    // foreach(){
+
+    // }
+
+     foreach ($args['sections'] as $sec) {
+       # code...
+      $section_id_arr[] = $sec->id;
+      //dd($sec->id);
+     }
+
+    $key = array_search($section_id, $section_id_arr);
+    //dd($section_id_arr[$key]);
+
+    //Check if Sections are over, if over then stop.
+    if(end($section_id_arr) == $section_id_arr[$key]){
+      dd('stop');
+    }
+    
+    $args['sec_param'] = $section_id_arr[$key+1];
+    $args['sec_template_id'] = $template_id;
+
+    //$section_id_arr[$key]
+    //reinitializing sections
+     //$args['sections'] = $args['test_template']->template_section()->get();
+    $args['sections'] = $args['test_template']->template_section()->where('id', $section_id_arr[$key])->first();
+
+    $args['section_questions'] = $args['sections']->each(function ($item, $key) {
+    // You can modify $item here
+      //dd($item->id);
+       // $section_id_arr[] = $item->id;
+        $item['questions'] = Question::where('section_id',$item->id)->get();
+     
+      });
+    
+     // dd($args['section_questions']);
+    $preview_li_html = view('recruiter_dashboard.preview_test')->with($args)->render();
+    return $preview_li_html;  
+  //
+}
 
 public function new_user_question_edit(Request $request){
     if (isset($request->id)){
@@ -810,7 +883,7 @@ return redirect()->back();
 
 public function new_user_question_create(Request $request){
   // return $request->input();
-   return 3333;
+  
 
     $largest_order_number = DB::table('user_setting_questions')
     ->where('template_id',$request->template_id)

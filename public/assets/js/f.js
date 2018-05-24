@@ -148,7 +148,6 @@ $('#newquestion').on('click', function(e) {
 
                 $('li.acaLiHeader').after(lihtml2);
 
-                //$(".liHtml").append(liHtml);
 
               }, error: function (data) {
 
