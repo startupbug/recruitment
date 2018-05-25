@@ -37,7 +37,7 @@ Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {
 	Route::post('user/store', 'Admin\AdminController@store')->name('store_user');
 	Route::get('user/{id}/edit', 'Admin\AdminController@user_edit')->name('user_edit');
 	Route::post('update_user/{id}',['as'=>'update_user','uses'=>'Admin\AdminController@update']);
-	Route::post('user/password_update/{id}', 'Admin\AdminController@update_password')->name('update_password');
+Route::post('user/password_update/{id}', 'Admin\AdminController@update_password')->name('update_password');
 	Route::get('user/delete/{id}', 'Admin\AdminController@destroy')->name('delete_user');
 	Route::get('user/{id}', 'Admin\AdminController@user_view')->name('user');
 //Users CRUD Routes Ended
@@ -67,7 +67,33 @@ Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {
 /*Admin Routes Ended*/
 
 
+/*Candidate Routes Started*/
+Route::group(['prefix' => 'candidate' ,  'middleware' => 'is-candidate'], function () {
+Route::get('/my_test', 'Candidate\CandidateController@my_test')->name('my_test');
+Route::get('candidate_logout', 'Candidate\CandidateController@candidate_logout')->name('candidate_logout');
+
+
+Route::get('/profile', 'Candidate\CandidateProfileController@candidate_index')->name('candidate_index');
+Route::get('/change_password', 'Candidate\CandidateProfileController@change_password')->name('candidate_change_password');
+Route::post('password_update/{id}', 'Candidate\CandidateProfileController@can_update_password')->name('can_update_password');
+Route::post('CanImageUpload',['as'=>'CanImageUpload','uses'=>'Candidate\CandidateProfileController@CanImageUpload']);
+Route::post('CanResumeUpload',['as'=>'CanResumeUpload','uses'=>'Candidate\CandidateProfileController@CanResumeUpload']);
+Route::post('profileEducation',['as'=>'profileEducation','uses'=>'Candidate\CandidateProfileController@profileEducation']);
+Route::post('storeprofileWorkExperience',['as'=>'storeprofileWorkExperience','uses'=>'Candidate\CandidateProfileController@storeprofileWorkExperience']);
+Route::post('storeprofileLanguages',['as'=>'storeprofileLanguages','uses'=>'Candidate\CandidateProfileController@storeprofileLanguages']);
+Route::post('storeprofileFrameworks',['as'=>'storeprofileFrameworks','uses'=>'Candidate\CandidateProfileController@storeprofileFrameworks']);
+Route::post('storeprofilePublications',['as'=>'storeprofilePublications','uses'=>'Candidate\CandidateProfileController@storeprofilePublications']);
+Route::post('storeprofileAchievements',['as'=>'storeprofileAchievements','uses'=>'Candidate\CandidateProfileController@storeprofileAchievements']);
+Route::post('storeprofileConnections',['as'=>'storeprofileConnections','uses'=>'Candidate\CandidateProfileController@storeprofileConnections']);
+Route::post('storeprofileProjectInfo',['as'=>'storeprofileProjectInfo','uses'=>'Candidate\CandidateProfileController@storeprofileProjectInfo']);
+Route::post('update_can_info',['as'=>'update_can_info','uses'=>'Candidate\CandidateProfileController@update_can_info']);
+	});
+Route::get('/delete_candidate_education/{id}', 'Candidate\CandidateProfileController@delete_candidate_education')->name('delete_candidate_education');
+Route::post('/editprofileEducationStore/{id}', 'Candidate\CandidateProfileController@editprofileEducationStore')->name('editprofileEducationStore');
+/*Candidate Routes Ended*/
+
 /*Recruiter Routes Started*/
+
 Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], function () {
 
 Route::get('/home', 'HomeController@index')->name('home');

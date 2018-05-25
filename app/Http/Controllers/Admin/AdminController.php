@@ -221,7 +221,7 @@ class AdminController extends Controller
         $this->set_session('User Is Deleted', true); 
         return redirect()->route('users');
     }
-
+   
     public function admin_logout(){
         Auth::logout();
         return redirect()->route('login_index');
