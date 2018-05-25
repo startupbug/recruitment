@@ -1661,18 +1661,21 @@ $( document ).ready(function() {
     });
     $("#setting_questionnaire_tab").on('click', '.new_question li a', function() {
       var id = $(this).data('id');
+      var idli = $(this).data('idli');
       var question = $(this).data('question');
       var support_text = $(this).data('support_text');
       var template_id = $(this).closest('ul').data('template_id');
       var url = $('#newquestion').data('urlquestion');
       var urlnewquestion = $('#newquestion').data('urlnewquestion');
       // console.log(csrf);
-      if(id == "0")
+      if(idli == "0")
       {
         $(this).closest('section').find(".unordered-list li:eq(0)").append('<li class="questionBorder">'+
-          '<form action="'+url+'" method="post">'+
+          '<form class="questionRequest">'+
             csrf+
             '<input type="hidden" name="template_id" value="'+template_id+'">'+
+            '<input type="hidden" name="question_id" value="'+id+'" >'+
+            '<input type="hidden" name="question_url" value="'+url+'" >' +
             '<div class="row hidden" id="">'+
               '<div class="col-xs-6 title">'+
                 '<a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Mandatory Question (Edit to change)">'+
@@ -1713,14 +1716,14 @@ $( document ).ready(function() {
                 '</div>'+
               '</div>'+
               '<div class="form-group form-group-sm">'+
-                '<label class="control-label col-sm-2">Support text</label>'+
+                '<label class="control-label col-sm-2">Support textsss</label>'+
                 '<div class="col-sm-10">'+
                   '<input type="text" name="support_text" class="form-control" placeholder="Eg: Give the full form of your University">'+
                 '</div>'+
               '</div>'+
               '<div class="form-group form-group-sm">'+
                 '<label class="control-label col-sm-2">'+
-                  'Knock out  '+
+                  'Knock outing  '+
                   '<i class="fa fa-info-circle"></i>'+
                 '</label>'+
                 '<div class="col-sm-10">'+
@@ -1887,6 +1890,44 @@ $( document ).ready(function() {
             '</div>'+
           '</form>'+
         '</li>');
+
+
+        $(".questionRequest").on('submit', function(e){
+            e.preventDefault();
+            //console.log("console" + $(this).find("input[name='template_id']").val());
+            var formData = $(this).serialize();
+
+            // console.log(formData);
+            $.ajaxSetup({
+              headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+            });
+            $.ajax({
+              type: 'post',
+              url: $(this).find("input[name='question_url']").val(),
+              data: formData,
+              success: function (data) {
+                console.log(data);
+
+                //data inserted
+                    if(data.status == 200){
+                      location.reload(true);
+                      alertify.success(data.msg);
+
+                     //data couldnot be inserted
+                    }else if(data.status == 202){
+                      alertify.warning(data.msg);
+
+                      //data duplicated
+                    }else if(data.status == 204){
+                      alertify.warning(data.msg);
+                    }
+                  },
+                  error: function (data) {
+                  alertify.warning("Oops. something went wrong. Please try again");
+                 }
+               });
+        });
+
       }
       else {
         var length = $(this).closest('section').find(".unordered-list li input[value='"+question+"']").length;
@@ -2379,11 +2420,11 @@ $( document ).ready(function() {
               url: $(this).find("input[name='question_url']").val(),
               data: formData,
               success: function (data) {
-                // console.log(data);
+                console.log(data);
 
                 //data inserted
                     if(data.status == 200){
-                      location.reload(true);
+                      // location.reload(true);
                       alertify.success(data.msg);
                       // $('#newquestion').attr("disabled", true);
                       // $('#button_error').removeClass("hidden");
@@ -3292,17 +3333,85 @@ $( document ).ready(function() {
       $(this).parent().next().toggleClass("hidden");
     });
 
+    $('.deleteConfirm_section').on('click' , function(e) {
+      e.preventDefault();
+
+      const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        buttonsStyling: false,
+      })
+
+      swalWithBootstrapButtons({
+        title: 'Are you sure?',
+        text: "You are about to delete a section. You will loose all the questions added in this section. But the questions will continue to exist in you question library for further use.",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Delete Section',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+          $.ajaxSetup({
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+          });
+          $.ajax({
+            type: 'get',
+            url: $(this).attr('href'),
+            success: function (data) {
+              console.log(data);
+              if(data.status == 200){
+                alertify.success(data.msg);
+                location.reload();
+              }
+            },
+            error: function (data) {
+              console.log(data);
+              alertify.warning("Oops. something went wrong. Please try again");
+            }
+          });
+
+        }
+        else if (result.dismiss === swal.DismissReason.cancel)
+        {
+        }
+      })
+
+      return false;
+    });
+
+    $('#myCarouse2').carousel({
+     interval: 1000000
+    })
+
     pagination_table('my_pagination_table','pagination_number');
     pagination_table('my_pagination_table_2','pagination_number_2');
     pagination_table('my_pagination_table_3','pagination_number_3');
     pagination_table('my_pagination_table_4','pagination_number_4');
     pagination_table('my_pagination_table_5','pagination_number_5');
 
+    $('.s_radio_border').on('change', '.radio_button', function() {
+      $('.s_radio_border .radio_button').closest('label').css('background', '#fff');
+      if ($(this).is(":checked")) {
+        $(this).closest('label').css('background', '#fff9ae');
+      }
+      else {
+        $(this).closest('label').css('background', '#fff');
+      }
+    });
+
+    $('#m_timer').countdowntimer({
+        hours : 0,
+        minutes :1,
+        seconds :0,
+        size : "lg"
+    });
+
 });
 
 
 function pagination_table($table_id , $pagination_id) {
-  console.log($pagination_id);
+
   var trnum = 0;
   var maxRows = parseInt("20");
   var totalRows = $("#"+$table_id+" tbody tr").length;
@@ -3322,32 +3431,108 @@ function pagination_table($table_id , $pagination_id) {
     }
   });
 
+
+
   if (totalRows > maxRows) {
-    var pagenum = Math.ceil(totalRows/maxRows);
-    for (var i = 1; i <= pagenum;) {
-      $("#"+$pagination_id).append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(Current)</span></span>\</li>').show();
+
+    var pageLen = Math.ceil(totalRows/maxRows);
+    var curPage = 1;
+    var item = [];
+    for(var i = 1; i<=pageLen;i++){
+      item.push(i);
     }
-  }
-  $("#"+$pagination_id+" li:first-child").addClass('active');
-  $("#"+$pagination_id+" li").on('click', function() {
-    var pageNum = $(this).attr('data-page');
-    var trIndex = 0;
-    $("#"+$pagination_id+" li").removeClass('active');
-    $(this).addClass('active');
-    $("#"+$table_id+" tr:gt(0)").each(function(){
-      trIndex++;
-      if ( trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows) ) {
-        if (trIndex % 2 === 0) {}else {
-          $(this).hide();
-        }
-      }else{
-        if (trIndex % 2 === 0) {}
-        else {
-           $(this).show();
+
+    function isPageInRange( curPage, index, maxPages, pageBefore, pageAfter ) {
+      if (index <= 1) {
+        // first 2 pages
+        return true;
+      }
+      if (index >= maxPages - 2) {
+        // last 2 pages
+        return true;
+      }
+      if (index >= curPage - pageBefore && index <= curPage + pageAfter) {
+        return true;
+      }
+    }
+    function render( curPage, item, first ) {
+      var html = '', separatorAdded = false;
+      for(var i in item){
+        if ( isPageInRange( curPage, i, pageLen, 2, 2 ) ) {
+          html += '<li data-page="' + item[i] + '">' + item[i] + '</li>';
+          // as we added a page, we reset the separatorAdded
+          separatorAdded = false;
+        } else {
+          if (!separatorAdded) {
+            // only add a separator when it wasn't added before
+            html += '<li class="separator" />';
+            separatorAdded = true;
+          }
         }
       }
-    });
-  });
+
+      var holder = document.querySelector("#"+$pagination_id);
+      holder.innerHTML = html;
+      $('#'+$pagination_id+'>li[data-page="' + curPage + '"]').addClass('active')
+      // document.querySelector('#'+$pagination_id+'>li[data-page="' + curPage + '"]').classList.add('active');
+      if ( first ) {
+        holder.addEventListener('click', function(e) {
+          if (!e.target.getAttribute('data-page')) {
+            return;
+          }
+
+          var pageNum = e.target.getAttribute('data-page');
+          var trIndex = 0;
+          var maxRows = parseInt("20");
+          $("#"+$table_id+" tr:gt(0)").each(function(){
+            trIndex++;
+            if ( trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows) ) {
+              if (trIndex % 2 === 0) {}else {
+                $(this).hide();
+              }
+            }else{
+              if (trIndex % 2 === 0) {}
+              else {
+                 $(this).show();
+              }
+            }
+          });
+
+          curPage = parseInt( e.target.getAttribute('data-page') );
+          render( curPage, item );
+        });
+      }
+    }
+    render( 1, item, true );
+
+    // var pagenum = Math.ceil(totalRows/maxRows);
+    // for (var i = 1; i <= 10;) {
+    //   $("#"+$pagination_id).append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(Current)</span></span>\</li>').show();
+    // }
+  }
+
+  // $("#"+$pagination_id+" li:first-child").addClass('active');
+  //
+  // $("#"+$pagination_id+" li").on('click', function() {
+  //   var pageNum = $(this).attr('data-page');
+  //   var trIndex = 0;
+  //   $("#"+$pagination_id+" li").removeClass('active');
+  //   $(this).addClass('active');
+  //   $("#"+$table_id+" tr:gt(0)").each(function(){
+  //     trIndex++;
+  //     if ( trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows) ) {
+  //       if (trIndex % 2 === 0) {}else {
+  //         $(this).hide();
+  //       }
+  //     }else{
+  //       if (trIndex % 2 === 0) {}
+  //       else {
+  //          $(this).show();
+  //       }
+  //     }
+  //   });
+  // });
+
 }
 
 function testcase_fileformat(){
@@ -3368,32 +3553,4 @@ function testcase_fileformat(){
     confirmButtonClass: 'btn-info',
     confirmButtonText: 'Got It!',
   });
-}
-function hosting_confirm(){
-  console.log("asdas");
-  // swal({
-  //   title: 'Pattern of Test Cases',
-  //   type: 'info',
-  //   html:
-  //     "<p>"+
-  //       "<p>There should be a delimiter </p>"+
-  //       "<p>'-----CodeGrounds-----'</p>"+
-  //       "<p>after input and a delimiter</p>"+
-  //       "<p>'-----EndCodeGrounds-----'</p>"+
-  //       "<p>at the end of test case</p>"+
-  //       "<p><b>Example:</b>If your input is 5 &amp; output is 10,your file should be as</p>"+
-  //       "<pre>5<br>-----CodeGrounds-----<br>10<br>-----EndCodeGrounds-----</pre>"+
-  //       "<p></p>"+
-  //     "</p>" ,
-  //   confirmButtonClass: 'btn-info',
-  //   confirmButtonText: 'Got It!',
-  // });
-  swal({
-    title: "Pattern of Test Cases",
-    text: "There should be a delimiter",
-    type: "info",
-    showCancelButton: true,
-    confirmButtonClass: 'btn-info',
-    confirmButtonText: 'Got It!'
-    });
 }

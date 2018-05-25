@@ -1,5 +1,20 @@
 @extends('recruiter_dashboard.layouts.app')
 @section('content')
+
+<section class="preview_test_f">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-9 col-padding">
+        <span id="m_timer">
+        </span>
+          <a href="{{route('load_section', [ 'sectionid' => $sec_param, 'templateid' => $sec_template_id])}}"><button type="submit" class="btn f_finish" data-url="">Section - {{$sections->order_number}}</button> </a>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container-fuild">
+
+</div>
 <section class="test_question">
     <div class="container">
       <div class="row">
@@ -10,25 +25,27 @@
     </div>
     <div class="container border_question">
 
-      @foreach($sections as  $section)
-    
-      <div class="row">
-          <div class="col-md-3">
-            <h3 class="side_caution">Section - {{$section->order_number}}</h3>
-          </div>
+      
 
-          <div class="col-md-9">
-            <ul class="pagination question">
-            </ul>
+      <div class="row">
+       
+       
+
+          <div class="col-md-3">
+
+       
+
+              <h3 class="side_caution">Section - {{$sections->order_number}}</h3>
+                
+      
+            
           </div>
-          @php $questions = $section->questions()->paginate(1) @endphp
-          @php $q = count($questions) @endphp
-          @php $k = 1 @endphp
-          @foreach($questions as $question)
+   
+         
           <div class="col-md-12 border_content">
             <div class="row">
               <div class="col-md-8">
-                <h3 class="question_mark">Question No. {{$k}} of {{$q}} <span>|4 Marks</span></h3>
+                <h3 class="question_mark">Question No.  of  <span>|4 Marks</span></h3>
                   </div>
                   <div class="col-md-4">
                     <div class="button_mark">
@@ -38,31 +55,34 @@
             </div>
           </div>
 
-          <div class="col-md-5">
-            <p class="discription_test"><em>You are provided with two definitions and options,choose the correct option which fits the discription best.</em></p>
-            <p class="last_test"><strong>{{$question->question_statement}}</strong></p>
-          </div>
-          <div class="col-md-7 ">
-              <div class="panel panel-default test_panel">
-                @php $choice = $question->multiple_choice()->get()  @endphp
-                @foreach($choice as $options)
-                  <div class="panel-body">
-                    <div class="radio">
-                      <label><input type="radio" name="optradio">{{$options->choice}}</label>
-                    </div>
+        
+            @foreach($sections->questions as $question)  
+            <div>
+              <div class="col-md-5 extended-coding-question">
+                <p class="discription_test"><em>{{$question->question_statement}}.</em></p>
+                <p class="last_test"><strong></strong></p>
+              </div>
+              <div class="col-md-7 extended-coding-question border_custom">
+                  <!-- <div class="panel panel-default test_panel"> -->
+                  <div class="radio s_radio_border">
+                      <!-- <div class="panel-body"> -->
+                      <label>
+                            {{$question->question_statement}}
+                          <input type="radio" class="radio_button" name="optradio">
+                      </label>
+                    
                   </div>
-                @endforeach
+                  <!-- </div> -->
+                  <div class="button_question"><button type="button" class="btn">Next Question</button>
+                    <button type="button" class="btn">Clear Answer</button>
+                  </div>
               </div>
-              <div class="button_question"><button type="button" class="btn">Next Question</button>
-                <button type="button" class="btn">Clear Answer</button>
-                {{$questions->links()}}
-              </div>
-         </div>
-         @php $k++ @endphp
-
-         @endforeach
+            </div>
+            @endforeach
+         
+         
       </div>
-      @endforeach
+ 
    </div>
 </section>
 @endsection

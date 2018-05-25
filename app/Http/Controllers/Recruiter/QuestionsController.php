@@ -31,7 +31,7 @@ class QuestionsController extends Controller
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			if ($request->lib_private_question == 0) {				
+			if ($request->lib_private_question == 0) {
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
@@ -39,17 +39,17 @@ class QuestionsController extends Controller
 			$store->question_state_id = $request->question_state_id;
 			$store->question_sub_types_id = $request->question_sub_types_id;
 			$store->question_type_id = $request->question_type_id;
-			$store->question_level_id = $request->question_level_id;			
+			$store->question_level_id = $request->question_level_id;
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
 			// dd($store);
 			if ($store->save()){
-				$question_data =  array('store' => $store, 'request' =>$request->all());			
+				$question_data =  array('store' => $store, 'request' =>$request->all());
 				event(new  QuestionDetail($question_data));
 				event(new  QuestionChoice($question_data));
 				event(new  QuestionSolution($question_data));
 
-			//Updating MCQ Tableview 
+			//Updating MCQ Tableview
 
 				$args['ques1'] = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
 				->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
@@ -64,26 +64,26 @@ class QuestionsController extends Controller
 				->where('questions.section_id', $request->section_id)
 				->groupBy('questions.id')
 				->get();
-	
+
 				$quescount = count($args['ques1']);
 			//return $args['ques1'];
 				$li_html = view('recruiter_dashboard.ajax_views.ajax_mcq_table')->with($args)->render();
 				if ($request->section_id != NULL) {
 					return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
-					'quescount' => $quescount]);	
-				}else{					
-				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);					
+					'quescount' => $quescount]);
+				}else{
+				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);
 				}
-						
+
 				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
 				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
-				//$this->set_session('Something Went Wrong, Please Try Again', false);	
+				//$this->set_session('Something Went Wrong, Please Try Again', false);
 			}
-			
-			return redirect()->back();	
+
+			return redirect()->back();
 		}else{
-			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);		
+			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);
 
 			// $this->set_session('Please Give The Required Data', false);
 			// return redirect()->back();
@@ -93,7 +93,7 @@ class QuestionsController extends Controller
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			if ($request->lib_private_question == 0) {				
+			if ($request->lib_private_question == 0) {
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
@@ -104,15 +104,15 @@ class QuestionsController extends Controller
 			$store->question_level_id = $request->question_level_id;
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
-			if ($store->save()){	
-				$question_data =  array('store' => $store, 'request' =>$request->all());			
+			if ($store->save()){
+				$question_data =  array('store' => $store, 'request' =>$request->all());
 				event(new  CodingQuestionDetail($question_data));
 				event(new  QuestionSolution($question_data));
 				event(new  CodingEntries($question_data));
 				event(new  CodingQuestionLanguage($question_data));
-				event(new  CodingTestCases($question_data));			
-				
-			//Updating MCQ Tableview 
+				event(new  CodingTestCases($question_data));
+
+			//Updating MCQ Tableview
 
 				$args['ques2'] = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
 				->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
@@ -121,7 +121,7 @@ class QuestionsController extends Controller
 				->leftJoin('question_states','question_states.id','=','questions.question_state_id')
 				->leftJoin('question_levels','question_levels.id','=','questions.question_level_id')
 				->leftJoin('question_tags','question_tags.id','=','question_details.tag_id')
-				->where('questions.question_type_id',2)				
+				->where('questions.question_type_id',2)
 				->where('questions.user_id',Auth::user()->id)
 				->where('questions.section_id', $request->section_id)
 				->groupBy('questions.id')
@@ -132,30 +132,30 @@ class QuestionsController extends Controller
 				$li_html = view('recruiter_dashboard.ajax_views.ajax_first_coding_table')->with($args)->render();
 					if ($request->section_id != NULL) {
 						return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
-					'quescount' => $quescount]);		
-				}else{					
-				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);					
+					'quescount' => $quescount]);
+				}else{
+				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);
 				}
-					
+
 				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
 				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
-				//$this->set_session('Something Went Wrong, Please Try Again', false);	
+				//$this->set_session('Something Went Wrong, Please Try Again', false);
 			}
-			
-			return redirect()->back();	
+
+			return redirect()->back();
 		}else{
-			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);		
+			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);
 
 			// $this->set_session('Please Give The Required Data', false);
 			// return redirect()->back();
 		}
-	}	
-	public function create_question_coding_debug(Request $request){		
+	}
+	public function create_question_coding_debug(Request $request){
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			if ($request->lib_private_question == 0) {				
+			if ($request->lib_private_question == 0) {
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
@@ -166,8 +166,8 @@ class QuestionsController extends Controller
 			$store->question_level_id = $request->question_level_id;
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
-			if ($store->save()){	
-				$question_data =  array('store' => $store, 'request' =>$request->all());			
+			if ($store->save()){
+				$question_data =  array('store' => $store, 'request' =>$request->all());
 				event(new  CodingQuestionDetail($question_data));
 				event(new  CodingTestCases($question_data));
 				event(new  QuestionSolution($question_data));
@@ -178,7 +178,7 @@ class QuestionsController extends Controller
 				->leftJoin('question_states','question_states.id','=','questions.question_state_id')
 				->leftJoin('question_levels','question_levels.id','=','questions.question_level_id')
 				->leftJoin('question_tags','question_tags.id','=','question_details.tag_id')
-				->where('questions.question_type_id',2)				
+				->where('questions.question_type_id',2)
 				->where('questions.user_id',Auth::user()->id)
 				->where('questions.section_id', $request->section_id)
 				->groupBy('questions.id')
@@ -189,30 +189,30 @@ class QuestionsController extends Controller
 				$li_html = view('recruiter_dashboard.ajax_views.ajax_second_coding_table')->with($args)->render();
 				if ($request->section_id != NULL) {
 						return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
-					'quescount' => $quescount]);	
-				}else{					
-				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);					
-				}						
+					'quescount' => $quescount]);
+				}else{
+				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);
+				}
 				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
 				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
-				//$this->set_session('Something Went Wrong, Please Try Again', false);	
+				//$this->set_session('Something Went Wrong, Please Try Again', false);
 			}
-			
-			return redirect()->back();	
+
+			return redirect()->back();
 		}else{
-			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);		
+			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);
 
 			// $this->set_session('Please Give The Required Data', false);
 			// return redirect()->back();
 		}
 	}
-	public function create_first_submission_question(Request $request){	
+	public function create_first_submission_question(Request $request){
 
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			if ($request->lib_private_question == 0) {				
+			if ($request->lib_private_question == 0) {
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
@@ -223,12 +223,12 @@ class QuestionsController extends Controller
 			$store->question_level_id = $request->question_level_id;
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
-			if ($store->save()){	
-				$question_data =  array('store' => $store, 'request' =>$request->all());			
-				event(new  QuestionDetail($question_data));			
+			if ($store->save()){
+				$question_data =  array('store' => $store, 'request' =>$request->all());
+				event(new  QuestionDetail($question_data));
 				event(new  QuestionSolution($question_data));
-				event(new  QuestionSubmissionEvaluation($question_data));			
-				event(new  QuestionSubmissionResource($question_data));				
+				event(new  QuestionSubmissionEvaluation($question_data));
+				event(new  QuestionSubmissionResource($question_data));
 				$args['ques3'] = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
 				->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
 				->leftJoin('question_types','question_types.id','=','questions.question_type_id')
@@ -247,20 +247,20 @@ class QuestionsController extends Controller
 				$li_html = view('recruiter_dashboard.ajax_views.ajax_first_submission_table')->with($args)->render();
 				if ($request->section_id != NULL) {
 						return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
-					'quescount' => $quescount]);	
-				}else{					
-				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);					
-				}	
-							
+					'quescount' => $quescount]);
+				}else{
+				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);
+				}
+
 				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
 				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
-				//$this->set_session('Something Went Wrong, Please Try Again', false);	
+				//$this->set_session('Something Went Wrong, Please Try Again', false);
 			}
-			
-			return redirect()->back();	
+
+			return redirect()->back();
 		}else{
-			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);		
+			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);
 
 			// $this->set_session('Please Give The Required Data', false);
 			// return redirect()->back();
@@ -270,7 +270,7 @@ class QuestionsController extends Controller
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			if ($request->lib_private_question == 0) {				
+			if ($request->lib_private_question == 0) {
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
@@ -281,11 +281,11 @@ class QuestionsController extends Controller
 			$store->question_level_id = $request->question_level_id;
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
-			if ($store->save()){	
-				$question_data =  array('store' => $store, 'request' =>$request->all());	
+			if ($store->save()){
+				$question_data =  array('store' => $store, 'request' =>$request->all());
 				event(new  QuestionSubmissionEvaluation($question_data));
-				event(new  QuestionDetail($question_data));			
-				event(new  QuestionSolution($question_data));			
+				event(new  QuestionDetail($question_data));
+				event(new  QuestionSolution($question_data));
 				$args['ques3'] = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
 				->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
 				->leftJoin('question_types','question_types.id','=','questions.question_type_id')
@@ -304,26 +304,26 @@ class QuestionsController extends Controller
 				$li_html = view('recruiter_dashboard.ajax_views.ajax_first_submission_table')->with($args)->render();
 				if ($request->section_id != NULL) {
 						return \Response()->Json([ 'status' => 200, 'msg'=> 'You Have Successfully Saved The Question Data', 'li_html' => $li_html, 'section_id' =>  $request->section_id,
-					'quescount' => $quescount]);	
-				}else{					
-				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);					
-				}	
-						
+					'quescount' => $quescount]);
+				}else{
+				return \Response()->Json([ 'status' => 300, 'msg'=> 'You Have Successfully Saved The Question Data']);
+				}
+
 				// $this->set_session('You Have Successfully Saved The Question Data', true);
 			}else{
 				return \Response()->Json([ 'status' => 200, 'msg'=> 'Something Went Wrong, Please Try Again']);
-				//$this->set_session('Something Went Wrong, Please Try Again', false);	
+				//$this->set_session('Something Went Wrong, Please Try Again', false);
 			}
-			
-			return redirect()->back();	
+
+			return redirect()->back();
 		}else{
-			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);		
+			return \Response()->Json([ 'status' => 200, 'msg'=> 'Please Give The Required Data']);
 
 			// $this->set_session('Please Give The Required Data', false);
 			// return redirect()->back();
-		}	
+		}
 	}
-	public function question_modal_partial_data(Request $request){		
+	public function question_modal_partial_data(Request $request){
 		$question_modal_partial_data = Question::leftJoin('question_details','question_details.question_id','=','questions.id')
 		->leftJoin('question_solutions','question_solutions.question_id','=','questions.id')
 		->leftJoin('mulitple_choices','mulitple_choices.question_id','=','questions.id')
@@ -335,15 +335,15 @@ class QuestionsController extends Controller
 		->first();
 		$question_modal_choices = Mulitple_choice::where('question_id',$request->question_id)->get();
 
-		if (isset($question_modal_partial_data)){			
-			return \Response()->Json([ 'status' => 200, 'question_data'=>$question_modal_partial_data, 'question_choices' => $question_modal_choices]);		
+		if (isset($question_modal_partial_data)){
+			return \Response()->Json([ 'status' => 200, 'question_data'=>$question_modal_partial_data, 'question_choices' => $question_modal_choices]);
 		}else{
 			$this->set_session('Something Went Wrong, Please Try Again!', false);
-			return redirect()->back();		
-		}		
+			return redirect()->back();
+		}
 	}
 	public function coding_question_modal_partial_data(Request $request){
-		//HASAN MEHDI CODING QUESTIONS FROM JQUERY 
+		//HASAN MEHDI CODING QUESTIONS FROM JQUERY
 
 		$q_type_id = $request->input('quesType');
 		$q_id = $request->input('id');
@@ -362,17 +362,17 @@ class QuestionsController extends Controller
 								// return $coding_question_data;
 		$coding_question_entries = Coding_entry::where('question_id','=',$q_id)->get();
 
-		if (isset($coding_question_data)){			
-			return \Response()->Json([ 'status' => 200, 'coding_question_data'=>$coding_question_data, 'coding_question_entries'=>$coding_question_entries]);		
+		if (isset($coding_question_data)){
+			return \Response()->Json([ 'status' => 200, 'coding_question_data'=>$coding_question_data, 'coding_question_entries'=>$coding_question_entries]);
 		}else{
 			$this->set_session('Something Went Wrong, Please Try Again!', false);
-			return redirect()->back();		
-		}		
+			return redirect()->back();
+		}
 	}
 
 
 	public function submission_question_modal_partial_data(Request $request){
-		//HASAN MEHDI CODING QUESTIONS FROM JQUERY 
+		//HASAN MEHDI CODING QUESTIONS FROM JQUERY
 
 		$q_type_id = $request->input('quesType');
 		$q_id = $request->input('id');
@@ -395,7 +395,7 @@ class QuestionsController extends Controller
 		->where('questions_submission_resources.question_id','=','$q_id')
 		->get();
 
-		if (isset($coding_question_data)){			
+		if (isset($coding_question_data)){
 			return \Response()->Json([ 'status' => 200, 'coding_question_data'=>$coding_question_data]);
 			if(isset($coding_question_entries))
 			{
@@ -405,34 +405,34 @@ class QuestionsController extends Controller
 			{
 				$this->set_session('Something Went Wrong, Please Try Again!', false);
 				return redirect()->back();
-			}		
+			}
 		}else{
 			$this->set_session('Something Went Wrong, Please Try Again!', false);
-			return redirect()->back();		
-		}		
+			return redirect()->back();
+		}
 	}
 
 
-	public function update_partial_question(Request $request){		
+	public function update_partial_question(Request $request){
 		if (!empty($request->question_id)){
 			DB::table('question_details')
 			->where('question_id', $request->question_id)
 			->update([
 				'marks' => $request->marks,
 				'negative_marks' => $request->negative_marks
-			]);							
+			]);
 			$this->set_session('You Have Successfully Updated The Question Data', true);
 		}else{
-			$this->set_session('Something Went Wrong, Please Try Again', false);	
-		}			
+			$this->set_session('Something Went Wrong, Please Try Again', false);
+		}
 		return redirect()->back();
 	}
-	public function delete_question($id){		  	
+	public function delete_question($id){
 		$delete = Question::find($id);
 		if ($delete->delete()){
 			$this->set_session('You Have Successfully Deleted The Question', true);
 			return redirect()->back();
-			// return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted The Question']);					
+			// return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted The Question']);
 		}else{
 			$this->set_session('Question Not Deleted, Something Went Wrong!', false);
 			return redirect()->back();
@@ -440,10 +440,10 @@ class QuestionsController extends Controller
 	}
 	public function delete_all_mcqs_questions(Request $request){
 		$myArray = explode(',',$request->section_mc_id[0]);
-		if (isset($myArray)) {			
-			foreach($myArray as $value) {				
+		if (isset($myArray)) {
+			foreach($myArray as $value) {
 				$delete = Question::find($value);
-				$delete->delete();		
+				$delete->delete();
 			}
 			$this->set_session('You Have Successfully Deleted All The Selected Questions', true);
 			return redirect()->back();
@@ -454,10 +454,10 @@ class QuestionsController extends Controller
 	}
 	public function delete_all_coding_questions(Request $request){
 		$myArray = explode(',',$request->section_c_id[0]);
-		if (isset($myArray)) {			
-			foreach($myArray as $value) {				
+		if (isset($myArray)) {
+			foreach($myArray as $value) {
 				$delete = Question::find($value);
-				$delete->delete();		
+				$delete->delete();
 			}
 			$this->set_session('You Have Successfully Deleted All The Selected Questions', true);
 			return redirect()->back();
@@ -468,10 +468,10 @@ class QuestionsController extends Controller
 	}
 	public function delete_all_submission_questions(Request $request){
 		$myArray = explode(',',$request->section_s_id[0]);
-		if (isset($myArray)) {			
-			foreach($myArray as $value) {				
+		if (isset($myArray)) {
+			foreach($myArray as $value) {
 				$delete = Question::find($value);
-				$delete->delete();		
+				$delete->delete();
 			}
 			$this->set_session('You Have Successfully Deleted All The Selected Questions', true);
 			return redirect()->back();
@@ -482,7 +482,7 @@ class QuestionsController extends Controller
 	}
 
 	public function update_questions_modal(Request $request, $id)
-	{    	
+	{
 
 		// dd($request->input());
 		$update_question =  Question::find($id);
@@ -496,7 +496,7 @@ class QuestionsController extends Controller
 			'marks' => $request->get('marks'),
 			'tag_id' => $request->get('tag_name'),
 			'provider' => $request->get('provider'),
-			'author' => $request->get('author') 
+			'author' => $request->get('author')
 		]);
 		$get_choice_id = DB::table('mulitple_choices')->where('question_id','=',$id)->get(['id']);
 		//dd($get_choice_id);
@@ -511,14 +511,14 @@ class QuestionsController extends Controller
 
 		  $answer=0;
 		foreach ($get_choice_id as $key => $value)
-		{   
+		{
 			if(in_array($request_choice[$key], $request_answer)){
 				$answer = 1;
 			}
 
 			$abc = Mulitple_choice::updateOrCreate(
-				['id' => $value->id], 
-				['choice' => $request_choice[$key], 
+				['id' => $value->id],
+				['choice' => $request_choice[$key],
 				'partial_marks'=> $request->input('partial_marks')[$key],
 				'status' => 1,  'answer' => $answer, 'shuffle_status' => 0, ]
 			);
@@ -527,7 +527,7 @@ class QuestionsController extends Controller
 
 			unset($request_choice[$key]);
         	//usnset is use to unset values that are not in key
-        	//this unset function is taking that values that are not in db and then inserting them    
+        	//this unset function is taking that values that are not in db and then inserting them
 
 		}
 
@@ -539,10 +539,10 @@ class QuestionsController extends Controller
 			$insert->save();
 		}
 		$abc = Question_solution::updateOrCreate(
-			['question_id' => $id], 
+			['question_id' => $id],
 			['text' => $request->solutiontext, 'code'=> $request->solutioncode, 'url'=>$request->solutionurl]
 		);
-		return redirect()->back(); 
+		return redirect()->back();
 	}
 
 	public function delete_choice($id)
@@ -552,7 +552,7 @@ class QuestionsController extends Controller
 
 		$delete_choice = Mulitple_choice::findOrFail( $id );
 
-		$delete_choices = $delete_choice->delete();		
+		$delete_choices = $delete_choice->delete();
 		if ($delete_choices ) {
 
 			return response(['msg' => 'Product deleted', 'status' => 'success']);
@@ -572,15 +572,15 @@ class QuestionsController extends Controller
             	'coding_program_title' => $request->get('coding_program_title'),
                 'marks' => $request->get('marks'),
                 'provider' => $request->get('provider'),
-                'author' => $request->get('author') 
+                'author' => $request->get('author')
         ]);
 
-    	
+
     	$get_coding_entrys = DB::table('coding_entries')->where('question_id','=',$id)->get(['id']);
     	$request_coding_input = $request->input('coding_input');
     	$request_coding_output = $request->input('coding_output');
     	 //dd($request->input());
-    	 $count_coding_inputs = count($request_coding_input); 
+    	 $count_coding_inputs = count($request_coding_input);
     	 $i=0;
     	foreach ($get_coding_entrys as $get_coding_entry) {
     		$coding_entry = Coding_entry::where('id', '=', $get_coding_entry->id)
@@ -631,7 +631,7 @@ class QuestionsController extends Controller
         $allowed_languages = DB::table('coding_question_languages')->where('question_id','=',$id)->get();
           // dd($allowed_languages);
         $delete_query_new = DB::table('coding_question_languages')->where('question_id',$id)->get();
-        if (isset($delete_query_new)) {        
+        if (isset($delete_query_new)) {
 	        foreach ($delete_query_new as $key => $value) {
 	        	$delete = DB::table('coding_question_languages')->where('id',$value->id)->delete();
 	        }
@@ -639,12 +639,12 @@ class QuestionsController extends Controller
 
 
         $allowed_languages_id = $request->input('allowed_languages_id');
-       
+
         $count_allowed_languages_id = count($allowed_languages_id);
         // dd($count_allowed_languages_id);
 
 
-		 
+
         $i = 0;
         foreach ($allowed_languages as $allowed_language ) {
         	$allowed_languages_data = Coding_question_language::where('id','=',$allowed_language->id)
@@ -663,7 +663,7 @@ class QuestionsController extends Controller
 
 
     	$abc = Question_solution::updateOrCreate(
-        		['question_id' => $id], 
+        		['question_id' => $id],
         		[
 					'text' => $request->text,
 					'code'=> $request->code,
@@ -675,43 +675,17 @@ class QuestionsController extends Controller
 		            $location=public_path('public/storage/question-solution-media/'.$filename);
 		            Question_solution::where('question_id' ,'=', $id)->update([
 		            'solution_media' => $filename
-		            ]); 
+		            ]);
 		            $abc->solution_media = $this->UploadFile('solution_media', $request->solution_media);
-		        } 
+		        }
 
-        return redirect()->back(); 
-    	
+        return redirect()->back();
 
 
-    	
+
+
     }
     public function submission_update_questions_modal(Request $request,$id){
-
-
-  // "help_material_name" => array:4 [▼
-  //   0 => "1"
-  //   1 => "2"
-  //   2 => "4"
-  //   3 => "5"
-  // ]
-    	// questions_submission_resources
-
-
-
-  // "submission_evaluation_title" => array:1 [▼
-  //   0 => "321"
-  // ]
-  // "weightage" => array:1 [▼
-  //   0 => "2"
-  // ]
-    	// dd($request->help_material_name);
-
- 
-// dd('123');
-
-
-
-
 
 		$update_question =  Question::find($id);
     	$update_question->question_statement = $request->get('question_statement');
@@ -720,23 +694,27 @@ class QuestionsController extends Controller
     	$update_question->save();
 
 
-// foreach ($request->help_material_name as $key => $value) {
-//     		dd($value);
-//     	}
+
 
     	$update_help = DB::table('questions_submission_resources')->where('question_id',$id)->get();
     	foreach ($update_help as $key => $value_new) {
-    		dd($value_new->id);
+    		// dd($value_new->id);
     		DB::table('questions_submission_resources')->where('id',$value_new->id)->delete();
     	}
-    	foreach ($request->help_material_name as $key => $value) {
-    		DB::table('questions_submission_resources')            
-            ->insert([
-            	'question_id'=>$id,
-                'candidate_help_material_tests_id' => $value             
-                        
-   			]); 
+    	// dd($request->input());
+    	$help_material = $request->input('help_material_name');
+    	if(!empty($help_material))
+    	{
+    		foreach ($request->help_material_name as $key => $value) {
+	    		DB::table('questions_submission_resources')
+	            ->insert([
+	            	'question_id'=>$id,
+	                'candidate_help_material_tests_id' => $value
+
+	   			]);
+    		}
     	}
+
 
     	$update_evaluation_title = DB::table('question_submission_evaluations')->where('question_id',$id)->get();
     	foreach ($request->submission_evaluation_title as $key => $value) {
@@ -744,7 +722,7 @@ class QuestionsController extends Controller
             ->where('question_id',$id)
             ->update([
                 'submission_evaluation_title' => $value
-   			]); 
+   			]);
     	}
 
     	$update_evaluation_weightage= DB::table('question_submission_evaluations')->where('question_id',$id)->get();
@@ -752,8 +730,8 @@ class QuestionsController extends Controller
     		DB::table('question_submission_evaluations')
             ->where('question_id',$id)
             ->update([
-                'weightage' =>$value                  
-   			]); 
+                'weightage' =>$value
+   			]);
     	}
 
     	//dd($update_help);
@@ -766,11 +744,11 @@ class QuestionsController extends Controller
                 'marks' => $request->get('marks'),
                 'provider' => $request->get('provider'),
                 'author' => $request->get('author'),
-                'tag_id' => $request->get('tag_id') 
-        ]); 
+                'tag_id' => $request->get('tag_id')
+        ]);
 
     	$abc = Question_solution::updateOrCreate(
-        		['question_id' => $id], 
+        		['question_id' => $id],
         		[
 					'text' => $request->text,
 					'code'=> $request->code,
@@ -782,11 +760,11 @@ class QuestionsController extends Controller
 		            $location=public_path('public/storage/question-solution-media/'.$filename);
 		            Question_solution::where('question_id' ,'=', $id)->update([
 		            'solution_media' => $filename
-		            ]); 
+		            ]);
 		            $abc->solution_media = $this->UploadFile('solution_media', $request->solution_media);
-		        } 
+		        }
 
-        return redirect()->back(); 
+        return redirect()->back();
 
 
     }
@@ -802,9 +780,9 @@ class QuestionsController extends Controller
     }
 
     public function delete_test_case($id)
-    {		
-    	$delete_test_case = Test_case::findOrFail( $id );    	
-    	$delete_test_cases = $delete_test_case->delete();		
+    {
+    	$delete_test_case = Test_case::findOrFail( $id );
+    	$delete_test_cases = $delete_test_case->delete();
     	if ($delete_test_case ) {
     		return response(['msg' => 'Product deleted', 'status' => 'success']);
     	}
@@ -813,15 +791,15 @@ class QuestionsController extends Controller
 
     public function show_setting_newquestion()
     {
-		$show_question = Admin_question::get();
-		$question_type = Admin_question_type::get();
+			$show_question = Admin_question::get();
+			$question_type = Admin_question_type::get();
 
-		if ($show_question && $question_type){
+			if ($show_question && $question_type){
 
-			return \Response()->Json([ 'status' => 200,'show_question'=>$show_question, 'question_type'=>$question_type]);					
-		}else{
-			return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);					
+				return \Response()->Json([ 'status' => 200,'show_question'=>$show_question, 'question_type'=>$question_type]);
+			}else{
+				return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong, Please Try Again!']);
+			}
 		}
-	}
 
 }

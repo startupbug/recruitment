@@ -578,8 +578,8 @@ ul.add_resources_submission_ul .s_close {
     height: 80px !important;
 }
 .swal2-icon-text {
-    font-size: 6.75em !important;
-    margin-top: 14px !important;
+    font-size: 7.75em !important;
+    margin-top: 23px !important;
 }
 .swal2-popup .swal2-content {
     color: #797979 !important;
@@ -618,4 +618,74 @@ ul.add_resources_submission_ul .s_close {
     padding: 1px 5px;
     font-weight: 600;
     font-size: 11px;
+}
+.button_duplicate_s button.btn {
+    color: #ffffff;
+    background: #323754!important;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.button_duplicate_s button.btn.btn-default.f_font {
+    color: black;
+    background: #cccccc!important;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.swal2-icon.swal2-warning {
+    height: 100px;
+    width: 100px;
+}
+.swal2-actions .swal2-cancel.btn.btn-danger {
+    padding: 10px 32px;
+    background: #c1c1c1;
+    border-color: #c1c1c1;
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.swal2-actions .swal2-confirm.btn.btn-success {
+    padding: 10px 32px;
+    background: rgb(221, 107, 85);
+    border-color: rgb(221, 107, 85);
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.pagination_custom>li>a, .pagination_custom>li.separator {
+    position: relative;
+    float: left;
+    padding: 3px 3px;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #ddd;
+    border: 1px solid #ddd;
+}
+
+.pagination_custom>li>a, .pagination_custom>li {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.pagination_custom>li>a, .pagination_custom>li {
+    cursor: default !important;
+    border-radius: 50% !important;
+    margin: 0 5px;
+}
+.pagination_custom>.active>a, .pagination_custom>.active>a:focus, .pagination_custom>.active>a:hover, .pagination_custom>.active, .pagination_custom>.active:focus, .pagination_custom>.active:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
 }

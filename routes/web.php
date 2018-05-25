@@ -140,7 +140,11 @@ Route::post('/update_test_template/{id}','Recruiter\TemplatesController@update_t
 Route::get('/delete_test_template/{id}', 'Recruiter\TemplatesController@delete_test_template')->name('delete_test_template');
 Route::get('/template_public_preview/{id}', 'Recruiter\TemplatesController@template_public_preview')->name('template_public_preview');
 Route::post('/create_duplicate_template_post','Recruiter\TemplatesController@create_duplicate_template_post')->name('create_duplicate_template_post');
-Route::get('/preview_test/{id}','Recruiter\TemplatesController@preview_test')->name('preview_test');
+Route::get('/preview_test/{id}/{page?}','Recruiter\TemplatesController@preview_test')->name('preview_test');
+
+//Load Section
+Route::get('/preview_testz/{sectionid}/{templateid}','Recruiter\TemplatesController@load_section')->name('load_section');
+
 Route::post('/add_section', 'Recruiter\TemplatesController@add_section')->name('add_section');
 Route::get('/delete_section/{id}', 'Recruiter\TemplatesController@delete_section')->name('delete_section');
 Route::get('/move_up/{id}', 'Recruiter\TemplatesController@move_up')->name('move_up');
@@ -201,9 +205,9 @@ Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name(
 Route::get('/publicpreview-test-page/{id}/{flag}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
 
 //Library controller
-Route::get('/library', 'Recruiter\LibraryController@lib_index')->name('lib_index');
+Route::get('/library/{id?}', 'Recruiter\LibraryController@lib_index')->name('lib_index');
 
-//Library ini filter 
+//Library ini filter
 Route::post('/library-filter', 'Recruiter\LibraryController@libFilter')->name('libFilter');
 
 //Library single detail data.
@@ -218,7 +222,7 @@ Route::get('/delete_public_page_view/{id?}','Recruiter\Public_view_pageControlle
 
 Route::post('/upload_cover_image/{id?}','Recruiter\Public_view_pageController@cover_image')->name('upload_cover_image');
 
-Route::post('/insert_image_tags/{id?}','Recruiter\Public_view_pageController@insert_tags')->name('insert_image_tags');
+Route::post('/insert_image_tags','Recruiter\Public_view_pageController@insert_tags')->name('insert_image_tags');
 Route::post('/data_image_tags/{id?}','Recruiter\Public_view_pageController@data_tags')->name('data_image_tags');
 Route::get('/delete_image_tags','Recruiter\Public_view_pageController@delete_tags')->name('delete_image_tags');
 

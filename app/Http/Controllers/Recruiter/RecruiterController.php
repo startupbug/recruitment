@@ -21,6 +21,7 @@ use App\Test_case;
 use App\Coding_question_language;
 use App\Questions_submission_resource;
 use App\Allowed_language;
+use App\Question_state;
 
 class RecruiterController extends Controller
 {
@@ -127,13 +128,17 @@ class RecruiterController extends Controller
         $args['submission_data'] = Question::join('question_details','questions.id','=','question_details.question_id')
         ->join('question_states','questions.question_state_id','=','question_states.id')
         ->join('question_solutions','questions.id','=','question_solutions.question_id')
-        ->join('question_submission_evaluations','questions.id','=','question_submission_evaluations.question_id')
+        ->leftjoin('question_submission_evaluations','questions.id','=','question_submission_evaluations.question_id')
         ->select('questions.id as  question_id','questions.section_id','questions.question_state_id','questions.question_type_id', 'questions.question_sub_types_id' ,'questions.question_level_id','questions.question_statement','question_details.tag_id','question_details.media','question_details.test_case_file','question_details.test_case_verify','question_details.weightage_status','question_details.coding_program_title','question_details.marks','question_details.negative_marks','question_details.provider','question_details.author','question_states.state_name','question_solutions.text','question_solutions.code','question_solutions.url','question_submission_evaluations.submission_evaluation_title','question_submission_evaluations.weightage')
         ->where('questions.id','=',$id)
         ->first();
+
+        //dd($args['submission_data']);
+
         if(isset($args['submission_data']))
         {
           $args['questions_submission_resources'] = Questions_submission_resource::where('question_id','=',$id)->get();  
+
         }
         $temp_array = array();
         foreach ($args['questions_submission_resources'] as $args['submission_resources']) {
@@ -144,6 +149,82 @@ class RecruiterController extends Controller
           
         
       }
+
+
+
+
+       $args['levels'] = Question_level::all();
+        $args['tags'] = Question_tag::all();
+        $args['question_states'] = Question_state::all();
+        //dd($args['levels']);
+       
+       //Public Questions
+     $args['public_questions_mcqs'] = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
+        ->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
+        ->leftjoin('test_template_types', 'test_template_types.id', '=', 'test_templates.template_type_id')
+        ->leftjoin('question_details', 'question_details.question_id', '=', 'questions.id')
+        ->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
+        ->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
+        ->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')     
+        ->where('test_template_types.id', 1) //public
+        ->where('questions.question_type_id', 1)
+        ->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
+        ->get();
+
+     $args['public_questions_codings'] = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
+        ->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
+        ->leftjoin('test_template_types', 'test_template_types.id', '=', 'test_templates.template_type_id')
+        ->leftjoin('question_details', 'question_details.question_id', '=', 'questions.id')
+        ->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
+        ->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
+        ->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')     
+        ->where('test_template_types.id', 1) //public
+        ->where('questions.question_type_id', 2)
+        ->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
+        ->get();
+
+     $args['private_questions_mcqs'] = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
+        ->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
+        ->leftjoin('test_template_types', 'test_template_types.id', '=', 'test_templates.template_type_id')
+        ->leftjoin('question_details', 'question_details.question_id', '=', 'questions.id')
+        ->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
+        ->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
+        ->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')     
+        //->where('test_template_types.id', 2) //private
+        ->where('questions.question_type_id', 1) //mcq
+        ->where('questions.lib_private_question', 1) //mcq
+        ->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
+        ->get();
+
+        //
+
+     $args['private_questions_codings'] = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
+        ->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
+        ->leftjoin('test_template_types', 'test_template_types.id', '=', 'test_templates.template_type_id')
+        ->leftjoin('question_details', 'question_details.question_id', '=', 'questions.id')
+        ->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
+        ->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
+        ->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')     
+        //->where('test_template_types.id', 2) //private
+        ->where('questions.question_type_id', 2) //coding
+        ->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
+        ->get();
+
+     $args['private_questions_submissions'] = Question::leftjoin('sections', 'sections.id', '=', 'questions.section_id')
+        ->leftjoin('test_templates', 'test_templates.id', '=', 'sections.template_id')
+        ->leftjoin('test_template_types', 'test_template_types.id', '=', 'test_templates.template_type_id')
+        ->leftjoin('question_details', 'question_details.question_id', '=', 'questions.id')
+        ->leftjoin('question_levels', 'question_levels.id', '=', 'questions.question_level_id')
+        ->leftjoin('question_states', 'question_states.id', '=', 'questions.question_state_id')
+        ->leftjoin('question_tags', 'question_tags.id', '=', 'question_details.tag_id')     
+        //->where('test_template_types.id', 2) //private
+        ->where('questions.question_type_id', 3) //submission
+        ->select('questions.id','questions.question_statement', 'question_levels.level_name', 'question_states.state_name', 'question_tags.tag_name', 'questions.question_type_id')
+        ->get();
+
+
+
+
       if(isset($args))
       {
         

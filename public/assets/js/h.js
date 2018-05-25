@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 
 /* Datatable Callings */
-// $(".public_mcq_table").DataTable(); 
+// $("#my_pagination_table").DataTable();
 // $(".public_coding_table").DataTable();
 // $(".private_mcq_table").DataTable();
 // $(".private_coding_table").DataTable();
@@ -49,14 +49,14 @@ $(document).ready(function() {
 });
 
 
-$('.tag_textbox').keyup(function(e){
-    
+$('.tag_textbox').change(function(e){
+
     var value = $(this).val();
     var deleteurl = $('.label-public-page').data('delete');
     console.log(deleteurl);
     var template_id = $(this).data('id');
-    if(e.keyCode == 13)
-    {
+    // if(e.keyCode == 13)
+    // {
         $.ajax({
             type: 'post',
             url: $(this).data('url'),
@@ -71,12 +71,12 @@ $('.tag_textbox').keyup(function(e){
                          alertify.success("page view updated successfully");
                     }
                     else{
-                        
+
                          alertify.error(data);
                     }
             }
         });
-    }    
+
 });
 
 
@@ -92,7 +92,7 @@ $(document).ready(function(){
        var url= $(this).data('url')+''; //getting url
         console.log("url" + url);
 
-        setTimeout(function(){ 
+        setTimeout(function(){
 
             $.ajax({
                 type: 'post',
@@ -115,8 +115,8 @@ $(document).ready(function(){
         }, 1500);
 
 
-   });  
-}); 
+   });
+});
 
 
 
@@ -140,16 +140,110 @@ $( ".label-public-page" ).on('click', '.delete_public_tag', function() {
                         $('.label-public-page').append('<label> '+data[i].tag_name+' <span data-url="'+deleteurl+'" data-template_id="'+data[i].template_id+'" data-id="'+data[i].id+'" class="btn delete_public_tag">x</span> </label> ')
                     }
                      alertify.success("page view updated successfully");
-                
+
         }
+    });
+});
+
+// var counter = 0;
+//   $(document).ready(function() {
+    
+//             $(".finish_section_btn").on('click',function(){
+//               var data = $(this).serialize();
+//               var id = $(this).data('id');
+//               var url = $(this).data('url');
+//                 console.log(data);
+//                 counter++;
+    
+//                 $(".thecount").text(counter);
+//             });
+    
+//         });
+var loaded = false;
+
+  $(document).ready(function() {    
+            $("#preview_test_page_btn").on('click',function(){
+              if(loaded) return;
+              var id = $(this).data('id');
+              var url = $(this).data('url');
+              $.ajax({
+              type: 'get',
+              url: $(this).data('url'),
+              data: {'id': id,'template_id': id},
+              success: function (data) {
+
+                    console.log(data);
+        }
+    });
+            });
+        });
+
+
+  $('.pagination_preview a').on('click', function(e){
+    e.preventDefault();
+    var url = $(this).attr('href');
+    alert(url);
+    $.post(url, $('#search').serialize(), function(data){
+        $('#posts').html(data);
     });
 });
 
 
 
 
+//Quesiton request form submit
+$("#public_check_1").on('change', function () {
+  if($(this).is(":checked")){
+
+    if ($('#private_check_1').is(":checked")) {
+      $( "#both_check_1" ).prop( "checked", true );
+    }
+
+  }
+  else {
+    if ($('#private_check_1').is(":checked")) {
+      $( "#both_check_1" ).prop( "checked", false );
+    }
+    else {
+      $(this).prop( "checked", true );
+    }
+  }
+});
+$("#private_check_1").on('change', function () {
+  if($(this).is(":checked")){
+
+    if ($('#public_check_1').is(":checked")) {
+      $( "#both_check_1" ).prop( "checked", true );
+    }
+
+  }
+  else {
+    if ($('#public_check_1').is(":checked")) {
+      $( "#both_check_1" ).prop( "checked", false );
+    }
+    else {
+      $(this).prop( "checked", true );
+    }
+  }
+});
+$("#both_check_1").on('change', function () {
+  if($(this).is(":checked")){
+
+    $( "#public_check_1" ).prop( "checked", true );
+    $( "#private_check_1" ).prop( "checked", true );
+
+  }
+  else {
+    $( "#public_check_1" ).prop( "checked", true );
+    $( "#private_check_1" ).prop( "checked", false );
+  }
+});
+
+  
+
+
 // $('.paginathing_table tbody').paginathing({
 //       perPage: 10,
 //       insertAfter: '.table',
 //       pageNumbers: true
-// }); 
+// });

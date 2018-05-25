@@ -1,4 +1,4 @@
-                                 @foreach($ques3 as $serial_number => $q)
+                              @foreach($ques3 as $serial_number => $q)
                                  <tr>
                                     <td><input type="checkbox" class="prog_s" value="{{$q['question_id']}}"></td>
                                     <td>{{++$serial_number}}</td>

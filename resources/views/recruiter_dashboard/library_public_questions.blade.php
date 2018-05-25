@@ -113,9 +113,10 @@
 		 							  @endif
 							    </tbody>
 							  </table>
-								<div class="pagination-container">
+
+								<div class="pagination-container" style="position: relative;">
 									<nav>
-										<ul id="pagination_number" class="pagination">
+										<ul id="pagination_number" class="pagination pagination_custom">
 										</ul>
 									</nav>
 								</div>
@@ -213,7 +214,7 @@
 								</table>
 								<div class="pagination-container">
 									<nav>
-										<ul id="pagination_number_2" class="pagination">
+										<ul id="pagination_number_2" class="pagination pagination_custom">
 										</ul>
 									</nav>
 								</div>
@@ -300,7 +301,7 @@
 												</span>
  							        </td>
  											<td>
-												<a data-toggle="modal" data-target="#private-mcqs-Modal" onclick="">
+												<a data-toggle="modal" href="{{route('library_public_questions',$private_questions_mcq->id)}}?modal=modal_pencil" onclick="pencil_edittesttemplate_Expand()" class="btn-sm btn-link ajax_route" onclick="">
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
@@ -331,7 +332,7 @@
  							  </table>
 								<div class="pagination-container">
 									<nav>
-										<ul id="pagination_number_3" class="pagination">
+										<ul id="pagination_number_3" class="pagination pagination_custom">
 										</ul>
 									</nav>
 								</div>
@@ -421,7 +422,7 @@
 												</span>
  											</td>
  											<td>
-												<a data-toggle="modal" data-target="#private-programming-question-Modal">
+												<a data-toggle="modal" href="{{route('library_public_questions',$private_questions_coding->id)}}?modal=modal_coding" class="btn-sm btn-link code_ajax_route">
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
@@ -446,7 +447,7 @@
  								</table>
 								<div class="pagination-container">
 									<nav>
-										<ul id="pagination_number_4" class="pagination">
+										<ul id="pagination_number_4" class="pagination pagination_custom">
 										</ul>
 									</nav>
 								</div>
@@ -534,7 +535,8 @@
 												</span>
  											</td>
  											<td>
-												<a data-toggle="modal" onclick="private_submission_question_Expand();" data-target="#private-submission-question-Modal">
+												<a data-toggle="modal" onclick="private_submission_question_Expand();" href="{{route('library_public_questions',$private_questions_submission->id)}}?modal=submission_modal1"
+                                 					class="btn-sm btn-link submission_ajax_route">
 													<i class="fa fa-pencil"></i>
 												</a>
 											</td>
@@ -570,7 +572,7 @@
  								</table>
 								<div class="pagination-container">
 									<nav>
-										<ul id="pagination_number_5" class="pagination">
+										<ul id="pagination_number_5" class="pagination pagination_custom">
 										</ul>
 									</nav>
 								</div>

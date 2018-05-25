@@ -5,17 +5,26 @@
   $("#hostTestAdd").on('submit', function(e){
         e.preventDefault();
 
-        swal({
-          title: "Are you sure?",
-          text: "Once the test is hosted, questions cannot be added or removed, Continue?",
-          type: "warning",
-            showCancelButton: true,
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "Yes, delete it!",
-          dangerMode: true,
-        }).then(function(isConfirm) {
-          if (isConfirm) {
+        const swalWithBootstrapButtons = swal.mixin({
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          buttonsStyling: false,
+        })
 
+        swalWithBootstrapButtons({
+          title: 'Are you sure?',
+          text: "Once the test is hosted, questions cannot be added or removed, Continue?",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Continue!',
+          cancelButtonText: 'Cancel',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.value) {
+              console.log("asdasdasd");
+              $('body').loading({
+                stoppable: false
+              });
               var formData = $("#hostTestAdd").serialize();
               $.ajaxSetup({
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
@@ -26,6 +35,7 @@
                 data: formData,
                 success: function (data) {
                   console.log(data);
+                  $('.loading-theme-light').css('display' , 'none');
                   if(data.status == 200){
 
                     alertify.success(data.msg);
@@ -41,30 +51,18 @@
               });
 
 
-          } else {
-            // swal("Cancelled", "Your imaginary file is safe :)", "error");
           }
-        });
+          else if (result.dismiss === swal.DismissReason.cancel)
+          {
 
+            // swalWithBootstrapButtons(
+            //   'Cancelled',
+            //   'Your imaginary file is safe :)',
+            //   'error'
+            // )
 
-        // swal({
-        //   title: "Are you sure?",
-        //   text: "Your will not be able to recover this imaginary file!",
-        //   type: "warning",
-        //   showCancelButton: true,
-        //   confirmButtonClass: "btn-danger",
-        //   confirmButtonText: "Yes, delete it!",
-        //   closeOnConfirm: false
-        // }).then(function(isConfirm) {
-        //
-        //   if (isConfirm) {
-        //
-        //   }
-        //
-        //   // swal("Deleted!", "Your imaginary file has been deleted.", "success");
-        // });
-
-
+          }
+        })
 
   });
   ($('#check_emailreport').is(":checked")) ? ( $(".rec_div").show() ) : ( $(".rec_div").hide() );
@@ -119,12 +117,19 @@ $('#newquestion').on('click', function(e) {
                 success: function (data) {
                 console.log("success");
                 console.log(data);
+                var liHtm0 = "";
+                $.each(data.show_question, function( index, value ) {
+                  if(value.admin_question_type_id == 3){
+                   liHtm0 += `<li><a href="#" data-idli="0" data-id="`+value.id+`" data-question="`+value.question+`" ><strong>`+value.question+`</strong></a></li>`;
+                  }
+                });
+                $('.question_custom').prepend(liHtm0);
 
                 var liHtml = "";
                 $.each(data.show_question, function( index, value ) {
                   console.log(value.support_text);
                   if(value.admin_question_type_id == 1){
-                   liHtml += `<li><a href="#" data-id="`+value.id+`" data-question="`+value.question+`" data-support_text="`+value.support_text+`">`+value.question+`</a></li>`;
+                   liHtml += `<li><a href="#" data-idli="1" data-id="`+value.id+`" data-question="`+value.question+`" data-support_text="`+value.support_text+`">`+value.question+`</a></li>`;
                   }
 
                 });
@@ -137,13 +142,12 @@ $('#newquestion').on('click', function(e) {
                 {
                   if(value.admin_question_type_id == 2)
                   {
-                    lihtml2 += `<li><a href="#" data-id="`+value.id+`" data-question="`+value.question+`" data-support_text="`+value.support_text+`">`+value.question+`</a></li>`;
+                    lihtml2 += `<li><a href="#" data-idli="1" data-id="`+value.id+`" data-question="`+value.question+`" data-support_text="`+value.support_text+`">`+value.question+`</a></li>`;
                   }
                 });
 
                 $('li.acaLiHeader').after(lihtml2);
 
-                //$(".liHtml").append(liHtml);
 
               }, error: function (data) {
 

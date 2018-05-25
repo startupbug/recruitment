@@ -29,12 +29,16 @@
     <link rel="stylesheet" href="{{ asset('public/assets/css/select2.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="{{ asset('public/assets/css/editor.css') }}"/> -->
-    <link rel="stylesheet" href="{{ asset('public/assets/css/sweetalert.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('public/assets/css/froala_editor.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('public/bower_components/alertify/themes/alertify.default.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/froala_editor.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/assets/css/sweetalert.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('public/assets/css/loading.css') }}"/>
+
+    <link rel="stylesheet" href="{{ asset('public/assets/css/jquery.countdownTimer.css') }}"/>
+
+    <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/S_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
 
     <script type="text/javascript">
 
@@ -47,8 +51,6 @@
         @yield('content')
     </div>
 <!-- Filter-Modal -->
-
-
 
 <!-- <div class="modal fade" id="filter-programming-Modal" role="dialog">
     <div class="modal-dialog  modal-lg">
@@ -136,7 +138,6 @@
         </div>
     </div>
 </div> -->
-
 
 
 <!-- public-mcqs-Modal -->
@@ -326,7 +327,7 @@
                                                     <th><b>Weightage</b></th>
                                             </thead>
                                             <tbody id="pub_cod_cases">
-<!--                                                 <tr>
+                                              <!--   <tr>
                                                     <td valign="center">1.</td>
                                                     <td valign="center">
                                                         Test 0
@@ -949,141 +950,139 @@
 <script src="{{ asset('public/assets/js/jquery.scrollTo.js') }}"></script>
 <!-- <script src="{{ asset('public/assets/js/editor.js') }}"></script> -->
 <!-- <script src="{{ asset('public/assets/js/sweetalert.min.js') }}"></script> -->
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('public/assets/js/sweetalert2.all.js') }}"></script>
 <script src="{{ asset('public/assets/js/froala_editor.min.js') }}"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('public/assets/js/loading.js') }}"></script>
 <script src="{{ asset('public/assets/js/paginathing.js') }}"></script>
+
+<script src="{{ asset('public/assets/js/jquery.countdownTimer.js') }}"></script>
+
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 <script src="{{ asset('public/assets/js/f.js') }}"></script>
-<script>
-  var csrf = '{{csrf_field()}}';
-</script>
 <script src="{{ asset('public/assets/js/s_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/i_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/fa_js.js') }}"></script>
 <script src="{{ asset('public/assets/js/h.js') }}"></script>
 
-<script type="text/javascript">var base_url  = '{{ asset('') }}';</script>
+<script>
 
-<script language="text/javascript">
-    $(document).ready(function(){
-        $('.duplicate_modal_id').click(function(){
-            var a = $(this).attr('data-target-id');
-            $(".modal-body input[name=previous_template_id]").val(a);
+  var csrf = '{{csrf_field()}}';
+  var base_url  = '{{ asset('') }}';
+
+  $(document).ready(function(){
+      $('.duplicate_modal_id').click(function(){
+          var a = $(this).attr('data-target-id');
+          $(".modal-body input[name=previous_template_id]").val(a);
+    });
+  });
+
+  $('body').scrollspy({target: "#myScrollspy"})
+  $(document).ready(function(){
+      $(".dropdown").click(function() {
+          $('.dropdown-menu', this).toggleClass('open');
       });
-    });
-
-    $('body').scrollspy({target: "#myScrollspy"})
-    $(document).ready(function(){
-        $(".dropdown").click(function() {
-            $('.dropdown-menu', this).toggleClass('open');
-        });
-    });
-
-</script>
-
-<script type="text/javascript">
-
-function modal_data(id, tpye){
-    console.log(id);
-    switch(tpye) {
-        case "modal_pencil":
-            text = ".ajax_route";
-            break;
-        case "modal_coding":
-            text = ".code_ajax_route";
-            break;
-        case "submission_modal":
-            text = ".submission_ajax_route";
-            break;
-        default:
-            text = ".ajax_route";
-    }
-
-  $.ajaxSetup({
-    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-  });
-  $.ajax({
-    url: base_url  + 'recruiter/question_modal_partial_data',
-    type: 'post',
-    data: {'question_id': id},
-    'dataType' : 'json',
-    success: function (data) {
-      console.log("123");
-      console.log(data.dataz);
-      console.log(data.question_data.question_level_id);
-      $("#questionmarks").val(data.question_data.marks);
-      $("#negativeMarks").val(data.question_data.negative_marks);
-      $("#question_id_id").val(data.question_data.question_id);
-
-      $(text).attr("href","{{route('library_public_questions')}}/"+id+"?modal="+tpye);
-
-
-      $("#question_statement_id").text(data.question_data.question_statement);
-      $("#state_name").text(data.question_data.state_name);
-      $("#level_name").text(data.question_data.level_name);
-      $("#tagName").text(data.question_data.tag_name);
-      // $("#question_ki_id").text(id);
-
-      /* Multiple Choices HTML */
-      $choices_html = ``;
-
-    var i=1;
-    var partialFlag = 0;
-    var shuffleFlag = 0;
-    $.each(data.question_choices, function( index, value ) {
-             //alert( index + ": " + value );
-             //value.partial_marks = value.partial_marks ? value.partial_marks : '';
-             $choices_html += `<tr class="">
-                              <td class="">`+i+`.</td>
-                              <td class="">
-                                 <input type="radio" name="893" value="true" disabled="disabled">
-                              </td>
-                              <td>
-                                 <textarea class="form-control" name="option" required="" disabled="disabled">`+value.choice+`</textarea>
-                              </td>
-                              <td width="120px" class="">
-                                 <div class="input-group input-group-sm">
-                                    <input type="number" class="form-control" width="30px" value="`+value.partial_marks+`"  disabled="disabled">
-                                    <span class="input-group-addon" id="basic-addon1">%</span>
-                                 </div>
-                              </td>
-                              <td>
-                              </td>
-                           </tr> `;
-              //checking partial flag
-              if(value.partial_marks != null){
-                    partialFlag = 1;
-              }
-              if(value.shuffleFlag != 0){
-                    shuffleFlag = 1;
-              }
-      i++;
-    });
-
-    //Ticking Partial flag if required
-    if(partialFlag == 1){
-      $('.partialCheck').prop('checked', true);
-    }
-    if(shuffleFlag == 1){
-      $('.shuffleCheck').prop('checked', true);
-    }
-
-
-    $("#choiceTable").html($choices_html);
-
-
-    },
-    error: function (data) {
-      console.log(data);
-    }
   });
 
-}
+  function modal_data(id, tpye){
+      console.log(id);
+      switch(tpye) {
+          case "modal_pencil":
+              text = ".ajax_route";
+              break;
+          case "modal_coding":
+              text = ".code_ajax_route";
+              break;
+          case "submission_modal":
+              text = ".submission_ajax_route";
+              break;
+          default:
+              text = ".ajax_route";
+      }
+
+    $.ajaxSetup({
+      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    });
+    $.ajax({
+      url: base_url  + 'recruiter/question_modal_partial_data',
+      type: 'post',
+      data: {'question_id': id},
+      'dataType' : 'json',
+      success: function (data) {
+        console.log("123");
+        console.log(data.dataz);
+        console.log(data.question_data.question_level_id);
+        $("#questionmarks").val(data.question_data.marks);
+        $("#negativeMarks").val(data.question_data.negative_marks);
+        $("#question_id_id").val(data.question_data.question_id);
+
+        $(text).attr("href","{{route('library_public_questions')}}/"+id+"?modal="+tpye);
 
 
-//HASAN MEHDI  SENDING CODING QUESTION ID IN CONTROLLER FUNCTION coding_question_modal_partial_data()
+        $("#question_statement_id").text(data.question_data.question_statement);
+        $("#state_name").text(data.question_data.state_name);
+        $("#level_name").text(data.question_data.level_name);
+        $("#tagName").text(data.question_data.tag_name);
+        // $("#question_ki_id").text(id);
+
+        /* Multiple Choices HTML */
+        $choices_html = ``;
+
+      var i=1;
+      var partialFlag = 0;
+      var shuffleFlag = 0;
+      $.each(data.question_choices, function( index, value ) {
+               //alert( index + ": " + value );
+               //value.partial_marks = value.partial_marks ? value.partial_marks : '';
+               $choices_html += `<tr class="">
+                                <td class="">`+i+`.</td>
+                                <td class="">
+                                   <input type="radio" name="893" value="true" disabled="disabled">
+                                </td>
+                                <td>
+                                   <textarea class="form-control" name="option" required="" disabled="disabled">`+value.choice+`</textarea>
+                                </td>
+                                <td width="120px" class="">
+                                   <div class="input-group input-group-sm">
+                                      <input type="number" class="form-control" width="30px" value="`+value.partial_marks+`"  disabled="disabled">
+                                      <span class="input-group-addon" id="basic-addon1">%</span>
+                                   </div>
+                                </td>
+                                <td>
+                                </td>
+                             </tr> `;
+                //checking partial flag
+                if(value.partial_marks != null){
+                      partialFlag = 1;
+                }
+                if(value.shuffleFlag != 0){
+                      shuffleFlag = 1;
+                }
+        i++;
+      });
+
+      //Ticking Partial flag if required
+      if(partialFlag == 1){
+        $('.partialCheck').prop('checked', true);
+      }
+      if(shuffleFlag == 1){
+        $('.shuffleCheck').prop('checked', true);
+      }
+
+
+      $("#choiceTable").html($choices_html);
+
+
+      },
+      error: function (data) {
+        console.log(data);
+      }
+    });
+
+  }
+
+  //HASAN MEHDI  SENDING CODING QUESTION ID IN CONTROLLER FUNCTION coding_question_modal_partial_data()
   $.ajaxSetup({
     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
   });
@@ -1141,77 +1140,73 @@ function modal_data(id, tpye){
       });
     });
 
-
-//HASAN MEHDI  SENDING CODING QUESTION ID IN CONTROLLER FUNCTION submission_question_modal_partial_data()
-
-$.ajaxSetup({
-    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-  });
-
-  $(document).ready(function(){
-
-        $('.submission_question_id').click(function(){
-            console.log($(this).data('id'));
-            // alert($(this).data('url'));
-            $("#submission_question_id").val($(this).data('id'));
-
-            var questionid = $(this).data('id');
-            var question_typeid = 3;
-            $.ajax({
-                type: 'post',
-                url: $(this).data('url'),
-                data: {'id': questionid, 'quesType': question_typeid},
-                success: function (data) {
-                console.log("success");
-                console.log(data);
-                if(question_typeid == 3)
-                {
-                    //console.log("has" + );
-                    $("#submissions_question_id").val(data.coding_question_data.id);
-                    $('#submission_questionmarks').val(data.coding_question_data.marks);
-                    $('.submission_tags').text(data.coding_question_data.tag_name);
-                    // $('.submission_level').text(data.coding_question_data.level_name);
-                    $('.submission_author').val(data.coding_question_data.author);
-                    $('.submission_provider').val(data.coding_question_data.provider);
-
-                    $(".submission_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=submission_modal1");
-
-               var inout_html = "";
-                   var i =1;
-                    $.each(data.coding_question_entries, function( index, value ) {
-                            //alert( index + ": " + value );
-                            //value.partial_marks = value.partial_marks ? value.partial_marks : '';
-                            inout_html += `<tr>
-                                         <td valign="center">`+i+`</td>
-                                         <td valign="center">
-                                             <textarea class="form-control" name="option" rows="4" required="" disabled> `+value.input+`
-                                             </textarea>
-                                         </td>
-                                         <td valign="center">
-                                             <textarea class="form-control" name="option" rows="4" required="" disabled> `+value.output+`</textarea>
-                                         </td>
-                                     </tr>`;
-                                     i = i +1;
-                     i++;
-                   });
-
-                  $(".coding_question_table").html(inout_html);
-
-                }
-                }
-            });
-      });
+  //HASAN MEHDI  SENDING CODING QUESTION ID IN CONTROLLER FUNCTION submission_question_modal_partial_data()
+  $.ajaxSetup({
+      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
     });
-
-
 
     $(document).ready(function(){
-      @if(isset($hostFlag) && $hostFlag)
-      $('#_first_model').modal('show');
-      @endif
-    });
+
+          $('.submission_question_id').click(function(){
+              console.log($(this).data('id'));
+              // alert($(this).data('url'));
+              $("#submission_question_id").val($(this).data('id'));
+
+              var questionid = $(this).data('id');
+              var question_typeid = 3;
+              $.ajax({
+                  type: 'post',
+                  url: $(this).data('url'),
+                  data: {'id': questionid, 'quesType': question_typeid},
+                  success: function (data) {
+                  console.log("success");
+                  console.log(data);
+                  if(question_typeid == 3)
+                  {
+                      //console.log("has" + );
+                      $("#submissions_question_id").val(data.coding_question_data.id);
+                      $('#submission_questionmarks').val(data.coding_question_data.marks);
+                      $('.submission_tags').text(data.coding_question_data.tag_name);
+                      // $('.submission_level').text(data.coding_question_data.level_name);
+                      $('.submission_author').val(data.coding_question_data.author);
+                      $('.submission_provider').val(data.coding_question_data.provider);
+
+                      $(".submission_ajax_route").attr("href","{{route('library_public_questions')}}/"+data.coding_question_data.id+"?modal=submission_modal1");
+
+                 var inout_html = "";
+                     var i =1;
+                      $.each(data.coding_question_entries, function( index, value ) {
+                              //alert( index + ": " + value );
+                              //value.partial_marks = value.partial_marks ? value.partial_marks : '';
+                              inout_html += `<tr>
+                                           <td valign="center">`+i+`</td>
+                                           <td valign="center">
+                                               <textarea class="form-control" name="option" rows="4" required="" disabled> `+value.input+`
+                                               </textarea>
+                                           </td>
+                                           <td valign="center">
+                                               <textarea class="form-control" name="option" rows="4" required="" disabled> `+value.output+`</textarea>
+                                           </td>
+                                       </tr>`;
+                                       i = i +1;
+                       i++;
+                     });
+
+                    $(".coding_question_table").html(inout_html);
+
+                  }
+                  }
+              });
+        });
+      });
 
 
+
+      $(document).ready(function(){
+        @if(isset($hostFlag) && $hostFlag)
+        $('#_first_model').modal('show');
+        @endif
+      });
 
 </script>
 @yield('modal_content')

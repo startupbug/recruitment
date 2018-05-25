@@ -99,7 +99,9 @@ $("#create_duplicate_template_post").on('submit', function(e){
         url: $(this).attr('action'),
         data: formData,
         beforeSend: function(){
-          $('#loader_image').show();
+          $('body').loading({
+            stoppable: false
+          });
         },
         success: function (data) {
           console.log(data);
@@ -120,8 +122,8 @@ $("#create_duplicate_template_post").on('submit', function(e){
              alertify.warning("Oops. something went wrong. Please try again");
            },
           complete: function(){
-            $('#loader_image').hide();
-        },
+            $('.loading-theme-light').css('display' , 'none');
+          },
          });
   }
 

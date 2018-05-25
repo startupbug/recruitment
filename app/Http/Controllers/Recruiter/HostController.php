@@ -37,31 +37,32 @@ class HostController extends Controller
 
       	$args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->select('sections.*',DB::raw('count(questions.id) as section_questions'))->where('template_id',$id)->groupBy('sections.id')->orderBy('order_number','ASC')->get();
 
-        foreach ($args['sections'] as $key => $value) {
-             $args['sections_tabs'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
-             $args['sections_tabs'][$value->id]['count'] = $value->section_questions;
+        foreach ($args['sections'] as $key => $value)
+         {
+              $args['sections_tabs'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
+              $args['sections_tabs'][$value->id]['count'] = $value->section_questions;
 
 
-             $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
+              $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
 
              //$args['sections_tabs'][$value->id]['count'] = count($args['sections_tabs'][$value->id]['ques1']); //$value->section_questions;
 
-            $args['sections_tabs'][$value->id]['ques2'] = Question::where('question_type_id',2)->where('section_id', $value->id)->get();
+              $args['sections_tabs'][$value->id]['ques2'] = Question::where('question_type_id',2)->where('section_id', $value->id)->get();
 
-             $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']);
+              $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']);
 
-             $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',3)->where('section_id', $value->id)->get();
+              $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',3)->where('section_id', $value->id)->get();
 
-             $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']);
+              $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']);
 
- //counting easy questions from each section
+              //counting easy questions from each section
               $args['sections_tabs'][$value->id]['easy_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
                ->where('sections.id',$value->id)
                ->where('questions.question_level_id',1)
                ->count();
               // dd($args['sections_tabs']);
 
-               //counting medium questions from each section
+              //counting medium questions from each section
               $args['sections_tabs'][$value->id]['medium_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
                ->where('sections.id',$value->id)
                ->where('questions.question_level_id',2)
@@ -82,32 +83,33 @@ class HostController extends Controller
 
         }
 
-  $args['test_setting_types'] = Test_template_types::get();
-        $args['test_setting_webcam'] = Webcam::get();
-        $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
-        $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
-        $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
-        $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
-        $args['template_id'] = $id;
+          $args['test_setting_types'] = Test_template_types::get();
+                $args['test_setting_webcam'] = Webcam::get();
+                $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$id)->first();
+                $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$id)->first();
+                $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$id)->first();
+                $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$id)->first();
+                $args['template_id'] = $id;
 
-          $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
-         ->select('user_setting_questions.*','format_settings.name as format_settings_name')
-         ->where('template_id',$id)->orderBy('user_setting_questions.order_number','ASC')->get();
+                  $args['template_question_setting'] = User_question::join('format_settings','format_settings.id','=','user_setting_questions.format_setting_id','left outer')
+                 ->select('user_setting_questions.*','format_settings.name as format_settings_name')
+                 ->where('template_id',$id)->orderBy('user_setting_questions.order_number','ASC')->get();
 
-      //Public_view_page index method query 
-      $args['Public_view_page'] = Public_view_page::get();
+          //Public_view_page index method query 
+          $args['Public_view_page'] = Public_view_page::get();
       
 
-    $args['public_page_view_details'] = Test_template::where('id',$id)
-      ->orderBy('image','Desc')
-      ->first();
+          $args['public_page_view_details'] = Test_template::where('id',$id)
+          ->orderBy('image','Desc')
+          ->first();
 
              //$args['template_question_setting'][0]['arr'] = array(123);
              //dd($args['template_question_setting']);
              //$user_setting_question_details = array();
-         foreach ($args['template_question_setting'] as $key => $value) {
-          $args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
-      }
+          foreach ($args['template_question_setting'] as $key => $value)
+          {
+            $args['template_question_setting'][$key]['detail'] = User_format_detail::where('question_id',$value->id)->get();
+          }
 
         //Assinging Host Flag for Model
         $args['hostFlag'] = true;
@@ -117,6 +119,7 @@ class HostController extends Controller
     }
 
     public function host_test_post(Request $request){
+      ini_set('max_execution_time', 300);
     	// return $request->input();
       
       // $test_template_data->description
@@ -175,131 +178,150 @@ class HostController extends Controller
           $section_of_templates = Section::where('template_id',$template_id)->get();
           // return $section_of_templates;
 
-          if (Auth::check()) {
+      if (Auth::check())
+       {
                 //Templates ka data copy horha hai yahan
-        if (isset($previous_template)) {
-            $store = $previous_template->replicate();
-            $store->title = $request->input('host_name');
+          if (isset($previous_template)) {
+              $store = $previous_template->replicate();
+             
+              $store->title = $request->input('host_name');
 
-            $store->host_id = $get_new_host->id;
-            $store->hosted = 1;
-            if ($store->save()) {              
-                foreach ($section_of_templates as $key => $value) {
-                    $previous_section = Section::find($value->id);
-                    //Sections ka data copy horha hai yahan
-                    if (isset($previous_section)){
-                        $section_store = $previous_section->replicate();
-                        $section_store->template_id =$store->id;
-                        $section_store->save();
+              $store->host_id = $get_new_host->id;
+              $store->hosted = 1;
+
+              if ($store->save()) { 
+
+               //     
+                  $user_questions_by_host = User_question::where('template_id', $template_id)->get();
+                            // dd();
+                  foreach($user_questions_by_host as $Key => $host_user_question)
+                            // return ;
+                  {
+                    $previous_user_question_for_host = User_question::where('id', $host_user_question->id)->first();
+                    if(isset($previous_user_question_for_host))
+                    {
+                      $user_question_for_host = $previous_user_question_for_host->replicate();
+                      $user_question_for_host->template_id = $store->id;
+                      $user_question_for_host->save(); 
                     }
-                    $questions_of_section = Question::where('section_id',$value->id)->get();
-                    foreach ($questions_of_section as $key => $one_question) {
-                        $previous_question = Question::find($one_question->id);
-                        //Questions ka data copy horha hai yahan
-                        if (isset($previous_question)){
-                            $question_store = $previous_question->replicate();
-                            $question_store->section_id =$section_store->id;
-                            $question_store->save();
-                        }
-                        $questions_details_of_question = Question_detail::where('question_id',$one_question->id)->get();
-                        foreach ($questions_details_of_question as $key => $question_detail) {
-                            $previous_question_detail =  Question::with('question_detail')->find($question_detail->question_id)->question_detail;
-                            //Question Detail ka data copy horha hai yahan
-                            if (isset($previous_question_detail)){
-                                $question_detail_store = $previous_question_detail->replicate();
-                                $question_detail_store->question_id =$question_store->id;
-                                $question_detail_store->save();
-                            }
-                        }
+                  }                                     
+                  foreach ($section_of_templates as $key => $value) {
+                      $previous_section = Section::find($value->id);
+                      //Sections ka data copy horha hai yahan
+                      if (isset($previous_section)){
+                          $section_store = $previous_section->replicate();
+                          $section_store->template_id =$store->id;
+                          $section_store->save();
+                          
+                      }
+                        $questions_of_section = Question::where('section_id',$value->id)->get();
+                        foreach ($questions_of_section as $key => $one_question)
+                        {
 
-                        $questions_multiple_choice_of_question = Mulitple_choice::where('question_id',$one_question->id)->get();
-                        foreach ($questions_multiple_choice_of_question as $key => $multiple_choice) {
-                            $previous_multiple_choice = Mulitple_choice::where('question_id',$multiple_choice->question_id)->first();
-                            //Question Multiple Choice ka data copy horha hai yahan
-                            if (isset($previous_multiple_choice)){
-                                $question_mulitple_choice_store = $previous_multiple_choice->replicate();
-                                $question_mulitple_choice_store['question_id']=$question_store->id;
-                                $question_mulitple_choice_store->save();
-                            }
-                        }
+                          $previous_question = Question::find($one_question->id);
 
-                        $questions_solution_of_question = Question_solution::where('question_id',$one_question->id)->get();
-                        foreach ($questions_solution_of_question as $key => $question_solution) {
-                            $previous_question_solution =  Question::with('question_solution')->find($question_solution->question_id)->question_solution;
-                            //Question Solution ka data copy horha hai yahan
-                            if (isset($previous_question_solution)){
-                                $question_solution_store = $previous_question_solution->replicate();
-                                $question_solution_store->question_id =$question_store->id;
-                                $question_solution_store->save();
-                            }
-                        }
+                          //Questions ka data copy horha hai yahan
+                          if (isset($previous_question))
+                          {
+                              $question_store = $previous_question->replicate();
+                              $question_store->section_id =$section_store->id;
+                              $question_store->save();
+                          }
+                              $questions_details_of_question = Question_detail::where('question_id',$one_question->id)->get();
+                              foreach ($questions_details_of_question as $key => $question_detail) {
+                              $previous_question_detail =  Question::with('question_detail')->find($question_detail->question_id)->question_detail;
 
-                        $questions_coding_entry_of_question = Coding_entry::where('question_id',$one_question->id)->get();
-                        foreach ($questions_coding_entry_of_question as $key => $coding_entry) {
-                            $previous_coding_entry = Coding_entry::where('question_id',$coding_entry->question_id)->first();
-                            //Question Coding Entry ka data copy horha hai yahan
-                            if (isset($previous_coding_entry)){
-                                $question_coding_entry_store = $previous_coding_entry->replicate();
-                                $question_coding_entry_store['question_id']=$question_store->id;
-                                $question_coding_entry_store->save();
-                            }
-                        }
+                              //Question Detail ka data copy horha hai yahan
+                              if (isset($previous_question_detail)){
+                                  $question_detail_store = $previous_question_detail->replicate();
+                                  $question_detail_store->question_id =$question_store->id;
+                                  $question_detail_store->save();
+                              }
+                          }
 
-                        $questions_coding_language_of_question = Coding_question_language::where('question_id',$one_question->id)->get();
-                        foreach ($questions_coding_language_of_question as $key => $coding_language) {
-                            $previous_coding_language = Coding_question_language::where('question_id',$coding_language->question_id)->first();
-                            //Question Coding Languages ka data copy horha hai yahan
-                            if (isset($previous_coding_language)){
-                                $question_coding_language_store = $previous_coding_language->replicate();
-                                $question_coding_language_store['question_id']=$question_store->id;
-                                $question_coding_language_store->save();
-                            }
-                        }
-                        $questions_submission_evaluation_of_question = Question_submission_evaluation::where('question_id',$one_question->id)->get();
-                        foreach ($questions_submission_evaluation_of_question as $key => $submission_evaluation) {
-                            $previous_submission_evaluation = Question_submission_evaluation::where('question_id',$submission_evaluation->question_id)->first();
-                            //Question Submission Evaluation ka data copy horha hai yahan
-                            if (isset($previous_submission_evaluation)){
-                                $question_submission_evaluation_store = $previous_submission_evaluation->replicate();
-                                $question_submission_evaluation_store['question_id']=$question_store->id;
-                                $question_submission_evaluation_store->save();
-                            }
-                        }
-                        $questions_submission_resource_of_question = Questions_submission_resource::where('question_id',$one_question->id)->get();
-                        foreach ($questions_submission_resource_of_question as $key => $submission_resource) {
-                            $previous_submission_resource = Questions_submission_resource::where('question_id',$submission_resource->question_id)->first();
-                            //Question Submission Resources ka data copy horha hai yahan
-                            if (isset($previous_submission_resource)){
-                                $question_submission_resource_store = $previous_submission_resource->replicate();
-                                $question_submission_resource_store['question_id']=$question_store->id;
-                                $question_submission_resource_store->save();
-                            }
-                        }
+                          $questions_multiple_choice_of_question = Mulitple_choice::where('question_id',$one_question->id)->get();
+                          foreach ($questions_multiple_choice_of_question as $key => $multiple_choice) {
+                              $previous_multiple_choice = Mulitple_choice::where('question_id', $multiple_choice->question_id)->first();
+                              //Question Multiple Choice ka data copy horha hai yahan
+                              if (isset($previous_multiple_choice)){
+                                  $question_mulitple_choice_store = $previous_multiple_choice->replicate();
+                                  $question_mulitple_choice_store['question_id']=$question_store->id;
+                                  $question_mulitple_choice_store->save();
+                              }
+                          }
 
+                          $questions_solution_of_question = Question_solution::where('question_id',$one_question->id)->get();
 
-                    }
-                }
-                
-                return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Duplicated The Test Template']);
-            }else{
-                return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong']);
-                    //return redirect()->back();
-            }
+                          foreach ($questions_solution_of_question as $key => $question_solution) {
+                              $previous_question_solution =  Question::with('question_solution')->find($question_solution->question_id)->question_solution;
+                              //Question Solution ka data copy horha hai yahan
+                              if (isset($previous_question_solution)){
+                                  $question_solution_store = $previous_question_solution->replicate();
+                                  $question_solution_store->question_id =$question_store->id;
+                                  $question_solution_store->save();
+                              }
+                          }
+
+                          $questions_coding_entry_of_question = Coding_entry::where('question_id',$one_question->id)->get();
+
+                          foreach ($questions_coding_entry_of_question as $key => $coding_entry) {
+                              $previous_coding_entry = Coding_entry::where('question_id',$coding_entry->question_id)->first();
+                              //Question Coding Entry ka data copy horha hai yahan
+                              if (isset($previous_coding_entry)){
+                                  $question_coding_entry_store = $previous_coding_entry->replicate();
+                                  $question_coding_entry_store['question_id']=$question_store->id;
+                                  $question_coding_entry_store->save();
+                              }
+                          }
+
+                          $questions_coding_language_of_question = Coding_question_language::where('question_id',$one_question->id)->get();
+
+                          foreach ($questions_coding_language_of_question as $key => $coding_language) {
+                              $previous_coding_language = Coding_question_language::where('question_id',$coding_language->question_id)->first();
+                              //Question Coding Languages ka data copy horha hai yahan
+                              if (isset($previous_coding_language)){
+                                  $question_coding_language_store = $previous_coding_language->replicate();
+                                  $question_coding_language_store['question_id']=$question_store->id;
+                                  $question_coding_language_store->save();
+                              }
+                          }
+
+                          $questions_submission_evaluation_of_question = Question_submission_evaluation::where('question_id',$one_question->id)->get();
+
+                          foreach ($questions_submission_evaluation_of_question as $key => $submission_evaluation) {
+                              $previous_submission_evaluation = Question_submission_evaluation::where('question_id',$submission_evaluation->question_id)->first();
+                              //Question Submission Evaluation ka data copy horha hai yahan
+                              if (isset($previous_submission_evaluation)){
+                                  $question_submission_evaluation_store = $previous_submission_evaluation->replicate();
+                                  $question_submission_evaluation_store['question_id']=$question_store->id;
+                                  $question_submission_evaluation_store->save();
+                              }
+                          }
+
+                          $questions_submission_resource_of_question = Questions_submission_resource::where('question_id',$one_question->id)->get();
+                          foreach ($questions_submission_resource_of_question as $key => $submission_resource) {
+                              $previous_submission_resource = Questions_submission_resource::where('question_id',$submission_resource->question_id)->first();
+                              //Question Submission Resources ka data copy horha hai yahan
+                              if (isset($previous_submission_resource)){
+                                  $question_submission_resource_store = $previous_submission_resource->replicate();
+                                  $question_submission_resource_store['question_id']=$question_store->id;
+                                  $question_submission_resource_store->save();
+                              }
+                          }
+                         
+                      }
+                  }
+                  
+                  return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Duplicated The Test Template']);
+              }else{
+                  return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong']);
+                      //return redirect()->back();
+              }
+          }
         }
-    }
+      }
 
-
-          
-	    	if($insert_host_id->save()){
-            	return \Response()->Json([ 'status' => 200,'msg'=>'Host Successfully Added']);
-	    	}else{
-	    		return "not inserted";
-	    		return \Response()->Json([ 'status' => 202,'msg'=>'Host couldnot be Added']);
-	    	}
-
-	    	// return redirect()->route('profile');
-
-        }catch(\Exception $e){
+        catch(\Exception $e){
             $this->set_session('Profile Couldnot be updated.'.$e->getMessage(), false);
             // return redirect()->route('profile');
         }
