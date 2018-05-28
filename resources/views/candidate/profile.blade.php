@@ -118,6 +118,7 @@
             </form>
          </div>
       </section>
+        @include('general_partials.error_section')
       <div class="detailed-info container">
          <div class="">
             <div class="panel-heading panel-heading-no-hover">
@@ -583,12 +584,12 @@
                               <ul class="nav-links navbar-nav navbar-right">
                                  @if(!$loop->first)
                                  <li>
-                                    <a href="">Move up</a>
+                                    <a href="{{route('candidate_education_move_up',['id'=>$value->id])}}">Move up</a>
                                  </li>
                                  @endif
                                  @if(!$loop->last)
                                  <li>
-                                    <a href="">Move down</a>
+                                    <a href="{{route('candidate_education_move_down',['id'=>$value->id])}}">Move down</a>
                                  </li>
                                  @endif
                                  <li>
@@ -599,18 +600,21 @@
                                        <li>
                                           <a class="edit_education_list">Edit</a>
                                        </li>
-                                       <li>  
+                                       <li>
+                                          <a href="{{route('delete_candidate_education',['id'=>$value->id])}}" data-message="get" class="delete_candidate_education">Delete</a>
+                                       </li>
+                                       <!-- <li>  
                                           <form class="delete_candidate_education" action="{{route('delete_candidate_education',['id'=>$value->id])}}" method="get">
                                              <button type="submit">Delete</button>
                                           </form>
-                                       </li>
+                                       </li> -->
                                     </ul>
                                  </li>
                               </ul>
                            </div>
                         </div>
                         <div class="col-xs-12 education_list_form hidden">
-                           <form class="form-horizontal add_eduation_form" id="editprofileEducationStore" action="{{route('editprofileEducationStore',['id'=>$value->id])}}"  method="post">
+                           <form class="form-horizontal add_eduation_form editprofileEducationStore"  action="{{route('editprofileEducationStore',['id'=>$value->id])}}"  method="post">
                               {{csrf_field()}}
                               <div class="form-group form-group-sm">
                                  <label class="col-sm-4 control-label">

@@ -90,6 +90,10 @@ Route::post('update_can_info',['as'=>'update_can_info','uses'=>'Candidate\Candid
 	});
 Route::get('/delete_candidate_education/{id}', 'Candidate\CandidateProfileController@delete_candidate_education')->name('delete_candidate_education');
 Route::post('/editprofileEducationStore/{id}', 'Candidate\CandidateProfileController@editprofileEducationStore')->name('editprofileEducationStore');
+Route::get('/candidate_education_move_up/{id}', 'Candidate\CandidateProfileController@candidate_education_move_up')->name('candidate_education_move_up');
+Route::get('/candidate_education_move_down/{id}', 'Candidate\CandidateProfileController@candidate_education_move_down')->name('candidate_education_move_down');
+Route::get('/report-issue-feedback', 'Candidate\CandidateController@can_info')->name('can_info');
+Route::post('/post_can_info', 'Candidate\CandidateController@post_can_info')->name('post_can_info');
 /*Candidate Routes Ended*/
 
 /*Recruiter Routes Started*/

@@ -29,15 +29,9 @@ class CandidateProfileController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
-    }
+      
+    } 
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */  
-    
     public function candidate_index()
     { 
       $args['Candidate_education_info'] = Candidate_education_info::where('user_id',Auth::user()->id)
@@ -74,8 +68,8 @@ class CandidateProfileController extends Controller
         }
     }
 
-
     public function change_password(){
+
         return view('candidate.change_password');
     }    
 
@@ -94,6 +88,7 @@ class CandidateProfileController extends Controller
         return \Response()->json(['error' => "Resume uploading failed", 'code' => 202]);
         }
     }
+
     public function profileEducation(Request $request){     
       try {
             if (isset($request->user_id) && isset($request->qualification) && isset($request->year_from) && isset($request->month_from) && isset($request->school)) {
@@ -101,14 +96,18 @@ class CandidateProfileController extends Controller
                     $store = new Candidate_education_info;
                     $store->user_id = $request->user_id; 
                     $store->qualification = $request->qualification; 
+                    if (isset($last_highest_order_number->order_number)) {                      
                     $store->order_number = $last_highest_order_number->order_number+1; 
+                    }else{
+                    $store->order_number = 1;                       
+                    }
                     $store->school = $request->school; 
                     if (isset($request->current_status)) {
                       $store->current_status = 1;
                       $date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
                       $date_to =  date('Y') . '-' . $request->month_to . '-' . date('d');
                       $store->date_from = $date_from;
-                      $store->date_to = NULL;
+                      $store->date_to = 'NULL';
                     }else{
                       $store->current_status = 0;
                       $date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
@@ -132,10 +131,10 @@ class CandidateProfileController extends Controller
         }
     }
 
-    public function editprofileEducationStore(Request $request){    	
+    public function editprofileEducationStore(Request $request ,$id){    	
     	try {
             if (isset($request->user_id) && isset($request->qualification) && isset($request->year_from) && isset($request->month_from) && isset($request->school)) {
-                   	$store = new Candidate_education_info;
+                   	$store = Candidate_education_info::find($id);
                    	$store->user_id = $request->user_id; 
                    	$store->qualification = $request->qualification; 
                    	$store->school = $request->school; 
@@ -240,14 +239,19 @@ class CandidateProfileController extends Controller
     public function storeprofileLanguages(Request $request){    	
     	try {
             if (isset($request->user_id) && isset($request->language_name)) {
-                   	$store = new Candidate_language;
-                   	$store->user_id = $request->user_id; 
-                   	$store->language_name = $request->language_name;                    
-                   	if ($store->save()) {	                   		
-                 		return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Language Information']);                               
-                   	}else{
-                   		return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
-                   	}
+              if (Candidate_language::where('language_name', '=', $request->language_name)->where('user_id', '=', $request->user_id)->exists()) {
+                 return \Response()->Json([ 'status' => 204,'msg'=>'This Language Already Exist']);  
+              }else{
+                  $store = new Candidate_language;
+                  $store->user_id = $request->user_id; 
+                  $store->language_name = $request->language_name;                    
+                  if ($store->save()) {                       
+                  return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Language Information']);                               
+                  }else{
+                    return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
+                  }
+              }
+                   
             }else{
             return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Required Data']);
             }
@@ -256,23 +260,27 @@ class CandidateProfileController extends Controller
         }
     }
 
-     public function storeprofileFrameworks(Request $request){    	
-    	try {
-            if (isset($request->user_id) && isset($request->framework_name)) {
-                   	$store = new Candidate_framework;
-                   	$store->user_id = $request->user_id; 
-                   	$store->framework_name = $request->framework_name;                    
-                   	if ($store->save()) {	                   		
-                 		return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Frameworks Information']);                               
-                   	}else{
-                   		return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
-                   	}
-            }else{
-            return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Required Data']);
+    public function storeprofileFrameworks(Request $request){    	
+      	try {
+          if (isset($request->user_id) && isset($request->framework_name)) {
+            if (Candidate_framework::where('framework_name', '=', $request->framework_name)->where('user_id', '=', $request->user_id)->exists()) {
+                 return \Response()->Json([ 'status' => 204,'msg'=>'This Framework Already Exist']);  
+              }else{
+                  $store = new Candidate_framework;
+                  $store->user_id = $request->user_id; 
+                  $store->framework_name = $request->framework_name;                    
+                  if ($store->save()) {                       
+                   return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Frameworks Information']);                               
+                   }else{
+                     return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
+                   }
+              }            
+             }else{
+              return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Required Data']);
             }
-        } catch (Exception $e) {
-            return \Response()->Json([ 'array' => $e]);
-        }
+            } catch (Exception $e) {
+              return \Response()->Json([ 'array' => $e]);
+            }
     }
 
     public function storeprofilePublications(Request $request){    	
@@ -350,7 +358,6 @@ class CandidateProfileController extends Controller
         return $var;
     }
 
-
     public function CanImageUpload(Request $request){
         $img_name = '';
         if(Input::file('profile_pic')){
@@ -368,7 +375,7 @@ class CandidateProfileController extends Controller
         }
     }
     
-      public function UploadImage($type, $file){
+    public function UploadImage($type, $file){
         if( $type == 'profile_pic'){
         $path = 'public/storage/profile-pictures/';
         }
@@ -397,10 +404,9 @@ class CandidateProfileController extends Controller
         } catch (Exception $e) {
             return \Response()->Json([ 'array' => $e]);
         }
-        
     }
 
-     public function delete_candidate_education($id){
+    public function delete_candidate_education($id){
         try {
             if (isset($id)) {                
                 $delete = Candidate_education_info::find($id);
@@ -428,4 +434,38 @@ class CandidateProfileController extends Controller
             return \Response()->Json([ 'array' => $e]);
         }        
     }
+
+    public function candidate_education_move_up(Request $request,$id){
+      $move_up = Candidate_education_info::find($id);
+      $order_number = $move_up->order_number;
+      $replacement = $order_number-1;
+      $education_info_id = Candidate_education_info::select('user_id')->where('id',$id)->first();
+      $first_section_id = Candidate_education_info::where('user_id','=',$education_info_id['user_id'])->where('order_number','=',$order_number)->first();
+      $second_section_id = Candidate_education_info::where('user_id','=',$education_info_id['user_id'])->where('order_number','=',$replacement)->first();
+      DB::table('candidate_education_infos')->where('id',$first_section_id['id'])->where('user_id',$education_info_id['user_id'])->update([
+      'order_number' => $replacement,
+      ]);
+      DB::table('candidate_education_infos')->where('id',$second_section_id['id'])->where('user_id',$education_info_id['user_id'])->update([
+      'order_number'=> $order_number
+      ]);
+      $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Upper One', true);
+      return redirect()->back();
+    }
+
+    public function candidate_education_move_down(Request $request,$id){
+      $move_down = Candidate_education_info::find($id);
+      $order_number = $move_down->order_number;
+      $replacement = $order_number+1;
+      $education_info_id = Candidate_education_info::select('user_id')->where('id',$id)->first();
+      $first_section_id = Candidate_education_info::where('user_id','=',$education_info_id['user_id'])->where('order_number','=',$order_number)->first();
+      $second_section_id = Candidate_education_info::where('user_id','=',$education_info_id['user_id'])->where('order_number','=',$replacement)->first();
+      DB::table('candidate_education_infos')->where('id',$first_section_id['id'])->where('user_id',$education_info_id['user_id'])->update([
+      'order_number' => $replacement,
+      ]);
+      DB::table('candidate_education_infos')->where('id',$second_section_id['id'])->where('user_id',$education_info_id['user_id'])->update([
+      'order_number'=> $order_number
+      ]);
+      $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Lower One', true);
+      return redirect()->back();
+   }
 }
