@@ -109,8 +109,8 @@ class AuthenticationController extends Controller
                     return redirect()->route('admin_index');
                 }elseif (Auth::user()->role_id == '3') {
                     return redirect()->route('dashboard');
-                }else{
-                    return 'dashboard not ready';
+                }elseif (Auth::user()->role_id == '2') {                   
+                    return redirect()->route('my_test');
                 }
 
             }else{
