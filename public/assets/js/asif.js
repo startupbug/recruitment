@@ -5,7 +5,7 @@ $(document).ready(function(){
     });
 
     $(".currently_working").on('click', function() {
-      
+
       if($(this).is(":checked")) {
         $(this).closest('.checkbox').siblings('.to_date_value').find('.month_to').attr('disabled', true);
         $(this).closest('.checkbox').siblings('.to_date_value').find('.month_to').attr('disabled', true);
@@ -22,9 +22,9 @@ $(document).ready(function(){
     });
 
     $('.edit_education_list').on('click', function(){
-      $('.education_list_form').addClass('hidden');
-      $('.education_list_data').removeClass('hidden');
-      
+      $(this).closest('.ul_add').find('.education_list_form').addClass('hidden');
+      $(this).closest('.ul_add').find('.education_list_data').removeClass('hidden');
+
       $(this).closest('.education_list_data').siblings('.education_list_form').removeClass('hidden');
       $(this).closest('.education_list_data').addClass('hidden');
     });
@@ -32,6 +32,37 @@ $(document).ready(function(){
     $('.cancel_education_list_form').on('click', function(){
       $(this).closest('.education_list_form').siblings('.education_list_data').removeClass('hidden');
       $(this).closest('.education_list_form').addClass('hidden');
+    });
+
+    $('.form-control').on('keyup',function() {
+      $(this).siblings('.btn').attr('disabled', false);
+    });
+
+    $('.add_skill').on('click', function() {
+      var value = $(this).siblings('.form-control').val();
+      var count = 0;
+      var lenght = $(this).closest('.form-inline').siblings('.skill_info').children('.pad-right-10').length;
+
+      for (var i = 1; i < lenght+1; i++) {
+        var list_value = $(this).closest('.form-inline').siblings('.skill_info').children('.pad-right-10:nth-child('+i+')').find('.tags').text();
+        if (value == list_value) {
+          count++;
+        }
+      }
+      if (count == 0 && value != '') {
+        $(this).closest('.form-inline').siblings('.skill_info').append('<span class="pad-right-10">'+
+          '<input type="hidden" name="skills[]" value="'+value+'" >'+
+          '<span class="tags vertical-divider">'+value+'</span>'+
+          '<a href="#" class="no-underline close_skills">×</a>'+
+        '</span>');
+      }
+
+      $(this).siblings('.form-control').val('');
+
+      $('.close_skills').on('click', function() {
+        $(this).closest('.pad-right-10').remove();
+      });
+
     });
 
 });
@@ -48,18 +79,18 @@ $('#change_can_profile_pic').change(function(e){
         processData: false,
         contentType: false,
         success: function(response){
-            if(response.code === 200){              
+            if(response.code === 200){
                 $('.profile-pic > img').attr('src', response.img);
-                alertify.success(response.success);              
-               
+                alertify.success(response.success);
+
             }
             if(response.code === 202){
-                 alertify.warning(response.error);  
+                 alertify.warning(response.error);
                 // alert(response.error);
-              
+
             }
             if(response.code === 202){
-               
+
             }
         },
         error: function(){

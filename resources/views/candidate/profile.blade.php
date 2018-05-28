@@ -24,8 +24,8 @@
                <img class="img-circle" src="{{asset('public/storage/profile-pictures/' . Auth::user()->profile->profile_pic)}}">
                @else
                <img alt="" class="img-circle" src="{{asset('public/storage/profile-pictures/abc.jpg')}}">
-                      @endif              
-        
+                      @endif
+
                <div class="edit-profile-pic">
                   <form action="{{route('CanImageUpload')}}" method="post" enctype="multipart/form-data" id="change_can_profile_pic">
                      <input name="_token" value="{{csrf_token()}}" type="hidden">
@@ -66,7 +66,7 @@
                            </div>
                         </div>
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                        <button class="btn btn-sm btn-info" type="submit" disabled">Save</button>
+                        <button class="btn btn-sm btn-info" type="submit" disabled>Save</button>
                         <button class="btn btn-sm btn-danger" type="button" disabled="disabled">Cancel</button>
                      </form>
                   </div>
@@ -132,7 +132,7 @@
                Education
             </div>
             <div class="panel-body">
-               <ul id="ul_add_education">
+               <ul class="ul_add" id="ul_add_education">
                   <li class="panel-block">
                      <a class="add-entry-link" onclick="functionAddTag('add_eduation')">
                      <span class="wrap-plus"><i class="fa fa-plus"></i></span>
@@ -165,7 +165,7 @@
                                  </ul>
                               </span> -->
                               <span>
-                              <input type="text" class="form-control placeholder="School" name="school">
+                              <input type="text" class="form-control" placeholder="School" name="school">
                               </span>
                            </div>
                            <div class="control-label" style="text-align:initial">(Required)</div>
@@ -530,7 +530,7 @@
                                  <div class="checkbox">
                                     <label>
                                     <input type="checkbox" class="currently_working" name="current_status"> Currently studying
-                                    <label class="control-label">(Required)</label> 
+                                    <label class="control-label">(Required)</label>
                                     </label>
                                  </div>
                               </div>
@@ -599,7 +599,7 @@
                                        <li>
                                           <a class="edit_education_list">Edit</a>
                                        </li>
-                                       <li>  
+                                       <li>
                                           <form class="delete_candidate_education" action="{{route('delete_candidate_education',['id'=>$value->id])}}" method="get">
                                              <button type="submit">Delete</button>
                                           </form>
@@ -628,7 +628,7 @@
                                  <span class="">College*</span>
                                  <span class="ng-hide">School*</span>
                                  </label>
-                                 <div class="col-sm-4">                                
+                                 <div class="col-sm-4">
                                     <span>
                                     <input type="text" class="form-control placeholder="School" name="school" value="{{$value->school}}">
                                     </span>
@@ -993,9 +993,9 @@
                                           </div>
                                        </div>
                                        <div class="checkbox">
-                                          <label>                                             
+                                          <label>
                                           <input type="checkbox" class="currently_working" name="current_status" @if($value->current_status == "1") checked @endif value="1"> Currently studying
-                                          <label class="control-label">(Required)</label> 
+                                          <label class="control-label">(Required)</label>
                                           </label>
                                        </div>
                                     </div>
@@ -1030,7 +1030,7 @@
                               <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                               <div class="form-group form-group-sm">
                                  <div class="col-sm-8 col-sm-offset-4">
-                                    <button class="btn btn-sm btn-primary" type="submit">Add</button>
+                                    <button class="btn btn-sm btn-primary" type="submit">Save Changes</button>
                                     <button type="button" class="btn btn-sm btn-default cancel_education_list_form">Cancel</button>
                                  </div>
                               </div>
@@ -1057,25 +1057,21 @@
                      Add Languages
                      </a>
                   </li>
-                  <li class="panel-block hidden">
-                     <span class="ng-scope" data-ng-repeat="item in profileDetailedData.language">
+                  <li class="panel-block">
+                     <!-- foreach start -->
                      <span class="pad-right-10">
-                     <span class="tags">
-                     fgg
+                       <span class="tags">fgg</span>
+                       <a href="#" class="no-underline">×</a>
                      </span>
-                     <a href="" class="no-underline">×</a>
-                     </span>
-                     </span><!-- end ngRepeat: item in profileDetailedData.language -->
+                     <!-- foreach end -->
                   </li>
                   <li class="panel-block hidden" id="add_language">
                      <div class="form-inline">
                         <form name="profileLanguages" id="storeprofileLanguages" action="{{route('storeprofileLanguages')}}" method="post" style="display:inline">
                            {{csrf_field()}}
-                           <div class="form-group form-group-sm">
-                              <input type="text" class="form-control" placeholder="add language" name="language_name" required="">
-                              <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                           </div>
-                           <button class="btn btn-sm btn-info" type="submit">Add</button>
+                           <input type="text" class="form-control" placeholder="add language" name="language_name" required="">
+                           <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                           <button class="btn btn-sm btn-info" type="submit" disabled>Add</button>
                            <button type="button" class="btn btn-sm btn-default" onclick="functionCloseTag('add_language')">Cancel</button>
                         </form>
                      </div>
@@ -1096,19 +1092,24 @@
                      Add Frameworks
                      </a>
                   </li>
-                  <li class="panel-block hidden">
-                     <!-- ngRepeat: item in profileDetailedData.frameworks -->
+
+                  <li class="panel-block">
+                    <!-- foreach start -->
+                     <span class="pad-right-10">
+                       <span class="tags">fgg</span>
+                       <a href="#" class="no-underline">×</a>
+                     </span>
+                     <!-- foreach end -->
                   </li>
+
                   <li class="panel-block hidden" id="add_framework">
                      <div class="form-inline">
                         <form id="storeprofileFrameworks" action="{{route('storeprofileFrameworks')}}" name="profileFramework" style="display:inline" method="post">
                            {{csrf_field()}}
                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                           <div class="form-group form-group-sm">
-                              <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="Add Framework" name="framework_name" required="">                              
-                           </div>
-                        <button class="btn btn-sm btn-info" type="submit">Add</button>
-                        <button type="button" class="btn btn-sm btn-default" onclick="functionCloseTag('add_framework')">Cancel</button>
+                           <input type="text" class="form-control" placeholder="Add Framework" name="framework_name" required="">
+                          <button class="btn btn-sm btn-info" type="submit" disabled>Add</button>
+                          <button type="button" class="btn btn-sm btn-default" onclick="functionCloseTag('add_framework')">Cancel</button>
                         </form>
                      </div>
                   </li>
@@ -1121,7 +1122,7 @@
                Work Experience
             </div>
             <div class="panel-body">
-               <ul class="">
+               <ul class="ul_add">
                   <li class="panel-block">
                      <a class="add-entry-link" onclick="functionAddTag('add_work')">
                      <span class="wrap-plus"><i class="fa fa-plus"></i></span>
@@ -1135,15 +1136,14 @@
                         <div class="form-group form-group-sm">
                            <label class="col-sm-4 control-label">Job Title*</label>
                            <div class="col-sm-4">
-                              <input type="text" class="form-control" placeholder="Job Title" name="job_title">
-                              <!-- ngIf: interacted(profileWorkExperience.jobTitle) -->
+                              <input type="text" class="form-control" placeholder="Job Title" name="job_title" required>
                            </div>
                            <div class="control-label" style="text-align:initial">(Required)</div>
                         </div>
                         <div class="form-group form-group-sm">
                            <label class="col-sm-4 control-label">Company*</label>
                            <div class="col-sm-4">
-                              <input type="text" class="form-control" placeholder="Company" name="company">
+                              <input type="text" class="form-control" placeholder="Company" name="company" required>
                            </div>
                            <div class="control-label" style="text-align:initial">(Required)</div>
                         </div>
@@ -1519,21 +1519,17 @@
                            <label class="col-sm-4 control-label">Description</label>
                            <div class="col-sm-4">
                               <textarea name="description" class="form-control"></textarea>
-                              <!-- ngIf: interacted(profileWorkExperience.description) -->
                            </div>
                         </div>
                         <div class="form-group form-group-sm">
                            <label class="col-sm-4 control-label">Related Skills</label>
                            <div class="col-sm-8">
-                              <div>
-                                 <!-- ngRepeat: relatedSkill in newWorkX.relatedSkills -->
+                              <div class="skill_info">
+
                               </div>
                               <div class="form-inline">
-                                 <div class="">
-                                    <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
-                                    <button class="btn btn-sm btn-info" disabled="disabled">Add skills</button>
-                                    <!-- ngIf: interacted(profileWorkExperience.newRelatedSkill) -->
-                                 </div>
+                                <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
+                                <button type="button" class="btn btn-sm btn-info add_skill" disabled="disabled">Add skills</button>
                               </div>
                            </div>
                         </div>
@@ -1545,6 +1541,1344 @@
                         </div>
                      </form>
                   </li>
+                  <li class="panel-block">
+                    <div class="row">
+                      <div class="education_list_data">
+                        <div class="col-xs-8">
+                          <h3>asd</h3>
+                          <p>asd, as</p>
+                          <p>Feb 2020 - Feb 2017</p>
+                          <p>asd</p>
+                          <p>
+                            <strong>Skills:</strong>
+                            <span>asd
+                              <span>, </span>
+                            </span>
+                          </p>
+                        </div>
+                        <div class="col-xs-4">
+                          <ul class="nav-links navbar-nav navbar-right">
+                            <li><a href="">Move up</a></li>
+                            <li><a href="">Move down</a></li>
+                            <li>
+                              <a href="javascript://" class="dropdown-toggle" data-toggle="dropdown">
+                                Options
+                                <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a class="edit_education_list">Edit</a></li>
+                                <li><a href="">Delete</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 education_list_form hidden">
+                        <form class="form-horizontal" action="" method="post" name="profileWorkExperience">
+                          {{csrf_field()}}
+                          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Job Title*</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" placeholder="Job Title" name="job_title" required>
+                            </div>
+                            <div class="control-label" style="text-align:initial">(Required)</div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Company*</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" placeholder="Company" name="company" required>
+                            </div>
+                            <div class="control-label" style="text-align:initial">(Required)</div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Location</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" placeholder="Location" name="location">
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Duration*</label>
+                            <div class="col-sm-8">
+                              <div class="select-range-group">
+                                <div>
+                                  <div class="input-group input-group-select">
+                                    <select class="form-control" name="month_from">
+                                      <option value="" disabled="" selected="">Month</option>
+                                      <!-- ngRepeat: month in months -->
+                                      <option value="01">Jan</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="02">Feb</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="03">Mar</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="04">Apr</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="05">May</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="06">Jun</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="07">Jul</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="08">Aug</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="09">Sep</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="10">Oct</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="11">Nov</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="12">Dec</option>
+                                      <!-- end ngRepeat: month in months -->
+                                    </select>
+                                    <select class="form-control" name="year_from">
+                                      <option value="" disabled="" selected="">Year</option>
+                                      <!-- ngRepeat: year in years -->
+                                      <option value="2020">2020</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2019">2019</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2018">2018</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2017">2017</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2016">2016</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2015">2015</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2014">2014</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2013">2013</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2012">2012</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2011">2011</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2010">2010</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2009">2009</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2008">2008</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2007">2007</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2006">2006</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2005">2005</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2004">2004</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2003">2003</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2002">2002</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2001">2001</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2000">2000</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1999">1999</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1998">1998</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1997">1997</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1996">1996</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1995">1995</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1994">1994</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1993">1993</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1992">1992</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1991">1991</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1990">1990</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1989">1989</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1988">1988</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1987">1987</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1986">1986</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1985">1985</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1984">1984</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1983">1983</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1982">1982</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1981">1981</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1980">1980</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1979">1979</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1978">1978</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1977">1977</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1976">1976</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1975">1975</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1974">1974</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1973">1973</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1972">1972</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1971">1971</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1970">1970</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1969">1969</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1968">1968</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1967">1967</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1966">1966</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1965">1965</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1964">1964</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1963">1963</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1962">1962</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1961">1961</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1960">1960</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1959">1959</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1958">1958</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1957">1957</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1956">1956</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1955">1955</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1954">1954</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1953">1953</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1952">1952</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1951">1951</option>
+                                      <!-- end ngRepeat: year in years -->
+                                    </select>
+                                  </div>
+                                </div>
+                                <h5 class="text-align-center to_value">to</h5>
+                                <div class="to_date_value">
+                                  <div class="input-group input-group-select">
+                                    <select class="form-control" class="month_to" name="month_to">    <option value="" disabled="" selected="">Month</option>
+                                      <!-- ngRepeat: month in months -->
+                                      <option value="01">Jan</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="02">Feb</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="03">Mar</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="04">Apr</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="05">May</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="06">Jun</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="07">Jul</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="08">Aug</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="09">Sep</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="10">Oct</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="11">Nov</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="12">Dec</option>
+                                      <!-- end ngRepeat: month in months -->
+                                    </select>
+                                    <select class="form-control" class="year_to" name="year_to">
+                                      <option value="" disabled="" selected="">Year</option>
+                                      <!-- ngRepeat: year in years -->
+                                      <option  value="2020">2020</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2019">2019</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2018">2018</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2017">2017</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2016">2016</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2015">2015</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2014">2014</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2013">2013</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2012">2012</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2011">2011</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2010">2010</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2009">2009</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2008">2008</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2007">2007</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2006">2006</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2005">2005</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2004">2004</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2003">2003</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2002">2002</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2001">2001</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2000">2000</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1999">1999</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1998">1998</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1997">1997</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1996">1996</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1995">1995</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1994">1994</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option data-ng-repeat="year in years"  value="1993">1993</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1992">1992</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1991">1991</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1990">1990</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1989">1989</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1988">1988</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1987">1987</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1986">1986</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1985">1985</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1984">1984</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1983">1983</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1982">1982</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1981">1981</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1980">1980</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1979">1979</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1978">1978</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1977">1977</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1976">1976</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1975">1975</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1974">1974</option>
+                                      <!-- endngRepeat: year in years -->
+                                      <option  value="1973">1973</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1972">1972</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1971">1971</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1970">1970</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1969">1969</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1968">1968</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1967">1967</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1966">1966</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1965">1965</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1964">1964</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1963">1963</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1962">1962</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1961">1961</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1960">1960</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1959">1959</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1958">1958</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1957">1957</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1956">1956</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1955">1955</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1954">1954</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1953">1953</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1952">1952</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1951">1951</option>
+                                      <!-- end ngRepeat: year in years -->
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" class="currently_working" name="current_status"> Currently working</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Description</label>
+                            <div class="col-sm-4">
+                              <textarea name="description" class="form-control"></textarea>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Related Skills</label>
+                            <div class="col-sm-8">
+                              <div class="skill_info">
+
+                              </div>
+                              <div class="form-inline">
+                                <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
+                                <button type="button" class="btn btn-sm btn-info add_skill" disabled="disabled">Add skills</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <div class="col-sm-8 col-sm-offset-4">
+                              <button class="btn btn-sm btn-primary" type="submit">Save Changes</button>
+                              <button type="button" class="btn btn-sm btn-default cancel_education_list_form">Cancel</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="panel-block">
+                    <div class="row">
+                      <div class="education_list_data">
+                        <div class="col-xs-8">
+                          <h3>asd</h3>
+                          <p>asd, as</p>
+                          <p>Feb 2020 - Feb 2017</p>
+                          <p>asd</p>
+                          <p>
+                            <strong>Skills:</strong>
+                            <span>asd
+                              <span>, </span>
+                            </span>
+                          </p>
+                        </div>
+                        <div class="col-xs-4">
+                          <ul class="nav-links navbar-nav navbar-right">
+                            <li><a href="">Move up</a></li>
+                            <li><a href="">Move down</a></li>
+                            <li>
+                              <a href="javascript://" class="dropdown-toggle" data-toggle="dropdown">
+                                Options
+                                <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a class="edit_education_list">Edit</a></li>
+                                <li><a href="">Delete</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 education_list_form hidden">
+                        <form class="form-horizontal" action="" method="post" name="profileWorkExperience">
+                          {{csrf_field()}}
+                          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Job Title*</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" placeholder="Job Title" name="job_title" required>
+                            </div>
+                            <div class="control-label" style="text-align:initial">(Required)</div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Company*</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" placeholder="Company" name="company" required>
+                            </div>
+                            <div class="control-label" style="text-align:initial">(Required)</div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Location</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" placeholder="Location" name="location">
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Duration*</label>
+                            <div class="col-sm-8">
+                              <div class="select-range-group">
+                                <div>
+                                  <div class="input-group input-group-select">
+                                    <select class="form-control" name="month_from">
+                                      <option value="" disabled="" selected="">Month</option>
+                                      <!-- ngRepeat: month in months -->
+                                      <option value="01">Jan</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="02">Feb</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="03">Mar</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="04">Apr</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="05">May</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="06">Jun</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="07">Jul</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="08">Aug</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="09">Sep</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="10">Oct</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="11">Nov</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="12">Dec</option>
+                                      <!-- end ngRepeat: month in months -->
+                                    </select>
+                                    <select class="form-control" name="year_from">
+                                      <option value="" disabled="" selected="">Year</option>
+                                      <!-- ngRepeat: year in years -->
+                                      <option value="2020">2020</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2019">2019</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2018">2018</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2017">2017</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2016">2016</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2015">2015</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2014">2014</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2013">2013</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2012">2012</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2011">2011</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2010">2010</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2009">2009</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2008">2008</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2007">2007</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2006">2006</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2005">2005</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2004">2004</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2003">2003</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2002">2002</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2001">2001</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2000">2000</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1999">1999</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1998">1998</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1997">1997</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1996">1996</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1995">1995</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1994">1994</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1993">1993</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1992">1992</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1991">1991</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1990">1990</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1989">1989</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1988">1988</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1987">1987</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1986">1986</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1985">1985</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1984">1984</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1983">1983</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1982">1982</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1981">1981</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1980">1980</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1979">1979</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1978">1978</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1977">1977</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1976">1976</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1975">1975</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1974">1974</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1973">1973</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1972">1972</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1971">1971</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1970">1970</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1969">1969</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1968">1968</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1967">1967</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1966">1966</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1965">1965</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1964">1964</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1963">1963</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1962">1962</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1961">1961</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1960">1960</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1959">1959</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1958">1958</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1957">1957</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1956">1956</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1955">1955</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1954">1954</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1953">1953</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1952">1952</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1951">1951</option>
+                                      <!-- end ngRepeat: year in years -->
+                                    </select>
+                                  </div>
+                                </div>
+                                <h5 class="text-align-center to_value">to</h5>
+                                <div class="to_date_value">
+                                  <div class="input-group input-group-select">
+                                    <select class="form-control" class="month_to" name="month_to">    <option value="" disabled="" selected="">Month</option>
+                                      <!-- ngRepeat: month in months -->
+                                      <option value="01">Jan</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="02">Feb</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="03">Mar</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="04">Apr</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="05">May</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="06">Jun</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="07">Jul</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="08">Aug</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="09">Sep</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="10">Oct</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="11">Nov</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="12">Dec</option>
+                                      <!-- end ngRepeat: month in months -->
+                                    </select>
+                                    <select class="form-control" class="year_to" name="year_to">
+                                      <option value="" disabled="" selected="">Year</option>
+                                      <!-- ngRepeat: year in years -->
+                                      <option  value="2020">2020</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2019">2019</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2018">2018</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2017">2017</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2016">2016</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2015">2015</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2014">2014</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2013">2013</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2012">2012</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2011">2011</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2010">2010</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2009">2009</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2008">2008</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2007">2007</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2006">2006</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2005">2005</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2004">2004</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2003">2003</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2002">2002</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2001">2001</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2000">2000</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1999">1999</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1998">1998</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1997">1997</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1996">1996</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1995">1995</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1994">1994</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option data-ng-repeat="year in years"  value="1993">1993</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1992">1992</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1991">1991</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1990">1990</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1989">1989</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1988">1988</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1987">1987</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1986">1986</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1985">1985</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1984">1984</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1983">1983</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1982">1982</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1981">1981</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1980">1980</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1979">1979</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1978">1978</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1977">1977</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1976">1976</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1975">1975</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1974">1974</option>
+                                      <!-- endngRepeat: year in years -->
+                                      <option  value="1973">1973</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1972">1972</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1971">1971</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1970">1970</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1969">1969</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1968">1968</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1967">1967</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1966">1966</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1965">1965</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1964">1964</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1963">1963</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1962">1962</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1961">1961</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1960">1960</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1959">1959</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1958">1958</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1957">1957</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1956">1956</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1955">1955</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1954">1954</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1953">1953</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1952">1952</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1951">1951</option>
+                                      <!-- end ngRepeat: year in years -->
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" class="currently_working" name="current_status"> Currently working</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Description</label>
+                            <div class="col-sm-4">
+                              <textarea name="description" class="form-control"></textarea>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Related Skills</label>
+                            <div class="col-sm-8">
+                              <div class="skill_info">
+
+                              </div>
+                              <div class="form-inline">
+                                <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
+                                <button type="button" class="btn btn-sm btn-info add_skill" disabled="disabled">Add skills</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <div class="col-sm-8 col-sm-offset-4">
+                              <button class="btn btn-sm btn-primary" type="submit">Save Changes</button>
+                              <button type="button" class="btn btn-sm btn-default cancel_education_list_form">Cancel</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="panel-block">
+                    <div class="row">
+                      <div class="education_list_data">
+                        <div class="col-xs-8">
+                          <h3>asd</h3>
+                          <p>asd, as</p>
+                          <p>Feb 2020 - Feb 2017</p>
+                          <p>asd</p>
+                          <p>
+                            <strong>Skills:</strong>
+                            <span>asd
+                              <span>, </span>
+                            </span>
+                          </p>
+                        </div>
+                        <div class="col-xs-4">
+                          <ul class="nav-links navbar-nav navbar-right">
+                            <li><a href="">Move up</a></li>
+                            <li><a href="">Move down</a></li>
+                            <li>
+                              <a href="javascript://" class="dropdown-toggle" data-toggle="dropdown">
+                                Options
+                                <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a class="edit_education_list">Edit</a></li>
+                                <li><a href="">Delete</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 education_list_form hidden">
+                        <form class="form-horizontal" action="" method="post" name="profileWorkExperience">
+                          {{csrf_field()}}
+                          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Job Title*</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" placeholder="Job Title" name="job_title" required>
+                            </div>
+                            <div class="control-label" style="text-align:initial">(Required)</div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Company*</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" placeholder="Company" name="company" required>
+                            </div>
+                            <div class="control-label" style="text-align:initial">(Required)</div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Location</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" placeholder="Location" name="location">
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Duration*</label>
+                            <div class="col-sm-8">
+                              <div class="select-range-group">
+                                <div>
+                                  <div class="input-group input-group-select">
+                                    <select class="form-control" name="month_from">
+                                      <option value="" disabled="" selected="">Month</option>
+                                      <!-- ngRepeat: month in months -->
+                                      <option value="01">Jan</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="02">Feb</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="03">Mar</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="04">Apr</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="05">May</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="06">Jun</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="07">Jul</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="08">Aug</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="09">Sep</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="10">Oct</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="11">Nov</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="12">Dec</option>
+                                      <!-- end ngRepeat: month in months -->
+                                    </select>
+                                    <select class="form-control" name="year_from">
+                                      <option value="" disabled="" selected="">Year</option>
+                                      <!-- ngRepeat: year in years -->
+                                      <option value="2020">2020</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2019">2019</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2018">2018</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2017">2017</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2016">2016</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2015">2015</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2014">2014</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2013">2013</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2012">2012</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2011">2011</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2010">2010</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2009">2009</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2008">2008</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2007">2007</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2006">2006</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2005">2005</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2004">2004</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2003">2003</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2002">2002</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2001">2001</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="2000">2000</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1999">1999</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1998">1998</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1997">1997</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1996">1996</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1995">1995</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1994">1994</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1993">1993</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1992">1992</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1991">1991</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1990">1990</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1989">1989</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1988">1988</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1987">1987</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1986">1986</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1985">1985</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1984">1984</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1983">1983</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1982">1982</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1981">1981</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1980">1980</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1979">1979</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1978">1978</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1977">1977</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1976">1976</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1975">1975</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1974">1974</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1973">1973</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1972">1972</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1971">1971</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1970">1970</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1969">1969</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1968">1968</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1967">1967</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1966">1966</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1965">1965</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1964">1964</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1963">1963</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1962">1962</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1961">1961</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1960">1960</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1959">1959</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1958">1958</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1957">1957</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1956">1956</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1955">1955</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1954">1954</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1953">1953</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1952">1952</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option value="1951">1951</option>
+                                      <!-- end ngRepeat: year in years -->
+                                    </select>
+                                  </div>
+                                </div>
+                                <h5 class="text-align-center to_value">to</h5>
+                                <div class="to_date_value">
+                                  <div class="input-group input-group-select">
+                                    <select class="form-control" class="month_to" name="month_to">    <option value="" disabled="" selected="">Month</option>
+                                      <!-- ngRepeat: month in months -->
+                                      <option value="01">Jan</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="02">Feb</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="03">Mar</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="04">Apr</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="05">May</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="06">Jun</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="07">Jul</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="08">Aug</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="09">Sep</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="10">Oct</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="11">Nov</option>
+                                      <!-- end ngRepeat: month in months -->
+                                      <option value="12">Dec</option>
+                                      <!-- end ngRepeat: month in months -->
+                                    </select>
+                                    <select class="form-control" class="year_to" name="year_to">
+                                      <option value="" disabled="" selected="">Year</option>
+                                      <!-- ngRepeat: year in years -->
+                                      <option  value="2020">2020</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2019">2019</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2018">2018</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2017">2017</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2016">2016</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2015">2015</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2014">2014</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2013">2013</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2012">2012</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2011">2011</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2010">2010</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2009">2009</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2008">2008</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2007">2007</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2006">2006</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2005">2005</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2004">2004</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2003">2003</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2002">2002</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2001">2001</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="2000">2000</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1999">1999</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1998">1998</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1997">1997</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1996">1996</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1995">1995</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1994">1994</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option data-ng-repeat="year in years"  value="1993">1993</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1992">1992</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1991">1991</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1990">1990</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1989">1989</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1988">1988</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1987">1987</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1986">1986</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1985">1985</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1984">1984</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1983">1983</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1982">1982</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1981">1981</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1980">1980</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1979">1979</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1978">1978</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1977">1977</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1976">1976</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1975">1975</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1974">1974</option>
+                                      <!-- endngRepeat: year in years -->
+                                      <option  value="1973">1973</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1972">1972</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1971">1971</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1970">1970</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1969">1969</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1968">1968</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1967">1967</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1966">1966</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1965">1965</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1964">1964</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1963">1963</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1962">1962</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1961">1961</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1960">1960</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1959">1959</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1958">1958</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1957">1957</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1956">1956</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1955">1955</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1954">1954</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1953">1953</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1952">1952</option>
+                                      <!-- end ngRepeat: year in years -->
+                                      <option  value="1951">1951</option>
+                                      <!-- end ngRepeat: year in years -->
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" class="currently_working" name="current_status"> Currently working</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Description</label>
+                            <div class="col-sm-4">
+                              <textarea name="description" class="form-control"></textarea>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <label class="col-sm-4 control-label">Related Skills</label>
+                            <div class="col-sm-8">
+                              <div class="skill_info">
+
+                              </div>
+                              <div class="form-inline">
+                                <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
+                                <button type="button" class="btn btn-sm btn-info add_skill" disabled="disabled">Add skills</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <div class="col-sm-8 col-sm-offset-4">
+                              <button class="btn btn-sm btn-primary" type="submit">Save Changes</button>
+                              <button type="button" class="btn btn-sm btn-default cancel_education_list_form">Cancel</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </li>
                </ul>
             </div>
          </div>
@@ -1554,14 +2888,14 @@
                Projects
             </div>
             <div class="panel-body">
-               <ul class="">
+               <ul class="ul_add">
                   <li class="panel-block">
                      <a class="add-entry-link" onclick="functionAddTag('add_project')">
                      <span class="wrap-plus"><i class="fa fa-plus"></i></span>
                      Add a Project
                      </a>
                   </li>
-                  <li class="panel-block hidden" hidden" id="add_project">
+                  <li class="panel-block hidden" id="add_project">
                      <form class="form-horizontal" id="storeprofileProjectInfo" action="{{route('storeprofileProjectInfo')}}" method="post" name="profileProject">
                         {{csrf_field()}}
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
@@ -1569,7 +2903,6 @@
                            <label class="col-sm-4 control-label">Project Name*</label>
                            <div class="col-sm-4">
                               <input type="text" class="form-control" placeholder="Project Name" name="project_name">
-                              <!-- ngIf: interacted(profileProject.name) -->
                            </div>
                            <div class="control-label" style="text-align:initial">(Required)</div>
                         </div>
@@ -1577,7 +2910,6 @@
                            <label class="col-sm-4 control-label">Project URL</label>
                            <div class="col-sm-4">
                               <input type="text" class="form-control" placeholder="Project/related URL If any" name="project_url">
-                              <!-- ngIf: interacted(profileProject.projectURL) -->
                            </div>
                         </div>
                         <div class="form-group form-group-sm">
@@ -1947,22 +3279,18 @@
                            <label class="col-sm-4 control-label">Description</label>
                            <div class="col-sm-4">
                               <textarea name="description" class="form-control"></textarea>
-                              <!-- ngIf: interacted(profileProject.description) -->
                            </div>
                         </div>
                         <div class="form-group form-group-sm">
                            <label class="col-sm-4 control-label">Related Skills</label>
                            <div class="col-sm-8">
-                              <div>
-                                 <!-- ngRepeat: relatedSkill in newProject.relatedSkills -->
-                              </div>
-                              <div class="form-inline">
-                                 <div class="">
-                                    <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
-                                    <button class="btn btn-sm btn-info">Add skills</button>
-                                 </div>
-                                 <!-- ngIf: interacted(profileProject.newRelatedSkill) -->
-                              </div>
+                             <div class="skill_info">
+
+                             </div>
+                             <div class="form-inline">
+                               <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
+                               <button type="button" class="btn btn-sm btn-info add_skill" disabled="disabled">Add skills</button>
+                             </div>
                            </div>
                         </div>
                         <div class="form-group form-group-sm">
@@ -1973,7 +3301,1320 @@
                         </div>
                      </form>
                   </li>
-                  <!-- ngRepeat: item in profileDetailedData.projects -->
+                  <li class="panel-block">
+                    <div class="row">
+                      <div class="education_list_data">
+                        <div class="col-xs-8">
+                          <h3>asd</h3>
+                          <p><a href="http://adsd" target="_blank">http://adsd</a></p>
+                          <p>Feb 2020 - Feb 2017</p>
+                          <p>
+                            <strong>Skills:</strong>
+                            <span>asd<span>, </span></span>
+                            <span>asd<span></span></span>
+                          </p>
+                        </div>
+                        <div class="col-xs-4">
+                          <ul class="nav-links navbar-nav navbar-right">
+                            <li><a href="">Move up</a></li>
+                            <li><a href="">Move down</a></li>
+                            <li>
+                              <a href="javascript://" class="dropdown-toggle" data-toggle="dropdown">
+                                Options
+                                <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a class="edit_education_list">Edit</a></li>
+                                <li><a href="">Delete</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 education_list_form hidden">
+                        <form class="form-horizontal" action="" method="post" name="">
+                          {{csrf_field()}}
+                          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Project Name*</label>
+                             <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Project Name" name="project_name">
+                             </div>
+                             <div class="control-label" style="text-align:initial">(Required)</div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Project URL</label>
+                             <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Project/related URL If any" name="project_url">
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Duration*</label>
+                             <div class="col-sm-8">
+                                <div class="select-range-group">
+                                   <div>
+                                      <div class="input-group input-group-select">
+                                         <select class="form-control" name="month_from">
+                                             <option value="" disabled="" selected="">Month</option>
+                                            <!-- ngRepeat: month in months -->
+                                            <option value="01">Jan</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="02">Feb</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="03">Mar</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="04">Apr</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="05">May</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="06">Jun</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="07">Jul</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="08">Aug</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="09">Sep</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="10">Oct</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="11">Nov</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="12">Dec</option>
+                                            <!-- end ngRepeat: month in months -->
+                                         </select>
+                                         <select class="form-control" name="year_from">
+                                            <option value="" disabled="" selected="">Year</option>
+                                            <!-- ngRepeat: year in years -->
+                                            <option value="2020">2020</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2019">2019</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2018">2018</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2017">2017</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2016">2016</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2015">2015</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2014">2014</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2013">2013</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2012">2012</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2011">2011</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2010">2010</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2009">2009</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2008">2008</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2007">2007</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2006">2006</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2005">2005</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2004">2004</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2003">2003</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2002">2002</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2001">2001</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2000">2000</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1999">1999</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1998">1998</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1997">1997</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1996">1996</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1995">1995</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1994">1994</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1993">1993</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1992">1992</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1991">1991</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1990">1990</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1989">1989</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1988">1988</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1987">1987</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1986">1986</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1985">1985</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1984">1984</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1983">1983</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1982">1982</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1981">1981</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1980">1980</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1979">1979</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1978">1978</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1977">1977</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1976">1976</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1975">1975</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1974">1974</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1973">1973</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1972">1972</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1971">1971</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1970">1970</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1969">1969</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1968">1968</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1967">1967</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1966">1966</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1965">1965</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1964">1964</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1963">1963</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1962">1962</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1961">1961</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1960">1960</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1959">1959</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1958">1958</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1957">1957</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1956">1956</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1955">1955</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1954">1954</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1953">1953</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1952">1952</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1951">1951</option>
+                                            <!-- end ngRepeat: year in years -->
+                                         </select>
+                                      </div>
+                                   </div>
+                                   <h5 class="text-align-center to_value">to</h5>
+                                   <div class="to_date_value">
+                                      <div class="input-group input-group-select">
+                                         <select class="form-control" class="month_to" name="month_to">
+                                            <option value="" disabled="" selected="">Month</option>
+                                            <!-- ngRepeat: month in months -->
+                                            <option value="01">Jan</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="02">Feb</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="03">Mar</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="04">Apr</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="05">May</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="06">Jun</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="07">Jul</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="08">Aug</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="09">Sep</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="10">Oct</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="11">Nov</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="12">Dec</option>
+                                            <!-- end ngRepeat: month in months -->
+                                         </select>
+                                         <select class="form-control" class="year_to" name="year_to">
+                                            <option value="" disabled="" selected="">Year</option>
+                                            <!-- ngRepeat: year in years -->
+                                            <option value="2020">2020</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2019">2019</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2018">2018</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2017">2017</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2016">2016</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2015">2015</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2014">2014</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2013">2013</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2012">2012</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2011">2011</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2010">2010</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2009">2009</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2008">2008</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2007">2007</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2006">2006</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2005">2005</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2004">2004</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2003">2003</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2002">2002</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2001">2001</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2000">2000</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1999">1999</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1998">1998</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1997">1997</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1996">1996</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1995">1995</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1994">1994</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1993">1993</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1992">1992</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1991">1991</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1990">1990</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1989">1989</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1988">1988</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1987">1987</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1986">1986</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1985">1985</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1984">1984</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1983">1983</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1982">1982</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1981">1981</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1980">1980</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1979">1979</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1978">1978</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1977">1977</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1976">1976</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1975">1975</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1974">1974</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1973">1973</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1972">1972</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1971">1971</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1970">1970</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1969">1969</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1968">1968</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1967">1967</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1966">1966</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1965">1965</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1964">1964</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1963">1963</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1962">1962</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1961">1961</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1960">1960</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1959">1959</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1958">1958</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1957">1957</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1956">1956</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1955">1955</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1954">1954</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1953">1953</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1952">1952</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1951">1951</option>
+                                            <!-- end ngRepeat: year in years -->
+                                         </select>
+                                      </div>
+                                   </div>
+                                   <div class="checkbox">
+                                      <label><input type="checkbox" class="currently_working" name="current_status"> Currently working</label>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Description</label>
+                             <div class="col-sm-4">
+                                <textarea name="description" class="form-control"></textarea>
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Related Skills</label>
+                             <div class="col-sm-8">
+                               <div class="skill_info">
+
+                               </div>
+                               <div class="form-inline">
+                                 <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
+                                 <button type="button" class="btn btn-sm btn-info add_skill" disabled="disabled">Add skills</button>
+                               </div>
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <div class="col-sm-8 col-sm-offset-4">
+                              <button class="btn btn-sm btn-primary" type="submit">Save Changes</button>
+                              <button type="button" class="btn btn-sm btn-default cancel_education_list_form">Cancel</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="panel-block">
+                    <div class="row">
+                      <div class="education_list_data">
+                        <div class="col-xs-8">
+                          <h3>asd</h3>
+                          <p><a href="http://adsd" target="_blank">http://adsd</a></p>
+                          <p>Feb 2020 - Feb 2017</p>
+                          <p>
+                            <strong>Skills:</strong>
+                            <span>asd<span>, </span></span>
+                            <span>asd<span></span></span>
+                          </p>
+                        </div>
+                        <div class="col-xs-4">
+                          <ul class="nav-links navbar-nav navbar-right">
+                            <li><a href="">Move up</a></li>
+                            <li><a href="">Move down</a></li>
+                            <li>
+                              <a href="javascript://" class="dropdown-toggle" data-toggle="dropdown">
+                                Options
+                                <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a class="edit_education_list">Edit</a></li>
+                                <li><a href="">Delete</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 education_list_form hidden">
+                        <form class="form-horizontal" action="" method="post" name="">
+                          {{csrf_field()}}
+                          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Project Name*</label>
+                             <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Project Name" name="project_name">
+                             </div>
+                             <div class="control-label" style="text-align:initial">(Required)</div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Project URL</label>
+                             <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Project/related URL If any" name="project_url">
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Duration*</label>
+                             <div class="col-sm-8">
+                                <div class="select-range-group">
+                                   <div>
+                                      <div class="input-group input-group-select">
+                                         <select class="form-control" name="month_from">
+                                             <option value="" disabled="" selected="">Month</option>
+                                            <!-- ngRepeat: month in months -->
+                                            <option value="01">Jan</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="02">Feb</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="03">Mar</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="04">Apr</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="05">May</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="06">Jun</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="07">Jul</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="08">Aug</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="09">Sep</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="10">Oct</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="11">Nov</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="12">Dec</option>
+                                            <!-- end ngRepeat: month in months -->
+                                         </select>
+                                         <select class="form-control" name="year_from">
+                                            <option value="" disabled="" selected="">Year</option>
+                                            <!-- ngRepeat: year in years -->
+                                            <option value="2020">2020</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2019">2019</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2018">2018</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2017">2017</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2016">2016</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2015">2015</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2014">2014</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2013">2013</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2012">2012</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2011">2011</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2010">2010</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2009">2009</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2008">2008</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2007">2007</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2006">2006</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2005">2005</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2004">2004</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2003">2003</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2002">2002</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2001">2001</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2000">2000</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1999">1999</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1998">1998</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1997">1997</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1996">1996</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1995">1995</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1994">1994</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1993">1993</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1992">1992</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1991">1991</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1990">1990</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1989">1989</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1988">1988</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1987">1987</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1986">1986</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1985">1985</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1984">1984</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1983">1983</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1982">1982</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1981">1981</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1980">1980</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1979">1979</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1978">1978</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1977">1977</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1976">1976</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1975">1975</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1974">1974</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1973">1973</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1972">1972</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1971">1971</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1970">1970</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1969">1969</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1968">1968</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1967">1967</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1966">1966</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1965">1965</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1964">1964</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1963">1963</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1962">1962</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1961">1961</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1960">1960</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1959">1959</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1958">1958</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1957">1957</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1956">1956</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1955">1955</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1954">1954</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1953">1953</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1952">1952</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1951">1951</option>
+                                            <!-- end ngRepeat: year in years -->
+                                         </select>
+                                      </div>
+                                   </div>
+                                   <h5 class="text-align-center to_value">to</h5>
+                                   <div class="to_date_value">
+                                      <div class="input-group input-group-select">
+                                         <select class="form-control" class="month_to" name="month_to">
+                                            <option value="" disabled="" selected="">Month</option>
+                                            <!-- ngRepeat: month in months -->
+                                            <option value="01">Jan</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="02">Feb</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="03">Mar</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="04">Apr</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="05">May</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="06">Jun</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="07">Jul</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="08">Aug</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="09">Sep</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="10">Oct</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="11">Nov</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="12">Dec</option>
+                                            <!-- end ngRepeat: month in months -->
+                                         </select>
+                                         <select class="form-control" class="year_to" name="year_to">
+                                            <option value="" disabled="" selected="">Year</option>
+                                            <!-- ngRepeat: year in years -->
+                                            <option value="2020">2020</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2019">2019</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2018">2018</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2017">2017</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2016">2016</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2015">2015</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2014">2014</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2013">2013</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2012">2012</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2011">2011</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2010">2010</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2009">2009</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2008">2008</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2007">2007</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2006">2006</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2005">2005</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2004">2004</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2003">2003</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2002">2002</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2001">2001</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2000">2000</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1999">1999</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1998">1998</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1997">1997</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1996">1996</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1995">1995</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1994">1994</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1993">1993</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1992">1992</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1991">1991</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1990">1990</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1989">1989</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1988">1988</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1987">1987</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1986">1986</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1985">1985</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1984">1984</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1983">1983</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1982">1982</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1981">1981</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1980">1980</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1979">1979</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1978">1978</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1977">1977</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1976">1976</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1975">1975</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1974">1974</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1973">1973</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1972">1972</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1971">1971</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1970">1970</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1969">1969</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1968">1968</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1967">1967</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1966">1966</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1965">1965</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1964">1964</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1963">1963</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1962">1962</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1961">1961</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1960">1960</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1959">1959</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1958">1958</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1957">1957</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1956">1956</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1955">1955</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1954">1954</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1953">1953</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1952">1952</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1951">1951</option>
+                                            <!-- end ngRepeat: year in years -->
+                                         </select>
+                                      </div>
+                                   </div>
+                                   <div class="checkbox">
+                                      <label><input type="checkbox" class="currently_working" name="current_status"> Currently working</label>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Description</label>
+                             <div class="col-sm-4">
+                                <textarea name="description" class="form-control"></textarea>
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Related Skills</label>
+                             <div class="col-sm-8">
+                               <div class="skill_info">
+
+                               </div>
+                               <div class="form-inline">
+                                 <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
+                                 <button type="button" class="btn btn-sm btn-info add_skill" disabled="disabled">Add skills</button>
+                               </div>
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <div class="col-sm-8 col-sm-offset-4">
+                              <button class="btn btn-sm btn-primary" type="submit">Save Changes</button>
+                              <button type="button" class="btn btn-sm btn-default cancel_education_list_form">Cancel</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="panel-block">
+                    <div class="row">
+                      <div class="education_list_data">
+                        <div class="col-xs-8">
+                          <h3>asd</h3>
+                          <p><a href="http://adsd" target="_blank">http://adsd</a></p>
+                          <p>Feb 2020 - Feb 2017</p>
+                          <p>
+                            <strong>Skills:</strong>
+                            <span>asd<span>, </span></span>
+                            <span>asd<span></span></span>
+                          </p>
+                        </div>
+                        <div class="col-xs-4">
+                          <ul class="nav-links navbar-nav navbar-right">
+                            <li><a href="">Move up</a></li>
+                            <li><a href="">Move down</a></li>
+                            <li>
+                              <a href="javascript://" class="dropdown-toggle" data-toggle="dropdown">
+                                Options
+                                <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a class="edit_education_list">Edit</a></li>
+                                <li><a href="">Delete</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 education_list_form hidden">
+                        <form class="form-horizontal" action="" method="post" name="">
+                          {{csrf_field()}}
+                          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Project Name*</label>
+                             <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Project Name" name="project_name">
+                             </div>
+                             <div class="control-label" style="text-align:initial">(Required)</div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Project URL</label>
+                             <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Project/related URL If any" name="project_url">
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Duration*</label>
+                             <div class="col-sm-8">
+                                <div class="select-range-group">
+                                   <div>
+                                      <div class="input-group input-group-select">
+                                         <select class="form-control" name="month_from">
+                                             <option value="" disabled="" selected="">Month</option>
+                                            <!-- ngRepeat: month in months -->
+                                            <option value="01">Jan</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="02">Feb</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="03">Mar</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="04">Apr</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="05">May</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="06">Jun</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="07">Jul</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="08">Aug</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="09">Sep</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="10">Oct</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="11">Nov</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="12">Dec</option>
+                                            <!-- end ngRepeat: month in months -->
+                                         </select>
+                                         <select class="form-control" name="year_from">
+                                            <option value="" disabled="" selected="">Year</option>
+                                            <!-- ngRepeat: year in years -->
+                                            <option value="2020">2020</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2019">2019</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2018">2018</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2017">2017</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2016">2016</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2015">2015</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2014">2014</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2013">2013</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2012">2012</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2011">2011</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2010">2010</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2009">2009</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2008">2008</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2007">2007</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2006">2006</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2005">2005</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2004">2004</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2003">2003</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2002">2002</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2001">2001</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2000">2000</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1999">1999</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1998">1998</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1997">1997</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1996">1996</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1995">1995</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1994">1994</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1993">1993</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1992">1992</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1991">1991</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1990">1990</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1989">1989</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1988">1988</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1987">1987</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1986">1986</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1985">1985</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1984">1984</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1983">1983</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1982">1982</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1981">1981</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1980">1980</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1979">1979</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1978">1978</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1977">1977</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1976">1976</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1975">1975</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1974">1974</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1973">1973</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1972">1972</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1971">1971</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1970">1970</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1969">1969</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1968">1968</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1967">1967</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1966">1966</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1965">1965</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1964">1964</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1963">1963</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1962">1962</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1961">1961</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1960">1960</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1959">1959</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1958">1958</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1957">1957</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1956">1956</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1955">1955</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1954">1954</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1953">1953</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1952">1952</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1951">1951</option>
+                                            <!-- end ngRepeat: year in years -->
+                                         </select>
+                                      </div>
+                                   </div>
+                                   <h5 class="text-align-center to_value">to</h5>
+                                   <div class="to_date_value">
+                                      <div class="input-group input-group-select">
+                                         <select class="form-control" class="month_to" name="month_to">
+                                            <option value="" disabled="" selected="">Month</option>
+                                            <!-- ngRepeat: month in months -->
+                                            <option value="01">Jan</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="02">Feb</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="03">Mar</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="04">Apr</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="05">May</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="06">Jun</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="07">Jul</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="08">Aug</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="09">Sep</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="10">Oct</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="11">Nov</option>
+                                            <!-- end ngRepeat: month in months -->
+                                            <option value="12">Dec</option>
+                                            <!-- end ngRepeat: month in months -->
+                                         </select>
+                                         <select class="form-control" class="year_to" name="year_to">
+                                            <option value="" disabled="" selected="">Year</option>
+                                            <!-- ngRepeat: year in years -->
+                                            <option value="2020">2020</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2019">2019</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2018">2018</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2017">2017</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2016">2016</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2015">2015</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2014">2014</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2013">2013</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2012">2012</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2011">2011</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2010">2010</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2009">2009</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2008">2008</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2007">2007</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2006">2006</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2005">2005</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2004">2004</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2003">2003</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2002">2002</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2001">2001</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="2000">2000</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1999">1999</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1998">1998</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1997">1997</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1996">1996</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1995">1995</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1994">1994</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1993">1993</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1992">1992</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1991">1991</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1990">1990</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1989">1989</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1988">1988</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1987">1987</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1986">1986</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1985">1985</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1984">1984</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1983">1983</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1982">1982</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1981">1981</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1980">1980</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1979">1979</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1978">1978</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1977">1977</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1976">1976</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1975">1975</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1974">1974</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1973">1973</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1972">1972</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1971">1971</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1970">1970</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1969">1969</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1968">1968</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1967">1967</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1966">1966</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1965">1965</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1964">1964</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1963">1963</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1962">1962</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1961">1961</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1960">1960</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1959">1959</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1958">1958</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1957">1957</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1956">1956</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1955">1955</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1954">1954</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1953">1953</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1952">1952</option>
+                                            <!-- end ngRepeat: year in years -->
+                                            <option value="1951">1951</option>
+                                            <!-- end ngRepeat: year in years -->
+                                         </select>
+                                      </div>
+                                   </div>
+                                   <div class="checkbox">
+                                      <label><input type="checkbox" class="currently_working" name="current_status"> Currently working</label>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Description</label>
+                             <div class="col-sm-4">
+                                <textarea name="description" class="form-control"></textarea>
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                             <label class="col-sm-4 control-label">Related Skills</label>
+                             <div class="col-sm-8">
+                               <div class="skill_info">
+
+                               </div>
+                               <div class="form-inline">
+                                 <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
+                                 <button type="button" class="btn btn-sm btn-info add_skill" disabled="disabled">Add skills</button>
+                               </div>
+                             </div>
+                          </div>
+                          <div class="form-group form-group-sm">
+                            <div class="col-sm-8 col-sm-offset-4">
+                              <button class="btn btn-sm btn-primary" type="submit">Save Changes</button>
+                              <button type="button" class="btn btn-sm btn-default cancel_education_list_form">Cancel</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </li>
                </ul>
             </div>
          </div>
@@ -1983,7 +4624,7 @@
                Publications
             </div>
             <div class="panel-body">
-               <ul class="">
+               <ul class="ul_add">
                   <li class="panel-block">
                      <a class="add-entry-link" onclick="functionAddTag('add_public')">
                      <span class="wrap-plus"><i class="fa fa-plus"></i></span>
@@ -2000,7 +4641,6 @@
                                  <label class="col-sm-4 control-label">Title*</label>
                                  <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Title" name="title">
-                                    <!-- ngIf: interacted(profilePublication.title) -->
                                  </div>
                                  <div class="control-label" style="text-align:initial">(Required)</div>
                               </div>
@@ -2008,7 +4648,6 @@
                                  <label class="col-sm-4 control-label">URL*</label>
                                  <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="URL" name="url">
-                                    <!-- ngIf: interacted(profilePublication.url) -->
                                  </div>
                                  <div class="control-label" style="text-align:initial">(Required)</div>
                               </div>
@@ -2021,6 +4660,60 @@
                            </div>
                         </div>
                      </form>
+                  </li>
+                  <li class="panel-block">
+                    <div class="row">
+                      <div class="education_list_data">
+                        <div class="col-xs-8">
+                          <h3>asd</h3>
+                          <p><a href="http://adsd" target="_blank">http://adsd</a></p>
+                        </div>
+                        <div class="col-xs-4">
+                          <ul class="nav-links navbar-nav navbar-right">
+                            <li><a href="">Move up</a></li>
+                            <li><a href="">Move down</a></li>
+                            <li>
+                              <a href="javascript://" class="dropdown-toggle" data-toggle="dropdown">
+                                Options
+                                <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a class="edit_education_list">Edit</a></li>
+                                <li><a href="">Delete</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 education_list_form hidden">
+                        <form class="form-horizontal" action="" method="post" name="">
+                          {{csrf_field()}}
+                          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                          <div class="form-horizontal">
+                                <div class="form-group form-group-sm">
+                                   <label class="col-sm-4 control-label">Title*</label>
+                                   <div class="col-sm-4">
+                                      <input type="text" class="form-control" placeholder="Title" name="title">
+                                   </div>
+                                   <div class="control-label" style="text-align:initial">(Required)</div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                   <label class="col-sm-4 control-label">URL*</label>
+                                   <div class="col-sm-4">
+                                      <input type="text" class="form-control" placeholder="URL" name="url">
+                                   </div>
+                                   <div class="control-label" style="text-align:initial">(Required)</div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                   <div class="col-sm-offset-4 col-sm-8">
+                                      <button class="btn btn-sm btn-primary" type="submit">Save Changes</button>
+                                      <button type="button" class="btn btn-sm btn-default cancel_education_list_form">Cancel</button>
+                                   </div>
+                                </div>
+                             </div>
+                        </form>
+                      </div>
+                    </div>
                   </li>
                </ul>
             </div>
@@ -2068,6 +4761,60 @@
                         </div>
                      </form>
                   </li>
+                  <li class="panel-block">
+                    <div class="row">
+                      <div class="education_list_data">
+                        <div class="col-xs-8">
+                          <h3>asd</h3>
+                          <p>asdghasd</p>
+                        </div>
+                        <div class="col-xs-4">
+                          <ul class="nav-links navbar-nav navbar-right">
+                            <li><a href="">Move up</a></li>
+                            <li><a href="">Move down</a></li>
+                            <li>
+                              <a href="javascript://" class="dropdown-toggle" data-toggle="dropdown">
+                                Options
+                                <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a class="edit_education_list">Edit</a></li>
+                                <li><a href="">Delete</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 education_list_form hidden">
+                        <form class="form-horizontal" action="" method="post" name="">
+                          {{csrf_field()}}
+                          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                          <div class="form-horizontal">
+                             <div class="form-group form-group-sm">
+                                <label class="col-sm-4 control-label">Title*</label>
+                                <div class="col-sm-4">
+                                   <input type="text" placeholder="Title" class="form-control" name="title">
+                                </div>
+                                <div class="control-label" style="text-align:initial">(Required)</div>
+                             </div>
+                             <div class="form-group form-group-sm">
+                                <label class="col-sm-4 control-label">Description*</label>
+                                <div class="col-sm-4">
+                                   <textarea class="form-control" name="description" placeholder="Description"></textarea>
+                                </div>
+                                <div class="control-label" style="text-align:initial">(Required)</div>
+                             </div>
+                             <div class="form-group form-group-sm">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                   <button class="btn btn-sm btn-primary" type="submit">Save Changes</button>
+                                   <button type="button" class="btn btn-sm btn-default cancel_education_list_form">Cancel</button>
+                                </div>
+                             </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </li>
                </ul>
             </div>
          </div>
@@ -2079,9 +4826,9 @@
             <div class="panel-body">
                <ul class="">
                   <li class="panel-block">
-                     <a>
-                     <i class="fa fa-pencil-square-o" onclick="functionAddTag('add_connect')"></i> Edit Connections
-                     </a>
+                     <span class="link_url_edit" onclick="functionAddTag('add_connect')">
+                     <i class="fa fa-pencil-square-o"></i> Edit Connections
+                   </span>
                   </li>
                   <li class="panel-block hidden" id="add_connect">
                      <div>
@@ -2152,6 +4899,72 @@
                      </div>
                   </li>
                   <li class="panel-block">
+                     <div class="row">
+                        <div class="col-xs-2">
+                           LinkedIn
+                        </div>
+                        <div class="col-xs-1 text-align-right">
+                           <i class="fa fa-linkedin-square"></i>
+                        </div>
+                        <div class="col-xs-9">
+                           <a href="#" target="_blank">https://codeground.in//code4/#/profile</a>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-xs-2">
+                           Facebook
+                        </div>
+                        <div class="col-xs-1 text-align-right">
+                           <i class="fa fa-facebook-official"></i>
+                        </div>
+                        <div class="col-xs-9">
+                           <a href="#" target="_blank">https://codeground.in//code4/#/profile</a>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-xs-2">
+                           Github
+                        </div>
+                        <div class="col-xs-1 text-align-right">
+                           <i class="fa fa-github"></i>
+                        </div>
+                        <div class="col-xs-9">
+                           <a href="#" target="_blank">https://codeground.in//code4/#/profile</a>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-xs-2">
+                           Twitter
+                        </div>
+                        <div class="col-xs-1 text-align-right">
+                           <i class="fa fa-twitter"></i>
+                        </div>
+                        <div class="col-xs-9">
+                           <a href="#" target="_blank">https://codeground.in//code4/#/profile</a>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-xs-2">
+                           Website URL
+                        </div>
+                        <div class="col-xs-1 text-align-right">
+                           <i class="fa fa-info-circle"></i>
+                        </div>
+                        <div class="col-xs-9">
+                           <a href="#" target="_blank">https://codeground.in//code4/#/profile</a>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-xs-2">
+                           Blog URL
+                        </div>
+                        <div class="col-xs-1 text-align-right">
+                           <i class="fa fa-info-circle"></i>
+                        </div>
+                        <div class="col-xs-9">
+                           <a href="#" target="_blank">https://codeground.in//code4/#/profile</a>
+                        </div>
+                     </div>
                   </li>
                </ul>
             </div>
