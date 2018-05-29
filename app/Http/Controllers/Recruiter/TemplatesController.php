@@ -686,6 +686,8 @@ public function preview_test(Request $request,$id){
     //foreach ($args['sections'] as $key => $value) {
       $args['sections'] = $args['test_template']->template_section()->where('id', $args['sections'][0]->id)->first();
 
+
+
       //dd($args['single_sections']);
 
     //}
@@ -699,6 +701,24 @@ public function preview_test(Request $request,$id){
       });
 
       $args['sections']['questions'] = Question::where('section_id',$args['sections']->id)->get();
+      // dd($args['sections']);
+      foreach($args['sections']['questions'] as $question)
+      {
+        if($question->question_type_id == 1)
+        {
+          $args['options'] = Mulitple_choice::where('question_id',$question->id)->get();
+        }
+        if($question->question_type_id == 2)
+        {
+          $args['coding_entries'] = Coding_entry::where('question_id',$question->id)->get();
+          // dd($args['coding_entries']);
+        }
+        if($question->question_type_id == 3)
+        {
+          $args['submissions'] = Questions_submission_resource::where('question_id',$question->id)->get();
+          // dd($args['coding_entries']);
+        }
+      }
     //dd($args['sections']->questions);
     
     $preview_li_html = view('recruiter_dashboard.preview_test')->with($args)->render();
@@ -748,14 +768,31 @@ public function load_section($section_id, $template_id){
     //reinitializing sections
      //$args['sections'] = $args['test_template']->template_section()->get();
     $args['sections'] = $args['test_template']->template_section()->where('id', $section_id_arr[$key])->first();
-
-    $args['section_questions'] = $args['sections']->each(function ($item, $key) {
-    // You can modify $item here
-      //dd($item->id);
-       // $section_id_arr[] = $item->id;
-        $item['questions'] = Question::where('section_id',$item->id)->get();
+     $args['sections']['questions'] = Question::where('section_id',$args['sections']->id)->get();
+    // $args['section_questions'] = $args['sections']->each(function ($item, $key) {
+    // // You can modify $item here
+    //   //dd($item->id);
+    //    // $section_id_arr[] = $item->id;
+    //     $item['questions'] = Question::where('section_id',$item->id)->get();
      
-      });
+    //   });
+    foreach($args['sections']['questions'] as $question)
+      {
+        if($question->question_type_id == 1)
+        {
+          $args['options'] = Mulitple_choice::where('question_id',$question->id)->get();
+        }
+        if($question->question_type_id == 2)
+        {
+          $args['coding_entries'] = Coding_entry::where('question_id',$question->id)->get();
+          // dd($args['coding_entries']);
+        }
+        if($question->question_type_id == 3)
+        {
+          $args['submissions'] = Questions_submission_resource::where('question_id',$question->id)->get();
+          // dd($args['coding_entries']);
+        }
+      }
     
      // dd($args['section_questions']);
     $preview_li_html = view('recruiter_dashboard.preview_test')->with($args)->render();

@@ -20,7 +20,8 @@
 				 <div id="public" class="tab-pane fade @if(isset($templateType_fil) && $templateType_fil==1) in active @elseif($temp_unset) in active @endif ">
 					<ul class="nav nav-tabs">
 			 			<li  class="active"><a data-toggle="pill" href="#public-mcqs">MCQs ({{isset($public_questions_mcqs) ? count($public_questions_mcqs) : ''}})</a></li>
-			 			<li><a data-toggle="pill" href="#public-programming-question">Programming Questions ({{isset($public_questions_codings) ? count($public_questions_codings) : ''}})</a></li>
+			 			<li><a data-toggle="pill" href="#public-programming-question">Programming Questions
+			 			({{isset($public_questions_codings) ? count($public_questions_codings) : ''}})</a></li>
 		 			</ul>
 			 		<div class="tab-content">
 			 			<div id="public-mcqs" class="tab-pane fade in active">
@@ -171,7 +172,7 @@
 										</tr>
 									</thead>
 									<tbody>
-
+										
 								@if( isset($public_questions_codings) && count($public_questions_codings) > 0 )
 							    @foreach($public_questions_codings as $public_questions_coding)
 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_coding->id}}" aria-expanded="false">

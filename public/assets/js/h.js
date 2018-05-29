@@ -162,10 +162,14 @@ $( ".label-public-page" ).on('click', '.delete_public_tag', function() {
 var loaded = false;
 
   $(document).ready(function() {    
-            $("#preview_test_page_btn").on('click',function(){
+          var w = 1280, h = 768, l = (screen.availWidth - w) / 2, t = (screen.availHeight - h) / 2;
+           $(".preview_test_page_btn").on('click',function(){
+
+              var url = $(this).data('url');
+              window.open(url,"window","width= "+ w + ",height=" + h + ",left=" + l + ",top=" + t + ", scrollbars = yes, location = no, toolbar = no, menubar = no, status = no");
+
               if(loaded) return;
               var id = $(this).data('id');
-              var url = $(this).data('url');
               $.ajax({
               type: 'get',
               url: $(this).data('url'),

@@ -4,15 +4,18 @@
 <section class="candidates">
 	<div class="container">
 		<div class="row">
+			
 			<div class="col-md-12">
-
+			@if(Session::has('invitation'))
+    			{{ Session::get('invitation')}}
+			@endif
 				<div class="button_back"><a href="view.php"> <button type="button" class="btn" >Back</button></a>
 					<h3 class="java">Java Coding - Manage Invitations</h3>
 				</div>
 
 			</div>
 
-
+			
 			<div class="col-md-12">
 				<div class="panel with-nav-tabs panel-default invite_candidate">
 					<div class="panel-heading">
@@ -23,18 +26,23 @@
 					<div class="panel-body">
 						<div class="tab-content">
 							<div class="tab-pane fade in active" id="tab1default">
-
+							<form action="{{route('invitaion_to_candidate',$host_id)}}" method="post">
+								{{csrf_field()}}
 								<div class="col-md-4">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Search for candidate Email-id...">
+										<input type="hidden" name="host_id" value="{{$host_id}}">
+										<input type="text" name="candidate_email" class="form-control" placeholder="Search for candidate Email-id...">
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="button">clear</button>
 										</span>
 									</div>
 
 								</div>
+							
 								<div class="col-md-8">
-									<div class="message"><button type="button" class="btn">Send Message</button>
+									<div class="message">
+										<button type="submit" class="btn">Send Message</button>
+							</form>
 										<button type="button" class="btn" data-toggle="modal" data-target="#duplicatesend-2">Send Reminder</button>
 										<button type="button" class="btn">Change Time</button>
 									</div>

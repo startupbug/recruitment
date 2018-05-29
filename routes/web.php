@@ -127,7 +127,10 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 
 	Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
 
-	Route::get('/invited_candidates', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
+	Route::get('/invited_candidates/{id}', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
+
+	Route::post('/invitaion_to_candidate/{id}','Recruiter\Invite_Candidate_Controller@invitaion_to_candidate')->name('invitaion_to_candidate');
+
 	Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
 
 	Route::post('/update_questions_modal/{id}','Recruiter\QuestionsController@update_questions_modal')->name('update_questions_modal');
