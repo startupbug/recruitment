@@ -19,7 +19,7 @@ class CreateCandidateEducationInfosTable extends Migration
             $table->string('qualification');     
             $table->longText('school'); 
             $table->date('date_from');
-            $table->date('date_to');
+            $table->date('date_to')->nullable();
             $table->string('percentage');     
             $table->string('cgpa')->nullable();     
             $table->string('max_cgpa')->nullable();     

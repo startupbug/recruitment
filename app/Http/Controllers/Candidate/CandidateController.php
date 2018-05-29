@@ -33,7 +33,8 @@ class CandidateController extends Controller
     public function my_test()
     {
         return view('candidate.my_test');
-    }  
+    }     
+     
     public function can_info()
     {
         return view('candidate.can_info');

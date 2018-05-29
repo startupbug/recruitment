@@ -1,24 +1,24 @@
 <?php
 namespace App\Http\Controllers\Candidate;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Support;
-use App\User;
-use App\Profile;
 use App\Candidate_education_info;
-use App\Candidate_language;
-use App\Candidate_framework;
+use App\Candidate_project_info;
 use App\Candidate_publication;
 use App\Candidate_achievement;
-use App\Candidate_work_info;
-use App\Candidate_project_info;
 use App\Candidate_connection;
-use Illuminate\Support\Facades\Input;
-use DB;
+use App\Candidate_framework;
+use App\Candidate_work_info;
+use App\Candidate_language;
+use App\Support;
+use App\Profile;
+use App\User;
+use Session;
 use Hash;
 use Auth;
-use Session;
 use Mail;
+use DB;
 
 class CandidateProfileController extends Controller
 {
@@ -28,17 +28,66 @@ class CandidateProfileController extends Controller
      * @return void
      */
     public function __construct()
-    {
-      
+    {      
     } 
 
     public function candidate_index()
     { 
-      $args['Candidate_education_info'] = Candidate_education_info::where('user_id',Auth::user()->id)
-                                                                    ->orderBy('order_number','ASC')
-                                                                    ->get();
+      $table = ['candidate_education_infos', 'candidate_languages', 'candidate_frameworks', 'candidate_achievements', 'candidate_connections', 'candidate_publications', 'candidate_work_infos','candidate_project_infos'];
+      $args['progress_bar'] = 0;
+      foreach ($table as $name) { 
+        $exists = DB::table($name)->where('user_id', '=',Auth::user()->id)->exists();
+        $args['progress_bar'] += $exists ? 12.5 : 0;
+      }
+      $args['total_progress'] = (int)round($args['progress_bar'],0);      
       
+      
+      $args['Candidate_education_info'] = Candidate_education_info::where('user_id',Auth::user()->id)->orderBy('order_number','ASC')->get();
+
+      $args['Candidate_project_info'] = Candidate_project_info::where('user_id',Auth::user()->id)->orderBy('order_number','ASC')->get();
+
+      foreach ($args['Candidate_project_info'] as $value) {
+        $args['Candidate_project_skill_info'][$value->id] = DB::table('candidate_projects_new_skills')->where('candidate_project_infos_id',$value->id)->orderBy('id','ASC')->get();
+      }
+
+      $args['Candidate_language_info']  =  Candidate_language::where('user_id',Auth::user()->id)
+                                                                    ->get();
+      $args['Candidate_framework_info'] = Candidate_framework::where('user_id',Auth::user()->id)->get();    
+
+      $args['Candidate_work_info'] = Candidate_work_info::where('user_id',Auth::user()->id)->orderBy('order_number','ASC')->get();
+
+      foreach ($args['Candidate_work_info'] as $value) {
+        $args['Candidate_work_skill_info'][$value->id] = DB::table('candidate_work_skills')->where('candidate_work_infos_id',$value->id)->orderBy('id','ASC')->get();
+      }
+
+      $args['Candidate_publication'] = Candidate_publication::where('user_id',Auth::user()->id)->orderBy('order_number','ASC')->get();  
+
+      $args['Candidate_achievement'] = Candidate_achievement::where('user_id',Auth::user()->id)->orderBy('order_number','ASC')->get();  
+
+      $args['Candidate_connection'] = Candidate_connection::where('user_id',Auth::user()->id)->first();      
+
       return view('candidate.profile')->with($args);
+    }
+
+    public function can_profile_view()
+    {
+      $args['Candidate_education_info'] = Candidate_education_info::where('user_id',Auth::user()->id)->orderBy('order_number','ASC')->get();
+
+      $args['Candidate_project_info'] = Candidate_project_info::where('user_id',Auth::user()->id)->orderBy('order_number','ASC')->get();
+
+      $args['Candidate_language_info']  =  Candidate_language::where('user_id',Auth::user()->id)
+                                                                    ->get();
+      $args['Candidate_framework_info'] = Candidate_framework::where('user_id',Auth::user()->id)->get();    
+
+      $args['Candidate_work_info'] = Candidate_work_info::where('user_id',Auth::user()->id)->orderBy('order_number','ASC')->get();    
+
+      $args['Candidate_publication'] = Candidate_publication::where('user_id',Auth::user()->id)->orderBy('order_number','ASC')->get();  
+
+      $args['Candidate_achievement'] = Candidate_achievement::where('user_id',Auth::user()->id)->orderBy('order_number','ASC')->get();  
+
+      $args['Candidate_connection'] = Candidate_connection::where('user_id',Auth::user()->id)->first(); 
+
+      return view('candidate.can_profile_view')->with($args);
     }
 
     public function can_update_password(Request $request,$id){
@@ -131,34 +180,109 @@ class CandidateProfileController extends Controller
         }
     }
 
-    public function editprofileEducationStore(Request $request ,$id){    	
-    	try {
+    public function editprofileEducationStore(Request $request ,$id){     
+      try {
             if (isset($request->user_id) && isset($request->qualification) && isset($request->year_from) && isset($request->month_from) && isset($request->school)) {
-                   	$store = Candidate_education_info::find($id);
-                   	$store->user_id = $request->user_id; 
-                   	$store->qualification = $request->qualification; 
-                   	$store->school = $request->school; 
-                   	if (isset($request->current_status)) {
-                   		$store->current_status = 1;
-          						$date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
-          						$date_to =  date('Y') . '-' . $request->month_to . '-' . date('d');
-          	          $store->date_from = $date_from;
-	                   	$store->date_to = NULL;
-                   	}else{
-                   		$store->current_status = 0;
-                   		$date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
-						          $date_to = $request->year_to . '-' . $request->month_to . '-' . '01';
-	                   	$store->date_from = $date_from;
-	                   	$store->date_to = $date_to;
-                   	}                   	
-                   	$store->cgpa = $request->cgpa; 
-                   	$store->max_cgpa = $request->max_cgpa; 
-                   	$store->percentage = $request->percentage; 
-                   	if ($store->save()) {	                   		
-                 		return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Education Information']);                               
-                   	}else{
-                   		return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
-                   	}
+                    $store = Candidate_education_info::find($id);
+                    $store->user_id = $request->user_id; 
+                    $store->qualification = $request->qualification; 
+                    $store->school = $request->school; 
+                    if (isset($request->current_status)) {
+                      $store->current_status = 1;
+                      $date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
+                      $date_to =  date('Y') . '-' . $request->month_to . '-' . date('d');
+                      $store->date_from = $date_from;
+                      $store->date_to = NULL;
+                    }else{
+                      $store->current_status = 0;
+                      $date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
+                      $date_to = $request->year_to . '-' . $request->month_to . '-' . '01';
+                      $store->date_from = $date_from;
+                      $store->date_to = $date_to;
+                    }                     
+                    $store->cgpa = $request->cgpa; 
+                    $store->max_cgpa = $request->max_cgpa; 
+                    $store->percentage = $request->percentage; 
+                    if ($store->save()) {                       
+                    return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Education Information']);                               
+                    }else{
+                      return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
+                    }
+            }else{
+            return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Required Data']);
+            }
+        } catch (Exception $e) {
+            return \Response()->Json([ 'array' => $e]);
+        }
+    }
+
+    public function editcandidateWorkStore(Request $request ,$id){      
+      try {
+        if (isset($request->user_id) && isset($request->job_title) && isset($request->year_from) && isset($request->month_from) && isset($request->company) ) {
+                    $store =  Candidate_work_info::find($id);
+                    $store->user_id = $request->user_id; 
+                    $store->job_title = $request->job_title; 
+                    $store->company = $request->company; 
+                    if (isset($request->current_status)) {
+                      $store->current_status = 1;
+                      $date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
+                      $date_to =  date('Y') . '-' . $request->month_to . '-' . date('d');
+                      $store->date_from = $date_from;
+                      $store->date_to = NULL;                   
+                    }else{
+                      $store->current_status = 0;
+                      $date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
+                      $date_to = $request->year_to . '-' . $request->month_to . '-' . '01';
+                      $store->date_from = $date_from;
+                      $store->date_to = $date_to;
+                    }
+                    $store->location = $request->location; 
+                    $store->description = $request->description; 
+                    if ($store->save()) {                       
+                      return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Work Information']);
+                    }else{
+                      return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
+                    }
+            }else{
+            return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Required Data']);
+            }
+        } catch (Exception $e) {
+            return \Response()->Json([ 'array' => $e]);
+        }
+    }
+
+    public function editprofilePublicationStore(Request $request ,$id){     
+      try {
+          if (isset($request->user_id) && isset($request->title) && isset($request->url)) {
+                  $store = Candidate_publication::find($id);
+                  $store->user_id = $request->user_id; 
+                  $store->title = $request->title;                    
+                  $store->url = $request->url;                    
+                  if ($store->save()) {                       
+                  return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Publication Information']);
+                  }else{
+                    return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
+                  }
+          }else{
+          return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Required Data']);
+          }
+      } catch (Exception $e) {
+          return \Response()->Json([ 'array' => $e]);
+      }
+    }
+
+    public function editprofileAchievementStore(Request $request ,$id){    	
+       try {
+            if (isset($request->user_id) && isset($request->title) && isset($request->description)) {
+                    $store = Candidate_achievement::find($id);
+                    $store->user_id = $request->user_id; 
+                    $store->title = $request->title;                    
+                    $store->description = $request->description;                    
+                    if ($store->save()) {                       
+                    return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Achievement Information']);                               
+                    }else{
+                      return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
+                    }
             }else{
             return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Required Data']);
             }
@@ -176,24 +300,65 @@ class CandidateProfileController extends Controller
                    	$store->company = $request->company; 
                    	if (isset($request->current_status)) {
                    		$store->current_status = 1;
-						$date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
-						$date_to =  date('Y') . '-' . $request->month_to . '-' . date('d');
+          						$date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
+          						$date_to =  date('Y') . '-' . $request->month_to . '-' . date('d');
 	                   	$store->date_from = $date_from;
 	                   	$store->date_to = NULL;	                  
                    	}else{
                    		$store->current_status = 0;
                    		$date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
-						$date_to = $request->year_to . '-' . $request->month_to . '-' . '01';
+						          $date_to = $request->year_to . '-' . $request->month_to . '-' . '01';
 	                   	$store->date_from = $date_from;
 	                   	$store->date_to = $date_to;
                    	}
                    	$store->location = $request->location; 
                    	$store->description = $request->description; 
-                   	if ($store->save()) {	                   		
-                 		return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Education Information']);                               
+                    // print_r($request->skills);exit();
+                   	if ($store->save()) {
+                    foreach ($request->skills as $value) {
+                     DB::table('candidate_work_skills')->insert([
+                              'candidate_work_infos_id' => $store->id,
+                              'skill' =>$value
+                             ]);
+                    }	                   		
+                 		return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Work Information']);                               
                    	}else{
                    		return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
                    	}
+            }else{
+            return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Required Data']);
+            }
+        } catch (Exception $e) {
+            return \Response()->Json([ 'array' => $e]);
+        }
+    }
+
+    public function editprofileProjectsStore(Request $request ,$id){     
+      try {
+            if (isset($request->user_id) && isset($request->project_url) && isset($request->year_from) && isset($request->month_from) && isset($request->project_name) ) {
+                    $store = Candidate_project_info::find($id);
+                    $store->user_id = $request->user_id; 
+                    $store->project_url = $request->project_url; 
+                    $store->project_name = $request->project_name; 
+                    if (isset($request->current_status)) {
+                      $store->current_status = 1;
+                      $date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
+                      $date_to =  date('Y') . '-' . $request->month_to . '-' . date('d');
+                      $store->date_from = $date_from;
+                      $store->date_to = NULL;
+                    }else{
+                      $store->current_status = 0;
+                      $date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
+                      $date_to = $request->year_to . '-' . $request->month_to . '-' . '01';
+                      $store->date_from = $date_from;
+                      $store->date_to = $date_to;
+                    }
+                    $store->description = $request->description; 
+                    if ($store->save()) {                       
+                    return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Project Information']);                               
+                    }else{
+                      return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
+                    }
             }else{
             return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Required Data']);
             }
@@ -211,20 +376,26 @@ class CandidateProfileController extends Controller
                    	$store->project_name = $request->project_name; 
                    	if (isset($request->current_status)) {
                    		$store->current_status = 1;
-						$date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
-						$date_to =  date('Y') . '-' . $request->month_to . '-' . date('d');
+          						$date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
+          						$date_to =  date('Y') . '-' . $request->month_to . '-' . date('d');
 	                   	$store->date_from = $date_from;
 	                   	$store->date_to = NULL;
                    	}else{
                    		$store->current_status = 0;
                    		$date_from = $request->year_from . '-' . $request->month_from . '-' . '01';
-						$date_to = $request->year_to . '-' . $request->month_to . '-' . '01';
+						          $date_to = $request->year_to . '-' . $request->month_to . '-' . '01';
 	                   	$store->date_from = $date_from;
 	                   	$store->date_to = $date_to;
                    	}
                    	$store->description = $request->description; 
-                   	if ($store->save()) {	                   		
-                 		return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Education Information']);                               
+                   	if ($store->save()) {	
+                    foreach ($request->skills as $value) {
+                     DB::table('candidate_projects_new_skills')->insert([
+                              'candidate_project_infos_id' => $store->id,
+                              'skill' =>$value
+                             ]);
+                    }                     		
+                 		return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Project Information']);                               
                    	}else{
                    		return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);  
                    	}
@@ -435,6 +606,81 @@ class CandidateProfileController extends Controller
         }        
     }
 
+    public function delete_candidate_work_info($id){
+        try {
+            if (isset($id)) {                
+                $delete = Candidate_work_info::find($id);
+                if ($delete->user_id == Auth::user()->id) {
+                  if ($delete->delete()) {
+                    $user_id = Candidate_work_info::where('user_id',Auth::user()->id)->get(); 
+                    foreach ($user_id as $key => $value) {
+                      DB::table('candidate_work_infos')->where('id',$value->id)->update([
+                        'order_number' => ++$key
+                      ]);
+                  }
+                    return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted  Candidate Work Information']);   
+                 }
+                 else{
+                   return \Response()->Json([ 'status' => 200,'msg'=>'Candidate Work Information Was Not Deleted']);   
+                 } 
+                }else{
+                   return \Response()->Json([ 'status' => 204,'msg'=>'You Can Not Delete This Information Because It Does Not Belongs To You']);
+                }
+                                                             
+            }else{
+            return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Complete Data']);
+            }
+        } catch (Exception $e) {
+            return \Response()->Json([ 'array' => $e]);
+        }        
+    }
+
+    public function delete_candidate_language($id){
+        try {
+            if (isset($id)) {                
+                $delete = Candidate_language::find($id);
+                if ($delete->user_id == Auth::user()->id) {
+                  if ($delete->delete()) {                  
+                   return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted  Candidate Language Information']);   
+                 }
+                 else{
+                   return \Response()->Json([ 'status' => 200,'msg'=>'Candidate Language Information Was Not Deleted']);   
+                 } 
+                }else{
+                   return \Response()->Json([ 'status' => 204,'msg'=>'You Can Not Delete This Information Because It Does Not Belongs To You']);
+                }
+                                                             
+            }else{
+            return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Complete Data']);
+            }
+        } catch (Exception $e) {
+            return \Response()->Json([ 'array' => $e]);
+        }        
+    }
+
+    public function delete_candidate_framework($id){
+        try {
+            if (isset($id)) {                
+                $delete = Candidate_framework::find($id);
+                if ($delete->user_id == Auth::user()->id) {
+                  if ($delete->delete()) {                  
+                   return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted  Candidate Framework Information']);   
+                 }
+                 else{
+                   return \Response()->Json([ 'status' => 200,'msg'=>'Candidate Framework Information Was Not Deleted']);   
+                 } 
+                }else{
+                   return \Response()->Json([ 'status' => 204,'msg'=>'You Can Not Delete This Information Because It Does Not Belongs To You']);
+                }
+                                                             
+            }else{
+            return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Complete Data']);
+            }
+        } catch (Exception $e) {
+            return \Response()->Json([ 'array' => $e]);
+        }        
+    }
+
     public function candidate_education_move_up(Request $request,$id){
       $move_up = Candidate_education_info::find($id);
       $order_number = $move_up->order_number;
@@ -467,5 +713,225 @@ class CandidateProfileController extends Controller
       ]);
       $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Lower One', true);
       return redirect()->back();
-   }
+    }
+
+    public function candidate_work_move_up(Request $request,$id){
+      $move_up = Candidate_work_info::find($id);
+      $order_number = $move_up->order_number;
+      $replacement = $order_number-1;
+      $work_info_id = Candidate_work_info::select('user_id')->where('id',$id)->first();
+      $first_section_id = Candidate_work_info::where('user_id','=',$work_info_id['user_id'])->where('order_number','=',$order_number)->first();
+      $second_section_id = Candidate_work_info::where('user_id','=',$work_info_id['user_id'])->where('order_number','=',$replacement)->first();
+      DB::table('candidate_work_infos')->where('id',$first_section_id['id'])->where('user_id',$work_info_id['user_id'])->update([
+      'order_number' => $replacement,
+      ]);
+      DB::table('candidate_work_infos')->where('id',$second_section_id['id'])->where('user_id',$work_info_id['user_id'])->update([
+      'order_number'=> $order_number
+      ]);
+      $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Upper One', true);
+      return redirect()->back();
+    }
+
+    public function candidate_work_move_down(Request $request,$id){
+      $move_down = Candidate_work_info::find($id);
+      $order_number = $move_down->order_number;
+      $replacement = $order_number+1;
+      $work_info_id = Candidate_work_info::select('user_id')->where('id',$id)->first();
+      $first_section_id = Candidate_work_info::where('user_id','=',$work_info_id['user_id'])->where('order_number','=',$order_number)->first();
+      $second_section_id = Candidate_work_info::where('user_id','=',$work_info_id['user_id'])->where('order_number','=',$replacement)->first();
+      DB::table('candidate_work_infos')->where('id',$first_section_id['id'])->where('user_id',$work_info_id['user_id'])->update([
+      'order_number' => $replacement,
+      ]);
+      DB::table('candidate_work_infos')->where('id',$second_section_id['id'])->where('user_id',$work_info_id['user_id'])->update([
+      'order_number'=> $order_number
+      ]);
+      $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Lower One', true);
+      return redirect()->back();
+    }
+
+    public function candidate_project_move_up(Request $request,$id){
+      $move_up = Candidate_project_info::find($id);
+      $order_number = $move_up->order_number;
+      $replacement = $order_number-1;
+      $project_info_id = Candidate_project_info::select('user_id')->where('id',$id)->first();
+      $first_section_id = Candidate_project_info::where('user_id','=',$project_info_id['user_id'])->where('order_number','=',$order_number)->first();
+      $second_section_id = Candidate_project_info::where('user_id','=',$project_info_id['user_id'])->where('order_number','=',$replacement)->first();
+      DB::table('candidate_project_infos')->where('id',$first_section_id['id'])->where('user_id',$project_info_id['user_id'])->update([
+      'order_number' => $replacement,
+      ]);
+      DB::table('candidate_project_infos')->where('id',$second_section_id['id'])->where('user_id',$project_info_id['user_id'])->update([
+      'order_number'=> $order_number
+      ]);
+      $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Upper One', true);
+      return redirect()->back();
+    }
+
+    public function candidate_project_move_down(Request $request,$id){
+      $move_down = Candidate_project_info::find($id);
+      $order_number = $move_down->order_number;
+      $replacement = $order_number+1;
+      $project_info_id = Candidate_project_info::select('user_id')->where('id',$id)->first();
+      $first_section_id = Candidate_project_info::where('user_id','=',$project_info_id['user_id'])->where('order_number','=',$order_number)->first();
+      $second_section_id = Candidate_project_info::where('user_id','=',$project_info_id['user_id'])->where('order_number','=',$replacement)->first();
+      DB::table('candidate_project_infos')->where('id',$first_section_id['id'])->where('user_id',$project_info_id['user_id'])->update([
+      'order_number' => $replacement,
+      ]);
+      DB::table('candidate_project_infos')->where('id',$second_section_id['id'])->where('user_id',$project_info_id['user_id'])->update([
+      'order_number'=> $order_number
+      ]);
+      $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Lower One', true);
+      return redirect()->back();
+    }
+
+    public function delete_candidate_project($id){
+        try {
+            if (isset($id)) {                
+                $delete = Candidate_project_info::find($id);
+                if ($delete->user_id == Auth::user()->id) {
+                  if ($delete->delete()) {
+                    $user_id = Candidate_project_info::where('user_id',Auth::user()->id)->get(); 
+                    foreach ($user_id as $key => $value) {
+                      DB::table('candidate_project_infos')->where('id',$value->id)->update([
+                        'order_number' => ++$key
+                      ]);
+                  }
+                    return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted  Candidate Project Information']);   
+                 }
+                 else{
+                   return \Response()->Json([ 'status' => 200,'msg'=>'Candidate Project Information Was Not Deleted']);   
+                 } 
+                }else{
+                   return \Response()->Json([ 'status' => 204,'msg'=>'You Can Not Delete This Information Because It Does Not Belongs To You']);
+                }                                                             
+            }else{
+            return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Complete Data']);
+            }
+        } catch (Exception $e) {
+            return \Response()->Json([ 'array' => $e]);
+        }        
+    }
+
+    public function candidate_publication_move_up(Request $request,$id){
+      $move_up = Candidate_publication::find($id);
+      $order_number = $move_up->order_number;
+      $replacement = $order_number-1;
+      $publication_info_id = Candidate_publication::select('user_id')->where('id',$id)->first();
+      $first_section_id = Candidate_publication::where('user_id','=',$publication_info_id['user_id'])->where('order_number','=',$order_number)->first();
+      $second_section_id = Candidate_publication::where('user_id','=',$publication_info_id['user_id'])->where('order_number','=',$replacement)->first();
+      DB::table('candidate_publications')->where('id',$first_section_id['id'])->where('user_id',$publication_info_id['user_id'])->update([
+      'order_number' => $replacement,
+      ]);
+      DB::table('candidate_publications')->where('id',$second_section_id['id'])->where('user_id',$publication_info_id['user_id'])->update([
+      'order_number'=> $order_number
+      ]);
+      $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Upper One', true);
+      return redirect()->back();
+    }
+
+    public function candidate_publication_move_down(Request $request,$id){
+      $move_down = Candidate_publication::find($id);
+      $order_number = $move_down->order_number;
+      $replacement = $order_number+1;
+      $publication_info_id = Candidate_publication::select('user_id')->where('id',$id)->first();
+      $first_section_id = Candidate_publication::where('user_id','=',$publication_info_id['user_id'])->where('order_number','=',$order_number)->first();
+      $second_section_id = Candidate_publication::where('user_id','=',$publication_info_id['user_id'])->where('order_number','=',$replacement)->first();
+      DB::table('candidate_publications')->where('id',$first_section_id['id'])->where('user_id',$publication_info_id['user_id'])->update([
+      'order_number' => $replacement,
+      ]);
+      DB::table('candidate_publications')->where('id',$second_section_id['id'])->where('user_id',$publication_info_id['user_id'])->update([
+      'order_number'=> $order_number
+      ]);
+      $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Lower One', true);
+      return redirect()->back();
+    }
+
+    public function delete_candidate_publication($id){
+        try {
+            if (isset($id)) {                
+                $delete = Candidate_publication::find($id);
+                if ($delete->user_id == Auth::user()->id) {
+                  if ($delete->delete()) {
+                    $user_id = Candidate_publication::where('user_id',Auth::user()->id)->get(); 
+                    foreach ($user_id as $key => $value) {
+                      DB::table('candidate_publications')->where('id',$value->id)->update([
+                        'order_number' => ++$key
+                      ]);
+                  }
+                    return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted  Candidate Publication Information']);
+                 }
+                 else{
+                   return \Response()->Json([ 'status' => 200,'msg'=>'Candidate Publication Information Was Not Deleted']);   
+                 } 
+                }else{
+                   return \Response()->Json([ 'status' => 204,'msg'=>'You Can Not Delete This Information Because It Does Not Belongs To You']);
+                }                                                             
+            }else{
+            return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Complete Data']);
+            }
+        } catch (Exception $e) {
+            return \Response()->Json([ 'array' => $e]);
+        }        
+    }
+
+    public function candidate_achievement_move_up(Request $request,$id){
+      $move_up = Candidate_achievement::find($id);
+      $order_number = $move_up->order_number;
+      $replacement = $order_number-1;
+      $achievement_info_id = Candidate_achievement::select('user_id')->where('id',$id)->first();
+      $first_section_id = Candidate_achievement::where('user_id','=',$achievement_info_id['user_id'])->where('order_number','=',$order_number)->first();
+      $second_section_id = Candidate_achievement::where('user_id','=',$achievement_info_id['user_id'])->where('order_number','=',$replacement)->first();
+      DB::table('candidate_achievements')->where('id',$first_section_id['id'])->where('user_id',$achievement_info_id['user_id'])->update([
+      'order_number' => $replacement,
+      ]);
+      DB::table('candidate_achievements')->where('id',$second_section_id['id'])->where('user_id',$achievement_info_id['user_id'])->update([
+      'order_number'=> $order_number
+      ]);
+      $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Upper One', true);
+      return redirect()->back();
+    }
+
+    public function candidate_achievement_move_down(Request $request,$id){
+      $move_down = Candidate_achievement::find($id);
+      $order_number = $move_down->order_number;
+      $replacement = $order_number+1;
+      $achievement_info_id = Candidate_achievement::select('user_id')->where('id',$id)->first();
+      $first_section_id = Candidate_achievement::where('user_id','=',$achievement_info_id['user_id'])->where('order_number','=',$order_number)->first();
+      $second_section_id = Candidate_achievement::where('user_id','=',$achievement_info_id['user_id'])->where('order_number','=',$replacement)->first();
+      DB::table('candidate_achievements')->where('id',$first_section_id['id'])->where('user_id',$achievement_info_id['user_id'])->update([
+      'order_number' => $replacement,
+      ]);
+      DB::table('candidate_achievements')->where('id',$second_section_id['id'])->where('user_id',$achievement_info_id['user_id'])->update([
+      'order_number'=> $order_number
+      ]);
+      $this->set_session('Order Number Of This Section Has Been Successfully Swapped With The Lower One', true);
+      return redirect()->back();
+    }
+
+    public function delete_candidate_achievement($id){
+        try {
+            if (isset($id)) {                
+                $delete = Candidate_achievement::find($id);
+                if ($delete->user_id == Auth::user()->id) {
+                  if ($delete->delete()) {
+                    $user_id = Candidate_achievement::where('user_id',Auth::user()->id)->get(); 
+                    foreach ($user_id as $key => $value) {
+                      DB::table('candidate_achievements')->where('id',$value->id)->update([
+                        'order_number' => ++$key
+                      ]);
+                  }
+                    return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Deleted  Candidate Publication Information']);
+                 }
+                 else{
+                   return \Response()->Json([ 'status' => 200,'msg'=>'Candidate Publication Information Was Not Deleted']);   
+                 } 
+                }else{
+                   return \Response()->Json([ 'status' => 204,'msg'=>'You Can Not Delete This Information Because It Does Not Belongs To You']);
+                }                                                             
+            }else{
+            return \Response()->Json([ 'status' => 202,'msg'=>'Please Give Complete Data']);
+            }
+        } catch (Exception $e) {
+            return \Response()->Json([ 'array' => $e]);
+        }        
+    }
 }

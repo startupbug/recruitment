@@ -2529,7 +2529,7 @@ span.s_popuptext.f_popup {
 }
 
 .dropdown-menu {
-    padding: 0px 0px;  
+    padding: 0px 0px;
 }
 
 label.upcoming {
@@ -2582,4 +2582,8 @@ span.margin_30 {
 
 li.active {
     background: #ccc;
+}
+span.link_url_edit {
+    color: #005c81;
+    cursor: pointer;
 }
