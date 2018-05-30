@@ -3390,22 +3390,121 @@ $( document ).ready(function() {
     pagination_table('my_pagination_table_4','pagination_number_4');
     pagination_table('my_pagination_table_5','pagination_number_5');
 
-    $('.s_radio_border').on('change', '.radio_button', function() {
-      $('.s_radio_border .radio_button').closest('label').css('background', '#fff');
-      if ($(this).is(":checked")) {
-        $(this).closest('label').css('background', '#fff9ae');
+
+    $('.s_radio_border').on('change', 'label', function() {
+      
+      var id  = $(this).closest('.s_radio_border').attr('id');
+      $('#'+id+' .radio_button').closest('label').css('background', '#fff');
+      
+      if ($(this).find('.radio_button').is(":checked")) {
+        $(this).css('background', '#fff9ae');
+        $(this).closest('.s_radio_border').siblings('.button_question').find('.clear_question').addClass('active');
       }
       else {
-        $(this).closest('label').css('background', '#fff');
+        $(this).find('.radio_button').css('background', '#fff');
       }
+
     });
+
 
     $('#m_timer').countdowntimer({
         hours : 0,
-        minutes :1,
-        seconds :0,
+        minutes :0,
+        seconds :10,
+        timeUp : timeisUp,
         size : "lg"
     });
+
+    function timeisUp() {
+      var url = $('.finish_url').attr('href');
+      location.href = url;
+    }
+
+    // var mcqs_pageLen = 20;
+    var mcqs_pageLen = $('#mcqs_pagination_number').data('message');
+    var mcqs_curPage = 1;
+    var mcqs_item = [];
+    for(var i = 1; i<=mcqs_pageLen;i++){
+      mcqs_item.push(i);
+    }
+
+    function mcqs_isPageInRange( mcqs_curPage, index, maxPages, pageBefore, pageAfter ) {
+      if (index <= 1) {
+        // first 2 pages
+        return true;
+      }
+      if (index >= maxPages - 2) {
+        // last 2 pages
+        return true;
+      }
+      if (index >= mcqs_curPage - pageBefore && index <= mcqs_curPage + pageAfter) {
+        return true;
+      }
+    }
+    function mcqs_render( mcqs_curPage, mcqs_item, first ) {
+      var html = '', separatorAdded = false;
+      for(var i in mcqs_item){
+        if ( mcqs_isPageInRange( mcqs_curPage, i, mcqs_pageLen, 2, 2 ) ) {
+          html += '<li data-page="' + mcqs_item[i] + '">' + mcqs_item[i] + '</li>';
+          // as we added a page, we reset the separatorAdded
+          separatorAdded = false;
+        } else {
+          if (!separatorAdded) {
+            // only add a separator when it wasn't added before
+            html += '<li class="separator" />';
+            separatorAdded = true;
+          }
+        }
+      }
+
+      var holder = document.querySelector("#mcqs_pagination_number");
+      holder.innerHTML = html;
+      $('#mcqs_pagination_number>li[data-page="' + mcqs_curPage + '"]').addClass('active')
+      // document.querySelector('#'+$pagination_id+'>li[data-page="' + mcqs_curPage + '"]').classList.add('active');
+      if ( first ) {
+        holder.addEventListener('click', function(e) {
+          if (!e.target.getAttribute('data-page')) {
+            return;
+          }
+
+          var pageNum = e.target.getAttribute('data-page');
+          $('.question_pre').removeClass('active');
+          $('#question_pre_text_'+pageNum).addClass('active');
+
+          mcqs_curPage = parseInt( e.target.getAttribute('data-page') );
+          mcqs_render( mcqs_curPage, mcqs_item );
+        });
+      }
+    }
+    mcqs_render( 1, mcqs_item, true );
+
+
+    $('.next_question').on('click' , function(e) {
+
+
+      if (!e.target.getAttribute('data-page')) {
+            return;
+      }
+
+      var pageNum = e.target.getAttribute('data-page');
+      $('.question_pre').removeClass('active');
+      $('#question_pre_text_'+pageNum).addClass('active');
+
+      mcqs_curPage = parseInt( e.target.getAttribute('data-page') );
+      mcqs_render( mcqs_curPage, mcqs_item );
+    
+    });
+
+    $('.clear_question').on('click' , function(e) {
+        $(this).closest('.button_question').siblings('.s_radio_border').find('.radio_button').closest('label').css('background', '#fff');
+        $(this).closest('.button_question').siblings('.s_radio_border').find('.radio_button').prop('checked', false);
+        $(this).removeClass('active');
+    });
+
+
+
+
+
 
 });
 
@@ -3532,7 +3631,6 @@ function pagination_table($table_id , $pagination_id) {
   //     }
   //   });
   // });
-
 }
 
 function testcase_fileformat(){

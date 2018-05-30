@@ -689,3 +689,18 @@ ul.add_resources_submission_ul .s_close {
     background-color: #337ab7;
     border-color: #337ab7;
 }
+.question_pre {
+    display: none;
+}
+.question_pre.active {
+    display: block !important;
+}
+.s_radio_border p {
+    margin: 0 0 0px;
+}
+.clear_question {
+    display: none;
+}
+.clear_question.active {
+    display: inline-block !important;
+}

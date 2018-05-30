@@ -77,9 +77,10 @@ class RecruiterController extends Controller
         return view('recruiter_dashboard.history');
     }
 
-    public function invited_candidates()
+    public function invited_candidates($id)
     {
-        return view('recruiter_dashboard.invited_candidates');
+        $host_id = $id;
+        return view('recruiter_dashboard.invited_candidates',['host_id'=>$host_id]);
     }
 
     public function library_public_questions(Request $request, $id=NULL)

@@ -66,16 +66,19 @@ $(document).ready(function(){
     });
 
 
-    $('.cancel_edit_profile').on('click', function(){
-      $(this).closest('.edit_profile').siblings('.view_profile').removeClass('hidden');
-      $(this).closest('.edit_profile').addClass('hidden');
-    });
+   $('.close_skills').on('click', function() {
+     $(this).closest('.pad-right-10').remove();
+   });
 
-    $('.cancel_view_profile').on('click', function(){
-      $(this).closest('.view_profile').siblings('.edit_profile').removeClass('hidden');
-      $(this).closest('.view_profile').addClass('hidden');
-    });
+   $('.cancel_edit_profile').on('click', function(){
+     $(this).closest('.edit_profile').siblings('.view_profile').removeClass('hidden');
+     $(this).closest('.edit_profile').addClass('hidden');
+   });
 
+   $('.cancel_view_profile').on('click', function(){
+     $(this).closest('.view_profile').siblings('.edit_profile').removeClass('hidden');
+     $(this).closest('.view_profile').addClass('hidden');
+   });
 });
 
 //on form submit change Admin Profile picture
@@ -93,15 +96,11 @@ $('#change_can_profile_pic').change(function(e){
             if(response.code === 200){
                 $('.profile-pic > img').attr('src', response.img);
                 alertify.success(response.success);
-
             }
             if(response.code === 202){
                  alertify.warning(response.error);
-                // alert(response.error);
-
             }
             if(response.code === 202){
-
             }
         },
         error: function(){
@@ -124,6 +123,9 @@ $('#CanResumeUpload').change(function(e){
         success: function(response){
             if(response.code === 200){
                 alertify.success(response.success);
+                setTimeout(function(){
+                   window.location.reload();
+               }, 1000);
             }
             if(response.code === 202){
                  alertify.warning(response.error);
@@ -140,7 +142,7 @@ $('#CanResumeUpload').change(function(e){
 //on form submit change Candidate Resume
 
 //on form submit Create Candidate Education Info
-$('#profileEducationStore').on('change',function(e){
+$('#profileEducationStore').on('submit',function(e){
     e.preventDefault();
     console.log("herezz");
     var formData = $(this).serialize();
@@ -153,6 +155,9 @@ $('#profileEducationStore').on('change',function(e){
           if(data.status == 200){
             alertify.success(data.msg);
             $('#profileEducationStore')[0].reset();
+            setTimeout(function(){
+               window.location.reload();
+           }, 1000);
           }else if(data.status == 202){
             alertify.warning(data.msg);
           }else if(data.status == 203){
@@ -169,7 +174,7 @@ $('#profileEducationStore').on('change',function(e){
 //on form submit Create Candidate Education Info
 
 //on form submit Edit/Update Candidate Education Info
-$('#editprofileEducationStore').on('submit',function(e){
+$('.editcandidateWorkStore').on('submit',function(e){
     e.preventDefault();
     console.log("herezz");
     var formData = $(this).serialize();
@@ -181,7 +186,133 @@ $('#editprofileEducationStore').on('submit',function(e){
           console.log(data);
           if(data.status == 200){
             alertify.success(data.msg);
-            $('#editprofileEducationStore')[0].reset();
+            setTimeout(function(){
+               window.location.reload();
+           }, 1000);
+          }else if(data.status == 202){
+            alertify.warning(data.msg);
+          }else if(data.status == 203){
+            alertify.warning(data.msg);
+          }else{
+            alertify.warning(data.array.errorInfo[2]);
+          }
+        },
+    error: function (data) {
+      alertify.warning("Oops. something went wrong. Please try again");
+    }
+    });
+});
+//on form submit Edit/Update Candidate Education Info
+
+//on form submit Edit/Update Candidate Publications Info
+$('.editprofilePublicationStore').on('submit',function(e){
+    e.preventDefault();
+    console.log("herezz");
+    var formData = $(this).serialize();
+    $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: formData,
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            alertify.success(data.msg);
+            setTimeout(function(){
+               window.location.reload();
+           }, 1000);
+          }else if(data.status == 202){
+            alertify.warning(data.msg);
+          }else if(data.status == 203){
+            alertify.warning(data.msg);
+          }else{
+            alertify.warning(data.array.errorInfo[2]);
+          }
+        },
+    error: function (data) {
+      alertify.warning("Oops. something went wrong. Please try again");
+    }
+    });
+});
+//on form submit Edit/Update Candidate Publications Info
+
+//on form submit Edit/Update Candidate Achievement Info
+$('.editprofileAchievementStore').on('submit',function(e){
+    e.preventDefault();
+    console.log("herezz");
+    var formData = $(this).serialize();
+    $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: formData,
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            alertify.success(data.msg);
+            setTimeout(function(){
+               window.location.reload();
+           }, 1000);
+          }else if(data.status == 202){
+            alertify.warning(data.msg);
+          }else if(data.status == 203){
+            alertify.warning(data.msg);
+          }else{
+            alertify.warning(data.array.errorInfo[2]);
+          }
+        },
+    error: function (data) {
+      alertify.warning("Oops. something went wrong. Please try again");
+    }
+    });
+});
+//on form submit Edit/Update Candidate Achievement Info
+
+//on form submit Edit/Update Candidate Work Info
+$('.editprofileEducationStore').on('submit',function(e){
+    e.preventDefault();
+    console.log("herezz");
+    var formData = $(this).serialize();
+    $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: formData,
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            alertify.success(data.msg);
+             setTimeout(function(){
+             window.location.reload();
+         }, 1000);
+          }else if(data.status == 202){
+            alertify.warning(data.msg);
+          }else if(data.status == 203){
+            alertify.warning(data.msg);
+          }else{
+            alertify.warning(data.array.errorInfo[2]);
+          }
+        },
+    error: function (data) {
+      alertify.warning("Oops. something went wrong. Please try again");
+    }
+    });
+});
+//on form submit Edit/Update Candidate Education Info
+
+//on form submit Edit/Update Candidate Work Info
+$('.editprofileProjectsStore').on('submit',function(e){
+    e.preventDefault();
+    console.log("herezz");
+    var formData = $(this).serialize();
+    $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: formData,
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            alertify.success(data.msg);
+             setTimeout(function(){
+             window.location.reload();
+         }, 1000);
           }else if(data.status == 202){
             alertify.warning(data.msg);
           }else if(data.status == 203){
@@ -211,6 +342,9 @@ $('#storeprofileWorkExperience').on('submit',function(e){
           if(data.status == 200){
             alertify.success(data.msg);
             $('#storeprofileWorkExperience')[0].reset();
+              setTimeout(function(){
+             window.location.reload();
+         }, 1000);
           }else if(data.status == 202){
             alertify.warning(data.msg);
           }else if(data.status == 203){
@@ -273,6 +407,9 @@ $('#storeprofileLanguages').on('submit',function(e){
             alertify.warning(data.msg);
           }else if(data.status == 203){
             alertify.warning(data.msg);
+          }else if(data.status == 204){
+            alertify.warning(data.msg);
+            $('#storeprofileLanguages')[0].reset();
           }else{
             alertify.warning(data.array.errorInfo[2]);
           }
@@ -298,10 +435,16 @@ $('#storeprofileFrameworks').on('submit',function(e){
           if(data.status == 200){
             alertify.success(data.msg);
             $('#storeprofileFrameworks')[0].reset();
+             setTimeout(function(){
+               window.location.reload();
+           }, 1000);
           }else if(data.status == 202){
             alertify.warning(data.msg);
           }else if(data.status == 203){
             alertify.warning(data.msg);
+          }else if(data.status == 204){
+            alertify.warning(data.msg);
+            $('#storeprofileFrameworks')[0].reset();
           }else{
             alertify.warning(data.array.errorInfo[2]);
           }
@@ -401,7 +544,7 @@ $('#storeprofileConnections').on('submit',function(e){
 //on form submit Update Candidate Achievements
 
 //Candidate Info
-  $("#UpdateCanInfo").on('submit', function(e){
+$("#UpdateCanInfo").on('submit', function(e){
   e.preventDefault();
   var formData = $(this).serialize();
   $.ajaxSetup({
@@ -426,21 +569,25 @@ $('#storeprofileConnections').on('submit',function(e){
     }
   });
 });
-
-//on form submit Update Candidate Project Info
-$('.delete_candidate_education').on('submit',function(e){
+//Deleting Candidate Education
+$('.delete_candidate_education').on('click',function(e){
     e.preventDefault();
-    console.log("herezz");
+    var number = Math.floor(Math.random() * (1 - 200 + 5));
+    var classname = "remove"+number;
+    $(this).closest('li.panel-block').addClass(classname);
+
     $.ajax({
-        type: $(this).attr('method'),
-        url: $(this).attr('action'),
+        type: $(this).data('message'),
+        url: $(this).attr('href'),
         success: function (data) {
           console.log(data);
           if(data.status == 200){
+            $('.'+classname).closest('li.panel-block').remove();
             alertify.success(data.msg);
-            setTimeout(function(){
-             window.location.reload();
-         }, 1000);
+         //    setTimeout(function(){
+         //     window.location.reload();
+         // }, 1000);
+            $(this).closest('.panel-block').remove();
           }else if(data.status == 202){
             alertify.warning(data.msg);
           }else if(data.status == 203){
@@ -456,4 +603,223 @@ $('.delete_candidate_education').on('submit',function(e){
       }
     });
 });
-//on form submit Update Candidate Project Info
+//Deleting Candidate Work Info
+$('.delete_candidate_work_info').on('click',function(e){
+    e.preventDefault();
+    var number = Math.floor(Math.random() * (1 - 200 + 5));
+    var classname = "remove"+number;
+    $(this).closest('li.panel-block').addClass(classname);
+
+    $.ajax({
+        type: $(this).data('message'),
+        url: $(this).attr('href'),
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            $('.'+classname).closest('li.panel-block').remove();
+            alertify.success(data.msg);
+         //    setTimeout(function(){
+         //     window.location.reload();
+         // }, 1000);
+            $(this).closest('.panel-block').remove();
+          }else if(data.status == 202){
+            alertify.warning(data.msg);
+          }else if(data.status == 203){
+            alertify.warning(data.msg);
+          }else if(data.status == 204){
+            alertify.warning(data.msg);
+          }else{
+            alertify.warning(data.array.errorInfo[2]);
+          }
+        },
+      error: function (data) {
+        alertify.warning("Oops. something went wrong. Please try again");
+      }
+    });
+});
+//Deleting Candidate Publications
+$('.delete_candidate_publication').on('click',function(e){
+    e.preventDefault();
+    var number = Math.floor(Math.random() * (1 - 200 + 5));
+    var classname = "remove"+number;
+    $(this).closest('li.panel-block').addClass(classname);
+    $.ajax({
+        type: $(this).data('message'),
+        url: $(this).attr('href'),
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            $('.'+classname).closest('li.panel-block').remove();
+            alertify.success(data.msg);
+            $(this).closest('.panel-block').remove();
+          }else if(data.status == 202){
+            alertify.warning(data.msg);
+          }else if(data.status == 203){
+            alertify.warning(data.msg);
+          }else if(data.status == 204){
+            alertify.warning(data.msg);
+          }else{
+            alertify.warning(data.array.errorInfo[2]);
+          }
+        },
+      error: function (data) {
+        alertify.warning("Oops. something went wrong. Please try again");
+      }
+    });
+});
+//Deleting Candidate Achievement
+$('.delete_candidate_achievement').on('click',function(e){
+    e.preventDefault();
+    var number = Math.floor(Math.random() * (1 - 200 + 5));
+    var classname = "remove"+number;
+    $(this).closest('li.panel-block').addClass(classname);
+    $.ajax({
+        type: $(this).data('message'),
+        url: $(this).attr('href'),
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            $('.'+classname).closest('li.panel-block').remove();
+            alertify.success(data.msg);
+            $(this).closest('.panel-block').remove();
+          }else if(data.status == 202){
+            alertify.warning(data.msg);
+          }else if(data.status == 203){
+            alertify.warning(data.msg);
+          }else if(data.status == 204){
+            alertify.warning(data.msg);
+          }else{
+            alertify.warning(data.array.errorInfo[2]);
+          }
+        },
+      error: function (data) {
+        alertify.warning("Oops. something went wrong. Please try again");
+      }
+    });
+});
+//Deleting Candidate Project
+$('.delete_candidate_project').on('click',function(e){
+    e.preventDefault();
+    var number = Math.floor(Math.random() * (1 - 200 + 5));
+    var classname = "remove"+number;
+    $(this).closest('li.panel-block').addClass(classname);
+
+    $.ajax({
+        type: $(this).data('message'),
+        url: $(this).attr('href'),
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            $('.'+classname).closest('li.panel-block').remove();
+            alertify.success(data.msg);
+         //    setTimeout(function(){
+         //     window.location.reload();
+         // }, 1000);
+            $(this).closest('.panel-block').remove();
+          }else if(data.status == 202){
+            alertify.warning(data.msg);
+          }else if(data.status == 203){
+            alertify.warning(data.msg);
+          }else if(data.status == 204){
+            alertify.warning(data.msg);
+          }else{
+            alertify.warning(data.array.errorInfo[2]);
+          }
+        },
+      error: function (data) {
+        alertify.warning("Oops. something went wrong. Please try again");
+      }
+    });
+});
+//Deleting Candidate Language
+$('.delete_candidate_language').on('click',function(e){
+    e.preventDefault();
+    var number = Math.floor(Math.random() * (1 - 200 + 5));
+    var classname = "remove"+number;
+    $(this).closest('.pad-right-10').addClass(classname);
+    $.ajax({
+        type: $(this).data('message'),
+        url: $(this).attr('href'),
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            $('.'+classname).closest('.pad-right-10').remove();
+            alertify.success(data.msg);
+            $(this).closest('.panel-block').remove();
+          }else if(data.status == 202){
+            alertify.warning(data.msg);
+          }else if(data.status == 203){
+            alertify.warning(data.msg);
+          }else if(data.status == 204){
+            alertify.warning(data.msg);
+          }else{
+            alertify.warning(data.array.errorInfo[2]);
+          }
+        },
+      error: function (data) {
+        alertify.warning("Oops. something went wrong. Please try again");
+      }
+    });
+});
+//Deleting Candidate Framework
+$('.delete_candidate_framework').on('click',function(e){
+    e.preventDefault();
+    var number = Math.floor(Math.random() * (1 - 200 + 5));
+    var classname = "remove"+number;
+    $(this).closest('.pad-right-10').addClass(classname);
+    $.ajax({
+        type: $(this).data('message'),
+        url: $(this).attr('href'),
+        success: function (data) {
+          console.log(data);
+          if(data.status == 200){
+            $('.'+classname).closest('.pad-right-10').remove();
+            alertify.success(data.msg);
+            $(this).closest('.panel-block').remove();
+          }else if(data.status == 202){
+            alertify.warning(data.msg);
+          }else if(data.status == 203){
+            alertify.warning(data.msg);
+          }else if(data.status == 204){
+            alertify.warning(data.msg);
+          }else{
+            alertify.warning(data.array.errorInfo[2]);
+          }
+        },
+      error: function (data) {
+        alertify.warning("Oops. something went wrong. Please try again");
+      }
+    });
+});
+
+//Candidate Post Setting Info Data Through Ajax
+$("#can_save_setting_info").on('submit', function(e){
+  e.preventDefault();
+  $('.loader').removeClass('hidden');
+  var formData = $(this).serialize();
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+  });
+  $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: formData,
+    success: function (data) {
+      console.log(data);
+      if(data.status == 200){
+
+         $('.loader').addClass('hidden');
+        alertify.success(data.msg);
+        $('#can_save_setting_info').find('.form-control').val('');
+      }else if(data.status == 202){
+        alertify.warning(data.msg);
+      }else{
+        alertify.warning(data.array.errorInfo[2]);
+      }
+    },
+    error: function (data) {
+      alertify.warning("Oops. something went wrong. Please try again");
+    }
+  });
+});
+//Candidate Post Setting Info Data Through Ajax

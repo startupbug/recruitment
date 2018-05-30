@@ -14,7 +14,7 @@
          </div>
          <div class="col-xs-2 col-xs-offset-2">
             <h4>
-               @if(isset($edit))
+               @if(!isset($edit_host))
                <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#_first_model">
                <i class="fa fa-check" aria-hidden="true"></i> Host this Test
                </button>
