@@ -65,6 +65,17 @@ $(document).ready(function(){
 
     });
 
+
+    $('.cancel_edit_profile').on('click', function(){
+      $(this).closest('.edit_profile').siblings('.view_profile').removeClass('hidden');
+      $(this).closest('.edit_profile').addClass('hidden');
+    });
+
+    $('.cancel_view_profile').on('click', function(){
+      $(this).closest('.view_profile').siblings('.edit_profile').removeClass('hidden');
+      $(this).closest('.view_profile').addClass('hidden');
+    });
+
 });
 
 //on form submit change Admin Profile picture
@@ -129,7 +140,7 @@ $('#CanResumeUpload').change(function(e){
 //on form submit change Candidate Resume
 
 //on form submit Create Candidate Education Info
-$('#profileEducationStore').on('submit',function(e){
+$('#profileEducationStore').on('change',function(e){
     e.preventDefault();
     console.log("herezz");
     var formData = $(this).serialize();

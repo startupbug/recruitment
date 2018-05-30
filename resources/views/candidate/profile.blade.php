@@ -1,5 +1,4 @@
 @include('candidate.partials.header')
-
 <div>
    <div class="user-profile page-header">
       <div class="container">
@@ -9,8 +8,8 @@
             </div>
             <div class="col-md-7" style="margin-top:4px">
                <div class="progress" style="height:15px">
-                  <div class="progress-bar ng-binding" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:8%;line-height:15px;font-size:13px;">
-                     8%
+                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%;line-height:15px;font-size:13px;">
+                     70%
                   </div>
                </div>
             </div>
@@ -35,12 +34,11 @@
                        <input name="profile_pic" id="change_can_profile_pic" type="file">
                      </div>
                   </form>
-                  <!-- <input type="file" name=""> -->
                </div>
             </div>
             <div class="user-info">
                <div class="row">
-                  <div class="col-xs-9">
+                  <div class="col-xs-9 edit_profile">
                      <form id="UpdateCanInfo" name="profileBasic" class="form-horizontal" action="{{route('update_can_info')}}" method="post">
                         {{csrf_field()}}
                         <div class="form-group form-group-sm">
@@ -61,14 +59,27 @@
                         <div class="form-group form-group-sm">
                            <div class="col-sm-5">
                               <input type="text" class="form-control" placeholder="Location" value="{{ Auth::user()->profile->address }}" name="address" autocomplete="off" required="" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-5473-9005">
-                              <ul class="dropdown-menu ng-isolate-scope ng-hide" ng-show="isOpen() &amp;&amp; !moveInProgress" ng-style="{top: position().top+'px', left: position().left+'px'}" role="listbox" aria-hidden="true" uib-typeahead-popup="" id="typeahead-5473-9005" matches="matches" active="activeIdx" select="select(activeIdx, evt)" move-in-progress="moveInProgress" query="query" position="position" assign-is-open="assignIsOpen(isOpen)" debounce="debounceUpdate">
+                              <ul class="dropdown-menu" role="listbox" aria-hidden="true" uib-typeahead-popup="" id="typeahead-5473-9005" matches="matches" active="activeIdx" select="select(activeIdx, evt)" move-in-progress="moveInProgress" query="query" position="position" assign-is-open="assignIsOpen(isOpen)" debounce="debounceUpdate">
                               </ul>
                            </div>
                         </div>
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                         <button class="btn btn-sm btn-info" type="submit" disabled>Save</button>
-                        <button class="btn btn-sm btn-danger" type="button" disabled="disabled">Cancel</button>
+                        <button type="button" class="btn btn-sm btn-danger cancel_edit_profile" type="button" >Cancel</button>
                      </form>
+                  </div>
+                  <div class="col-xs-9 view_profile hidden">
+                     <span style="font-size: 20px;font-weight: bold;line-height: 20px;">
+                       Candidate
+                     </span>
+                     <span>(Male</span><span>, 20)</span> <br>
+                     <span style="font-size: 12px;line-height: 12px;">USA</span><br>
+                     <button type="button" class="btn btn-sm btn-info cancel_view_profile" style="line-height: 12px;">Update Personal Details</button><br>
+                     <i class="fa fa-phone"></i>
+                     <span class="focus">(<a href="">Update Contact Number</a>)</span>
+                     <div style="line-height: 40px;" class="">
+                       <a href="" class="profile-link">View my public profile</a>
+                     </div>
                   </div>
                </div>
             </div>
