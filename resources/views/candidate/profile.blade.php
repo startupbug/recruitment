@@ -1537,13 +1537,7 @@
                            <label class="col-sm-4 control-label">Related Skills</label>
                            <div class="col-sm-8">
                               <div class="skill_info">
-                                <!-- Start foreach loop-->
-                                <span class="pad-right-10">
-                                  <input type="hidden" name="skills[]" value="abc">
-                                  <span class="tags vertical-divider">abc</span>
-                                  <a href="#" class="no-underline close_skills">×</a>
-                                </span>
-                                <!-- End foreach loop-->
+
                               </div>
                               <div class="form-inline">
                                 <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
@@ -2010,11 +2004,13 @@
                                <div class="col-sm-8">
                                  <div class="skill_info">
                                    <!-- Start foreach loop-->
+                                   @foreach($Candidate_work_skill_info[$value->id] as $skill)
                                    <span class="pad-right-10">
                                      <input type="hidden" name="skills[]" value="abc">
-                                     <span class="tags vertical-divider">abc</span>
+                                     <span class="tags vertical-divider">{{$skill->skill}}</span>
                                      <a href="#" class="no-underline close_skills">×</a>
                                    </span>
+                                    @endforeach
                                    <!-- End foreach loop-->
                                  </div>
                                  <div class="form-inline">
@@ -2440,13 +2436,7 @@
                            <label class="col-sm-4 control-label">Related Skills</label>
                            <div class="col-sm-8">
                              <div class="skill_info">
-                               <!-- Start foreach loop-->
-                               <span class="pad-right-10">
-                                 <input type="hidden" name="skills[]" value="abc">
-                                 <span class="tags vertical-divider">abc</span>
-                                 <a href="#" class="no-underline close_skills">×</a>
-                               </span>
-                               <!-- End foreach loop-->
+                              
                              </div>
                              <div class="form-inline">
                                <input type="text" class="form-control" placeholder="add related skills" name="newRelatedSkill">
@@ -2904,12 +2894,14 @@
                              <label class="col-sm-4 control-label">Related Skills</label>
                              <div class="col-sm-8">
                                <div class="skill_info">
-                                 <!-- Start foreach loop-->
-                                 <span class="pad-right-10">
-                                   <input type="hidden" name="skills[]" value="abc">
-                                   <span class="tags vertical-divider">abc</span>
-                                   <a href="#" class="no-underline close_skills">×</a>
-                                 </span>
+                                 <!-- Start foreach loop-->       
+                                 @foreach($Candidate_project_skill_info[$value->id] as $skill)
+                                   <span class="pad-right-10">
+                                     <input type="hidden" name="skills[]" value="abc">
+                                     <span class="tags vertical-divider">{{$skill->skill}}</span>
+                                     <a href="#" class="no-underline close_skills">×</a>
+                                   </span>
+                                 @endforeach
                                  <!-- End foreach loop-->
                                </div>
                                <div class="form-inline">

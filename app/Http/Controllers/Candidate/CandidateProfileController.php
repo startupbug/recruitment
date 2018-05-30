@@ -239,6 +239,13 @@ class CandidateProfileController extends Controller
                     $store->location = $request->location;
                     $store->description = $request->description;
                     if ($store->save()) {
+                      $delete_skills = DB::table('candidate_work_skills')->where('candidate_work_infos_id', '=' , $id)->delete();
+                     foreach ($request->skills as $value) {
+                      DB::table('candidate_work_skills')->insert([
+                              'candidate_work_infos_id' => $store->id,
+                              'skill' =>$value
+                             ]);
+                      }
                       return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Work Information']);
                     }else{
                       return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);
@@ -355,6 +362,13 @@ class CandidateProfileController extends Controller
                     }
                     $store->description = $request->description;
                     if ($store->save()) {
+                      $delete_skills = DB::table('candidate_projects_new_skills')->where('candidate_project_infos_id', '=' , $id)->delete();
+                    foreach ($request->skills as $value) {
+                     DB::table('candidate_projects_new_skills')->insert([
+                              'candidate_project_infos_id' => $store->id,
+                              'skill' =>$value
+                             ]);
+                    }
                     return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Updated Candidate Project Information']);
                     }else{
                       return \Response()->Json([ 'status' => 203,'msg'=>'Something Went Wrong Please Try Again']);
