@@ -69,7 +69,7 @@
                     <div class="container-fluid">
                         <nav class="header-tabs-nav">
                             <ul class="headerul clearfix">
-                                <li><a href="{{route('candidate_index')}}" class="active" style=""><i class="fa fa-user"></i>Profile</a></li>
+                                <li><a href="{{route('candidate_index')}}" class="f_hover active" style=""><i class="fa fa-user"></i>Profile</a></li>
                                 <li class="f-test"><a href="{{route('my_test')}}" class="f_hover" style=""><i class="fa fa-file-text-o"></i>My Tests</a></li>
                             </ul>
                         </nav>

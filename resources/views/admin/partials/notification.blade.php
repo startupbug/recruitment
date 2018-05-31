@@ -1,16 +1,16 @@
  <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <!-- <li class="dropdown messages-menu"> -->
+           <!--  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
               <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
+            </a> -->
+            <!-- <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
-              <li>
+              <li> -->
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
+                <!-- <ul class="menu"> -->
+                  <!-- <li>start message -->
+                    <!-- <a href="#">
                       <div class="pull-left">                        
                         <img src="{{asset('public/admin_assets/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                       </div>
@@ -20,9 +20,9 @@
                       </h4>
                       <p>Why not buy a new awesome theme?</p>
                     </a>
-                  </li>
+                  </li> -->
                   <!-- end message -->
-                  <li>
+                 <!--  <li>
                     <a href="#">
                       <div class="pull-left">
                         <img src="{{asset('public/admin_assets/dist/img/user3-128x128.jpg')}}" class="img-circle" alt="User Image">
@@ -34,8 +34,8 @@
                       <p>Why not buy a new awesome theme?</p>
                     </a>
                   </li>
-                  <li>
-                    <a href="#">
+                  <li> -->
+                  <!--   <a href="#">
                       <div class="pull-left">
                         <img src="{{asset('public/admin_assets/dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
@@ -44,8 +44,8 @@
                         <small><i class="fa fa-clock-o"></i> Today</small>
                       </h4>
                       <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
+                    </a> -->
+          <!--         </li>
                   <li>
                     <a href="#">
                       <div class="pull-left">
@@ -73,19 +73,19 @@
                 </ul>
               </li>
               <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
+            </ul> -->
+          <!-- </li> -->
           <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <!-- <li class="dropdown notifications-menu"> -->
+            <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
+            </a> -->
+            <!-- <ul class="dropdown-menu"> -->
+              <!-- <li class="header">You have 10 notifications</li>
+              <li> -->
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">
+               <!--  <ul class="menu">
                   <li>
                     <a href="#">
                       <i class="fa fa-users text-aqua"></i> 5 new members joined today
@@ -112,24 +112,24 @@
                       <i class="fa fa-user text-red"></i> You changed your username
                     </a>
                   </li>
-                </ul>
-              </li>
+                </ul> -->
+             <!--  </li>
               <li class="footer"><a href="#">View all</a></li>
             </ul>
-          </li>
+          </li> -->
           <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
+     <!--      <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
               <span class="label label-danger">9</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
-              <li>
+              <li> -->
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
+                <!-- <ul class="menu"> -->
+                  <!-- <li>Task item -->
+                    <!-- <a href="#">
                       <h3>
                         Design some buttons
                         <small class="pull-right">20%</small>
@@ -141,10 +141,10 @@
                         </div>
                       </div>
                     </a>
-                  </li>
+                  </li> -->
                   <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
+                  <!-- <li>Task item -->
+                <!--     <a href="#">
                       <h3>
                         Create a nice theme
                         <small class="pull-right">40%</small>
@@ -156,10 +156,10 @@
                         </div>
                       </div>
                     </a>
-                  </li>
+                  </li> -->
                   <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
+                  <!-- <li>Task item -->
+                  <!--   <a href="#">
                       <h3>
                         Some task I need to do
                         <small class="pull-right">60%</small>
@@ -171,10 +171,10 @@
                         </div>
                       </div>
                     </a>
-                  </li>
+                  </li> -->
                   <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
+                  <!-- <li>Task item -->
+                 <!--    <a href="#">
                       <h3>
                         Make beautiful transitions
                         <small class="pull-right">80%</small>
@@ -186,12 +186,12 @@
                         </div>
                       </div>
                     </a>
-                  </li>
+                  </li> -->
                   <!-- end task item -->
-                </ul>
+              <!--   </ul>
               </li>
               <li class="footer">
                 <a href="#">View all tasks</a>
               </li>
             </ul>
-          </li>
+          </li> -->

@@ -32,7 +32,16 @@ class CandidateController extends Controller
     
     public function my_test()
     {
-        return view('candidate.my_test');
+      $args['info'] = DB::table('invite_candidates')
+                      ->leftJoin('hosted_tests','hosted_tests.id','=','invite_candidates.host_test_id')
+                      ->leftJoin('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+                      ->where('invite_candidates.email','=',Auth::user()->email)
+                      ->get();
+      $args['count'] = DB::table('invite_candidates')
+                      ->leftJoin('hosted_tests','hosted_tests.id','=','invite_candidates.host_test_id')
+                      ->where('invite_candidates.email','=',Auth::user()->email)
+                      ->count();
+      return view('candidate.my_test')->with($args);
     }     
      
     public function can_info()
