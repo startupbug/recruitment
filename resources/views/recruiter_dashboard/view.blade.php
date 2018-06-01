@@ -396,8 +396,9 @@
           <div class="row">
            <div class="col-md-10">
             <div class="input-group input-group-sm">
-               <input type="text" class="form-control links-text" readonly="" value="https://codeground.in//code4/#/publicview/test/candidate/token/iohptqav"> <span class="input-group-btn">
-               <button class="btn btn-default">Copy</button>
+               <input type="text" class="form-control links-text text_1" readonly="" value="https://codeground.in//code4/#/publicview/test/candidate/token/iohptqav">
+               <span class="input-group-btn">
+                 <button class="btn btn-default copy_url"  data-clipboard-target=".text_1" type="button">Copy</button>
                </span>
             </div>
            </div>
