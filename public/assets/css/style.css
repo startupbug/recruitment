@@ -1528,7 +1528,7 @@ td button.btn.focus, td button.btn:focus, td button.btn:hover {
 }
 
 .filter {
-    height: 380px;
+    min-height: 380px;
 }
 .button_filter {
     text-align: center;
@@ -2944,4 +2944,34 @@ button.f_finish:hover,button.f_finish:focus,button.f_finish:active {
 
 .col-padding{
   padding: 10px 0px;
+}
+.right_tab >ul > li.not_selected:hover {
+    background: #eee;
+}
+.general_public_link_btn{
+  background: #221d59;
+  color: #fff;
+}
+.general_public_link_btn:hover ,.general_public_link_btn:focus {
+    color: #fff;
+    text-decoration: none;
+}
+.public-test-links>li:last-child {
+    border-bottom: 1px solid #ddd;
+}
+.public-test-links>li {
+    border: 1px solid #ddd;
+    padding: 3px;
+    border-bottom: 0;
+}
+ul.public-test-links.vertical-divider {
+    padding: 0;
+}
+.link_delete{
+    padding:  4px 0px;
+    text-align: center;
+}
+.link_delete a{
+  color: #ff0000;
+  cursor: pointer;
 }

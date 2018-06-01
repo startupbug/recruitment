@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="{{ asset('public/assets/plugins/menu/css/jquery.mhead.css') }}">
 		<link rel="stylesheet" href="{{ asset('public/assets/css/select2.min.css') }}"/>
 		<link rel="stylesheet" href="{{ asset('public/assets/css/editor.css') }}"/>
+    	<link rel="stylesheet" href="{{ asset('public/assets/css/loading.css') }}"/>
 		<link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
 		<link rel="stylesheet" href="{{ asset('public/assets/css/style2.css') }}">
 		<link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
@@ -46,7 +47,7 @@
 					<div class="col-md-3">
 						<div class="top_right">
 							<ul>								
-								<li><a href="#" data-toggle="tooltip" title="Hooray!"><i class="fa fa-info-circle"></i></a></li>								
+								<li><a href="{{route('can_info')}}" data-toggle="tooltip" title="Report Issue/Provide Feedback!"><i class="fa fa-info-circle"></i></a></li>								
 								<li class="dropdown">
 									<div>
 										<button class="dropdown-toggle profileDropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -68,7 +69,7 @@
                     <div class="container-fluid">
                         <nav class="header-tabs-nav">
                             <ul class="headerul clearfix">
-                                <li><a href="{{route('candidate_index')}}" class="active" style=""><i class="fa fa-user"></i>Profile</a></li>
+                                <li><a href="{{route('candidate_index')}}" class="f_hover active" style=""><i class="fa fa-user"></i>Profile</a></li>
                                 <li class="f-test"><a href="{{route('my_test')}}" class="f_hover" style=""><i class="fa fa-file-text-o"></i>My Tests</a></li>
                             </ul>
                         </nav>

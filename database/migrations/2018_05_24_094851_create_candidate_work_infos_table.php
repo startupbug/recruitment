@@ -19,7 +19,7 @@ class CreateCandidateWorkInfosTable extends Migration
             $table->string('job_title');     
             $table->longText('company'); 
             $table->date('date_from');
-            $table->date('date_to');
+            $table->date('date_to')->nullable();
             $table->longText('description'); 
             $table->tinyInteger('current_status')->nullable()->default('0');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');   
