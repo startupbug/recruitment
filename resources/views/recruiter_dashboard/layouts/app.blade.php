@@ -814,65 +814,7 @@
     </div>
 </div>
 <!--end user management-->
-<!--Invited Candidates on send reminder-->
-<div class="modal fade" id="duplicatesend-2" role="dialog">
-    <div class="modal-dialog  modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content filter fa_evaluate">
-            <div class="modal-header s_modal_form_header">
-                <div class="pull-right">
-                    <button type="button" class="btn s_save_button s_font" data-dismiss="modal">Send</button>
-                    <button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>
-                </div>
-                <h3 class="modal-title s_font f_font"><i class="fa fa-copy duplicate_copy"></i>Compose mail</h3>
-            </div>
-            <div class="modal-body s_modal_form_body modal_top modal_duplicate">
-                <div class="row">
 
-                    <div class="col-md-10">
-
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Recipients:</label>
-                            <div class="col-md-9">
-                                <h3 class="candidate_view">All Candidates</h3>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <br>
-                    <br>
-
-                    <div class="col-md-10 subject">
-
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Subject:</label>
-                            <div class="col-md-9">
-                                <div class="template"><input id="name" name="name" type="text" placeholder="Subject of the mail" class="form-control general">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                     <div class="col-md-10 subject">
-
-                        <div class="form-group title message_body">
-                            <label class="col-md-3 control-label" for="name">Body:</label>
-                            <div class="col-md-9">
-                                    <textarea rows="8" cols="112" placeholder="Please add the information that you want to notify to the candidate">Dear candidates,
- This is to remind you that the testJava Coding will commence on 02/06/2018 08:42 am and ends on 02/20/2018 08:39 am.
- We wish you the best of luck.
-                                    </textarea>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end-->
 
 <!--preview test on ques page-->
 <div class="modal fade" id="preview_test" role="dialog">

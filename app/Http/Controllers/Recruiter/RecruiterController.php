@@ -22,6 +22,8 @@ use App\Coding_question_language;
 use App\Questions_submission_resource;
 use App\Allowed_language;
 use App\Question_state;
+use App\Invite_candidate;
+use App\Hosted_test;
 
 class RecruiterController extends Controller
 {
@@ -80,7 +82,9 @@ class RecruiterController extends Controller
     public function invited_candidates($id)
     {
         $host_id = $id;
-        return view('recruiter_dashboard.invited_candidates',['host_id'=>$host_id]);
+        $invited_candidates = Invite_candidate::where('host_test_id',$id)->get();
+        $hosted_time = Hosted_test::where('id',$id)->first();
+        return view('recruiter_dashboard.invited_candidates',['host_id'=>$host_id, 'invited_candidates'=>$invited_candidates, 'hosted_time'=>$hosted_time]);
     }
 
     public function library_public_questions(Request $request, $id=NULL)

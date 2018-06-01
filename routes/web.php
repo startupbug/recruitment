@@ -103,8 +103,9 @@ Route::post('update_password_recruiter', 'Recruiter\RecruiterController@update_p
 //Customer support
 Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support_view')->name('customer_support_view');
 Route::post('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
+Route::get('delete_invitation/{id}','Recruiter\Invite_Candidate_Controller@delete_invitation')->name('delete_invitation');
 
-
+Route::post('send_remainder','Recruiter\Invite_Candidate_Controller@send_remainder')->name('send_remainder');
 Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query');
 
 Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
@@ -112,6 +113,7 @@ Route::get('/history', 'Recruiter\RecruiterController@history')->name('history')
 Route::get('/invited_candidates/{id}', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
 
 Route::post('/invitaion_to_candidate/{id}','Recruiter\Invite_Candidate_Controller@invitaion_to_candidate')->name('invitaion_to_candidate');
+
 Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
 
 Route::post('/update_questions_modal/{id}','Recruiter\QuestionsController@update_questions_modal')->name('update_questions_modal');
