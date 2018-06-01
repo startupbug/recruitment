@@ -3392,10 +3392,10 @@ $( document ).ready(function() {
 
 
     $('.s_radio_border').on('change', 'label', function() {
-      
+
       var id  = $(this).closest('.s_radio_border').attr('id');
       $('#'+id+' .radio_button').closest('label').css('background', '#fff');
-      
+
       if ($(this).find('.radio_button').is(":checked")) {
         $(this).css('background', '#fff9ae');
         $(this).closest('.s_radio_border').siblings('.button_question').find('.clear_question').addClass('active');
@@ -3492,7 +3492,7 @@ $( document ).ready(function() {
 
       mcqs_curPage = parseInt( e.target.getAttribute('data-page') );
       mcqs_render( mcqs_curPage, mcqs_item );
-    
+
     });
 
     $('.clear_question').on('click' , function(e) {
@@ -3500,14 +3500,7 @@ $( document ).ready(function() {
         $(this).closest('.button_question').siblings('.s_radio_border').find('.radio_button').prop('checked', false);
         $(this).removeClass('active');
     });
-
-
-
-
-
-
 });
-
 
 function pagination_table($table_id , $pagination_id) {
 

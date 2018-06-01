@@ -957,7 +957,7 @@
 <script src="{{ asset('public/assets/js/paginathing.js') }}"></script>
 
 <script src="{{ asset('public/assets/js/jquery.countdownTimer.js') }}"></script>
-
+<script src="{{ asset('public/assets/js/jquery.copy-to-clipboard.js') }}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/script.js') }}"></script>
 <script src="{{ asset('public/assets/js/f.js') }}"></script>
