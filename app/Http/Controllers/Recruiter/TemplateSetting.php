@@ -234,6 +234,7 @@ class TemplateSetting extends Controller
     	}
 	}
 	public function delete_question_tag(Request $request){
+		// return $request->input();
 		$delete = Question_tag::find($request->id);
 		if ($delete->delete()){				
 		return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Successfully Deleted The Question Tag']);

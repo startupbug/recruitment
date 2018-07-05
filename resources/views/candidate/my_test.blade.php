@@ -81,7 +81,7 @@
                         <div class="right_tab">
                            <ul>
                               <!-- <li><a href="#">Invite Candidates</a></li> -->
-                              <li><a href="#">Start Test</a></li>
+                              <li><a href="{{route('preview_test1',$value->test_template_id)}}">Start Test</a></li>
                               <!--  <li>Report</li> -->
                               <!-- <li> -->
                                  <!-- <div class="dropdown"> -->

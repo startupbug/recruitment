@@ -208,7 +208,7 @@
                                  <input type="text" value="{{$value->tag_name}}" class="form-control" tag-id="{{$value->id}}" disabled>
                                  <span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span>
                                  <span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span>
-                                 <button class="QuestionTagSetting" data-id="{{$value->id}}" >
+                                 <button class="QuestionTagSetting" data-id="{{$value->id}}" data-url="{{route('delete_question_tag')}}">
                                  <span class="xyz input-group-addon success delete_tag"><i class="fa fa-times-circle-o"></i></span>
                                  </button>	
                               </div>

@@ -7,9 +7,19 @@
       <div class="col-md-3 col-md-offset-9 col-padding">
         <span id="m_timer">
         </span>
+        @if(Auth::check())
+          @if(Auth::user()->role_id == 2)
+          <a class="finish_url" href="{{route('load_section1', [ 'sectionid' => $sec_param, 'templateid' => $sec_template_id])}}">
+            <button type="submit" class="btn f_finish" data-url="">Finish test</button> 
+          </a>
+          @endif
+          @if(Auth::user()->role_id == 3)
           <a class="finish_url" href="{{route('load_section', [ 'sectionid' => $sec_param, 'templateid' => $sec_template_id])}}">
             <button type="submit" class="btn f_finish" data-url="">Finish test</button> 
           </a>
+          @endif
+        @endif
+          
       </div>
     </div>
   </div>

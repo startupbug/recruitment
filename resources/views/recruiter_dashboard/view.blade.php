@@ -1,7 +1,6 @@
 @extends('recruiter_dashboard.layouts.app')
 @section('content')
 <section class="view">
-   {{dd($random_string)}}
    @include('general_partials.error_section')
    <div class="container-fluid padding-15-fluit">
       <div class="row">
@@ -86,9 +85,6 @@
                <div class="col-md-6">
                   <div class="right_tab">
                      <ul>
-                       <li class="not_selected">
-                         <button type="button" class="btn general_public_link_btn"  data-toggle="modal" data-target="#generate_public_link" name="button">Generate Public Link</button>
-                       </li>
                         @if(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
                         <li><a href="{{route('edit_template',['id'=>$hosted_test->host_id, 'flag' => 'host'])}}">Edit</a></li>
                         @endif
@@ -379,46 +375,7 @@
       </div>
    </div>
 </div>
-<!--create duplicate template on view page-->
-<div class="modal fade" id="generate_public_link" role="dialog">
- <div class="modal-dialog  modal-lg" style="width: 50%; height: 50%;">
-    <!-- Modal content-->
-  <div class="modal-content filter">
-    <div class="modal-header s_modal_form_header">
-      <div class="pull-right">
-         <button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>
-      </div>
-      <h3 class="modal-title s_font f_font">Public test link for : csmg667</h3>
-    </div>
-    <div class="modal-body s_modal_form_body modal_top modal_duplicate">
-      <ul class="public-test-links vertical-divider">
-        <li>
-          <div class="row">
-           <div class="col-md-10">
-            <div class="input-group input-group-sm">
-               <input type="text" class="form-control links-text text_1" readonly="" value="https://codeground.in//code4/#/publicview/test/candidate/token/iohptqav">
-               <span class="input-group-btn">
-                 <button class="btn btn-default copy_url"  data-clipboard-target=".text_1" type="button">Copy</button>
-               </span>
-            </div>
-           </div>
-           <div class="col-md-2 link_delete">
-            <a class="delete">Delete</a>
-           </div>
-          </div>
-        </li>
-      </ul>
-      <div class="testAttempt">
-       <div class="clearfix">
-        <div class="pull-right">
-         <button type="submit" class="btn general_public_link_btn">Generate Public Link</button>
-        </div>
-       </div>
-      </div>
-    </div>
-  </div>
- </div>
-</div>
+
 @endsection
 
 @section('createtemplate')
