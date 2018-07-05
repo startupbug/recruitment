@@ -46,7 +46,7 @@ class TemplatesController extends Controller
         $name2 = Input::get('name2');
 
         $check_box = Input::get('search');
-         $check_box2 = Input::get('search2');
+        $check_box2 = Input::get('search2');
         //dd($check_box);
 
         if(isset($name))
@@ -95,7 +95,8 @@ class TemplatesController extends Controller
            //For Loading Test templates without
 
           $args['count'] = Test_template::count();
-            $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
+          
+          $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
 
             foreach ($args['listing'] as $value) {
                 $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
@@ -107,6 +108,8 @@ class TemplatesController extends Controller
                 ->groupBy('sections.id')
                 ->get();
             }
+
+           // dd($args);
 
         }
 

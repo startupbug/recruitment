@@ -52,7 +52,7 @@
 										 <input type="hidden" name="questionType" value="1">
 										  <input type="hidden" name="_token" value="{{Session::token()}}">
 										<button type="submit" class="btn">Apply</button>
-										<a data-toggle="modal" data-target="#mcqs-filter-Modal" data-temptype="1" data-questype="1" class="adv_filButton">Advanced Filter 676</a>
+										<a data-toggle="modal" data-target="#mcqs-filter-Modal" data-temptype="1" data-questype="1" class="adv_filButton">Advanced Filter</a>
 									</div>
 							    </form>
 							</div>
@@ -155,7 +155,7 @@
 
 										<button type="submit" class="btn">Apply</button>
 
-										<a data-toggle="modal" data-target="#filter-programming-Modal" data-temptype="1" data-questype="2" class="adv_filButton">Advanced Filter 999</a>
+										<a data-toggle="modal" data-target="#filter-programming-Modal" data-temptype="1" data-questype="2" class="adv_filButton">Advanced Filter </a>
 									</div>
 								</form>
 							</div>
@@ -266,7 +266,7 @@
 										 <input type="hidden" name="questionType" value="1">
 										  <input type="hidden" name="_token" value="{{Session::token()}}">
 										<button type="submit" class="btn">Apply</button>
-										<a data-toggle="modal" data-target="#private-mcqs-filter-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter 767</a>
+										<a data-toggle="modal" data-target="#private-mcqs-filter-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter </a>
 									</div>
 							    </form>
 
@@ -387,7 +387,7 @@
 										 <input type="hidden" name="questionType" value="2">
 										  <input type="hidden" name="_token" value="{{Session::token()}}">
 										<button type="submit" class="btn">Apply</button>
-										<a data-toggle="modal" data-target="#private-filter-programming-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter 111</a>
+										<a data-toggle="modal" data-target="#private-filter-programming-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter </a>
 									</div>
 							    </form>
  							</div>
@@ -501,7 +501,7 @@
 										 <input type="hidden" name="questionType" value="3">
 										  <input type="hidden" name="_token" value="{{Session::token()}}">
 										<button type="submit" class="btn">Apply</button>
-										<a data-toggle="modal" data-target="#private-submission-filter-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter 333</a>
+										<a data-toggle="modal" data-target="#private-submission-filter-Modal" data-temptype="1"data-questype="1" class="adv_filButton">Advanced Filter </a>
 									</div>
 							    </form>
  							</div>

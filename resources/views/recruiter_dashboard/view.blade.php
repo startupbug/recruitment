@@ -12,7 +12,7 @@
       </div>
    </div>
 </section>
-<div class="container-fluid padding-15-fluid">
+<div class="container-fluid padding-15-fluid s_tab_bar">
    <ul class="nav nav-tabs">
       <li class="active">
          <a data-toggle="pill" href="#home">
@@ -39,226 +39,252 @@
          </a>
       </li>
    </ul>
-   <div class="tab-content">
+   <div class="tab-content ">
       <div id="home" class="tab-pane fade in active">
          <div class="view_filter_right">
             <i class="fa fa-filter" data-toggle="modal" name="hosted_test" data-target="#filter_view123"></i>
          </div>
+
+            <table id="hostTable">
+             <thead><tr><th></th></tr></thead>
+
          @foreach($hosted_tests as $key => $hosted_test)
-         <section class="tab_nav accordion-toggle" data-toggle="collapse"
-            data-parent="#accordion" data-target="#collapse_livecode{{$key}}" aria-expanded="false">
-            <div class="row main_tab">
-               <div class="col-md-6">
-                  <div class="left_tab">
-                     <ul>
-                        <li>
-                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_livecode{{$key}}" aria-expanded="false">
-                           <span class="fa fa-caret-right"></span>
-                           </a>
-                        </li>
-                        <?php
-                           $todaydate = new DateTime();
-                           $todaydate = $todaydate->format('Y-m-d');
-                           $expired_status=false;
-                           $live_status=false;
-                           ?>
-                        <!-- expire
-                           agr status 2 hai toh expire
-                           test opening date  and closing date end hoschuki hai
+               <tr>
+                  <td>
+                     <section class="tab_nav accordion-toggle" data-toggle="collapse"
+                        data-parent="#accordion" data-target="#collapse_livecode{{$key}}" aria-expanded="false">
+                        <div class="row main_tab">
+                           <div class="col-md-6">
+                              <div class="left_tab">
+                                 <ul>
+                                    <li>
+                                       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_livecode{{$key}}" aria-expanded="false">
+                                       <span class="fa fa-caret-right"></span>
+                                       </a>
+                                    </li>
+                                    <?php
+                                       $todaydate = new DateTime();
+                                       $todaydate = $todaydate->format('Y-m-d');
+                                       $expired_status=false;
+                                       $live_status=false;
+                                       ?>
+                                    <!-- expire
+                                       agr status 2 hai toh expire
+                                       test opening date  and closing date end hoschuki hai
 
-                           live
-                           agr open hai r close nh toh -->
-                        @if($hosted_test->status == 2)
-                        <li>Expired (terminated)</li>
-                        <?php $expired_status=true;  ?>
-                        @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
-                        <li>Expired</li>
-                        <?php $expired_status=true;   ?>
-                        @elseif(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
-                        <li>Live</li>
-                        <?php $live_status=true;  ?>
-                        @endif
-                        <li>{{$hosted_test->host_name}}</li>
-                     </ul>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="right_tab">
-                     <ul>
-                       <li class="not_selected">
-                         <button type="button" class="btn general_public_link_btn"  data-toggle="modal" data-target="#generate_public_link" name="button">Generate Public Link</button>
-                       </li>
-                        @if(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
-                        <li><a href="{{route('edit_template',['id'=>$hosted_test->host_id, 'flag' => 'host'])}}">Edit</a></li>
-                        @endif
-                        <!--  <li>Report</li> -->
-                        <li>
-                           <div class="dropdown">
-                              <button type="button" id="dropdownMenu2" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                              More
-                              <span class="caret"></span>
-                              </button>
-                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                 <li><a href="{{route('invited_candidates', ['id' => $hosted_test->host_id] )}}">View Invited Candidates</a></li>
-                                 <li><a href="{{route('preview_public_testpage', ['id' => $hosted_test->host_id , 'flag' => 'host'])}}" target="blank">Preview Public Test Page</a></li>
-                                 <li><a href="#" target="blank">View subscribed candidates</a></li>
-                                 <!-- {{route('preview_test', ['id' => $hosted_test->test_template_id])}} -->
-                                 <li><a href="#"  data-url="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" data-id="$hosted_test->test_template_id" class="preview_test_page_btn">Preview Test</a></li>
-                                 <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to delete this Host.', '{{route('host_test_del')}}', {{$hosted_test->host_id}} )" >Delete Test</a></li>
-                                 @if($live_status)
-                                 <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to terminate this Host.', '{{route('host_terminate')}}', {{$hosted_test->host_id}} )" >Terminate</a></li>
-                                 @endif
-                                 <!-- <li role="separator" class="divider"></li> -->
-                                 <!-- <li><a href="#" data-toggle="modal" data-target="#setup_manual
-                                    ">Setup Manual Evaluation</a></li> -->
-                              </ul>
+                                       live
+                                       agr open hai r close nh toh -->
+                                    @if($hosted_test->status == 2)
+                                    <li>Expired (terminated)</li>
+                                    <?php $expired_status=true;  ?>
+                                    @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
+                                    <li class="expired_S">
+                                       <span>
+                                          Expired
+                                       </span>
+                                    </li>
+                                
+
+                                    <?php $expired_status=true;   ?>
+                                    @elseif(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
+                                    <li class="live_s">
+                                       <span>Live</span>
+                                    </li>
+                                    <?php $live_status=true;  ?>
+                                    @endif
+                                    <li>{{$hosted_test->host_name}}</li>
+                                 </ul>
+                              </div>
                            </div>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-            <div class="row border_view">
-               <div id="collapse_livecode{{$key}}" class="panel-collapse collapse">
-                  <div class="col-md-12">
-                     <p class="view_content">Webcam : required</p>
-                  </div>
-                  <div class="col-md-3">
-                     <table class="table table-bordered">
-                        <thead>
-                           <tr>
-                              <th>Candidate attempts <i class="fa fa-sync"></i></th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td>
-                                 <span>Candidates attempted</span>
-                                 <span class="pull-right margin_25">
-                                 <span class="margin_25">:</span>
-                                 1
-                                 </span>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <span>Candidates attempting</span>
-                                 <span class="pull-right margin_25">
-                                 <span class="margin_25">:</span>
-                                 0
-                                 </span>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <span>Candidates passed</span>
-                                 <span class="pull-right margin_25">
-                                 <span class="margin_25">:</span>
-                                 0
-                                 </span>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <div class="col-md-4">
-                     <table class="table table-bordered">
-                        <thead>
-                           <tr>
-                              <th>Timings</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td>
-                                 <span>Starts at</span>
-                                 <span class="pull-right margin_23">
-                                    <span class="margin_25">:</span>
-                                    <!--  Tue, Feb 6, 8:42 AM, CAST -->
-                                    {{ date("F jS, Y H:i", strtotime($hosted_test->test_open_date)) }}
-                                    {{ $hosted_test->test_open_time }}
-                                 </span>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td><span>Ends at  </span>
-                                 <span class="pull-right margin_25">
-                                 <span class="margin_25">:</span>
-                                 {{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}
-                                 {{ $hosted_test->test_close_time }} </span>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td><span>Duration</span>
-                                 <?php
-                                    $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
-                                    $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
+                           <div class="col-md-6">
+                              <div class="right_tab">
+                                 <ul>
+                                   <li class="not_selected">
+                                     <button type="button" class="btn general_public_link_btn"  data-toggle="modal" data-target="#generate_public_link" name="button">Generate Public Link</button>
+                                   </li>
+                                    @if(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
+                                    <li><a href="{{route('edit_template',['id'=>$hosted_test->host_id, 'flag' => 'host'])}}">Edit</a></li>
+                                    @endif
+                                    <!--  <li>Report</li> -->
+                                    <li>
+                                       <div class="dropdown">
+                                          <button type="button" id="dropdownMenu2" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                          More
+                                          <span class="caret"></span>
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                             <li><a href="{{route('preview_public_testpage', ['id' => $hosted_test->host_id , 'flag' => 'host'])}}" target="blank">Preview Public Test Page</a></li>
 
-                                    $datetime1 = new DateTime($to_time." ".$hosted_test->test_open_time);
-                                    $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
-                                    $interval = $datetime1->diff($datetime2);
+                                             <li><a href="{{route('invited_candidates', ['id' => $hosted_test->host_id] )}}">View Invited Candidates</a></li>
+                                     
+                                             <!-- <li><a href="#" target="blank">View subscribed candidates</a></li> -->
+                                             <!-- {{route('preview_test', ['id' => $hosted_test->test_template_id])}} -->
+                                             <li><a href="#"  data-url="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" data-id="$hosted_test->test_template_id" class="preview_test_page_btn">Preview Test</a></li>
+                                             <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to delete this Host.', '{{route('host_test_del')}}', {{$hosted_test->host_id}} )" >Delete Test</a></li>
+                                             @if($live_status)
+                                             <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to terminate this Host.', '{{route('host_terminate')}}', {{$hosted_test->host_id}} )" >Terminate Test</a></li>
+                                             @endif
+                                             <!-- <li role="separator" class="divider"></li> -->
+                                             <!-- <li><a href="#" data-toggle="modal" data-target="#setup_manual
+                                                ">Setup Manual Evaluation</a></li> -->
+                                          </ul>
+                                       </div>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row border_view">
+                           <div id="collapse_livecode{{$key}}" class="panel-collapse collapse">
+                              <div class="col-md-12">
+                                 <p class="view_content">Webcam : required</p>
+                              </div>
+                              <div class="col-md-3">
+                                 <table class="table table-bordered">
+                                    <thead>
+                                       <tr>
+                                          <th>Candidate attempts <!-- <i class="fa fa-sync"></i> --></th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>
+                                             <span>Candidates attempted</span>
+                                             <span class="pull-right margin_25">
+                                             <span class="margin_25">:</span>
+                                             1
+                                             </span>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                             <span>Candidates attempting</span>
+                                             <span class="pull-right margin_25">
+                                             <span class="margin_25">:</span>
+                                             0
+                                             </span>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                             <span>Candidates passed</span>
+                                             <span class="pull-right margin_25">
+                                             <span class="margin_25">:</span>
+                                             0
+                                             </span>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <div class="col-md-4">
+                                 <table class="table table-bordered">
+                                    <thead>
+                                       <tr>
+                                          <th>Timings</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>
+                                             <span>Starts at</span>
+                                             <span class="pull-right margin_23">
+                                                <span class="margin_25">:</span>
+                                                <!--  Tue, Feb 6, 8:42 AM, CAST -->
+                                                {{ date("F jS, Y H:i", strtotime($hosted_test->test_open_date)) }}
+                                                {{ $hosted_test->test_open_time }}
+                                             </span>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td><span>Ends at  </span>
+                                             <span class="pull-right margin_25">
+                                             <span class="margin_25">:</span>
+                                             {{ date("F jS, Y H:i", strtotime($hosted_test->test_close_date)) }}
+                                             {{ $hosted_test->test_close_time }} </span>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td><span>Duration</span>
+                                             <?php
+                                                $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
+                                                $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
 
-                                    ?>
-                                 <span class="pull-right margin_22">
-                                 <span class="margin_29">:</span>
-                                 <?php echo $interval->format('%hh %im');?></span>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <div class="col-md-2">
-                     <table class="table table-bordered">
-                        <thead>
-                           <tr>
-                              <th>Scoring</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td><span>Total Score</span>
-                                 <span class="pull-right margin_20">
-                                 <span class="margin_25">:</span>
-                                 132</span>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td><span>Cut-off Score</span>
-                                 <span class="pull-right margin_20">
-                                 <span class="margin_25">:</span>
-                                 {{$hosted_test->cut_off_marks}}</span>
-                              </td>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <div class="col-md-3">
-                     <table class="table table-bordered">
-                        <thead>
-                           <tr>
-                              <th>Sections</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td>Section1   2 Coding / 8 MCQ (90min)</td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-            </div>
-         </section>
+                                                $datetime1 = new DateTime($to_time." ".$hosted_test->test_open_time);
+                                                $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
+                                                $interval = $datetime1->diff($datetime2);
+
+                                                ?>
+                                             <span class="pull-right margin_22">
+                                             <span class="margin_29">:</span>
+                                             <?php echo $interval->format('%hh %im');?></span>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <div class="col-md-2">
+                                 <table class="table table-bordered">
+                                    <thead>
+                                       <tr>
+                                          <th>Scoring</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td><span>Total Score</span>
+                                             <span class="pull-right margin_20">
+                                             <span class="margin_25">:</span>
+                                             132</span>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td><span>Cut-off Score</span>
+                                             <span class="pull-right margin_20">
+                                             <span class="margin_25">:</span>
+                                             {{$hosted_test->cut_off_marks}}</span>
+                                          </td>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <div class="col-md-3">
+                                 <table class="table table-bordered">
+                                    <thead>
+                                       <tr>
+                                          <th>Sections</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>Section1   2 Coding / 8 MCQ (90min)</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                  </td>
+               </tr>            
          @endforeach
+            </table>            
       </div>
+
       <div id="testemplate" class="tab-pane fade">
          <div class="col-md-12 s_testtemplate_border">
             <div class="view_filter_right">
                <i class="fa fa-filter" data-toggle="modal" name="test_template" data-target="#filter_view"></i>
             </div>
             @if(isset($listing))
+
+            <table id="testTable">
+             <thead><tr><th></th></tr></thead>
+
             @foreach($listing as $key => $value)
+               <tr>
+                  <td>
             <section class="tab_nav accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#template_{{$key}}" aria-expanded="false">
                <div class="row main_tab">
                   <div class="col-md-6">
@@ -367,7 +393,10 @@
                   </div>
                </div>
             </section>
+                  </td>
+               </tr>            
             @endforeach()
+            </table>            
             @endif
             @if(isset($count))
             @if($count == 0)

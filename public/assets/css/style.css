@@ -405,7 +405,7 @@
      float: right;
      margin-bottom:  0;
 }
- .right_tab > ul > li {padding:  22px;}
+ .right_tab > ul > li {padding:  17px;}
  .main_tab {
      border: 1px solid #e1e1e1;
      /* padding-top: 15px; */
@@ -2974,4 +2974,29 @@ ul.public-test-links.vertical-divider {
 .link_delete a{
   color: #ff0000;
   cursor: pointer;
+}
+
+li.live_s span {
+    color: #3fb618;
+    padding-left: 13px;
+    border: 1px solid #3fb618;
+    padding-right: 13px;
+    font-size: 13px;
+}
+
+li.expired_S span {
+    background: #ddd;
+    color: #888;
+    font-size: 13px;
+    padding: 2px 5px;
+}
+
+.s_tab_bar table.dataTable thead th, .s_tab_bar table.dataTable thead td{
+
+     padding: 0px 0px;
+    border-bottom: 0px solid transparent;
+}
+
+.s_tab_bar table.dataTable tbody th, .s_tab_bar table.dataTable tbody td{
+     padding: 0px 0px;
 }

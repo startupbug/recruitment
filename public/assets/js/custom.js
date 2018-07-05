@@ -2880,3 +2880,17 @@ function mcqs_clear_selection() {
   // }).get(),
   //  $('#public_question_mcq_id').val(public_question_mcq)
 }
+
+/* Test Template DataTable */
+$('#testTable').DataTable({
+   searching: false,
+   ordering:  false,
+   bLengthChange: false,
+});
+
+/* Host Datatable */
+$('#hostTable').DataTable({
+   searching: false,
+   ordering:  false,
+   bLengthChange: false,
+});

@@ -1753,7 +1753,7 @@
                                           @endif
                                           <textarea name="setting_message" class="form-control" rows="5" placeholder="Your message">@if(isset($edit_test_settings_message)){{$edit_test_settings_message->setting_message}}@endif</textarea>
                                           <div>
-                                             You can use tags such as &lt;candidateName&gt; and &lt;testTitle&gt; to represent candidate name and test title respectively.<br>
+                                             Youx can use tags such as &lt;candidateName&gt; and &lt;testTitle&gt; to represent candidate name and test title respectively.<br>
                                              For example:Hi &lt;candidateName&gt;,Your test - &lt;testTitle&gt; has been submitted successfully.
                                           </div>
                                        </div>
