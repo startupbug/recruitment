@@ -47,7 +47,7 @@
                            <label for="text" class="glyphicon glyphicon-search" rel="tooltip" title="text"></label>
                         </div>
                      </div>
-                     <div class="searchSuggetionCont ">
+                     <div class="searchSuggetionCont hidden">
                       
                      </div>
                      <!-- <div class="searchSuggetionCont ">

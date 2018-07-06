@@ -277,6 +277,14 @@ $('#input-search').keyup(function(e) {
     }, 1000 );
 });
 
+$('input#input-search').on("focus", function() {
+  $('.searchSuggetionCont').removeClass('hidden');
+})
+$('input#input-search').on("blur", function() {
+  $('.searchSuggetionCont').addClass('hidden');
+})
+
+
 // $("#input-search").on("keyup", function(e) {
 
 //   setTimeout(function(){
