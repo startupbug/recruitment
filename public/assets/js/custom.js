@@ -2894,3 +2894,66 @@ $('#hostTable').DataTable({
    ordering:  false,
    bLengthChange: false,
 });
+
+/* Advanced Settings Form */
+
+$(".advanSetForm").on('submit', function(e){
+    e.preventDefault();
+    console.log("advamced setting");
+
+    var form = $(this).serialize();
+
+      console.log(form);
+    $.ajax({
+        type: 'post',
+        url: $(this).attr('action'),
+        data: form,
+        processData: false,
+        success: function(data){
+            console.log(data);
+            if(data.status == 200){
+              alertify.success(data.msg);
+            }else if(data.status == 202){
+              alertify.warning(data.msg);
+            }
+        },
+        error: function(){
+            alertify.warning('Error. Something went wrong');
+        }
+    });    
+});
+
+$(".advanSetForm_1").on('submit', function(e){
+    e.preventDefault();
+    console.log("advamced setting 1");
+
+    var form = $(this).serialize();
+
+      console.log(form);
+    $.ajax({
+        type: 'post',
+        url: $(this).attr('action'),
+        data: form,
+        processData: false,
+        success: function(data){
+            console.log(data);
+            if(data.status == 200){
+              alertify.success(data.msg);
+            }else if(data.status == 202){
+              alertify.warning(data.msg);
+            }
+        },
+        error: function(){
+            alertify.warning('Error. Something went wrong');
+        }
+    });    
+});
+
+
+/* Advance setting Button */
+
+$(".adn_set_btn").on('click', function(e){   
+  $("#section_name").val($(this).data('name'));
+  $(".adv_section_id").val($(this).data('id'));
+
+});

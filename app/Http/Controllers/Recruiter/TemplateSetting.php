@@ -11,6 +11,8 @@ use App\Question_tag;
 use Auth;
 use DB;
 use App\Host_Templates_Test_Settings;
+use App\Advanced_setting;
+use App\Section;
 
 class TemplateSetting extends Controller
 {
@@ -233,6 +235,7 @@ class TemplateSetting extends Controller
     		return \Response()->Json([ 'array' => $e]);
     	}
 	}
+
 	public function delete_question_tag(Request $request){
 		$delete = Question_tag::find($request->id);
 		if ($delete->delete()){				
@@ -240,5 +243,85 @@ class TemplateSetting extends Controller
 		}else{
 			return \Response()->Json([ 'status' => 200,'msg'=>'Something Went Wrong Please Try Again!']);	
 		}	
+	}
+
+	//Advance Setting Post request
+	public function advance_setting_form(Request $request){
+
+		try {
+
+			//Updating Section name
+			$section = Section::find($request->input('section_id'));
+			$section->section_name = $request->input('section_name');		
+			$section_save = $section->save();
+
+			$section_id = $request->input('section_id'); 
+			$template_id = $request->input('test_id');
+
+			$adv_exists = Advanced_setting::where('section_id', $section_id)->where('test_id', $template_id)->first();
+			
+			if(is_null($adv_exists)){
+				//Create new settings for this section
+				$advanced_setting = new Advanced_setting();				
+
+			}else{
+				//Update settings for this Section
+				$advanced_setting = Advanced_setting::find($adv_exists->id);
+
+			}
+			
+			foreach ($request->input() as $key => $value) {
+				if($key != 'section_name' && $key != '_token'){
+					$advanced_setting->$key = $request->input($key);
+				}
+			}
+
+			if ($advanced_setting->save() && $section_save){				
+				return \Response()->Json([ 'status' => 200, 'msg'=>'Advance Setting Successfully Updated']);
+			}else{
+				return \Response()->Json([ 'status' => 202, 'msg'=>'Advance Setting couldnot be Updated']);	
+			}
+
+		} catch (QueryException $e) {
+	    		return \Response()->Json(['array' => $e]);
+	    }
+
+	}
+
+	public function advance_setting_form_1(Request $request){
+
+		try {
+
+			$section_id = $request->input('section_id'); 
+			$template_id = $request->input('test_id');
+
+			$adv_exists = Advanced_setting::where('section_id', $section_id)->where('test_id', $template_id)->first();
+			
+			if(is_null($adv_exists)){
+				//Create new settings for this section
+				$advanced_setting = new Advanced_setting();				
+
+			}else{
+				//Update settings for this Section
+				$advanced_setting = Advanced_setting::find($adv_exists->id);
+
+			}
+			
+			foreach ($request->input() as $key => $value) {
+				if($key != 'section_name' && $key != '_token'){
+					$advanced_setting->$key = $request->input($key);
+				}
+			}
+
+			if ($advanced_setting->save()){				
+				return \Response()->Json([ 'status' => 200, 'msg'=>'Advance Setting Successfully Updated']);
+			}else{
+				return \Response()->Json([ 'status' => 202, 'msg'=>'Advance Setting couldnot be Updated']);	
+			}
+
+		} catch (QueryException $e) {
+	    		return \Response()->Json(['array' => $e]);
+	    }
+
 	}
 }

@@ -704,3 +704,81 @@ ul.add_resources_submission_ul .s_close {
 .clear_question.active {
     display: inline-block !important;
 }
+
+
+
+.searchSuggetionCont {
+    width: 500px;
+    position: absolute;
+    background-color: #ddd;
+    z-index: 15;
+    font-weight: 700;
+    padding: 32px 8px 0;
+    border-radius: 2px;
+    margin-top: 3px;
+    overflow: auto;
+    height: 300px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.18);
+    color: #333;
+}
+.resultClose {
+    background-image: url(../img/close.svg);
+    background-repeat: no-repeat;
+    background-size: auto 24px;
+    width: 35px;
+    height: 35px;
+    background-position: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+.searchSuggetionCont .hkb-searchresults__noresults {
+    text-align: center;
+    padding: 18px 0;
+    font-size: 20px;
+}
+.searchSuggetionCont ul li {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background-color: #fff;
+    border-radius: 3px;
+}
+.searchSuggetionCont ul#hkb {
+    padding: 0;
+}
+.searchSuggetionCont ul li:hover {
+    background-color: #f0f0f0;
+}
+.searchSuggetionCont ul li a span {
+    display: block;
+    color: black;
+    font-size: 16px;
+}
+.searchSuggetionCont .hkb-searchresults__excerpt {
+    font-weight: 400!important;
+    font-size: 15px;
+    color: #999!important;
+}
+.searchSuggetionCont .hkb-searchresults__showall {
+    color: black;
+    text-align: center;
+}
+.searchSuggetionCont .hkb-searchresults__showall a{
+    color: black;
+}
+.s_text_right_value{
+  text-align: left !important;
+}
+.s_checkbox_value{
+   margin-left: 0px;
+}
+.model_table th {
+    background-color: #fff;
+    font-weight: 600;
+    color: black;
+}
+
+.model_table td {
+    color: black;
+}

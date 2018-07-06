@@ -250,5 +250,10 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 	Route::post('/advance_filter','Recruiter\LibraryController@advance_filter')->name('advance_filter');
 	Route::post("ajax_tag_post", "Recruiter\TemplateSetting@ajax_tag_post");
 	Route::post("delete_question_tag", "Recruiter\TemplateSetting@delete_question_tag")->name('delete_question_tag');
+
+	//Advance setting form post request
+	Route::post('/advance_settings', 'Recruiter\TemplateSetting@advance_setting_form')->name('advance_setting_form');
+
+	Route::post('/advance_settings_1', 'Recruiter\TemplateSetting@advance_setting_form_1')->name('advance_setting_form_1');
 });
 /*Recruiter Routes Ended*/
