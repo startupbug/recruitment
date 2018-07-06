@@ -12,6 +12,9 @@
 */
 
 //Common/General Routes Started
+
+Route::post("/dashboard_search","Recruiter\RecruiterController@dashboard_search")->name("dashboard_search");
+
 Route::get('/logout', 'PagesController@logout_function')->name('logout_function');
 /*Authentication Routes Started*/
 Route::get('/', 'AuthenticationController@login_index')->name('login_index');
@@ -58,6 +61,12 @@ Route::group(['prefix' => 'admin' ,  'middleware' => 'is-admin'], function () {
 	Route::get('/admin_edit_question/{id}','Admin\Admin_questionController@question_edit')->name('admin_edit_question');
 	Route::post('/admin_question_update/{id}','Admin\Admin_questionController@question_update')->name('update_question_for_admin');
 	Route::get('/admin_question_delete/{id}','Admin\Admin_questionController@question_destroy')->name('admin_question_destroy');
+	Route::get('/create_faq','Admin\HelpController@create_faq')->name('create_faq');
+	Route::post('/create_faq_questions','Admin\HelpController@create_faq_questions')->name('create_faq_questions');
+	Route::get('faq_index','Admin\HelpController@index')->name('faq_index');
+	Route::get('edit_faq/{id}','Admin\HelpController@edit_faq')->name('edit_faq');
+	Route::post('edit_faq_question/{id}','Admin\HelpController@edit_faq_question')->name('edit_faq_question');
+	Route::get('faq_question_destroy/{id}','Admin\HelpController@faq_question_destroy')->name('faq_question_destroy');
 });
 
 /*Admin Routes Ended*/
@@ -109,7 +118,10 @@ Route::group(['prefix' => 'candidate' ,  'middleware' => 'is-candidate'], functi
 	Route::get('/can_profile_view', 'Candidate\CandidateProfileController@can_profile_view')->name('can_profile_view');
 });
 /*Candidate Routes Ended*/
+Route::get('/preview_test/{id}/{page?}','Recruiter\TemplatesController@preview_test')->name('preview_test1');
 
+	//Load Section
+	Route::get('/preview_testz/{sectionid}/{templateid}','Recruiter\TemplatesController@load_section')->name('load_section1');
 /*Recruiter Routes Started*/
 
 Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], function () {
@@ -118,18 +130,24 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 	Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard');
 	Route::post('update_password_recruiter', 'Recruiter\RecruiterController@update_password_recruiter')->name('update_password_recruiter');
 
-	//Customer support
-	Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support_view')->name('customer_support_view');
-	Route::post('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
 
+//Customer support
+Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support_view')->name('customer_support_view');
+Route::post('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
+Route::get('delete_invitation/{id}','Recruiter\Invite_Candidate_Controller@delete_invitation')->name('delete_invitation');
 
-	Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query');
+Route::post('send_remainder','Recruiter\Invite_Candidate_Controller@send_remainder')->name('send_remainder');
+Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query');
 
 	Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
 
 	Route::get('/invited_candidates/{id}', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
 
-	Route::post('/invitaion_to_candidate/{id}','Recruiter\Invite_Candidate_Controller@invitaion_to_candidate')->name('invitaion_to_candidate');
+
+Route::post('/invitaion_to_candidate/{id}','Recruiter\Invite_Candidate_Controller@invitaion_to_candidate')->name('invitaion_to_candidate');
+
+Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
+
 
 	Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
 
@@ -140,7 +158,7 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 	Route::get('/delete_question_test_case/{id?}','Recruiter\QuestionsController@delete_test_case')->name('delete_test_case');
 
 
-	Route::get('/preview_test_questions', 'Recruiter\RecruiterController@preview_test_questions')->name('preview_test_questions');
+	
 	Route::get('/change_password', 'Recruiter\RecruiterController@change_password')->name('change_password');
 	Route::get('/general_setting', 'Recruiter\RecruiterController@general_setting')->name('general_setting');
 	Route::get('/setting_info', 'Recruiter\RecruiterController@setting_info')->name('setting_info');
@@ -255,5 +273,10 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 	Route::post('/advance_settings', 'Recruiter\TemplateSetting@advance_setting_form')->name('advance_setting_form');
 
 	Route::post('/advance_settings_1', 'Recruiter\TemplateSetting@advance_setting_form_1')->name('advance_setting_form_1');
+
 });
+
+
+
+
 /*Recruiter Routes Ended*/

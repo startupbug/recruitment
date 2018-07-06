@@ -7,9 +7,19 @@
       <div class="col-md-3 col-md-offset-9 col-padding">
         <span id="m_timer">
         </span>
+        @if(Auth::check())
+          @if(Auth::user()->role_id == 2)
+          <a class="finish_url" href="{{route('load_section1', [ 'sectionid' => $sec_param, 'templateid' => $sec_template_id])}}">
+            <button type="submit" class="btn f_finish" data-url="">Finish test</button> 
+          </a>
+          @endif
+          @if(Auth::user()->role_id == 3)
           <a class="finish_url" href="{{route('load_section', [ 'sectionid' => $sec_param, 'templateid' => $sec_template_id])}}">
             <button type="submit" class="btn f_finish" data-url="">Finish test</button> 
           </a>
+          @endif
+        @endif
+          
       </div>
     </div>
   </div>
@@ -67,34 +77,46 @@
             <div class="col-md-7 extended-coding-question border_custom">
               
                 <div id="mcqs_radio_border_{{ $key+1 }}" class="radio s_radio_border">
-                @if($question->question_type_id == 1 && isset($options))
-                @foreach($options as $option)
-                  <label>
-                      <input type="radio" class="radio_button" name="optradio{{ $key+1 }}">
-                      {!!$option->choice!!}
-                  </label>
-                  @endforeach
-                  <!-- <label>
-                      <input type="radio" class="radio_button" name="optradio{{ $key+1 }}">
-                      {!!$question->question_statement!!}
-                  </label> -->
+                @if($question->question_type_id == 1)
+                  @if(isset($options))
+                    @foreach($options as $option)
+                        @foreach($option as $opt)
+                          <label> 
+                            {{$opt->choice}}
+                          </label>
+                        @endforeach 
+                    @endforeach
                   @endif
+                @endif
                 </div>
               
-              @if($question->question_type_id == 2 && isset($coding_entries))
-              @foreach($coding_entries as $coding_entry)
-                  <label>
-                    {!!$coding_entry->input!!}
-                    {!!$coding_entry->output!!}
-                  </label>
-              @endforeach
+              @if($question->question_type_id == 2 )
+                @if(isset($coding_entries))
+                  @foreach($coding_entries as $coding_entry)
+                  
+                    @foreach($coding_entry as $key => $coding)
+                    {{$key +1}}
+                      <label> 
+                      input  {{($coding->input)}}
+                      output  {{($coding->output)}}
+                      </label>
+                    @endforeach
+                  @endforeach
+                @endif
               @endif
-              @if($question->question_type_id == 3 && isset($submissions))
-              @foreach($submissions as $submission)
-                  <label>
-                    {!!$submission->submission_evaluation_title!!}
-                  </label>
-              @endforeach
+
+
+
+              @if($question->question_type_id == 3 )
+                @if(isset($submissions))
+                  @foreach($submissions as $submission)
+                    @foreach($submission as $key => $sub)
+                      <label> 
+                       {{$key + 1}} {{($sub->submission_evaluation_title)}}
+                      </label>
+                    @endforeach
+                  @endforeach
+                @endif
               @endif
 
                 <div class="button_question">

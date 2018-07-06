@@ -243,8 +243,56 @@ $("#both_check_1").on('change', function () {
   }
 });
 
-  
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
 
+  
+$('#input-search').keyup(function(e) {
+    
+    delay(function(){
+      //alert('Time elapsed!');
+      console.log("value: " + $("#input-search").val());
+
+      var search_text = $("#input-search").val();
+      var url = $("#input-search").data('url');
+      console.log(url);
+       $.ajax({
+        url : $("#input-search").data('url'),
+        type: "post",
+        data: {'search_text':search_text}, // back to a string!
+        success : function (data) {
+          console.log(data);
+          $(".searchSuggetionCont").html(data.html);
+          //   $.each( data, function( key, value ) {
+          //   console.log(value);
+          // });
+        },
+        // and so on
+                });
+    }, 1000 );
+});
+
+$('input#input-search').on("focus", function() {
+  $('.searchSuggetionCont').removeClass('hidden');
+})
+$('input#input-search').on("blur", function() {
+  $('.searchSuggetionCont').addClass('hidden');
+})
+
+
+// $("#input-search").on("keyup", function(e) {
+
+//   setTimeout(function(){
+//     console.log("value: " + $("#input-search").val());
+//   }
+//   , 2000);
+
+// });
 
 // $('.paginathing_table tbody').paginathing({
 //       perPage: 10,

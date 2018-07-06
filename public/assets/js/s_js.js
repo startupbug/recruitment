@@ -3417,8 +3417,8 @@ $( document ).ready(function() {
 
     $('#m_timer').countdowntimer({
         hours : 0,
-        minutes :0,
-        seconds :10,
+        minutes :1,
+        seconds :0,
         timeUp : timeisUp,
         size : "lg"
     });

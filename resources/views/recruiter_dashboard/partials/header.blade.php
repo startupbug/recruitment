@@ -43,11 +43,17 @@
                   <li class="searchbar">
                      <div class="header-search">
                         <div class="icon-addon addon-md">
-                           <input type="text" placeholder="Search Help Doc Ex: How To Host Test" class="form-control input-search">
+                           <input type="text" placeholder="Search Help Doc Ex: How To Host Test" class="form-control" id="input-search" data-url="{{route('dashboard_search')}}">
                            <label for="text" class="glyphicon glyphicon-search" rel="tooltip" title="text"></label>
                         </div>
                      </div>
                      <div class="searchSuggetionCont hidden">
+                      
+                     </div>
+                     <!-- <div class="searchSuggetionCont ">
+
+                     <div class="searchSuggetionCont hidden">
+>>>>>>> 0c8b8814cc5b1c799c137fc5c6b33caeca9ea40d
                        <div class="resultClose pull-right"></div>
                        <div>
                          <ul id="hkb" class="hkb-searchresults">
@@ -97,7 +103,7 @@
                            </li>
                          </ul>
                        </div>
-                     </div>
+                     </div> -->
                   </li>
                </ul>
             </div>

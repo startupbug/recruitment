@@ -70,7 +70,7 @@ class Admin_questionController extends Controller
     {
       $destroy = Admin_question::find($id);
       $destroy->delete();
-       $this->set_session('User Is Deleted', true); 
+      $this->set_session('User Is Deleted', true); 
       return redirect()->route('adminquestion_index');
     }
     

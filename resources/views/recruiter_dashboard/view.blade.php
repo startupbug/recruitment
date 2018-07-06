@@ -72,29 +72,50 @@
                                        agr status 2 hai toh expire
                                        test opening date  and closing date end hoschuki hai
 
-                                       live
-                                       agr open hai r close nh toh -->
-                                    @if($hosted_test->status == 2)
-                                    <li>Expired (terminated)</li>
-                                    <?php $expired_status=true;  ?>
-                                    @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
-                                    <li class="expired_S">
-                                       <span>
-                                          Expired
-                                       </span>
-                                    </li>
-                                
+                           live
+                           agr open hai r close nh toh -->
+                        @if($hosted_test->status == 2)
+                        <li>Expired (terminated)</li>
+                        <?php $expired_status=true;  ?>
+                        @elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
+                        <li>Expired</li>
+                        <?php $expired_status=true;   ?>
+                        @elseif(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
+                        <li>Live</li>
+                        <?php $live_status=true;  ?>
+                        @endif
+                        <li>{{$hosted_test->host_name}}</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="right_tab">
+                     <ul>
+                        @if(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
+                        <li><a href="{{route('edit_template',['id'=>$hosted_test->host_id, 'flag' => 'host'])}}">Edit</a></li>
+                        @endif
+                        <!--  <li>Report</li> -->
+                        <li>
+                           <div class="dropdown">
+                              <button type="button" id="dropdownMenu2" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              More
+                              <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                 <li><a href="{{route('invited_candidates', ['id' => $hosted_test->host_id] )}}">View Invited Candidates</a></li>
+                                 <li><a href="{{route('preview_public_testpage', ['id' => $hosted_test->host_id , 'flag' => 'host'])}}" target="blank">Preview Public Test Page</a></li>
+                                 <li><a href="#" target="blank">View subscribed candidates</a></li>
+                                 <!-- {{route('preview_test', ['id' => $hosted_test->test_template_id])}} -->
+                                 <li><a href="#"  data-url="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" data-id="$hosted_test->test_template_id" class="preview_test_page_btn">Preview Test</a></li>
+                                 <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to delete this Host.', '{{route('host_test_del')}}', {{$hosted_test->host_id}} )" >Delete Test</a></li>
+                                 @if($live_status)
+                                 <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to terminate this Host.', '{{route('host_terminate')}}', {{$hosted_test->host_id}} )" >Terminate</a></li>
+                                 @endif
+                                 <!-- <li role="separator" class="divider"></li> -->
+                                 <!-- <li><a href="#" data-toggle="modal" data-target="#setup_manual
+                                    ">Setup Manual Evaluation</a></li> -->
+                              </ul>
 
-                                    <?php $expired_status=true;   ?>
-                                    @elseif(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
-                                    <li class="live_s">
-                                       <span>Live</span>
-                                    </li>
-                                    <?php $live_status=true;  ?>
-                                    @endif
-                                    <li>{{$hosted_test->host_name}}</li>
-                                 </ul>
-                              </div>
                            </div>
                            <div class="col-md-6">
                               <div class="right_tab">
@@ -407,46 +428,7 @@
       </div>
    </div>
 </div>
-<!--create duplicate template on view page-->
-<div class="modal fade" id="generate_public_link" role="dialog">
- <div class="modal-dialog  modal-lg" style="width: 50%; height: 50%;">
-    <!-- Modal content-->
-  <div class="modal-content filter">
-    <div class="modal-header s_modal_form_header">
-      <div class="pull-right">
-         <button type="button" class="btn btn-default s_font" data-dismiss="modal">Cancel</button>
-      </div>
-      <h3 class="modal-title s_font f_font">Public test link for : csmg667</h3>
-    </div>
-    <div class="modal-body s_modal_form_body modal_top modal_duplicate">
-      <ul class="public-test-links vertical-divider">
-        <li>
-          <div class="row">
-           <div class="col-md-10">
-            <div class="input-group input-group-sm">
-               <input type="text" class="form-control links-text text_1" readonly="" value="https://codeground.in//code4/#/publicview/test/candidate/token/iohptqav">
-               <span class="input-group-btn">
-                 <button class="btn btn-default copy_url"  data-clipboard-target=".text_1" type="button">Copy</button>
-               </span>
-            </div>
-           </div>
-           <div class="col-md-2 link_delete">
-            <a class="delete">Delete</a>
-           </div>
-          </div>
-        </li>
-      </ul>
-      <div class="testAttempt">
-       <div class="clearfix">
-        <div class="pull-right">
-         <button type="submit" class="btn general_public_link_btn">Generate Public Link</button>
-        </div>
-       </div>
-      </div>
-    </div>
-  </div>
- </div>
-</div>
+
 @endsection
 
 @section('createtemplate')

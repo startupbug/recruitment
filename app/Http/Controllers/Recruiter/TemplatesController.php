@@ -47,6 +47,8 @@ class TemplatesController extends Controller
 
         $check_box = Input::get('search');
         $check_box2 = Input::get('search2');
+        $args['random_string'] = str_random(7);
+
         //dd($check_box);
 
         if(isset($name))
@@ -705,23 +707,38 @@ public function preview_test(Request $request,$id){
 
       $args['sections']['questions'] = Question::where('section_id',$args['sections']->id)->get();
       // dd($args['sections']);
+      $submission_array = array();
+      $coding_array[] = array();
+      $options_array[] = array();
       foreach($args['sections']['questions'] as $question)
       {
-        if($question->question_type_id == 1)
-        {
-          $args['options'] = Mulitple_choice::where('question_id',$question->id)->get();
-        }
-        if($question->question_type_id == 2)
-        {
-          $args['coding_entries'] = Coding_entry::where('question_id',$question->id)->get();
-          // dd($args['coding_entries']);
-        }
-        if($question->question_type_id == 3)
-        {
-          $args['submissions'] = Questions_submission_resource::where('question_id',$question->id)->get();
-          // dd($args['coding_entries']);
-        }
+         // dd($question->id);
+        $submission_array[] = Question_submission_evaluation::where('question_id',$question->id)->get();
+        $coding_array[] = Coding_entry::where('question_id',$question->id)->get();
+        $options_array[] = Mulitple_choice::where('question_id',$question->id)->get();
+        // dd($args['submissions']);
+        // if($question->question_type_id == 1)
+        // {
+        //   $args['options'] = Mulitple_choice::where('question_id',$question->id)->get();
+        // }
+        // if($question->question_type_id == 2)
+        // {
+        //   $args['coding_entries'] = Coding_entry::where('question_id',$question->id)->get();
+        //   // dd($args['coding_entries']);
+        // }
+        // if($question->question_type_id == 3)
+        // {
+        //   $args['submissions'] = Questions_submission_resource::where('question_id',$question->id)->get();
+        //   // dd($args['coding_entries']);
+        // }
       }
+
+      $args['submissions'] = $submission_array;
+      $args['coding_entries'] = $coding_array;
+      $args['options'] = $options_array;
+      // dd( $args['options']);
+      // dd($args['submissions']);
+
     //dd($args['sections']->questions);
     
     $preview_li_html = view('recruiter_dashboard.preview_test')->with($args)->render();
@@ -779,25 +796,35 @@ public function load_section($section_id, $template_id){
     //     $item['questions'] = Question::where('section_id',$item->id)->get();
      
     //   });
-    foreach($args['sections']['questions'] as $question)
+    $submission_array = array();
+      $coding_array[] = array();
+      $options_array[] = array();
+      foreach($args['sections']['questions'] as $question)
       {
-        if($question->question_type_id == 1)
-        {
-          $args['options'] = Mulitple_choice::where('question_id',$question->id)->get();
-        }
-        if($question->question_type_id == 2)
-        {
-          $args['coding_entries'] = Coding_entry::where('question_id',$question->id)->get();
-          // dd($args['coding_entries']);
-        }
-        if($question->question_type_id == 3)
-        {
-          $args['submissions'] = Questions_submission_resource::where('question_id',$question->id)->get();
-          // dd($args['coding_entries']);
-        }
+         // dd($question->id);
+        $submission_array[] = Question_submission_evaluation::where('question_id',$question->id)->get();
+        $coding_array[] = Coding_entry::where('question_id',$question->id)->get();
+        $options_array[] = Mulitple_choice::where('question_id',$question->id)->get();
+        // dd($args['submissions']);
+        // if($question->question_type_id == 1)
+        // {
+        //   $args['options'] = Mulitple_choice::where('question_id',$question->id)->get();
+        // }
+        // if($question->question_type_id == 2)
+        // {
+        //   $args['coding_entries'] = Coding_entry::where('question_id',$question->id)->get();
+        //   // dd($args['coding_entries']);
+        // }
+        // if($question->question_type_id == 3)
+        // {
+        //   $args['submissions'] = Questions_submission_resource::where('question_id',$question->id)->get();
+        //   // dd($args['coding_entries']);
+        // }
       }
-    
-     // dd($args['section_questions']);
+
+      $args['submissions'] = $submission_array;
+      $args['coding_entries'] = $coding_array;
+      $args['options'] = $options_array;
     $preview_li_html = view('recruiter_dashboard.preview_test')->with($args)->render();
     return $preview_li_html;  
   //

@@ -49,7 +49,7 @@ function functionAddNewTag(){
 
 //Update Test Template	
 $(".QuestionTagSetting").on('click', function(e){
-	console.log("asdasd"  + $(this).data('id'));
+	console.log("asdasdzzzzz"  + $(this).data('id'));
   e.preventDefault();
   //var formData = $(this).serialize();
   $.ajaxSetup({
@@ -59,7 +59,7 @@ $(".QuestionTagSetting").on('click', function(e){
     //type: $(this).attr('method'),
     //url: $(this).attr('action'),
     method: 'post',
-	url: base_url+'delete_question_tag',
+	url: $(this).data('url'),
     data: {id: $(this).data('id')}, 
              
     success: function (data) { 
