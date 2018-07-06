@@ -12,6 +12,9 @@
 */
 
 //Common/General Routes Started
+
+Route::post("/dashboard_search","Recruiter\RecruiterController@dashboard_search")->name("dashboard_search");
+
 Route::get('/logout', 'PagesController@logout_function')->name('logout_function');
 /*Authentication Routes Started*/
 Route::get('/', 'AuthenticationController@login_index')->name('login_index');
@@ -265,5 +268,10 @@ Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@lib
 	Route::post('/advance_filter','Recruiter\LibraryController@advance_filter')->name('advance_filter');
 	Route::post("ajax_tag_post", "Recruiter\TemplateSetting@ajax_tag_post");
 	Route::post("delete_question_tag", "Recruiter\TemplateSetting@delete_question_tag")->name('delete_question_tag');
+	
 });
+
+
+
+
 /*Recruiter Routes Ended*/

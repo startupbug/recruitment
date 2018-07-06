@@ -24,6 +24,7 @@ use App\Allowed_language;
 use App\Question_state;
 use App\Invite_candidate;
 use App\Hosted_test;
+use App\Help;
 
 class RecruiterController extends Controller
 {
@@ -308,5 +309,20 @@ class RecruiterController extends Controller
       } catch (QueryException $e) {
         return \Response()->Json([ 'array' => $e]);
       }
+    }
+
+    public function dashboard_search(Request $request)
+    {
+      //return 123;
+      $word = $request->input('search_text');
+      // return ($request->input());
+      // recruiter_dashboard
+      // question_result
+      // search_reasult
+      $results = Help::where('question', 'LIKE', "%{$word}%")->get();
+      //return $result;
+      $options = view("recruiter_dashboard.question_result.search_reasult")->with('results', $results)->render();
+      return \Response()->Json([ 'status' => 200, 'html' => $options]);
+      //return $options;
     }
 }
