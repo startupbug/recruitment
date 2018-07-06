@@ -51,6 +51,9 @@
                       
                      </div>
                      <!-- <div class="searchSuggetionCont ">
+
+                     <div class="searchSuggetionCont hidden">
+>>>>>>> 0c8b8814cc5b1c799c137fc5c6b33caeca9ea40d
                        <div class="resultClose pull-right"></div>
                        <div>
                          <ul id="hkb" class="hkb-searchresults">

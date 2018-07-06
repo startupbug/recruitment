@@ -542,7 +542,7 @@
                               </div>
                               <div class="form-group form-group-sm">
                                  <label class="control-label col-md-8 col-sm-8 col-xs-8">
-                                 <a href="">Advanced Settings</a>
+                                 <a href="#s_advanced_setting" data-toggle="modal">Advanced Settings</a>
                                  </label>
                               </div>
                               <button type="button" class="btn btn-primary btn-sm">Save</button>
@@ -1234,7 +1234,7 @@
                                      <h5><strong>Questions</strong></h5>
                                      <ul class="unordered-list">
                                        <li></li>
-                                      
+
                                        @foreach ($template_question_setting as $t_q_s)
                                        <li class="questionBorder">
                                          <form action="{{route('new_user_question_edit')}}" method="post">
@@ -1889,6 +1889,228 @@
    </div>
 </section>
 <!-- Edit-public-page-Modal -->
+
+<div class="modal fade" id="s_advanced_setting" role="dialog" style="">
+   <div class="modal-dialog  modal-lg s-modal-lg ">
+      <!-- Modal content-->
+      <div class="modal-content s_content_radius">
+         <div class="modal-header s_modal_header_first">
+            <h3 class="modal-title ">Advanced Settings (Section- 28723961)</i>
+               <button type="button" class="btn btn-sm btn-default pull-right" data-dismiss="modal">Close</button>
+            </h3>
+         </div>
+         <div class="modal-body">
+           <div class="panel panel-default">
+             <div class="panel-heading">
+                Basic Configuration
+             </div>
+             <div class="panel-body">
+                <form class="form-horizontal" style="">
+                   <div class="form-group form-group-sm">
+                      <label class="control-label col-xs-4 s_text_right_value">Name</label>
+                      <div class="col-xs-8">
+                         <input type="text" placeholder="SECTION-1" class="form-control">
+                      </div>
+                   </div>
+                   <div class="form-group form-group-sm">
+                      <label class="control-label col-xs-4 s_text_right_value">Window Proctoring</label>
+                      <div class="checkbox s_checkbox_value col-xs-8">
+                         <label>
+                         <input type="checkbox">
+                         </label>
+                      </div>
+                   </div>
+                   <div class="form-group form-group-sm">
+                      <label class="control-label col-xs-4 s_text_right_value">Question Shuffling</label>
+                      <div class="checkbox s_checkbox_value col-xs-8">
+                         <label>
+                         <input type="checkbox">
+                         <small>Shuffle questions for each candidate to have random sequence </small>
+                         </label>
+                      </div>
+                   </div>
+                   <div class="form-group form-group-sm">
+                      <label class="control-label col-xs-4 s_text_right_value">Attempt Once</label>
+                      <div class="checkbox s_checkbox_value col-xs-8">
+                         <label>
+                         <input type="checkbox">
+                         <small>Don't allow candidate to navigate to previously attempted question </small>
+                         </label>
+                      </div>
+                   </div>
+                   <div class="form-group form-group-sm">
+                      <label class="control-label col-xs-4 s_text_right_value">Move to next question on option select(MCQ)</label>
+                      <div class="checkbox s_checkbox_value col-xs-8">
+                         <label>
+                         <input type="checkbox">
+                         <small>Candidate need not click on next button</small>
+                         </label>
+                      </div>
+                   </div>
+                   <div class="form-group form-group-sm">
+                      <label class="control-label col-xs-4 s_text_right_value">Show Calculator</label>
+                      <div class="col-xs-8">
+                         <input type="checkbox">
+                      </div>
+                   </div>
+                   <div class="form-group form-group-sm" >
+                      <label class="control-label col-xs-4 s_text_right_value">Duration (mins)</label>
+                      <div class="col-xs-8">
+                         <input type="number" min="0" placeholder="duration"  class="form-control" style="">
+                      </div>
+                   </div>
+                </form>
+             </div>
+             <div class="panel panel-default">
+               <div class="panel-heading">
+                  Question Pooling
+               </div>
+               <div class="panel-body">
+                  <span class="text text-warning hidden">
+                  The Question Pooling is disabled if Adaptive Section activated
+                  </span>
+                  <form class="form-horizontal">
+                     <div class="form-group form-group-sm">
+                        <label class="control-label col-xs-4 s_text_right_value">Enable Question Pooling</label>
+                        <div class="checkbox s_checkbox_value col-xs-8">
+                           <label>
+                           <input type="checkbox" class="enable_question_pooling">
+                           </label>
+                        </div>
+                     </div>
+                     <div class="form-group form-group-sm easy_pooling hidden">
+                        <label class="control-label col-xs-4 s_text_right_value">Advanced pooling</label>
+                        <div class="checkbox s_checkbox_value col-xs-8">
+                           <label>
+                           <input type="checkbox" class="advanced_pooling">
+                           </label>
+                        </div>
+                     </div>
+                  </form>
+                  <div class="row easy_pooling hidden">
+                    <div class="col-md-12">
+                      <table class="table model_table table-middle no-margin">
+                        <thead>
+                          <tr>
+                            <th colspan="3" style="padding-left:0">
+                              Pooling Configurations
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="easy_pooling hidden">
+                            <td class="col-sm-4" style="padding-left:0">
+                              <strong>EASY</strong>
+                            </td>
+                            <td class="col-sm-4">
+                              <label class="control-label">Number of Questions</label>
+                              <div class="input-group input-group-sm">
+                                <input type="number" min="0" max="0" value="0" class="form-control">
+                                <span class="input-group-addon">Out of 0</span>
+                              </div>
+                            </td>
+                            <td class="col-sm-4">
+                              <div class="pooling-marks">
+                                <label class="control-label">Marks for each Question</label>
+                                <div class="row">
+                                  <div class="col-xs-6">
+                                    <div class="input-group input-group-sm">
+                                      <span class="input-group-addon">+</span>
+                                      <input type="number" min="0" value="0" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-6" style="padding-left:0">
+                                    <div class="input-group input-group-sm">
+                                      <span class="input-group-addon">-</span>
+                                      <input type="number" min="0" value="0" class="form-control">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="intermediate_pooling hidden">
+                            <td class="col-sm-4" style="padding-left:0">
+                              <strong>INTERMEDIATE</strong>
+                            </td>
+                            <td class="col-sm-4">
+                              <label class="control-label">Number of Questions</label>
+                              <div class="input-group input-group-sm">
+                                <input type="number" min="0" max="0" value="0" class="form-control">
+                                <span class="input-group-addon">Out of 0</span>
+                              </div>
+                            </td>
+                            <td class="col-sm-4">
+                              <div class="pooling-marks">
+                                <label class="control-label">Marks for each Question</label>
+                                <div class="row">
+                                  <div class="col-xs-6">
+                                    <div class="input-group input-group-sm">
+                                      <span class="input-group-addon">+</span>
+                                      <input type="number" min="0" value="0" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-6" style="padding-left:0">
+                                    <div class="input-group input-group-sm">
+                                      <span class="input-group-addon">-</span>
+                                      <input type="number" min="0" value="0" class="form-control">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="hard_pooling hidden">
+                            <td class="col-sm-4" style="padding-left:0">
+                              <strong>HARD</strong>
+                            </td>
+                            <td class="col-sm-4">
+                              <label class="control-label">Number of Questions</label>
+                              <div class="input-group input-group-sm">
+                                <input type="number" min="0" max="0" value="0" class="form-control">
+                                <span class="input-group-addon">Out of 0</span>
+                              </div>
+                            </td>
+                            <td class="col-sm-4">
+                              <div class="pooling-marks">
+                                <label class="control-label">Marks for each Question</label>
+                                <div class="row">
+                                  <div class="col-xs-6">
+                                    <div class="input-group input-group-sm">
+                                      <span class="input-group-addon">+</span>
+                                      <input type="number" min="0" value="0" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-6" style="padding-left:0">
+                                    <div class="input-group input-group-sm">
+                                      <span class="input-group-addon">-</span>
+                                      <input type="number" min="0" value="0" class="form-control">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+               </div>
+            </div>
+          </div>
+         </div>
+         <div class="modal-footer">
+            <div class="row">
+               <div class="col-md-12 s_margin_bottom">
+                  <button type="submit" class="btn" >Save Settings</button>
+               </div>
+            </div>
+           </form>
+         </div>
+      </div>
+   </div>
+</div>
+
 
 
 <div class="modal fade" id="_first_model" role="dialog" style="">

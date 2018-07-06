@@ -767,3 +767,18 @@ ul.add_resources_submission_ul .s_close {
 .searchSuggetionCont .hkb-searchresults__showall a{
     color: black;
 }
+.s_text_right_value{
+  text-align: left !important;
+}
+.s_checkbox_value{
+   margin-left: 0px;
+}
+.model_table th {
+    background-color: #fff;
+    font-weight: 600;
+    color: black;
+}
+
+.model_table td {
+    color: black;
+}

@@ -1,5 +1,13 @@
 $( document ).ready(function() {
 
+    $(".advanced_pooling").on('click', function () {
+      $('.intermediate_pooling').toggleClass('hidden');
+      $('.hard_pooling').toggleClass('hidden');
+    });
+    $(".enable_question_pooling").on('click', function () {
+      $('.easy_pooling').toggleClass('hidden');
+    });
+
     $("#weightage_table").on('keyup', '.weightage_no', function( event ) {
 
       if ($(this).val().length > 0) {
