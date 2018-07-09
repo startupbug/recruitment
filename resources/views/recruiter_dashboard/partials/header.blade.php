@@ -31,7 +31,7 @@
                   <li class="dropdown">
                      <div>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('public/assets/img/icon-more.png') }}">MoreMenu
+                        <img src="{{ asset('public/assets/img/icon-more.png') }}">More
                         <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">

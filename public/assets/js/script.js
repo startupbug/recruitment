@@ -49,7 +49,7 @@ function confirmAlert(ques, action, id){
 }
 
 function confirmAlert_test(){
-	alertify.confirm('Hello !! This is preview', function(){
+	//alertify.confirm('Hello !! This is preview', function(){
    //alertify.success('Ok')
  }, );
 }

@@ -290,7 +290,7 @@ class TemplateSetting extends Controller
 	}
 
 	public function advance_setting_form_1(Request $request){
-
+		//return $request->input();
 		try {
 
 			$section_id = $request->input('section_id'); 
@@ -321,7 +321,7 @@ class TemplateSetting extends Controller
 			}
 
 		} catch (QueryException $e) {
-	    		return \Response()->Json(['array' => $e]);
+	    		return \Response()->Json(['array' => $e->getMessage()]);
 	    }
 
 	}

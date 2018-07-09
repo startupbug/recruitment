@@ -3000,3 +3000,23 @@ li.expired_S span {
 .s_tab_bar table.dataTable tbody th, .s_tab_bar table.dataTable tbody td{
      padding: 0px 0px;
 }
+
+.abc_model {
+     top: 0px; 
+     left: 0px; 
+}
+.bgImage {
+    background-image: url(../img/bg-pattern.jpg) !important;
+    width: 100%;
+    margin-bottom: 0px;
+}
+.instructionBox {
+     background: #fff;
+    border: 1px solid #aaa !important;
+    box-shadow: 0px 1px 10px 1px #aaa !important;
+    border-top: 4px solid #323754 !important;
+}
+.test-confirm .btn {
+    text-align: center;
+    margin-top: 100px;
+}

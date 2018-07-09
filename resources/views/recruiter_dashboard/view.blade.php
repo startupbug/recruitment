@@ -166,7 +166,11 @@
                                      
                                              <!-- <li><a href="#" target="blank">View subscribed candidates</a></li> -->
                                              <!-- {{route('preview_test', ['id' => $hosted_test->test_template_id])}} -->
+                                             
                                              <li><a href="#"  data-url="{{route('preview_test', ['id' => $hosted_test->test_template_id])}}" data-id="$hosted_test->test_template_id" class="preview_test_page_btn">Preview Test</a></li>
+
+
+
                                              <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to delete this Host.', '{{route('host_test_del')}}', {{$hosted_test->host_id}} )" >Delete Test</a></li>
                                              @if($live_status)
                                              <li><a class="deleteConfirm" onclick="confirmAlert('Are You Sure ? You want to terminate this Host.', '{{route('host_terminate')}}', {{$hosted_test->host_id}} )" >Terminate Test</a></li>
