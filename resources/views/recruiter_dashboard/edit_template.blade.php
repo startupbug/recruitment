@@ -29,6 +29,8 @@
                <li>
                   <a data-toggle="pill" href="#section_subject"><i class="fa fa-question-circle nav-icon" aria-hidden="true"></i> Sections</a>
                   <ul class="subtitle_subject">
+                    
+
                      @foreach($sections as $key => $value)
                      @php
                      $order = $value->order_number;
@@ -524,10 +526,10 @@
                                        </span>-->
 
                                  </label>
-                                 
+                           
                                  <div class="checkbox no-margin col-md-1 col-sm-1 col-xs-1">
 
-                                    <input type="checkbox" name="win_proc" value="1" {{isset($sec['adv_settings']->win_proc) ? 'checked="checked"' : '' }} />
+                                    <input type="checkbox" name="win_proc" value="1" @if(isset($sec['adv_settings']->win_proc) && $sec['adv_settings']->win_proc == 1) checked="checked" @endif />
                                  </div>
                               </div>
                               <div class="form-group form-group-sm">
@@ -535,7 +537,7 @@
                                  Question Shuffling
                                  </label>
                                  <div class="checkbox no-margin col-md-1 col-sm-1 col-xs-1">
-                                    <input type="checkbox" name="ques_shuff" value="1" {{isset($sec['adv_settings']->ques_shuff) ? 'checked="checked"' : '' }}>
+                                    <input type="checkbox" name="ques_shuff" value="1" @if(isset($sec['adv_settings']->ques_shuff) && $sec['adv_settings']->ques_shuff == 1) checked="checked" @endif>
                                  </div>
                               </div>
                               <div class="form-group form-group-sm">
@@ -546,12 +548,12 @@
                               </div>
                               <div class="form-group form-group-sm">
                                  <label class="control-label col-md-8 col-sm-8 col-xs-8">
-                                 <a href="#s_advanced_setting" data-toggle="modal">Advanced Settings</a>
+                                 <a href="#s_advanced_setting" class="advnSettingsButton" data-sectionid="@if(isset($sec['adv_settings']->section_id)){{$sec['adv_settings']->section_id}} @endif" data-url="{{route('advance_settings_data')}}" data-toggle="modal">Advanced Settings</a>
                                  </label>
                               </div>
 
                               <input type="hidden" name="section_id" class="adv_section_id" value="">
-                              <input type="hidden" name="test_id" value="{{\Request::segment(count(request()->segments())-1)}}" />
+                              <input type="hidden" name="test_id" class="adv_test_id" value="{{\Request::segment(count(request()->segments())-1)}}" />
 
                               <button type="submit" class="btn btn-primary btn-sm">Save</button>
                            </form>
@@ -1903,7 +1905,7 @@
       <!-- Modal content-->
       <div class="modal-content s_content_radius">
          <div class="modal-header s_modal_header_first">
-            <h3 class="modal-title ">Advanced Settings (Section- 28723961)</i>
+            <h3 class="modal-title ">Advanced Settings</i>
                <button type="button" class="btn btn-sm btn-default pull-right" data-dismiss="modal">Close</button>
             </h3>
          </div>
@@ -1924,7 +1926,7 @@
                          <label class="control-label col-xs-4 s_text_right_value">Window Proctoring</label>
                          <div class="checkbox s_checkbox_value col-xs-8">
                             <label>
-                            <input type="checkbox" name="win_proc" value="1">
+                            <input type="checkbox" name="win_proc" class="win_proc_adv" value="1">
                             </label>
                          </div>
                       </div>
@@ -2011,7 +2013,7 @@
                                <td class="col-sm-4">
                                  <label class="control-label">Number of Questions</label>
                                  <div class="input-group input-group-sm">
-                                   <input type="number" min="0" max="0" name="easy_num_ques" value="0" class="form-control">
+                                   <input type="number" name="easy_num_ques" value="0" class="form-control">
                                    <span class="input-group-addon">Out of 0</span>
                                  </div>
                                </td>
@@ -2022,13 +2024,13 @@
                                      <div class="col-xs-6">
                                        <div class="input-group input-group-sm">
                                          <span class="input-group-addon">+</span>
-                                         <input type="number" min="0" value="0"  name="easy_marks_plus" class="form-control">
+                                         <input type="number"  name="easy_marks_plus" class="form-control">
                                        </div>
                                      </div>
                                      <div class="col-xs-6" style="padding-left:0">
                                        <div class="input-group input-group-sm">
                                          <span class="input-group-addon">-</span>
-                                         <input type="number" min="0" value="0"  name="easy_marks_minus" class="form-control">
+                                         <input type="number" name="easy_marks_minus" class="form-control">
                                        </div>
                                      </div>
                                    </div>
@@ -2042,7 +2044,7 @@
                                <td class="col-sm-4">
                                  <label class="control-label">Number of Questions</label>
                                  <div class="input-group input-group-sm">
-                                   <input type="number" min="0" max="0" name="inter_num_ques" value="0" class="form-control">
+                                   <input type="number" name="inter_num_ques" value="0" class="form-control">
                                    <span class="input-group-addon">Out of 0</span>
                                  </div>
                                </td>
@@ -2053,13 +2055,13 @@
                                      <div class="col-xs-6">
                                        <div class="input-group input-group-sm">
                                          <span class="input-group-addon">+</span>
-                                         <input type="number" min="0" value="0"  name="inter_marks_plus" class="form-control">
+                                         <input type="number"  value="0"  name="inter_marks_plus" class="form-control">
                                        </div>
                                      </div>
                                      <div class="col-xs-6" style="padding-left:0">
                                        <div class="input-group input-group-sm">
                                          <span class="input-group-addon">-</span>
-                                         <input type="number" min="0" value="0"  name="inter_marks_minus" class="form-control">
+                                         <input type="number" name="inter_marks_minus" class="form-control">
                                        </div>
                                      </div>
                                    </div>
@@ -2073,7 +2075,7 @@
                                <td class="col-sm-4">
                                  <label class="control-label">Number of Questions</label>
                                  <div class="input-group input-group-sm">
-                                   <input type="number" min="0" max="0" value="0"  name="hard_num_ques" class="form-control">
+                                   <input type="number"  name="hard_num_ques" class="form-control">
                                    <span class="input-group-addon">Out of 0</span>
                                  </div>
                                </td>
@@ -2084,13 +2086,13 @@
                                      <div class="col-xs-6">
                                        <div class="input-group input-group-sm">
                                          <span class="input-group-addon">+</span>
-                                         <input type="number" min="0" value="0"  name="hard_marks_plus" class="form-control">
+                                         <input type="number"   name="hard_marks_plus" class="form-control">
                                        </div>
                                      </div>
                                      <div class="col-xs-6" style="padding-left:0">
                                        <div class="input-group input-group-sm">
                                          <span class="input-group-addon">-</span>
-                                         <input type="number" min="0" value="0"  name="hard_marks_minus" class="form-control">
+                                         <input type="number"  name="hard_marks_minus" class="form-control">
                                        </div>
                                      </div>
                                    </div>
