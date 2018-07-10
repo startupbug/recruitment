@@ -33,6 +33,7 @@
                      @php
                      $order = $value->order_number;
                      @endphp
+
                      <li class="adn_set_btn"  data-id="{{$value->id}}" data-name="{{$value->section_name}}">
                         <a data-toggle="pill" href="#section_subject-{{$value->id}}" >
                         <i class="fa fa-caret-right"></i>{{$value->section_name}}{{ ++$key }}
@@ -53,7 +54,9 @@
                            </a>
                         </div>
                      </li>
+                     
                      @endforeach
+
                      @if(isset($edit))
                      <form action="{{route('add_section')}}" id="add_section" method="post">
                         {{csrf_field()}}
@@ -184,6 +187,7 @@
 
                <!-- End basic_detail -->
                <!-- Start section_subject -->
+
                @if(isset($sections_tabs))
                @foreach($sections_tabs as $key => $sec)
                <div id="section_subject-{{$key}}" class="tab-pane fade">
@@ -501,8 +505,6 @@
                               <div class="form-group form-group-sm">
                                  <label class="control-label f_label1 col-md-9 col-sm-9 col-xs-9" style="text-align: left;">
                                     Window Proctoring
-
-
                                          <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="left" title=" This is a cheating prevention mechanism which<br>
                                        mandates the candidate to stay<br>
                                        Good to know: the candidate can view this in the
@@ -522,8 +524,10 @@
                                        </span>-->
 
                                  </label>
+                                 
                                  <div class="checkbox no-margin col-md-1 col-sm-1 col-xs-1">
-                                    <input type="checkbox" name="win_proc" value="1">
+
+                                    <input type="checkbox" name="win_proc" value="1" {{isset($sec['adv_settings']->win_proc) ? 'checked="checked"' : '' }} />
                                  </div>
                               </div>
                               <div class="form-group form-group-sm">
@@ -531,13 +535,13 @@
                                  Question Shuffling
                                  </label>
                                  <div class="checkbox no-margin col-md-1 col-sm-1 col-xs-1">
-                                    <input type="checkbox" name="ques_shuff" value="1">
+                                    <input type="checkbox" name="ques_shuff" value="1" {{isset($sec['adv_settings']->ques_shuff) ? 'checked="checked"' : '' }}>
                                  </div>
                               </div>
                               <div class="form-group form-group-sm">
                                  <label class="control-label col-md-7 col-sm-7 col-xs-7" style="text-align: left;">Duration (mins)</label>
                                  <div class="col-md-5 col-sm-5 col-xs-5">
-                                    <input type="number" min="0" class="form-control" name="dura_min">
+                                    <input type="number" min="0" class="form-control" name="dura_min" value="{{isset($sec['adv_settings']->dura_min) ? $sec['adv_settings']->dura_min : '' }}">
                                  </div>
                               </div>
                               <div class="form-group form-group-sm">

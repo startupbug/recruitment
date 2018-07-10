@@ -48,11 +48,11 @@ function confirmAlert(ques, action, id){
 });
 }
 
-function confirmAlert_test(){
-	alertify.confirm('Hello !! This is preview', function(){
-   //alertify.success('Ok')
- }, );
-}
+// function confirmAlert_test(){
+// 	//alertify.confirm('Hello !! This is preview', function(){
+//    //alertify.success('Ok')
+//  }, );
+// }
 
 
 //Update Test Template
@@ -527,6 +527,7 @@ $('.delete_row_testcase').on('click', function(e) {
 $("#AjaxMCQModal").on('submit', function(e){
   e.preventDefault();
   var formData = $(this).serialize();
+  console.log(formData);
   $.ajaxSetup({
     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
   });

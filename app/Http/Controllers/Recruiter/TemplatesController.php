@@ -30,7 +30,7 @@ use App\Public_view_page;
 use App\Public_page_view_details;
 use App\User;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
-
+use App\Advanced_setting;
 
 class TemplatesController extends Controller
 {
@@ -209,9 +209,11 @@ return redirect()->back();
 
 	// Editing Test Template
 public function edit_template($id = NULL, $flag = NULL){
+
   if($flag == "host")
   {
     $args['tags'] = DB::table('question_tags')->get();
+
 		$args['edit'] = Test_template::where('host_id',$id)->first();
 		// dd($args['edit']->id);
     // $args['edit'] = Test_template::find($id);
@@ -223,11 +225,14 @@ public function edit_template($id = NULL, $flag = NULL){
     $host_template_id = $args['edit_host']->template_id;
 
     $args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
+
     ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))
+
     ->where('template_id',$args['edit_host']->test_template_id)
     ->groupBy('sections.id')
     ->orderBy('order_number','ASC')
     ->get();
+    
 
     foreach ($args['sections'] as $key => $value) {
 
@@ -312,11 +317,15 @@ public function edit_template($id = NULL, $flag = NULL){
     $args['edit'] = Test_template::find($id);
     // dd($args['edit']->template_type_id);
     $args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
-    ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))
+    ->leftjoin('advanced_settings', 'advanced_settings.section_id', '=', 'sections.id')
+    ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'), 
+      'advanced_settings.win_proc', 'advanced_settings.ques_shuff', 'advanced_settings.dura_min')
     ->where('template_id',$id)
     ->groupBy('sections.id')
     ->orderBy('order_number','ASC')
     ->get();
+
+    //dd($args['sections']);
 
     foreach ($args['sections'] as $key => $value) {
 
@@ -357,6 +366,10 @@ public function edit_template($id = NULL, $flag = NULL){
                ->select('question_details.marks')
                ->where('sections.id',$value->id)
                ->sum('marks');
+
+              //sections advanced settings 
+              $args['sections_tabs'][$value->id]['adv_settings'] = Advanced_setting::where('section_id', $value->id)->
+              where('test_id', $id)->first();              
 
              // $args['sections_tabs2'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              // $args['sections_tabs'][$value->id]['count2'] = $value->section_questions;
@@ -399,7 +412,7 @@ public function edit_template($id = NULL, $flag = NULL){
 
 
 
-      // dd($args['public_page_view_details']);
+      // dd($args);
 			 // return $args['template_question_setting'];
 
       return view('recruiter_dashboard.edit_template')->with($args);
@@ -1134,4 +1147,12 @@ public function create_question_admin(Request $request){
 }
 
 }
+
+
+    public function publicPreviewtest_model(Request $request){
+
+      return view('recruiter_dashboard.publicPreviewtest_model');
+
+    }
+
 }

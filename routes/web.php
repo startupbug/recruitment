@@ -273,6 +273,10 @@ Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@lib
 	Route::post('/advance_settings', 'Recruiter\TemplateSetting@advance_setting_form')->name('advance_setting_form');
 
 	Route::post('/advance_settings_1', 'Recruiter\TemplateSetting@advance_setting_form_1')->name('advance_setting_form_1');
+	
+
+	Route::get('/publicPreviewtest_model', 'Recruiter\TemplatesController@publicPreviewtest_model')->name('publicPreviewtest_model');
+
 
 });
 

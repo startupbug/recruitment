@@ -31,7 +31,7 @@ class QuestionsController extends Controller
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			if ($request->lib_private_question == 0) {
+			if ($request->lib_private_question != 0) {
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
@@ -42,7 +42,6 @@ class QuestionsController extends Controller
 			$store->question_level_id = $request->question_level_id;
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
-			// dd($store);
 			if ($store->save()){
 				$question_data =  array('store' => $store, 'request' =>$request->all());
 				event(new  QuestionDetail($question_data));
