@@ -2957,3 +2957,53 @@ $(".adn_set_btn").on('click', function(e){
   $(".adv_section_id").val($(this).data('id'));
 
 });
+
+/* Advance setting button data fetch */
+$(".advnSettingsButton").on('click', function(e){
+    var sectionId= $(this).closest('.advanSetForm_1').find('.adv_section_id').val();
+    var testId=  $(this).closest('.advanSetForm_1').find('.adv_test_id').val();
+    var currentScope = $(this);
+    $.ajax({
+        type: 'post',
+        url: $(this).data('url'),
+        data: {'sectionId':sectionId, 'testId': testId},
+
+        success: function(data){
+            console.log(data);
+            console.log(data.win_proc);
+
+            if(data.win_proc == 1){
+                $(".win_proc_adv").prop('checked', true);
+            }
+
+            (data.atempt_once == 1) ? $("[name='atempt_once']").prop('checked', true) : $("[name='atempt_once']").prop('checked', false);
+            (data.mov_next == 1) ? $("[name='mov_next']").prop('checked', true) : $("[name='mov_next']").prop('checked', false);
+            (data.ques_shuff == 1) ? $("[name='ques_shuff']").prop('checked', true) : $("[name='ques_shuff']").prop('checked', false);
+            (data.show_cal == 1) ? $("[name='show_cal']").prop('checked', true) : $("[name='show_cal']").prop('checked', false);
+
+            (data.en_ques_pool == 1) ? $("[name='en_ques_pool']").prop('checked', true) : $("[name='en_ques_pool']").prop('checked', false);
+            (data.adv_ques_pool == 1) ? $("[name='adv_ques_pool']").prop('checked', true) : $("[name='adv_ques_pool']").prop('checked', false);                        
+            
+            $("[name='dura_min']").val(data.dura_min);
+
+            $("[name='easy_num_ques']").val(data.easy_num_ques);
+            $("[name='easy_marks_plus']").val(data.easy_marks_plus);
+            $("[name='easy_marks_minus']").val(data.easy_marks_minus);
+
+
+            $("[name='inter_num_ques']").val(data.inter_num_ques);
+            $("[name='inter_marks_plus']").val(data.inter_marks_plus);
+            $("[name='inter_marks_minus']").val(data.inter_marks_minus);
+
+            $("[name='hard_num_ques']").val(data.hard_num_ques);
+            $("[name='hard_marks_plus']").val(data.hard_marks_plus);
+            $("[name='hard_marks_minus']").val(data.hard_marks_minus); 
+                                 
+
+        },
+        error: function(){
+            alertify.warning('Error. Something went wrong');
+        }
+    })
+
+});
