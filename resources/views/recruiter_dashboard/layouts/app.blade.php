@@ -1152,5 +1152,8 @@
 
 </script>
 @yield('modal_content')
+<script type="text/javascript">
+  @yield('script')
+</script>
 </body>
 </html>

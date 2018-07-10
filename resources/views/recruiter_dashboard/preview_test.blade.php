@@ -137,4 +137,12 @@
  
    </div>
 </section>
+
+@endsection
+
+
+@section('script')
+  jQuery(window).blur(function() {
+    alertify.error("Do not change window or you will be marked suspecious")
+  });
 @endsection

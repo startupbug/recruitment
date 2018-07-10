@@ -412,7 +412,7 @@ public function edit_template($id = NULL, $flag = NULL){
 
 
 
-      // dd($args['public_page_view_details']);
+      // dd($args);
 			 // return $args['template_question_setting'];
 
       return view('recruiter_dashboard.edit_template')->with($args);
