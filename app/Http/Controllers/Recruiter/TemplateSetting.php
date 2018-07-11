@@ -248,7 +248,7 @@ class TemplateSetting extends Controller
 
 	//Advance Setting Post request
 	public function advance_setting_form(Request $request){
-
+		//return $request->input();
 		try {
 
 			//Updating Section name

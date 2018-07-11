@@ -26,6 +26,7 @@ use App\Template_setting_message;
 use App\Questions_submission_resource;
 use App\Coding_entry;
 use App\Public_view_page;
+use App\Advanced_setting;
 
 class HostController extends Controller
 {
@@ -80,6 +81,10 @@ class HostController extends Controller
                ->select('question_details.marks')
                ->where('sections.id',$value->id)               
                ->sum('marks');
+
+              //sections advanced settings 
+              $args['sections_tabs'][$value->id]['adv_settings'] = Advanced_setting::where('section_id', $value->id)->
+              where('test_id', $id)->first();                 
 
         }
 

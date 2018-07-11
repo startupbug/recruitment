@@ -553,7 +553,7 @@
                               </div>
 
                               <input type="hidden" name="section_id" class="adv_section_id" value="">
-                              <input type="hidden" name="test_id" class="adv_test_id" value="{{\Request::segment(count(request()->segments())-1)}}" />
+                              <input type="hidden" name="test_id" class="adv_test_id" value="@if( \Request::segment(count(request()->segments())-1) == 'host_test_page' ){{\Request::segment(count(request()->segments())) }}@else{{\Request::segment(count(request()->segments())-1)}}@endif" />
 
                               <button type="submit" class="btn btn-primary btn-sm">Save</button>
                            </form>
@@ -2111,7 +2111,7 @@
                <div class="row">
                   <div class="col-md-12 s_margin_bottom">
                      <input type="hidden" name="section_id" class="adv_section_id" value="">
-                     <input type="hidden" name="test_id" value="{{\Request::segment(count(request()->segments())-1)}}">
+                     <input type="hidden" name="test_id" value="@if( \Request::segment(count(request()->segments())-1) == 'host_test_page' ){{\Request::segment(count(request()->segments())) }}@else{{\Request::segment(count(request()->segments())-1)}}@endif">
                      <input type="submit" class="btn" value="Save Settings"/>
                   </div>
                </div>
