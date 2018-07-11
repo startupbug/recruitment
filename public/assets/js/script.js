@@ -79,7 +79,7 @@ $("#update_test_template").on('submit', function(e){
       if(data.array == 1){
         alertify.success('Your Data Has Been Successfully Updated');
       }else if(data.array == 0){
-        alertify.warning('Something Went Wrong, Please Try Again!');
+        alertify.warning('No data has been changed!');
       }else{
         alertify.warning(data.array.errorInfo[2]);
       }

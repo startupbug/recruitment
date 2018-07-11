@@ -77,7 +77,7 @@
 		                  	@if(isset($interval) && isset($hosted_test->host_name))
                   				<?php echo $interval->format('%hh %im');?>
 	                  		@elseif(isset($hosted_test->title))
-	                  			{{$hosted_test->duration}}
+	                  			{{$hosted_test->duration}} minutes
 	                  		@endif
 		                  </td>
 		               </tr>
@@ -117,7 +117,7 @@
 	                  		<div id="public_description" class="tab-pane fade">
 								<p>
 									@if(isset($hosted_test))
-										{{$hosted_test->description}}
+										{!! $hosted_test->description !!}
 									@endif
 								</p>
 	                  		</div>

@@ -221,7 +221,7 @@ public function edit_template($id = NULL, $flag = NULL){
     ->select('hosted_tests.id','hosted_tests.host_name','hosted_tests.test_template_id','hosted_tests.description','hosted_tests.instruction','hosted_tests.cut_off_marks','hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time','hosted_tests.time_zone','hosted_tests.status','hosted_tests.created_at','hosted_tests.updated_at','test_templates.user_id','test_templates.template_type_id','test_templates.title','test_templates.image','test_templates.duration','test_templates.hosted','test_templates.id as template_id')
     ->where('test_templates.host_id',$id)->first();
     // $args['edit_host'] = Hosted_test::leftjoin('test_templates','hosted_tests.id','=','test_templates.host_id')->where('test_templates.host_id',$id)->first();
-    dd($args);
+    // dd($args);
     $host_template_id = $args['edit_host']->template_id;
 
     $args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
