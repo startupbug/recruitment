@@ -19,6 +19,7 @@ $(document).ready(function(){
 });
 
 function functionAddNewTag(){
+	console.log(base_url+'recruiter/ajax_tag_post')
 	var new_tag_value = $("input[name=newTagValue]").val();
 	var tag = '<div class="row form-group"><div class="input-group addon"><input type="text" value="'+new_tag_value+'" class="form-control" disabled tag-id=""><span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span><span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span><span class="input-group-addon success QuestionTagSetting_delete"><i class="fa fa-times-circle-o"></i></span></div></div>';
 	$(".tag_update").append(tag);
@@ -26,7 +27,7 @@ function functionAddNewTag(){
 
 	$.ajax({
 		method: 'post',
-		url: base_url+'ajax_tag_post',
+		url: base_url+'recruiter/ajax_tag_post',
 		data: {value: new_tag_value},
 		success: function (data) { 
 	      console.log(data);

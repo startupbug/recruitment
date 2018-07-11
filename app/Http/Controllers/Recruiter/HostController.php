@@ -312,7 +312,7 @@ class HostController extends Controller
                       }
                   }
                   
-                  return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Duplicated The Test Template']);
+                  return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Hosted This Test.']);
               }else{
                   return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong']);
                       //return redirect()->back();
@@ -322,7 +322,7 @@ class HostController extends Controller
       }
 
         catch(\Exception $e){
-            $this->set_session('Profile Couldnot be updated.'.$e->getMessage(), false);
+            $this->set_session('Test Could not be hosted.'.$e->getMessage(), false);
             // return redirect()->route('profile');
         }
 
