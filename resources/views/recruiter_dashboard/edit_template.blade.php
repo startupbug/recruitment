@@ -650,7 +650,7 @@
                                                 <div class="col-sm-5">
                                                    <select name="webcam_id" id="webcam_id" class="form-control">
                                                       @foreach($test_setting_webcam as $value)
-                                                      <option value="{{$value->id}}">{{$value->webcam_name}}</option>
+                                                      <option value="{{$value->id}}" @if($edit_test_settings->webcam_id == $value->id) selected @endif>{{$value->webcam_name}}</option>
                                                       @endforeach
                                                    </select>
                                                 </div>
@@ -5824,7 +5824,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Marks for this Question</strong>
                                    </div>
-                                   <input type="text" name="marks" class="form-control">
+                                   <input type="number" name="marks" class="form-control">
                                 </div>
                              </div>
                           </div>
@@ -5839,7 +5839,7 @@
                                    <br>
                                    (2) Choice field's value cannot be empty or a duplicate."> <i class="fa fa-info-circle"> </i></a></strong>
                                    </div>
-                                   <input type="text" name="negative_marks" class="form-control" required="s">
+                                   <input type="number" name="negative_marks" class="form-control" required="s" min="0">
                                 </div>
                              </div>
                           </div>

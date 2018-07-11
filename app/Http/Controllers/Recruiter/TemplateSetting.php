@@ -40,7 +40,7 @@ class TemplateSetting extends Controller
 				$store->email_verification = 0;
 				}			
 				if ($store->save()){				
-					return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Created Test Template Settings']);
+					return \Response()->Json([ 'status' => 200,'msg'=>'Setting has been saved successfully.']);
 				}else{
 					return \Response()->Json([ 'status' => 200,'msg'=>'Something Went Wrong Please Try Again!']);	
 				}			
