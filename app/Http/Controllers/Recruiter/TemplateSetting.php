@@ -270,12 +270,86 @@ class TemplateSetting extends Controller
 				$advanced_setting = Advanced_setting::find($adv_exists->id);
 
 			}
-			
-			foreach ($request->input() as $key => $value) {
-				if($key != 'section_name' && $key != '_token'){
-					$advanced_setting->$key = $request->input($key);
-				}
+
+			if($request->has('win_proc')){
+				$advanced_setting->win_proc = 1;
+			}else{
+				$advanced_setting->win_proc = 0;
 			}
+
+			if($request->has('ques_shuff')){
+				$advanced_setting->ques_shuff = 1;
+			}else{
+				$advanced_setting->ques_shuff = 0;
+			}
+
+			if($request->has('atempt_once')){
+				$advanced_setting->atempt_once = 1;
+			}else{
+				$advanced_setting->atempt_once = 0;
+			}
+
+			if($request->has('mov_next')){
+				$advanced_setting->mov_next = 1;
+			}else{
+				$advanced_setting->mov_next = 0;
+			}
+
+			if($request->has('show_cal')){
+				$advanced_setting->show_cal = 1;
+			}else{
+				$advanced_setting->show_cal = 0;
+			}
+
+			if($request->has('dura_min')){
+				$advanced_setting->dura_min = 1;
+			}else{
+				$advanced_setting->dura_min = 0;
+			}															
+
+			if($request->has('en_ques_pool')){
+				$advanced_setting->en_ques_pool = 1;
+			}else{
+				$advanced_setting->en_ques_pool = 0;
+			}	
+
+			if($request->has('adv_ques_pool')){
+				$advanced_setting->adv_ques_pool = 1;
+			}else{
+				$advanced_setting->adv_ques_pool = 0;
+			}
+
+			//Text fields 
+			if($request->has('dura_min') ){
+				$advanced_setting->dura_min = $request->input('dura_min');
+			}
+
+			//---------------
+			if($request->has('easy_num_ques')){ // 
+				$advanced_setting->easy_num_ques = $request->input('easy_num_ques');
+				$advanced_setting->easy_marks_plus = $request->input('easy_marks_plus');
+				$advanced_setting->easy_marks_minus = $request->input('easy_marks_minus');				
+			}
+
+			if($request->has('inter_num_ques')){ //
+				$advanced_setting->inter_num_ques = $request->input('inter_num_ques');
+				$advanced_setting->inter_marks_plus = $request->input('inter_marks_plus');
+				$advanced_setting->inter_marks_minus = $request->input('inter_marks_minus');	
+			}
+
+			if($request->has('hard_num_ques')){ //
+				$advanced_setting->hard_num_ques = $request->input('hard_num_ques');
+				$advanced_setting->hard_marks_plus = $request->input('hard_marks_plus');
+				$advanced_setting->hard_marks_minus = $request->input('hard_marks_minus');	
+			}									
+
+
+			//text fields	
+			// foreach ($request->input() as $key => $value) {
+			// 	if($key != 'section_name' && $key != '_token'){
+			// 		$advanced_setting->$key = $request->input($key);
+			// 	}
+			// }
 
 			if ($advanced_setting->save() && $section_save){				
 				return \Response()->Json([ 'status' => 200, 'msg'=>'Advance Setting Successfully Updated']);
@@ -299,20 +373,36 @@ class TemplateSetting extends Controller
 			$adv_exists = Advanced_setting::where('section_id', $section_id)->where('test_id', $template_id)->first();
 			
 			if(is_null($adv_exists)){
+				return 123;
 				//Create new settings for this section
 				$advanced_setting = new Advanced_setting();				
 
 			}else{
+				//return 456;
 				//Update settings for this Section
 				$advanced_setting = Advanced_setting::find($adv_exists->id);
 
 			}
 			
-			foreach ($request->input() as $key => $value) {
-				if($key != 'section_name' && $key != '_token'){
-					$advanced_setting->$key = $request->input($key);
-				}
+
+			if($request->has('win_proc')){
+				$advanced_setting->win_proc = 1;
+			}else{
+				$advanced_setting->win_proc = 0;
 			}
+
+			if($request->has('ques_shuff')){
+				$advanced_setting->ques_shuff = 1;
+			}else{
+				$advanced_setting->ques_shuff = 0;
+			}
+
+			if($request->has('dura_min')){
+				$advanced_setting->dura_min = $request->input('dura_min');
+			}else{
+				$advanced_setting->dura_min = $request->input('dura_min');
+			}	
+			
 
 			if ($advanced_setting->save()){				
 				return \Response()->Json([ 'status' => 200, 'msg'=>'Advance Setting Successfully Updated']);
@@ -324,5 +414,14 @@ class TemplateSetting extends Controller
 	    		return \Response()->Json(['array' => $e->getMessage()]);
 	    }
 
+	}
+
+	public function advance_settings_data(Request $request){
+		//return $request->input();
+		$section_id = $request->input('sectionId');
+		$template_id = $request->input('testId');
+
+		$adv_data = Advanced_setting::where('section_id', $section_id)->where('test_id', $template_id)->first();
+		return $adv_data;
 	}
 }
