@@ -1470,6 +1470,7 @@ function edittesttemplate_Expand(id) {
       $('#section_choices_table tbody tr td :checkbox').each(function () {
         if ($(this).is(":checked")) {
           checkbox_Count++;
+          console.log(checkbox_Count);
         }
       });
 
@@ -1524,19 +1525,21 @@ function edittesttemplate_Expand(id) {
               if (checkbox_Count >= 1 ){
                 $("#section-mcqs-Modal .header_span_commint").text("");
                 $("#section-mcqs-Modal .submit_button").attr("disabled", false);
+
+                if (marks != "") {
+                  $("#section-mcqs-Modal .header_span_commint").text("");
+                  $("#section-mcqs-Modal .submit_button").attr("disabled", false);
+                }else {
+                  $("#section-mcqs-Modal .header_span_commint").text("Please enter the marks");
+                  $("#section-mcqs-Modal .submit_button").attr("disabled", true);
+                }
+
               }else {
                 $("#section-mcqs-Modal .header_span_commint").text("Please select at least one choice as correct answer for the question");
                 $("#section-mcqs-Modal .submit_button").attr("disabled", true);
               }
             }
 
-            if (marks != "") {
-              $("#section-mcqs-Modal .header_span_commint").text("");
-              $("#section-mcqs-Modal .submit_button").attr("disabled", false);
-            }else {
-              $("#section-mcqs-Modal .header_span_commint").text("Please enter the marks");
-              $("#section-mcqs-Modal .submit_button").attr("disabled", true);
-            }
           }
           else {
             if (mcqs[i] == "") {
@@ -2920,7 +2923,7 @@ $(".advanSetForm").on('submit', function(e){
         error: function(){
             alertify.warning('Error. Something went wrong');
         }
-    });    
+    });
 });
 
 $(".advanSetForm_1").on('submit', function(e){
@@ -2946,13 +2949,13 @@ $(".advanSetForm_1").on('submit', function(e){
         error: function(){
             alertify.warning('Error. Something went wrong');
         }
-    });    
+    });
 });
 
 
 /* Advance setting Button */
 
-$(".adn_set_btn").on('click', function(e){   
+$(".adn_set_btn").on('click', function(e){
   $("#section_name").val($(this).data('name'));
   $(".adv_section_id").val($(this).data('id'));
 
@@ -2982,8 +2985,8 @@ $(".advnSettingsButton").on('click', function(e){
             (data.show_cal == 1) ? $("[name='show_cal']").prop('checked', true) : $("[name='show_cal']").prop('checked', false);
 
             (data.en_ques_pool == 1) ? $("[name='en_ques_pool']").prop('checked', true) : $("[name='en_ques_pool']").prop('checked', false);
-            (data.adv_ques_pool == 1) ? $("[name='adv_ques_pool']").prop('checked', true) : $("[name='adv_ques_pool']").prop('checked', false);                        
-            
+            (data.adv_ques_pool == 1) ? $("[name='adv_ques_pool']").prop('checked', true) : $("[name='adv_ques_pool']").prop('checked', false);
+
             $("[name='dura_min']").val(data.dura_min);
 
             $("[name='easy_num_ques']").val(data.easy_num_ques);
@@ -2997,8 +3000,8 @@ $(".advnSettingsButton").on('click', function(e){
 
             $("[name='hard_num_ques']").val(data.hard_num_ques);
             $("[name='hard_marks_plus']").val(data.hard_marks_plus);
-            $("[name='hard_marks_minus']").val(data.hard_marks_minus); 
-                                 
+            $("[name='hard_marks_minus']").val(data.hard_marks_minus);
+
 
         },
         error: function(){

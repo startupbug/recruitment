@@ -553,7 +553,7 @@
                               </div>
 
                               <input type="hidden" name="section_id" class="adv_section_id" value="">
-                              <input type="hidden" name="test_id" class="adv_test_id" value="{{\Request::segment(count(request()->segments())-1)}}" />
+                              <input type="hidden" name="test_id" class="adv_test_id" value="@if( \Request::segment(count(request()->segments())-1) == 'host_test_page' ){{\Request::segment(count(request()->segments())) }}@else{{\Request::segment(count(request()->segments())-1)}}@endif" />
 
                               <button type="submit" class="btn btn-primary btn-sm">Save</button>
                            </form>
@@ -650,7 +650,7 @@
                                                 <div class="col-sm-5">
                                                    <select name="webcam_id" id="webcam_id" class="form-control">
                                                       @foreach($test_setting_webcam as $value)
-                                                      <option value="{{$value->id}}">{{$value->webcam_name}}</option>
+                                                      <option value="{{$value->id}}" @if($edit_test_settings->webcam_id == $value->id) selected @endif>{{$value->webcam_name}}</option>
                                                       @endforeach
                                                    </select>
                                                 </div>
@@ -2111,7 +2111,7 @@
                <div class="row">
                   <div class="col-md-12 s_margin_bottom">
                      <input type="hidden" name="section_id" class="adv_section_id" value="">
-                     <input type="hidden" name="test_id" value="{{\Request::segment(count(request()->segments())-1)}}">
+                     <input type="hidden" name="test_id" value="@if( \Request::segment(count(request()->segments())-1) == 'host_test_page' ){{\Request::segment(count(request()->segments())) }}@else{{\Request::segment(count(request()->segments())-1)}}@endif">
                      <input type="submit" class="btn" value="Save Settings"/>
                   </div>
                </div>
@@ -5824,7 +5824,7 @@
                                    <div class="heading_modal_statement heading_padding_bottom">
                                       <strong>Marks for this Question</strong>
                                    </div>
-                                   <input type="text" name="marks" class="form-control">
+                                   <input type="number" name="marks" class="form-control">
                                 </div>
                              </div>
                           </div>
@@ -5839,7 +5839,7 @@
                                    <br>
                                    (2) Choice field's value cannot be empty or a duplicate."> <i class="fa fa-info-circle"> </i></a></strong>
                                    </div>
-                                   <input type="text" name="negative_marks" class="form-control" required="s">
+                                   <input type="number" name="negative_marks" class="form-control" required="s" min="0">
                                 </div>
                              </div>
                           </div>

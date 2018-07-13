@@ -26,6 +26,7 @@ use App\Template_setting_message;
 use App\Questions_submission_resource;
 use App\Coding_entry;
 use App\Public_view_page;
+use App\Advanced_setting;
 
 class HostController extends Controller
 {
@@ -80,6 +81,10 @@ class HostController extends Controller
                ->select('question_details.marks')
                ->where('sections.id',$value->id)               
                ->sum('marks');
+
+              //sections advanced settings 
+              $args['sections_tabs'][$value->id]['adv_settings'] = Advanced_setting::where('section_id', $value->id)->
+              where('test_id', $id)->first();                 
 
         }
 
@@ -312,7 +317,7 @@ class HostController extends Controller
                       }
                   }
                   
-                  return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Duplicated The Test Template']);
+                  return \Response()->Json([ 'status' => 200,'msg'=>'You Have Successfully Hosted This Test.']);
               }else{
                   return \Response()->Json([ 'status' => 202, 'msg'=>'Something Went Wrong']);
                       //return redirect()->back();
@@ -322,7 +327,7 @@ class HostController extends Controller
       }
 
         catch(\Exception $e){
-            $this->set_session('Profile Couldnot be updated.'.$e->getMessage(), false);
+            $this->set_session('Test Could not be hosted.'.$e->getMessage(), false);
             // return redirect()->route('profile');
         }
 

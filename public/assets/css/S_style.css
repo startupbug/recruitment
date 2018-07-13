@@ -782,3 +782,9 @@ ul.add_resources_submission_ul .s_close {
 .model_table td {
     color: black;
 }
+
+
+input#input-search {
+    padding: 7px 29px;
+    width: 286px;
+}

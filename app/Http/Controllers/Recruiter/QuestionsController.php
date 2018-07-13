@@ -93,7 +93,7 @@ class QuestionsController extends Controller
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			if ($request->lib_private_question == 0) {
+			if ($request->lib_private_question != 0) {
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
@@ -155,7 +155,7 @@ class QuestionsController extends Controller
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			if ($request->lib_private_question == 0) {
+			if ($request->lib_private_question != 0) {
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
@@ -212,7 +212,7 @@ class QuestionsController extends Controller
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			if ($request->lib_private_question == 0) {
+			if ($request->lib_private_question != 0) {
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
@@ -270,7 +270,7 @@ class QuestionsController extends Controller
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
-			if ($request->lib_private_question == 0) {
+			if ($request->lib_private_question != 0) {
 				$store->section_id = $request->section_id;
 			}else{
 				$store->section_id = NULL;
