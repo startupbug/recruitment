@@ -8,6 +8,7 @@
 			@if(!isset($templateType_fil))
 				@php $temp_unset=true @endphp
 			@endif
+
 			<div class="col-md-3 col-sm-12 col-xs-12 display-table-cell padding-0 nav-background">
 				<ul class="nav nav-tabs nav-sidebar">
 				 <li @if(isset($templateType_fil) && $templateType_fil==1) class="active" @endif ><a data-toggle="pill" href="#public">Public Questions <i class=""></i></a></li>
@@ -19,12 +20,16 @@
 				 <!-- Start Public Question -->
 				 <div id="public" class="tab-pane fade @if(isset($templateType_fil) && $templateType_fil==1) in active @elseif($temp_unset) in active @endif ">
 					<ul class="nav nav-tabs">
-			 			<li  class="active"><a data-toggle="pill" href="#public-mcqs">MCQs ({{isset($public_questions_mcqs) ? count($public_questions_mcqs) : ''}})</a></li>
-			 			<li><a data-toggle="pill" href="#public-programming-question">Programming Questions
-			 			({{isset($public_questions_codings) ? count($public_questions_codings) : ''}})</a></li>
+			 			<li  class="@if((Request::segment(count(request()->segments()))) == 'mcqs') active @elseif((Request::segment(count(request()->segments()))) == 'programming') @else active @endif">
+			 				<a data-toggle="pill" href="#public-mcqs">MCQs ({{isset($public_questions_mcqs) ? count($public_questions_mcqs) : ''}})</a>
+			 			</li>
+			 			<li class="@if((Request::segment(count(request()->segments()))) == 'programming') active @endif">
+				 			<a data-toggle="pill" href="#public-programming-question">Programming Questions
+				 			({{isset($public_questions_codings) ? count($public_questions_codings) : ''}})</a>
+				 		</li>
 		 			</ul>
 			 		<div class="tab-content">
-			 			<div id="public-mcqs" class="tab-pane fade in active">
+			 			<div id="public-mcqs" class="tab-pane fade @if((Request::segment(count(request()->segments()))) == 'mcqs') in active @elseif((Request::segment(count(request()->segments()))) == 'programming') @else  in active @endif ">
 							<div class="padding-col">
 								<form id="libFilterMCQ" action="{{route('libFilter')}}" method="post">
 								    <div class="form-group col-md-3">
@@ -122,10 +127,9 @@
 									</nav>
 								</div>
 							</div>
-
 						</div>
 
-			 			<div id="public-programming-question" class="tab-pane fade">
+			 			<div id="public-programming-question" class="tab-pane fade @if((Request::segment(count(request()->segments()))) == 'programming') in active @endif ">
 							<div class="padding-col">
 								<form id="libFilterMCQ" action="{{route('libFilter')}}" method="post">
 									<div class="form-group col-md-3">
@@ -220,7 +224,6 @@
 									</nav>
 								</div>
 							</div>
-
 						</div>
 			 		</div>
 				 </div>
@@ -1685,7 +1688,7 @@
                 <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>Filter Criteria 676</h3>
             </div>
             <div class="modal-body s_modal_form_body">
-                <form class="form-horizontal" action="{{route('advance_filter')}}" method="post">
+                <form class="form-horizontal" action="{{route('advance_filter',['tab'=>'mcqs'])}}" method="post">
                 	{{csrf_field()}}
                     <div class="form-group">
                     	<input type="hidden" name="templateType" value="1">
@@ -1768,7 +1771,7 @@
                 <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>  Filter Criteria909</h3>
             </div>
             <div class="modal-body s_modal_form_body">
-                <form class="form-horizontal" action="{{route('advance_filter')}}" method="post">
+                <form class="form-horizontal" action="{{route('advance_filter',['tab'=>'programming'])}}" method="post">
                 	{{csrf_field()}}
                     <div class="form-group">
                     	<input type="hidden" name="templateType" value="1">

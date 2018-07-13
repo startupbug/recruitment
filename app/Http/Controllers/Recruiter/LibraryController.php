@@ -352,7 +352,7 @@ class LibraryController extends Controller
 
     public function advance_filter(Request $request)
     {
-    	// dd($request->input());
+    	 // dd($request->input());
 
     	$args['levels'] = Question_level::all();
     	$args['tags'] = Question_tag::all();
@@ -511,14 +511,14 @@ class LibraryController extends Controller
 
 	    		$temp3 = $temp2;
 					//Get unfiltered Table data --private
-	    			$args['private_questions_codings'] = $temp3->where('test_template_types.id', 2) //private
+	    			$args['private_questions_codings'] = $temp3->where('questions.lib_private_question', 1) //private
 	    													->where('questions.question_type_id', 2)->get();
 	    			$temp3 = $temp2;
 
-	    			$args['private_questions_mcqs'] = $temp3->where('test_template_types.id', 2) //private
+	    			$args['private_questions_mcqs'] = $temp3->where('questions.lib_private_question', 1) //private
 	    													->where('questions.question_type_id', 1)->get();
 	    			$temp3 = $temp2;										
-	    			$args['private_questions_submissions'] = $temp3->where('test_template_types.id', 2) //private
+	    			$args['private_questions_submissions'] = $temp3->where('questions.lib_private_question', 1) //private
 	    													->where('questions.question_type_id', 3)->get();
 
 

@@ -28,6 +28,7 @@ use App\Coding_question_language;
 class QuestionsController extends Controller
 {
 	public function create_question(Request $request){
+		dd($request->input());
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
 			$store = new Question;
 			$store->user_id = Auth::user()->id;
