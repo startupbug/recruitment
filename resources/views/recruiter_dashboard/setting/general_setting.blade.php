@@ -224,7 +224,7 @@
                            </div>
                            <div class="hidden" id="s_add_tag_button">
                               <div class="col-md-8 cancel_add">
-                                 <input id="name" name="newTagValue" type="text" placeholder="Add a tag" class="form-control general add_last">
+                                 <input id="name" name="newTagValue" type="text" placeholder="Add a tag" class="form-control general add_last" required>
                               </div>
                               <div class="col-md-4">
                                  <button type="button" class="btn add" onclick="functionAddNewTag()">add</button>

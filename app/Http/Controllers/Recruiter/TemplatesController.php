@@ -210,7 +210,7 @@ return redirect()->back();
 	// Editing Test Template
 public function edit_template($id = NULL, $flag = NULL){
 
-  if($flag == "host")
+  if($flag == "host") 
   {
     $args['tags'] = DB::table('question_tags')->get();
 
@@ -225,8 +225,9 @@ public function edit_template($id = NULL, $flag = NULL){
     $host_template_id = $args['edit_host']->template_id;
 
     $args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
-
-    ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))
+     ->leftjoin('advanced_settings', 'advanced_settings.section_id', '=', 'sections.id')
+    ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'),
+      'advanced_settings.win_proc', 'advanced_settings.ques_shuff', 'advanced_settings.dura_min')
 
     ->where('template_id',$args['edit_host']->test_template_id)
     ->groupBy('sections.id')
@@ -274,6 +275,9 @@ public function edit_template($id = NULL, $flag = NULL){
                ->where('sections.id',$value->id)
                ->sum('marks');
 
+               $args['sections_tabs'][$value->id]['adv_settings'] = Advanced_setting::where('section_id', $value->id)->
+                  where('test_id', $args['edit']->id)->first();
+
              // $args['sections_tabs2'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              // $args['sections_tabs'][$value->id]['count2'] = $value->section_questions;
          }
@@ -281,12 +285,14 @@ public function edit_template($id = NULL, $flag = NULL){
 
          $args['test_setting_types'] = Test_template_types::get();
          $args['test_setting_webcam'] = Webcam::get();
+        // dd($host_template_id);
          $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$host_template_id)->first();
+
          $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$host_template_id)->first();
          $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$host_template_id)->first();
          $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$host_template_id)->first();
          $args['template_id'] = $host_template_id;
-       // dd($args);
+        //dd($args);
 
 
          $args['template_question_setting'] = User_question::
@@ -412,7 +418,7 @@ public function edit_template($id = NULL, $flag = NULL){
 
 
 
-      // dd($args);
+        //dd($args);
 			 // return $args['template_question_setting'];
 
       return view('recruiter_dashboard.edit_template')->with($args);

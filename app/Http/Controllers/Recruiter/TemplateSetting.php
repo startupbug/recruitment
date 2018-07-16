@@ -18,6 +18,7 @@ class TemplateSetting extends Controller
 {
 	//Creating Test Template Settings
     public function templatetestSetting(Request $request){
+
     	try {
 			if (isset($request->template_id)){				
 				$store = Templates_test_setting::firstOrNew(array('test_templates_id' => $request->template_id));
@@ -373,9 +374,11 @@ class TemplateSetting extends Controller
 			$adv_exists = Advanced_setting::where('section_id', $section_id)->where('test_id', $template_id)->first();
 			
 			if(is_null($adv_exists)){
-				return 123;
+				//return 123;
 				//Create new settings for this section
-				$advanced_setting = new Advanced_setting();				
+				$advanced_setting = new Advanced_setting();
+				$advanced_setting->section_id = $request->input('section_id');
+				$advanced_setting->test_id = $request->input('test_id');			
 
 			}else{
 				//return 456;

@@ -787,16 +787,16 @@
                         <div class="form-group title">
                             <label class="col-md-3 control-label" for="email">Role</label>
                             <div class="col-md-9">
-                                <div class="checkbox_user"><input type="checkbox" name="admin" value="admin">Admin<br></div>
+                                <div class="checkbox_user"><input type="radio" name="admin" value="admin">Admin<br></div>
                                 <p class="user_content">Complete control except access to setting page.</p>
                                 <br>
-                                <div class="checkbox_user"><input type="checkbox" name="admin" value="admin">Test Manager</div>
+                                <div class="checkbox_user"><input type="radio" name="admin" value="admin">Test Manager</div>
                                 <p class="user_content">Manage Tests and Templates (host, add, edit, delete). Cannot access reports.</p>
                                 <br>
-                                <div class="checkbox_user"><input type="checkbox" name="admin" value="admin">Template Manager</div>
+                                <div class="checkbox_user"><input type="radio" name="admin" value="admin">Template Manager</div>
                                 <p class="user_content">Manage Test Templates (add, edit, delete), Manage questions in Templates. Cannot host tests or access reports.</p>
                                 <br>
-                                <div class="checkbox_user"><input type="checkbox" name="admin" value="admin">Report viewer</div>
+                                <div class="checkbox_user"><input type="radio" name="admin" value="admin">Report viewer</div>
                                 <p class="user_content">View all reports.</p>
                             </div>
                         </div>
