@@ -2330,9 +2330,11 @@
                                 <div class="col-md-3">
                                    <select name="tag_id" class="form-control">
                                       <option value="add Tag" disabled="">Add Tag</option>
+                                       @if(isset($tags))
                                        @foreach($tags as $value)
                                         <option value="{{$value->id}}">{{$value->tag_name}}</option>
-                                      @endforeach
+                                       @endforeach
+                                       @endif
                                    </select>
                                 </div>
                              </div>
