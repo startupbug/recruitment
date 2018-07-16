@@ -27,7 +27,7 @@
                         {{csrf_field()}}
                         <div class="form-group">
                            <label class="col-md-3 control-label" for="name">
-                              Full Name 
+                              Full Name
                               <div class="s_popup">
                                  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This is the Account holders name. <br>
                                     Good to Know: <br>
@@ -47,7 +47,7 @@
                         <!-- Email input-->
                         <div class="form-group">
                            <label class="col-md-3 control-label" for="email">
-                              Company Logo Url 
+                              Company Logo Url
                               <div class="s_popup">
                                  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Insert the link to the company's logo. <br>
                                     Good to Know: <br>
@@ -85,7 +85,7 @@
                         Learning refrence:<br>
                         http://www.markdowntutorial.com/"> <i class="fa fa-info-circle f_circle"> </i></a></p>
                      <form action="{{route('post_contact_details')}}" method="post" enctype="multipart/form-data">
-                        {{csrf_field()}}								
+                        {{csrf_field()}}
                         <div class="form-group">
                            <label class="col-md-3 control-label" for="email">Email ID </label>
                            <div class="col-md-9">
@@ -139,7 +139,7 @@
                   </div>
                </div>
             </div>
-            <a name="management4"></a>					
+            <a name="management4"></a>
             <div class="s_link">
                <div class="panel panel-default">
                   <div class="panel-heading setting_gen">
@@ -166,14 +166,14 @@
                   </div>
                </div>
             </div>
-            <a name="question5"></a>	
+            <a name="question5"></a>
             <div class="s_link">
                <div class="panel panel-default">
                   <div class="panel-heading setting_gen">
                      Question Tags
                   </div>
                   <div class="panel-body">
-                     <p class="contact_content">Repository of tags that are used to tag questions in the library 
+                     <p class="contact_content">Repository of tags that are used to tag questions in the library
                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
                            This is a markdown editor <br>
                            Learning refrence:<br>
@@ -187,7 +187,7 @@
                         </span>-->
                      <div class="form-group">
                         <label class="col-md-3 control-label" for="name">
-                           Tags 
+                           Tags
                            <div class="s_popup">
                               <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
                                  This is a markdown editor <br>
@@ -206,11 +206,17 @@
                            <div class="row form-group">
                               <div class="input-group addon">
                                  <input type="text" value="{{$value->tag_name}}" class="form-control" tag-id="{{$value->id}}" disabled>
-                                 <span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                                 <span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span>
-                                 <button class="QuestionTagSetting" data-id="{{$value->id}}" data-url="{{route('delete_question_tag')}}">
-                                 <span class="xyz input-group-addon success delete_tag"><i class="fa fa-times-circle-o"></i></span>
-                                 </button>	
+                                 <span class="input-group-addon success edit_tag">
+                                   <i class="fa fa-pencil" aria-hidden="true"></i>
+                                 </span>
+                                 <!-- <span class="input-group-addon success edit_delete hidden">
+                                   <i class="fa fa-close"></i>
+                                 </span> -->
+                                 <span class="xyz input-group-addon success delete_tag">
+                                   <button class="QuestionTagSetting" data-id="{{$value->id}}" data-url="{{route('delete_question_tag')}}">
+                                     <i class="fa fa-times-circle-o"></i>
+                                   </button>
+                                 </span>
                               </div>
                            </div>
                            @endforeach

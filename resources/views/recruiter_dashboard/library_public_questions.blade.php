@@ -3,6 +3,7 @@
 <section class="view">
 	<br>
 	<div class="container-fluid padding-15-fluit">
+		<p class="library_heading">Library</p>
 		<div class="row border-row display-table s_magin-10">
 			@php $temp_unset=false @endphp
 			@if(!isset($templateType_fil))
@@ -11,6 +12,7 @@
 
 			<div class="col-md-3 col-sm-12 col-xs-12 display-table-cell padding-0 nav-background">
 				<ul class="nav nav-tabs nav-sidebar">
+					<!-- <li></li> -->
 				 <li @if(isset($templateType_fil) && $templateType_fil==1) class="active" @endif ><a data-toggle="pill" href="#public">Public Questions <i class=""></i></a></li>
 				 <li @if(isset($templateType_fil) && $templateType_fil==2) class="active" @endif ><a data-toggle="pill" href="#private">Private Questions <i class=""></i></a></li>
 			 	</ul>
@@ -176,7 +178,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										
+
 								@if( isset($public_questions_codings) && count($public_questions_codings) > 0 )
 							    @foreach($public_questions_codings as $public_questions_coding)
 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_coding->id}}" aria-expanded="false">
