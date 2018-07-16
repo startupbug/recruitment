@@ -265,7 +265,7 @@ Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@lib
 	Route::post('/data_image_tags/{id?}','Recruiter\Public_view_pageController@data_tags')->name('data_image_tags');
 	Route::get('/delete_image_tags','Recruiter\Public_view_pageController@delete_tags')->name('delete_image_tags');
 
-	Route::post('/advance_filter','Recruiter\LibraryController@advance_filter')->name('advance_filter');
+	Route::post('/advance_filter/{tab?}','Recruiter\LibraryController@advance_filter')->name('advance_filter');
 	Route::post("ajax_tag_post", "Recruiter\TemplateSetting@ajax_tag_post");
 	Route::post("delete_question_tag", "Recruiter\TemplateSetting@delete_question_tag")->name('delete_question_tag');
 
