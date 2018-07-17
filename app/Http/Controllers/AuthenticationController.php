@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Events\UserProfile;
-use App\Events\UserCompanyProfile;
-use App\Profile;
+-
 use App\User;
 use Auth;
 class AuthenticationController extends Controller
