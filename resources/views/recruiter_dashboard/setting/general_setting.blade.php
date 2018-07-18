@@ -230,7 +230,7 @@
                            </div>
                            <div class="hidden" id="s_add_tag_button">
                               <div class="col-md-8 cancel_add">
-                                 <input id="name" name="newTagValue" type="text" placeholder="Add a tag" class="form-control general add_last">
+                                 <input id="name" name="newTagValue" type="text" placeholder="Add a tag" class="form-control general add_last" required>
                               </div>
                               <div class="col-md-4">
                                  <button type="button" class="btn add" onclick="functionAddNewTag()">add</button>
@@ -247,4 +247,58 @@
    </div>
    </div>
 </section>
+@endsection
+@section('user_management')
+<!--Setting page on user management-->
+<div class="modal fade" id="usermanagement" role="dialog">
+    <div class="modal-dialog  modal-lg">
+        <!-- Modal content-->
+         <form action="{{route('assigning_user_access_account')}}" method="POST">
+            {{csrf_field()}}
+           <div class="modal-content filter fa_evaluate fa_user">
+               <div class="modal-header s_modal_form_header">
+                   <h3 class="modal-title s_font f_font">Add New User</h3>
+               </div>
+               <div class="modal-body s_modal_form_body modal_top modal_user">
+                   <div class="row">
+                       <div class="col-md-12">
+                           <div class="form-group title">
+                               <label class="col-md-3 control-label" for="name">Email Address</label>
+                               <div class="col-md-9">
+                                   <div class="template"><input id="name" name="email" type="text" class="form-control general">
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="form-group title">
+                               <label class="col-md-3 control-label" for="email">Role</label>
+                               <div class="col-md-9">
+                                   <div class="checkbox_user"><input type="radio" value="1" name="role_name">Admin<br></div>
+                                   <p class="user_content">Complete control except access to setting page.</p>
+                                   <br>
+                                   <div class="checkbox_user"><input type="radio" value="2" name="role_name">Test Manager</div>
+                                   <p class="user_content">Manage Tests and Templates (host, add, edit, delete). Cannot access reports.</p>
+                                   <br>
+                                   <div class="checkbox_user"><input type="radio" value="3" name="role_name">Template Manager</div>
+                                   <p class="user_content">Manage Test Templates (add, edit, delete), Manage questions in Templates. Cannot host tests or access reports.</p>
+                                   <br>
+                                   <div class="checkbox_user"><input type="radio" value="4" name="role_name">Report viewer</div>
+                                   <p class="user_content">View all reports.</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <input type="hidden" name="authorizer_id" value="{{Auth::user()->id}}">
+               <div class="panel-footer user_save">
+                   <div class="button_notify">
+                       <button type="submit" class="btn">Save and Notify User</button>
+                       <!--<button type="button" class="btn cancel_footer">Cancel</button>-->
+                       <button type="button" class="btn btn-default s_font btn cancel_footer" data-dismiss="modal">Cancel</button>
+                   </div>
+               </div>
+           </div>
+         </form>
+    </div>
+</div>
+<!--end user management-->
 @endsection

@@ -58,6 +58,7 @@ class TemplatesController extends Controller
                 $args['listing'] = Test_template::where('user_id',Auth::user()->id)
                 ->where('template_type_id',1)
                 ->where('title','LIKE','%'.$name.'%')
+                ->orderBy('id', 'desc')
                 ->get();
                 $args['count'] = Test_template::where('template_type_id',1)
                 ->where('title','LIKE','%'.$name.'%')
@@ -72,6 +73,7 @@ class TemplatesController extends Controller
                 $args['listing'] = Test_template::where('user_id',Auth::user()->id)
                 ->where('template_type_id',2)
                 ->where('title','LIKE','%'.$name.'%')
+                ->orderBy('id', 'desc')
                 ->get();
                 $args['count'] = Test_template::where('template_type_id',2)->count();
                 foreach ($args['listing'] as $value) {
@@ -84,6 +86,7 @@ class TemplatesController extends Controller
             {
                 $args['listing'] = Test_template::where('user_id',Auth::user()->id)
                 ->where('title','LIKE','%'.$name.'%')
+                ->orderBy('id', 'desc')
                 ->get();
                 $args['count'] = Test_template::where('title','LIKE','%'.$name.'%')->count();
                 foreach ($args['listing'] as $value) {
@@ -98,7 +101,8 @@ class TemplatesController extends Controller
 
           $args['count'] = Test_template::count();
           
-          $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
+          $args['listing'] = Test_template::where('user_id',Auth::user()->id)
+                ->orderBy('id', 'desc')->get();
 
             foreach ($args['listing'] as $value) {
                 $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
@@ -210,7 +214,7 @@ return redirect()->back();
 	// Editing Test Template
 public function edit_template($id = NULL, $flag = NULL){
 
-  if($flag == "host")
+  if($flag == "host") 
   {
     $args['tags'] = DB::table('question_tags')->get();
 
@@ -225,8 +229,9 @@ public function edit_template($id = NULL, $flag = NULL){
     $host_template_id = $args['edit_host']->template_id;
 
     $args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
-
-    ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'))
+     ->leftjoin('advanced_settings', 'advanced_settings.section_id', '=', 'sections.id')
+    ->select('sections.*','questions.id as question_id',DB::raw('count(questions.id) as section_questions'),
+      'advanced_settings.win_proc', 'advanced_settings.ques_shuff', 'advanced_settings.dura_min')
 
     ->where('template_id',$args['edit_host']->test_template_id)
     ->groupBy('sections.id')
@@ -274,6 +279,9 @@ public function edit_template($id = NULL, $flag = NULL){
                ->where('sections.id',$value->id)
                ->sum('marks');
 
+               $args['sections_tabs'][$value->id]['adv_settings'] = Advanced_setting::where('section_id', $value->id)->
+                  where('test_id', $args['edit']->id)->first();
+
              // $args['sections_tabs2'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              // $args['sections_tabs'][$value->id]['count2'] = $value->section_questions;
          }
@@ -281,12 +289,14 @@ public function edit_template($id = NULL, $flag = NULL){
 
          $args['test_setting_types'] = Test_template_types::get();
          $args['test_setting_webcam'] = Webcam::get();
+        // dd($host_template_id);
          $args['edit_test_settings'] = Templates_test_setting::where('test_templates_id',$host_template_id)->first();
+
          $args['edit_test_settings_message'] = Template_setting_message::where('test_templates_id',$host_template_id)->first();
          $args['edit_mail_settings'] = Templates_mail_setting::where('test_templates_id',$host_template_id)->first();
          $args['edit_test_contact_settings'] = Templates_contact_setting::where('test_templates_id',$host_template_id)->first();
          $args['template_id'] = $host_template_id;
-       // dd($args);
+        //dd($args);
 
 
          $args['template_question_setting'] = User_question::
@@ -412,7 +422,7 @@ public function edit_template($id = NULL, $flag = NULL){
 
 
 
-      // dd($args);
+        //dd($args);
 			 // return $args['template_question_setting'];
 
       return view('recruiter_dashboard.edit_template')->with($args);
@@ -483,6 +493,21 @@ public function create_duplicate_template_post(Request $request){
             $store = $previous_template->replicate();
             $store->title = $request->title;
             if ($store->save()) {
+              $test_settings = Templates_test_setting::where('test_templates_id',$test_template_id)->first();
+              unset($test_settings->id);
+              $new_test_sttings = new Templates_test_setting;
+
+              $new_test_sttings->email_verification = $test_settings->email_verification;
+              $new_test_sttings->mandatory_resume = $test_settings->mandatory_resume;
+              $new_test_sttings->request_resume = $test_settings->request_resume;
+              $new_test_sttings->test_template_types_id = $test_settings->test_template_types_id;
+              $new_test_sttings->test_templates_id = $store->id;
+              $new_test_sttings->webcam_id = $test_settings->webcam_id;
+              $new_test_sttings->save();
+              // $setting_store = $test_settings->replicate();
+              // $setting_store->test_templates_id = $store->id;
+              // $setting_store->save();
+
                 foreach ($section_of_templates as $key => $value) {
                     $previous_section = Section::find($value->id);
                     //Sections ka data copy horha hai yahan

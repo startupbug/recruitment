@@ -123,7 +123,7 @@
 	                  		</div>
 	                  		@foreach($Public_view_page as $key => $value)
 	                			<div id="public_page_view{{$value->id}}" class="tab-pane fade">
-	                    			{{$value->page_detail}}
+	                    			{!! $value->page_detail !!}
 	                			</div>
              				@endforeach
 	               		</div>

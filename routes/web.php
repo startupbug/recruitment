@@ -146,6 +146,8 @@ Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send
 
 Route::post('/invitaion_to_candidate/{id}','Recruiter\Invite_Candidate_Controller@invitaion_to_candidate')->name('invitaion_to_candidate');
 
+Route::post('/assigning_user_access_account','Recruiter\AssignController@assigning_user_access_account')->name('assigning_user_access_account');
+
 Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
 
 

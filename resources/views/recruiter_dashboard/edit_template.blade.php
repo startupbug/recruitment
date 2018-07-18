@@ -551,9 +551,9 @@
                                  <a href="#s_advanced_setting" class="advnSettingsButton" data-sectionid="@if(isset($sec['adv_settings']->section_id)){{$sec['adv_settings']->section_id}} @endif" data-url="{{route('advance_settings_data')}}" data-toggle="modal">Advanced Settings</a>
                                  </label>
                               </div>
-
+                          
                               <input type="hidden" name="section_id" class="adv_section_id" value="">
-                              <input type="hidden" name="test_id" class="adv_test_id" value="@if( \Request::segment(count(request()->segments())-1) == 'host_test_page' ){{\Request::segment(count(request()->segments())) }}@else{{\Request::segment(count(request()->segments())-1)}}@endif" />
+                              <input type="hidden" name="test_id" class="adv_test_id" value="@if( \Request::segment(count(request()->segments())-1) == 'host_test_page' ){{\Request::segment(count(request()->segments())) }}@elseif(\Request::segment(count(request()->segments())) == 'host' && isset($sec['adv_settings']) ){{$sec['adv_settings']->test_id}}@else{{\Request::segment(count(request()->segments())-1)}}@endif" />
 
                               <button type="submit" class="btn btn-primary btn-sm">Save</button>
                            </form>
@@ -649,9 +649,12 @@
                                              <div class="row">
                                                 <div class="col-sm-5">
                                                    <select name="webcam_id" id="webcam_id" class="form-control">
+<!--                                                       @foreach($test_setting_webcam as $value)
+                                                      <option value="{{$value->id}}" >{{$value->webcam_name}}</option>
+                                                      @endforeach -->
                                                       @foreach($test_setting_webcam as $value)
-                                                      <option value="{{$value->id}}" @if($edit_test_settings->webcam_id == $value->id) selected @endif>{{$value->webcam_name}}</option>
-                                                      @endforeach
+                                                         <option value="{{$value->id}}" @if($edit_test_settings->webcam_id == $value->id) selected @endif >{{$value->webcam_name}}</option>
+                                                      @endforeach                                                      
                                                    </select>
                                                 </div>
                                              </div>

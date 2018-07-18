@@ -766,56 +766,8 @@
 <!--setup manual end-->
 @yield('createtemplate')
 
-<!--Setting page on user management-->
-<div class="modal fade" id="usermanagement" role="dialog">
-    <div class="modal-dialog  modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content filter fa_evaluate fa_user">
-            <div class="modal-header s_modal_form_header">
-                <h3 class="modal-title s_font f_font">Add New User</h3>
-            </div>
-            <div class="modal-body s_modal_form_body modal_top modal_user">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="name">Email Address</label>
-                            <div class="col-md-9">
-                                <div class="template"><input id="name" name="name" type="text" class="form-control general">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group title">
-                            <label class="col-md-3 control-label" for="email">Role</label>
-                            <div class="col-md-9">
-                                <div class="checkbox_user"><input type="checkbox" name="admin" value="admin">Admin<br></div>
-                                <p class="user_content">Complete control except access to setting page.</p>
-                                <br>
-                                <div class="checkbox_user"><input type="checkbox" name="admin" value="admin">Test Manager</div>
-                                <p class="user_content">Manage Tests and Templates (host, add, edit, delete). Cannot access reports.</p>
-                                <br>
-                                <div class="checkbox_user"><input type="checkbox" name="admin" value="admin">Template Manager</div>
-                                <p class="user_content">Manage Test Templates (add, edit, delete), Manage questions in Templates. Cannot host tests or access reports.</p>
-                                <br>
-                                <div class="checkbox_user"><input type="checkbox" name="admin" value="admin">Report viewer</div>
-                                <p class="user_content">View all reports.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer user_save">
-                <div class="button_notify">
-                    <button type="button" class="btn">Save and Notify User</button>
-                    <!--<button type="button" class="btn cancel_footer">Cancel</button>-->
-                    <button type="button" class="btn btn-default s_font btn cancel_footer" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end user management-->
 
-
+@yield('user_management')
 <!--preview test on ques page-->
 <div class="modal fade" id="preview_test" role="dialog">
     <div class="modal-dialog  modal-lg">

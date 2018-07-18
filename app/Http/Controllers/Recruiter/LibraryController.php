@@ -412,7 +412,14 @@ class LibraryController extends Controller
 
     public function advance_filter(Request $request)
     {
-    	 // dd($request->input());
+
+
+    	if( is_null($request->input('id'))  && is_null($request->input('title')) && is_null($request->input('statement')) && is_null($request->input('tag')) && is_null($request->input('provider')) && is_null($request->input('author')) 
+    		&& !$request->has('level') && !$request->has('state') ){
+
+    		return redirect()->route('lib_index');			
+    	}
+
 
     	$args['levels'] = Question_level::all();
     	$args['tags'] = Question_tag::all();
