@@ -58,6 +58,7 @@ class TemplatesController extends Controller
                 $args['listing'] = Test_template::where('user_id',Auth::user()->id)
                 ->where('template_type_id',1)
                 ->where('title','LIKE','%'.$name.'%')
+                ->orderBy('id', 'desc')
                 ->get();
                 $args['count'] = Test_template::where('template_type_id',1)
                 ->where('title','LIKE','%'.$name.'%')
@@ -72,6 +73,7 @@ class TemplatesController extends Controller
                 $args['listing'] = Test_template::where('user_id',Auth::user()->id)
                 ->where('template_type_id',2)
                 ->where('title','LIKE','%'.$name.'%')
+                ->orderBy('id', 'desc')
                 ->get();
                 $args['count'] = Test_template::where('template_type_id',2)->count();
                 foreach ($args['listing'] as $value) {
@@ -84,6 +86,7 @@ class TemplatesController extends Controller
             {
                 $args['listing'] = Test_template::where('user_id',Auth::user()->id)
                 ->where('title','LIKE','%'.$name.'%')
+                ->orderBy('id', 'desc')
                 ->get();
                 $args['count'] = Test_template::where('title','LIKE','%'.$name.'%')->count();
                 foreach ($args['listing'] as $value) {
@@ -98,7 +101,8 @@ class TemplatesController extends Controller
 
           $args['count'] = Test_template::count();
           
-          $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
+          $args['listing'] = Test_template::where('user_id',Auth::user()->id)
+                ->orderBy('id', 'desc')->get();
 
             foreach ($args['listing'] as $value) {
                 $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
@@ -489,6 +493,21 @@ public function create_duplicate_template_post(Request $request){
             $store = $previous_template->replicate();
             $store->title = $request->title;
             if ($store->save()) {
+              $test_settings = Templates_test_setting::where('test_templates_id',$test_template_id)->first();
+              unset($test_settings->id);
+              $new_test_sttings = new Templates_test_setting;
+
+              $new_test_sttings->email_verification = $test_settings->email_verification;
+              $new_test_sttings->mandatory_resume = $test_settings->mandatory_resume;
+              $new_test_sttings->request_resume = $test_settings->request_resume;
+              $new_test_sttings->test_template_types_id = $test_settings->test_template_types_id;
+              $new_test_sttings->test_templates_id = $store->id;
+              $new_test_sttings->webcam_id = $test_settings->webcam_id;
+              $new_test_sttings->save();
+              // $setting_store = $test_settings->replicate();
+              // $setting_store->test_templates_id = $store->id;
+              // $setting_store->save();
+
                 foreach ($section_of_templates as $key => $value) {
                     $previous_section = Section::find($value->id);
                     //Sections ka data copy horha hai yahan

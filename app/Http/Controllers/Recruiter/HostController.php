@@ -195,6 +195,18 @@ class HostController extends Controller
 
               if ($store->save()) { 
 
+                $test_settings = Templates_test_setting::where('test_templates_id',$template_id)->first();
+                unset($test_settings->id);
+                $new_test_sttings = new Templates_test_setting;
+
+                $new_test_sttings->email_verification = $test_settings->email_verification;
+                $new_test_sttings->mandatory_resume = $test_settings->mandatory_resume;
+                $new_test_sttings->request_resume = $test_settings->request_resume;
+                $new_test_sttings->test_template_types_id = $test_settings->test_template_types_id;
+                $new_test_sttings->test_templates_id = $store->id;
+                $new_test_sttings->webcam_id = $test_settings->webcam_id;
+                $new_test_sttings->save();
+
                //     
                   $user_questions_by_host = User_question::where('template_id', $template_id)->get();
                             // dd();
