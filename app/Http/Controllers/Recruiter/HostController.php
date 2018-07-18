@@ -163,7 +163,6 @@ class HostController extends Controller
           $hosted_test->instruction = $test_template_data->instruction;
           $hosted_test->save();
           
-
           $get_new_host = Hosted_test::where('id',$hosted_test->id)->first();
           // return $get_new_host->id;
 
@@ -185,7 +184,7 @@ class HostController extends Controller
 
       if (Auth::check())
        {
-                //Templates ka data copy horha hai yahan
+          //Templates ka data copy horha hai yahan
           if (isset($previous_template)) {
               $store = $previous_template->replicate();
              
@@ -199,6 +198,7 @@ class HostController extends Controller
                //     
                   $user_questions_by_host = User_question::where('template_id', $template_id)->get();
                             // dd();
+                  return $user_questions_by_host;
                   foreach($user_questions_by_host as $Key => $host_user_question)
                             // return ;
                   {

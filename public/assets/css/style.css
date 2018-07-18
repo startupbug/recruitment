@@ -2590,7 +2590,9 @@ li.active {
    background-color: #261f63;
    color: white;
 }
-
+.f_btn:focus{
+    color: #fff;
+}
 .btn-group-sm>.btn, .btn-sm {
    padding: 5px 10px !important;
    font-size: 12px !important;
