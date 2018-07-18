@@ -169,7 +169,7 @@
 										</tr>
 									</thead>
 									<tbody>
-									
+
 							@if( isset($public_questions_codings) && count($public_questions_codings) > 0 )
 							    @foreach($public_questions_codings as $public_questions_coding)
 										<tr class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$public_questions_coding->id}}" aria-expanded="false">

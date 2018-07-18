@@ -146,6 +146,8 @@ Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send
 
 Route::post('/invitaion_to_candidate/{id}','Recruiter\Invite_Candidate_Controller@invitaion_to_candidate')->name('invitaion_to_candidate');
 
+Route::post('/assigning_user_access_account','Recruiter\AssignController@assigning_user_access_account')->name('assigning_user_access_account');
+
 Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
 
 
@@ -265,7 +267,7 @@ Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@lib
 	Route::post('/data_image_tags/{id?}','Recruiter\Public_view_pageController@data_tags')->name('data_image_tags');
 	Route::get('/delete_image_tags','Recruiter\Public_view_pageController@delete_tags')->name('delete_image_tags');
 
-	Route::post('/advance_filter','Recruiter\LibraryController@advance_filter')->name('advance_filter');
+	Route::post('/advance_filter/{tab?}','Recruiter\LibraryController@advance_filter')->name('advance_filter');
 	Route::post("ajax_tag_post", "Recruiter\TemplateSetting@ajax_tag_post");
 	Route::post("delete_question_tag", "Recruiter\TemplateSetting@delete_question_tag")->name('delete_question_tag');
 

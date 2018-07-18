@@ -3023,3 +3023,20 @@ li.expired_S span {
    text-align: center;
    margin-top: 100px;
 }
+.library_heading {
+    padding-left: 15px;
+    font-size: 27px;
+    font-weight: 600;
+    color: #261f63;
+}
+span.xyz.input-group-addon.success.delete_tag{
+
+      padding: 0px;
+}
+button.QuestionTagSetting {
+    padding: 12px 17px;
+    background: transparent;
+    box-sizing: inherit;
+    border: 0;
+    border-radius: 0px;
+}

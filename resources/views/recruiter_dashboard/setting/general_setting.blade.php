@@ -27,7 +27,7 @@
                         {{csrf_field()}}
                         <div class="form-group">
                            <label class="col-md-3 control-label" for="name">
-                              Full Name 
+                              Full Name
                               <div class="s_popup">
                                  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="This is the Account holders name. <br>
                                     Good to Know: <br>
@@ -47,7 +47,7 @@
                         <!-- Email input-->
                         <div class="form-group">
                            <label class="col-md-3 control-label" for="email">
-                              Company Logo Url 
+                              Company Logo Url
                               <div class="s_popup">
                                  <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="Insert the link to the company's logo. <br>
                                     Good to Know: <br>
@@ -85,7 +85,7 @@
                         Learning refrence:<br>
                         http://www.markdowntutorial.com/"> <i class="fa fa-info-circle f_circle"> </i></a></p>
                      <form action="{{route('post_contact_details')}}" method="post" enctype="multipart/form-data">
-                        {{csrf_field()}}								
+                        {{csrf_field()}}
                         <div class="form-group">
                            <label class="col-md-3 control-label" for="email">Email ID </label>
                            <div class="col-md-9">
@@ -139,7 +139,7 @@
                   </div>
                </div>
             </div>
-            <a name="management4"></a>					
+            <a name="management4"></a>
             <div class="s_link">
                <div class="panel panel-default">
                   <div class="panel-heading setting_gen">
@@ -166,14 +166,14 @@
                   </div>
                </div>
             </div>
-            <a name="question5"></a>	
+            <a name="question5"></a>
             <div class="s_link">
                <div class="panel panel-default">
                   <div class="panel-heading setting_gen">
                      Question Tags
                   </div>
                   <div class="panel-body">
-                     <p class="contact_content">Repository of tags that are used to tag questions in the library 
+                     <p class="contact_content">Repository of tags that are used to tag questions in the library
                         <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
                            This is a markdown editor <br>
                            Learning refrence:<br>
@@ -187,7 +187,7 @@
                         </span>-->
                      <div class="form-group">
                         <label class="col-md-3 control-label" for="name">
-                           Tags 
+                           Tags
                            <div class="s_popup">
                               <a href="#" class="f_tooltip" data-toggle="tooltip" data-placement="right" title="instructions page before the test. <br>
                                  This is a markdown editor <br>
@@ -206,11 +206,17 @@
                            <div class="row form-group">
                               <div class="input-group addon">
                                  <input type="text" value="{{$value->tag_name}}" class="form-control" tag-id="{{$value->id}}" disabled>
-                                 <span class="input-group-addon success edit_tag"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                                 <span class="input-group-addon success edit_delete hidden"><i class="fa fa-close"></i></span>
-                                 <button class="QuestionTagSetting" data-id="{{$value->id}}" data-url="{{route('delete_question_tag')}}">
-                                 <span class="xyz input-group-addon success delete_tag"><i class="fa fa-times-circle-o"></i></span>
-                                 </button>	
+                                 <span class="input-group-addon success edit_tag">
+                                   <i class="fa fa-pencil" aria-hidden="true"></i>
+                                 </span>
+                                 <!-- <span class="input-group-addon success edit_delete hidden">
+                                   <i class="fa fa-close"></i>
+                                 </span> -->
+                                 <span class="xyz input-group-addon success delete_tag">
+                                   <button class="QuestionTagSetting" data-id="{{$value->id}}" data-url="{{route('delete_question_tag')}}">
+                                     <i class="fa fa-times-circle-o"></i>
+                                   </button>
+                                 </span>
                               </div>
                            </div>
                            @endforeach
@@ -224,7 +230,7 @@
                            </div>
                            <div class="hidden" id="s_add_tag_button">
                               <div class="col-md-8 cancel_add">
-                                 <input id="name" name="newTagValue" type="text" placeholder="Add a tag" class="form-control general add_last">
+                                 <input id="name" name="newTagValue" type="text" placeholder="Add a tag" class="form-control general add_last" required>
                               </div>
                               <div class="col-md-4">
                                  <button type="button" class="btn add" onclick="functionAddNewTag()">add</button>
@@ -241,4 +247,58 @@
    </div>
    </div>
 </section>
+@endsection
+@section('user_management')
+<!--Setting page on user management-->
+<div class="modal fade" id="usermanagement" role="dialog">
+    <div class="modal-dialog  modal-lg">
+        <!-- Modal content-->
+         <form action="{{route('assigning_user_access_account')}}" method="POST">
+            {{csrf_field()}}
+           <div class="modal-content filter fa_evaluate fa_user">
+               <div class="modal-header s_modal_form_header">
+                   <h3 class="modal-title s_font f_font">Add New User</h3>
+               </div>
+               <div class="modal-body s_modal_form_body modal_top modal_user">
+                   <div class="row">
+                       <div class="col-md-12">
+                           <div class="form-group title">
+                               <label class="col-md-3 control-label" for="name">Email Address</label>
+                               <div class="col-md-9">
+                                   <div class="template"><input id="name" name="email" type="text" class="form-control general">
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="form-group title">
+                               <label class="col-md-3 control-label" for="email">Role</label>
+                               <div class="col-md-9">
+                                   <div class="checkbox_user"><input type="radio" value="1" name="role_name">Admin<br></div>
+                                   <p class="user_content">Complete control except access to setting page.</p>
+                                   <br>
+                                   <div class="checkbox_user"><input type="radio" value="2" name="role_name">Test Manager</div>
+                                   <p class="user_content">Manage Tests and Templates (host, add, edit, delete). Cannot access reports.</p>
+                                   <br>
+                                   <div class="checkbox_user"><input type="radio" value="3" name="role_name">Template Manager</div>
+                                   <p class="user_content">Manage Test Templates (add, edit, delete), Manage questions in Templates. Cannot host tests or access reports.</p>
+                                   <br>
+                                   <div class="checkbox_user"><input type="radio" value="4" name="role_name">Report viewer</div>
+                                   <p class="user_content">View all reports.</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <input type="hidden" name="authorizer_id" value="{{Auth::user()->id}}">
+               <div class="panel-footer user_save">
+                   <div class="button_notify">
+                       <button type="submit" class="btn">Save and Notify User</button>
+                       <!--<button type="button" class="btn cancel_footer">Cancel</button>-->
+                       <button type="button" class="btn btn-default s_font btn cancel_footer" data-dismiss="modal">Cancel</button>
+                   </div>
+               </div>
+           </div>
+         </form>
+    </div>
+</div>
+<!--end user management-->
 @endsection

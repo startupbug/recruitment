@@ -352,7 +352,14 @@ class LibraryController extends Controller
 
     public function advance_filter(Request $request)
     {
-    	// dd($request->input());
+
+
+    	if( is_null($request->input('id'))  && is_null($request->input('title')) && is_null($request->input('statement')) && is_null($request->input('tag')) && is_null($request->input('provider')) && is_null($request->input('author')) 
+    		&& !$request->has('level') && !$request->has('state') ){
+
+    		return redirect()->route('lib_index');			
+    	}
+
 
     	$args['levels'] = Question_level::all();
     	$args['tags'] = Question_tag::all();
@@ -511,14 +518,14 @@ class LibraryController extends Controller
 
 	    		$temp3 = $temp2;
 					//Get unfiltered Table data --private
-	    			$args['private_questions_codings'] = $temp3->where('test_template_types.id', 2) //private
+	    			$args['private_questions_codings'] = $temp3->where('questions.lib_private_question', 1) //private
 	    													->where('questions.question_type_id', 2)->get();
 	    			$temp3 = $temp2;
 
-	    			$args['private_questions_mcqs'] = $temp3->where('test_template_types.id', 2) //private
+	    			$args['private_questions_mcqs'] = $temp3->where('questions.lib_private_question', 1) //private
 	    													->where('questions.question_type_id', 1)->get();
 	    			$temp3 = $temp2;										
-	    			$args['private_questions_submissions'] = $temp3->where('test_template_types.id', 2) //private
+	    			$args['private_questions_submissions'] = $temp3->where('questions.lib_private_question', 1) //private
 	    													->where('questions.question_type_id', 3)->get();
 
 
