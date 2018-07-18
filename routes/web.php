@@ -247,7 +247,7 @@ Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@lib
 	Route::get('/library/{id?}', 'Recruiter\LibraryController@lib_index')->name('lib_index');
 
 	//Library ini filter
-	Route::post('/library-filter', 'Recruiter\LibraryController@libFilter')->name('libFilter');
+	Route::post('/library-filter/{tab?}', 'Recruiter\LibraryController@libFilter')->name('libFilter');
 
 	//Library single detail data.
 	Route::post('/library-question-detail', 'Recruiter\LibraryController@lib_ques_detail')->name('lib_ques_detail');
