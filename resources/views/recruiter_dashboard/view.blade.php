@@ -314,9 +314,15 @@
                                        </tr>
                                     </thead>
                                     <tbody>
+                                       @foreach($_sections as $host_section)
                                        <tr>
-                                          <td>Section1   2 Coding / 8 MCQ (90min)</td>
+                                          <td>Section {{$host_section->order_number}} 
+                                             
+                                             {{count($host_section->mcqs)}} Mcqs/ {{count($host_section->coding)}} Coding/
+                                             {{count($host_section->submission)}} Submission (90min)
+                                          </td>
                                        </tr>
+                                       @endforeach
                                     </tbody>
                                  </table>
                               </div>

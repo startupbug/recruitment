@@ -520,6 +520,7 @@ class LibraryController extends Controller
     		}
     		if(!is_null($request->input('statement')))
     		{
+    			// dd($request->input('statement'));
     			$temp->where('questions.question_statement','LIKE','%'.$request->input('statement').'%');
     			$args['public_questions_codings'] = $temp->get();
     			$temp3 = $temp2;
