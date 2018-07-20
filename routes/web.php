@@ -118,169 +118,163 @@ Route::group(['prefix' => 'candidate' ,  'middleware' => 'is-candidate'], functi
 	Route::get('/can_profile_view', 'Candidate\CandidateProfileController@can_profile_view')->name('can_profile_view');
 });
 /*Candidate Routes Ended*/
-Route::get('/preview_test/{id}/{page?}','Recruiter\TemplatesController@preview_test')->name('preview_test1');
-
-	//Load Section
-	Route::get('/preview_testz/{sectionid}/{templateid}','Recruiter\TemplatesController@load_section')->name('load_section1');
 /*Recruiter Routes Started*/
-
 Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], function () {
 
 	Route::get('/home', 'HomeController@index')->name('home');
-	Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard');
-	Route::post('update_password_recruiter', 'Recruiter\RecruiterController@update_password_recruiter')->name('update_password_recruiter');
+	Route::get('/dashboard', 'Recruiter\RecruiterController@dashboard')->name('dashboard')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::post('update_password_recruiter', 'Recruiter\RecruiterController@update_password_recruiter')->name('update_password_recruiter')->middleware(['roleAdmin']);
+	Route::get('/preview_test/{id}/{page?}','Recruiter\TemplatesController@preview_test')->name('preview_test1')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+		//Load Section
+	Route::get('/preview_testz/{sectionid}/{templateid}','Recruiter\TemplatesController@load_section')->name('load_section1')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	//Customer support
+	Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support_view')->name('customer_support_view')->middleware(['roleAdmin']);
+	Route::post('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support')->middleware(['roleAdmin']);
+	Route::get('delete_invitation/{id}','Recruiter\Invite_Candidate_Controller@delete_invitation')->name('delete_invitation')->middleware(['roleAdmin']);
+
+	Route::post('send_remainder','Recruiter\Invite_Candidate_Controller@send_remainder')->name('send_remainder')->middleware(['roleAdmin']);
+	Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query')->middleware(['roleAdmin']);
+
+	Route::get('/history', 'Recruiter\RecruiterController@history')->name('history')->middleware(['roleAdmin']);
+
+	Route::get('/invited_candidates/{id}', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates')->middleware(['roleAdmin']);
 
 
-//Customer support
-Route::get('/customer_support', 'Recruiter\RecruiterController@customer_support_view')->name('customer_support_view');
-Route::post('/customer_support', 'Recruiter\RecruiterController@customer_support')->name('customer_support');
-Route::get('delete_invitation/{id}','Recruiter\Invite_Candidate_Controller@delete_invitation')->name('delete_invitation');
+	Route::post('/invitaion_to_candidate/{id}','Recruiter\Invite_Candidate_Controller@invitaion_to_candidate')->name('invitaion_to_candidate')->middleware(['roleAdmin']);
 
-Route::post('send_remainder','Recruiter\Invite_Candidate_Controller@send_remainder')->name('send_remainder');
-Route::post('/send_query', 'Recruiter\SupportController@send_query')->name('send_query');
+	Route::post('/assigning_user_access_account','Recruiter\AssignController@assigning_user_access_account')->name('assigning_user_access_account')->middleware(['roleAdmin']);
 
-	Route::get('/history', 'Recruiter\RecruiterController@history')->name('history');
-
-	Route::get('/invited_candidates/{id}', 'Recruiter\RecruiterController@invited_candidates')->name('invited_candidates');
+	Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions')->middleware(['roleAdmin']);
 
 
-Route::post('/invitaion_to_candidate/{id}','Recruiter\Invite_Candidate_Controller@invitaion_to_candidate')->name('invitaion_to_candidate');
+	Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions')->middleware(['roleAdmin']);
 
-Route::post('/assigning_user_access_account','Recruiter\AssignController@assigning_user_access_account')->name('assigning_user_access_account');
-
-Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
-
-
-	Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@library_public_questions')->name('library_public_questions');
-
-	Route::post('/update_questions_modal/{id}','Recruiter\QuestionsController@update_questions_modal')->name('update_questions_modal');
-	Route::post('/submission_update_questions_modal/{id}','Recruiter\QuestionsController@submission_update_questions_modal')->name('submission_update_questions_modal');
-	Route::post('/coding_update_questions_modal/{id}','Recruiter\QuestionsController@coding_update_questions_modal')->name('coding_update_questions_modal');
-	Route::get('/delete_question_choice/{id?}','Recruiter\QuestionsController@delete_choice')->name('delete_choice');
-	Route::get('/delete_question_test_case/{id?}','Recruiter\QuestionsController@delete_test_case')->name('delete_test_case');
+	Route::post('/update_questions_modal/{id}','Recruiter\QuestionsController@update_questions_modal')->name('update_questions_modal')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::post('/submission_update_questions_modal/{id}','Recruiter\QuestionsController@submission_update_questions_modal')->name('submission_update_questions_modal')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::post('/coding_update_questions_modal/{id}','Recruiter\QuestionsController@coding_update_questions_modal')->name('coding_update_questions_modal')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/delete_question_choice/{id?}','Recruiter\QuestionsController@delete_choice')->name('delete_choice')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/delete_question_test_case/{id?}','Recruiter\QuestionsController@delete_test_case')->name('delete_test_case')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
 
 
 	
-	Route::get('/change_password', 'Recruiter\RecruiterController@change_password')->name('change_password');
+	Route::get('/change_password', 'Recruiter\RecruiterController@change_password')->name('change_password')->middleware(['roleAdmin']);
 	Route::get('/general_setting', 'Recruiter\RecruiterController@general_setting')->name('general_setting');
-	Route::get('/setting_info', 'Recruiter\RecruiterController@setting_info')->name('setting_info');
-	Route::post('/post_setting_info', 'Recruiter\RecruiterController@post_setting_info')->name('post_setting_info');
+	Route::get('/setting_info', 'Recruiter\RecruiterController@setting_info')->name('setting_info')->middleware(['roleAdmin']);;
+	Route::post('/post_setting_info', 'Recruiter\RecruiterController@post_setting_info')->name('post_setting_info')->middleware(['roleAdmin']);;
 
 	//Recruiter Company Routes Started
-	Route::post('/post_general_setting','Recruiter\CompanyController@post_general_setting')->name('post_general_setting');
-	Route::post('/post_contact_details','Recruiter\CompanyController@post_contact_details')->name('post_contact_details');
-	Route::post('/test_completion_mail','Recruiter\CompanyController@test_completion_mail')->name('test_completion_mail');
-	Route::post('/test_completion_mail','Recruiter\CompanyController@test_completion_mail')->name('test_completion_mail');
+	Route::post('/post_general_setting','Recruiter\CompanyController@post_general_setting')->name('post_general_setting')->middleware(['roleAdmin']);
+	Route::post('/post_contact_details','Recruiter\CompanyController@post_contact_details')->name('post_contact_details')->middleware(['roleAdmin']);
+	Route::post('/test_completion_mail','Recruiter\CompanyController@test_completion_mail')->name('test_completion_mail')->middleware(['roleAdmin']);
+	Route::post('/test_completion_mail','Recruiter\CompanyController@test_completion_mail')->name('test_completion_mail')->middleware(['roleAdmin']);
 	//Recruiter Company Routes Ended
 
 	//Recruiter Test Template Routes Started
-	Route::get('/view', 'Recruiter\TemplatesController@manage_test_view')->name('manage_test_view');
-	Route::post('/create_test_template','Recruiter\TemplatesController@create_test_template')->name('create_test_template');
-	Route::get('/edit_template/{id}/{flag?}', 'Recruiter\TemplatesController@edit_template')->name('edit_template');
-	Route::post('/update_test_template/{id}','Recruiter\TemplatesController@update_test_template')->name('update_test_template');
-	Route::get('/delete_test_template/{id}', 'Recruiter\TemplatesController@delete_test_template')->name('delete_test_template');
-	Route::get('/template_public_preview/{id}', 'Recruiter\TemplatesController@template_public_preview')->name('template_public_preview');
-	Route::post('/create_duplicate_template_post','Recruiter\TemplatesController@create_duplicate_template_post')->name('create_duplicate_template_post');
-	Route::get('/preview_test/{id}/{page?}','Recruiter\TemplatesController@preview_test')->name('preview_test');
+	Route::get('/view', 'Recruiter\TemplatesController@manage_test_view')->name('manage_test_view')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::post('/create_test_template','Recruiter\TemplatesController@create_test_template')->name('create_test_template')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/edit_template/{id}/{flag?}', 'Recruiter\TemplatesController@edit_template')->name('edit_template')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::post('/update_test_template/{id}','Recruiter\TemplatesController@update_test_template')->name('update_test_template')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/delete_test_template/{id}', 'Recruiter\TemplatesController@delete_test_template')->name('delete_test_template')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/template_public_preview/{id}', 'Recruiter\TemplatesController@template_public_preview')->name('template_public_preview')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::post('/create_duplicate_template_post','Recruiter\TemplatesController@create_duplicate_template_post')->name('create_duplicate_template_post')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/preview_test/{id}/{page?}','Recruiter\TemplatesController@preview_test')->name('preview_test')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
 
 	//Load Section
-	Route::get('/preview_testz/{sectionid}/{templateid}','Recruiter\TemplatesController@load_section')->name('load_section');
+	Route::get('/preview_testz/{sectionid}/{templateid}','Recruiter\TemplatesController@load_section')->name('load_section')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
 
-	Route::post('/add_section', 'Recruiter\TemplatesController@add_section')->name('add_section');
-	Route::get('/delete_section/{id}', 'Recruiter\TemplatesController@delete_section')->name('delete_section');
-	Route::get('/move_up/{id}', 'Recruiter\TemplatesController@move_up')->name('move_up');
-	Route::get('/move_down/{id}', 'Recruiter\TemplatesController@move_down')->name('move_down');
-	Route::get('/delete_user_setting_question/{id}', 'Recruiter\TemplatesController@delete_user_setting_question')->name('delete_user_setting_question');
+	Route::post('/add_section', 'Recruiter\TemplatesController@add_section')->name('add_section')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/delete_section/{id}', 'Recruiter\TemplatesController@delete_section')->name('delete_section')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/move_up/{id}', 'Recruiter\TemplatesController@move_up')->name('move_up')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/move_down/{id}', 'Recruiter\TemplatesController@move_down')->name('move_down')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/delete_user_setting_question/{id}', 'Recruiter\TemplatesController@delete_user_setting_question')->name('delete_user_setting_question')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
 	//Recruiter Test Template Routes Ended
-	Route::post('/new_user_question_create', 'Recruiter\TemplatesController@new_user_question_create')->name('new_user_question_create');
-	Route::get('/setting_question_move_up/{id}','Recruiter\TemplatesController@setting_question_move_up')->name('setting_question_move_up');
-	Route::get('/setting_question_move_down/{id}','Recruiter\TemplatesController@setting_question_move_down')->name('setting_question_move_down');
-	Route::post('/new_user_question_edit', 'Recruiter\TemplatesController@new_user_question_edit')->name('new_user_question_edit');
-	Route::post('/create_question_admin', 'Recruiter\TemplatesController@create_question_admin')->name('create_question_admin');
+	Route::post('/new_user_question_create', 'Recruiter\TemplatesController@new_user_question_create')->name('new_user_question_create')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/setting_question_move_up/{id}','Recruiter\TemplatesController@setting_question_move_up')->name('setting_question_move_up')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::get('/setting_question_move_down/{id}','Recruiter\TemplatesController@setting_question_move_down')->name('setting_question_move_down')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::post('/new_user_question_edit', 'Recruiter\TemplatesController@new_user_question_edit')->name('new_user_question_edit')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
+	Route::post('/create_question_admin', 'Recruiter\TemplatesController@create_question_admin')->name('create_question_admin')->middleware(['roleAdmin','roleTestManager','roleTemplateManager']);
 
 	//Recruiter Questions Routes Started
-	Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question');
-	Route::post('/create_question_coding','Recruiter\QuestionsController@create_question_coding')->name('create_question_coding');
-	Route::post('/create_question_coding_debug','Recruiter\QuestionsController@create_question_coding_debug')->name('create_question_coding_debug');
-	Route::post('/create_first_submission_question','Recruiter\QuestionsController@create_first_submission_question')->name('create_first_submission_question');
-	Route::post('/create_second_submission_question','Recruiter\QuestionsController@create_second_submission_question')->name('create_second_submission_question');
-	Route::get('/delete_question/{id}', 'Recruiter\QuestionsController@delete_question')->name('delete_question');
+	Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question')->middleware(['roleAdmin','roleTemplateManager']);
+	Route::post('/create_question_coding','Recruiter\QuestionsController@create_question_coding')->name('create_question_coding')->middleware(['roleAdmin','roleTemplateManager']);
+	Route::post('/create_question_coding_debug','Recruiter\QuestionsController@create_question_coding_debug')->name('create_question_coding_debug')->middleware(['roleAdmin','roleTemplateManager']);
+	Route::post('/create_first_submission_question','Recruiter\QuestionsController@create_first_submission_question')->name('create_first_submission_question')->middleware(['roleAdmin','roleTemplateManager']);
+	Route::post('/create_second_submission_question','Recruiter\QuestionsController@create_second_submission_question')->name('create_second_submission_question')->middleware(['roleAdmin','roleTemplateManager']);
+	Route::get('/delete_question/{id}', 'Recruiter\QuestionsController@delete_question')->name('delete_question')->middleware(['roleAdmin','roleTemplateManager']);
 
-	Route::get('/delete_all_mcqs_questions', 'Recruiter\QuestionsController@delete_all_mcqs_questions')->name('delete_all_mcqs_questions');
+	Route::get('/delete_all_mcqs_questions', 'Recruiter\QuestionsController@delete_all_mcqs_questions')->name('delete_all_mcqs_questions')->middleware(['roleAdmin','roleTemplateManager']);
 
-	Route::get('/delete_all_coding_questions', 'Recruiter\QuestionsController@delete_all_coding_questions')->name('delete_all_coding_questions');
+	Route::get('/delete_all_coding_questions', 'Recruiter\QuestionsController@delete_all_coding_questions')->name('delete_all_coding_questions')->middleware(['roleAdmin','roleTemplateManager']);
 
-	Route::get('/delete_all_submission_questions', 'Recruiter\QuestionsController@delete_all_submission_questions')->name('delete_all_submission_questions');
+	Route::get('/delete_all_submission_questions', 'Recruiter\QuestionsController@delete_all_submission_questions')->name('delete_all_submission_questions')->middleware(['roleAdmin','roleTemplateManager']);
 
-	Route::post('/question_modal_partial_data', 'Recruiter\QuestionsController@question_modal_partial_data')->name('question_modal_partial_data');
+	Route::post('/question_modal_partial_data', 'Recruiter\QuestionsController@question_modal_partial_data')->name('question_modal_partial_data')->middleware(['roleAdmin','roleTemplateManager']);
 
-	Route::post('/coding_question_modal_partial_data', 'Recruiter\QuestionsController@coding_question_modal_partial_data')->name('coding_question_modal_partial_data');
+	Route::post('/coding_question_modal_partial_data', 'Recruiter\QuestionsController@coding_question_modal_partial_data')->name('coding_question_modal_partial_data')->middleware(['roleAdmin','roleTemplateManager']);
 
-	Route::post('submission_question_modal_partial_data','Recruiter\QuestionsController@submission_question_modal_partial_data')->name('submission_question_modal_partial_data');
+	Route::post('submission_question_modal_partial_data','Recruiter\QuestionsController@submission_question_modal_partial_data')->name('submission_question_modal_partial_data')->middleware(['roleAdmin','roleTemplateManager']);
 
-	Route::post('/update_partial_question/{id?}', 'Recruiter\QuestionsController@update_partial_question')->name('update_partial_question');
+	Route::post('/update_partial_question/{id?}', 'Recruiter\QuestionsController@update_partial_question')->name('update_partial_question')->middleware(['roleAdmin','roleTemplateManager']);
 
-	Route::get('/Questionnaire_newquestion','Recruiter\QuestionsController@show_setting_newquestion')->name('Questionnaire_newquestion');
+	Route::get('/Questionnaire_newquestion','Recruiter\QuestionsController@show_setting_newquestion')->name('Questionnaire_newquestion')->middleware(['roleAdmin','roleTemplateManager']);
 
 	//Recruiter Questions Routes Ended
 
 	//Recruiter Test Templates Setting Routes Started
-	Route::post('/templatetestSetting', 'Recruiter\TemplateSetting@templatetestSetting')->name('templatetestSetting');
-	Route::post('/templatetestContactSetting', 'Recruiter\TemplateSetting@templatetestContactSetting')->name('templatetestContactSetting');
-	Route::post('/template_setting_message_post', 'Recruiter\TemplateSetting@template_setting_message_post')->name('template_setting_message_post');
-	Route::post('/templatetestMailSetting', 'Recruiter\TemplateSetting@templatetestMailSetting')->name('templatetestMailSetting');
+	Route::post('/templatetestSetting', 'Recruiter\TemplateSetting@templatetestSetting')->name('templatetestSetting')->middleware(['roleAdmin' ,'roleTestManager']);
+	Route::post('/templatetestContactSetting', 'Recruiter\TemplateSetting@templatetestContactSetting')->name('templatetestContactSetting')->middleware(['roleAdmin' ,'roleTestManager']);
+	Route::post('/template_setting_message_post', 'Recruiter\TemplateSetting@template_setting_message_post')->name('template_setting_message_post')->middleware(['roleAdmin' ,'roleTestManager']);
+	Route::post('/templatetestMailSetting', 'Recruiter\TemplateSetting@templatetestMailSetting')->name('templatetestMailSetting')->middleware(['roleAdmin' ,'roleTestManager']);
 	//Recruiter Test Templates Setting Routes Ended
 
 	/* Host Test Routes */
-	Route::get('/host_test_page/{id}', 'Recruiter\HostController@host_test_page')->name('host_test_page')->middleware('roleAdmin');
+	Route::get('/host_test_page/{id}', 'Recruiter\HostController@host_test_page')->name('host_test_page')->middleware(['roleAdmin' ,'roleTestManager']);
 	//Add Host Test Post request
-	Route::post('/host_test_post', 'Recruiter\HostController@host_test_post')->name('host_test_post');
+	Route::post('/host_test_post', 'Recruiter\HostController@host_test_post')->name('host_test_post')->middleware(['roleAdmin' ,'roleTestManager']);
 
 	//Delete Host
-	Route::post('/delete_host', 'Recruiter\HostController@host_test_del')->name('host_test_del');
+	Route::post('/delete_host', 'Recruiter\HostController@host_test_del')->name('host_test_del')->middleware(['roleAdmin' ,'roleTestManager']);
 
 	//Terminate host //host_terminate
-	Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name('host_terminate');
+	Route::post('/host_terminate', 'Recruiter\HostController@host_terminate')->name('host_terminate')->middleware(['roleAdmin' ,'roleTestManager']);
 
 	//Public preview of host
-	Route::get('/publicpreview-test-page/{id}/{flag}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage');
+	Route::get('/publicpreview-test-page/{id}/{flag}', 'Recruiter\HostController@host_public_preview')->name('preview_public_testpage')->middleware(['roleAdmin' ,'roleTestManager']);
 
 	//Library controller
-	Route::get('/library/{id?}', 'Recruiter\LibraryController@lib_index')->name('lib_index');
+	Route::get('/library/{id?}', 'Recruiter\LibraryController@lib_index')->name('lib_index')->middleware(['roleAdmin']);
 
 	//Library ini filter
-	Route::post('/library-filter/{tab?}', 'Recruiter\LibraryController@libFilter')->name('libFilter');
+	Route::post('/library-filter/{tab?}', 'Recruiter\LibraryController@libFilter')->name('libFilter')->middleware(['roleAdmin']);
 
 	//Library single detail data.
-	Route::post('/library-question-detail', 'Recruiter\LibraryController@lib_ques_detail')->name('lib_ques_detail');
+	Route::post('/library-question-detail', 'Recruiter\LibraryController@lib_ques_detail')->name('lib_ques_detail')->middleware(['roleAdmin']);
 
-	Route::post('/create_public_page_view', 'Recruiter\Public_view_pageController@create')->name('Public_view_page');
-	Route::post('/edit_public_page_view/{id?}','Recruiter\Public_view_pageController@edit')->name('edit_public_page_view');
-	Route::post('/update_public_page_view','Recruiter\Public_view_pageController@update')->name('update_public_page_view');
+	Route::post('/create_public_page_view', 'Recruiter\Public_view_pageController@create')->name('Public_view_page')->middleware(['roleAdmin' ,'roleTestManager','roleTestManager']);
+	Route::post('/edit_public_page_view/{id?}','Recruiter\Public_view_pageController@edit')->name('edit_public_page_view')->middleware(['roleAdmin' ,'roleTestManager','roleTestManager']);
+	Route::post('/update_public_page_view','Recruiter\Public_view_pageController@update')->name('update_public_page_view')->middleware(['roleAdmin' ,'roleTestManager','roleTestManager']);
 
-	Route::get('/delete_public_page_view/{id?}','Recruiter\Public_view_pageController@delete')->name('delete_public_page_view');
+	Route::get('/delete_public_page_view/{id?}','Recruiter\Public_view_pageController@delete')->name('delete_public_page_view')->middleware(['roleAdmin' ,'roleTestManager','roleTestManager']);
 
 
-	Route::post('/upload_cover_image/{id?}','Recruiter\Public_view_pageController@cover_image')->name('upload_cover_image');
+	Route::post('/upload_cover_image/{id?}','Recruiter\Public_view_pageController@cover_image')->name('upload_cover_image')->middleware(['roleAdmin' ,'roleTestManager','roleTestManager']);
 
-	Route::post('/insert_image_tags','Recruiter\Public_view_pageController@insert_tags')->name('insert_image_tags');
-	Route::post('/data_image_tags/{id?}','Recruiter\Public_view_pageController@data_tags')->name('data_image_tags');
-	Route::get('/delete_image_tags','Recruiter\Public_view_pageController@delete_tags')->name('delete_image_tags');
+	Route::post('/insert_image_tags','Recruiter\Public_view_pageController@insert_tags')->name('insert_image_tags')->middleware(['roleAdmin' ,'roleTestManager','roleTestManager']);
+	Route::post('/data_image_tags/{id?}','Recruiter\Public_view_pageController@data_tags')->name('data_image_tags')->middleware(['roleAdmin' ,'roleTestManager','roleTestManager']);
+	Route::get('/delete_image_tags','Recruiter\Public_view_pageController@delete_tags')->name('delete_image_tags')->middleware(['roleAdmin' ,'roleTestManager','roleTestManager']);
 
-	Route::post('/advance_filter/{tab?}','Recruiter\LibraryController@advance_filter')->name('advance_filter');
-	Route::post("ajax_tag_post", "Recruiter\TemplateSetting@ajax_tag_post");
-	Route::post("delete_question_tag", "Recruiter\TemplateSetting@delete_question_tag")->name('delete_question_tag');
+	Route::post('/advance_filter/{tab?}','Recruiter\LibraryController@advance_filter')->name('advance_filter')->middleware(['roleAdmin']);
+	Route::post("ajax_tag_post", "Recruiter\TemplateSetting@ajax_tag_post")->middleware(['roleAdmin','roleTestManager']);
+	Route::post("delete_question_tag", "Recruiter\TemplateSetting@delete_question_tag")->name('delete_question_tag')->middleware(['roleAdmin','roleTestManager']);
 
 	//Advance setting form post request
-	Route::post('/advance_settings', 'Recruiter\TemplateSetting@advance_setting_form')->name('advance_setting_form');
+	Route::post('/advance_settings', 'Recruiter\TemplateSetting@advance_setting_form')->name('advance_setting_form')->middleware(['roleAdmin','roleTestManager']);
 
-	Route::post('/advance_settings_1', 'Recruiter\TemplateSetting@advance_setting_form_1')->name('advance_setting_form_1');
+	Route::post('/advance_settings_1', 'Recruiter\TemplateSetting@advance_setting_form_1')->name('advance_setting_form_1')->middleware(['roleAdmin','roleTestManager']);
 	
-	Route::post('/advance_settings_data', 'Recruiter\TemplateSetting@advance_settings_data')->name('advance_settings_data');	
+	Route::post('/advance_settings_data', 'Recruiter\TemplateSetting@advance_settings_data')->name('advance_settings_data')->middleware(['roleAdmin','roleTestManager']);	
 
-	Route::get('/publicPreviewtest_model', 'Recruiter\TemplatesController@publicPreviewtest_model')->name('publicPreviewtest_model');
-
-
+	Route::get('/publicPreviewtest_model', 'Recruiter\TemplatesController@publicPreviewtest_model')->name('publicPreviewtest_model')->middleware(['roleAdmin','roleTestManager','roleTestManager']);
 });
 
 

@@ -6,7 +6,7 @@ use Closure;
 use App\AssignRole;
 use Illuminate\Support\Facades\View;
 use Auth;
-class RoleAdmin
+class RoleTemplateManager
 {
     /**
      * Handle an incoming request.
@@ -21,7 +21,7 @@ class RoleAdmin
         if(Auth::check() && Auth::user()->role_id != '3'){
             $role = AssignRole::where('assigned_user_id', Auth::user()->id)->first();
             // dd($role);
-            if($role->assign_role_details == 1){
+            if($role->assign_role_details == 3){
                 return $next($request);
             }
             return redirect()->route('not_authorize');

@@ -99,10 +99,11 @@ class AuthenticationController extends Controller
 
         try{
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password ] )) {
-
+                    // dd(Auth::user());
+                    
                 if (Auth::user()->role_id == '1') {
                     return redirect()->route('admin_index');
-                }elseif (Auth::user()->role_id == '3') {
+                }elseif (Auth::user()->role_id == '4') {
                     return redirect()->route('dashboard');
                 }elseif (Auth::user()->role_id == '2') {                   
                     return redirect()->route('my_test');

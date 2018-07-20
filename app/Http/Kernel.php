@@ -60,5 +60,8 @@ class Kernel extends HttpKernel
         'is-candidate' => \App\Http\Middleware\IsCandidateMiddleware::class,
         'is-recruiter' => \App\Http\Middleware\IsRecruiterMiddleware::class,
         'roleAdmin' => \App\Http\Middleware\RoleAdmin::class,
+        'roleTestManager' => \App\Http\Middleware\RoleTestManager::class,
+        'roleTemplateManager' => \App\Http\Middleware\RoleTemplateManager::class,
+        'roleReportViewer' => \App\Http\Middleware\RoleReportViewer::class,
     ];
 }
