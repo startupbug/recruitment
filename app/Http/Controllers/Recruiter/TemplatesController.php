@@ -196,7 +196,7 @@ class TemplatesController extends Controller
               }
                 
         }
-        dd($args);
+        // dd($args);
 
         return view('recruiter_dashboard.view')->with($args);
     }

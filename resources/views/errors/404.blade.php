@@ -326,7 +326,7 @@ body { padding-left: 20px; padding-right: 20px; }
 			<p>
 			<a href="javascript:history.back()">Go Back</a>, or return to <a href="http://site.startupbug.net:6888/recruitment/v1/">OnlineRecruitment.Com</a> to choose a new page.
 			<br/>
-			Please report any broken links to <a href="mailto:asifnawaz.aimviz@gmail.com">our team</a>.
+			Please report any broken links to <a href="mailto:johndoe.john191@gmail.com">our team</a>.
 			</p>		
 			<hr>			
 			</div> 			

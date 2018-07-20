@@ -232,7 +232,7 @@ Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@lib
 	//Recruiter Test Templates Setting Routes Ended
 
 	/* Host Test Routes */
-	Route::get('/host_test_page/{id}', 'Recruiter\HostController@host_test_page')->name('host_test_page');
+	Route::get('/host_test_page/{id}', 'Recruiter\HostController@host_test_page')->name('host_test_page')->middleware('roleAdmin');
 	//Add Host Test Post request
 	Route::post('/host_test_post', 'Recruiter\HostController@host_test_post')->name('host_test_post');
 
@@ -285,5 +285,7 @@ Route::get('/library_public_questions/{id?}', 'Recruiter\RecruiterController@lib
 
 
 
-
+Route::get('/not_authorize', function(){
+	dd('you are not authorized');
+})->name('not_authorize');
 /*Recruiter Routes Ended*/
