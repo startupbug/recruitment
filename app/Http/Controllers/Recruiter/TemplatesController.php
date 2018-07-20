@@ -110,7 +110,7 @@ class TemplatesController extends Controller
                                 ->where('assign_roles.assigned_user_id',Auth::user()->id)
                                 ->orWhere('test_templates.user_id', Auth::user()->id)
                                 ->count();           
-          $args['listing'] = Test_template::leftjoin('assign_roles', 'assign_roles.assigner_id', '=', 'test_templates.user_id')
+          $args['listing'] = Test_template::select('assign_roles.*', 'test_templates.*', 'assign_roles.id as assign_id')->leftjoin('assign_roles', 'assign_roles.assigner_id', '=', 'test_templates.user_id')
                               ->where('assign_roles.assigned_user_id',Auth::user()->id)
                               ->orWhere('test_templates.user_id',Auth::user()->id)
                               ->orderBy('test_templates.id', 'desc')
@@ -196,6 +196,7 @@ class TemplatesController extends Controller
               }
                 
         }
+        dd($args);
 
         return view('recruiter_dashboard.view')->with($args);
     }
