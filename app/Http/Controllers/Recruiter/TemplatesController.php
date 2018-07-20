@@ -31,6 +31,7 @@ use App\Public_page_view_details;
 use App\User;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use App\Advanced_setting;
+use App\AssignRole;
 
 class TemplatesController extends Controller
 {
@@ -104,10 +105,16 @@ class TemplatesController extends Controller
         }
         else
         {
-          //For Loading Test templates without
-          $args['count'] = Test_template::count();
-          $args['listing'] = Test_template::where('user_id',Auth::user()->id)
-                ->orderBy('id', 'desc')->get();
+          //For Loading Test templates without          
+          $args['count'] = Test_template::leftjoin('assign_roles', 'assign_roles.assigner_id', '=', 'test_templates.user_id')
+                                ->where('assign_roles.assigned_user_id',Auth::user()->id)
+                                ->orWhere('test_templates.user_id', Auth::user()->id)
+                                ->count();           
+          $args['listing'] = Test_template::leftjoin('assign_roles', 'assign_roles.assigner_id', '=', 'test_templates.user_id')
+                              ->where('assign_roles.assigned_user_id',Auth::user()->id)
+                              ->orWhere('test_templates.user_id',Auth::user()->id)
+                              ->orderBy('test_templates.id', 'desc')
+                              ->get();
           foreach ($args['listing'] as $value)
           {
               $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
@@ -116,9 +123,11 @@ class TemplatesController extends Controller
                   ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 2) as coding_questions')
                   ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 3) as submission_questions'))
               ->where('sections.template_id','=',$value->id)
+              ->where('user_id',Auth::user()->id)
               ->groupBy('sections.id')
               ->get();
           }
+
         }
 
         if(isset($name2))
@@ -140,6 +149,7 @@ class TemplatesController extends Controller
             ->where('test_templates.user_id', Auth::user()->id)
             ->where('host_name','LIKE','%'.$name2.'%')
             ->get();
+
             //$args['count'] = Hosted_test::where('host_name','LIKE','%'.$name2.'%')->count();
           }
           else
@@ -148,6 +158,7 @@ class TemplatesController extends Controller
             ->where('test_templates.user_id', Auth::user()->id)
             ->where('host_name','LIKE','%'.$name2.'%')
             ->get();
+
           }
 
         }
@@ -155,9 +166,11 @@ class TemplatesController extends Controller
         {
 
                 //For Fetching all Hosts
-              $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+              $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')->leftjoin('assign_roles', 'assign_roles.assigner_id', '=', 'test_templates.user_id')
               ->select('test_templates.id as test_template_id','hosted_tests.host_name','hosted_tests.cut_off_marks','hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time','hosted_tests.time_zone','hosted_tests.status','test_templates.user_id','test_templates.template_type_id','test_templates.title','test_templates.description','test_templates.instruction','test_templates.image','hosted_tests.id as host_id','test_templates.duration')
-              ->where('test_templates.user_id', Auth::user()->id)->get();
+              ->where('test_templates.user_id', Auth::user()->id)
+              ->orWhere('assign_roles.assigned_user_id',Auth::user()->id)
+              ->get();
               foreach($args['hosted_tests'] as $host_section)
               {
                 // dd($host_section);
