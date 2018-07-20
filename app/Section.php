@@ -21,4 +21,19 @@ class Section extends Model
     {           
         return $this->hasMany('App\Question', 'section_id');
     }
+
+    public function mcqs(){
+         
+         return $this->hasMany('App\Question', 'section_id')->where('question_type_id', 1);
+    }
+
+    public function coding(){
+         
+         return $this->hasMany('App\Question', 'section_id')->where('question_type_id', 2);
+    }
+
+    public function submission(){
+         
+         return $this->hasMany('App\Question', 'section_id')->where('question_type_id', 3);
+    }
 }

@@ -58,23 +58,28 @@ class TemplatesController extends Controller
                 $args['listing'] = Test_template::where('user_id',Auth::user()->id)
                 ->where('template_type_id',1)
                 ->where('title','LIKE','%'.$name.'%')
+                ->orderBy('id', 'desc')
                 ->get();
                 $args['count'] = Test_template::where('template_type_id',1)
                 ->where('title','LIKE','%'.$name.'%')
                 ->count();
-                foreach ($args['listing'] as $value) {
+                foreach ($args['listing'] as $value)
+                {
                     $args['sections'][$value->id] = Section::where('template_id',$value->id)->get();
                 }
                 //return view('recruiter_dashboard.view')->with($args);
                 // dd($args['listing']);
             }
-            elseif (in_array(2, $check_box)) {
+            elseif (in_array(2, $check_box))
+            {
                 $args['listing'] = Test_template::where('user_id',Auth::user()->id)
                 ->where('template_type_id',2)
                 ->where('title','LIKE','%'.$name.'%')
+                ->orderBy('id', 'desc')
                 ->get();
                 $args['count'] = Test_template::where('template_type_id',2)->count();
-                foreach ($args['listing'] as $value) {
+                foreach ($args['listing'] as $value)
+                {
                     $args['sections'][$value->id] = Section::where('template_id',$value->id)->get();
                 }
                 //return view('recruiter_dashboard.view')->with($args);
@@ -84,88 +89,101 @@ class TemplatesController extends Controller
             {
                 $args['listing'] = Test_template::where('user_id',Auth::user()->id)
                 ->where('title','LIKE','%'.$name.'%')
+                ->orderBy('id', 'desc')
                 ->get();
+
                 $args['count'] = Test_template::where('title','LIKE','%'.$name.'%')->count();
-                foreach ($args['listing'] as $value) {
+                foreach ($args['listing'] as $value)
+                {
                     $args['sections'][$value->id] = Section::where('template_id',$value->id)->get();
                 }
                 //return view('recruiter_dashboard.view')->with($args);
                 // dd($args['listing']);
             }
 
-        }else{
-           //For Loading Test templates without
-
+        }
+        else
+        {
+          //For Loading Test templates without
           $args['count'] = Test_template::count();
-          
-          $args['listing'] = Test_template::where('user_id',Auth::user()->id)->get();
-
-            foreach ($args['listing'] as $value) {
-                $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
-                ->select('sections.*','questions.question_type_id'
-                    ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 1) as mulitple_questions')
-                    ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 2) as coding_questions')
-                    ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 3) as submission_questions'))
-                ->where('sections.template_id','=',$value->id)
-                ->groupBy('sections.id')
-                ->get();
-            }
-
-           // dd($args);
-
+          $args['listing'] = Test_template::where('user_id',Auth::user()->id)
+                ->orderBy('id', 'desc')->get();
+          foreach ($args['listing'] as $value)
+          {
+              $args['sections'][$value->id] = Section::leftJoin('questions','sections.id','=','questions.section_id')
+              ->select('sections.*','questions.question_type_id'
+                  ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 1) as mulitple_questions')
+                  ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 2) as coding_questions')
+                  ,DB::raw('(SELECT count(questions.id) FROM `questions` WHERE `question_type_id` = 3) as submission_questions'))
+              ->where('sections.template_id','=',$value->id)
+              ->groupBy('sections.id')
+              ->get();
+          }
         }
 
         if(isset($name2))
         {
-            if(in_array(1, $check_box))
-            {
-              // $args['host_list'] = Hosted_test::where('host_name','LIKE','%'.$name2.'%')->get();
-              $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
-              ->where('test_templates.user_id', Auth::user()->id)
-              ->where('host_name','LIKE','%'.$name2.'%')
-              ->get();
+          if(in_array(1, $check_box))
+          {
+            // $args['host_list'] = Hosted_test::where('host_name','LIKE','%'.$name2.'%')->get();
+            $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+            ->where('test_templates.user_id', Auth::user()->id)
+            ->where('host_name','LIKE','%'.$name2.'%')
+            ->get();
 
-             // $args['count'] = Hosted_test::where('host_name','LIKE','%'.$name2.'%')->count();
+           // $args['count'] = Hosted_test::where('host_name','LIKE','%'.$name2.'%')->count();
 
-            }
-            elseif(in_array(2, $check_box))
-            {
-              $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
-              ->where('test_templates.user_id', Auth::user()->id)
-              ->where('host_name','LIKE','%'.$name2.'%')
-              ->get();
-              //$args['count'] = Hosted_test::where('host_name','LIKE','%'.$name2.'%')->count();
-            }
-            else
-            {
-              $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
-              ->where('test_templates.user_id', Auth::user()->id)
-              ->where('host_name','LIKE','%'.$name2.'%')
-              ->get();
+          }
+          elseif(in_array(2, $check_box))
+          {
+            $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+            ->where('test_templates.user_id', Auth::user()->id)
+            ->where('host_name','LIKE','%'.$name2.'%')
+            ->get();
+            //$args['count'] = Hosted_test::where('host_name','LIKE','%'.$name2.'%')->count();
+          }
+          else
+          {
+            $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
+            ->where('test_templates.user_id', Auth::user()->id)
+            ->where('host_name','LIKE','%'.$name2.'%')
+            ->get();
+          }
 
-
-            }
-
-        }else{
+        }
+        else
+        {
 
                 //For Fetching all Hosts
               $args['hosted_tests'] = Hosted_test::join('test_templates', 'test_templates.id', '=', 'hosted_tests.test_template_id')
               ->select('test_templates.id as test_template_id','hosted_tests.host_name','hosted_tests.cut_off_marks','hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time','hosted_tests.time_zone','hosted_tests.status','test_templates.user_id','test_templates.template_type_id','test_templates.title','test_templates.description','test_templates.instruction','test_templates.image','hosted_tests.id as host_id','test_templates.duration')
               ->where('test_templates.user_id', Auth::user()->id)->get();
+              foreach($args['hosted_tests'] as $host_section)
+              {
+                // dd($host_section);
+                // $args['host_section_num'] = Section::join('questions','questions.section_id','=','sections.id','left outer')->where('template_id',$host_section->test_template_id)
+                // ->groupBy('sections.id')
+                // ->orderBy('order_number','ASC')
+                // ->get();
+                $args['_sections'] = Section::leftJoin('questions','sections.id','=','questions.section_id')
+              ->select('sections.*','questions.question_type_id')
+              ->where('sections.template_id','=',$host_section->test_template_id)
+              ->groupBy('sections.id')
+              ->get();
 
+                // $args['sections'] = Section::join('questions','questions.section_id','=','sections.id','left outer')
+                // ->select('sections.*','questions.*',DB::raw('(SELECT  count(`question_type_id`) FROM `questions` LEFT JOIN `sections` ON `sections`.`id` = `questions.`section_id` WHERE `question_type_id` = 1)as mcqs'),
+                // 'advanced_settings.win_proc', 'advanced_settings.ques_shuff', 'advanced_settings.dura_min')
+
+                // ->where('template_id',$host_section->test_template_id)
+                // ->groupBy('sections.id')
+                // ->orderBy('order_number','ASC')
+                // ->get();
+
+              }
+                
         }
 
-        //For Loading Test templates without
-        // if(is_null(Input::get('filter_hidden')) ){
-
-
-
-        //   }
-
-        // dd($args['sections']);
-
-                        // dd(count($args['hosted_tests']));
-        // dd($args);
         return view('recruiter_dashboard.view')->with($args);
     }
 	// Manage Test View Index
@@ -209,6 +227,7 @@ return redirect()->back();
 
 	// Editing Test Template
 public function edit_template($id = NULL, $flag = NULL){
+ 
 
   if($flag == "host") 
   {
@@ -489,6 +508,21 @@ public function create_duplicate_template_post(Request $request){
             $store = $previous_template->replicate();
             $store->title = $request->title;
             if ($store->save()) {
+              $test_settings = Templates_test_setting::where('test_templates_id',$test_template_id)->first();
+              unset($test_settings->id);
+              $new_test_sttings = new Templates_test_setting;
+
+              $new_test_sttings->email_verification = $test_settings->email_verification;
+              $new_test_sttings->mandatory_resume = $test_settings->mandatory_resume;
+              $new_test_sttings->request_resume = $test_settings->request_resume;
+              $new_test_sttings->test_template_types_id = $test_settings->test_template_types_id;
+              $new_test_sttings->test_templates_id = $store->id;
+              $new_test_sttings->webcam_id = $test_settings->webcam_id;
+              $new_test_sttings->save();
+              // $setting_store = $test_settings->replicate();
+              // $setting_store->test_templates_id = $store->id;
+              // $setting_store->save();
+
                 foreach ($section_of_templates as $key => $value) {
                     $previous_section = Section::find($value->id);
                     //Sections ka data copy horha hai yahan

@@ -1,5 +1,6 @@
 @extends('recruiter_dashboard.layouts.app')
 @section('content')
+
 <section class="view">
 	<br>
 	<div class="container-fluid padding-15-fluit">
@@ -13,14 +14,41 @@
 			<div class="col-md-3 col-sm-12 col-xs-12 display-table-cell padding-0 nav-background">
 				<ul class="nav nav-tabs nav-sidebar">
 					<!-- <li></li> -->
-				 <li @if(isset($templateType_fil) && $templateType_fil==1) class="active" @endif ><a data-toggle="pill" href="#public">Public Questions <i class=""></i></a></li>
-				 <li @if(isset($templateType_fil) && $templateType_fil==2) class="active" @endif ><a data-toggle="pill" href="#private">Private Questions <i class=""></i></a></li>
+
+				 <li class="@if(
+						(Request::segment(count(request()->segments()))) == 'pri_programming' 
+						|| (Request::segment(count(request()->segments()))) == 'pri_sub' 
+						|| (Request::segment(count(request()->segments()))) == 'pri_mcqs' 
+					) 
+					@else  
+						active
+					@endif" >
+					<a data-toggle="pill" href="#public">Public Questions <i class=""></i></a>
+				</li>
+				 
+				<li class="@if(
+						(Request::segment(count(request()->segments()))) == 'pri_programming' 
+						|| (Request::segment(count(request()->segments()))) == 'pri_sub' 
+						|| (Request::segment(count(request()->segments()))) == 'pri_mcqs' 
+					) 
+						active  
+					@endif"
+					>
+					<a data-toggle="pill" href="#private">Private Questions <i class=""></i></a>
+				</li>
 			 	</ul>
 			</div>
 			<div class="col-md-9 col-sm-12 col-xs-12 display-table-cell padding-col">
 			 <div class="tab-content sidebar-content">
 				 <!-- Start Public Question -->
-				 <div id="public" class="tab-pane fade @if(isset($templateType_fil) && $templateType_fil==1) in active @elseif($temp_unset) in active @endif ">
+				 <div id="public" class="tab-pane fade @if(
+						(Request::segment(count(request()->segments()))) == 'pri_programming' 
+						|| (Request::segment(count(request()->segments()))) == 'pri_sub' 
+						|| (Request::segment(count(request()->segments()))) == 'pri_mcqs' 
+					)
+					@else 
+						in active  
+					@endif">
 					<ul class="nav nav-tabs">
 			 			<li  class="@if((Request::segment(count(request()->segments()))) == 'mcqs') active @elseif((Request::segment(count(request()->segments()))) == 'programming') @else active @endif">
 			 				<a data-toggle="pill" href="#public-mcqs">MCQs ({{isset($public_questions_mcqs) ? count($public_questions_mcqs) : ''}})</a>
@@ -33,7 +61,7 @@
 			 		<div class="tab-content">
 			 			<div id="public-mcqs" class="tab-pane fade @if((Request::segment(count(request()->segments()))) == 'mcqs') in active @elseif((Request::segment(count(request()->segments()))) == 'programming') @else  in active @endif ">
 							<div class="padding-col">
-								<form id="libFilterMCQ" action="{{route('libFilter')}}" method="post">
+								<form id="libFilterMCQ" action="{{route('libFilter',['tab'=>'mcqs'])}}" method="post">
 								    <div class="form-group col-md-3">
 	 										<select class="form-control radius-0" name="level">
 	 											<option value="">All Levels</option>
@@ -133,7 +161,7 @@
 
 			 			<div id="public-programming-question" class="tab-pane fade @if((Request::segment(count(request()->segments()))) == 'programming') in active @endif ">
 							<div class="padding-col">
-								<form id="libFilterMCQ" action="{{route('libFilter')}}" method="post">
+								<form id="libFilterMCQ" action="{{route('libFilter',['tab'=>'programming'])}}" method="post">
 									<div class="form-group col-md-3">
  										<select class="form-control radius-0" name="level">
  											<option value="">All Levels</option>
@@ -159,7 +187,7 @@
 										 <input type="hidden" name="questionType" value="2">
 										  <input type="hidden" name="_token" value="{{Session::token()}}">
 
-										<button type="submit" class="btn">Apply</button>
+										<button type="submit" class="btn programming">Apply</button>
 
 										<a data-toggle="modal" data-target="#filter-programming-Modal" data-temptype="1" data-questype="2" class="adv_filButton">Advanced Filter </a>
 									</div>
@@ -232,15 +260,43 @@
  			 	 <!-- End Public Question
 
 				 <!-- Start Private Question -->
-				 <div id="private" class="tab-pane fade @if(isset($templateType_fil) && $templateType_fil==2)  active in @endif ">
+				 <div id="private" class="tab-pane fade @if(
+						(Request::segment(count(request()->segments()))) == 'pri_programming' 
+						|| (Request::segment(count(request()->segments()))) == 'pri_sub' 
+						|| (Request::segment(count(request()->segments()))) == 'pri_mcqs' 
+					) 
+						in active  
+					@endif">
 					<ul class="nav nav-tabs">
- 			 			<li @if(isset($questionType_fil) && $questionType_fil==1) class="active"@elseif(!isset($templateType_fil)) class="active"@endif><a data-toggle="pill" href="#private-mcqs">MCQs ({{isset($private_questions_mcqs) ?  count($private_questions_mcqs) : ''}})</a></li>
- 			 			<li @if(isset($questionType_fil) && $questionType_fil==2) class="active" @endif><a data-toggle="pill" href="#private-programming-question">Programming Questions ({{isset($private_questions_codings) ? count($private_questions_codings): '' }})</a></li>
- 			 			<li @if(isset($questionType_fil) && $questionType_fil==3) class="active" @endif ><a data-toggle="pill" href="#private-submission-question">Submission Questions ({{isset($private_questions_submissions) ? count($private_questions_submissions) : '' }})</a></li>
+ 			 			<li class="@if((Request::segment(count(request()->segments()))) == 'pri_mcqs') 
+							active
+						@elseif((Request::segment(count(request()->segments()))) == 'pri_sub')
+						@elseif((Request::segment(count(request()->segments()))) == 'pri_programming')
+						@else
+							active
+						@endif">
+ 			 				<a data-toggle="pill" href="#private-mcqs">MCQs ({{isset($private_questions_mcqs) ?  count($private_questions_mcqs) : ''}})</a>
+ 			 			</li>
+ 			 			<li class="@if((Request::segment(count(request()->segments()))) == 'pri_programming')
+							active
+						@endif">
+ 			 				<a data-toggle="pill" href="#private-programming-question">Programming Questions ({{isset($private_questions_codings) ? count($private_questions_codings): '' }})</a>
+ 			 			</li>
+ 			 			<li class="@if((Request::segment(count(request()->segments()))) == 'pri_sub')
+							active
+						@endif">
+ 			 				<a data-toggle="pill" href="#private-submission-question">Submission Questions ({{isset($private_questions_submissions) ? count($private_questions_submissions) : '' }})</a>
+ 			 			</li>
 						<li class="pull-right"></li>
  		 			</ul>
 					<div class="tab-content">
-						<div id="private-mcqs" class="tab-pane fade in active">
+						<div id="private-mcqs" class="tab-pane fade @if((Request::segment(count(request()->segments()))) == 'pri_mcqs') 
+							in active
+						@elseif((Request::segment(count(request()->segments()))) == 'pri_sub')
+						@elseif((Request::segment(count(request()->segments()))) == 'pri_programming')
+						@else
+							in active
+						@endif">
 							<div class="button_add_question pull-right">
 								<button type="button" class="btn" data-toggle="modal" data-target="#private-mcqs-Modal" onclick="private_mcqs_Modal_Expand();"><i class="fa fa-plus"></i> Add a Question</button>
 							</div>
@@ -346,7 +402,9 @@
  							<!--  -->
  						</div>
 
- 			 			<div id="private-programming-question" class="tab-pane fade">
+ 			 			<div id="private-programming-question" class="tab-pane fade @if((Request::segment(count(request()->segments()))) == 'pri_programming')
+							in active
+						@endif">
 							<div class="button_add_question pull-right">
 								<div class="open">
 									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
@@ -460,7 +518,9 @@
  							</div>
  						</div>
 
-						<div id="private-submission-question" class="tab-pane fade">
+						<div id="private-submission-question" class="tab-pane fade @if((Request::segment(count(request()->segments()))) == 'pri_sub')
+							in active
+						@endif">
 							<div class="button_add_question pull-right">
 								<div class="open">
 									<div class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
@@ -583,7 +643,6 @@
 									</nav>
 								</div>
  							</div>
-
  						</div>
  			 		</div>
  				 </div>
@@ -1862,7 +1921,7 @@
                 <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>Filter Criteria 890</h3>
             </div>
             <div class="modal-body s_modal_form_body">
-                <form class="form-horizontal" action="{{route('advance_filter')}}" method="post">
+                <form class="form-horizontal" action="{{route('advance_filter',['tab'=>'pri_mcqs'])}}" method="post">
                 	{{csrf_field()}}
                     <div class="form-group">
                     	<input type="hidden" name="templateType" value="2">
@@ -1945,7 +2004,7 @@
                 <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>  Filter Criteria 780</h3>
             </div>
             <div class="modal-body s_modal_form_body">
-                <form class="form-horizontal" action="{{route('advance_filter')}}" method="post">
+                <form class="form-horizontal" action="{{route('advance_filter',['tab'=>'pri_programming'])}}" method="post">
                 	{{csrf_field()}}
                     <div class="form-group">
                     	<input type="hidden" name="templateType" value="2">
@@ -2034,11 +2093,11 @@
                 <h3 class="modal-title s_font"><i class="fa fa-filter fa-lg"></i>Filter Criteria 444</h3>
             </div>
             <div class="modal-body s_modal_form_body">
-                <form class="form-horizontal" action="{{route('advance_filter')}}" method="post">
+                <form class="form-horizontal" action="{{route('advance_filter',['tab'=>'pri_sub'])}}" method="post">
                 	{{csrf_field()}}
                     <div class="form-group">
                     	<input type="hidden" name="templateType" value="2">
-                    	<input type="hidden" name="questionType" value="1">
+                    	<input type="hidden" name="questionType" value="3">
                         <label class="control-label col-sm-2" for="id">Question id:</label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control" id="id" placeholder="Enter question id" name="id"  min="0" max="9999999999999">
