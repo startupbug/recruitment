@@ -20,8 +20,8 @@ class RoleAdmin
 
         if(Auth::check() && Auth::user()->role_id != '3'){
             $role = AssignRole::where('assigned_user_id', Auth::user()->id)->first();
-            // dd($role);
             if($role->assign_role_details == 1){
+               // dd($next($request));
                 return $next($request);
             }
             return redirect()->route('not_authorize');

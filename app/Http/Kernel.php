@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'roleTestManager' => \App\Http\Middleware\RoleTestManager::class,
         'roleTemplateManager' => \App\Http\Middleware\RoleTemplateManager::class,
         'roleReportViewer' => \App\Http\Middleware\RoleReportViewer::class,
+        'role' => \App\Http\Middleware\RoleVariable::class,
     ];
 }
