@@ -33,7 +33,7 @@ class RoleVariable
         $role_array = explode('|', $role);
             // dd($role_array);
         if ($request->user()->hasRole($role_array)){
-            if(!Auth::user()->role_id != 3){
+            if(Auth::user()->role_id != 3){
                 $assigned = AssignRole::where('assigned_user_id', Auth::user()->id)->first();
 
                 if(Auth::user()->role_id == $assigned->assign_role_details){
