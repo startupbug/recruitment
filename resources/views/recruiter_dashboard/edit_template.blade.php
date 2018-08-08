@@ -653,7 +653,7 @@
                                                       <option value="{{$value->id}}" >{{$value->webcam_name}}</option>
                                                       @endforeach -->
                                                       @foreach($test_setting_webcam as $value)
-                                                         <option value="{{$value->id}}" @if($edit_test_settings->webcam_id == $value->id) selected @endif >{{$value->webcam_name}}</option>
+                                                         <option value="{{$value->id}}" @if(isset($edit_test_settings->webcam_id) && $edit_test_settings->webcam_id == $value->id) selected @endif >{{$value->webcam_name}}</option>
                                                       @endforeach                                                      
                                                    </select>
                                                 </div>
@@ -2137,6 +2137,7 @@
          </div>
          <div class="modal-body">
            <form id="hostTestAdd" method="post" action="{{route('host_test_post')}}">
+            <input type="text" name="asd" value="ad">
             <div class="row">
                <div class="col-md-12" style="border-right: 0px solid #ddd">
                   <div class="form-group form-group-sm">

@@ -264,17 +264,21 @@
                                        <tr>
                                           <td><span>Duration</span>
                                              <?php
-                                                $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
-                                                $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
-
-                                                $datetime1 = new DateTime($to_time." ".$hosted_test->test_open_time);
-                                                $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
+                                                $datetime1 = new DateTime($hosted_test->test_open_date);
+                                                $datetime2 = new DateTime($hosted_test->test_close_date);
                                                 $interval = $datetime1->diff($datetime2);
-
                                                 ?>
                                              <span class="pull-right margin_22">
                                              <span class="margin_29">:</span>
-                                             <?php echo $interval->format('%hh %im');?></span>
+                                             
+                                             <?php 
+                                             echo $interval->format('%a');
+                                             ?>
+                                             <span>Days</span>
+                                             <?php 
+                                             echo $interval->format('%hh %im');
+                                             ?>
+                                          </span>
                                           </td>
                                        </tr>
                                     </tbody>

@@ -29,12 +29,14 @@
 	                    //dd( );
 					?>
 					@if(isset($hosted_test))
-					@if( (strtotime($todaydate) == strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) )
-					 || ( strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) ) )
-							<h3 class="test_live">LIVE!</h3>
-					@else
-							<h3 class="test_live">EXPIRED!</h3>
-					@endif
+	@if( 
+	
+	(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) ) && (strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))) )
+	)
+								<h3 class="test_live">LIVE!</h3>
+						@elseif(strtotime($todaydate) > strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date)))  )
+								<h3 class="test_live">EXPIRED!</h3>
+						@endif
 					@endif
 
 

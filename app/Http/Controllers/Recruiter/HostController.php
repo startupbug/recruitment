@@ -124,6 +124,7 @@ class HostController extends Controller
     }
 
     public function host_test_post(Request $request){
+     
       ini_set('max_execution_time', 300);
     	// return $request->input();
       
