@@ -147,7 +147,7 @@
                               <div class="right_tab">
                                  <ul>
                                    <li class="not_selected">
-                                     <button type="button" class="btn general_public_link_btn"  data-toggle="modal" data-target="#generate_public_link" name="button">Generate Public Link</button>
+                                     <!-- <button type="button" class="btn general_public_link_btn"  data-toggle="modal" data-target="#generate_public_link" name="button">Generate Public Link</button> -->
                                    </li>
                                     @if(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
                                     <li><a href="{{route('edit_template',['id'=>$hosted_test->host_id, 'flag' => 'host'])}}">Edit</a></li>
@@ -264,17 +264,21 @@
                                        <tr>
                                           <td><span>Duration</span>
                                              <?php
-                                                $to_time = date("H:i:s",strtotime($hosted_test->test_open_date));
-                                                $from_time = date("H:i:s",strtotime($hosted_test->test_close_date) );
-
-                                                $datetime1 = new DateTime($to_time." ".$hosted_test->test_open_time);
-                                                $datetime2 = new DateTime($from_time." ".$hosted_test->test_close_time);
+                                                $datetime1 = new DateTime($hosted_test->test_open_date);
+                                                $datetime2 = new DateTime($hosted_test->test_close_date);
                                                 $interval = $datetime1->diff($datetime2);
-
                                                 ?>
                                              <span class="pull-right margin_22">
                                              <span class="margin_29">:</span>
-                                             <?php echo $interval->format('%hh %im');?></span>
+                                             
+                                             <?php 
+                                             echo $interval->format('%a');
+                                             ?>
+                                             <span>Days</span>
+                                             <?php 
+                                             echo $interval->format('%hh %im');
+                                             ?>
+                                          </span>
                                           </td>
                                        </tr>
                                     </tbody>

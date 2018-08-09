@@ -18,6 +18,7 @@ class RoleVariable
      */
     public function handle($request, Closure $next, $role)
     {
+        // dd($role);
         // if(Auth::check() && Auth::user()->role_id != '3'){
         //     $role = AssignRole::where('assigned_user_id', Auth::user()->id)->first();
         //     if($role->assign_role_details == 1){
@@ -31,7 +32,7 @@ class RoleVariable
         // }
         // return redirect()->route('login_index');
         $role_array = explode('|', $role);
-            // dd($role_array);
+            // dd($request->user()->hasRole($role_array));
         if ($request->user()->hasRole($role_array)){
             if(Auth::user()->role_id != 3){
                 $assigned = AssignRole::where('assigned_user_id', Auth::user()->id)->first();

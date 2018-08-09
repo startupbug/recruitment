@@ -15,10 +15,10 @@ class CompanyController extends Controller
 				'company_name'=>$request->company_name,
 				'company_logo'=>$request->company_logo
 			]);
-			if ($store){				
+			if ($store){
 				$this->set_session('You Have Successfully Saved The Company Name And Company Logo', true);
 			}else{
-				$this->set_session('Something Went Wrong, Please Try Again', false);					
+				$this->set_session('Something Went Wrong, Please Try Again', false);
 			}
 			return redirect()->back();	
 		}else{
