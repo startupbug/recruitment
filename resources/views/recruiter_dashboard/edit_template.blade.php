@@ -653,7 +653,7 @@
                                                       <option value="{{$value->id}}" >{{$value->webcam_name}}</option>
                                                       @endforeach -->
                                                       @foreach($test_setting_webcam as $value)
-                                                         <option value="{{$value->id}}" @if($edit_test_settings->webcam_id == $value->id) selected @endif >{{$value->webcam_name}}</option>
+                                                         <option value="{{$value->id}}" @if(isset($edit_test_settings->webcam_id) == $value->id) selected @endif >{{$value->webcam_name}}</option>
                                                       @endforeach                                                      
                                                    </select>
                                                 </div>
