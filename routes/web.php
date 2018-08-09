@@ -195,6 +195,7 @@ Route::group(['prefix' => 'recruiter' ,  'middleware' => 'is-recruiter'], functi
 	Route::post('/create_question_admin', 'Recruiter\TemplatesController@create_question_admin')->name('create_question_admin')->middleware('role:recruiter|recruiter_admin|recruiter_test_manager|recruiter_template_manager');
 
 	//Recruiter Questions Routes Started
+	Route::post('/add_library_questions','Recruiter\QuestionsController@add_library_questions')->name('add_library_questions')->middleware('role:recruiter|recruiter_admin|recruiter_template_manager');
 	Route::post('/create_question','Recruiter\QuestionsController@create_question')->name('create_question')->middleware('role:recruiter|recruiter_admin|recruiter_template_manager');
 	Route::post('/create_question_coding','Recruiter\QuestionsController@create_question_coding')->name('create_question_coding')->middleware('role:recruiter|recruiter_admin|recruiter_template_manager');
 	Route::post('/create_question_coding_debug','Recruiter\QuestionsController@create_question_coding_debug')->name('create_question_coding_debug')->middleware('role:recruiter|recruiter_admin|recruiter_template_manager');

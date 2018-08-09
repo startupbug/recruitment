@@ -242,6 +242,8 @@ return redirect()->back();
 	// Editing Test Template
 public function edit_template($id = NULL, $flag = NULL){
  
+  $args['library_public'] = Question::where('lib_private_question', 0)->paginate(10);
+  // dd($args['library_public']);
 
   if($flag == "host") 
   {
@@ -270,43 +272,68 @@ public function edit_template($id = NULL, $flag = NULL){
 
     foreach ($args['sections'] as $key => $value) {
 
-       $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
+       $args['sections_tabs'][$value->id]['ques1'] = DB::table("questions")
+             ->rightjoin('question_pivot', 'questions.id', '=', 'question_pivot.ques_id')
+             ->leftjoin('question_levels', 'questions.question_level_id', '=', 'question_levels.id')
+             ->leftjoin('question_details', 'questions.id', '=', 'question_details.question_id')
+             ->where('questions.question_type_id', 1)
+             ->where('question_pivot.sec_id', $value->id)->get();
+
+       // dd($args['sections_tabs'][$value->id]['ques1']);
+
+       // Question::where('question_type_id',1)->where('section_id', $value->id)->get();
 
              $args['sections_tabs'][$value->id]['count'] = count($args['sections_tabs'][$value->id]['ques1']); //$value->section_questions;
 
-             $args['sections_tabs'][$value->id]['ques2'] = Question::where('question_type_id',2)->where('section_id', $value->id)->get();
+             $args['sections_tabs'][$value->id]['ques2'] = DB::table("questions")
+             ->rightjoin('question_pivot', 'questions.id', '=', 'question_pivot.ques_id')
+             ->leftjoin('question_levels', 'questions.question_level_id', '=', 'question_levels.id')
+             ->leftjoin('question_details', 'questions.id', '=', 'question_details.question_id')
+             ->where('questions.question_type_id', 3)
+             ->where('question_pivot.sec_id', $value->id)->get();
 
              $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']);
 
-             $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',3)->where('section_id', $value->id)->get();
+             $args['sections_tabs'][$value->id]['ques3'] = DB::table("questions")
+             ->rightjoin('question_pivot', 'questions.id', '=', 'question_pivot.ques_id')
+             ->leftjoin('question_levels', 'questions.question_level_id', '=', 'question_levels.id')
+             ->leftjoin('question_details', 'questions.id', '=', 'question_details.question_id')
+             ->where('questions.question_type_id', 3)
+             ->where('question_pivot.sec_id', $value->id)->get();
 
              $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']);
 
              //counting easy questions from each section
-              $args['sections_tabs'][$value->id]['easy_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
-               ->where('sections.id',$value->id)
-               ->where('questions.question_level_id',1)
-               ->count();
+              $args['sections_tabs'][$value->id]['easy_question_count'] = DB::table('question_pivot')
+              ->leftjoin('questions', 'questions.id', '=', 'question_pivot.ques_id')
+              ->where('questions.question_level_id', 1)
+              ->where('question_pivot.sec_id', $value->id)
+              ->count();
+
+
               // dd($args['sections_tabs']);
 
                //counting medium questions from each section
-              $args['sections_tabs'][$value->id]['medium_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
-               ->where('sections.id',$value->id)
-               ->where('questions.question_level_id',2)
-               ->count();
+              $args['sections_tabs'][$value->id]['medium_question_count'] = DB::table('question_pivot')
+              ->leftjoin('questions', 'questions.id', '=', 'question_pivot.ques_id')
+              ->where('questions.question_level_id', 2)
+              ->where('question_pivot.sec_id', $value->id)
+              ->count();
 
               //counting hard questions from each section
-               $args['sections_tabs'][$value->id]['hard_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
-               ->where('sections.id',$value->id)
-               ->where('questions.question_level_id',3)
-               ->count();
+               $args['sections_tabs'][$value->id]['hard_question_count'] = DB::table('question_pivot')
+              ->leftjoin('questions', 'questions.id', '=', 'question_pivot.ques_id')
+              ->where('questions.question_level_id', 3)
+              ->where('question_pivot.sec_id', $value->id)
+              ->count();
 
               //counting total marks questions from each section
-               $args['sections_tabs'][$value->id]['marks_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
-               ->leftJoin('question_details','question_details.question_id','=','questions.id')
-               ->select('question_details.marks')
-               ->where('sections.id',$value->id)
-               ->sum('marks');
+               $args['sections_tabs'][$value->id]['marks_question_count'] = DB::table('question_pivot')
+              ->leftjoin('questions', 'questions.id', '=', 'question_pivot.ques_id')
+              ->leftJoin('question_details','question_details.question_id','=','questions.id')
+              ->select('question_details.marks')
+              ->where('question_pivot.sec_id', $value->id)
+              ->sum('marks');
 
                $args['sections_tabs'][$value->id]['adv_settings'] = Advanced_setting::where('section_id', $value->id)->
                   where('test_id', $args['edit']->id)->first();
@@ -367,44 +394,85 @@ public function edit_template($id = NULL, $flag = NULL){
     //dd($args['sections']);
 
     foreach ($args['sections'] as $key => $value) {
+            $args['sections_tabs'][$value->id]['ques1'] = DB::table("questions")
+             ->rightjoin('question_pivot', 'questions.id', '=', 'question_pivot.ques_id')
+             ->leftjoin('question_levels', 'questions.question_level_id', '=', 'question_levels.id')
+             ->leftjoin('question_details', 'questions.id', '=', 'question_details.question_id')
+             ->where('questions.question_type_id', 1)
+             ->where('question_pivot.sec_id', $value->id)->get();
+       
 
-       $args['sections_tabs'][$value->id]['ques1'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
 
              $args['sections_tabs'][$value->id]['count'] = count($args['sections_tabs'][$value->id]['ques1']); //$value->section_questions;
 
-             $args['sections_tabs'][$value->id]['ques2'] = Question::where('question_type_id',2)->where('section_id', $value->id)->get();
+             $args['sections_tabs'][$value->id]['ques2'] = DB::table("questions")
+             ->rightjoin('question_pivot', 'questions.id', '=', 'question_pivot.ques_id')
+             ->leftjoin('question_levels', 'questions.question_level_id', '=', 'question_levels.id')
+             ->leftjoin('question_details', 'questions.id', '=', 'question_details.question_id')
+             ->where('questions.question_type_id', 2)
+             ->where('question_pivot.sec_id', $value->id)->get();
 
              $args['sections_tabs'][$value->id]['count2'] = count($args['sections_tabs'][$value->id]['ques2']);
 
-             $args['sections_tabs'][$value->id]['ques3'] = Question::where('question_type_id',3)->where('section_id', $value->id)->get();
+             $args['sections_tabs'][$value->id]['ques3'] = DB::table("questions")
+             ->rightjoin('question_pivot', 'questions.id', '=', 'question_pivot.ques_id')
+             ->leftjoin('question_levels', 'questions.question_level_id', '=', 'question_levels.id')
+             ->leftjoin('question_details', 'questions.id', '=', 'question_details.question_id')
+             ->where('questions.question_type_id', 3)
+             ->where('question_pivot.sec_id', $value->id)->get();
 
              $args['sections_tabs'][$value->id]['count3'] = count($args['sections_tabs'][$value->id]['ques3']);
 
              //counting easy questions from each section
-              $args['sections_tabs'][$value->id]['easy_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+              $args['sections_tabs'][$value->id]['easy_question_count'] = DB::table('question_pivot')
+              ->leftjoin('questions', 'questions.id', '=', 'question_pivot.ques_id')
+              ->where('questions.question_level_id', 1)
+              ->where('question_pivot.sec_id', $value->id)
+              ->count();
+
+              /*Section::leftJoin('questions','questions.section_id','=','sections.id')
                ->where('sections.id',$value->id)
                ->where('questions.question_level_id',1)
-               ->count();
+               ->count();*/
               // dd($args['sections_tabs']);
 
                //counting medium questions from each section
-              $args['sections_tabs'][$value->id]['medium_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+              $args['sections_tabs'][$value->id]['medium_question_count'] = DB::table('question_pivot')
+              ->leftjoin('questions', 'questions.id', '=', 'question_pivot.ques_id')
+              ->where('questions.question_level_id', 2)
+              ->where('question_pivot.sec_id', $value->id)
+              ->count();
+
+              /*Section::leftJoin('questions','questions.section_id','=','sections.id')
                ->where('sections.id',$value->id)
                ->where('questions.question_level_id',2)
-               ->count();
+               ->count();*/
 
               //counting hard questions from each section
-               $args['sections_tabs'][$value->id]['hard_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               $args['sections_tabs'][$value->id]['hard_question_count'] = DB::table('question_pivot')
+              ->leftjoin('questions', 'questions.id', '=', 'question_pivot.ques_id')
+              ->where('questions.question_level_id', 3)
+              ->where('question_pivot.sec_id', $value->id)
+              ->count();
+
+               /*Section::leftJoin('questions','questions.section_id','=','sections.id')
                ->where('sections.id',$value->id)
                ->where('questions.question_level_id',3)
-               ->count();
+               ->count();*/
 
               //counting total marks questions from each section
-               $args['sections_tabs'][$value->id]['marks_question_count'] = Section::leftJoin('questions','questions.section_id','=','sections.id')
+               $args['sections_tabs'][$value->id]['marks_question_count'] = DB::table('question_pivot')
+              ->leftjoin('questions', 'questions.id', '=', 'question_pivot.ques_id')
+              ->leftJoin('question_details','question_details.question_id','=','questions.id')
+              ->select('question_details.marks')
+              ->where('question_pivot.sec_id', $value->id)
+              ->sum('marks');
+
+               /*Section::leftJoin('questions','questions.section_id','=','sections.id')
                ->leftJoin('question_details','question_details.question_id','=','questions.id')
                ->select('question_details.marks')
                ->where('sections.id',$value->id)
-               ->sum('marks');
+               ->sum('marks');*/
 
               //sections advanced settings 
               $args['sections_tabs'][$value->id]['adv_settings'] = Advanced_setting::where('section_id', $value->id)->
@@ -412,7 +480,8 @@ public function edit_template($id = NULL, $flag = NULL){
 
              // $args['sections_tabs2'][$value->id]['ques'] = Question::where('question_type_id',1)->where('section_id', $value->id)->get();
              // $args['sections_tabs'][$value->id]['count2'] = $value->section_questions;
-         }
+    }
+          // dd($args['sections_tabs']);
         //dd($args['sections_tabs']);
 
          $args['test_setting_types'] = Test_template_types::get();
@@ -447,6 +516,7 @@ public function edit_template($id = NULL, $flag = NULL){
             ->leftjoin('users', 'test_templates.user_id', '=', 'users.id')
                 ->select('hosted_tests.id as host_id', 'hosted_tests.test_template_id', 'hosted_tests.host_name','hosted_tests.cut_off_marks', 'hosted_tests.test_open_date','hosted_tests.test_open_time','hosted_tests.test_close_date','hosted_tests.test_close_time', 'hosted_tests.time_zone', 'hosted_tests.status', 'users.name as username', 'test_templates.instruction', 'test_templates.description')->where('hosted_tests.id', $id)->first();
   }
+
 
 
 

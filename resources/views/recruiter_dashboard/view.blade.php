@@ -147,7 +147,7 @@
                               <div class="right_tab">
                                  <ul>
                                    <li class="not_selected">
-                                     <button type="button" class="btn general_public_link_btn"  data-toggle="modal" data-target="#generate_public_link" name="button">Generate Public Link</button>
+                                     <!-- <button type="button" class="btn general_public_link_btn"  data-toggle="modal" data-target="#generate_public_link" name="button">Generate Public Link</button> -->
                                    </li>
                                     @if(strtotime($todaydate) >= strtotime(date('Y-m-d',strtotime($hosted_test->test_open_date))) && strtotime($todaydate) < strtotime(date('Y-m-d',strtotime($hosted_test->test_close_date))))
                                     <li><a href="{{route('edit_template',['id'=>$hosted_test->host_id, 'flag' => 'host'])}}">Edit</a></li>

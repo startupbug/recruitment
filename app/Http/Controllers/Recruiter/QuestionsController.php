@@ -27,6 +27,18 @@ use App\Coding_question_language;
 
 class QuestionsController extends Controller
 {
+
+	public function add_library_questions(Request $request){
+		$q_id = explode(",", $request->public_mcq_id);
+		foreach ($q_id as $key => $value) {
+			DB::table('question_pivot')->insert([
+				'sec_id' => $request->secion_id,
+				'ques_id' => $value,
+			]);
+		}
+		$this->set_session('You Have Successfully Saved The Question Data', true);
+		return redirect()->back();
+	}
 	public function create_question(Request $request){
 		// dd($request->input());
 		if (!empty($request->lib_private_question) || isset($request->section_id)){
@@ -44,6 +56,10 @@ class QuestionsController extends Controller
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
 			if ($store->save()){
+				DB::table('question_pivot')->insert([
+					'sec_id' => $request->section_id,
+					'ques_id' => $store->id,
+				]);
 				$question_data =  array('store' => $store, 'request' =>$request->all());
 				event(new  QuestionDetail($question_data));
 				event(new  QuestionChoice($question_data));
@@ -105,6 +121,10 @@ class QuestionsController extends Controller
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
 			if ($store->save()){
+				DB::table('question_pivot')->insert([
+					'sec_id' => $request->section_id,
+					'ques_id' => $store->id,
+				]);
 				$question_data =  array('store' => $store, 'request' =>$request->all());
 				event(new  CodingQuestionDetail($question_data));
 				event(new  QuestionSolution($question_data));
@@ -167,6 +187,10 @@ class QuestionsController extends Controller
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
 			if ($store->save()){
+				DB::table('question_pivot')->insert([
+					'sec_id' => $request->section_id,
+					'ques_id' => $store->id,
+				]);
 				$question_data =  array('store' => $store, 'request' =>$request->all());
 				event(new  CodingQuestionDetail($question_data));
 				event(new  CodingTestCases($question_data));
@@ -224,6 +248,10 @@ class QuestionsController extends Controller
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
 			if ($store->save()){
+				DB::table('question_pivot')->insert([
+					'sec_id' => $request->section_id,
+					'ques_id' => $store->id,
+				]);
 				$question_data =  array('store' => $store, 'request' =>$request->all());
 				event(new  QuestionDetail($question_data));
 				event(new  QuestionSolution($question_data));
@@ -282,6 +310,10 @@ class QuestionsController extends Controller
 			$store->lib_private_question = $request->lib_private_question;
 			$store->question_statement = $request->question_statement;
 			if ($store->save()){
+				DB::table('question_pivot')->insert([
+					'sec_id' => $request->section_id,
+					'ques_id' => $store->id,
+				]);
 				$question_data =  array('store' => $store, 'request' =>$request->all());
 				event(new  QuestionSubmissionEvaluation($question_data));
 				event(new  QuestionDetail($question_data));
